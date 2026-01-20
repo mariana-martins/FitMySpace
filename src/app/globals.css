@@ -1,0 +1,92 @@
+@import 'tailwindcss';
+
+@theme {
+  /* --- Brand Identity --- */
+  --color-brand-primary: var(--color-slate-900);
+  --color-brand-secondary: var(--color-indigo-600);
+
+  /* --- Neutral Palette (The Home Edit Clean Look) --- */
+  --color-app-bg: #ffffff;
+  --color-app-surface: var(--color-slate-50);
+  --color-app-border: var(--color-slate-200);
+
+  /* --- Typography --- */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* --- Room Filter Colors (Soft Pastels) --- */
+  /* Pantry */
+  --color-room-pantry-bg: var(--color-rose-50);
+  --color-room-pantry-text: var(--color-rose-600);
+  --color-room-pantry-icon: var(--color-rose-400);
+
+  /* Kitchen */
+  --color-room-kitchen-bg: var(--color-orange-50);
+  --color-room-kitchen-text: var(--color-orange-600);
+  --color-room-kitchen-icon: var(--color-orange-400);
+
+  /* Bathroom */
+  --color-room-bathroom-bg: var(--color-sky-50);
+  --color-room-bathroom-text: var(--color-sky-600);
+  --color-room-bathroom-icon: var(--color-sky-400);
+
+  /* Closet */
+  --color-room-closet-bg: var(--color-violet-50);
+  --color-room-closet-text: var(--color-violet-600);
+  --color-room-closet-icon: var(--color-violet-400);
+
+  /* Office */
+  --color-room-office-bg: var(--color-amber-50);
+  --color-room-office-text: var(--color-amber-600);
+  --color-room-office-icon: var(--color-amber-400);
+
+  /* Garage/General */
+  --color-room-general-bg: var(--color-emerald-50);
+  --color-room-general-text: var(--color-emerald-600);
+  --color-room-general-icon: var(--color-emerald-400);
+
+  /* Living Room */
+  --color-room-living-bg: var(--color-teal-50);
+  --color-room-living-text: var(--color-teal-600);
+  --color-room-living-icon: var(--color-teal-400);
+
+  /* Bedroom */
+  --color-room-bedroom-bg: var(--color-pink-50);
+  --color-room-bedroom-text: var(--color-pink-600);
+  --color-room-bedroom-icon: var(--color-pink-400);
+
+  /* Laundry */
+  --color-room-laundry-bg: var(--color-cyan-50);
+  --color-room-laundry-text: var(--color-cyan-600);
+  --color-room-laundry-icon: var(--color-cyan-400);
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-brand-secondary);
+  background-color: var(--color-app-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Skip to main content link for accessibility */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+}
+
+.skip-to-main:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  background-color: var(--color-brand-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+}
