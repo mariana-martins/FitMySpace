@@ -16,7 +16,7 @@ export const mockProducts: Product[] = [
     description:
       'A beautiful set of clear acrylic organizers perfect for your pantry. Keep everything visible and organized with these stackable containers.',
     price: 29.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('1', 'Clear Acrylic Pantry Organizer Set'),
     store: mockStores[0],
     room: Room.PANTRY,
@@ -30,7 +30,7 @@ export const mockProducts: Product[] = [
     description:
       'Colorful drawer dividers that bring joy to your organization. Made from durable plastic with smooth edges.',
     price: 19.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('2', 'Rainbow Drawer Dividers'),
     store: mockStores[1],
     room: Room.CLOSET,
@@ -44,7 +44,7 @@ export const mockProducts: Product[] = [
     description:
       'A sleek storage tower for your bathroom essentials. Features multiple shelves and a modern design.',
     price: 49.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('3', 'Bathroom Storage Tower'),
     store: mockStores[2],
     room: Room.BATHROOM,
@@ -58,7 +58,7 @@ export const mockProducts: Product[] = [
     description:
       'Keep your spices organized and easily accessible with this wall-mounted spice rack. Holds up to 24 spice jars.',
     price: 34.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('4', 'Kitchen Spice Rack Organizer'),
     store: mockStores[3],
     room: Room.KITCHEN,
@@ -72,7 +72,7 @@ export const mockProducts: Product[] = [
     description:
       'A complete desk organization solution with compartments for pens, papers, and office supplies.',
     price: 24.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('5', 'Office Desk Organizer Set'),
     store: mockStores[4],
     room: Room.OFFICE,
@@ -86,7 +86,7 @@ export const mockProducts: Product[] = [
     description:
       'Maximize your under-sink space with this adjustable storage system. Perfect for cleaning supplies.',
     price: 39.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('6', 'Under-Sink Storage System'),
     store: mockStores[0],
     room: Room.KITCHEN,
@@ -100,7 +100,7 @@ export const mockProducts: Product[] = [
     description:
       'A versatile hanging organizer with multiple compartments for shoes, accessories, and folded items.',
     price: 27.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('7', 'Closet Hanging Organizer'),
     store: mockStores[1],
     room: Room.CLOSET,
@@ -114,7 +114,7 @@ export const mockProducts: Product[] = [
     description:
       'Stackable can organizer that rotates for easy access. Holds up to 36 standard-sized cans.',
     price: 22.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('8', 'Pantry Can Organizer'),
     store: mockStores[2],
     room: Room.PANTRY,
@@ -128,7 +128,7 @@ export const mockProducts: Product[] = [
     description:
       'Expandable medicine cabinet organizer with adjustable shelves. Keeps everything neat and accessible.',
     price: 18.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('9', 'Bathroom Medicine Cabinet Organizer'),
     store: mockStores[3],
     room: Room.BATHROOM,
@@ -142,7 +142,7 @@ export const mockProducts: Product[] = [
     description:
       'Customizable drawer organizer with adjustable dividers. Perfect for utensils and kitchen tools.',
     price: 16.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('10', 'Kitchen Drawer Organizer'),
     store: mockStores[4],
     room: Room.KITCHEN,
@@ -156,7 +156,7 @@ export const mockProducts: Product[] = [
     description:
       'Desktop file organizer with multiple slots for documents and folders. Keeps your workspace tidy.',
     price: 21.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('11', 'Office File Organizer'),
     store: mockStores[0],
     room: Room.OFFICE,
@@ -170,7 +170,7 @@ export const mockProducts: Product[] = [
     description:
       'Beautiful woven storage baskets perfect for living room organization. Set of 3 in different sizes.',
     price: 44.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('12', 'Living Room Storage Basket Set'),
     store: mockStores[1],
     room: Room.LIVING_ROOM,
@@ -184,7 +184,7 @@ export const mockProducts: Product[] = [
     description:
       'Low-profile storage containers that slide under your bed. Perfect for seasonal clothing and linens.',
     price: 32.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('13', 'Bedroom Under-Bed Storage'),
     store: mockStores[2],
     room: Room.BEDROOM,
@@ -198,7 +198,7 @@ export const mockProducts: Product[] = [
     description:
       'Heavy-duty wall storage system for garage organization. Includes hooks, shelves, and tool holders.',
     price: 79.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('14', 'Garage Wall Storage System'),
     store: mockStores[3],
     room: Room.GARAGE,
@@ -212,7 +212,7 @@ export const mockProducts: Product[] = [
     description:
       'Three-compartment laundry sorter on wheels. Makes sorting and transporting laundry a breeze.',
     price: 54.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('15', 'Laundry Room Sorting Hamper'),
     store: mockStores[4],
     room: Room.LAUNDRY,
@@ -226,7 +226,7 @@ export const mockProducts: Product[] = [
     description:
       'Complete labeling system for your pantry. Includes label maker and various label sizes.',
     price: 29.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('16', 'Pantry Label Maker Kit'),
     store: mockStores[0],
     room: Room.PANTRY,
@@ -239,7 +239,7 @@ export const mockProducts: Product[] = [
     description:
       'Rust-resistant shower caddy with adjustable shelves. Keeps all your shower essentials organized.',
     price: 19.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('17', 'Bathroom Shower Caddy'),
     store: mockStores[1],
     room: Room.BATHROOM,
@@ -253,7 +253,7 @@ export const mockProducts: Product[] = [
     description:
       'Sleek countertop organizer for oils, spices, and cooking essentials. Saves space and looks great.',
     price: 24.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('18', 'Kitchen Countertop Organizer'),
     store: mockStores[2],
     room: Room.KITCHEN,
@@ -267,7 +267,7 @@ export const mockProducts: Product[] = [
     description:
       'Vertical shoe rack that holds up to 20 pairs. Space-efficient design perfect for any closet.',
     price: 31.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('19', 'Closet Shoe Rack'),
     store: mockStores[3],
     room: Room.CLOSET,
@@ -281,7 +281,7 @@ export const mockProducts: Product[] = [
     description:
       'Hide and organize all your cables with this cable management box. Keeps your desk clutter-free.',
     price: 14.99,
-    currency: 'USD',
+    currency: 'AUD',
     image: getPlaceholderImage('20', 'Office Cable Management Box'),
     store: mockStores[4],
     room: Room.OFFICE,
