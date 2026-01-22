@@ -1,3 +1,5 @@
+# Run linting
+npm run lint
 
-
-git diff --cached --quiet || npx lint-staged
+# Run tests
+npm test
