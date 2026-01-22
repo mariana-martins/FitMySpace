@@ -43,6 +43,8 @@ export interface SearchParams {
   room?: Room;
   minPrice?: number;
   maxPrice?: number;
+  page?: number;
+  limit?: number;
 }
 
 export interface ProductSearchResponse {
