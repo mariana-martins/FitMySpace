@@ -1,10 +1,9 @@
 # 📁 FitMySpace - File Structure
 
-This structure follows Senior Engineer best practices, focusing on:
+This structure follows engineering best practices, focusing on:
 
 - **Atomic Design** for component organization
 - **Accessibility** as a priority (WCAG AA)
-- Clear **Separation of Concerns**
 - **Testability** with co-located tests
 - **Scalability** for future growth
 
@@ -103,11 +102,16 @@ fitMySpace/
 │   │   ├── handlers.ts               # MSW Handlers
 │   │   ├── data.ts                   # Mock Data (seed data)
 │   │   ├── browser.ts                # MSW Browser Setup
-│   │   └── server.ts                 # MSW Server Setup (Node)
+│   │   ├── server.ts                 # MSW Server Setup (Node)
 │   │
 │   └── __tests__/                    # Integration/E2E Tests
 │       ├── setup.ts                  # Test setup
-│       └── utils.tsx                 # Test utilities
+│       ├── utils.tsx                 # Test utilities
+│       ├── a11y/                     # Accessibility Tests
+│       │   ├── atoms.a11y.test.tsx
+│       │   ├── molecules.a11y.test.tsx
+│       │   ├── organisms.a11y.test.tsx
+│       │   └── pages.a11y.test.tsx
 │
 ├── .husky/                           # Git Hooks
 │   ├── pre-commit                    # Pre-commit hook
@@ -139,6 +143,7 @@ fitMySpace/
 
 - Unit tests co-located in `__tests__` directories inside each component folder
 - Integration tests in `src/__tests__/`
+- Accessibility tests in `src/__tests__/a11y/`
 - Centralized setup in `jest.setup.js`
 
 ### 3. Accessibility
@@ -147,6 +152,7 @@ fitMySpace/
 - ESLint with `eslint-plugin-jsx-a11y` enabled
 - `SkipLink` component for keyboard navigation
 - TypeScript types ensuring accessibility props
+- Automated accessibility testing with `jest-axe`
 
 ### 4. Separation of Concerns
 
