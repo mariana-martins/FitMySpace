@@ -14,7 +14,7 @@ export interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
-      href={`/products/${product.id}`} // Work in progress – the idea is to implement product details page
+      href={`/products/${product.id}`}
       className="group flex flex-col h-full rounded-lg border border-slate-100 bg-white shadow-md p-4 transition-shadow hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2"
       aria-label={`View details for ${product.name}`}
     >

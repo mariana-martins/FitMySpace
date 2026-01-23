@@ -2,11 +2,12 @@ import { getPlaceholderImage } from '@/lib/image-placeholder';
 import { type Product, Room, type Store } from '@/types';
 
 export const mockStores: Store[] = [
-  { id: '1', name: 'The Container Store' },
-  { id: '2', name: 'IKEA' },
-  { id: '3', name: 'Target' },
-  { id: '4', name: 'Amazon' },
-  { id: '5', name: 'Bed Bath & Beyond' },
+  { id: '1', name: 'The Container Store', url: 'https://www.containerstore.com' },
+  { id: '2', name: 'IKEA', url: 'https://www.ikea.com.au' },
+  { id: '3', name: 'Target', url: 'https://www.target.com.au' },
+  { id: '4', name: 'Amazon', url: 'https://www.amazon.com.au' },
+  { id: '5', name: 'Kmart', url: 'https://www.kmart.com.au' },
+  { id: '6', name: 'Muji', url: 'https://www.muji.com.au' },
 ];
 
 export const mockProducts: Product[] = [
@@ -88,7 +89,7 @@ export const mockProducts: Product[] = [
     price: 39.99,
     currency: 'AUD',
     image: getPlaceholderImage('6', 'Under-Sink Storage System'),
-    store: mockStores[0],
+    store: mockStores[5],
     room: Room.KITCHEN,
     dimensions: { length: 50, width: 40, height: 60, unit: 'cm' },
     createdAt: '2024-01-10T08:30:00Z',
@@ -158,7 +159,7 @@ export const mockProducts: Product[] = [
     price: 21.99,
     currency: 'AUD',
     image: getPlaceholderImage('11', 'Office File Organizer'),
-    store: mockStores[0],
+    store: mockStores[5],
     room: Room.OFFICE,
     dimensions: { length: 30, width: 25, height: 35, unit: 'cm' },
     createdAt: '2024-01-05T09:30:00Z',
@@ -228,7 +229,7 @@ export const mockProducts: Product[] = [
     price: 29.99,
     currency: 'AUD',
     image: getPlaceholderImage('16', 'Pantry Label Maker Kit'),
-    store: mockStores[0],
+    store: mockStores[5],
     room: Room.PANTRY,
     createdAt: '2023-12-31T13:30:00Z',
     updatedAt: '2023-12-31T13:30:00Z',
@@ -241,7 +242,7 @@ export const mockProducts: Product[] = [
     price: 19.99,
     currency: 'AUD',
     image: getPlaceholderImage('17', 'Bathroom Shower Caddy'),
-    store: mockStores[1],
+    store: mockStores[5],
     room: Room.BATHROOM,
     dimensions: { length: 30, width: 20, height: 80, unit: 'cm' },
     createdAt: '2023-12-30T09:15:00Z',
