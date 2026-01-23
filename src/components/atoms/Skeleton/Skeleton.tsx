@@ -7,6 +7,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(({ className, .
   return (
     <div
       ref={ref}
+      role="status"
       className={cn('animate-pulse rounded-md bg-gray-200', className)}
       aria-busy="true"
       aria-label="Loading content"

@@ -31,6 +31,12 @@ describe('Skeleton', () => {
     expect(skeleton).toHaveAttribute('aria-busy', 'true');
   });
 
+  it('has role="status" for accessibility', () => {
+    render(<Skeleton data-testid="skeleton" />);
+    const skeleton = screen.getByTestId('skeleton');
+    expect(skeleton).toHaveAttribute('role', 'status');
+  });
+
   it('has aria-label for screen readers', () => {
     render(<Skeleton data-testid="skeleton" />);
     const skeleton = screen.getByTestId('skeleton');
