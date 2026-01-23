@@ -3,6 +3,7 @@
 import { ArrowLeft, ChevronRight, ExternalLink, Home, Ruler, Store, Tag } from 'lucide-react';
 import { formatPrice, formatDimensions } from '@/lib/utils';
 import { ROOM_LABELS, ROOM_COLORS } from '@/lib/constants';
+import { Button } from '@/components/atoms/Button';
 import { Badge } from '@/components/atoms/Badge';
 import { useRouter } from 'next/navigation';
 import { type Product } from '@/types';
@@ -125,22 +126,21 @@ export function ProductDetail({ product }: ProductDetailProps) {
           {/* Action Buttons */}
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
             {product.store.url && (
-              <a
-                href={product.store.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2 h-auto min-h-12 py-3 px-6 text-lg font-medium rounded-md bg-indigo-600 text-white hover:bg-indigo-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 text-center"
-              >
-                <span>Buy at {product.store.name}</span>
-                <ExternalLink className="w-4 h-4 shrink-0" />
-              </a>
+              <Button asChild size="lg" className="flex-1 h-auto min-h-12 gap-2 text-center">
+                <a href={product.store.url} target="_blank" rel="noopener noreferrer">
+                  <span>Buy at {product.store.name}</span>
+                  <ExternalLink className="w-4 h-4 shrink-0" />
+                </a>
+              </Button>
             )}
-            <Link
-              href="/"
-              className="flex-1 inline-flex items-center justify-center h-auto min-h-12 py-3 px-6 text-lg font-medium rounded-md border border-slate-200 bg-white text-slate-900 hover:bg-slate-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 text-center"
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="flex-1 h-auto min-h-12 text-center"
             >
-              Continue Shopping
-            </Link>
+              <Link href="/">Continue Shopping</Link>
+            </Button>
           </div>
         </div>
       </div>

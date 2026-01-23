@@ -1,11 +1,14 @@
+import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@/lib/utils';
 import * as React from 'react';
+
 export type ButtonVariant = 'default' | 'outline' | 'ghost' | 'link';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  asChild?: boolean;
 }
 
 /** Base styles applied to all button variants */
@@ -33,9 +36,10 @@ const SIZES: Record<ButtonSize, string> = {
 };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'default', size = 'md', ...props }, ref) => {
+  ({ className, variant = 'default', size = 'md', asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'button';
     return (
-      <button
+      <Comp
         className={cn(BASE_STYLES, VARIANTS[variant], SIZES[size], className)}
         ref={ref}
         {...props}

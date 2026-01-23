@@ -88,4 +88,15 @@ describe('Button', () => {
     const button = screen.getByRole('button');
     expect(button).toHaveAttribute('type', 'submit');
   });
+  it('supports asChild prop', () => {
+    render(
+      <Button asChild>
+        <a href="/test">Link</a>
+      </Button>,
+    );
+    const link = screen.getByRole('link', { name: 'Link' });
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveClass('inline-flex'); // Check one of the base styles
+    expect(link).toHaveAttribute('href', '/test');
+  });
 });
