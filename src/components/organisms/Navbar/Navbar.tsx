@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 const navigation = [
   { name: 'Recent Arrivals', href: '/recent' },
-  { name: 'About', href: '/about' },
+  { name: 'About Us', href: '/about' },
 ];
 
 export function Navbar() {
