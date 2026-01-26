@@ -71,7 +71,10 @@ export function Pagination({
         {pages.map((page, i) => (
           <React.Fragment key={i}>
             {page === '...' ? (
-              <span className="flex h-9 w-9 items-center justify-center text-sm text-slate-500">
+              <span
+                className="flex h-9 w-9 items-center justify-center text-sm text-slate-500"
+                aria-hidden="true"
+              >
                 ...
               </span>
             ) : (

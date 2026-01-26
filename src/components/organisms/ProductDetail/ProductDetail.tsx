@@ -21,24 +21,35 @@ export function ProductDetail({ product }: ProductDetailProps) {
     <div className="space-y-8">
       {/* Breadcrumb Navigation */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-slate-500">
-        <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-          <Home className="w-4 h-4" />
+        <Link
+          href="/"
+          className="flex items-center gap-1 hover:text-indigo-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 rounded-sm"
+        >
+          <Home className="w-4 h-4" aria-hidden="true" />
           <span>Home</span>
         </Link>
-        <ChevronRight className="w-4 h-4" />
-        <Link href="/" className="hover:text-indigo-600 transition-colors">
+        <ChevronRight className="w-4 h-4" aria-hidden="true" />
+        <Link
+          href="/"
+          className="hover:text-indigo-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 rounded-sm"
+        >
           Products
         </Link>
-        <ChevronRight className="w-4 h-4" />
-        <span className="text-slate-900 font-medium truncate max-w-[200px]">{product.name}</span>
+        <ChevronRight className="w-4 h-4" aria-hidden="true" />
+        <span className="text-slate-900 font-medium truncate max-w-[200px]" aria-current="page">
+          {product.name}
+        </span>
       </nav>
 
       {/* Back Button */}
       <button
         onClick={() => router.back()}
-        className="inline-flex items-center gap-2 text-slate-600 hover:text-indigo-600 transition-colors group cursor-pointer"
+        className="inline-flex items-center gap-2 text-slate-600 hover:text-indigo-600 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 rounded-sm"
       >
-        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <ArrowLeft
+          className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+          aria-hidden="true"
+        />
         <span>Back to results</span>
       </button>
 
@@ -87,7 +98,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <dl className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-slate-200">
-                  <Store className="w-5 h-5 text-slate-600" />
+                  <Store className="w-5 h-5 text-slate-600" aria-hidden="true" />
                 </div>
                 <div>
                   <dt className="text-xs font-medium text-slate-500 uppercase">Available at</dt>
@@ -97,7 +108,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
               <div className="flex items-center gap-3">
                 <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-slate-200">
-                  <Tag className="w-5 h-5 text-slate-600" />
+                  <Tag className="w-5 h-5 text-slate-600" aria-hidden="true" />
                 </div>
                 <div>
                   <dt className="text-xs font-medium text-slate-500 uppercase">Room</dt>
@@ -110,7 +121,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               {product.dimensions && (
                 <div className="flex items-center gap-3">
                   <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-slate-200">
-                    <Ruler className="w-5 h-5 text-slate-600" />
+                    <Ruler className="w-5 h-5 text-slate-600" aria-hidden="true" />
                   </div>
                   <div>
                     <dt className="text-xs font-medium text-slate-500 uppercase">Dimensions</dt>
@@ -129,7 +140,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <Button asChild size="lg" className="flex-1 h-auto min-h-12 gap-2 text-center">
                 <a href={product.store.url} target="_blank" rel="noopener noreferrer">
                   <span>Buy at {product.store.name}</span>
-                  <ExternalLink className="w-4 h-4 shrink-0" />
+                  <ExternalLink className="w-4 h-4 shrink-0" aria-hidden="true" />
                 </a>
               </Button>
             )}
