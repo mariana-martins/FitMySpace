@@ -28,8 +28,13 @@ function ErrorFallback({
 
 function MSWProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // Only initialize MSW in development and browser environment
-    if (typeof window === 'undefined' || process.env.NODE_ENV !== 'development') {
+    // Only initialize MSW in development, browser environment, AND on localhost
+    // This allows real API routes to work when accessing from other devices on the network
+    if (
+      typeof window === 'undefined' ||
+      process.env.NODE_ENV !== 'development' ||
+      !window.location.hostname.includes('localhost')
+    ) {
       return;
     }
 

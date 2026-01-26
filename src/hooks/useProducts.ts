@@ -1,8 +1,8 @@
 import { type Product, type ProductSearchResponse, type SearchParams } from '@/types';
 import { keepPreviousData, useQuery, useSuspenseQuery } from '@tanstack/react-query';
-import { API_BASE_URL } from '@/config';
 
-const API_BASE = `${API_BASE_URL}/api`;
+// Use relative URL to work from any device (localhost, LAN IP, etc.)
+const API_BASE = '/api';
 
 export const productKeys = {
   all: ['products'] as const,
