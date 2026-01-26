@@ -1,3 +1,4 @@
+import { ProductSearchResponseSchema, ProductArraySchema, ProductSchema } from '@/lib/schemas';
 import { type Product, type ProductSearchResponse, type SearchParams } from '@/types';
 import { keepPreviousData, useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
@@ -56,7 +57,7 @@ function buildSearchParams(searchParams: SearchParams): URLSearchParams {
  * Fetches products based on search parameters.
  * @param searchParams - The search filters to apply
  * @returns Promise resolving to paginated product results
- * @throws Error if the API request fails
+ * @throws Error if the API request fails or response validation fails
  */
 async function fetchProducts(searchParams: SearchParams): Promise<ProductSearchResponse> {
   const params = buildSearchParams(searchParams);
@@ -66,35 +67,38 @@ async function fetchProducts(searchParams: SearchParams): Promise<ProductSearchR
     throw new Error('Failed to fetch products');
   }
 
-  return response.json() as Promise<ProductSearchResponse>;
+  const data: unknown = await response.json();
+  return ProductSearchResponseSchema.parse(data);
 }
 
 /**
  * Fetches recently added products.
  * @param limit - Maximum number of products to return
  * @returns Promise resolving to array of products
- * @throws Error if the API request fails
+ * @throws Error if the API request fails or response validation fails
  */
 async function fetchRecentProducts(limit = 12): Promise<Product[]> {
   const response = await fetch(`${API_BASE}/products/recent?limit=${limit}`);
   if (!response.ok) {
     throw new Error('Failed to fetch recent products');
   }
-  return response.json() as Promise<Product[]>;
+  const data: unknown = await response.json();
+  return ProductArraySchema.parse(data);
 }
 
 /**
  * Fetches a single product by ID.
  * @param id - The product ID to fetch
  * @returns Promise resolving to the product
- * @throws Error if the API request fails or product not found
+ * @throws Error if the API request fails or response validation fails
  */
 async function fetchProduct(id: string): Promise<Product> {
   const response = await fetch(`${API_BASE}/products/${id}`);
   if (!response.ok) {
     throw new Error('Failed to fetch product');
   }
-  return response.json() as Promise<Product>;
+  const data: unknown = await response.json();
+  return ProductSchema.parse(data);
 }
 
 /**
