@@ -1,6 +1,7 @@
 'use client';
 
-import { ArrowLeft, ChevronRight, ExternalLink, Home, Ruler, Store, Tag } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Home, Ruler, Store, Tag } from 'lucide-react';
+import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { formatPrice, formatDimensions } from '@/lib/utils';
 import { ROOM_LABELS, ROOM_COLORS } from '@/lib/constants';
 import { Button } from '@/components/atoms/Button';
@@ -17,29 +18,16 @@ export interface ProductDetailProps {
 export function ProductDetail({ product }: ProductDetailProps) {
   const router = useRouter();
 
+  const breadcrumbItems = [
+    { label: 'Home', href: '/', icon: Home },
+    { label: 'Products', href: '/' },
+    { label: product.name },
+  ];
+
   return (
     <div className="space-y-8">
       {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-slate-500">
-        <Link
-          href="/"
-          className="flex items-center gap-1 hover:text-indigo-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 rounded-sm"
-        >
-          <Home className="w-4 h-4" aria-hidden="true" />
-          <span>Home</span>
-        </Link>
-        <ChevronRight className="w-4 h-4" aria-hidden="true" />
-        <Link
-          href="/"
-          className="hover:text-indigo-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 rounded-sm"
-        >
-          Products
-        </Link>
-        <ChevronRight className="w-4 h-4" aria-hidden="true" />
-        <span className="text-slate-900 font-medium truncate max-w-[200px]" aria-current="page">
-          {product.name}
-        </span>
-      </nav>
+      <Breadcrumbs items={breadcrumbItems} />
 
       {/* Back Button */}
       <button

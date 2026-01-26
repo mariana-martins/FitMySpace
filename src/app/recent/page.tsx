@@ -1,7 +1,8 @@
 import { ProductGrid, ProductGridSkeleton } from '@/components/organisms/ProductGrid';
+import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { PageLayout } from '@/components/templates/PageLayout';
 import { mockProducts } from '@/mocks/data';
-import { Clock } from 'lucide-react';
+import { Clock, Home } from 'lucide-react';
 import { Suspense } from 'react';
 
 export const revalidate = 60; // ISR: revalidate every 60 seconds
@@ -19,9 +20,14 @@ function getRecentProducts() {
 export default async function RecentPage() {
   const products = getRecentProducts();
 
+  const breadcrumbItems = [{ label: 'Home', href: '/', icon: Home }, { label: 'Recent Arrivals' }];
+
   return (
     <PageLayout>
       <div className="px-4 py-12 sm:px-6 lg:px-8">
+        {/* Breadcrumb Navigation */}
+        <Breadcrumbs items={breadcrumbItems} className="max-w-2xl mx-auto mb-8" />
+
         {/* Hero Section */}
         <section className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo-100 mb-6">

@@ -1,4 +1,5 @@
 import { Home, Search, Sparkles, Zap, Heart, ShoppingBag } from 'lucide-react';
+import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { PageLayout } from '@/components/templates/PageLayout';
 
 export const metadata = {
@@ -50,9 +51,14 @@ const techStack = [
 ];
 
 export default function AboutPage() {
+  const breadcrumbItems = [{ label: 'Home', href: '/', icon: Home }, { label: 'About' }];
+
   return (
     <PageLayout>
       <div className="px-4 py-12 sm:px-6 lg:px-8">
+        {/* Breadcrumb Navigation */}
+        <Breadcrumbs items={breadcrumbItems} className="max-w-3xl mx-auto mb-8" />
+
         {/* Hero Section */}
         <section className="text-center max-w-3xl mx-auto mb-16">
           <h1 className="text-5xl font-semibold text-slate-900 mb-4 tracking-tight">
