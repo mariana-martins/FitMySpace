@@ -65,6 +65,8 @@ fitMySpace/
 │   │   │   ├── FilterSelect/         # Select + Label + Clear
 │   │   │   ├── ProductBadge/         # Badge + Icon
 │   │   │   ├── SkeletonCard/         # Skeleton for cards
+│   │   │   ├── Breadcrumbs/          # Navigation breadcrumbs
+│   │   │   ├── Pagination/           # Page navigation
 │   │   │   └── EmptyState/           # Empty state with message
 │   │   │
 │   │   ├── organisms/                # Complex components
@@ -89,6 +91,7 @@ fitMySpace/
 │   │
 │   ├── lib/                          # Utilities & Configurations
 │   │   ├── react-query.ts            # React Query configuration
+│   │   ├── schemas.ts                # Zod validation schemas
 │   │   ├── utils.ts                  # Utility functions
 │   │   ├── constants.ts              # Application constants
 │   │   ├── a11y.ts                   # Accessibility utilities

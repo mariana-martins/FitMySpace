@@ -23,6 +23,7 @@ Inspired by the clean and aesthetic approach of _The Home Edit_, this project co
 - **Styling:** TailwindCSS 4
 - **Components:** Radix UI Primitives & Lucide Icons
 - **Data Fetching:** TanStack Query (React Query)
+- **Validation:** Zod (runtime API validation)
 - **State Management:** URL-based state (search params)
 - **Testing:** Jest, React Testing Library, MSW, `jest-axe`
 
@@ -45,7 +46,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 🧪 Running Tests
 
-We maintain a rigorous testing standard with over 280+ tests covering unit, integration, and accessibility scenarios.
+We maintain a rigorous testing standard with over 290+ tests covering unit, integration, and accessibility scenarios.
 
 ```bash
 # Run all tests
