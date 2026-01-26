@@ -1,10 +1,10 @@
 'use client';
 
+import { forwardRef, useState, useEffect, useId } from 'react';
 import { Input } from '@/components/atoms/Input';
 import { Label } from '@radix-ui/react-label';
 import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 
 export interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -12,7 +12,7 @@ export interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputEle
   searchButtonLabel?: string;
 }
 
-const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
+const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   (
     {
       className,
@@ -24,10 +24,11 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
     },
     ref,
   ) => {
-    const [value, setValue] = React.useState(propValue?.toString() || '');
+    const [value, setValue] = useState(propValue?.toString() || '');
 
     // Sync internal state with prop value when it changes (e.g. from URL)
-    React.useEffect(() => {
+    useEffect(() => {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- valid pattern for controlled/uncontrolled sync
       setValue(propValue?.toString() || '');
     }, [propValue]);
 
@@ -50,7 +51,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
       // Optional: focus back to input
     };
 
-    const inputId = React.useId();
+    const inputId = useId();
 
     return (
       <form onSubmit={handleSubmit} role="search" className={cn('relative w-full', className)}>

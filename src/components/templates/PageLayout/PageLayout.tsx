@@ -2,7 +2,6 @@ import { Navbar } from '@/components/organisms/Navbar';
 import { Footer } from '@/components/organisms/Footer';
 import { SkipLink } from '@/components/atoms/SkipLink';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 
 export interface PageLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;

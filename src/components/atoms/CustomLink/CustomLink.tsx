@@ -1,5 +1,4 @@
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 import Link from 'next/link';
 
 export interface CustomLinkProps extends React.ComponentPropsWithoutRef<typeof Link> {

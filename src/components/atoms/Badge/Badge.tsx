@@ -1,5 +1,5 @@
+import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant: 'square' | 'rounded';
@@ -10,7 +10,7 @@ const VARIANTS = {
   rounded: 'rounded-full px-2.5 py-0.5 font-medium',
 };
 
-const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
+const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
   ({ className, variant = 'rounded', ...props }, ref) => {
     return (
       <span

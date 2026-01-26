@@ -1,6 +1,5 @@
 import { SkeletonCard } from '@/components/molecules/SkeletonCard';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 
 export interface ProductGridSkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   count?: number;

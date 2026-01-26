@@ -1,10 +1,10 @@
 import { Skeleton } from '@/components/atoms/Skeleton';
+import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 
 export type SkeletonCardProps = React.HTMLAttributes<HTMLDivElement>;
 
-const SkeletonCard = React.forwardRef<HTMLDivElement, SkeletonCardProps>(
+const SkeletonCard = forwardRef<HTMLDivElement, SkeletonCardProps>(
   ({ className, ...props }, ref) => {
     return (
       <div ref={ref} className={cn('rounded-lg border border-gray-200 p-4', className)} {...props}>

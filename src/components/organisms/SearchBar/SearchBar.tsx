@@ -2,7 +2,6 @@
 
 import { SearchInput } from '@/components/molecules/SearchInput';
 import { useSearch } from '@/hooks/useSearch';
-import * as React from 'react';
 
 export type SearchBarProps = React.HTMLAttributes<HTMLDivElement>;
 

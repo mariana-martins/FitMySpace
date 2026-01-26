@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/atoms/Button';
+import { useMemo, Fragment } from 'react';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 
 export interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
   currentPage: number;
@@ -17,7 +17,7 @@ export function Pagination({
   ...props
 }: PaginationProps) {
   // Generate page numbers to display
-  const pages = React.useMemo(() => {
+  const pages = useMemo(() => {
     const items: (number | '...')[] = [];
 
     // Always show first page
@@ -69,7 +69,7 @@ export function Pagination({
 
       <div className="flex items-center gap-1">
         {pages.map((page, i) => (
-          <React.Fragment key={i}>
+          <Fragment key={i}>
             {page === '...' ? (
               <span
                 className="flex h-9 w-9 items-center justify-center text-sm text-slate-500"
@@ -89,7 +89,7 @@ export function Pagination({
                 {page}
               </Button>
             )}
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
 

@@ -2,7 +2,6 @@ import { ProductCard } from '@/components/organisms/ProductCard';
 import { EmptyState } from '@/components/molecules/EmptyState';
 import { type Product } from '@/types';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 
 export interface ProductGridProps extends React.HTMLAttributes<HTMLDivElement> {
   products?: Product[];

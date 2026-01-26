@@ -1,6 +1,6 @@
 import { Slot } from '@radix-ui/react-slot';
+import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 
 export type ButtonVariant = 'default' | 'outline' | 'ghost' | 'link';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -35,7 +35,7 @@ const SIZES: Record<ButtonSize, string> = {
   lg: 'h-12 px-6 text-lg',
 };
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', size = 'md', asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
     return (

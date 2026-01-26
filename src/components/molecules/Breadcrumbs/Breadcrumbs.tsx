@@ -1,6 +1,6 @@
+import { Fragment, type ComponentType } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 import Link from 'next/link';
 
 export interface BreadcrumbItem {
@@ -9,7 +9,7 @@ export interface BreadcrumbItem {
   /** URL to navigate to. If undefined, renders as current page (no link) */
   href?: string;
   /** Optional icon component to display before the label */
-  icon?: React.ComponentType<{ className?: string }>;
+  icon?: ComponentType<{ className?: string }>;
 }
 
 export interface BreadcrumbsProps extends React.HTMLAttributes<HTMLElement> {
@@ -36,7 +36,7 @@ export function Breadcrumbs({ items, className, ...props }: BreadcrumbsProps) {
         const Icon = item.icon;
 
         return (
-          <React.Fragment key={item.label}>
+          <Fragment key={item.label}>
             {/* Separator (not before first item) */}
             {index > 0 && <ChevronRight className="w-4 h-4 shrink-0" aria-hidden="true" />}
 
@@ -60,7 +60,7 @@ export function Breadcrumbs({ items, className, ...props }: BreadcrumbsProps) {
                 <span>{item.label}</span>
               </Link>
             )}
-          </React.Fragment>
+          </Fragment>
         );
       })}
     </nav>

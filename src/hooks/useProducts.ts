@@ -1,8 +1,18 @@
 import { type Product, type ProductSearchResponse, type SearchParams } from '@/types';
 import { keepPreviousData, useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
-// Use relative URL to work from any device (localhost, LAN IP, etc.)
-const API_BASE = '/api';
+// Use absolute URL on server (SSR) and relative URL on client
+// Server needs a full URL, client relative URL works across hosts (localhost, LAN IP)
+const getApiBase = () => {
+  if (typeof window === 'undefined') {
+    // Server-side: use localhost since Next.js API routes are on the same server
+    return 'http://localhost:3000/api';
+  }
+  // Client-side: use relative URL
+  return '/api';
+};
+
+const API_BASE = getApiBase();
 
 export const productKeys = {
   all: ['products'] as const,

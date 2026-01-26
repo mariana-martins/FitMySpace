@@ -2,11 +2,11 @@
 
 import { CustomLink } from '@/components/atoms/CustomLink/CustomLink';
 import { SearchInput } from '@/components/molecules/SearchInput';
+import { useState, useRef, useEffect } from 'react';
 import { useSearch } from '@/hooks/useSearch';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 import Link from 'next/link';
 
 const navigation = [
@@ -17,17 +17,18 @@ const navigation = [
 export function Navbar() {
   const pathname = usePathname();
   const { currentQuery, handleSearch } = useSearch();
-  const [showSearch, setShowSearch] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const mobileMenuRef = React.useRef<HTMLDivElement>(null);
+  const [showSearch, setShowSearch] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   // Close mobile menu when route changes
-  React.useEffect(() => {
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- valid pattern for resetting state on navigation
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
   // Close mobile menu when clicking outside
-  React.useEffect(() => {
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
         setIsMobileMenuOpen(false);
@@ -41,7 +42,7 @@ export function Navbar() {
   }, [isMobileMenuOpen]);
 
   // Close mobile menu on Escape key
-  React.useEffect(() => {
+  useEffect(() => {
     function handleEscape(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         setIsMobileMenuOpen(false);
@@ -55,7 +56,7 @@ export function Navbar() {
   }, [isMobileMenuOpen]);
 
   // Trap focus in mobile menu when open
-  React.useEffect(() => {
+  useEffect(() => {
     if (isMobileMenuOpen) {
       // Prevent body scroll when menu is open
       document.body.style.overflow = 'hidden';
@@ -65,9 +66,10 @@ export function Navbar() {
     }
   }, [isMobileMenuOpen]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Only enable the intersection observer on the home page where the hero search exists
     if (pathname !== '/') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- valid pattern for route-based state
       setShowSearch(false);
       return;
     }

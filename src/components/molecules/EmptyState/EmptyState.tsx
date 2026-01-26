@@ -1,13 +1,13 @@
 import { SearchAlert } from 'lucide-react';
+import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 
 export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   description?: string;
 }
 
-const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
+const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
   ({ className, title, description, ...props }, ref) => {
     return (
       <div

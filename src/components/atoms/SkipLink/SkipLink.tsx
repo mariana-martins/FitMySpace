@@ -1,6 +1,5 @@
 import { CircleArrowDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import * as React from 'react';
 
 export interface SkipLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   targetId?: string;
