@@ -63,8 +63,8 @@ export function Pagination({
         aria-label="Go to previous page"
         className="gap-1 pl-2.5"
       >
-        <ChevronLeft className="h-4 w-4" />
-        <span>Previous</span>
+        <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+        <span className="hidden sm:inline">Previous</span>
       </Button>
 
       <div className="flex items-center gap-1">
@@ -101,8 +101,8 @@ export function Pagination({
         aria-label="Go to next page"
         className="gap-1 pr-2.5"
       >
-        <span>Next</span>
-        <ChevronRight className="h-4 w-4" />
+        <span className="hidden sm:inline">Next</span>
+        <ChevronRight className="h-4 w-4" aria-hidden="true" />
       </Button>
     </nav>
   );

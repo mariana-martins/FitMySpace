@@ -1,5 +1,5 @@
+import { render, screen, fireEvent } from '@/__tests__/utils';
 import { Navbar } from '@/components/organisms/Navbar';
-import { render, screen } from '@/__tests__/utils';
 
 // Mock useSearch hook
 jest.mock('@/hooks/useSearch', () => ({
@@ -27,7 +27,7 @@ describe('Navbar', () => {
     expect(screen.getByText('Fit My Space')).toBeInTheDocument();
   });
 
-  it('renders navigation links', () => {
+  it('renders desktop navigation links (hidden on mobile)', () => {
     render(<Navbar />);
     expect(screen.getByRole('link', { name: 'Recent Arrivals' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'About Us' })).toBeInTheDocument();
@@ -64,5 +64,39 @@ describe('Navbar', () => {
     // Search container exists but is invisible initially (controlled by intersection observer)
     const searchContainer = document.querySelector('[aria-hidden]');
     expect(searchContainer).toBeInTheDocument();
+  });
+
+  // Mobile menu tests
+  it('renders hamburger menu button for mobile navigation', () => {
+    render(<Navbar />);
+    const menuButton = screen.getByRole('button', { name: 'Open menu' });
+    expect(menuButton).toBeInTheDocument();
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false');
+    expect(menuButton).toHaveAttribute('aria-controls', 'mobile-menu');
+  });
+
+  it('toggles mobile menu when hamburger button is clicked', () => {
+    render(<Navbar />);
+    const menuButton = screen.getByRole('button', { name: 'Open menu' });
+
+    // Open menu
+    fireEvent.click(menuButton);
+    expect(screen.getByRole('button', { name: 'Close menu' })).toBeInTheDocument();
+    expect(screen.getByRole('dialog', { name: 'Mobile navigation menu' })).toBeInTheDocument();
+
+    // Close menu
+    fireEvent.click(screen.getByRole('button', { name: 'Close menu' }));
+    expect(screen.getByRole('button', { name: 'Open menu' })).toBeInTheDocument();
+  });
+
+  it('mobile menu has proper accessibility attributes', () => {
+    render(<Navbar />);
+    const menuButton = screen.getByRole('button', { name: 'Open menu' });
+
+    fireEvent.click(menuButton);
+
+    const mobileMenu = screen.getByRole('dialog', { name: 'Mobile navigation menu' });
+    expect(mobileMenu).toHaveAttribute('aria-modal', 'true');
+    expect(mobileMenu).toHaveAttribute('id', 'mobile-menu');
   });
 });

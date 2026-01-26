@@ -72,7 +72,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
             aria-label={label || 'Search'}
             placeholder={props.placeholder || 'Search for organizers...'}
             className={cn(
-              'w-full pl-11 pr-10 py-3 h-12',
+              'w-full pl-11 pr-20 sm:pr-10 py-3 h-12',
               'rounded-full',
               'border-slate-200 bg-white',
               'text-slate-900 placeholder:text-slate-400',
@@ -82,16 +82,25 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
             )}
             {...props}
           />
+          {/* Clear button - shown when there's a value, hidden on mobile when submit button is shown */}
           {value && (
             <button
               type="button"
               onClick={handleClear}
-              className="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer text-slate-400 hover:text-slate-600"
+              className="absolute inset-y-0 right-12 sm:right-0 pr-2 sm:pr-4 flex items-center cursor-pointer text-slate-400 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 rounded-full"
               aria-label="Clear search"
             >
               <X size={20} aria-hidden="true" />
             </button>
           )}
+          {/* Mobile search submit button */}
+          <button
+            type="submit"
+            className="sm:hidden absolute inset-y-1.5 right-1.5 flex items-center justify-center bg-indigo-600 text-white rounded-full w-9 h-9 hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 transition-colors"
+            aria-label="Search"
+          >
+            <Search size={18} aria-hidden="true" />
+          </button>
         </div>
       </form>
     );
