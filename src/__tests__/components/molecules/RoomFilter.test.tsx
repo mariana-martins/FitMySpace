@@ -1,4 +1,4 @@
-import { RoomFilter } from '@/components/atoms/RoomFilter';
+import { RoomFilter } from '@/components/molecules/RoomFilter';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@/__tests__/utils';
 import { Room } from '@/types';

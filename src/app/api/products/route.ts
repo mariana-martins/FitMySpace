@@ -6,8 +6,6 @@ export async function GET(request: NextRequest) {
   const query = searchParams.get('query')?.toLowerCase();
   const store = searchParams.get('store');
   const room = searchParams.get('room');
-  const minPrice = searchParams.get('minPrice');
-  const maxPrice = searchParams.get('maxPrice');
   const limit = Number(searchParams.get('limit')) || 12;
   const page = Number(searchParams.get('page')) || 1;
 
@@ -30,14 +28,6 @@ export async function GET(request: NextRequest) {
 
   if (room) {
     filteredProducts = filteredProducts.filter((product) => (product.room as string) === room);
-  }
-
-  if (minPrice) {
-    filteredProducts = filteredProducts.filter((product) => product.price >= Number(minPrice));
-  }
-
-  if (maxPrice) {
-    filteredProducts = filteredProducts.filter((product) => product.price <= Number(maxPrice));
   }
 
   const total = filteredProducts.length;

@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from '@/components/atoms/Select';
 
-import { RoomFilter } from '@/components/atoms/RoomFilter';
+import { RoomFilter } from '@/components/molecules/RoomFilter';
 import { useSearch } from '@/hooks/useSearch';
 import { mockStores } from '@/mocks/data';
 
