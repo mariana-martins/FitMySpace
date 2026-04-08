@@ -11,7 +11,9 @@ export function PageLayout({ children, className, ...props }: PageLayoutProps) {
   return (
     <div className="w-full justify-center flex min-h-screen bg-white flex-col">
       <SkipLink />
-      <Navbar />
+      <header>
+        <Navbar />
+      </header>
       <main id="main-content" className={cn('flex-1 bg-white', className)} {...props} tabIndex={-1}>
         {children}
       </main>
