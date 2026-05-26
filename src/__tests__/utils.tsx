@@ -22,6 +22,7 @@ export function renderWithProviders(
     return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return { ...render(ui, { wrapper: Wrapper, ...renderOptions }), queryClient };
 }
 

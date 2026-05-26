@@ -28,7 +28,6 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
 
     // Sync internal state with prop value when it changes (e.g. from URL)
     useEffect(() => {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- valid pattern for controlled/uncontrolled sync
       setValue(propValue?.toString() || '');
     }, [propValue]);
 
