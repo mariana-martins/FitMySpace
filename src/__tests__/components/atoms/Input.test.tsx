@@ -63,7 +63,7 @@ describe('Input', () => {
     render(<Input aria-invalid="true" aria-label="Invalid input" />);
     const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('aria-invalid', 'true');
-    expect(input).toHaveClass('aria-invalid:border-red-500');
+    expect(input).toHaveClass('aria-invalid:ring-red-500');
   });
 
   it('calls onChange handler', async () => {

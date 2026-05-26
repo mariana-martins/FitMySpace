@@ -64,7 +64,7 @@ export default fixupConfigRules([
   // Accessibility
   jsxA11y.flatConfigs.recommended,
 
-  // CommonJS Config Files (jest.config.js, next.config.js)
+  // Config Files (jest.config.js, next.config.mjs)
   {
     files: ["*.config.js", "*.config.mjs"],
     languageOptions: {

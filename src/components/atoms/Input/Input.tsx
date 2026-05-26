@@ -1,25 +1,33 @@
 import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  error?: string;
+  errorId?: string;
+}
 
-const Input = forwardRef<HTMLInputElement, InputProps>(({ className, type, ...props }, ref) => {
-  return (
-    <input
-      type={type}
-      className={cn(
-        'flex h-10 w-full rounded-md border border-gray-500 bg-white px-3 py-2 text-base',
-        'placeholder:text-gray-600',
-        'focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2',
-        'disabled:cursor-not-allowed disabled:opacity-50',
-        'aria-invalid:border-red-500 aria-invalid:focus:ring-red-500',
-        className,
-      )}
-      ref={ref}
-      {...props}
-    />
-  );
-});
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, error, errorId, 'aria-describedby': ariaDescribedBy, ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        className={cn(
+          'flex h-10 w-full rounded-md bg-white px-3 py-2 text-base',
+          'shadow-sm ring-1 ring-inset ring-slate-300',
+          'placeholder:text-slate-500',
+          'focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 focus:ring-offset-2',
+          'disabled:cursor-not-allowed disabled:opacity-50',
+          'aria-invalid:ring-2 aria-invalid:ring-red-500 aria-invalid:focus:ring-red-500',
+          className,
+        )}
+        ref={ref}
+        aria-invalid={!!error || props['aria-invalid']}
+        aria-describedby={errorId || ariaDescribedBy}
+        {...props}
+      />
+    );
+  },
+);
 Input.displayName = 'Input';
 
 export { Input };
