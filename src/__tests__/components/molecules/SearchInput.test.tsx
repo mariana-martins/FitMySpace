@@ -19,9 +19,16 @@ describe('SearchInput', () => {
     expect(screen.getByPlaceholderText('Type to search...')).toBeInTheDocument();
   });
 
-  it('has sr-only label for accessibility', () => {
+  it('has invisible but accessible label initially', () => {
     render(<SearchInput label="Search products" onSearch={mockOnSearch} />);
-    expect(screen.getByText('Search products')).toHaveClass('sr-only');
+    const label = screen.getByText('Search products');
+    expect(label).toHaveClass('opacity-0', 'translate-y-2');
+  });
+
+  it('renders search submit button', () => {
+    render(<SearchInput label="Search products" onSearch={mockOnSearch} />);
+    const submitButtons = screen.getAllByRole('button', { name: 'Search' });
+    expect(submitButtons.length).toBeGreaterThan(0);
   });
 
   it('renders search icon', () => {

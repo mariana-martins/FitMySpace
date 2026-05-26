@@ -56,7 +56,7 @@ describe('Input', () => {
   it('has accessible focus styles', () => {
     render(<Input aria-label="Focus input" />);
     const input = screen.getByRole('textbox');
-    expect(input).toHaveClass('focus:ring-2');
+    expect(input).toHaveClass('focus-visible:ring-2');
   });
 
   it('accepts aria-invalid for error states', () => {

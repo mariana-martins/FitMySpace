@@ -15,7 +15,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           'flex h-10 w-full rounded-md bg-white px-3 py-2 text-base',
           'shadow-sm ring-1 ring-inset ring-slate-300',
           'placeholder:text-slate-500',
-          'focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 focus:ring-offset-2',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-600 focus-visible:ring-offset-2',
           'disabled:cursor-not-allowed disabled:opacity-50',
           'aria-invalid:ring-2 aria-invalid:ring-red-500 aria-invalid:focus:ring-red-500',
           className,

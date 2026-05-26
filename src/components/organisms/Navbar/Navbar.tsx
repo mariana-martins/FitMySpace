@@ -1,9 +1,7 @@
 'use client';
 
 import { CustomLink } from '@/components/atoms/CustomLink/CustomLink';
-import { SearchInput } from '@/components/molecules/SearchInput';
 import { useState, useRef, useEffect } from 'react';
-import { useSearch } from '@/hooks/useSearch';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -16,8 +14,6 @@ const navigation = [
 
 export function Navbar() {
   const pathname = usePathname();
-  const { currentQuery, handleSearch } = useSearch();
-  const [showSearch, setShowSearch] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -66,32 +62,6 @@ export function Navbar() {
     }
   }, [isMobileMenuOpen]);
 
-  useEffect(() => {
-    // Only enable the intersection observer on the home page where the hero search exists
-    if (pathname !== '/') {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- valid pattern for route-based state
-      setShowSearch(false);
-      return;
-    }
-
-    const heroSection = document.getElementById('hero-search-section');
-    if (!heroSection) return;
-
-    // IntersectionObserver watches the hero search section.
-    // When the hero search scrolls out of view (isIntersecting is false) AND is above the viewport (top < 0),
-    // we show the sticky search bar in the navbar.
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const isScrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < 0;
-        setShowSearch(isScrolledPast);
-      },
-      { threshold: 0 },
-    );
-
-    observer.observe(heroSection);
-    return () => observer.disconnect();
-  }, [pathname]);
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -109,25 +79,6 @@ export function Navbar() {
         >
           Fit My Space
         </Link>
-
-        {/* Sticky Search Bar - Hidden on mobile */}
-        <div
-          className={cn(
-            'hidden sm:flex flex-1 max-w-md transition-all duration-300 ease-in-out items-center justify-center',
-            showSearch
-              ? 'opacity-100 visible translate-y-0'
-              : 'opacity-0 invisible -translate-y-2 pointer-events-none',
-          )}
-          aria-hidden={!showSearch}
-        >
-          <SearchInput
-            label="Search products"
-            placeholder="Search products..."
-            value={currentQuery}
-            onSearch={handleSearch}
-            className="h-10 text-sm w-full"
-          />
-        </div>
 
         {/* Desktop Navigation Links */}
         <ul className="hidden md:flex space-x-6 shrink-0 items-center">
