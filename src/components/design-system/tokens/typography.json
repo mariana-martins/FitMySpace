@@ -1,0 +1,29 @@
+{
+  "font": {
+    "family": {
+      "sans": { "value": "'DM Sans', sans-serif" }
+    },
+    "size": {
+      "12": { "value": "0.75rem" },
+      "14": { "value": "0.875rem" },
+      "16": { "value": "1rem" },
+      "18": { "value": "1.125rem" },
+      "20": { "value": "1.25rem" },
+      "24": { "value": "1.5rem" },
+      "30": { "value": "1.875rem" },
+      "36": { "value": "2.25rem" },
+      "48": { "value": "3rem" }
+    },
+    "weight": {
+      "400": { "value": "400" },
+      "500": { "value": "500" },
+      "600": { "value": "600" },
+      "700": { "value": "700" }
+    },
+    "lineHeight": {
+      "125": { "value": "1.25" },
+      "150": { "value": "1.5" },
+      "162": { "value": "1.625" }
+    }
+  }
+}
