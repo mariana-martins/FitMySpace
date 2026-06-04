@@ -7,11 +7,13 @@ This directory houses the foundational design system components, tokens, and uti
 ```
 design-system/
 ├── lib/             # Shared utilities (cn.ts)
-├── tokens/          # Tier 1 JSON token files + Style Dictionary config
-│   ├── color.json
-│   ├── typography.json
-│   ├── spacing.json
-│   ├── radii.json
+├── tokens/          # Tier 1 and 2 JSON token files + Style Dictionary config
+│   ├── tier-1-definitions/
+│   │   ├── color.json
+│   │   ├── typography.json
+│   │   ├── spacing.json
+│   │   └── radii.json
+│   ├── tier-2-definitions/
 │   ├── sd.config.mjs  # Style Dictionary build config
 │   └── tokens.css     # AUTO-GENERATED — do not edit manually
 └── ui/              # Component folders (colocated with stories)

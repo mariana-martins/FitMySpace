@@ -1,0 +1,121 @@
+{
+  "semantic": {
+    "color": {
+      "background": {
+        "default": {
+          "base": { "value": "{color.white}" },
+          "hover": { "value": "{color.charcoal.50}" },
+          "active": { "value": "{color.charcoal.100}" }
+        },
+        "brand": {
+          "base": { "value": "{color.sage.700}" },
+          "hover": { "value": "{color.sage.800}" },
+          "active": { "value": "{color.sage.900}" }
+        },
+        "subtle": {
+          "base": { "value": "{color.charcoal.50}" },
+          "hover": { "value": "{color.charcoal.100}" },
+          "active": { "value": "{color.charcoal.200}" }
+        },
+        "utility-error": {
+          "base": { "value": "{color.berry.700}" },
+          "hover": { "value": "{color.berry.800}" },
+          "active": { "value": "{color.berry.900}" }
+        },
+        "utility-success": {
+          "base": { "value": "{color.sage.700}" },
+          "hover": { "value": "{color.sage.800}" },
+          "active": { "value": "{color.sage.900}" }
+        },
+        "utility-warning": {
+          "base": { "value": "{color.honey.400}" },
+          "hover": { "value": "{color.honey.500}" },
+          "active": { "value": "{color.honey.600}" }
+        },
+        "utility-information": {
+          "base": { "value": "{color.ocean.700}" },
+          "hover": { "value": "{color.ocean.800}" },
+          "active": { "value": "{color.ocean.900}" }
+        },
+        "disabled": { "value": "{color.charcoal.100}" }
+      },
+      "text": {
+        "inverse": { "value": "{color.white}" },
+        "default": {
+          "base": { "value": "{color.charcoal.900}" },
+          "hover": { "value": "{color.charcoal.700}" },
+          "active": { "value": "{color.charcoal.800}" }
+        },
+        "brand": {
+          "base": { "value": "{color.sage.700}" },
+          "hover": { "value": "{color.sage.800}" },
+          "active": { "value": "{color.sage.900}" }
+        },
+        "subtle": {
+          "base": { "value": "{color.charcoal.600}" },
+          "hover": { "value": "{color.charcoal.700}" },
+          "active": { "value": "{color.charcoal.800}" }
+        },
+        "utility-error": {
+          "base": { "value": "{color.berry.700}" },
+          "hover": { "value": "{color.berry.800}" },
+          "active": { "value": "{color.berry.900}" }
+        },
+        "utility-success": {
+          "base": { "value": "{color.sage.700}" },
+          "hover": { "value": "{color.sage.800}" },
+          "active": { "value": "{color.sage.900}" }
+        },
+        "utility-warning": {
+          "base": { "value": "{color.honey.800}" },
+          "hover": { "value": "{color.honey.900}" },
+          "active": { "value": "{color.honey.900}" }
+        },
+        "utility-information": {
+          "base": { "value": "{color.ocean.700}" },
+          "hover": { "value": "{color.ocean.800}" },
+          "active": { "value": "{color.ocean.900}" }
+        },
+        "disabled": { "value": "{color.charcoal.300}" }
+      },
+      "border": {
+        "default": {
+          "base": { "value": "{color.charcoal.400}" },
+          "hover": { "value": "{color.charcoal.500}" },
+          "active": { "value": "{color.charcoal.600}" }
+        },
+        "brand": {
+          "base": { "value": "{color.sage.600}" },
+          "hover": { "value": "{color.sage.700}" },
+          "active": { "value": "{color.sage.800}" }
+        },
+        "subtle": {
+          "base": { "value": "{color.charcoal.200}" },
+          "hover": { "value": "{color.charcoal.300}" },
+          "active": { "value": "{color.charcoal.400}" }
+        },
+        "utility-error": {
+          "base": { "value": "{color.berry.600}" },
+          "hover": { "value": "{color.berry.700}" },
+          "active": { "value": "{color.berry.800}" }
+        },
+        "utility-success": {
+          "base": { "value": "{color.sage.600}" },
+          "hover": { "value": "{color.sage.700}" },
+          "active": { "value": "{color.sage.800}" }
+        },
+        "utility-warning": {
+          "base": { "value": "{color.honey.600}" },
+          "hover": { "value": "{color.honey.700}" },
+          "active": { "value": "{color.honey.800}" }
+        },
+        "utility-information": {
+          "base": { "value": "{color.ocean.600}" },
+          "hover": { "value": "{color.ocean.700}" },
+          "active": { "value": "{color.ocean.800}" }
+        },
+        "disabled": { "value": "{color.charcoal.200}" }
+      }
+    }
+  }
+}
