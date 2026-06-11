@@ -1,0 +1,21 @@
+{
+  "semantic": {
+    "radii": {
+      "interactive": {
+        "sm": { "value": "{radii.sm}" },
+        "md": { "value": "{radii.md}" },
+        "full": { "value": "{radii.full}" }
+      },
+      "container": {
+        "sm": { "value": "{radii.md}" },
+        "md": { "value": "{radii.lg}" },
+        "lg": { "value": "{radii.xl}" }
+      },
+      "surface": {
+        "sm": { "value": "{radii.sm}" },
+        "md": { "value": "{radii.md}" },
+        "full": { "value": "{radii.full}" }
+      }
+    }
+  }
+}
