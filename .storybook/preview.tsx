@@ -3,7 +3,7 @@ import type { Preview } from '@storybook/nextjs-vite';
 /* Design System tokens (CSS custom properties) */
 import '../src/components/design-system/tokens/tokens.css';
 
-/* Tailwind base styles */
+/* App global base styles */
 import '../src/app/globals.css';
 
 /* DM Sans — scoped to Storybook only (main app uses Inter) */
