@@ -2,6 +2,7 @@ import type { StorybookConfig } from '@storybook/nextjs-vite';
 
 const config: StorybookConfig = {
   "stories": [
+    "../src/components/design-system/**/*.mdx",
     "../src/components/design-system/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
   "addons": [

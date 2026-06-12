@@ -1,6 +1,3 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 # Check if there are staged changes inside the design system tokens folder
 if git diff --cached --name-only | grep -q "^src/components/design-system/tokens/"; then
   echo "🎨 Design System token changes detected. Rebuilding tokens..."
