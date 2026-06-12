@@ -1,0 +1,131 @@
+/* ---------------------------------------------------------------
+ * Typography — CSS Module
+ * Maps semantic typography tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * DO NOT add component-specific layout styles here.
+ * This file is strictly for typography scale utilities.
+ * --------------------------------------------------------------- */
+
+/* Shared baseline ------------------------------------------------ */
+
+.base {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Display scale -------------------------------------------------- */
+
+.display-lg {
+  font-size: var(--ds-semantic-typography-display-lg-font-size);
+  font-weight: var(--ds-semantic-typography-display-lg-font-weight);
+  line-height: var(--ds-semantic-typography-display-lg-line-height);
+  font-family: var(--ds-semantic-typography-display-lg-font-family);
+  letter-spacing: var(--ds-semantic-typography-display-lg-letter-spacing);
+  text-wrap: balance;
+}
+
+.display-md {
+  font-size: var(--ds-semantic-typography-display-md-font-size);
+  font-weight: var(--ds-semantic-typography-display-md-font-weight);
+  line-height: var(--ds-semantic-typography-display-md-line-height);
+  font-family: var(--ds-semantic-typography-display-md-font-family);
+  letter-spacing: var(--ds-semantic-typography-display-md-letter-spacing);
+  text-wrap: balance;
+}
+
+/* Heading scale -------------------------------------------------- */
+
+.heading-lg {
+  font-size: var(--ds-semantic-typography-heading-lg-font-size);
+  font-weight: var(--ds-semantic-typography-heading-lg-font-weight);
+  line-height: var(--ds-semantic-typography-heading-lg-line-height);
+  font-family: var(--ds-semantic-typography-heading-lg-font-family);
+  letter-spacing: var(--ds-semantic-typography-heading-lg-letter-spacing);
+  text-wrap: balance;
+}
+
+.heading-md {
+  font-size: var(--ds-semantic-typography-heading-md-font-size);
+  font-weight: var(--ds-semantic-typography-heading-md-font-weight);
+  line-height: var(--ds-semantic-typography-heading-md-line-height);
+  font-family: var(--ds-semantic-typography-heading-md-font-family);
+  letter-spacing: var(--ds-semantic-typography-heading-md-letter-spacing);
+  text-wrap: balance;
+}
+
+.heading-sm {
+  font-size: var(--ds-semantic-typography-heading-sm-font-size);
+  font-weight: var(--ds-semantic-typography-heading-sm-font-weight);
+  line-height: var(--ds-semantic-typography-heading-sm-line-height);
+  font-family: var(--ds-semantic-typography-heading-sm-font-family);
+  letter-spacing: var(--ds-semantic-typography-heading-sm-letter-spacing);
+  text-wrap: balance;
+}
+
+/* Body scale ----------------------------------------------------- */
+
+.body-lg {
+  font-size: var(--ds-semantic-typography-body-lg-font-size);
+  font-weight: var(--ds-semantic-typography-body-lg-font-weight);
+  line-height: var(--ds-semantic-typography-body-lg-line-height);
+  font-family: var(--ds-semantic-typography-body-lg-font-family);
+  letter-spacing: var(--ds-semantic-typography-body-lg-letter-spacing);
+  text-wrap: pretty;
+}
+
+.body-md {
+  font-size: var(--ds-semantic-typography-body-md-font-size);
+  font-weight: var(--ds-semantic-typography-body-md-font-weight);
+  line-height: var(--ds-semantic-typography-body-md-line-height);
+  font-family: var(--ds-semantic-typography-body-md-font-family);
+  letter-spacing: var(--ds-semantic-typography-body-md-letter-spacing);
+  text-wrap: pretty;
+}
+
+.body-sm {
+  font-size: var(--ds-semantic-typography-body-sm-font-size);
+  font-weight: var(--ds-semantic-typography-body-sm-font-weight);
+  line-height: var(--ds-semantic-typography-body-sm-line-height);
+  font-family: var(--ds-semantic-typography-body-sm-font-family);
+  letter-spacing: var(--ds-semantic-typography-body-sm-letter-spacing);
+  text-wrap: pretty;
+}
+
+/* Label scale ---------------------------------------------------- */
+
+.label-lg {
+  font-size: var(--ds-semantic-typography-label-lg-font-size);
+  font-weight: var(--ds-semantic-typography-label-lg-font-weight);
+  line-height: var(--ds-semantic-typography-label-lg-line-height);
+  font-family: var(--ds-semantic-typography-label-lg-font-family);
+  letter-spacing: var(--ds-semantic-typography-label-lg-letter-spacing);
+}
+
+.label-md {
+  font-size: var(--ds-semantic-typography-label-md-font-size);
+  font-weight: var(--ds-semantic-typography-label-md-font-weight);
+  line-height: var(--ds-semantic-typography-label-md-line-height);
+  font-family: var(--ds-semantic-typography-label-md-font-family);
+  letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
+}
+
+.label-sm {
+  font-size: var(--ds-semantic-typography-label-sm-font-size);
+  font-weight: var(--ds-semantic-typography-label-sm-font-weight);
+  line-height: var(--ds-semantic-typography-label-sm-line-height);
+  font-family: var(--ds-semantic-typography-label-sm-font-family);
+  letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
+}
+
+/* Caption scale -------------------------------------------------- */
+
+.caption-md {
+  font-size: var(--ds-semantic-typography-caption-md-font-size);
+  font-weight: var(--ds-semantic-typography-caption-md-font-weight);
+  line-height: var(--ds-semantic-typography-caption-md-line-height);
+  font-family: var(--ds-semantic-typography-caption-md-font-family);
+  letter-spacing: var(--ds-semantic-typography-caption-md-letter-spacing);
+}
