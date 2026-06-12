@@ -3,7 +3,7 @@ import { expect, within } from 'storybook/test';
 import { Heading } from './Typography';
 
 const meta = {
-  title: 'Design System/Typography/Heading',
+  title: 'Design System/Foundation/Typography/Heading',
   component: Heading,
   tags: ['autodocs'],
   parameters: {
