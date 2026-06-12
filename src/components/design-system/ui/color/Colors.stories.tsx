@@ -3,19 +3,9 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Heading, Text } from '../Typography/Typography';
 
 const meta = {
-  title: 'Design System/Foundation/Color/Fundamentals',
+  title: 'Design System/Foundation/Color',
   parameters: {
     layout: 'fullscreen',
-    docs: {
-      description: {
-        component:
-          'Welcome to the FitMySpace Color Foundation.\n\n' +
-          'Our system uses a **two-tier architecture** to ensure scalable, maintainable, and accessible themes:\n\n' +
-          '1. **Core Palettes** (e.g., `var(--ds-color-sage-500)`): These are the absolute hex values. Avoid using these directly in your components if possible.\n' +
-          '2. **Semantic Colors** (e.g., `var(--ds-semantic-color-background-brand-base)`): These express *intent* and adapt to contexts (like Dark Mode or interaction states). **Always prefer Semantic Colors** when styling components.\n\n' +
-          'Simply copy the `var(...)` string below any swatch to use it directly in your CSS Modules or inline styles.',
-      },
-    },
   },
 } satisfies Meta;
 

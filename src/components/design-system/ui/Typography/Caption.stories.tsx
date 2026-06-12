@@ -3,14 +3,14 @@ import { expect, within } from 'storybook/test';
 import { Caption } from './Typography';
 
 const meta = {
-  title: 'Design System/Foundation/Typography/Caption',
+  title: 'Design System/Components/Typography/Caption',
   component: Caption,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component:
-          'The `Caption` component is designed for small, supplementary information that provides extra context without competing for the user\'s primary attention.\n\n' +
+          "The `Caption` component is designed for small, supplementary information that provides extra context without competing for the user's primary attention.\n\n" +
           'By default, it renders as an inline `<span>` so it can easily sit inside or alongside other text elements (like timestamps or tiny metadata). If you need it to behave as a standalone block of text, you can use the `as="p"` prop. It naturally adopts a subtle color to enforce proper visual hierarchy.',
       },
     },
