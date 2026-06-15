@@ -162,12 +162,14 @@
   --ds-semantic-color-border-disabled: var(--ds-color-charcoal-200);
   --ds-semantic-radii-interactive-sm: var(--ds-radii-sm);
   --ds-semantic-radii-interactive-md: var(--ds-radii-md);
+  --ds-semantic-radii-interactive-lg: var(--ds-radii-lg);
   --ds-semantic-radii-interactive-full: var(--ds-radii-full);
   --ds-semantic-radii-container-sm: var(--ds-radii-md);
   --ds-semantic-radii-container-md: var(--ds-radii-lg);
   --ds-semantic-radii-container-lg: var(--ds-radii-xl);
   --ds-semantic-radii-surface-sm: var(--ds-radii-sm);
   --ds-semantic-radii-surface-md: var(--ds-radii-md);
+  --ds-semantic-radii-surface-lg: var(--ds-radii-lg);
   --ds-semantic-radii-surface-full: var(--ds-radii-full);
   --ds-semantic-spacing-inset-xs: var(--ds-spacing-1);
   --ds-semantic-spacing-inset-sm: var(--ds-spacing-2);

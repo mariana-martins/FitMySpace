@@ -4,6 +4,7 @@
       "interactive": {
         "sm": { "value": "{radii.sm}" },
         "md": { "value": "{radii.md}" },
+        "lg": { "value": "{radii.lg}" },
         "full": { "value": "{radii.full}" }
       },
       "container": {
@@ -14,6 +15,7 @@
       "surface": {
         "sm": { "value": "{radii.sm}" },
         "md": { "value": "{radii.md}" },
+        "lg": { "value": "{radii.lg}" },
         "full": { "value": "{radii.full}" }
       }
     }
