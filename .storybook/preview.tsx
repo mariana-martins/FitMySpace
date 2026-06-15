@@ -25,8 +25,9 @@ const preview: Preview = {
         order: [
           'Design System',
           [
+            'Introduction',
             'Foundation',
-            ['Color', 'Spacing'],
+            ['Color', 'Spacing', 'Radii'],
             'Components',
             ['Typography'],
             'Patterns',

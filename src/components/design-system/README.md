@@ -22,6 +22,8 @@ design-system/
 └── ui/              # Component folders (colocated with stories)
     ├── color/
     │   └── Colors.stories.tsx
+    ├── introduction/
+    │   └── Introduction.stories.tsx
     ├── radii/
     │   └── Radii.stories.tsx
     ├── spacing/
