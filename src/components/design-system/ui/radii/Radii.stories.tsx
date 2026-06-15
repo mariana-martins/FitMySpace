@@ -198,7 +198,7 @@ export const SemanticRadii: Story = {
     return (
       <div
         style={{
-          backgroundColor: 'var(--ds-semantic-color-background-subtle-base)',
+          backgroundColor: 'var(--ds-semantic-color-background-default-base)',
           minHeight: '100vh',
           width: '100%',
         }}
@@ -219,7 +219,7 @@ export const SemanticRadii: Story = {
             <code
               style={{
                 fontFamily: 'monospace',
-                background: 'var(--ds-semantic-color-background-default-base)',
+                background: 'var(--ds-semantic-color-background-subtle-base)',
                 padding: '2px 4px',
                 borderRadius: '4px',
               }}
@@ -230,7 +230,7 @@ export const SemanticRadii: Story = {
             <code
               style={{
                 fontFamily: 'monospace',
-                background: 'var(--ds-semantic-color-background-default-base)',
+                background: 'var(--ds-semantic-color-background-subtle-base)',
                 padding: '2px 4px',
                 borderRadius: '4px',
               }}

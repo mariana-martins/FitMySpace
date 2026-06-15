@@ -13,6 +13,14 @@ import '@fontsource/dm-sans/600.css';
 import '@fontsource/dm-sans/700.css';
 
 const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <div style={{ color: 'var(--ds-semantic-color-text-default-base)' }}>
+        <Story />
+      </div>
+    ),
+  ],
+
   parameters: {
     controls: {
       matchers: {

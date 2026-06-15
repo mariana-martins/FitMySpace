@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 const codeStyle: React.CSSProperties = {
   fontFamily: 'monospace',
-  background: 'var(--ds-semantic-color-background-default-base)',
+  background: 'var(--ds-semantic-color-background-subtle-base)',
   padding: '2px 6px',
   borderRadius: '4px',
   fontSize: '13px',
@@ -547,7 +547,7 @@ export const Welcome: Story = {
   render: () => (
     <div
       style={{
-        backgroundColor: 'var(--ds-semantic-color-background-subtle-base)',
+        backgroundColor: 'var(--ds-semantic-color-background-default-base)',
         minHeight: '100vh',
         width: '100%',
       }}

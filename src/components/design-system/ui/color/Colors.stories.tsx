@@ -129,7 +129,7 @@ export const CorePalettes: Story = {
     ];
 
     return (
-      <div style={{ backgroundColor: 'var(--ds-semantic-color-background-subtle-base)', minHeight: '100vh', width: '100%' }}>
+      <div style={{ backgroundColor: 'var(--ds-semantic-color-background-default-base)', minHeight: '100vh', width: '100%' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '64px 24px' }}>
           <Heading level={2} size="md" style={{ marginBottom: '16px' }}>
             Core Palettes
@@ -208,13 +208,13 @@ export const SemanticColors: Story = {
     ];
 
     return (
-      <div style={{ backgroundColor: 'var(--ds-semantic-color-background-subtle-base)', minHeight: '100vh', width: '100%' }}>
+      <div style={{ backgroundColor: 'var(--ds-semantic-color-background-default-base)', minHeight: '100vh', width: '100%' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '64px 24px' }}>
           <Heading level={2} size="md" style={{ marginBottom: '16px' }}>
             Semantic Colors
           </Heading>
           <Text size="md" style={{ marginBottom: '48px', color: 'var(--ds-semantic-color-text-subtle-base)', display: 'block' }}>
-            Semantic Colors express the <strong>intent</strong> of an element rather than its actual hue. For example, <code style={{ fontFamily: 'monospace', background: 'var(--ds-semantic-color-background-default-base)', padding: '2px 4px', borderRadius: '4px' }}>background-brand-base</code> tells you <em>why</em> the color is used, not <em>what</em> color it is. By exclusively using Semantic Colors in your CSS, you guarantee that your components will seamlessly invert during Dark Mode and automatically inherit any future rebranding efforts (like changing the primary brand color) without modifying a single line of component code.
+            Semantic Colors express the <strong>intent</strong> of an element rather than its actual hue. For example, <code style={{ fontFamily: 'monospace', background: 'var(--ds-semantic-color-background-subtle-base)', padding: '2px 4px', borderRadius: '4px' }}>background-brand-base</code> tells you <em>why</em> the color is used, not <em>what</em> color it is. By exclusively using Semantic Colors in your CSS, you guarantee that your components will seamlessly invert during Dark Mode and automatically inherit any future rebranding efforts (like changing the primary brand color) without modifying a single line of component code.
           </Text>
           {semanticGroups.map((p) => (
             <ColorGroup key={p.title} title={p.title} colors={p.colors} />
