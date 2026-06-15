@@ -20,6 +20,12 @@ design-system/
 │   ├── sd.config.mjs  # Style Dictionary build config
 │   └── tokens.css     # AUTO-GENERATED — do not edit manually
 └── ui/              # Component folders (colocated with stories)
+    ├── color/
+    │   └── Colors.stories.tsx
+    ├── radii/
+    │   └── Radii.stories.tsx
+    ├── spacing/
+    │   └── Spacing.stories.tsx
     └── Typography/
         ├── Typography.tsx
         ├── Typography.module.css
