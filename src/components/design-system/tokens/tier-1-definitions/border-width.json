@@ -1,0 +1,8 @@
+{
+  "border-width": {
+    "none": { "value": "0px" },
+    "thin": { "value": "1px" },
+    "thick": { "value": "2px" },
+    "heavy": { "value": "4px" }
+  }
+}

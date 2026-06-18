@@ -1,0 +1,10 @@
+{
+  "semantic": {
+    "border-width": {
+      "none": { "value": "{border-width.none}" },
+      "default": { "value": "{border-width.thin}" },
+      "interactive": { "value": "{border-width.thick}" },
+      "heavy": { "value": "{border-width.heavy}" }
+    }
+  }
+}

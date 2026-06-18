@@ -3,6 +3,10 @@
  */
 
 :root {
+  --ds-border-width-none: 0px;
+  --ds-border-width-thin: 1px;
+  --ds-border-width-thick: 2px;
+  --ds-border-width-heavy: 4px;
   --ds-color-sage-50: #f4f8f5;
   --ds-color-sage-100: #e3efe6;
   --ds-color-sage-200: #c7dfcd;
@@ -93,6 +97,10 @@
   --ds-font-letter-spacing-tight: -0.02em;
   --ds-font-letter-spacing-normal: 0em;
   --ds-font-letter-spacing-wide: 0.02em;
+  --ds-semantic-border-width-none: var(--ds-border-width-none);
+  --ds-semantic-border-width-default: var(--ds-border-width-thin);
+  --ds-semantic-border-width-interactive: var(--ds-border-width-thick);
+  --ds-semantic-border-width-heavy: var(--ds-border-width-heavy);
   --ds-semantic-color-background-default-base: var(--ds-color-white);
   --ds-semantic-color-background-default-hover: var(--ds-color-charcoal-50);
   --ds-semantic-color-background-default-active: var(--ds-color-charcoal-100);
