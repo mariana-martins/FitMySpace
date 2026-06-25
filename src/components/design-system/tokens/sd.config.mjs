@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const sd = new StyleDictionary({
-  source: [resolve(__dirname, 'tier-1-definitions/*.json'), resolve(__dirname, 'tier-2-definitions/*.json')],
+  source: [resolve(__dirname, 'tier-1-definitions/*.json'), resolve(__dirname, 'tier-2-definitions/*.json'), resolve(__dirname, 'tier-3-definitions/*.json')],
   platforms: {
     css: {
       transformGroup: 'css',
