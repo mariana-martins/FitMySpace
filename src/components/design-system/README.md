@@ -6,20 +6,29 @@ This directory houses the foundational design system components, tokens, and uti
 
 ```
 design-system/
-├── tokens/          # Tier 1 and 2 JSON token files + Style Dictionary config
+├── tokens/          # Tier 1, 2, and 3 JSON token files + Style Dictionary config
 │   ├── tier-1-definitions/    # Core literal values (do not use directly in components)
 │   │   ├── color.json         # Hex codes and raw color palettes
 │   │   ├── typography.json    # Font families, raw sizes, weights, and letter-spacing
 │   │   ├── spacing.json       # Base 4px scale spacing values
+│   │   ├── border-width.json  # Raw border-width pixel values
 │   │   └── radii.json         # Raw border-radius pixel values
 │   ├── tier-2-definitions/    # Intent-based semantic aliases (use these in components)
 │   │   ├── color.json         # Semantic backgrounds, text, and borders (e.g. brand, utility)
 │   │   ├── typography.json    # Display, heading, body, label, and caption roles
 │   │   ├── spacing.json       # Inset (padding), gap, and section layout spacing
+│   │   ├── border-width.json  # Semantic border-width roles (default, interactive, heavy)
 │   │   └── radii.json         # Interactive, container, and surface border radiuses
+│   ├── tier-3-definitions/    # Component-level token mappings
+│   │   └── button.json        # Button variant colors, sizes, shapes, and icon sizing
 │   ├── sd.config.mjs  # Style Dictionary build config
 │   └── tokens.css     # AUTO-GENERATED — do not edit manually
 └── ui/              # Component folders (colocated with stories)
+    ├── Button/
+    │   ├── Button.tsx
+    │   ├── Button.module.css
+    │   ├── Button.test.tsx
+    │   └── Button.stories.tsx
     ├── color/
     │   └── Colors.stories.tsx
     ├── introduction/
@@ -31,6 +40,7 @@ design-system/
     └── Typography/
         ├── Typography.tsx
         ├── Typography.module.css
+        ├── Typography.test.tsx
         └── Typography.stories.tsx
 ```
 
