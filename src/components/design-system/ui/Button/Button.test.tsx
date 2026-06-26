@@ -249,6 +249,16 @@ describe('Button — asChild', () => {
     expect(link).toHaveAttribute('aria-disabled', 'true');
     expect(link).not.toHaveAttribute('disabled');
   });
+
+  it('applies tabIndex="-1" when asChild is true and button is disabled', () => {
+    render(
+      <Button variant="primary" appearance="fill" size="md" asChild disabled>
+        <a href="/disabled">Disabled Link</a>
+      </Button>,
+    );
+    const link = screen.getByRole('link');
+    expect(link).toHaveAttribute('tabindex', '-1');
+  });
 });
 
 /* ===============================================================

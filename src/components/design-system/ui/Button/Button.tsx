@@ -67,7 +67,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
    */
   if (asChild) {
     return (
-      <Slot {...sharedProps} aria-disabled={disabled ? true : undefined}>
+      <Slot 
+        {...sharedProps} 
+        aria-disabled={disabled ? true : undefined}
+        tabIndex={disabled ? -1 : undefined}
+      >
         {iconElement && iconPosition === 'start' && iconElement}
         <Slottable>{children}</Slottable>
         {iconElement && iconPosition === 'end' && iconElement}
