@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
-import { Heading } from './Typography';
+import { Heading } from './';
 
 const meta = {
   title: 'Design System/Components/Typography/Heading',

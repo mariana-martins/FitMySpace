@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Button } from './Button';
+import { Button } from './';
 import { createRef } from 'react';
 
 expect.extend(toHaveNoViolations);

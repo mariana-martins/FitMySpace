@@ -25,6 +25,7 @@ design-system/
 │   └── tokens.css     # AUTO-GENERATED — do not edit manually
 └── ui/              # Component folders (colocated with stories)
     ├── Button/
+    │   ├── index.tsx
     │   ├── Button.tsx
     │   ├── Button.module.css
     │   ├── Button.test.tsx
@@ -38,6 +39,7 @@ design-system/
     ├── spacing/
     │   └── Spacing.stories.tsx
     └── Typography/
+        ├── index.tsx
         ├── Typography.tsx
         ├── Typography.module.css
         ├── Typography.test.tsx

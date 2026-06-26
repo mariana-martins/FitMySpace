@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { Heading, Text } from '../Typography/Typography';
+import { Heading, Text } from '../Typography';
 
 const meta = {
   title: 'Design System/Foundation/Color',

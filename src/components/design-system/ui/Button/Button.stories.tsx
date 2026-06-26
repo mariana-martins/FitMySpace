@@ -1,7 +1,7 @@
 import { Plus, Trash2, ArrowRight, Download, Star } from 'lucide-react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
-import { Button } from './Button';
+import { Button } from './';
 
 const meta = {
   title: 'Design System/Components/Button',

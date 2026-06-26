@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { createRef } from 'react';
-import { Heading, Text, Label, Caption } from './Typography';
+import { Heading, Text, Label, Caption } from './';
 
 expect.extend(toHaveNoViolations);
 
