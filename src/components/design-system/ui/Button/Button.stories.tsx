@@ -17,7 +17,6 @@ const meta = {
     docs: {
       description: {
         component:
-          '# Button\n\n' +
           'The `Button` component is the primary interactive element used for actions and links. It is fully accessible and driven by our design system\'s tier-3 component tokens.\n\n' +
           '### Best Practices\n' +
           '- **Primary Actions:** Use the `primary` variant for the main action on a page. Only one primary button should be visible at a time.\n' +

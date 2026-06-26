@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 const codeStyle: React.CSSProperties = {
   fontFamily: 'monospace',
-  background: 'var(--ds-semantic-color-background-subtle-base)',
+  background: 'var(--ds-semantic-color-background-default-hover)',
   padding: '2px 6px',
   borderRadius: '4px',
   fontSize: '13px',
@@ -104,7 +104,6 @@ const TierCard = ({
       flex: '1 1 0%',
       minWidth: '260px',
       ...cardBase,
-      borderTop: `3px solid ${accent}`,
     }}
   >
     <Text
@@ -201,16 +200,16 @@ const TokenArchitecture = () => (
         textWrap: 'pretty',
       }}
     >
-      Our design tokens follow a two-tier architecture. Tier 1 holds the raw
-      values — think of them as the raw ingredients. Tier 2 creates
-      purpose-driven aliases that your components actually consume.
+      Our design tokens follow a three-tier architecture. Tier 1 holds the raw
+      values — the core ingredients. Tier 2 provides purpose-driven semantic
+      aliases. Tier 3 scopes those aliases down to highly specific component properties.
     </Text>
     <div
       style={{
         display: 'flex',
         flexWrap: 'wrap',
         gap: '16px',
-        alignItems: 'center',
+        alignItems: 'stretch',
       }}
     >
       <TierCard
@@ -222,17 +221,29 @@ const TokenArchitecture = () => (
           '--ds-radii-md',
           '--ds-spacing-4',
         ]}
-        accent="var(--ds-semantic-color-text-subtle-base)"
+        accent="var(--ds-semantic-color-text-brand-base)"
       />
       <ArrowConnector />
       <TierCard
         tier="Tier 2"
         label="Semantic Aliases"
-        description="Intent-based names that reference Tier 1. These are what you use in your components."
+        description="Intent-based names that reference Tier 1. These are what you use globally."
         examples={[
           '--ds-semantic-color-background-brand-base',
           '--ds-semantic-radii-interactive-md',
           '--ds-semantic-spacing-inset-md',
+        ]}
+        accent="var(--ds-semantic-color-text-brand-base)"
+      />
+      <ArrowConnector />
+      <TierCard
+        tier="Tier 3"
+        label="Component Tokens"
+        description="Highly scoped aliases for specific UI components. These tie semantic tokens to specific elements."
+        examples={[
+          '--ds-button-primary-bg',
+          '--ds-card-border-subtle',
+          '--ds-typography-heading-lg',
         ]}
         accent="var(--ds-semantic-color-text-brand-base)"
       />
@@ -314,19 +325,19 @@ const QuickStart = () => (
       Three principles to keep in mind when working with the design system.
     </Text>
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
-      <StepCard step={1} title="Use semantic tokens">
-        Always reach for a Tier 2 variable. Instead of{' '}
-        <code style={codeStyle}>border-radius: 8px</code>, write{' '}
+      <StepCard step={1} title="Use the right token tier">
+        Always reach for a Tier 2 (Semantic) or Tier 3 (Component) variable. Instead of{' '}
+        <code style={codeStyle}>background: #e3efe9</code>, write{' '}
         <code style={codeStyle}>
-          border-radius: var(--ds-semantic-radii-interactive-md)
+          background: var(--ds-semantic-color-background-brand-base)
         </code>
-        . The semantic name tells future readers <em>why</em> the value exists.
+        . Semantic names tell future readers <em>why</em> the value exists.
       </StepCard>
 
       <StepCard step={2} title="Never hard-code values">
-        Hard-coded pixels bypass the design system and break when tokens change.
+        Hard-coded pixels bypass the design system and break when core tokens change.
         If you find yourself writing a raw number, search the token list first —
-        there is almost certainly a semantic variable for what you need.
+        there is almost certainly an alias for what you need.
       </StepCard>
 
       <StepCard step={3} title="Rebuild after edits">

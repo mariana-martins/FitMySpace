@@ -63,7 +63,7 @@ const ColorSwatch = ({ name, variable, isCore = false }: { name: string; variabl
           style={{
             fontSize: '11px',
             fontFamily: 'monospace',
-            background: copied ? 'var(--ds-semantic-color-background-utility-success-base)' : 'var(--ds-semantic-color-background-subtle-base)',
+            background: copied ? 'var(--ds-semantic-color-background-utility-success-base)' : 'var(--ds-semantic-color-background-default-hover)',
             color: copied ? 'var(--ds-semantic-color-text-inverse)' : 'var(--ds-semantic-color-text-subtle-base)',
             padding: '4px 8px',
             borderRadius: '4px',
@@ -214,7 +214,7 @@ export const SemanticColors: Story = {
             Semantic Colors
           </Heading>
           <Text size="md" style={{ marginBottom: '48px', color: 'var(--ds-semantic-color-text-subtle-base)', display: 'block' }}>
-            Semantic Colors express the <strong>intent</strong> of an element rather than its actual hue. For example, <code style={{ fontFamily: 'monospace', background: 'var(--ds-semantic-color-background-subtle-base)', padding: '2px 4px', borderRadius: '4px' }}>background-brand-base</code> tells you <em>why</em> the color is used, not <em>what</em> color it is. By exclusively using Semantic Colors in your CSS, you guarantee that your components will seamlessly invert during Dark Mode and automatically inherit any future rebranding efforts (like changing the primary brand color) without modifying a single line of component code.
+            Semantic Colors express the <strong>intent</strong> of an element rather than its actual hue. For example, <code style={{ fontFamily: 'monospace', background: 'var(--ds-semantic-color-background-default-hover)', padding: '2px 4px', borderRadius: '4px' }}>background-brand-base</code> tells you <em>why</em> the color is used, not <em>what</em> color it is. By exclusively using Semantic Colors in your CSS, you guarantee that your components will seamlessly invert during Dark Mode (when available) and automatically inherit any future rebranding efforts (like changing the primary brand color) without modifying a single line of component code.
           </Text>
           {semanticGroups.map((p) => (
             <ColorGroup key={p.title} title={p.title} colors={p.colors} />

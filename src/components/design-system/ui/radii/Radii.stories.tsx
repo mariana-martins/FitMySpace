@@ -89,7 +89,7 @@ const RadiiSwatch = ({ name, variable }: { name: string; variable: string }) => 
           fontFamily: 'monospace',
           background: copied
             ? 'var(--ds-semantic-color-background-utility-success-base)'
-            : 'var(--ds-semantic-color-background-subtle-base)',
+            : 'var(--ds-semantic-color-background-default-hover)',
           color: copied
             ? 'var(--ds-semantic-color-text-inverse)'
             : 'var(--ds-semantic-color-text-subtle-base)',
@@ -219,7 +219,7 @@ export const SemanticRadii: Story = {
             <code
               style={{
                 fontFamily: 'monospace',
-                background: 'var(--ds-semantic-color-background-subtle-base)',
+                background: 'var(--ds-semantic-color-background-default-hover)',
                 padding: '2px 4px',
                 borderRadius: '4px',
               }}
@@ -230,7 +230,7 @@ export const SemanticRadii: Story = {
             <code
               style={{
                 fontFamily: 'monospace',
-                background: 'var(--ds-semantic-color-background-subtle-base)',
+                background: 'var(--ds-semantic-color-background-default-hover)',
                 padding: '2px 4px',
                 borderRadius: '4px',
               }}
