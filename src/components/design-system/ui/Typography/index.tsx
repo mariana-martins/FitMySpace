@@ -13,4 +13,4 @@ export type {
   LabelAsLabelProps,
   CaptionProps,
   CaptionElement,
-} from './Typography';
+} from './Typography.types';

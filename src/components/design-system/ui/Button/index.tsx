@@ -5,4 +5,4 @@ export type {
   ButtonAppearance,
   ButtonSize,
   IconPosition,
-} from './Button';
+} from './Button.types';

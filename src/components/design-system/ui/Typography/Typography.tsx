@@ -1,6 +1,13 @@
+import type {
+  HeadingLevel,
+  HeadingProps,
+  TextProps,
+  LabelProps,
+  CaptionProps,
+} from './Typography.types';
+import styles from './Typography.module.css';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
-import styles from './Typography.module.css';
 
 /* ---------------------------------------------------------------
  * Heading
@@ -9,20 +16,6 @@ import styles from './Typography.module.css';
  * The `size` prop controls visual scale independently of semantic
  * level, allowing e.g. an h3 to look like an h2.
  * --------------------------------------------------------------- */
-
-export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
-export type HeadingSize = 'sm' | 'md' | 'lg';
-export type DisplaySize = 'md' | 'lg';
-
-export interface HeadingProps
-  extends Omit<React.ComponentPropsWithoutRef<'h1'>, 'color'> {
-  /** Semantic heading level (1–6). Controls the rendered HTML tag. */
-  level?: HeadingLevel;
-  /** Typography scale variant. Independent of `level`. */
-  size?: HeadingSize;
-  /** When set, uses the larger display scale instead of heading scale. */
-  displaySize?: DisplaySize;
-}
 
 const HEADING_TAGS: Record<HeadingLevel, React.ElementType> = {
   1: 'h1',
@@ -33,25 +26,15 @@ const HEADING_TAGS: Record<HeadingLevel, React.ElementType> = {
   6: 'h6',
 };
 
-export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  function Heading(
-    { level = 2, size = 'lg', displaySize, className, ...rest },
-    ref,
-  ) {
-    const Tag = HEADING_TAGS[level];
-    const sizeClass = displaySize
-      ? styles[`display-${displaySize}`]
-      : styles[`heading-${size}`];
+export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(function Heading(
+  { level = 2, size = 'lg', displaySize, className, ...rest },
+  ref,
+) {
+  const Tag = HEADING_TAGS[level];
+  const sizeClass = displaySize ? styles[`display-${displaySize}`] : styles[`heading-${size}`];
 
-    return (
-      <Tag
-        ref={ref}
-        className={clsx(styles.base, sizeClass, className)}
-        {...rest}
-      />
-    );
-  },
-);
+  return <Tag ref={ref} className={clsx(styles.base, sizeClass, className)} {...rest} />;
+});
 
 Heading.displayName = 'Heading';
 
@@ -62,30 +45,16 @@ Heading.displayName = 'Heading';
  * switch to <span> via the `as` prop.
  * --------------------------------------------------------------- */
 
-export type TextElement = 'p' | 'span';
-export type TextSize = 'sm' | 'md' | 'lg';
+export const Text = forwardRef<HTMLElement, TextProps>(function Text(
+  { as = 'p', size = 'md', className, ...rest },
+  ref,
+) {
+  const Tag = as as React.ElementType;
 
-export interface TextProps
-  extends Omit<React.ComponentPropsWithoutRef<'p'>, 'color'> {
-  /** Rendered HTML element. */
-  as?: TextElement;
-  /** Typography scale variant. */
-  size?: TextSize;
-}
-
-export const Text = forwardRef<HTMLElement, TextProps>(
-  function Text({ as = 'p', size = 'md', className, ...rest }, ref) {
-    const Tag = as as React.ElementType;
-
-    return (
-      <Tag
-        ref={ref}
-        className={clsx(styles.base, styles[`body-${size}`], className)}
-        {...rest}
-      />
-    );
-  },
-);
+  return (
+    <Tag ref={ref} className={clsx(styles.base, styles[`body-${size}`], className)} {...rest} />
+  );
+});
 
 Text.displayName = 'Text';
 
@@ -101,54 +70,15 @@ Text.displayName = 'Text';
  *   <Label as="label" htmlFor="id">…</>   → <label> (htmlFor required)
  * --------------------------------------------------------------- */
 
-export type LabelSize = 'sm' | 'md' | 'lg';
+export const Label = forwardRef<HTMLElement, LabelProps>(function Label(props, ref) {
+  const { as = 'span', size = 'md', className, ...rest } = props;
 
-type LabelBaseProps = {
-  /** Typography scale variant. */
-  size?: LabelSize;
-  className?: string;
-  children?: React.ReactNode;
-};
+  const Tag = as as React.ElementType;
 
-export type LabelAsSpanProps = LabelBaseProps & {
-  as?: 'span';
-} & Omit<React.ComponentPropsWithoutRef<'span'>, keyof LabelBaseProps | 'color'>;
-
-export type LabelAsLabelProps = LabelBaseProps & {
-  as: 'label';
-  /** Associates this label with a form input. Required when `as="label"`. */
-  htmlFor: string;
-} & Omit<
-  React.ComponentPropsWithoutRef<'label'>,
-  keyof LabelBaseProps | 'color' | 'htmlFor'
->;
-
-export type LabelProps = LabelAsSpanProps | LabelAsLabelProps;
-
-export const Label = forwardRef<HTMLElement, LabelProps>(
-  function Label(props, ref) {
-    const {
-      as = 'span',
-      size = 'md',
-      className,
-      ...rest
-    } = props;
-
-    const Tag = as as React.ElementType;
-
-    return (
-      <Tag
-        ref={ref}
-        className={clsx(
-          styles.base,
-          styles[`label-${size}`],
-          className,
-        )}
-        {...rest}
-      />
-    );
-  },
-);
+  return (
+    <Tag ref={ref} className={clsx(styles.base, styles[`label-${size}`], className)} {...rest} />
+  );
+});
 
 Label.displayName = 'Label';
 
@@ -158,30 +88,13 @@ Label.displayName = 'Label';
  * Small, supplementary text. Renders <span> by default.
  * --------------------------------------------------------------- */
 
-export type CaptionElement = 'span' | 'p';
+export const Caption = forwardRef<HTMLElement, CaptionProps>(function Caption(
+  { as = 'span', className, ...rest },
+  ref,
+) {
+  const Tag = as as React.ElementType;
 
-export interface CaptionProps
-  extends Omit<React.ComponentPropsWithoutRef<'span'>, 'color'> {
-  /** Rendered HTML element. */
-  as?: CaptionElement;
-}
-
-export const Caption = forwardRef<HTMLElement, CaptionProps>(
-  function Caption({ as = 'span', className, ...rest }, ref) {
-    const Tag = as as React.ElementType;
-
-    return (
-      <Tag
-        ref={ref}
-        className={clsx(
-          styles.base,
-          styles['caption-md'],
-          className,
-        )}
-        {...rest}
-      />
-    );
-  },
-);
+  return <Tag ref={ref} className={clsx(styles.base, styles['caption-md'], className)} {...rest} />;
+});
 
 Caption.displayName = 'Caption';

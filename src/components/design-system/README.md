@@ -26,6 +26,7 @@ design-system/
 └── ui/              # Component folders (colocated with stories)
     ├── Button/
     │   ├── index.tsx
+    │   ├── Button.types.ts
     │   ├── Button.tsx
     │   ├── Button.module.css
     │   ├── Button.test.tsx
@@ -40,6 +41,7 @@ design-system/
     │   └── Spacing.stories.tsx
     └── Typography/
         ├── index.tsx
+        ├── Typography.types.ts
         ├── Typography.tsx
         ├── Typography.module.css
         ├── Typography.test.tsx
