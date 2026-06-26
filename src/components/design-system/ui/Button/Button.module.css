@@ -1,0 +1,501 @@
+/* ---------------------------------------------------------------
+ * Button — CSS Module
+ * Maps component-level button tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Naming convention for variant classes:
+ *   .{appearance}-{variant}
+ *   e.g. .fill-primary, .outline-secondary
+ *
+ * Size classes: .size-{xs|sm|md|lg}
+ * --------------------------------------------------------------- */
+
+/* Base reset ---------------------------------------------------- */
+
+.button {
+  --button-border-style: solid;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-radius: var(--ds-component-button-shape-radii);
+  transition-property: background-color, border-color, color, box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.button:active:not(:disabled):not([aria-disabled='true']) {
+  transform: scale(0.96);
+}
+
+.button:disabled,
+.button[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+/* Focus ring ---------------------------------------------------- */
+
+.button:focus-visible {
+  outline: 2px solid var(--button-focus-ring-color, currentColor);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------
+ * Size variants
+ * --------------------------------------------------------------- */
+
+.size-lg {
+  padding: var(--ds-component-button-size-lg-padding-y) var(--ds-component-button-size-lg-padding-x);
+  font-family: var(--ds-component-button-size-lg-font-family);
+  font-weight: var(--ds-component-button-size-lg-font-weight);
+  font-size: var(--ds-component-button-size-lg-font-size);
+  letter-spacing: var(--ds-component-button-size-lg-letter-spacing);
+  line-height: var(--ds-component-button-size-lg-line-height);
+  border-width: var(--ds-component-button-size-lg-border);
+  border-style: var(--button-border-style);
+  gap: var(--ds-component-button-size-lg-gap);
+}
+
+.size-md {
+  padding: var(--ds-component-button-size-md-padding-y) var(--ds-component-button-size-md-padding-x);
+  font-family: var(--ds-component-button-size-md-font-family);
+  font-weight: var(--ds-component-button-size-md-font-weight);
+  font-size: var(--ds-component-button-size-md-font-size);
+  letter-spacing: var(--ds-component-button-size-md-letter-spacing);
+  line-height: var(--ds-component-button-size-md-line-height);
+  border-width: var(--ds-component-button-size-md-border);
+  border-style: var(--button-border-style);
+  gap: var(--ds-component-button-size-md-gap);
+}
+
+.size-sm {
+  padding: var(--ds-component-button-size-sm-padding-y) var(--ds-component-button-size-sm-padding-x);
+  font-family: var(--ds-component-button-size-sm-font-family);
+  font-weight: var(--ds-component-button-size-sm-font-weight);
+  font-size: var(--ds-component-button-size-sm-font-size);
+  letter-spacing: var(--ds-component-button-size-sm-letter-spacing);
+  line-height: var(--ds-component-button-size-sm-line-height);
+  border-width: var(--ds-component-button-size-sm-border);
+  border-style: var(--button-border-style);
+  gap: var(--ds-component-button-size-sm-gap);
+}
+
+.size-xs {
+  padding: var(--ds-component-button-size-xs-padding-y) var(--ds-component-button-size-xs-padding-x);
+  font-family: var(--ds-component-button-size-xs-font-family);
+  font-weight: var(--ds-component-button-size-xs-font-weight);
+  font-size: var(--ds-component-button-size-xs-font-size);
+  letter-spacing: var(--ds-component-button-size-xs-letter-spacing);
+  line-height: var(--ds-component-button-size-xs-line-height);
+  border-width: var(--ds-component-button-size-xs-border);
+  border-style: var(--button-border-style);
+  gap: var(--ds-component-button-size-xs-gap);
+}
+
+/* ---------------------------------------------------------------
+ * Icon sizing
+ *
+ * The .icon wrapper sets width/height via a CSS custom property
+ * (--btn-icon-size) that is scoped per size class. Each size
+ * class sets the property, and the .icon class consumes it.
+ * --------------------------------------------------------------- */
+
+.size-lg { --btn-icon-size: var(--ds-component-button-size-lg-icon-size); }
+.size-md { --btn-icon-size: var(--ds-component-button-size-md-icon-size); }
+.size-sm { --btn-icon-size: var(--ds-component-button-size-sm-icon-size); }
+.size-xs { --btn-icon-size: var(--ds-component-button-size-xs-icon-size); }
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--btn-icon-size);
+  height: var(--btn-icon-size);
+}
+
+.icon > svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------------------------------------------------------------
+ * Icon-only: equal padding for a square hit area
+ * --------------------------------------------------------------- */
+
+.icon-only.size-lg { padding: var(--ds-component-button-size-lg-padding-y); }
+.icon-only.size-md { padding: var(--ds-component-button-size-md-padding-y); }
+.icon-only.size-sm { padding: var(--ds-component-button-size-sm-padding-y); }
+.icon-only.size-xs { padding: var(--ds-component-button-size-xs-padding-y); }
+
+/* Ensure minimum 40×40 hit area for xs/sm (a11y — WCAG 2.5.5) */
+.icon-only.size-xs,
+.icon-only.size-sm {
+  min-width: 40px;
+  min-height: 40px;
+}
+
+
+/* ---------------------------------------------------------------
+ * Color variants — Fill
+ * --------------------------------------------------------------- */
+
+/* Primary Fill */
+.fill-primary {
+  --button-focus-ring-color: var(--ds-component-button-primary-focus-ring);
+  background-color: var(--ds-component-button-primary-fill-background-default);
+  border-color: var(--ds-component-button-primary-fill-border-default);
+  color: var(--ds-component-button-primary-fill-text-default);
+}
+.fill-primary:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-primary-fill-background-hover);
+  border-color: var(--ds-component-button-primary-fill-border-hover);
+  color: var(--ds-component-button-primary-fill-text-hover);
+}
+.fill-primary:focus-visible {
+  background-color: var(--ds-component-button-primary-fill-background-focus);
+  border-color: var(--ds-component-button-primary-fill-border-focus);
+  color: var(--ds-component-button-primary-fill-text-focus);
+}
+.fill-primary:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-primary-fill-background-active);
+  border-color: var(--ds-component-button-primary-fill-border-active);
+  color: var(--ds-component-button-primary-fill-text-active);
+}
+.fill-primary:disabled,
+.fill-primary[aria-disabled='true'] {
+  background-color: var(--ds-component-button-primary-fill-background-disabled);
+  border-color: var(--ds-component-button-primary-fill-border-disabled);
+  color: var(--ds-component-button-primary-fill-text-disabled);
+}
+
+/* Secondary Fill */
+.fill-secondary {
+  --button-focus-ring-color: var(--ds-component-button-secondary-focus-ring);
+  background-color: var(--ds-component-button-secondary-fill-background-default);
+  border-color: var(--ds-component-button-secondary-fill-border-default);
+  color: var(--ds-component-button-secondary-fill-text-default);
+}
+.fill-secondary:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-secondary-fill-background-hover);
+  border-color: var(--ds-component-button-secondary-fill-border-hover);
+  color: var(--ds-component-button-secondary-fill-text-hover);
+}
+.fill-secondary:focus-visible {
+  background-color: var(--ds-component-button-secondary-fill-background-focus);
+  border-color: var(--ds-component-button-secondary-fill-border-focus);
+  color: var(--ds-component-button-secondary-fill-text-focus);
+}
+.fill-secondary:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-secondary-fill-background-active);
+  border-color: var(--ds-component-button-secondary-fill-border-active);
+  color: var(--ds-component-button-secondary-fill-text-active);
+}
+.fill-secondary:disabled,
+.fill-secondary[aria-disabled='true'] {
+  background-color: var(--ds-component-button-secondary-fill-background-disabled);
+  border-color: var(--ds-component-button-secondary-fill-border-disabled);
+  color: var(--ds-component-button-secondary-fill-text-disabled);
+}
+
+/* Error Fill */
+.fill-error {
+  --button-focus-ring-color: var(--ds-component-button-error-focus-ring);
+  background-color: var(--ds-component-button-error-fill-background-default);
+  border-color: var(--ds-component-button-error-fill-border-default);
+  color: var(--ds-component-button-error-fill-text-default);
+}
+.fill-error:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-error-fill-background-hover);
+  border-color: var(--ds-component-button-error-fill-border-hover);
+  color: var(--ds-component-button-error-fill-text-hover);
+}
+.fill-error:focus-visible {
+  background-color: var(--ds-component-button-error-fill-background-focus);
+  border-color: var(--ds-component-button-error-fill-border-focus);
+  color: var(--ds-component-button-error-fill-text-focus);
+}
+.fill-error:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-error-fill-background-active);
+  border-color: var(--ds-component-button-error-fill-border-active);
+  color: var(--ds-component-button-error-fill-text-active);
+}
+.fill-error:disabled,
+.fill-error[aria-disabled='true'] {
+  background-color: var(--ds-component-button-error-fill-background-disabled);
+  border-color: var(--ds-component-button-error-fill-border-disabled);
+  color: var(--ds-component-button-error-fill-text-disabled);
+}
+
+/* Success Fill */
+.fill-success {
+  --button-focus-ring-color: var(--ds-component-button-success-focus-ring);
+  background-color: var(--ds-component-button-success-fill-background-default);
+  border-color: var(--ds-component-button-success-fill-border-default);
+  color: var(--ds-component-button-success-fill-text-default);
+}
+.fill-success:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-success-fill-background-hover);
+  border-color: var(--ds-component-button-success-fill-border-hover);
+  color: var(--ds-component-button-success-fill-text-hover);
+}
+.fill-success:focus-visible {
+  background-color: var(--ds-component-button-success-fill-background-focus);
+  border-color: var(--ds-component-button-success-fill-border-focus);
+  color: var(--ds-component-button-success-fill-text-focus);
+}
+.fill-success:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-success-fill-background-active);
+  border-color: var(--ds-component-button-success-fill-border-active);
+  color: var(--ds-component-button-success-fill-text-active);
+}
+.fill-success:disabled,
+.fill-success[aria-disabled='true'] {
+  background-color: var(--ds-component-button-success-fill-background-disabled);
+  border-color: var(--ds-component-button-success-fill-border-disabled);
+  color: var(--ds-component-button-success-fill-text-disabled);
+}
+
+/* Warning Fill */
+.fill-warning {
+  --button-focus-ring-color: var(--ds-component-button-warning-focus-ring);
+  background-color: var(--ds-component-button-warning-fill-background-default);
+  border-color: var(--ds-component-button-warning-fill-border-default);
+  color: var(--ds-component-button-warning-fill-text-default);
+}
+.fill-warning:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-warning-fill-background-hover);
+  border-color: var(--ds-component-button-warning-fill-border-hover);
+  color: var(--ds-component-button-warning-fill-text-hover);
+}
+.fill-warning:focus-visible {
+  background-color: var(--ds-component-button-warning-fill-background-focus);
+  border-color: var(--ds-component-button-warning-fill-border-focus);
+  color: var(--ds-component-button-warning-fill-text-focus);
+}
+.fill-warning:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-warning-fill-background-active);
+  border-color: var(--ds-component-button-warning-fill-border-active);
+  color: var(--ds-component-button-warning-fill-text-active);
+}
+.fill-warning:disabled,
+.fill-warning[aria-disabled='true'] {
+  background-color: var(--ds-component-button-warning-fill-background-disabled);
+  border-color: var(--ds-component-button-warning-fill-border-disabled);
+  color: var(--ds-component-button-warning-fill-text-disabled);
+}
+
+/* Information Fill */
+.fill-information {
+  --button-focus-ring-color: var(--ds-component-button-information-focus-ring);
+  background-color: var(--ds-component-button-information-fill-background-default);
+  border-color: var(--ds-component-button-information-fill-border-default);
+  color: var(--ds-component-button-information-fill-text-default);
+}
+.fill-information:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-information-fill-background-hover);
+  border-color: var(--ds-component-button-information-fill-border-hover);
+  color: var(--ds-component-button-information-fill-text-hover);
+}
+.fill-information:focus-visible {
+  background-color: var(--ds-component-button-information-fill-background-focus);
+  border-color: var(--ds-component-button-information-fill-border-focus);
+  color: var(--ds-component-button-information-fill-text-focus);
+}
+.fill-information:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-information-fill-background-active);
+  border-color: var(--ds-component-button-information-fill-border-active);
+  color: var(--ds-component-button-information-fill-text-active);
+}
+.fill-information:disabled,
+.fill-information[aria-disabled='true'] {
+  background-color: var(--ds-component-button-information-fill-background-disabled);
+  border-color: var(--ds-component-button-information-fill-border-disabled);
+  color: var(--ds-component-button-information-fill-text-disabled);
+}
+
+/* ---------------------------------------------------------------
+ * Color variants — Outline
+ * --------------------------------------------------------------- */
+
+/* Primary Outline */
+.outline-primary {
+  --button-focus-ring-color: var(--ds-component-button-primary-focus-ring);
+  background-color: var(--ds-component-button-primary-outline-background-default);
+  border-color: var(--ds-component-button-primary-outline-border-default);
+  color: var(--ds-component-button-primary-outline-text-default);
+}
+.outline-primary:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-primary-outline-background-hover);
+  border-color: var(--ds-component-button-primary-outline-border-hover);
+  color: var(--ds-component-button-primary-outline-text-hover);
+}
+.outline-primary:focus-visible {
+  background-color: var(--ds-component-button-primary-outline-background-focus);
+  border-color: var(--ds-component-button-primary-outline-border-focus);
+  color: var(--ds-component-button-primary-outline-text-focus);
+}
+.outline-primary:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-primary-outline-background-active);
+  border-color: var(--ds-component-button-primary-outline-border-active);
+  color: var(--ds-component-button-primary-outline-text-active);
+}
+.outline-primary:disabled,
+.outline-primary[aria-disabled='true'] {
+  background-color: var(--ds-component-button-primary-outline-background-disabled);
+  border-color: var(--ds-component-button-primary-outline-border-disabled);
+  color: var(--ds-component-button-primary-outline-text-disabled);
+}
+
+/* Secondary Outline */
+.outline-secondary {
+  --button-focus-ring-color: var(--ds-component-button-secondary-focus-ring);
+  background-color: var(--ds-component-button-secondary-outline-background-default);
+  border-color: var(--ds-component-button-secondary-outline-border-default);
+  color: var(--ds-component-button-secondary-outline-text-default);
+}
+.outline-secondary:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-secondary-outline-background-hover);
+  border-color: var(--ds-component-button-secondary-outline-border-hover);
+  color: var(--ds-component-button-secondary-outline-text-hover);
+}
+.outline-secondary:focus-visible {
+  background-color: var(--ds-component-button-secondary-outline-background-focus);
+  border-color: var(--ds-component-button-secondary-outline-border-focus);
+  color: var(--ds-component-button-secondary-outline-text-focus);
+}
+.outline-secondary:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-secondary-outline-background-active);
+  border-color: var(--ds-component-button-secondary-outline-border-active);
+  color: var(--ds-component-button-secondary-outline-text-active);
+}
+.outline-secondary:disabled,
+.outline-secondary[aria-disabled='true'] {
+  background-color: var(--ds-component-button-secondary-outline-background-disabled);
+  border-color: var(--ds-component-button-secondary-outline-border-disabled);
+  color: var(--ds-component-button-secondary-outline-text-disabled);
+}
+
+/* Error Outline */
+.outline-error {
+  --button-focus-ring-color: var(--ds-component-button-error-focus-ring);
+  background-color: var(--ds-component-button-error-outline-background-default);
+  border-color: var(--ds-component-button-error-outline-border-default);
+  color: var(--ds-component-button-error-outline-text-default);
+}
+.outline-error:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-error-outline-background-hover);
+  border-color: var(--ds-component-button-error-outline-border-hover);
+  color: var(--ds-component-button-error-outline-text-hover);
+}
+.outline-error:focus-visible {
+  background-color: var(--ds-component-button-error-outline-background-focus);
+  border-color: var(--ds-component-button-error-outline-border-focus);
+  color: var(--ds-component-button-error-outline-text-focus);
+}
+.outline-error:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-error-outline-background-active);
+  border-color: var(--ds-component-button-error-outline-border-active);
+  color: var(--ds-component-button-error-outline-text-active);
+}
+.outline-error:disabled,
+.outline-error[aria-disabled='true'] {
+  background-color: var(--ds-component-button-error-outline-background-disabled);
+  border-color: var(--ds-component-button-error-outline-border-disabled);
+  color: var(--ds-component-button-error-outline-text-disabled);
+}
+
+/* Success Outline */
+.outline-success {
+  --button-focus-ring-color: var(--ds-component-button-success-focus-ring);
+  background-color: var(--ds-component-button-success-outline-background-default);
+  border-color: var(--ds-component-button-success-outline-border-default);
+  color: var(--ds-component-button-success-outline-text-default);
+}
+.outline-success:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-success-outline-background-hover);
+  border-color: var(--ds-component-button-success-outline-border-hover);
+  color: var(--ds-component-button-success-outline-text-hover);
+}
+.outline-success:focus-visible {
+  background-color: var(--ds-component-button-success-outline-background-focus);
+  border-color: var(--ds-component-button-success-outline-border-focus);
+  color: var(--ds-component-button-success-outline-text-focus);
+}
+.outline-success:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-success-outline-background-active);
+  border-color: var(--ds-component-button-success-outline-border-active);
+  color: var(--ds-component-button-success-outline-text-active);
+}
+.outline-success:disabled,
+.outline-success[aria-disabled='true'] {
+  background-color: var(--ds-component-button-success-outline-background-disabled);
+  border-color: var(--ds-component-button-success-outline-border-disabled);
+  color: var(--ds-component-button-success-outline-text-disabled);
+}
+
+/* Warning Outline */
+.outline-warning {
+  --button-focus-ring-color: var(--ds-component-button-warning-focus-ring);
+  background-color: var(--ds-component-button-warning-outline-background-default);
+  border-color: var(--ds-component-button-warning-outline-border-default);
+  color: var(--ds-component-button-warning-outline-text-default);
+}
+.outline-warning:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-warning-outline-background-hover);
+  border-color: var(--ds-component-button-warning-outline-border-hover);
+  color: var(--ds-component-button-warning-outline-text-hover);
+}
+.outline-warning:focus-visible {
+  background-color: var(--ds-component-button-warning-outline-background-focus);
+  border-color: var(--ds-component-button-warning-outline-border-focus);
+  color: var(--ds-component-button-warning-outline-text-focus);
+}
+.outline-warning:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-warning-outline-background-active);
+  border-color: var(--ds-component-button-warning-outline-border-active);
+  color: var(--ds-component-button-warning-outline-text-active);
+}
+.outline-warning:disabled,
+.outline-warning[aria-disabled='true'] {
+  background-color: var(--ds-component-button-warning-outline-background-disabled);
+  border-color: var(--ds-component-button-warning-outline-border-disabled);
+  color: var(--ds-component-button-warning-outline-text-disabled);
+}
+
+/* Information Outline */
+.outline-information {
+  --button-focus-ring-color: var(--ds-component-button-information-focus-ring);
+  background-color: var(--ds-component-button-information-outline-background-default);
+  border-color: var(--ds-component-button-information-outline-border-default);
+  color: var(--ds-component-button-information-outline-text-default);
+}
+.outline-information:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-information-outline-background-hover);
+  border-color: var(--ds-component-button-information-outline-border-hover);
+  color: var(--ds-component-button-information-outline-text-hover);
+}
+.outline-information:focus-visible {
+  background-color: var(--ds-component-button-information-outline-background-focus);
+  border-color: var(--ds-component-button-information-outline-border-focus);
+  color: var(--ds-component-button-information-outline-text-focus);
+}
+.outline-information:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-information-outline-background-active);
+  border-color: var(--ds-component-button-information-outline-border-active);
+  color: var(--ds-component-button-information-outline-text-active);
+}
+.outline-information:disabled,
+.outline-information[aria-disabled='true'] {
+  background-color: var(--ds-component-button-information-outline-background-disabled);
+  border-color: var(--ds-component-button-information-outline-border-disabled);
+  color: var(--ds-component-button-information-outline-text-disabled);
+}

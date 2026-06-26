@@ -37,3 +37,9 @@ next-env.d.ts
 
 # husky
 .husky/_/
+
+# planning
+src/PLANNING.md
+
+*storybook.log
+storybook-static

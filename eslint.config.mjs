@@ -15,7 +15,7 @@ const __dirname = dirname(__filename);
 export default fixupConfigRules([
   // Global Ignores
   {
-    ignores: [".next/*", "node_modules/*"],
+    ignores: [".next/", "node_modules/", "storybook-static/"],
   },
 
   // Base JS
@@ -66,7 +66,7 @@ export default fixupConfigRules([
 
   // Config Files (jest.config.js, next.config.mjs)
   {
-    files: ["*.config.js", "*.config.mjs"],
+    files: ["**/*.config.js", "**/*.config.mjs"],
     languageOptions: {
       globals: {
         module: "readonly",
@@ -74,6 +74,7 @@ export default fixupConfigRules([
         __dirname: "readonly",
         __filename: "readonly",
         process: "readonly",
+        console: "readonly",
       },
     },
   },

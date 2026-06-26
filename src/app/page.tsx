@@ -22,7 +22,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<Sea
   return (
     <PageLayout>
       <div className="px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
-        <section className="mb-8 text-center max-w-2xl mx-auto">
+        <section className="mb-16 text-center max-w-2xl mx-auto">
           <h1 className="text-balance text-3xl sm:text-4xl md:text-5xl font-semibold text-slate-900 mb-4 tracking-tight">
             Everything in its place.
           </h1>
