@@ -96,3 +96,16 @@ npm run tokens:build
 **When to run:** After editing **any** `.json` file inside the `tokens/` directory. The generated `tokens.css` is committed to the repository so that downstream consumers (Storybook, CSS Modules, components) can use the tokens without needing to run the build step first.
 
 > ⚠️ **Important:** Never edit `tokens.css` manually — it will be overwritten on the next build. Always edit the source `.json` files instead.
+
+---
+
+### Versioning and Commits
+
+This Design System enforces the **Conventional Commits** standard to automatically generate version bumps and changelog updates.
+
+- **Commit Validation:** All commits are linted using Husky and Commitlint. You must follow the Conventional Commits format (e.g., `feat(button): add new variant`, `fix(typography): correct font-size`).
+- **Release Process:** Do not manually bump versions or edit `CHANGELOG.md`. Instead, run:
+  ```bash
+  npm run release
+  ```
+  This command will automatically determine the next semantic version, generate the changelog, and create the Git tag.
