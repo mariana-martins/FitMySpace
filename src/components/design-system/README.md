@@ -20,10 +20,18 @@ design-system/
 │   │   ├── border-width.json  # Semantic border-width roles (default, interactive, heavy)
 │   │   └── radii.json         # Interactive, container, and surface border radiuses
 │   ├── tier-3-definitions/    # Component-level token mappings
+│   │   ├── badge.json         # Badge color variants, sizes, and shapes
 │   │   └── button.json        # Button variant colors, sizes, shapes, and icon sizing
 │   ├── sd.config.mjs  # Style Dictionary build config
 │   └── tokens.css     # AUTO-GENERATED — do not edit manually
 └── ui/              # Component folders (colocated with stories)
+    ├── Badge/
+    │   ├── index.tsx
+    │   ├── Badge.types.ts
+    │   ├── Badge.tsx
+    │   ├── Badge.module.css
+    │   ├── Badge.test.tsx
+    │   └── Badge.stories.tsx
     ├── Button/
     │   ├── index.tsx
     │   ├── Button.types.ts

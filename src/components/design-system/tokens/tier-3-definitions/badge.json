@@ -1,0 +1,82 @@
+{
+  "component": {
+    "badge": {
+      "brand": {
+        "background": { "value": "{semantic.color.background.brand.base}" },
+        "text": { "value": "{semantic.color.text.inverse}" },
+        "border": { "value": "{semantic.color.border.brand.base}" }
+      },
+      "subtle": {
+        "background": { "value": "{semantic.color.background.default.hover}" },
+        "text": { "value": "{semantic.color.text.default.base}" },
+        "border": { "value": "{semantic.color.border.default.base}" }
+      },
+      "success": {
+        "background": { "value": "{semantic.color.background.utility-success.base}" },
+        "text": { "value": "{semantic.color.text.inverse}" },
+        "border": { "value": "{semantic.color.border.utility-success.base}" }
+      },
+      "error": {
+        "background": { "value": "{semantic.color.background.utility-error.base}" },
+        "text": { "value": "{semantic.color.text.inverse}" },
+        "border": { "value": "{semantic.color.border.utility-error.base}" }
+      },
+      "warning": {
+        "background": { "value": "{semantic.color.background.utility-warning.base}" },
+        "text": { "value": "{semantic.color.text.utility-warning.base}" },
+        "border": { "value": "{semantic.color.border.utility-warning.base}" }
+      },
+      "information": {
+        "background": { "value": "{semantic.color.background.utility-information.base}" },
+        "text": { "value": "{semantic.color.text.inverse}" },
+        "border": { "value": "{semantic.color.border.utility-information.base}" }
+      },
+      "shape": {
+        "square": { "value": "{semantic.radii.interactive.sm}" },
+        "rounded": { "value": "{semantic.radii.interactive.full}" }
+      },
+      "size": {
+        "xs": {
+          "paddingY": { "value": "{semantic.spacing.inset.xs}" },
+          "paddingX": { "value": "{semantic.spacing.inset.xs}" },
+          "fontSize": { "value": "{semantic.typography.caption.md.fontSize}" },
+          "fontWeight": { "value": "{semantic.typography.label.sm.fontWeight}" },
+          "fontFamily": { "value": "{semantic.typography.label.sm.fontFamily}" },
+          "letterSpacing": { "value": "{semantic.typography.label.sm.letterSpacing}" },
+          "lineHeight": { "value": "{semantic.typography.caption.md.lineHeight}" },
+          "border": { "value": "{semantic.border-width.default}" }
+        },
+        "sm": {
+          "paddingY": { "value": "{semantic.spacing.inset.xs}" },
+          "paddingX": { "value": "{semantic.spacing.inset.sm}" },
+          "fontSize": { "value": "{semantic.typography.label.sm.fontSize}" },
+          "fontWeight": { "value": "{semantic.typography.label.sm.fontWeight}" },
+          "fontFamily": { "value": "{semantic.typography.label.sm.fontFamily}" },
+          "letterSpacing": { "value": "{semantic.typography.label.sm.letterSpacing}" },
+          "lineHeight": { "value": "{semantic.typography.label.sm.lineHeight}" },
+          "border": { "value": "{semantic.border-width.default}" }
+        },
+        "md": {
+          "paddingY": { "value": "{semantic.spacing.inset.xs}" },
+          "paddingX": { "value": "{semantic.spacing.inset.md}" },
+          "fontSize": { "value": "{semantic.typography.label.md.fontSize}" },
+          "fontWeight": { "value": "{semantic.typography.label.md.fontWeight}" },
+          "fontFamily": { "value": "{semantic.typography.label.md.fontFamily}" },
+          "letterSpacing": { "value": "{semantic.typography.label.md.letterSpacing}" },
+          "lineHeight": { "value": "{semantic.typography.label.md.lineHeight}" },
+          "border": { "value": "{semantic.border-width.default}" }
+        },
+        "lg": {
+          "paddingY": { "value": "{semantic.spacing.inset.sm}" },
+          "paddingX": { "value": "{semantic.spacing.inset.lg}" },
+          "fontSize": { "value": "{semantic.typography.label.lg.fontSize}" },
+          "fontWeight": { "value": "{semantic.typography.label.lg.fontWeight}" },
+          "fontFamily": { "value": "{semantic.typography.label.lg.fontFamily}" },
+          "letterSpacing": { "value": "{semantic.typography.label.lg.letterSpacing}" },
+          "lineHeight": { "value": "{semantic.typography.label.lg.lineHeight}" },
+          "border": { "value": "{semantic.border-width.default}" }
+        }
+      }
+    }
+  }
+}

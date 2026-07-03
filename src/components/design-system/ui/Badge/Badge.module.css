@@ -1,0 +1,126 @@
+/* ---------------------------------------------------------------
+ * Badge — CSS Module
+ * Maps component-level badge tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Naming convention for variant classes:
+ *   .variant-{variant}
+ *   e.g. .variant-brand, .variant-subtle
+ *
+ * Size classes: .size-{xs|sm|md|lg}
+ * Shape classes: .shape-{square|rounded}
+ * --------------------------------------------------------------- */
+
+/* Base reset ---------------------------------------------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  border-style: solid;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+/* ---------------------------------------------------------------
+ * Shape variants
+ * --------------------------------------------------------------- */
+
+.shape-square {
+  border-radius: var(--ds-component-badge-shape-square);
+}
+
+.shape-rounded {
+  border-radius: var(--ds-component-badge-shape-rounded);
+}
+
+/* ---------------------------------------------------------------
+ * Size variants
+ * --------------------------------------------------------------- */
+
+.size-xs {
+  padding: var(--ds-component-badge-size-xs-padding-y) var(--ds-component-badge-size-xs-padding-x);
+  font-family: var(--ds-component-badge-size-xs-font-family);
+  font-weight: var(--ds-component-badge-size-xs-font-weight);
+  font-size: var(--ds-component-badge-size-xs-font-size);
+  letter-spacing: var(--ds-component-badge-size-xs-letter-spacing);
+  line-height: var(--ds-component-badge-size-xs-line-height);
+  border-width: var(--ds-component-badge-size-xs-border);
+}
+
+.size-sm {
+  padding: var(--ds-component-badge-size-sm-padding-y) var(--ds-component-badge-size-sm-padding-x);
+  font-family: var(--ds-component-badge-size-sm-font-family);
+  font-weight: var(--ds-component-badge-size-sm-font-weight);
+  font-size: var(--ds-component-badge-size-sm-font-size);
+  letter-spacing: var(--ds-component-badge-size-sm-letter-spacing);
+  line-height: var(--ds-component-badge-size-sm-line-height);
+  border-width: var(--ds-component-badge-size-sm-border);
+}
+
+.size-md {
+  padding: var(--ds-component-badge-size-md-padding-y) var(--ds-component-badge-size-md-padding-x);
+  font-family: var(--ds-component-badge-size-md-font-family);
+  font-weight: var(--ds-component-badge-size-md-font-weight);
+  font-size: var(--ds-component-badge-size-md-font-size);
+  letter-spacing: var(--ds-component-badge-size-md-letter-spacing);
+  line-height: var(--ds-component-badge-size-md-line-height);
+  border-width: var(--ds-component-badge-size-md-border);
+}
+
+.size-lg {
+  padding: var(--ds-component-badge-size-lg-padding-y) var(--ds-component-badge-size-lg-padding-x);
+  font-family: var(--ds-component-badge-size-lg-font-family);
+  font-weight: var(--ds-component-badge-size-lg-font-weight);
+  font-size: var(--ds-component-badge-size-lg-font-size);
+  letter-spacing: var(--ds-component-badge-size-lg-letter-spacing);
+  line-height: var(--ds-component-badge-size-lg-line-height);
+  border-width: var(--ds-component-badge-size-lg-border);
+}
+
+/* ---------------------------------------------------------------
+ * Color variants
+ * --------------------------------------------------------------- */
+
+.variant-brand {
+  background-color: var(--ds-component-badge-brand-background);
+  color: var(--ds-component-badge-brand-text);
+  border-color: var(--ds-component-badge-brand-border);
+}
+
+.variant-subtle {
+  background-color: var(--ds-component-badge-subtle-background);
+  color: var(--ds-component-badge-subtle-text);
+  border-color: var(--ds-component-badge-subtle-border);
+}
+
+.variant-success {
+  background-color: var(--ds-component-badge-success-background);
+  color: var(--ds-component-badge-success-text);
+  border-color: var(--ds-component-badge-success-border);
+}
+
+.variant-error {
+  background-color: var(--ds-component-badge-error-background);
+  color: var(--ds-component-badge-error-text);
+  border-color: var(--ds-component-badge-error-border);
+}
+
+.variant-warning {
+  background-color: var(--ds-component-badge-warning-background);
+  color: var(--ds-component-badge-warning-text);
+  border-color: var(--ds-component-badge-warning-border);
+}
+
+.variant-information {
+  background-color: var(--ds-component-badge-information-background);
+  color: var(--ds-component-badge-information-text);
+  border-color: var(--ds-component-badge-information-border);
+}
