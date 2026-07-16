@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
 import { Icon } from './';
@@ -288,14 +288,10 @@ const APPROVED_ICONS: { name: string; component: LucideIcon }[] = [
 ];
 
 const IconCard = ({ name, component: LucideComp }: { name: string; component: LucideIcon }) => {
-  const [copied, setCopied] = useState(false);
+  const { copied, copy } = useCopyToClipboard();
   const snippet = `<Icon icon={${name}} />`;
 
-  const handleCopy = () => {
-    void navigator.clipboard.writeText(snippet);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const handleCopy = () => copy(snippet);
 
   return (
     <button

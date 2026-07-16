@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Heading, Text } from '../Typography';
 
@@ -29,13 +29,9 @@ const resolvedValues: Record<string, string> = {
 
 // Helper components for the Storybook display
 const RadiiSwatch = ({ name, variable }: { name: string; variable: string }) => {
-  const [copied, setCopied] = useState(false);
+  const { copied, copy } = useCopyToClipboard();
 
-  const handleCopy = () => {
-    void navigator.clipboard.writeText(`var(${variable})`);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const handleCopy = () => copy(`var(${variable})`);
 
   const pixelValue = resolvedValues[variable] ?? '?';
 
