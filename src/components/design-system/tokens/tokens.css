@@ -257,6 +257,10 @@
   --ds-component-button-size-md-icon-size: var(--ds-font-size-18);
   --ds-component-button-size-sm-icon-size: var(--ds-font-size-16);
   --ds-component-button-size-xs-icon-size: var(--ds-font-size-14);
+  --ds-component-icon-size-sm: var(--ds-font-size-16);
+  --ds-component-icon-size-md: var(--ds-font-size-20);
+  --ds-component-icon-size-lg: var(--ds-font-size-24);
+  --ds-component-icon-size-xl: var(--ds-font-size-30);
   --ds-component-badge-brand-background: var(--ds-semantic-color-background-brand-base);
   --ds-component-badge-brand-text: var(--ds-semantic-color-text-inverse);
   --ds-component-badge-brand-border: var(--ds-semantic-color-border-brand-base);
@@ -532,4 +536,13 @@
   --ds-component-button-size-xs-line-height: var(--ds-semantic-typography-caption-md-line-height);
   --ds-component-button-size-xs-border: var(--ds-semantic-border-width-default);
   --ds-component-button-size-xs-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-icon-color-default: var(--ds-semantic-color-text-default-base);
+  --ds-component-icon-color-primary: var(--ds-semantic-color-text-brand-base);
+  --ds-component-icon-color-subtle: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-icon-color-inverse: var(--ds-semantic-color-text-inverse);
+  --ds-component-icon-color-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-icon-color-error: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-icon-color-success: var(--ds-semantic-color-text-utility-success-base);
+  --ds-component-icon-color-warning: var(--ds-semantic-color-text-utility-warning-base);
+  --ds-component-icon-color-information: var(--ds-semantic-color-text-utility-information-base);
 }

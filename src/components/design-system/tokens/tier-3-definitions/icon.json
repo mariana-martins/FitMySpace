@@ -1,0 +1,23 @@
+{
+  "component": {
+    "icon": {
+      "size": {
+        "sm": { "value": "{font.size.16}" },
+        "md": { "value": "{font.size.20}" },
+        "lg": { "value": "{font.size.24}" },
+        "xl": { "value": "{font.size.30}" }
+      },
+      "color": {
+        "default": { "value": "{semantic.color.text.default.base}" },
+        "primary": { "value": "{semantic.color.text.brand.base}" },
+        "subtle": { "value": "{semantic.color.text.subtle.base}" },
+        "inverse": { "value": "{semantic.color.text.inverse}" },
+        "disabled": { "value": "{semantic.color.text.disabled}" },
+        "error": { "value": "{semantic.color.text.utility-error.base}" },
+        "success": { "value": "{semantic.color.text.utility-success.base}" },
+        "warning": { "value": "{semantic.color.text.utility-warning.base}" },
+        "information": { "value": "{semantic.color.text.utility-information.base}" }
+      }
+    }
+  }
+}

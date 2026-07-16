@@ -21,7 +21,8 @@ design-system/
 │   │   └── radii.json         # Interactive, container, and surface border radiuses
 │   ├── tier-3-definitions/    # Component-level token mappings
 │   │   ├── badge.json         # Badge color variants, sizes, and shapes
-│   │   └── button.json        # Button variant colors, sizes, shapes, and icon sizing
+│   │   ├── button.json        # Button variant colors, sizes, shapes, and icon sizing
+│   │   └── icon.json          # Icon sizes and semantic color mappings
 │   ├── sd.config.mjs  # Style Dictionary build config
 │   └── tokens.css     # AUTO-GENERATED — do not edit manually
 └── ui/              # Component folders (colocated with stories)
@@ -39,6 +40,13 @@ design-system/
     │   ├── Button.module.css
     │   ├── Button.test.tsx
     │   └── Button.stories.tsx
+    ├── Icon/
+    │   ├── index.tsx
+    │   ├── Icon.types.ts
+    │   ├── Icon.tsx
+    │   ├── Icon.module.css
+    │   ├── Icon.test.tsx
+    │   └── Icon.stories.tsx
     ├── color/
     │   └── Colors.stories.tsx
     ├── introduction/
@@ -66,6 +74,29 @@ design-system/
 - Design tokens are managed using Style Dictionary.
 
 Refer to the root `src/PLANNING.md` for architectural guidelines and implementation details.
+
+---
+
+## Icon Standardization (`lucide-react`)
+
+All icons in FitMySpace come from [`lucide-react`](https://lucide.dev/) and **must** be rendered through the Design System's `<Icon />` wrapper — never imported directly into pages or business components.
+
+```tsx
+import { Icon } from '@/components/design-system/ui/Icon';
+import { Home } from 'lucide-react';
+
+// ✅ Correct — uses the wrapper
+<Icon icon={Home} size="md" color="default" />
+
+// ❌ Wrong — bypasses token enforcement and accessibility
+<Home size={20} />
+```
+
+**Division of responsibilities:**
+- **`lucide-react`** provides the SVG geometry (paths/shapes).
+- **`<Icon />`** controls presentation (size and color via Tier 3 tokens) and accessibility (`aria-hidden` / `role="img"`).
+
+The full catalog of approved icons is available in the **Icon Gallery** story in Storybook.
 
 ---
 

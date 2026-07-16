@@ -1,0 +1,70 @@
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  transition: color 0.2s ease;
+}
+
+/* ---------------------------------------------------------------
+ * Sizes — Tier 3 component tokens
+ * --------------------------------------------------------------- */
+
+.size-sm {
+  width: var(--ds-component-icon-size-sm);
+  height: var(--ds-component-icon-size-sm);
+}
+
+.size-md {
+  width: var(--ds-component-icon-size-md);
+  height: var(--ds-component-icon-size-md);
+}
+
+.size-lg {
+  width: var(--ds-component-icon-size-lg);
+  height: var(--ds-component-icon-size-lg);
+}
+
+.size-xl {
+  width: var(--ds-component-icon-size-xl);
+  height: var(--ds-component-icon-size-xl);
+}
+
+/* ---------------------------------------------------------------
+ * Colors — Tier 3 component tokens
+ * --------------------------------------------------------------- */
+
+.color-default {
+  color: var(--ds-component-icon-color-default);
+}
+
+.color-primary {
+  color: var(--ds-component-icon-color-primary);
+}
+
+.color-subtle {
+  color: var(--ds-component-icon-color-subtle);
+}
+
+.color-inverse {
+  color: var(--ds-component-icon-color-inverse);
+}
+
+.color-disabled {
+  color: var(--ds-component-icon-color-disabled);
+}
+
+.color-error {
+  color: var(--ds-component-icon-color-error);
+}
+
+.color-success {
+  color: var(--ds-component-icon-color-success);
+}
+
+.color-warning {
+  color: var(--ds-component-icon-color-warning);
+}
+
+.color-information {
+  color: var(--ds-component-icon-color-information);
+}

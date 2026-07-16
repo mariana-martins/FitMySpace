@@ -88,6 +88,11 @@ To maintain a scalable and modular architecture, we will use a strict colocation
 * **Avoid Prop Overload:** Encourage composition over configuration. If a card needs an image, title, and actions, favor modular children (`<Card><CardImage/><CardBody/></Card>`) rather than a single component with excessive conditional props.
 * **Maintainability:** Documenting these recipes in Storybook ensures developers know the "FitMySpace way" to assemble UI without cluttering the Design System's CSS Modules with highly specific, one-off overrides.
 
+### Icon Usage Rule (`lucide-react`)
+* **Mandatory Wrapper:** It is strictly prohibited to render `lucide-react` icon components directly in pages or business components. All icons must be consumed through the Design System's `<Icon icon={IconName} size="..." color="..." />` wrapper located at `src/components/design-system/ui/Icon`.
+* **Why:** The `<Icon />` wrapper enforces Tier 3 token compliance (consistent sizing and color via CSS variables), prevents raw pixel and hex values from leaking into application code, and automatically manages ARIA attributes (`aria-hidden="true"` for decorative icons, `role="img"` + `aria-label` for meaningful icons).
+* **Approved Icons:** The current set of approved Lucide icons is documented in the Icon Gallery story within Storybook. New icons must be added to the gallery when introduced to the project.
+
 ### Versioning and Commits
 
 * **Conventional Commits:** The project strictly enforces the [Conventional Commits](https://www.conventionalcommits.org/) standard. All commit messages are automatically validated by Husky before being saved.
