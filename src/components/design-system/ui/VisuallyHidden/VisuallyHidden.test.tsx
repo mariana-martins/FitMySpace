@@ -1,9 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import { createRef } from 'react';
 import { VisuallyHidden } from './';
-
-expect.extend(toHaveNoViolations);
 
 /* ===============================================================
  * RENDERING

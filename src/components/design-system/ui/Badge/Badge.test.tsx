@@ -1,9 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import { Badge } from './';
 import { createRef } from 'react';
-
-expect.extend(toHaveNoViolations);
 
 /* ===============================================================
  * RENDERING

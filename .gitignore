@@ -40,6 +40,13 @@ next-env.d.ts
 
 # planning
 src/PLANNING.md
+PLANNING.md
+**/PLANNING.md
 
 *storybook.log
 storybook-static
+
+# AI tooling index and local agent settings
+.codegraph/
+.continue/
+

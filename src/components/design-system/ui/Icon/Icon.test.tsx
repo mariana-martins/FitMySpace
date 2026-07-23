@@ -1,10 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import { Icon } from './';
 import { createRef } from 'react';
 import { Home, Search } from 'lucide-react';
-
-expect.extend(toHaveNoViolations);
 
 /* ===============================================================
  * RENDERING

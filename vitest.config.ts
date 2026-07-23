@@ -31,6 +31,25 @@ export default defineConfig({
           },
         },
       },
+      {
+        test: {
+          name: 'unit',
+          environment: 'jsdom',
+          setupFiles: ['./vitest.setup.ts'],
+          include: ['src/components/design-system/**/*.test.{ts,tsx}'],
+          globals: true,
+          css: {
+            modules: {
+              classNameStrategy: 'non-scoped',
+            },
+          },
+        },
+        resolve: {
+          alias: {
+            '@': path.resolve(dirname, 'src'),
+          },
+        },
+      },
     ],
   },
 });

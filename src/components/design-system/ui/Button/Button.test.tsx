@@ -1,9 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'vitest-axe';
+import { vi } from 'vitest';
 import { Button } from './';
 import { createRef } from 'react';
-
-expect.extend(toHaveNoViolations);
 
 /* ===============================================================
  * RENDERING
@@ -186,7 +185,7 @@ describe('Button — disabled', () => {
   });
 
   it('prevents onClick when disabled (native)', () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(
       <Button variant="primary" appearance="fill" size="md" disabled onClick={handleClick}>
         Disabled
@@ -197,7 +196,7 @@ describe('Button — disabled', () => {
   });
 
   it('prevents onClick when disabled (asChild)', () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(
       <Button variant="primary" appearance="fill" size="md" asChild disabled onClick={() => handleClick()}>
         <a href="/test">Disabled Link</a>
