@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "ds-inspection": {
+      "source": "Brad-Frost-Web/ai-design-systems-inspection-kit",
+      "sourceType": "github",
+      "skillPath": "ds-inspection/SKILL.md",
+      "computedHash": "895f2297d75e70ddc39c5c5bad7aff2996c5926262329b52384192a7c3b62bb8"
+    },
+    "product-inspection": {
+      "source": "Brad-Frost-Web/ai-design-systems-inspection-kit",
+      "sourceType": "github",
+      "skillPath": "product-inspection/SKILL.md",
+      "computedHash": "791904cd581dd37c7afd3bc5cb6f4103140c569605e68ac95529a1f81b7cfd96"
+    }
+  }
+}

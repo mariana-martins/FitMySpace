@@ -40,6 +40,11 @@ next-env.d.ts
 
 # planning
 src/PLANNING.md
+src/components/design-system/HEALTH_REPORT.md
 
 *storybook.log
 storybook-static
+
+# agent customizations
+.agents/
+.claude/
