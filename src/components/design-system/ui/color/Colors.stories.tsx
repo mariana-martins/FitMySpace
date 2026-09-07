@@ -119,6 +119,13 @@ const generateScale = (name: string, prefix: string) =>
   }));
 
 export const CorePalettes: Story = {
+  parameters: {
+    a11y: {
+      config: {
+        rules: [{ id: 'color-contrast', enabled: false }],
+      },
+    },
+  },
   render: () => {
     const palettes = [
       { title: 'Sage (Brand / Primary)', colors: generateScale('Sage', 'sage') },

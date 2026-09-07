@@ -67,7 +67,7 @@
           "active": { "value": "{color.sage.900}" }
         },
         "utility-warning": {
-          "base": { "value": "{color.honey.800}" },
+          "base": { "value": "{color.honey.900}" },
           "hover": { "value": "{color.honey.900}" },
           "active": { "value": "{color.honey.900}" }
         },
