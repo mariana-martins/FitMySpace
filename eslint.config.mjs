@@ -15,7 +15,7 @@ const __dirname = dirname(__filename);
 export default fixupConfigRules([
   // Global Ignores
   {
-    ignores: [".next/", "node_modules/", "storybook-static/"],
+    ignores: [".next/", "node_modules/", "storybook-static/", ".agents/"],
   },
 
   // Base JS
