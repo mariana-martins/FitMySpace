@@ -1,5 +1,8 @@
 import { Room } from '@/types';
 
+/** Products per page on search results. Shared by server prefetch and client query keys. */
+export const ITEMS_PER_PAGE = 12;
+
 export const ROOM_LABELS: Record<Room, string> = {
   [Room.KITCHEN]: 'Kitchen',
   [Room.PANTRY]: 'Pantry',

@@ -2,7 +2,7 @@
 
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
-import { queryClient } from '@/lib/react-query';
+import { getQueryClient } from '@/lib/react-query';
 import { useEffect } from 'react';
 
 function ErrorFallback({
@@ -61,6 +61,10 @@ function MSWProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  // No useState here: on the server this must be a fresh client per request,
+  // and in the browser getQueryClient() already returns a stable singleton.
+  const queryClient = getQueryClient();
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <QueryClientProvider client={queryClient}>

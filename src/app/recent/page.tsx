@@ -1,24 +1,14 @@
 import { ProductGrid, ProductGridSkeleton } from '@/components/organisms/ProductGrid';
 import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { PageLayout } from '@/components/templates/PageLayout';
-import { mockProducts } from '@/mocks/data';
+import { getRecentProducts } from '@/lib/products';
 import { Clock, Home } from 'lucide-react';
 import { Suspense } from 'react';
 
 export const revalidate = 60; // ISR: revalidate every 60 seconds
 
-function getRecentProducts() {
-  // In a real app, this would fetch from an API
-  // For now, we'll use mock data sorted by date
-  const recent = [...mockProducts]
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    .slice(0, 8);
-
-  return recent;
-}
-
 export default async function RecentPage() {
-  const products = getRecentProducts();
+  const products = await getRecentProducts(8);
 
   const breadcrumbItems = [{ label: 'Home', href: '/', icon: Home }, { label: 'Recent Arrivals' }];
 

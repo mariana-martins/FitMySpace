@@ -5,12 +5,11 @@ import { useSuspenseSearchProducts } from '@/hooks/useProducts';
 import { Pagination } from '@/components/molecules/Pagination';
 import { parseSearchFilters } from '@/lib/parseSearchFilters';
 import { usePagination } from '@/hooks/usePagination';
+import { ITEMS_PER_PAGE } from '@/lib/constants';
 
 interface SearchResultsProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
-
-const ITEMS_PER_PAGE = 12;
 
 const EMPTY_STATE = {
   withQuery: {

@@ -10,14 +10,14 @@ import {
 
 import { RoomFilter } from '@/components/molecules/RoomFilter';
 import { useSearch } from '@/hooks/useSearch';
-import { mockStores } from '@/mocks/data';
+import { type Store } from '@/types';
 
-export const mockFilterStores = mockStores.map((store) => ({
-  id: store.id,
-  name: store.name,
-}));
+export interface FilterBarProps {
+  /** Stores available in the store filter, loaded on the server */
+  stores: Pick<Store, 'id' | 'name'>[];
+}
 
-export function FilterBar() {
+export function FilterBar({ stores }: FilterBarProps) {
   const { currentRoom, currentStore, handleRoomFilter, handleStoreFilter } = useSearch();
 
   return (
@@ -36,7 +36,7 @@ export function FilterBar() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Stores</SelectItem>
-            {mockFilterStores.map((store) => (
+            {stores.map((store) => (
               <SelectItem key={store.id} value={store.id}>
                 {store.name}
               </SelectItem>

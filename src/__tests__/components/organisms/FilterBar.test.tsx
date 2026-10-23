@@ -1,5 +1,6 @@
 import { FilterBar } from '@/components/organisms/FilterBar';
 import { render, screen } from '@/__tests__/utils';
+import { mockStores } from '@/mocks/data';
 import { Room } from '@/types';
 
 // Mock useSearch hook
@@ -29,30 +30,30 @@ describe('FilterBar', () => {
   });
 
   it('renders filter group with aria-label', () => {
-    render(<FilterBar />);
+    render(<FilterBar stores={mockStores} />);
     expect(screen.getByRole('group', { name: 'Filter results' })).toBeInTheDocument();
   });
 
   it('renders room filter buttons', () => {
-    render(<FilterBar />);
+    render(<FilterBar stores={mockStores} />);
     expect(screen.getByRole('button', { name: 'Kitchen' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Pantry' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Bathroom' })).toBeInTheDocument();
   });
 
   it('marks current room as pressed', () => {
-    render(<FilterBar />);
+    render(<FilterBar stores={mockStores} />);
     const kitchenButton = screen.getByRole('button', { name: 'Kitchen' });
     expect(kitchenButton).toHaveAttribute('aria-pressed', 'true');
   });
 
   it('renders store filter dropdown', () => {
-    render(<FilterBar />);
+    render(<FilterBar stores={mockStores} />);
     expect(screen.getByRole('combobox', { name: 'Filter by store' })).toBeInTheDocument();
   });
 
   it('displays selected store in dropdown', () => {
-    render(<FilterBar />);
+    render(<FilterBar stores={mockStores} />);
     // The Container Store is id '1' in mock data
     expect(screen.getByRole('combobox')).toHaveTextContent('The Container Store');
   });

@@ -1,24 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { Providers } from '@/app/providers';
 
-// Mock react-query
-jest.mock('@/lib/react-query', () => ({
-  queryClient: {
-    mount: jest.fn(),
-    unmount: jest.fn(),
-    getQueryCache: jest.fn(() => ({ clear: jest.fn() })),
-    getMutationCache: jest.fn(() => ({ clear: jest.fn() })),
-    getDefaultOptions: jest.fn(() => ({})),
-    setDefaultOptions: jest.fn(),
-    setQueryDefaults: jest.fn(),
-    getQueryDefaults: jest.fn(),
-    setMutationDefaults: jest.fn(),
-    getMutationDefaults: jest.fn(),
-    defaultQueryOptions: jest.fn(() => ({})),
-    defaultMutationOptions: jest.fn(() => ({})),
-  },
-}));
-
 describe('Providers', () => {
   it('renders children correctly', () => {
     render(

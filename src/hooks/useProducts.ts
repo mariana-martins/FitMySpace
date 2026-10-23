@@ -1,28 +1,22 @@
 import { ProductSearchResponseSchema, ProductArraySchema, ProductSchema } from '@/lib/schemas';
 import { type Product, type ProductSearchResponse, type SearchParams } from '@/types';
 import { keepPreviousData, useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { productKeys } from '@/lib/query-keys';
+import { API_BASE_URL } from '@/config';
 
-// Use absolute URL on server (SSR) and relative URL on client
-// Server needs a full URL, client relative URL works across hosts (localhost, LAN IP)
+export { productKeys };
+
+// Server components prefetch through the data layer (@/lib/products) and hydrate the cache,
+// so these hooks normally only fetch in the browser, where a relative URL works across hosts.
+// The absolute URL is a fallback for any server-side fetch, configurable via NEXT_PUBLIC_API_URL.
 const getApiBase = () => {
   if (typeof window === 'undefined') {
-    // Server-side: use localhost since Next.js API routes are on the same server
-    return 'http://localhost:3000/api';
+    return `${API_BASE_URL}/api`;
   }
-  // Client-side: use relative URL
   return '/api';
 };
 
 const API_BASE = getApiBase();
-
-export const productKeys = {
-  all: ['products'] as const,
-  lists: () => ['products', 'list'] as const,
-  list: (filters: SearchParams) => ['products', 'list', filters] as const,
-  details: () => ['products', 'detail'] as const,
-  detail: (id: string) => ['products', 'detail', id] as const,
-  recent: (limit: number) => ['products', 'recent', limit] as const,
-};
 
 /**
  * Builds URLSearchParams from search filters.
