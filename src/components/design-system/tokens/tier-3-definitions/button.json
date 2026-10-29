@@ -3,7 +3,7 @@
     "button": {
       "primary": {
         "focus-ring": { "value": "{semantic.color.border.brand.base}" },
-        "fill":{
+        "fill": {
           "background": {
             "default": { "value": "{semantic.color.background.brand.base}" },
             "hover": { "value": "{semantic.color.background.brand.hover}" },

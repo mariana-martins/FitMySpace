@@ -1,6 +1,6 @@
-import { forwardRef} from 'react';
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import styles from './Button.module.css';
+import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { ButtonProps } from './Button.types';
@@ -67,8 +67,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
    */
   if (asChild) {
     return (
-      <Slot 
-        {...sharedProps} 
+      <Slot
+        {...sharedProps}
         aria-disabled={disabled ? true : undefined}
         tabIndex={disabled ? -1 : undefined}
       >

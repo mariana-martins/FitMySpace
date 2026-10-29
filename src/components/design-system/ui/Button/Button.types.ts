@@ -5,12 +5,7 @@ import type { ReactElement, ReactNode, ComponentPropsWithoutRef } from 'react';
  * --------------------------------------------------------------- */
 
 export type ButtonVariant =
-  | 'primary'
-  | 'secondary'
-  | 'error'
-  | 'success'
-  | 'warning'
-  | 'information';
+  'primary' | 'secondary' | 'error' | 'success' | 'warning' | 'information';
 
 export type ButtonAppearance = 'fill' | 'outline';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';

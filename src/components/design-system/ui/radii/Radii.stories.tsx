@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Heading, Text } from '../Typography';
+import { useState } from 'react';
 
 const meta = {
   title: 'Design System/Foundation/Radii',
@@ -215,7 +215,11 @@ export const SemanticRadii: Story = {
               display: 'block',
             }}
           >
-            Semantic Radii tokens replace arbitrary pixel values with purposeful, design-led names. By defining our border radii based on the <em>type</em> of UI element — rather than just a size — we ensure that our interactive elements, structural containers, and floating surfaces maintain a consistent and unified aesthetic across the entire application. When in doubt, let the element&apos;s function dictate its radius. Instead of writing{' '}
+            Semantic Radii tokens replace arbitrary pixel values with purposeful, design-led names.
+            By defining our border radii based on the <em>type</em> of UI element — rather than just
+            a size — we ensure that our interactive elements, structural containers, and floating
+            surfaces maintain a consistent and unified aesthetic across the entire application. When
+            in doubt, let the element&apos;s function dictate its radius. Instead of writing{' '}
             <code
               style={{
                 fontFamily: 'monospace',

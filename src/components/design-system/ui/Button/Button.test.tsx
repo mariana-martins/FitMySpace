@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Button } from './';
 import { createRef } from 'react';
+import { Button } from './';
 
 expect.extend(toHaveNoViolations);
 
@@ -160,13 +160,29 @@ describe('Button — icon-only', () => {
   );
 
   it('renders an icon-only button with aria-label', () => {
-    render(<Button variant="primary" appearance="fill" size="md" icon={<MockIcon />} aria-label="Add item" />);
+    render(
+      <Button
+        variant="primary"
+        appearance="fill"
+        size="md"
+        icon={<MockIcon />}
+        aria-label="Add item"
+      />,
+    );
     const btn = screen.getByRole('button', { name: 'Add item' });
     expect(btn).toBeInTheDocument();
   });
 
   it('applies the icon-only class', () => {
-    const { container } = render(<Button variant="primary" appearance="fill" size="md" icon={<MockIcon />} aria-label="Delete" />);
+    const { container } = render(
+      <Button
+        variant="primary"
+        appearance="fill"
+        size="md"
+        icon={<MockIcon />}
+        aria-label="Delete"
+      />,
+    );
     expect(container.firstChild).toHaveClass('icon-only');
   });
 });
@@ -199,7 +215,14 @@ describe('Button — disabled', () => {
   it('prevents onClick when disabled (asChild)', () => {
     const handleClick = jest.fn();
     render(
-      <Button variant="primary" appearance="fill" size="md" asChild disabled onClick={() => handleClick()}>
+      <Button
+        variant="primary"
+        appearance="fill"
+        size="md"
+        asChild
+        disabled
+        onClick={() => handleClick()}
+      >
         <a href="/test">Disabled Link</a>
       </Button>,
     );
@@ -229,7 +252,7 @@ describe('Button — asChild', () => {
 
   it('merges button classes onto the child element', () => {
     const { container } = render(
-      <Button asChild variant="secondary" appearance='fill' size="lg">
+      <Button asChild variant="secondary" appearance="fill" size="lg">
         <a href="/about">About</a>
       </Button>,
     );
@@ -268,7 +291,11 @@ describe('Button — asChild', () => {
 describe('Button — ref forwarding', () => {
   it('forwards ref to the button element', () => {
     const ref = createRef<HTMLButtonElement>();
-    render(<Button variant="primary" appearance="fill" size="md" ref={ref}>Ref test</Button>);
+    render(
+      <Button variant="primary" appearance="fill" size="md" ref={ref}>
+        Ref test
+      </Button>,
+    );
     expect(ref.current).toBeInstanceOf(HTMLElement);
     expect(ref.current?.tagName).toBe('BUTTON');
   });
@@ -280,7 +307,11 @@ describe('Button — ref forwarding', () => {
 
 describe('Button — custom props', () => {
   it('merges custom className', () => {
-    const { container } = render(<Button variant="primary" appearance="fill" size="md" className="custom-class">Custom</Button>);
+    const { container } = render(
+      <Button variant="primary" appearance="fill" size="md" className="custom-class">
+        Custom
+      </Button>,
+    );
     expect(container.firstChild).toHaveClass('custom-class');
     expect(container.firstChild).toHaveClass('button');
   });
@@ -308,19 +339,35 @@ describe('Button — accessibility', () => {
   );
 
   it('has no a11y violations for a default button', async () => {
-    const { container } = render(<Button variant="primary" appearance="fill" size="md">Accessible button</Button>);
+    const { container } = render(
+      <Button variant="primary" appearance="fill" size="md">
+        Accessible button
+      </Button>,
+    );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('has no a11y violations for an icon-only button with aria-label', async () => {
-    const { container } = render(<Button variant="primary" appearance="fill" size="md" icon={<MockIcon />} aria-label="Delete item" />);
+    const { container } = render(
+      <Button
+        variant="primary"
+        appearance="fill"
+        size="md"
+        icon={<MockIcon />}
+        aria-label="Delete item"
+      />,
+    );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('has no a11y violations for a button with icon and text', async () => {
-    const { container } = render(<Button variant="primary" appearance="fill" size="md" icon={<MockIcon />}>Add item</Button>);
+    const { container } = render(
+      <Button variant="primary" appearance="fill" size="md" icon={<MockIcon />}>
+        Add item
+      </Button>,
+    );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });

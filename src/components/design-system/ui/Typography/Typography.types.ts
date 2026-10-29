@@ -8,8 +8,7 @@ export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 export type HeadingSize = 'sm' | 'md' | 'lg';
 export type DisplaySize = 'md' | 'lg';
 
-export interface HeadingProps
-  extends Omit<ComponentPropsWithoutRef<'h1'>, 'color'> {
+export interface HeadingProps extends Omit<ComponentPropsWithoutRef<'h1'>, 'color'> {
   /** Semantic heading level (1–6). Controls the rendered HTML tag. */
   level?: HeadingLevel;
   /** Typography scale variant. Independent of `level`. */
@@ -25,8 +24,7 @@ export interface HeadingProps
 export type TextElement = 'p' | 'span';
 export type TextSize = 'sm' | 'md' | 'lg';
 
-export interface TextProps
-  extends Omit<ComponentPropsWithoutRef<'p'>, 'color'> {
+export interface TextProps extends Omit<ComponentPropsWithoutRef<'p'>, 'color'> {
   /** Rendered HTML element. */
   as?: TextElement;
   /** Typography scale variant. */
@@ -54,10 +52,7 @@ export type LabelAsLabelProps = LabelBaseProps & {
   as: 'label';
   /** Associates this label with a form input. Required when `as="label"`. */
   htmlFor: string;
-} & Omit<
-  ComponentPropsWithoutRef<'label'>,
-  keyof LabelBaseProps | 'color' | 'htmlFor'
->;
+} & Omit<ComponentPropsWithoutRef<'label'>, keyof LabelBaseProps | 'color' | 'htmlFor'>;
 
 export type LabelProps = LabelAsSpanProps | LabelAsLabelProps;
 
@@ -67,8 +62,7 @@ export type LabelProps = LabelAsSpanProps | LabelAsLabelProps;
 
 export type CaptionElement = 'span' | 'p';
 
-export interface CaptionProps
-  extends Omit<ComponentPropsWithoutRef<'span'>, 'color'> {
+export interface CaptionProps extends Omit<ComponentPropsWithoutRef<'span'>, 'color'> {
   /** Rendered HTML element. */
   as?: CaptionElement;
 }

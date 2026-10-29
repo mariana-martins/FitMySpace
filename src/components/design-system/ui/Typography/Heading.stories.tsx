@@ -54,9 +54,15 @@ export const Default: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      <Heading level={2} size="lg">Heading Large</Heading>
-      <Heading level={3} size="md">Heading Medium</Heading>
-      <Heading level={4} size="sm">Heading Small</Heading>
+      <Heading level={2} size="lg">
+        Heading Large
+      </Heading>
+      <Heading level={3} size="md">
+        Heading Medium
+      </Heading>
+      <Heading level={4} size="sm">
+        Heading Small
+      </Heading>
     </div>
   ),
   parameters: {
@@ -77,8 +83,12 @@ export const AllSizes: Story = {
 export const DisplayScale: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      <Heading level={1} displaySize="lg">Display Large</Heading>
-      <Heading level={1} displaySize="md">Display Medium</Heading>
+      <Heading level={1} displaySize="lg">
+        Display Large
+      </Heading>
+      <Heading level={1} displaySize="md">
+        Display Medium
+      </Heading>
     </div>
   ),
   parameters: {
@@ -93,12 +103,24 @@ export const DisplayScale: Story = {
 export const AllLevels: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Heading level={1} size="lg">h1 — Page Title</Heading>
-      <Heading level={2} size="lg">h2 — Section Title</Heading>
-      <Heading level={3} size="md">h3 — Subsection Title</Heading>
-      <Heading level={4} size="sm">h4 — Group Title</Heading>
-      <Heading level={5} size="sm">h5 — Sub-group Title</Heading>
-      <Heading level={6} size="sm">h6 — Detail Title</Heading>
+      <Heading level={1} size="lg">
+        h1 — Page Title
+      </Heading>
+      <Heading level={2} size="lg">
+        h2 — Section Title
+      </Heading>
+      <Heading level={3} size="md">
+        h3 — Subsection Title
+      </Heading>
+      <Heading level={4} size="sm">
+        h4 — Group Title
+      </Heading>
+      <Heading level={5} size="sm">
+        h5 — Sub-group Title
+      </Heading>
+      <Heading level={6} size="sm">
+        h6 — Detail Title
+      </Heading>
     </div>
   ),
   parameters: {

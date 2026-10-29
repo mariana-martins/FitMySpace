@@ -17,7 +17,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The `Button` component is the primary interactive element used for actions and links. It is fully accessible and driven by our design system\'s tier-3 component tokens.\n\n' +
+          "The `Button` component is the primary interactive element used for actions and links. It is fully accessible and driven by our design system's tier-3 component tokens.\n\n" +
           '### Best Practices\n' +
           '- **Primary Actions:** Use the `primary` variant for the main action on a page. Only one primary button should be visible at a time.\n' +
           '- **Secondary Actions:** Use `secondary` or `outline` appearances for alternative actions.\n' +
@@ -95,18 +95,31 @@ export const FillVariants: Story = {
   name: 'All Variants (Fill)',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-      <Button variant="primary" size="md" appearance="fill">Primary</Button>
-      <Button variant="secondary" size="md" appearance="fill">Secondary</Button>
-      <Button variant="error" size="md" appearance="fill">Error</Button>
-      <Button variant="success" size="md" appearance="fill">Success</Button>
-      <Button variant="warning" size="md" appearance="fill">Warning</Button>
-      <Button variant="information" size="md" appearance="fill">Information</Button>
+      <Button variant="primary" size="md" appearance="fill">
+        Primary
+      </Button>
+      <Button variant="secondary" size="md" appearance="fill">
+        Secondary
+      </Button>
+      <Button variant="error" size="md" appearance="fill">
+        Error
+      </Button>
+      <Button variant="success" size="md" appearance="fill">
+        Success
+      </Button>
+      <Button variant="warning" size="md" appearance="fill">
+        Warning
+      </Button>
+      <Button variant="information" size="md" appearance="fill">
+        Information
+      </Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Fill buttons are solid and provide high emphasis. They are ideal for primary actions on a page.',
+        story:
+          'Fill buttons are solid and provide high emphasis. They are ideal for primary actions on a page.',
       },
     },
   },
@@ -125,18 +138,31 @@ export const OutlineVariants: Story = {
   name: 'All Variants (Outline)',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-      <Button variant="primary" size="md" appearance="outline">Primary</Button>
-      <Button variant="secondary" size="md" appearance="outline">Secondary</Button>
-      <Button variant="error" size="md" appearance="outline">Error</Button>
-      <Button variant="success" size="md" appearance="outline">Success</Button>
-      <Button variant="warning" size="md" appearance="outline">Warning</Button>
-      <Button variant="information" size="md" appearance="outline">Information</Button>
+      <Button variant="primary" size="md" appearance="outline">
+        Primary
+      </Button>
+      <Button variant="secondary" size="md" appearance="outline">
+        Secondary
+      </Button>
+      <Button variant="error" size="md" appearance="outline">
+        Error
+      </Button>
+      <Button variant="success" size="md" appearance="outline">
+        Success
+      </Button>
+      <Button variant="warning" size="md" appearance="outline">
+        Warning
+      </Button>
+      <Button variant="information" size="md" appearance="outline">
+        Information
+      </Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Outline buttons have a transparent background and visible border. They are perfect for secondary actions that shouldn\'t distract from the primary focus.',
+        story:
+          "Outline buttons have a transparent background and visible border. They are perfect for secondary actions that shouldn't distract from the primary focus.",
       },
     },
   },
@@ -150,16 +176,25 @@ export const AllSizes: Story = {
   name: 'All Sizes',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-      <Button variant='primary' size="lg" appearance='fill'>Large</Button>
-      <Button variant='primary' size="md" appearance='fill'>Medium</Button>
-      <Button variant='primary' size="sm" appearance='fill'>Small</Button>
-      <Button variant='primary' size="xs" appearance='fill'>Extra Small</Button>
+      <Button variant="primary" size="lg" appearance="fill">
+        Large
+      </Button>
+      <Button variant="primary" size="md" appearance="fill">
+        Medium
+      </Button>
+      <Button variant="primary" size="sm" appearance="fill">
+        Small
+      </Button>
+      <Button variant="primary" size="xs" appearance="fill">
+        Extra Small
+      </Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'The button comes in 4 sizes. Size `md` is the default standard size. Use `lg` for prominent calls to action, and `sm` or `xs` for dense layouts.',
+        story:
+          'The button comes in 4 sizes. Size `md` is the default standard size. Use `lg` for prominent calls to action, and `sm` or `xs` for dense layouts.',
       },
     },
   },
@@ -178,17 +213,34 @@ export const WithIcon: Story = {
   name: 'With Icons',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-      <Button variant='primary' appearance='fill' size='md' icon={<Plus />}>Add Item</Button>
-      <Button variant='secondary' appearance='fill' size='md' icon={<Download />}>Download</Button>
-      <Button variant='error' appearance='fill' size='md' icon={<Trash2 />}>Delete</Button>
-      <Button variant='warning' appearance='fill' size='md' icon={<ArrowRight />} iconPosition="end">Continue</Button>
-      <Button variant='information' appearance='fill' size='md' icon={<Star />} iconPosition="end" >Favorite</Button>
+      <Button variant="primary" appearance="fill" size="md" icon={<Plus />}>
+        Add Item
+      </Button>
+      <Button variant="secondary" appearance="fill" size="md" icon={<Download />}>
+        Download
+      </Button>
+      <Button variant="error" appearance="fill" size="md" icon={<Trash2 />}>
+        Delete
+      </Button>
+      <Button
+        variant="warning"
+        appearance="fill"
+        size="md"
+        icon={<ArrowRight />}
+        iconPosition="end"
+      >
+        Continue
+      </Button>
+      <Button variant="information" appearance="fill" size="md" icon={<Star />} iconPosition="end">
+        Favorite
+      </Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Icons can be added to the start (default) or end of the button text. The gap spacing and icon size are automatically adjusted based on the button\'s size token.',
+        story:
+          "Icons can be added to the start (default) or end of the button text. The gap spacing and icon size are automatically adjusted based on the button's size token.",
       },
       source: {
         code: `<Button icon={<Plus />}>Add Item</Button>\n<Button icon={<ArrowRight />} iconPosition="end">Continue</Button>`,
@@ -205,16 +257,29 @@ export const IconOnly: Story = {
   name: 'Icon Only',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-      <Button variant='primary' appearance='fill' size='md' icon={<Plus />} aria-label="Add item" />
-      <Button variant='error' appearance='fill' size='md' icon={<Trash2 />} aria-label="Delete item" />
-      <Button variant='secondary' appearance='fill' size='sm' icon={<Download />} aria-label="Download file" />
-      <Button variant='warning' appearance='fill' size='xs' icon={<Star />} aria-label="Favorite" />
+      <Button variant="primary" appearance="fill" size="md" icon={<Plus />} aria-label="Add item" />
+      <Button
+        variant="error"
+        appearance="fill"
+        size="md"
+        icon={<Trash2 />}
+        aria-label="Delete item"
+      />
+      <Button
+        variant="secondary"
+        appearance="fill"
+        size="sm"
+        icon={<Download />}
+        aria-label="Download file"
+      />
+      <Button variant="warning" appearance="fill" size="xs" icon={<Star />} aria-label="Favorite" />
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Icon-only buttons **require** the `aria-label` prop — TypeScript will error if it is omitted. This ensures screen readers always announce the button\'s purpose. They also adjust padding to remain perfectly square with an optimal hit area.',
+        story:
+          "Icon-only buttons **require** the `aria-label` prop — TypeScript will error if it is omitted. This ensures screen readers always announce the button's purpose. They also adjust padding to remain perfectly square with an optimal hit area.",
       },
     },
   },
@@ -234,16 +299,25 @@ export const Disabled: Story = {
   name: 'Disabled',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-      <Button disabled variant='primary' appearance='fill' size='md'>Primary</Button>
-      <Button disabled variant="secondary" appearance='fill' size='md'>Secondary</Button>
-      <Button disabled variant="error" appearance='fill' size='md'>Error</Button>
-      <Button disabled variant='primary' appearance='fill' icon={<Plus />} size='md'>With Icon</Button>
+      <Button disabled variant="primary" appearance="fill" size="md">
+        Primary
+      </Button>
+      <Button disabled variant="secondary" appearance="fill" size="md">
+        Secondary
+      </Button>
+      <Button disabled variant="error" appearance="fill" size="md">
+        Error
+      </Button>
+      <Button disabled variant="primary" appearance="fill" icon={<Plus />} size="md">
+        With Icon
+      </Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'A standard disabled state that removes pointer events and adjusts colors according to the design system semantic tokens.',
+        story:
+          'A standard disabled state that removes pointer events and adjusts colors according to the design system semantic tokens.',
       },
     },
   },
@@ -257,16 +331,25 @@ export const PseudoStates: Story = {
   name: 'Interactive Pseudo States',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-      <Button variant="primary" appearance='fill' size='md'>Default</Button>
-      <Button variant="primary" appearance='fill' size='md' className="pseudo-hover">Hover</Button>
-      <Button variant="primary" appearance='fill' size='md' className="pseudo-active">Active</Button>
-      <Button variant="primary" appearance='fill' size='md' className="pseudo-focus-visible">Focus Visible</Button>
+      <Button variant="primary" appearance="fill" size="md">
+        Default
+      </Button>
+      <Button variant="primary" appearance="fill" size="md" className="pseudo-hover">
+        Hover
+      </Button>
+      <Button variant="primary" appearance="fill" size="md" className="pseudo-active">
+        Active
+      </Button>
+      <Button variant="primary" appearance="fill" size="md" className="pseudo-focus-visible">
+        Focus Visible
+      </Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Demonstrates the different interactive states of the button using the `storybook-addon-pseudo-states` plugin. You can also use the toolbar above the canvas to toggle these states globally on any component.',
+        story:
+          'Demonstrates the different interactive states of the button using the `storybook-addon-pseudo-states` plugin. You can also use the toolbar above the canvas to toggle these states globally on any component.',
       },
     },
     pseudo: {

@@ -1,10 +1,10 @@
 'use client';
 
 import { forwardRef, useState, useEffect, useId } from 'react';
+import { Button } from '@/components/atoms/Button/Button';
 import { Input } from '@/components/atoms/Input';
 import { Label } from '@radix-ui/react-label';
 import { Search, X } from 'lucide-react';
-import { Button } from '@/components/atoms/Button/Button';
 import { cn } from '@/lib/utils';
 
 export interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -61,9 +61,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
             htmlFor={inputId}
             className={cn(
               'absolute left-4 -top-6 text-sm font-medium text-indigo-600 transition-all duration-300 pointer-events-none z-10',
-              isFocused || value
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-2'
+              isFocused || value ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2',
             )}
           >
             {label}

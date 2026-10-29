@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Heading, Text } from '../Typography';
+import { useState } from 'react';
 
 const meta = {
   title: 'Design System/Foundation/Spacing',
@@ -221,7 +221,9 @@ export const SemanticSpacing: Story = {
               display: 'block',
             }}
           >
-            Semantic Spacing tokens replace hard-coded pixel values with <strong>meaningful names</strong> that describe <em>where</em> and <em>why</em> a space exists. Instead of writing{' '}
+            Semantic Spacing tokens replace hard-coded pixel values with{' '}
+            <strong>meaningful names</strong> that describe <em>where</em> and <em>why</em> a space
+            exists. Instead of writing{' '}
             <code
               style={{
                 fontFamily: 'monospace',
@@ -243,7 +245,8 @@ export const SemanticSpacing: Story = {
             >
               padding: var(--ds-semantic-spacing-inset-md)
             </code>
-            . This makes your spacing consistent across every component and lets the entire system scale proportionally if the base values ever change.
+            . This makes your spacing consistent across every component and lets the entire system
+            scale proportionally if the base values ever change.
           </Text>
           {groups.map((g) => (
             <SpacingGroup

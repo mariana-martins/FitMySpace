@@ -9,7 +9,8 @@ function SearchResultsErrorFallback({ resetErrorBoundary }: FallbackProps) {
     <div role="alert" className="flex flex-col items-center gap-4 py-12 px-4 text-center">
       <h3 className="text-lg font-semibold text-gray-900">We couldn&apos;t load the products</h3>
       <p className="text-gray-600 max-w-md">
-        Something went wrong on our side. Your search and filters are still here, so you can try again.
+        Something went wrong on our side. Your search and filters are still here, so you can try
+        again.
       </p>
       <Button onClick={resetErrorBoundary}>Try again</Button>
     </div>

@@ -108,10 +108,18 @@
  * class sets the property, and the .icon class consumes it.
  * --------------------------------------------------------------- */
 
-.size-lg { --btn-icon-size: var(--ds-component-button-size-lg-icon-size); }
-.size-md { --btn-icon-size: var(--ds-component-button-size-md-icon-size); }
-.size-sm { --btn-icon-size: var(--ds-component-button-size-sm-icon-size); }
-.size-xs { --btn-icon-size: var(--ds-component-button-size-xs-icon-size); }
+.size-lg {
+  --btn-icon-size: var(--ds-component-button-size-lg-icon-size);
+}
+.size-md {
+  --btn-icon-size: var(--ds-component-button-size-md-icon-size);
+}
+.size-sm {
+  --btn-icon-size: var(--ds-component-button-size-sm-icon-size);
+}
+.size-xs {
+  --btn-icon-size: var(--ds-component-button-size-xs-icon-size);
+}
 
 .icon {
   display: inline-flex;
@@ -131,10 +139,18 @@
  * Icon-only: equal padding for a square hit area
  * --------------------------------------------------------------- */
 
-.icon-only.size-lg { padding: var(--ds-component-button-size-lg-padding-y); }
-.icon-only.size-md { padding: var(--ds-component-button-size-md-padding-y); }
-.icon-only.size-sm { padding: var(--ds-component-button-size-sm-padding-y); }
-.icon-only.size-xs { padding: var(--ds-component-button-size-xs-padding-y); }
+.icon-only.size-lg {
+  padding: var(--ds-component-button-size-lg-padding-y);
+}
+.icon-only.size-md {
+  padding: var(--ds-component-button-size-md-padding-y);
+}
+.icon-only.size-sm {
+  padding: var(--ds-component-button-size-sm-padding-y);
+}
+.icon-only.size-xs {
+  padding: var(--ds-component-button-size-xs-padding-y);
+}
 
 /* Ensure minimum 40×40 hit area for xs/sm (a11y — WCAG 2.5.5) */
 .icon-only.size-xs,
@@ -142,7 +158,6 @@
   min-width: 40px;
   min-height: 40px;
 }
-
 
 /* ---------------------------------------------------------------
  * Color variants — Fill

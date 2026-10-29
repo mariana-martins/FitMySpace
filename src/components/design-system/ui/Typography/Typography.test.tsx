@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { createRef } from 'react';
 import { Heading, Text, Label, Caption } from './';
+import { createRef } from 'react';
 
 expect.extend(toHaveNoViolations);
 
@@ -17,13 +17,10 @@ describe('Heading', () => {
     expect(el).toHaveTextContent('Title');
   });
 
-  it.each([1, 2, 3, 4, 5, 6] as const)(
-    'renders an h%i when level=%i',
-    (level) => {
-      render(<Heading level={level}>Level {level}</Heading>);
-      expect(screen.getByRole('heading', { level })).toBeInTheDocument();
-    },
-  );
+  it.each([1, 2, 3, 4, 5, 6] as const)('renders an h%i when level=%i', (level) => {
+    render(<Heading level={level}>Level {level}</Heading>);
+    expect(screen.getByRole('heading', { level })).toBeInTheDocument();
+  });
 
   it('applies the size class', () => {
     const { container } = render(<Heading size="sm">Small</Heading>);
@@ -42,9 +39,7 @@ describe('Heading', () => {
   });
 
   it('merges custom className', () => {
-    const { container } = render(
-      <Heading className="custom-class">Title</Heading>,
-    );
+    const { container } = render(<Heading className="custom-class">Title</Heading>);
     expect(container.firstChild).toHaveClass('custom-class');
     expect(container.firstChild).toHaveClass('base');
   });
@@ -101,9 +96,7 @@ describe('Text', () => {
   });
 
   it('merges custom className', () => {
-    const { container } = render(
-      <Text className="my-class">Content</Text>,
-    );
+    const { container } = render(<Text className="my-class">Content</Text>);
     expect(container.firstChild).toHaveClass('my-class');
     expect(container.firstChild).toHaveClass('base');
   });
@@ -163,9 +156,7 @@ describe('Label', () => {
   });
 
   it('merges custom className', () => {
-    const { container } = render(
-      <Label className="extra">Content</Label>,
-    );
+    const { container } = render(<Label className="extra">Content</Label>);
     expect(container.firstChild).toHaveClass('extra');
     expect(container.firstChild).toHaveClass('base');
   });
@@ -220,9 +211,7 @@ describe('Caption', () => {
   });
 
   it('merges custom className', () => {
-    const { container } = render(
-      <Caption className="custom">Content</Caption>,
-    );
+    const { container } = render(<Caption className="custom">Content</Caption>);
     expect(container.firstChild).toHaveClass('custom');
     expect(container.firstChild).toHaveClass('base');
   });

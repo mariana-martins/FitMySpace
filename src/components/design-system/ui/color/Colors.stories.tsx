@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Heading, Text } from '../Typography';
+import { useState } from 'react';
 
 const meta = {
   title: 'Design System/Foundation/Color',
@@ -23,7 +23,15 @@ const isDarkColor = (variable: string) => {
 };
 
 // Helper components for the Storybook display
-const ColorSwatch = ({ name, variable, isCore = false }: { name: string; variable: string; isCore?: boolean }) => {
+const ColorSwatch = ({
+  name,
+  variable,
+  isCore = false,
+}: {
+  name: string;
+  variable: string;
+  isCore?: boolean;
+}) => {
   const [copied, setCopied] = useState(false);
   const isDark = isCore ? isDarkColor(variable) : false;
 
@@ -46,7 +54,9 @@ const ColorSwatch = ({ name, variable, isCore = false }: { name: string; variabl
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: isDark ? 'var(--ds-semantic-color-text-inverse)' : 'var(--ds-semantic-color-text-default-base)',
+          color: isDark
+            ? 'var(--ds-semantic-color-text-inverse)'
+            : 'var(--ds-semantic-color-text-default-base)',
           fontWeight: 500,
           fontSize: '1.25rem',
         }}
@@ -63,8 +73,12 @@ const ColorSwatch = ({ name, variable, isCore = false }: { name: string; variabl
           style={{
             fontSize: '11px',
             fontFamily: 'monospace',
-            background: copied ? 'var(--ds-semantic-color-background-utility-success-base)' : 'var(--ds-semantic-color-background-default-hover)',
-            color: copied ? 'var(--ds-semantic-color-text-inverse)' : 'var(--ds-semantic-color-text-subtle-base)',
+            background: copied
+              ? 'var(--ds-semantic-color-background-utility-success-base)'
+              : 'var(--ds-semantic-color-background-default-hover)',
+            color: copied
+              ? 'var(--ds-semantic-color-text-inverse)'
+              : 'var(--ds-semantic-color-text-subtle-base)',
             padding: '4px 8px',
             borderRadius: '4px',
             marginTop: '4px',
@@ -81,7 +95,15 @@ const ColorSwatch = ({ name, variable, isCore = false }: { name: string; variabl
   );
 };
 
-const ColorGroup = ({ title, colors, isCore = false }: { title: string; colors: { name: string; variable: string }[]; isCore?: boolean }) => (
+const ColorGroup = ({
+  title,
+  colors,
+  isCore = false,
+}: {
+  title: string;
+  colors: { name: string; variable: string }[];
+  isCore?: boolean;
+}) => (
   <div
     style={{
       marginBottom: '40px',
@@ -103,7 +125,13 @@ const ColorGroup = ({ title, colors, isCore = false }: { title: string; colors: 
     >
       {title}
     </Heading>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '24px' }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
+        gap: '24px',
+      }}
+    >
       {colors.map((c) => (
         <ColorSwatch key={c.variable} name={c.name} variable={c.variable} isCore={isCore} />
       ))}
@@ -136,13 +164,31 @@ export const CorePalettes: Story = {
     ];
 
     return (
-      <div style={{ backgroundColor: 'var(--ds-semantic-color-background-default-base)', minHeight: '100vh', width: '100%' }}>
+      <div
+        style={{
+          backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+          minHeight: '100vh',
+          width: '100%',
+        }}
+      >
         <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '64px 24px' }}>
           <Heading level={2} size="md" style={{ marginBottom: '16px' }}>
             Core Palettes
           </Heading>
-          <Text size="md" style={{ marginBottom: '48px', color: 'var(--ds-semantic-color-text-subtle-base)', display: 'block' }}>
-            Core Palettes are the primitive building blocks of the design system (the absolute hex values). Think of them as the raw paint tubes in an artist&apos;s palette. You should <strong>almost never</strong> use these variables directly in your application code. Instead, rely on the <strong>Semantic Colors</strong> below, which act as smart aliases to these core values, ensuring your components automatically adapt to dark mode and theme changes without requiring complex media queries.
+          <Text
+            size="md"
+            style={{
+              marginBottom: '48px',
+              color: 'var(--ds-semantic-color-text-subtle-base)',
+              display: 'block',
+            }}
+          >
+            Core Palettes are the primitive building blocks of the design system (the absolute hex
+            values). Think of them as the raw paint tubes in an artist&apos;s palette. You should{' '}
+            <strong>almost never</strong> use these variables directly in your application code.
+            Instead, rely on the <strong>Semantic Colors</strong> below, which act as smart aliases
+            to these core values, ensuring your components automatically adapt to dark mode and
+            theme changes without requiring complex media queries.
           </Text>
           {palettes.map((p) => (
             <ColorGroup key={p.title} title={p.title} colors={p.colors} isCore={true} />
@@ -191,7 +237,10 @@ export const SemanticColors: Story = {
           { name: 'Success Base', variable: '--ds-semantic-color-background-utility-success-base' },
           { name: 'Warning Base', variable: '--ds-semantic-color-background-utility-warning-base' },
           { name: 'Error Base', variable: '--ds-semantic-color-background-utility-error-base' },
-          { name: 'Info Base', variable: '--ds-semantic-color-background-utility-information-base' },
+          {
+            name: 'Info Base',
+            variable: '--ds-semantic-color-background-utility-information-base',
+          },
         ],
       },
       {
@@ -215,13 +264,42 @@ export const SemanticColors: Story = {
     ];
 
     return (
-      <div style={{ backgroundColor: 'var(--ds-semantic-color-background-default-base)', minHeight: '100vh', width: '100%' }}>
+      <div
+        style={{
+          backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+          minHeight: '100vh',
+          width: '100%',
+        }}
+      >
         <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '64px 24px' }}>
           <Heading level={2} size="md" style={{ marginBottom: '16px' }}>
             Semantic Colors
           </Heading>
-          <Text size="md" style={{ marginBottom: '48px', color: 'var(--ds-semantic-color-text-subtle-base)', display: 'block' }}>
-            Semantic Colors express the <strong>intent</strong> of an element rather than its actual hue. For example, <code style={{ fontFamily: 'monospace', background: 'var(--ds-semantic-color-background-default-hover)', padding: '2px 4px', borderRadius: '4px' }}>background-brand-base</code> tells you <em>why</em> the color is used, not <em>what</em> color it is. By exclusively using Semantic Colors in your CSS, you guarantee that your components will seamlessly invert during Dark Mode (when available) and automatically inherit any future rebranding efforts (like changing the primary brand color) without modifying a single line of component code.
+          <Text
+            size="md"
+            style={{
+              marginBottom: '48px',
+              color: 'var(--ds-semantic-color-text-subtle-base)',
+              display: 'block',
+            }}
+          >
+            Semantic Colors express the <strong>intent</strong> of an element rather than its actual
+            hue. For example,{' '}
+            <code
+              style={{
+                fontFamily: 'monospace',
+                background: 'var(--ds-semantic-color-background-default-hover)',
+                padding: '2px 4px',
+                borderRadius: '4px',
+              }}
+            >
+              background-brand-base
+            </code>{' '}
+            tells you <em>why</em> the color is used, not <em>what</em> color it is. By exclusively
+            using Semantic Colors in your CSS, you guarantee that your components will seamlessly
+            invert during Dark Mode (when available) and automatically inherit any future rebranding
+            efforts (like changing the primary brand color) without modifying a single line of
+            component code.
           </Text>
           {semanticGroups.map((p) => (
             <ColorGroup key={p.title} title={p.title} colors={p.colors} />

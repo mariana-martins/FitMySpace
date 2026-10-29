@@ -74,10 +74,9 @@ const Hero = () => (
         textWrap: 'pretty',
       }}
     >
-      A shared language of colour, spacing, typography, and shape that keeps
-      every FitMySpace interface consistent, accessible, and easy to evolve.
-      This guide will help you understand how our design tokens work and how to
-      use them in your components.
+      A shared language of colour, spacing, typography, and shape that keeps every FitMySpace
+      interface consistent, accessible, and easy to evolve. This guide will help you understand how
+      our design tokens work and how to use them in your components.
     </Text>
   </header>
 );
@@ -200,9 +199,9 @@ const TokenArchitecture = () => (
         textWrap: 'pretty',
       }}
     >
-      Our design tokens follow a three-tier architecture. Tier 1 holds the raw
-      values — the core ingredients. Tier 2 provides purpose-driven semantic
-      aliases. Tier 3 scopes those aliases down to highly specific component properties.
+      Our design tokens follow a three-tier architecture. Tier 1 holds the raw values — the core
+      ingredients. Tier 2 provides purpose-driven semantic aliases. Tier 3 scopes those aliases down
+      to highly specific component properties.
     </Text>
     <div
       style={{
@@ -216,11 +215,7 @@ const TokenArchitecture = () => (
         tier="Tier 1"
         label="Core Definitions"
         description="Literal values that define the palette. Never reference these directly in component code."
-        examples={[
-          '--ds-color-sage-700',
-          '--ds-radii-md',
-          '--ds-spacing-4',
-        ]}
+        examples={['--ds-color-sage-700', '--ds-radii-md', '--ds-spacing-4']}
         accent="var(--ds-semantic-color-text-brand-base)"
       />
       <ArrowConnector />
@@ -328,25 +323,22 @@ const QuickStart = () => (
       <StepCard step={1} title="Use the right token tier">
         Always reach for a Tier 2 (Semantic) or Tier 3 (Component) variable. Instead of{' '}
         <code style={codeStyle}>background: #e3efe9</code>, write{' '}
-        <code style={codeStyle}>
-          background: var(--ds-semantic-color-background-brand-base)
-        </code>
-        . Semantic names tell future readers <em>why</em> the value exists.
+        <code style={codeStyle}>background: var(--ds-semantic-color-background-brand-base)</code>.
+        Semantic names tell future readers <em>why</em> the value exists.
       </StepCard>
 
       <StepCard step={2} title="Never hard-code values">
-        Hard-coded pixels bypass the design system and break when core tokens change.
-        If you find yourself writing a raw number, search the token list first —
-        there is almost certainly an alias for what you need.
+        Hard-coded pixels bypass the design system and break when core tokens change. If you find
+        yourself writing a raw number, search the token list first — there is almost certainly an
+        alias for what you need.
       </StepCard>
 
       <StepCard step={3} title="Rebuild after edits">
         After editing any <code style={codeStyle}>.json</code> file inside{' '}
         <code style={codeStyle}>tokens/</code>, run{' '}
-        <code style={codeStyle}>npm run tokens:build</code> to regenerate the
-        CSS custom properties. The generated{' '}
-        <code style={codeStyle}>tokens.css</code> is committed to the repo so
-        that every consumer stays in sync.
+        <code style={codeStyle}>npm run tokens:build</code> to regenerate the CSS custom properties.
+        The generated <code style={codeStyle}>tokens.css</code> is committed to the repo so that
+        every consumer stays in sync.
       </StepCard>
     </div>
   </section>
@@ -374,13 +366,11 @@ const FoundationCard = ({
       transition: 'box-shadow 0.2s ease, transform 0.2s ease',
     }}
     onMouseEnter={(e) => {
-      e.currentTarget.style.boxShadow =
-        '0 8px 30px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04)';
+      e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04)';
       e.currentTarget.style.transform = 'translateY(-2px)';
     }}
     onMouseLeave={(e) => {
-      e.currentTarget.style.boxShadow =
-        '0 4px 20px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02)';
+      e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02)';
       e.currentTarget.style.transform = 'translateY(0)';
     }}
   >
@@ -437,7 +427,15 @@ const ColorPreview = () => {
 const SpacingPreview = () => {
   const widths = ['20%', '35%', '55%', '75%'];
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', height: '32px', justifyContent: 'space-between' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '4px',
+        height: '32px',
+        justifyContent: 'space-between',
+      }}
+    >
       {widths.map((w) => (
         <div
           key={w}
@@ -479,7 +477,15 @@ const RadiiPreview = () => {
 };
 
 const TypographyPreview = () => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', height: '32px', justifyContent: 'center' }}>
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '2px',
+      height: '32px',
+      justifyContent: 'center',
+    }}
+  >
     <div
       style={{
         fontSize: '18px',
@@ -516,8 +522,8 @@ const FoundationGrid = () => (
         marginBottom: '24px',
       }}
     >
-      Explore each category in the sidebar to see every token with live
-      previews and copy-ready CSS variables.
+      Explore each category in the sidebar to see every token with live previews and copy-ready CSS
+      variables.
     </Text>
     <div
       style={{

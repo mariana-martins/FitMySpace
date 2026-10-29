@@ -10,15 +10,15 @@
 
 ## Overall health
 
-| Dimension | Status | Key finding |
-|---|---|---|
-| Tokens | 🟢 Strong | Clean 3-tier architecture, semantic names encode intent not appearance |
-| Components | 🟡 Functional | 1 component (Button) built to high bar; surface too small to judge distribution |
-| Documentation | 🟢 Strong | Storybook autodocs, best-practice notes, foundation token docs — no separate contribution docs |
-| Adoption | 🔴 Absent | Zero references to design-system components anywhere in `src/app` |
-| Governance | 🟡 Functional | Commit lint + semantic-release + pre-commit test hook wired; no CI, no CONTRIBUTING/deprecation policy |
-| AI readiness | 🟠 Weak | No manifest, no six-section descriptions — but token/type structure gives good extraction material |
-| Platform maturity | 🟠 Weak | No CI pipeline; no components beyond Button to version/break yet, so low current risk |
+| Dimension         | Status        | Key finding                                                                                            |
+| ----------------- | ------------- | ------------------------------------------------------------------------------------------------------ |
+| Tokens            | 🟢 Strong     | Clean 3-tier architecture, semantic names encode intent not appearance                                 |
+| Components        | 🟡 Functional | 1 component (Button) built to high bar; surface too small to judge distribution                        |
+| Documentation     | 🟢 Strong     | Storybook autodocs, best-practice notes, foundation token docs — no separate contribution docs         |
+| Adoption          | 🔴 Absent     | Zero references to design-system components anywhere in `src/app`                                      |
+| Governance        | 🟡 Functional | Commit lint + semantic-release + pre-commit test hook wired; no CI, no CONTRIBUTING/deprecation policy |
+| AI readiness      | 🟠 Weak       | No manifest, no six-section descriptions — but token/type structure gives good extraction material     |
+| Platform maturity | 🟠 Weak       | No CI pipeline; no components beyond Button to version/break yet, so low current risk                  |
 
 **Maturity stage:** Managed — tokens and Button component already hit Systematic-level rigor (enforced a11y via types, tested, documented), but process breadth (governance, CI, adoption) lag behind token/component build quality. Next stage needs: CI pipeline enforcing lint/test/build, and first real consumer wiring in `src/app`.
 
@@ -51,14 +51,17 @@ Foundation (tokens + Button) built to unusually high standard for solo/early-sta
 ## Prioritised action list
 
 **Immediate (next 4 weeks)**
+
 - Wire Button/Typography into at least one real screen in `src/app` — proves the system works under real usage before more components get built on it
 - Add CI (GitHub Actions) running `npm test`, `npm run lint`, `npm run build-storybook` on PRs — hooks that only run locally aren't governance, they're a suggestion
 
 **Near-term (next quarter)**
+
 - Write a short CONTRIBUTING.md: what belongs in the system vs. stays local, even if it's 10 lines for an audience of one (future you, or a future collaborator)
 - Build 2-3 next components (Input, Card) at the same bar as Button — validates whether the pattern (discriminated-union a11y, token-driven CSS modules) scales past one component
 
 **Longer-term (6+ months)**
+
 - Component manifest (JSON) once component count justifies it — Button's type precision means this will be cheap to generate later
 - Six-section AI descriptions if/when Figma MCP or AI-assisted consumption becomes part of the workflow
 
