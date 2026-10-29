@@ -8,3 +8,9 @@ coverage
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+storybook-static
+
+# Generated files: rewritten by their tools, so formatting them only creates noise
+public/mockServiceWorker.js
+CHANGELOG.md
+src/components/design-system/tokens/tokens.css
