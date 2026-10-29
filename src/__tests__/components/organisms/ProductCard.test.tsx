@@ -51,23 +51,31 @@ describe('ProductCard', () => {
     expect(screen.getByText('Kitchen')).toBeInTheDocument();
   });
 
-  it('renders product image', () => {
-    render(<ProductCard product={mockProduct} />);
-    const image = screen.getByRole('img', { name: 'Test Organizer' });
-    expect(image).toBeInTheDocument();
+  it('renders the product image as decorative, since the name is the link text', () => {
+    const { container } = render(<ProductCard product={mockProduct} />);
+    const image = container.querySelector('img');
+    expect(image).toHaveAttribute('alt', '');
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
 
-  it('links to product detail page', () => {
+  it('links to the product detail page, named after the product', () => {
     render(<ProductCard product={mockProduct} />);
-    const link = screen.getByRole('link', { name: /view details for test organizer/i });
+    const link = screen.getByRole('link', { name: 'Test Organizer' });
     expect(link).toHaveAttribute('href', '/products/1');
   });
 
-  it('has correct aria-label for accessibility', () => {
+  it('keeps price, store and room outside the link name so screen readers read them', () => {
     render(<ProductCard product={mockProduct} />);
-    expect(
-      screen.getByRole('link', { name: /view details for test organizer/i }),
-    ).toBeInTheDocument();
+    const link = screen.getByRole('link');
+    expect(link).toHaveAccessibleName('Test Organizer');
+    expect(link).not.toHaveTextContent('$29.99');
+    expect(screen.getByRole('article')).toHaveTextContent(/\$29\.99.*Kitchen/);
+  });
+
+  it('stretches the link over the whole card', () => {
+    render(<ProductCard product={mockProduct} />);
+    expect(screen.getByRole('article')).toHaveClass('relative');
+    expect(screen.getByRole('link')).toHaveClass('after:absolute', 'after:inset-0');
   });
 
   it('renders dimensions when available', () => {
@@ -81,15 +89,13 @@ describe('ProductCard', () => {
     expect(container.textContent).not.toMatch(/cm/);
   });
 
-  it('has focus styles for accessibility', () => {
+  it('shows the focus ring on the card when the link has keyboard focus', () => {
     render(<ProductCard product={mockProduct} />);
-    const link = screen.getByRole('link');
-    expect(link).toHaveClass('focus-visible:ring-2');
+    expect(screen.getByRole('article')).toHaveClass('has-[a:focus-visible]:ring-2');
   });
 
   it('has hover shadow effect', () => {
     render(<ProductCard product={mockProduct} />);
-    const link = screen.getByRole('link');
-    expect(link).toHaveClass('hover:shadow-lg');
+    expect(screen.getByRole('article')).toHaveClass('hover:shadow-lg');
   });
 });

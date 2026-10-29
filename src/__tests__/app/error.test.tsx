@@ -30,10 +30,18 @@ describe('Error Page', () => {
     expect(screen.getByRole('alert')).toBeInTheDocument();
   });
 
-  it('displays error heading', () => {
+  it('displays the error as the page heading', () => {
     const mockError = createMockError('Test error');
     render(<ErrorPage error={mockError} retry={mockRetry} />);
-    expect(screen.getByRole('heading', { name: /something went wrong/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 1, name: /something went wrong/i }),
+    ).toBeInTheDocument();
+  });
+
+  it('keeps the site navigation so the user can leave the error page', () => {
+    const mockError = createMockError('Test error');
+    render(<ErrorPage error={mockError} retry={mockRetry} />);
+    expect(screen.getByRole('navigation', { name: 'Main navigation' })).toBeInTheDocument();
   });
 
   it('displays error message', () => {

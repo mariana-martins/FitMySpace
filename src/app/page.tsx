@@ -1,6 +1,6 @@
+import { SearchResults, SearchResultsErrorBoundary } from '@/components/organisms/SearchResults';
 import { type ParsedSearchFilters, parseSearchFilters } from '@/lib/parseSearchFilters';
 import { ProductGridSkeleton } from '@/components/organisms/ProductGrid';
-import { SearchResults } from '@/components/organisms/SearchResults';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { PageLayout } from '@/components/templates/PageLayout';
 import { SearchBar } from '@/components/organisms/SearchBar';
@@ -48,11 +48,16 @@ export default async function Home({ searchParams }: { searchParams: Promise<Sea
           <FilterBar stores={stores} />
         </section>
 
-        <section aria-label="Search results">
+        <section aria-labelledby="search-results-heading">
+          <h2 id="search-results-heading" className="sr-only">
+            Search results
+          </h2>
           <HydrationBoundary state={dehydrate(queryClient)}>
-            <Suspense fallback={<ProductGridSkeleton />} key={getSearchKey(filters)}>
-              <SearchResults searchParams={resolvedSearchParams} />
-            </Suspense>
+            <SearchResultsErrorBoundary key={getSearchKey(filters)}>
+              <Suspense fallback={<ProductGridSkeleton />}>
+                <SearchResults searchParams={resolvedSearchParams} />
+              </Suspense>
+            </SearchResultsErrorBoundary>
           </HydrationBoundary>
         </section>
       </div>

@@ -74,4 +74,29 @@ describe('Input', () => {
     await user.type(screen.getByRole('textbox'), 'a');
     expect(handleChange).toHaveBeenCalled();
   });
+
+  describe('error description', () => {
+    it('keeps the caller description and adds the error message', () => {
+      render(<Input aria-describedby="email-hint" error="Invalid email" errorId="email-error" />);
+      expect(screen.getByRole('textbox')).toHaveAttribute(
+        'aria-describedby',
+        'email-hint email-error',
+      );
+    });
+
+    it('uses only the caller description when there is no error id', () => {
+      render(<Input aria-describedby="email-hint" />);
+      expect(screen.getByRole('textbox')).toHaveAttribute('aria-describedby', 'email-hint');
+    });
+
+    it('omits aria-describedby when there is nothing to describe', () => {
+      render(<Input />);
+      expect(screen.getByRole('textbox')).not.toHaveAttribute('aria-describedby');
+    });
+
+    it('marks the input invalid when there is an error, even if aria-invalid is false', () => {
+      render(<Input aria-invalid={false} error="Invalid email" />);
+      expect(screen.getByRole('textbox')).toHaveAttribute('aria-invalid', 'true');
+    });
+  });
 });

@@ -7,7 +7,20 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, error, errorId, 'aria-describedby': ariaDescribedBy, ...props }, ref) => {
+  (
+    {
+      className,
+      type,
+      error,
+      errorId,
+      'aria-describedby': ariaDescribedBy,
+      'aria-invalid': ariaInvalid,
+      ...props
+    },
+    ref,
+  ) => {
+    const describedBy = [ariaDescribedBy, errorId].filter(Boolean).join(' ') || undefined;
+
     return (
       <input
         type={type}
@@ -21,8 +34,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           className,
         )}
         ref={ref}
-        aria-invalid={!!error || props['aria-invalid']}
-        aria-describedby={errorId || ariaDescribedBy}
+        aria-invalid={Boolean(error) || ariaInvalid}
+        aria-describedby={describedBy}
         {...props}
       />
     );

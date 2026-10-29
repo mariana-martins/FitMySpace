@@ -25,22 +25,11 @@ describe('Skeleton', () => {
     expect(skeleton).toHaveClass('rounded-md');
   });
 
-  it('has aria-busy attribute for accessibility', () => {
+  it('is hidden from assistive tech, since the loading region announces the state', () => {
     render(<Skeleton data-testid="skeleton" />);
     const skeleton = screen.getByTestId('skeleton');
-    expect(skeleton).toHaveAttribute('aria-busy', 'true');
-  });
-
-  it('has role="status" for accessibility', () => {
-    render(<Skeleton data-testid="skeleton" />);
-    const skeleton = screen.getByTestId('skeleton');
-    expect(skeleton).toHaveAttribute('role', 'status');
-  });
-
-  it('has aria-label for screen readers', () => {
-    render(<Skeleton data-testid="skeleton" />);
-    const skeleton = screen.getByTestId('skeleton');
-    expect(skeleton).toHaveAttribute('aria-label', 'Loading content');
+    expect(skeleton).toHaveAttribute('aria-hidden', 'true');
+    expect(skeleton).not.toHaveAttribute('role');
   });
 
   it('merges custom className', () => {

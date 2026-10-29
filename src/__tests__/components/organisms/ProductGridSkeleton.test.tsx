@@ -2,42 +2,43 @@ import { ProductGridSkeleton } from '@/components/organisms/ProductGrid';
 import { render, screen } from '@/__tests__/utils';
 
 describe('ProductGridSkeleton', () => {
-  it('renders default 8 skeleton cards', () => {
+  function getPlaceholderGrid() {
+    return screen.getByRole('status').querySelector('.grid') as HTMLElement;
+  }
+
+  it('renders 8 skeleton cards by default', () => {
     render(<ProductGridSkeleton />);
-    const skeletons = screen.getAllByLabelText('Loading content');
-    expect(skeletons.length).toBeGreaterThanOrEqual(8);
+    expect(getPlaceholderGrid().children).toHaveLength(8);
   });
 
-  it('renders custom count of skeleton cards', () => {
+  it('renders a custom count of skeleton cards', () => {
     render(<ProductGridSkeleton count={4} />);
-    const container = screen.getByLabelText('Loading products');
-    const cards = container.children;
-    expect(cards).toHaveLength(4);
+    expect(getPlaceholderGrid().children).toHaveLength(4);
   });
 
-  it('has aria-busy for loading state', () => {
+  it('announces loading once through a single status region', () => {
     render(<ProductGridSkeleton />);
-    const grid = screen.getByLabelText('Loading products');
-    expect(grid).toHaveAttribute('aria-busy', 'true');
+    expect(screen.getAllByRole('status')).toHaveLength(1);
+    expect(screen.getByRole('status')).toHaveTextContent('Loading products…');
   });
 
-  it('has aria-label for accessibility', () => {
+  it('hides the placeholder cards from assistive tech', () => {
     render(<ProductGridSkeleton />);
-    expect(screen.getByLabelText('Loading products')).toBeInTheDocument();
+    expect(getPlaceholderGrid()).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('has responsive grid classes', () => {
     render(<ProductGridSkeleton />);
-    const grid = screen.getByLabelText('Loading products');
-    expect(grid).toHaveClass('grid-cols-1');
-    expect(grid).toHaveClass('sm:grid-cols-2');
-    expect(grid).toHaveClass('lg:grid-cols-3');
-    expect(grid).toHaveClass('xl:grid-cols-4');
+    expect(getPlaceholderGrid()).toHaveClass(
+      'grid-cols-1',
+      'sm:grid-cols-2',
+      'lg:grid-cols-3',
+      'xl:grid-cols-4',
+    );
   });
 
-  it('merges custom className', () => {
+  it('merges custom className on the status region', () => {
     render(<ProductGridSkeleton className="custom-class" />);
-    const grid = screen.getByLabelText('Loading products');
-    expect(grid).toHaveClass('custom-class');
+    expect(screen.getByRole('status')).toHaveClass('custom-class');
   });
 });

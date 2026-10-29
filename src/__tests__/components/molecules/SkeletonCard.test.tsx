@@ -10,7 +10,7 @@ describe('SkeletonCard', () => {
   it('contains multiple skeleton elements', () => {
     render(<SkeletonCard data-testid="skeleton-card" />);
     const card = screen.getByTestId('skeleton-card');
-    const skeletons = card.querySelectorAll('[aria-busy="true"]');
+    const skeletons = card.querySelectorAll('.animate-pulse');
     expect(skeletons.length).toBeGreaterThan(0);
   });
 

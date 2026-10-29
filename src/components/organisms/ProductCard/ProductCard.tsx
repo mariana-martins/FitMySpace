@@ -13,15 +13,11 @@ export interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Link
-      href={`/products/${product.id}`}
-      className="group flex flex-col h-full rounded-lg border border-slate-100 bg-white shadow-md p-3 sm:p-4 transition-shadow hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2"
-      aria-label={`View details for ${product.name}`}
-    >
+    <article className="group relative flex flex-col h-full rounded-lg border border-slate-100 bg-white shadow-md p-3 sm:p-4 transition-shadow hover:shadow-lg has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-indigo-600 has-[a:focus-visible]:ring-offset-2">
       <div className="relative mb-3 sm:mb-4 aspect-[4/3] sm:aspect-square w-full overflow-hidden rounded-md bg-slate-50">
         <Image
           src={product.image}
-          alt={product.name}
+          alt=""
           fill
           className="object-cover transition-transform group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -31,7 +27,12 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="flex flex-col flex-grow space-y-1.5 sm:space-y-2">
         <div className="flex flex-col items-start justify-between gap-1.5 sm:gap-2">
           <h3 className="text-sm sm:text-base font-medium text-slate-900 line-clamp-2">
-            {product.name}
+            <Link
+              href={`/products/${product.id}`}
+              className="after:absolute after:inset-0 after:rounded-lg focus:outline-none"
+            >
+              {product.name}
+            </Link>
           </h3>
           <Badge variant="square" className={'bg-slate-100 text-slate-600 '}>
             {product.store.name}
@@ -53,6 +54,6 @@ export function ProductCard({ product }: ProductCardProps) {
           <p className="text-xs text-slate-500">{formatDimensions(product.dimensions)}</p>
         )}
       </div>
-    </Link>
+    </article>
   );
 }

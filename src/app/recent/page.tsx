@@ -32,7 +32,10 @@ export default async function RecentPage() {
         </section>
 
         {/* Products Grid */}
-        <section aria-label="Recent products">
+        <section aria-labelledby="recent-products-heading">
+          <h2 id="recent-products-heading" className="sr-only">
+            Recent products
+          </h2>
           <Suspense fallback={<ProductGridSkeleton count={8} />}>
             <ProductGrid
               products={products}
