@@ -2,8 +2,13 @@ import { getProduct, getRecentProducts, getStores, searchProducts } from '@/lib/
 import { mockProducts, mockStores } from '@/mocks/data';
 import { Room } from '@/types';
 
-const isSortedNewestFirst = (dates: string[]) =>
-  dates.every((date, i) => i === 0 || new Date(dates[i - 1]) >= new Date(date));
+function isSortedNewestFirst(dates: string[]): boolean {
+  return dates.every((date, index) => {
+    if (index === 0) return true;
+    const previousDate = dates[index - 1];
+    return new Date(previousDate) >= new Date(date);
+  });
+}
 
 describe('searchProducts', () => {
   it('returns paginated results with total, page and limit', async () => {
@@ -19,14 +24,14 @@ describe('searchProducts', () => {
     const page1 = await searchProducts({ page: 1, limit: 5 });
     const page2 = await searchProducts({ page: 2, limit: 5 });
 
-    const page1Ids = page1.products.map((p) => p.id);
-    expect(page2.products.every((p) => !page1Ids.includes(p.id))).toBe(true);
+    const page1Ids = page1.products.map((product) => product.id);
+    expect(page2.products.every((product) => !page1Ids.includes(product.id))).toBe(true);
   });
 
   it('sorts results by most recent first', async () => {
     const result = await searchProducts({ limit: mockProducts.length });
 
-    expect(isSortedNewestFirst(result.products.map((p) => p.createdAt))).toBe(true);
+    expect(isSortedNewestFirst(result.products.map((product) => product.createdAt))).toBe(true);
   });
 
   it('filters by query in name or description, case-insensitively', async () => {
@@ -54,10 +59,10 @@ describe('searchProducts', () => {
   });
 
   it('does not mutate the source data order', async () => {
-    const originalIds = mockProducts.map((p) => p.id);
+    const originalIds = mockProducts.map((product) => product.id);
     await searchProducts({ limit: mockProducts.length });
 
-    expect(mockProducts.map((p) => p.id)).toEqual(originalIds);
+    expect(mockProducts.map((product) => product.id)).toEqual(originalIds);
   });
 });
 
@@ -66,7 +71,7 @@ describe('getRecentProducts', () => {
     const result = await getRecentProducts(3);
 
     expect(result).toHaveLength(3);
-    expect(isSortedNewestFirst(result.map((p) => p.createdAt))).toBe(true);
+    expect(isSortedNewestFirst(result.map((product) => product.createdAt))).toBe(true);
   });
 });
 

@@ -1,11 +1,11 @@
+import { type ParsedSearchFilters, parseSearchFilters } from '@/lib/parseSearchFilters';
 import { ProductGridSkeleton } from '@/components/organisms/ProductGrid';
 import { SearchResults } from '@/components/organisms/SearchResults';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { PageLayout } from '@/components/templates/PageLayout';
 import { SearchBar } from '@/components/organisms/SearchBar';
 import { FilterBar } from '@/components/organisms/FilterBar';
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { getStores, searchProducts } from '@/lib/products';
-import { parseSearchFilters } from '@/lib/parseSearchFilters';
 import { getQueryClient } from '@/lib/react-query';
 import { ITEMS_PER_PAGE } from '@/lib/constants';
 import { productKeys } from '@/lib/query-keys';
@@ -13,13 +13,9 @@ import { Suspense } from 'react';
 
 type SearchParams = { [key: string]: string | string[] | undefined };
 
-/** Creates a stable key for Suspense boundary based on search params */
-function getSearchKey(params: SearchParams): string {
-  const query = typeof params.query === 'string' ? params.query : '';
-  const store = typeof params.store === 'string' ? params.store : '';
-  const room = typeof params.room === 'string' ? params.room : '';
-  const page = typeof params.page === 'string' ? params.page : '1';
-  return `${query}-${store}-${room}-${page}`;
+/** Creates a stable key for Suspense boundary based on the validated filters */
+function getSearchKey({ query, store, room, page, limit }: ParsedSearchFilters): string {
+  return `${query}-${store ?? ''}-${room ?? ''}-${page}-${limit}`;
 }
 
 export default async function Home({ searchParams }: { searchParams: Promise<SearchParams> }) {
@@ -54,7 +50,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<Sea
 
         <section aria-label="Search results">
           <HydrationBoundary state={dehydrate(queryClient)}>
-            <Suspense fallback={<ProductGridSkeleton />} key={getSearchKey(resolvedSearchParams)}>
+            <Suspense fallback={<ProductGridSkeleton />} key={getSearchKey(filters)}>
               <SearchResults searchParams={resolvedSearchParams} />
             </Suspense>
           </HydrationBoundary>

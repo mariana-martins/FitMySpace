@@ -24,14 +24,14 @@ describe('useSearch', () => {
   });
 
   describe('handleSearch', () => {
-    it('updates query param and resets page to 1', () => {
+    it('updates query param and keeps scroll position', () => {
       const { result } = renderHook(() => useSearch());
 
       act(() => {
         result.current.handleSearch('organizers');
       });
 
-      expect(mockPush).toHaveBeenCalledWith('/?query=organizers&page=1');
+      expect(mockPush).toHaveBeenCalledWith('/?query=organizers', { scroll: false });
     });
 
     it('removes query param when empty string', () => {
@@ -42,7 +42,18 @@ describe('useSearch', () => {
         result.current.handleSearch('');
       });
 
-      expect(mockPush).toHaveBeenCalledWith('/?page=1');
+      expect(mockPush).toHaveBeenCalledWith('/', { scroll: false });
+    });
+
+    it('drops the current page so results restart from page 1', () => {
+      mockSearchParams.set('page', '3');
+      const { result } = renderHook(() => useSearch());
+
+      act(() => {
+        result.current.handleSearch('bins');
+      });
+
+      expect(mockPush).toHaveBeenCalledWith('/?query=bins', { scroll: false });
     });
   });
 
@@ -54,7 +65,7 @@ describe('useSearch', () => {
         result.current.handleRoomFilter(Room.KITCHEN);
       });
 
-      expect(mockPush).toHaveBeenCalledWith('/?room=kitchen&page=1');
+      expect(mockPush).toHaveBeenCalledWith('/?room=kitchen', { scroll: false });
     });
 
     it('toggles off room filter when same room selected', () => {
@@ -65,7 +76,7 @@ describe('useSearch', () => {
         result.current.handleRoomFilter(Room.KITCHEN);
       });
 
-      expect(mockPush).toHaveBeenCalledWith('/?page=1');
+      expect(mockPush).toHaveBeenCalledWith('/', { scroll: false });
     });
   });
 
@@ -77,7 +88,7 @@ describe('useSearch', () => {
         result.current.handleStoreFilter('1');
       });
 
-      expect(mockPush).toHaveBeenCalledWith('/?store=1&page=1');
+      expect(mockPush).toHaveBeenCalledWith('/?store=1', { scroll: false });
     });
 
     it('clears store filter when "all" is selected', () => {
@@ -88,7 +99,7 @@ describe('useSearch', () => {
         result.current.handleStoreFilter('all');
       });
 
-      expect(mockPush).toHaveBeenCalledWith('/?page=1');
+      expect(mockPush).toHaveBeenCalledWith('/', { scroll: false });
     });
   });
 
@@ -114,6 +125,13 @@ describe('useSearch', () => {
 
     it('returns null for missing room', () => {
       const { result } = renderHook(() => useSearch());
+      expect(result.current.currentRoom).toBeNull();
+    });
+
+    it('returns null for an unknown room', () => {
+      mockSearchParams.set('room', 'spaceship');
+      const { result } = renderHook(() => useSearch());
+
       expect(result.current.currentRoom).toBeNull();
     });
 

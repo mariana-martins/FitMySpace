@@ -1,4 +1,5 @@
 import { useRouter, useSearchParams } from 'next/navigation';
+import { RoomSchema } from '@/lib/schemas';
 import { Room } from '@/types';
 
 /**
@@ -12,7 +13,8 @@ export function useSearch() {
 
   /**
    * Updates a specific URL search parameter and pushes the new URL.
-   * Resets page to 1 on any filter change.
+   * Resets to page 1 on any filter change (page 1 is implicit, matching usePagination).
+   * Keeps the scroll position so the filters stay in view while results update.
    */
   const updateParams = (key: string, value: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -21,8 +23,9 @@ export function useSearch() {
     } else {
       params.delete(key);
     }
-    params.set('page', '1');
-    router.push(`/?${params.toString()}`);
+    params.delete('page');
+    const queryString = params.toString();
+    router.push(queryString ? `/?${queryString}` : '/', { scroll: false });
   };
 
   /**
@@ -59,7 +62,8 @@ export function useSearch() {
   };
 
   const currentQuery = searchParams.get('query') || '';
-  const currentRoom = searchParams.get('room') as Room | null;
+  const parsedRoom = RoomSchema.safeParse(searchParams.get('room'));
+  const currentRoom: Room | null = parsedRoom.success ? parsedRoom.data : null;
   const currentStore = searchParams.get('store');
 
   return {

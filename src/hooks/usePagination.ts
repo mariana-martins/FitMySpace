@@ -1,4 +1,6 @@
+import { parseSearchFilters } from '@/lib/parseSearchFilters';
 import { useRouter, usePathname } from 'next/navigation';
+import { ITEMS_PER_PAGE } from '@/lib/constants';
 import { useCallback } from 'react';
 
 type SearchParamsObject = { [key: string]: string | string[] | undefined };
@@ -34,13 +36,13 @@ interface UsePaginationReturn {
  */
 export function usePagination({
   searchParams,
-  limit = 12,
+  limit = ITEMS_PER_PAGE,
   total,
 }: UsePaginationOptions): UsePaginationReturn {
   const router = useRouter();
   const pathname = usePathname();
 
-  const currentPage = typeof searchParams.page === 'string' ? Number(searchParams.page) || 1 : 1;
+  const currentPage = parseSearchFilters(searchParams).page;
 
   const totalPages = Math.ceil(total / limit);
 
@@ -62,7 +64,8 @@ export function usePagination({
         params.delete('page');
       }
 
-      router.push(`${pathname}?${params.toString()}`);
+      const queryString = params.toString();
+      router.push(queryString ? `${pathname}?${queryString}` : pathname);
     },
     [searchParams, pathname, router],
   );

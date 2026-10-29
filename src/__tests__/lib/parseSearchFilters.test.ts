@@ -1,4 +1,4 @@
-import { parseSearchFilters } from '@/lib/parseSearchFilters';
+import { MAX_LIMIT, parseSearchFilters } from '@/lib/parseSearchFilters';
 import { Room } from '@/types';
 
 describe('parseSearchFilters', () => {
@@ -51,6 +51,33 @@ describe('parseSearchFilters', () => {
   it('handles invalid limit number', () => {
     const result = parseSearchFilters({ limit: 'invalid' });
     expect(result.limit).toBe(12);
+  });
+
+  it.each(['-1', '0', '1.5', ''])('falls back to page 1 for out-of-range page "%s"', (page) => {
+    expect(parseSearchFilters({ page }).page).toBe(1);
+  });
+
+  it.each(['0', '-5', '2.5', String(MAX_LIMIT + 1)])(
+    'falls back to the default limit for out-of-range limit "%s"',
+    (limit) => {
+      expect(parseSearchFilters({ limit }).limit).toBe(12);
+    },
+  );
+
+  it('accepts limit up to MAX_LIMIT', () => {
+    expect(parseSearchFilters({ limit: String(MAX_LIMIT) }).limit).toBe(MAX_LIMIT);
+  });
+
+  it('ignores unknown rooms', () => {
+    expect(parseSearchFilters({ room: 'spaceship' }).room).toBeUndefined();
+  });
+
+  it('treats an empty store as no store filter', () => {
+    expect(parseSearchFilters({ store: '' }).store).toBeUndefined();
+  });
+
+  it('ignores repeated (array) numeric params', () => {
+    expect(parseSearchFilters({ page: ['3'] }).page).toBe(1);
   });
 
   it('handles array values (uses undefined)', () => {

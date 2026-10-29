@@ -34,6 +34,11 @@ describe('usePagination', () => {
       );
       expect(result.current.currentPage).toBe(1);
     });
+
+    it.each(['-1', '0', '1.5'])('defaults to 1 for out-of-range page "%s"', (page) => {
+      const { result } = renderHook(() => usePagination({ searchParams: { page }, total: 100 }));
+      expect(result.current.currentPage).toBe(1);
+    });
   });
 
   describe('totalPages', () => {
@@ -105,7 +110,7 @@ describe('usePagination', () => {
         result.current.goToPage(1);
       });
 
-      expect(mockPush).toHaveBeenCalledWith('/?');
+      expect(mockPush).toHaveBeenCalledWith('/');
     });
 
     it('preserves other search params', () => {

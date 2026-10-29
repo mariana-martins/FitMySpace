@@ -1,4 +1,10 @@
-import { type Product, type ProductSearchResponse, type SearchParams, type Store } from '@/types';
+import {
+  type Product,
+  type ProductSearchResponse,
+  type Room,
+  type SearchParams,
+  type Store,
+} from '@/types';
 import { mockProducts, mockStores } from '@/mocks/data';
 
 /**
@@ -12,46 +18,64 @@ const DEFAULT_LIMIT = 12;
 // Simulated network latency in development to demonstrate Suspense boundaries
 const DEV_DELAY_MS = 1000;
 
-function simulateLatency() {
+function simulateLatency(): Promise<void> {
   if (process.env.NODE_ENV !== 'development') return Promise.resolve();
   return new Promise((resolve) => setTimeout(resolve, DEV_DELAY_MS));
 }
 
-const byNewest = (a: Product, b: Product) =>
-  new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+function compareByNewestFirst(firstProduct: Product, secondProduct: Product): number {
+  const firstCreatedAt = new Date(firstProduct.createdAt).getTime();
+  const secondCreatedAt = new Date(secondProduct.createdAt).getTime();
+  return secondCreatedAt - firstCreatedAt;
+}
+
+function matchesSearchText(product: Product, searchText: string | undefined): boolean {
+  if (!searchText) return true;
+
+  const normalizedSearchText = searchText.toLowerCase();
+  const nameMatches = product.name.toLowerCase().includes(normalizedSearchText);
+  const descriptionMatches = product.description.toLowerCase().includes(normalizedSearchText);
+
+  return nameMatches || descriptionMatches;
+}
+
+function matchesStore(product: Product, storeId: string | undefined): boolean {
+  if (!storeId) return true;
+  return product.store.id === storeId;
+}
+
+function matchesRoom(product: Product, room: Room | undefined): boolean {
+  if (!room) return true;
+  return product.room === room;
+}
 
 /**
  * Searches products by text, store and room, sorted by most recent first.
- * @param searchParams - The search filters to apply
+ * @param filters - The search filters to apply
  * @returns Paginated product results
  */
-export async function searchProducts({
-  query,
-  store,
-  room,
-  page = 1,
-  limit = DEFAULT_LIMIT,
-}: SearchParams): Promise<ProductSearchResponse> {
+export async function searchProducts(filters: SearchParams): Promise<ProductSearchResponse> {
+  const { query, store, room, page = 1, limit = DEFAULT_LIMIT } = filters;
   await simulateLatency();
 
-  const queryLower = query?.toLowerCase();
+  const matchingProducts: Product[] = [];
+  for (const product of mockProducts) {
+    if (
+      matchesSearchText(product, query) &&
+      matchesStore(product, store) &&
+      matchesRoom(product, room)
+    ) {
+      matchingProducts.push(product);
+    }
+  }
+  matchingProducts.sort(compareByNewestFirst);
 
-  const filteredProducts = mockProducts
-    .filter(
-      (product) =>
-        !queryLower ||
-        product.name.toLowerCase().includes(queryLower) ||
-        product.description.toLowerCase().includes(queryLower),
-    )
-    .filter((product) => !store || product.store.id === store)
-    .filter((product) => !room || product.room === room)
-    .sort(byNewest);
-
-  const start = (page - 1) * limit;
+  const firstIndexOnPage = (page - 1) * limit;
+  const lastIndexOnPage = firstIndexOnPage + limit;
 
   return {
-    products: filteredProducts.slice(start, start + limit),
-    total: filteredProducts.length,
+    products: matchingProducts.slice(firstIndexOnPage, lastIndexOnPage),
+    total: matchingProducts.length,
     page,
     limit,
   };
@@ -62,7 +86,8 @@ export async function searchProducts({
  * @param limit - Maximum number of products to return
  */
 export async function getRecentProducts(limit = DEFAULT_LIMIT): Promise<Product[]> {
-  return [...mockProducts].sort(byNewest).slice(0, limit);
+  const productsByNewest = [...mockProducts].sort(compareByNewestFirst);
+  return productsByNewest.slice(0, limit);
 }
 
 /**

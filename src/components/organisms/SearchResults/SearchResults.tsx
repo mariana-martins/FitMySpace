@@ -30,7 +30,7 @@ export function SearchResults({ searchParams }: SearchResultsProps) {
   const { currentPage, totalPages, goToPage } = usePagination({
     searchParams,
     total: data.total,
-    limit: ITEMS_PER_PAGE,
+    limit: filters.limit,
   });
 
   const emptyState = filters.query ? EMPTY_STATE.withQuery : EMPTY_STATE.withoutQuery;
