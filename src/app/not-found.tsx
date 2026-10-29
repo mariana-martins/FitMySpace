@@ -13,9 +13,9 @@ export default function NotFound() {
           We&apos;re sorry, but the page you are looking for might have been removed, had its name
           changed, or is temporarily unavailable.
         </p>
-        <Link href="/">
-          <Button>Go back home</Button>
-        </Link>
+        <Button asChild>
+          <Link href="/">Go back home</Link>
+        </Button>
       </div>
     </PageLayout>
   );

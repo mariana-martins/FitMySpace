@@ -30,7 +30,7 @@ describe('App Pages Accessibility', () => {
     const mockError = Object.assign(new globalThis.Error('Something went wrong'), {
       digest: undefined,
     });
-    const mockReset = jest.fn();
+    const mockRetry = jest.fn();
 
     beforeEach(() => {
       jest.spyOn(console, 'error').mockImplementation(() => {});
@@ -41,7 +41,7 @@ describe('App Pages Accessibility', () => {
     });
 
     it('should have no accessibility violations', async () => {
-      const { container } = render(<ErrorPage error={mockError} reset={mockReset} />);
+      const { container } = render(<ErrorPage error={mockError} retry={mockRetry} />);
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     });

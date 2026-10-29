@@ -1,5 +1,8 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Providers } from '@/app/providers';
+import { Suspense } from 'react';
 
 describe('Providers', () => {
   it('renders children correctly', () => {
@@ -90,5 +93,50 @@ describe('ErrorFallback (via Providers)', () => {
 
     const button = screen.getByRole('button', { name: /try again/i });
     expect(button).toHaveClass('focus:ring-2');
+  });
+});
+
+describe('ErrorFallback recovery (via Providers)', () => {
+  let shouldRequestFail: boolean;
+  const fetchProducts = jest.fn(async () => {
+    if (shouldRequestFail) throw new Error('Request failed');
+    return 'Loaded products';
+  });
+
+  function ProductsConsumer() {
+    // retry: false keeps the test fast; the app default retries once before failing
+    const { data } = useSuspenseQuery({
+      queryKey: ['providers-flaky-products'],
+      queryFn: fetchProducts,
+      retry: false,
+    });
+    return <p>{data}</p>;
+  }
+
+  beforeEach(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('fetches failed queries again when try again is clicked', async () => {
+    shouldRequestFail = true;
+    const user = userEvent.setup();
+    render(
+      <Providers>
+        <Suspense fallback={<p>Loading</p>}>
+          <ProductsConsumer />
+        </Suspense>
+      </Providers>,
+    );
+
+    expect(await screen.findByText('Request failed')).toBeInTheDocument();
+
+    shouldRequestFail = false;
+    await user.click(screen.getByRole('button', { name: /try again/i }));
+
+    expect(await screen.findByText('Loaded products')).toBeInTheDocument();
   });
 });

@@ -1,6 +1,6 @@
 'use client';
 
-import { QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider, QueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import { getQueryClient } from '@/lib/react-query';
 import { useEffect } from 'react';
@@ -66,10 +66,15 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <QueryClientProvider client={queryClient}>
-        <MSWProvider>{children}</MSWProvider>
-      </QueryClientProvider>
-    </ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      {/* "Try again" must also clear failed queries, or useSuspenseQuery rethrows the cached error */}
+      <QueryErrorResetBoundary>
+        {({ reset: resetFailedQueries }) => (
+          <ErrorBoundary FallbackComponent={ErrorFallback} onReset={resetFailedQueries}>
+            <MSWProvider>{children}</MSWProvider>
+          </ErrorBoundary>
+        )}
+      </QueryErrorResetBoundary>
+    </QueryClientProvider>
   );
 }

@@ -31,11 +31,13 @@ describe('NotFound Page', () => {
     expect(screen.getByRole('link', { name: /go back home/i })).toHaveAttribute('href', '/');
   });
 
-  it('renders button inside link', () => {
+  it('renders the home link styled as a button, without nesting a button inside it', () => {
     render(<NotFound />);
     const link = screen.getByRole('link', { name: /go back home/i });
-    const button = link.querySelector('button');
-    expect(button).toBeInTheDocument();
+
+    expect(link.querySelector('button')).not.toBeInTheDocument();
+    expect(link.closest('button')).not.toBeInTheDocument();
+    expect(link).toHaveClass('inline-flex', 'bg-indigo-600');
   });
 
   it('has centered layout', () => {
