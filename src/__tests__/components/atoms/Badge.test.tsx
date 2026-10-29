@@ -47,4 +47,9 @@ describe('Badge', () => {
     );
     expect(screen.getByTestId('badge-test')).toBeInTheDocument();
   });
+
+  it('uses the rounded variant when none is given', () => {
+    render(<Badge data-testid="default-badge">Default</Badge>);
+    expect(screen.getByTestId('default-badge')).toHaveClass('rounded-full');
+  });
 });

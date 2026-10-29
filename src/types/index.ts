@@ -1,3 +1,11 @@
+import type {
+  DimensionsSchema,
+  ProductSchema,
+  ProductSearchResponseSchema,
+  StoreSchema,
+} from '@/lib/schemas';
+import type { z } from 'zod';
+
 export enum Room {
   KITCHEN = 'kitchen',
   PANTRY = 'pantry',
@@ -10,47 +18,17 @@ export enum Room {
   LAUNDRY = 'laundry',
 }
 
-export interface Store {
-  id: string;
-  name: string;
-  logo?: string;
-  url?: string;
-}
-
-export interface Dimensions {
-  length?: number;
-  width?: number;
-  height?: number;
-  unit: 'cm' | 'in';
-}
-
-export interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  currency: string;
-  image: string;
-  store: Store;
-  room: Room;
-  dimensions?: Dimensions;
-  createdAt: string;
-  updatedAt: string;
-}
+// API data types come from the zod schemas, so the runtime validation and the types cannot drift apart.
+// Type-only imports: no runtime cycle with @/lib/schemas, which imports Room from here.
+export type Store = z.infer<typeof StoreSchema>;
+export type Dimensions = z.infer<typeof DimensionsSchema>;
+export type Product = z.infer<typeof ProductSchema>;
+export type ProductSearchResponse = z.infer<typeof ProductSearchResponseSchema>;
 
 export interface SearchParams {
   query?: string;
   store?: string;
   room?: Room;
-  minPrice?: number;
-  maxPrice?: number;
   page?: number;
   limit?: number;
-}
-
-export interface ProductSearchResponse {
-  products: Product[];
-  total: number;
-  page: number;
-  limit: number;
 }

@@ -1,9 +1,8 @@
-import { ProductGrid, ProductGridSkeleton } from '@/components/organisms/ProductGrid';
+import { ProductGrid } from '@/components/organisms/ProductGrid';
 import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { PageLayout } from '@/components/templates/PageLayout';
 import { getRecentProducts } from '@/lib/products';
 import { Clock, Home } from 'lucide-react';
-import { Suspense } from 'react';
 
 export const revalidate = 60; // ISR: revalidate every 60 seconds
 
@@ -36,13 +35,11 @@ export default async function RecentPage() {
           <h2 id="recent-products-heading" className="sr-only">
             Recent products
           </h2>
-          <Suspense fallback={<ProductGridSkeleton count={8} />}>
-            <ProductGrid
-              products={products}
-              emptyTitle="No recent products"
-              emptyDescription="Check back soon for new arrivals!"
-            />
-          </Suspense>
+          <ProductGrid
+            products={products}
+            emptyTitle="No recent products"
+            emptyDescription="Check back soon for new arrivals!"
+          />
         </section>
       </div>
     </PageLayout>

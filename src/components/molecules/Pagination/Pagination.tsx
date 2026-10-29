@@ -28,12 +28,10 @@ export function Pagination({
     }
 
     // Show pages around current page
-    for (
-      let i = Math.max(2, currentPage - 1);
-      i <= Math.min(totalPages - 1, currentPage + 1);
-      i++
-    ) {
-      items.push(i);
+    const firstNearbyPage = Math.max(2, currentPage - 1);
+    const lastNearbyPage = Math.min(totalPages - 1, currentPage + 1);
+    for (let pageNumber = firstNearbyPage; pageNumber <= lastNearbyPage; pageNumber++) {
+      items.push(pageNumber);
     }
 
     if (currentPage < totalPages - 2) {
@@ -50,7 +48,6 @@ export function Pagination({
 
   return (
     <nav
-      role="navigation"
       aria-label="Pagination"
       className={cn('flex items-center justify-center gap-2', className)}
       {...props}
@@ -68,8 +65,9 @@ export function Pagination({
       </Button>
 
       <div className="flex items-center gap-1">
-        {pages.map((page, i) => (
-          <Fragment key={i}>
+        {pages.map((page, position) => (
+          // Position as key: the '...' item can appear twice
+          <Fragment key={position}>
             {page === '...' ? (
               <span
                 className="flex h-9 w-9 items-center justify-center text-sm text-slate-500"
@@ -84,7 +82,7 @@ export function Pagination({
                 onClick={() => onPageChange(page)}
                 aria-label={`Go to page ${page}`}
                 aria-current={currentPage === page ? 'page' : undefined}
-                className={cn('h-10 w-10 p-0', currentPage === page)}
+                className="h-10 w-10 p-0"
               >
                 {page}
               </Button>

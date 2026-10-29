@@ -29,7 +29,7 @@ Inspired by the clean and aesthetic approach of _The Home Edit_, this project co
 
 ## 🚀 Getting Started
 
-Prerequisites: Node.js 18+ and npm.
+Prerequisites: Node.js 20.9+ (required by Next.js 16) and npm.
 
 ```bash
 # Clone the repository

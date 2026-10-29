@@ -31,8 +31,6 @@ function buildSearchParams(searchParams: SearchParams): URLSearchParams {
     query: searchParams.query,
     store: searchParams.store,
     room: searchParams.room,
-    minPrice: searchParams.minPrice,
-    maxPrice: searchParams.maxPrice,
     page: searchParams.page ?? 1,
     limit: searchParams.limit ?? 12,
   };

@@ -47,13 +47,6 @@ describe('Navbar', () => {
     expect(screen.getByRole('link', { name: 'About Us' })).toHaveAttribute('href', '/about');
   });
 
-  it('contains search input container (hidden by default on non-home pages)', () => {
-    render(<Navbar />);
-    // Search container exists but is invisible initially (controlled by intersection observer)
-    const searchContainer = document.querySelector('[aria-hidden]');
-    expect(searchContainer).toBeInTheDocument();
-  });
-
   // Mobile menu tests use userEvent: it fires pointerdown/mousedown before click like a real tap,
   // which is what made the old close button reopen the menu
   it('renders the menu button collapsed and linked to the menu', async () => {

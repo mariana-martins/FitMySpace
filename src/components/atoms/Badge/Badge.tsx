@@ -2,11 +2,11 @@ import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant: 'square' | 'rounded';
+  variant?: 'square' | 'rounded';
 }
 
 const VARIANTS = {
-  square: 'rounded-sm px-2 py-1 font-base',
+  square: 'rounded-sm px-2 py-1 font-normal',
   rounded: 'rounded-full px-2.5 py-0.5 font-medium',
 };
 

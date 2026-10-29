@@ -1,5 +1,3 @@
-'use client';
-
 import { formatPrice, formatDimensions } from '@/lib/utils';
 import { ROOM_LABELS, ROOM_COLORS } from '@/lib/constants';
 import { Badge } from '@/components/atoms/Badge';

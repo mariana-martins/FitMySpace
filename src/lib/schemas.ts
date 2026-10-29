@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 /**
  * Zod schemas for runtime API response validation.
- * These mirror the TypeScript types in @/types but provide runtime validation.
+ * They are the source of truth for the API data types exported from @/types.
  */
 
 export const RoomSchema = z.enum(Room);
@@ -44,7 +44,3 @@ export const ProductSearchResponseSchema = z.object({
 });
 
 export const ProductArraySchema = z.array(ProductSchema);
-
-// Type inference from schemas (alternative to manual types)
-export type ProductFromSchema = z.infer<typeof ProductSchema>;
-export type ProductSearchResponseFromSchema = z.infer<typeof ProductSearchResponseSchema>;
