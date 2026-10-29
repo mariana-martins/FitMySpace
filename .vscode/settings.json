@@ -2,5 +2,7 @@
   "cSpell.words": [
     "autodocs",
     "fitmyspace"
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

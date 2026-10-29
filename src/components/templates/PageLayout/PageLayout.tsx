@@ -11,7 +11,8 @@ export function PageLayout({ children, className, ...props }: PageLayoutProps) {
   return (
     <div className="w-full justify-center flex min-h-screen bg-white flex-col">
       <SkipLink />
-      <header>
+      {/* Sticky on the header, not the nav: a sticky child of a same-height parent has no room to stick */}
+      <header className="sticky top-0 z-50">
         <Navbar />
       </header>
       <main id="main-content" className={cn('flex-1 bg-white', className)} {...props} tabIndex={-1}>

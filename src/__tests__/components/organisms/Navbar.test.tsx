@@ -1,5 +1,6 @@
-import { render, screen, fireEvent } from '@/__tests__/utils';
+import { render, screen, within } from '@/__tests__/utils';
 import { Navbar } from '@/components/organisms/Navbar';
+import userEvent from '@testing-library/user-event';
 
 // Mock useSearch hook
 jest.mock('@/hooks/useSearch', () => ({
@@ -46,19 +47,6 @@ describe('Navbar', () => {
     expect(screen.getByRole('link', { name: 'About Us' })).toHaveAttribute('href', '/about');
   });
 
-  it('has sticky positioning', () => {
-    render(<Navbar />);
-    const nav = screen.getByRole('navigation');
-    expect(nav).toHaveClass('sticky');
-    expect(nav).toHaveClass('top-0');
-  });
-
-  it('has correct z-index for layering', () => {
-    render(<Navbar />);
-    const nav = screen.getByRole('navigation');
-    expect(nav).toHaveClass('z-50');
-  });
-
   it('contains search input container (hidden by default on non-home pages)', () => {
     render(<Navbar />);
     // Search container exists but is invisible initially (controlled by intersection observer)
@@ -66,37 +54,69 @@ describe('Navbar', () => {
     expect(searchContainer).toBeInTheDocument();
   });
 
-  // Mobile menu tests
-  it('renders hamburger menu button for mobile navigation', () => {
+  // Mobile menu tests use userEvent: it fires pointerdown/mousedown before click like a real tap,
+  // which is what made the old close button reopen the menu
+  it('renders the menu button collapsed and linked to the menu', async () => {
+    const user = userEvent.setup();
     render(<Navbar />);
+
     const menuButton = screen.getByRole('button', { name: 'Open menu' });
-    expect(menuButton).toBeInTheDocument();
     expect(menuButton).toHaveAttribute('aria-expanded', 'false');
-    expect(menuButton).toHaveAttribute('aria-controls', 'mobile-menu');
-  });
 
-  it('toggles mobile menu when hamburger button is clicked', () => {
-    render(<Navbar />);
-    const menuButton = screen.getByRole('button', { name: 'Open menu' });
-
-    // Open menu
-    fireEvent.click(menuButton);
-    expect(screen.getByRole('button', { name: 'Close menu' })).toBeInTheDocument();
-    expect(screen.getByRole('dialog', { name: 'Mobile navigation menu' })).toBeInTheDocument();
-
-    // Close menu
-    fireEvent.click(screen.getByRole('button', { name: 'Close menu' }));
-    expect(screen.getByRole('button', { name: 'Open menu' })).toBeInTheDocument();
-  });
-
-  it('mobile menu has proper accessibility attributes', () => {
-    render(<Navbar />);
-    const menuButton = screen.getByRole('button', { name: 'Open menu' });
-
-    fireEvent.click(menuButton);
+    await user.click(menuButton);
 
     const mobileMenu = screen.getByRole('dialog', { name: 'Mobile navigation menu' });
-    expect(mobileMenu).toHaveAttribute('aria-modal', 'true');
-    expect(mobileMenu).toHaveAttribute('id', 'mobile-menu');
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true');
+    expect(menuButton).toHaveAttribute('aria-controls', mobileMenu.id);
+  });
+
+  it('closes the mobile menu with the close button', async () => {
+    const user = userEvent.setup();
+    render(<Navbar />);
+
+    await user.click(screen.getByRole('button', { name: 'Open menu' }));
+    await user.click(screen.getByRole('button', { name: 'Close menu' }));
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Open menu' })).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    );
+  });
+
+  it('closes the mobile menu on Escape and returns focus to the menu button', async () => {
+    const user = userEvent.setup();
+    render(<Navbar />);
+
+    const menuButton = screen.getByRole('button', { name: 'Open menu' });
+    await user.click(menuButton);
+    await user.keyboard('{Escape}');
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(menuButton).toHaveFocus();
+  });
+
+  it('closes the mobile menu when a link is clicked', async () => {
+    const user = userEvent.setup();
+    render(<Navbar />);
+
+    await user.click(screen.getByRole('button', { name: 'Open menu' }));
+    const mobileMenu = screen.getByRole('dialog', { name: 'Mobile navigation menu' });
+    await user.click(within(mobileMenu).getByRole('link', { name: 'About Us' }));
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('keeps keyboard focus inside the open mobile menu', async () => {
+    const user = userEvent.setup();
+    render(<Navbar />);
+
+    await user.click(screen.getByRole('button', { name: 'Open menu' }));
+    const mobileMenu = screen.getByRole('dialog', { name: 'Mobile navigation menu' });
+
+    for (let tabPress = 0; tabPress < 6; tabPress++) {
+      await user.tab();
+      expect(mobileMenu).toContainElement(document.activeElement as HTMLElement);
+    }
   });
 });

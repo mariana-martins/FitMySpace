@@ -47,6 +47,17 @@ describe('PageLayout', () => {
     expect(screen.getByTestId('navbar')).toBeInTheDocument();
   });
 
+  it('makes the header sticky so the navbar stays visible on scroll', () => {
+    render(
+      <PageLayout>
+        <div>Content</div>
+      </PageLayout>,
+    );
+    const header = screen.getByRole('banner');
+    expect(header).toHaveClass('sticky', 'top-0', 'z-50');
+    expect(header).toContainElement(screen.getByTestId('navbar'));
+  });
+
   it('renders Footer', () => {
     render(
       <PageLayout>

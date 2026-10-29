@@ -1,6 +1,6 @@
 import { ProductDetail } from '@/components/organisms/ProductDetail';
+import { render, screen, within } from '@/__tests__/utils';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '@/__tests__/utils';
 import { Product, Room } from '@/types';
 
 // Mock useRouter since it's used in the component
@@ -75,13 +75,71 @@ describe('ProductDetail', () => {
     expect(screen.getByText(/5cm × 10cm × 20cm/)).toBeInTheDocument();
   });
 
-  it('renders back button and handles click', async () => {
-    const user = userEvent.setup();
+  describe('back link', () => {
+    afterEach(() => {
+      Reflect.deleteProperty(window, 'navigation');
+    });
+
+    function mockNavigationHistory({ canGoBack }: { canGoBack: boolean }) {
+      Object.defineProperty(window, 'navigation', { value: { canGoBack }, configurable: true });
+    }
+
+    it('links to the home page so it works without history', () => {
+      render(<ProductDetail product={mockProduct} />);
+
+      expect(screen.getByRole('link', { name: /back to results/i })).toHaveAttribute('href', '/');
+    });
+
+    it('goes back in history when the previous page belongs to the site', async () => {
+      mockNavigationHistory({ canGoBack: true });
+      const user = userEvent.setup();
+      render(<ProductDetail product={mockProduct} />);
+
+      await user.click(screen.getByRole('link', { name: /back to results/i }));
+
+      expect(mockBack).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not go back when the user arrived from another site', async () => {
+      mockNavigationHistory({ canGoBack: false });
+      const user = userEvent.setup();
+      render(<ProductDetail product={mockProduct} />);
+
+      await user.click(screen.getByRole('link', { name: /back to results/i }));
+
+      expect(mockBack).not.toHaveBeenCalled();
+    });
+
+    it('does not go back when the browser lacks the Navigation API', async () => {
+      const user = userEvent.setup();
+      render(<ProductDetail product={mockProduct} />);
+
+      await user.click(screen.getByRole('link', { name: /back to results/i }));
+
+      expect(mockBack).not.toHaveBeenCalled();
+    });
+
+    it('does not go back on a modified click that opens a new tab', async () => {
+      mockNavigationHistory({ canGoBack: true });
+      const user = userEvent.setup();
+      render(<ProductDetail product={mockProduct} />);
+
+      await user.keyboard('{Control>}');
+      await user.click(screen.getByRole('link', { name: /back to results/i }));
+      await user.keyboard('{/Control}');
+
+      expect(mockBack).not.toHaveBeenCalled();
+    });
+  });
+
+  it('shows Home and the product name in the breadcrumb, without a duplicate link to home', () => {
     render(<ProductDetail product={mockProduct} />);
 
-    const backButton = screen.getByRole('button', { name: /back to results/i });
+    const breadcrumb = screen.getByRole('navigation', { name: 'Breadcrumb' });
+    const breadcrumbLinks = within(breadcrumb).getAllByRole('link');
 
-    await user.click(backButton);
-    expect(mockBack).toHaveBeenCalledTimes(1);
+    expect(breadcrumbLinks).toHaveLength(1);
+    expect(breadcrumbLinks[0]).toHaveAttribute('href', '/');
+    expect(within(breadcrumb).getByText(mockProduct.name)).toHaveAttribute('aria-current', 'page');
   });
 });

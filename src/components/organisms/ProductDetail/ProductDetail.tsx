@@ -1,6 +1,7 @@
 'use client';
 
 import { ArrowLeft, ExternalLink, Home, Ruler, Store, Tag } from 'lucide-react';
+import { canGoBackWithinSite, isPlainLeftClick } from '@/lib/navigation';
 import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { formatPrice, formatDimensions } from '@/lib/utils';
 import { ROOM_LABELS, ROOM_COLORS } from '@/lib/constants';
@@ -18,28 +19,36 @@ export interface ProductDetailProps {
 export function ProductDetail({ product }: ProductDetailProps) {
   const router = useRouter();
 
-  const breadcrumbItems = [
-    { label: 'Home', href: '/', icon: Home },
-    { label: 'Products', href: '/' },
-    { label: product.name },
-  ];
+  const breadcrumbItems = [{ label: 'Home', href: '/', icon: Home }, { label: product.name }];
+
+  /**
+   * Returns to the previous page (keeping the search filters) when the user came from this site.
+   * Otherwise the link opens the home page, so a visitor from an external link never leaves the site.
+   */
+  function handleBackClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    if (!isPlainLeftClick(event) || !canGoBackWithinSite()) return;
+
+    event.preventDefault();
+    router.back();
+  }
 
   return (
     <div className="space-y-8">
       {/* Breadcrumb Navigation */}
       <Breadcrumbs items={breadcrumbItems} />
 
-      {/* Back Button */}
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-2 text-slate-600 hover:text-indigo-600 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 rounded-sm"
+      {/* Back Link */}
+      <Link
+        href="/"
+        onClick={handleBackClick}
+        className="inline-flex items-center gap-2 text-slate-600 hover:text-indigo-600 transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 rounded-sm"
       >
         <ArrowLeft
           className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
           aria-hidden="true"
         />
         <span>Back to results</span>
-      </button>
+      </Link>
 
       {/* Main Content Grid */}
       <div className="grid gap-10 lg:grid-cols-2">
