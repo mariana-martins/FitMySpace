@@ -8,9 +8,18 @@ import hooksPlugin from "eslint-plugin-react-hooks";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import prettier from "eslint-config-prettier";
 import { fixupConfigRules } from "@eslint/compat";
+import storybook from "eslint-plugin-storybook";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+const DESIGN_SYSTEM_STORIES = "src/components/design-system/**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)";
+
+// Storybook rules apply to the design system stories only. The preset's other block
+// (.storybook/main) is dropped because it lives outside the design system folder.
+const designSystemStorybookConfigs = storybook.configs["flat/recommended"]
+  .filter((config) => config.name !== "storybook:recommended:main-rules")
+  .map((config) => (config.files ? { ...config, files: [DESIGN_SYSTEM_STORIES] } : config));
 
 export default fixupConfigRules([
   // Global Ignores
@@ -63,6 +72,9 @@ export default fixupConfigRules([
 
   // Accessibility
   jsxA11y.flatConfigs.recommended,
+
+  // Storybook (design system stories only)
+  ...designSystemStorybookConfigs,
 
   // Config Files (jest.config.js, next.config.mjs)
   {

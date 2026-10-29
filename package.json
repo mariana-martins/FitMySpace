@@ -18,6 +18,8 @@
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "test:storybook": "vitest --run --project=storybook",
+    "test:storybook:coverage": "vitest --run --project=storybook --coverage",
     "tokens:build": "node src/components/design-system/tokens/sd.config.mjs",
     "release": "release-it"
   },

@@ -26,6 +26,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "vitest.config.mts",
     ".storybook/**/*.ts",
     ".storybook/**/*.tsx",
     ".next/types/**/*.ts",

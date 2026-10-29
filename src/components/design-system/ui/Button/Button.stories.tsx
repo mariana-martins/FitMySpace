@@ -1,6 +1,6 @@
 import { Plus, Trash2, ArrowRight, Download, Star } from 'lucide-react';
+import { expect, fn, userEvent, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { expect, within } from 'storybook/test';
 import { Button } from './';
 
 const meta = {
@@ -173,7 +173,6 @@ export const OutlineVariants: Story = {
  * --------------------------------------------------------------- */
 
 export const AllSizes: Story = {
-  name: 'All Sizes',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
       <Button variant="primary" size="lg" appearance="fill">
@@ -254,7 +253,6 @@ export const WithIcon: Story = {
  * --------------------------------------------------------------- */
 
 export const IconOnly: Story = {
-  name: 'Icon Only',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
       <Button variant="primary" appearance="fill" size="md" icon={<Plus />} aria-label="Add item" />
@@ -296,7 +294,6 @@ export const IconOnly: Story = {
  * --------------------------------------------------------------- */
 
 export const Disabled: Story = {
-  name: 'Disabled',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
       <Button disabled variant="primary" appearance="fill" size="md">
@@ -397,5 +394,57 @@ export const AsChild: Story = {
     const link = canvas.getByRole('link', { name: 'Visit Example' });
     await expect(link).toBeInTheDocument();
     await expect(link.tagName).toBe('A');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Click behavior
+ * --------------------------------------------------------------- */
+
+export const ClickBehavior: Story = {
+  args: {
+    onClick: fn(),
+  },
+  render: ({ onClick }) => (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+      <Button variant="primary" appearance="fill" size="md" onClick={onClick}>
+        Save
+      </Button>
+      <Button variant="primary" appearance="fill" size="md" disabled onClick={onClick}>
+        Disabled button
+      </Button>
+      <Button asChild variant="primary" appearance="outline" size="md" disabled onClick={onClick}>
+        <a href="#disabled-link-target">Disabled link</a>
+      </Button>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '`onClick` fires for enabled buttons, from a pointer click or the keyboard. ' +
+          'A disabled `asChild` link keeps its link semantics, so the Button blocks both the handler and the navigation itself.',
+      },
+    },
+  },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await userEvent.click(canvas.getByRole('button', { name: 'Save' }));
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
+
+    await userEvent.keyboard('{Enter}');
+    await expect(args.onClick).toHaveBeenCalledTimes(2);
+
+    // A native disabled button never dispatches click events
+    await userEvent.click(canvas.getByRole('button', { name: 'Disabled button' }));
+    await expect(args.onClick).toHaveBeenCalledTimes(2);
+
+    // A link cannot be natively disabled: the Button must swallow the click and prevent navigation
+    const disabledLink = canvas.getByRole('link', { name: 'Disabled link' });
+    await userEvent.click(disabledLink);
+    await expect(args.onClick).toHaveBeenCalledTimes(2);
+    await expect(disabledLink).toHaveAttribute('aria-disabled', 'true');
+    await expect(canvasElement.ownerDocument.location.hash).not.toBe('#disabled-link-target');
   },
 };
