@@ -27,7 +27,6 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   };
 }
 
-// No Suspense here: the product is awaited before rendering, and loading.tsx shows the skeleton meanwhile
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
   const product = await getProductForRequest(id);
