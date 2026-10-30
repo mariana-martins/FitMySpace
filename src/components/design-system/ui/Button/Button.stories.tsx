@@ -14,6 +14,10 @@ const meta = {
     children: 'Button',
   },
   parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/2vgKu1CEc6b79vwFHLYcFM/FitMySpace-Design-System?node-id=6-2543',
+    },
     docs: {
       description: {
         component:
