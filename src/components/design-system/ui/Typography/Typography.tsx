@@ -5,6 +5,7 @@ import type {
   LabelProps,
   CaptionProps,
 } from './Typography.types';
+import { Root as RadixLabel } from '@radix-ui/react-label';
 import styles from './Typography.module.css';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
@@ -62,8 +63,9 @@ Text.displayName = 'Text';
  * Label
  *
  * Renders a <span> by default for visual-only label text.
- * When `as="label"` is passed, renders a <label> element and
- * requires `htmlFor` to maintain proper form accessibility.
+ * When `as="label"` is passed, renders Radix UI's `Label` primitive
+ * (a native <label> that also prevents text selection on double-click)
+ * and requires `htmlFor` to maintain proper form accessibility.
  *
  * TypeScript enforces this via a discriminated union:
  *   <Label>…</Label>                      → <span>  (htmlFor not allowed)
@@ -73,7 +75,7 @@ Text.displayName = 'Text';
 export const Label = forwardRef<HTMLElement, LabelProps>(function Label(props, ref) {
   const { as = 'span', size = 'md', className, ...rest } = props;
 
-  const Tag = as as React.ElementType;
+  const Tag: React.ElementType = as === 'label' ? RadixLabel : 'span';
 
   return (
     <Tag ref={ref} className={clsx(styles.base, styles[`label-${size}`], className)} {...rest} />

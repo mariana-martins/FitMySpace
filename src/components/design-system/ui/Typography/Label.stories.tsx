@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { expect, within } from 'storybook/test';
+import { expect, userEvent, within } from 'storybook/test';
 import { Label, Caption } from './';
 
 const meta = {
@@ -11,7 +11,7 @@ const meta = {
       description: {
         component:
           'The `Label` component is built with strict accessibility rules in mind (WCAG guidelines).\n\n' +
-          'By default, it renders as a purely visual `<span>`. However, when you use it to label form inputs, you must pass `as="label"`. The magic happens here: TypeScript acts as an accessibility guard and makes the `htmlFor` prop **mandatory**. This guarantees that your labels are always correctly tied to their respective inputs for screen readers.',
+          'By default, it renders as a purely visual `<span>`. When you use it to label form controls, pass `as="label"`: it renders the `@radix-ui/react-label` primitive (a native `<label>` that also prevents accidental text selection on double-click), and TypeScript makes the `htmlFor` prop **mandatory** so labels are always tied to their respective controls for screen readers.',
       },
     },
   },
@@ -94,5 +94,7 @@ export const FormExample: Story = {
 
     const input = canvas.getByLabelText('Email Address');
     await expect(input).toBeInTheDocument();
+    await userEvent.click(label);
+    await expect(input).toHaveFocus();
   },
 };
