@@ -29,8 +29,14 @@
         },
         "utility-warning": {
           "base": { "value": "{color.honey.400}" },
-          "hover": { "value": "{color.honey.500}" },
-          "active": { "value": "{color.honey.600}" }
+          "hover": {
+            "value": "{color.honey.300}",
+            "comment": "Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1."
+          },
+          "active": {
+            "value": "{color.honey.200}",
+            "comment": "Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1."
+          }
         },
         "utility-information": {
           "base": { "value": "{color.ocean.700}" },

@@ -1,6 +1,7 @@
 import { Plus, Trash2, ArrowRight, Download, Star } from 'lucide-react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { Caption, Label } from '../Typography';
 import { Button } from './';
 
 const meta = {
@@ -351,6 +352,126 @@ export const PseudoStates: Story = {
       description: {
         story:
           'Demonstrates the different interactive states of the button using the `storybook-addon-pseudo-states` plugin. You can also use the toolbar above the canvas to toggle these states globally on any component.',
+      },
+    },
+    pseudo: {
+      hover: ['.pseudo-hover'],
+      active: ['.pseudo-active'],
+      focusVisible: ['.pseudo-focus-visible'],
+    },
+  },
+};
+
+/* ---------------------------------------------------------------
+ * All variants — Pseudo States
+ * --------------------------------------------------------------- */
+
+const PSEUDO_STATE_VARIANTS = [
+  'primary',
+  'secondary',
+  'error',
+  'success',
+  'warning',
+  'information',
+] as const;
+
+const PSEUDO_STATE_APPEARANCES = ['fill', 'outline'] as const;
+
+const PSEUDO_STATES = [
+  { label: 'Default', className: undefined },
+  { label: 'Hover', className: 'pseudo-hover' },
+  { label: 'Active', className: 'pseudo-active' },
+  { label: 'Focus visible', className: 'pseudo-focus-visible' },
+] as const;
+
+function toTitleCase(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+export const AllVariantsPseudoStates: Story = {
+  name: 'All Variants (Pseudo States)',
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      {PSEUDO_STATE_APPEARANCES.map((appearance) => (
+        <div
+          key={appearance}
+          style={{
+            width: 'fit-content',
+            padding: '1.5rem 1.75rem',
+            backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+            border: '1px solid var(--ds-color-charcoal-200)',
+            borderRadius: 'var(--ds-semantic-radii-container-lg)',
+          }}
+        >
+          <table style={{ borderCollapse: 'separate', borderSpacing: '1.5rem 0.75rem' }}>
+            <caption
+              style={{
+                captionSide: 'top',
+                textAlign: 'start',
+                paddingInline: '1.5rem',
+                paddingBottom: '0.5rem',
+              }}
+            >
+              <Label size="lg">{toTitleCase(appearance)}</Label>
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" style={{ textAlign: 'start', fontWeight: 'normal' }}>
+                  <Caption style={{ color: 'var(--ds-semantic-color-text-subtle-base)' }}>
+                    Variant
+                  </Caption>
+                </th>
+                {PSEUDO_STATES.map((state) => (
+                  <th
+                    key={state.label}
+                    scope="col"
+                    style={{ textAlign: 'start', fontWeight: 'normal' }}
+                  >
+                    <Caption style={{ color: 'var(--ds-semantic-color-text-subtle-base)' }}>
+                      {state.label}
+                    </Caption>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {PSEUDO_STATE_VARIANTS.map((variant) => (
+                <tr key={variant}>
+                  <th scope="row" style={{ textAlign: 'start', fontWeight: 'normal' }}>
+                    <Label size="sm">{toTitleCase(variant)}</Label>
+                  </th>
+                  {PSEUDO_STATES.map((state) => (
+                    <td key={state.label}>
+                      <Button
+                        variant={variant}
+                        appearance={appearance}
+                        size="md"
+                        className={state.className}
+                      >
+                        Button
+                      </Button>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('table', { name: 'Fill' })).toBeInTheDocument();
+    await expect(canvas.getByRole('table', { name: 'Outline' })).toBeInTheDocument();
+    await expect(canvas.getAllByRole('button', { name: 'Button' })).toHaveLength(48);
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Every variant (rows) in every interactive state (columns), for fill and outline, for visual review. ' +
+          'Contrast in these states is enforced by `tokens/tokens.contrast.test.ts`: the pseudo-states addon only applies hover, active and focus styles in the Storybook UI, not in the automated test runner, so axe cannot check them here.',
       },
     },
     pseudo: {

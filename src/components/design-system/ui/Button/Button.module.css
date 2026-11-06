@@ -152,7 +152,7 @@
   padding: var(--ds-component-button-size-xs-padding-y);
 }
 
-/* Ensure minimum 40×40 hit area for xs/sm (a11y — WCAG 2.5.5) */
+/* Minimum 40×40 hit area for xs/sm: above the 24×24 required by WCAG 2.5.8 (AA). */
 .icon-only.size-xs,
 .icon-only.size-sm {
   min-width: 40px;
@@ -513,4 +513,18 @@
   background-color: var(--ds-component-button-information-outline-background-disabled);
   border-color: var(--ds-component-button-information-outline-border-disabled);
   color: var(--ds-component-button-information-outline-text-disabled);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .button:active:not(:disabled):not([aria-disabled='true']) {
+    transform: none;
+  }
 }

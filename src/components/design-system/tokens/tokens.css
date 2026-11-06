@@ -118,8 +118,8 @@
   --ds-semantic-color-background-utility-success-hover: var(--ds-color-sage-800);
   --ds-semantic-color-background-utility-success-active: var(--ds-color-sage-900);
   --ds-semantic-color-background-utility-warning-base: var(--ds-color-honey-400);
-  --ds-semantic-color-background-utility-warning-hover: var(--ds-color-honey-500);
-  --ds-semantic-color-background-utility-warning-active: var(--ds-color-honey-600);
+  --ds-semantic-color-background-utility-warning-hover: var(--ds-color-honey-300); /** Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1. */
+  --ds-semantic-color-background-utility-warning-active: var(--ds-color-honey-200); /** Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1. */
   --ds-semantic-color-background-utility-information-base: var(--ds-color-ocean-700);
   --ds-semantic-color-background-utility-information-hover: var(--ds-color-ocean-800);
   --ds-semantic-color-background-utility-information-active: var(--ds-color-ocean-900);

@@ -1,3 +1,5 @@
+'use client';
+
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import styles from './Button.module.css';
 import { forwardRef } from 'react';
