@@ -75,6 +75,11 @@ rules below are its essentials.
   `/* === AREA === */` banners, React Testing Library queries by role and name,
   and a `jest-axe` check.
 - Storybook runs a11y checks with `test: 'error'`: any violation fails the run.
+  Exception: `storybook-addon-pseudo-states` only applies hover, active and
+  focus styles in the Storybook UI, not in the Vitest runner, so axe never
+  checks those states. Their contrast is enforced by
+  `tokens/tokens.contrast.test.ts`: when you add a component or a colour token,
+  add its text/background and border/focus pairs there.
 
 ## Code style
 
