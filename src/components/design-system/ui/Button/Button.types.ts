@@ -33,6 +33,12 @@ type ButtonBaseProps = {
   iconPosition?: IconPosition;
   /** Render as a child element (Radix Slot pattern). */
   asChild?: boolean;
+  /**
+   * Native button type. Defaults to `"button"` so a button inside a form
+   * never submits by accident. Use `"submit"` for the form's main action.
+   * Ignored when `asChild` is true.
+   */
+  type?: 'button' | 'submit' | 'reset';
 };
 
 /** Button with visible text — `aria-label` is optional. */

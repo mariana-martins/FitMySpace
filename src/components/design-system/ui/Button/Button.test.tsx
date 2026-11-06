@@ -30,6 +30,50 @@ describe('Button — rendering', () => {
     expect(screen.getByRole('button')).toHaveAttribute('type', 'button');
   });
 
+  it.each(['submit', 'reset'] as const)('respects type="%s"', (type) => {
+    render(
+      <Button variant="primary" appearance="fill" size="md" type={type}>
+        Action
+      </Button>,
+    );
+    expect(screen.getByRole('button')).toHaveAttribute('type', type);
+  });
+
+  it('submits its form when type="submit"', () => {
+    const handleSubmit = jest.fn((event: React.FormEvent) => event.preventDefault());
+    render(
+      <form onSubmit={handleSubmit}>
+        <Button variant="primary" appearance="fill" size="md" type="submit">
+          Save room
+        </Button>
+      </form>,
+    );
+    screen.getByRole('button', { name: 'Save room' }).click();
+    expect(handleSubmit).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not submit its form by default', () => {
+    const handleSubmit = jest.fn((event: React.FormEvent) => event.preventDefault());
+    render(
+      <form onSubmit={handleSubmit}>
+        <Button variant="primary" appearance="fill" size="md">
+          Preview
+        </Button>
+      </form>,
+    );
+    screen.getByRole('button', { name: 'Preview' }).click();
+    expect(handleSubmit).not.toHaveBeenCalled();
+  });
+
+  it('does not pass type to the child element when asChild is true', () => {
+    render(
+      <Button variant="primary" appearance="fill" size="md" asChild type="submit">
+        <a href="/rooms">Rooms</a>
+      </Button>,
+    );
+    expect(screen.getByRole('link', { name: 'Rooms' })).not.toHaveAttribute('type');
+  });
+
   it('renders the text content', () => {
     render(
       <Button variant="primary" appearance="fill" size="md">

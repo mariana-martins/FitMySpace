@@ -17,6 +17,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     icon,
     iconPosition = 'start',
     asChild = false,
+    type = 'button',
     disabled,
     className,
     children,
@@ -80,7 +81,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   }
 
   return (
-    <button {...sharedProps} type="button" disabled={disabled}>
+    <button {...sharedProps} type={type} disabled={disabled}>
       {iconElement && iconPosition === 'start' && iconElement}
       {children}
       {iconElement && iconPosition === 'end' && iconElement}
