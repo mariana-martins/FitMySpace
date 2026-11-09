@@ -58,6 +58,12 @@ describe('TextField — required', () => {
  * =============================================================== */
 
 describe('TextField — hint and error', () => {
+  it('only accepts plain text as the hint', () => {
+    // @ts-expect-error -- the hint is the accessible description: text only, no markup
+    render(<TextField label="Room width" hint={<strong>Measure wall to wall</strong>} />);
+    expect(screen.getByLabelText('Room width')).toBeInTheDocument();
+  });
+
   it('describes the input with the hint', () => {
     render(<TextField label="Room width" hint="Measure wall to wall" />);
     expect(screen.getByLabelText('Room width')).toHaveAccessibleDescription('Measure wall to wall');

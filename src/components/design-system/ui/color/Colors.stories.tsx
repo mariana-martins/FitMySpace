@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Heading, Text } from '../Typography';
-import { useState } from 'react';
+import { CopyTokenButton } from '../../docs';
 
 const meta = {
   title: 'Design System/Foundation/Color',
@@ -32,14 +32,7 @@ const ColorSwatch = ({
   variable: string;
   isCore?: boolean;
 }) => {
-  const [copied, setCopied] = useState(false);
   const isDark = isCore ? isDarkColor(variable) : false;
-
-  const handleCopy = () => {
-    void navigator.clipboard.writeText(`var(${variable})`);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -67,29 +60,23 @@ const ColorSwatch = ({
         <Text size="sm" as="span" style={{ fontWeight: 600, display: 'block' }}>
           {name}
         </Text>
-        <button
-          onClick={handleCopy}
-          title="Click to copy"
-          style={{
-            fontSize: '11px',
-            fontFamily: 'monospace',
-            background: copied
-              ? 'var(--ds-semantic-color-background-utility-success-base)'
-              : 'var(--ds-semantic-color-background-default-hover)',
-            color: copied
-              ? 'var(--ds-semantic-color-text-inverse)'
-              : 'var(--ds-semantic-color-text-subtle-base)',
-            padding: '4px 8px',
-            borderRadius: '4px',
-            marginTop: '4px',
-            display: 'inline-block',
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-          }}
-        >
-          {copied ? 'Copied!' : `var(${variable})`}
-        </button>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginTop: '6px' }}>
+          <code
+            style={{
+              flex: 1,
+              minWidth: 0,
+              paddingTop: '5px',
+              fontFamily: 'monospace',
+              fontSize: '12px',
+              lineHeight: 1.5,
+              color: 'var(--ds-semantic-color-text-subtle-base)',
+              overflowWrap: 'anywhere',
+            }}
+          >
+            var({variable})
+          </code>
+          <CopyTokenButton variable={variable} iconOnly />
+        </div>
       </div>
     </div>
   );

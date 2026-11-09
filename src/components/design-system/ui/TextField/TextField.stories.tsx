@@ -26,7 +26,8 @@ const meta = {
           '- **Hints:** Use them for format and context ("Measure wall to wall"), not to repeat the label.\n' +
           '- **Errors:** Whenever `invalid` is `true`, pass a descriptive `error` message that names the field and says how to fix it — "Enter the room width in centimetres", not "Invalid value". Set it after validation, not while the user is still typing.\n' +
           "- **Validation:** Validate on submit, then move focus to the first invalid field. Add `noValidate` to the `<form>` so the browser's own bubbles do not appear.\n" +
-          '- **Input type:** Use the right `type` and `autoComplete` (`email`, `tel`, `given-name`…) so mobile keyboards and autofill help the user.\n\n' +
+          '- **Input type:** Use the right `type` and `autoComplete` (`email`, `tel`, `given-name`…) so mobile keyboards and autofill help the user.\n' +
+          '- **Numbers:** For measurements, keep the default text type and set `inputMode="decimal"`. Avoid `type="number"`: it accepts letters such as "e", changes the value on mouse scroll and returns an empty value when the input is invalid.\n\n' +
           '### Key Features\n' +
           '- **Label** — a real `<label for>` built from the Typography `Label` (powered by Radix `Label`), scaled with the field size.\n' +
           '- **Descriptions** — `aria-describedby` points to the hint, then the error, then the unit, read in that order.\n' +
@@ -186,7 +187,7 @@ export const WithIcon: Story = {
 export const Required: Story = {
   render: () => (
     <div style={{ maxWidth: '22rem' }}>
-      <TextField label="Room width" type="number" inputMode="decimal" unit="cm" required />
+      <TextField label="Room width" inputMode="decimal" unit="cm" required />
     </div>
   ),
   parameters: {
@@ -199,7 +200,7 @@ export const Required: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(canvas.getByRole('spinbutton', { name: 'Room width' })).toBeRequired();
+    await expect(canvas.getByRole('textbox', { name: 'Room width' })).toBeRequired();
   },
 };
 
@@ -213,7 +214,6 @@ export const WithError: Story = {
     <div style={{ maxWidth: '22rem' }}>
       <TextField
         label="Room depth"
-        type="number"
         inputMode="decimal"
         unit="cm"
         defaultValue={-40}
@@ -230,13 +230,13 @@ export const WithError: Story = {
           'When `invalid` is `true`, TypeScript requires an `error` message. The field is marked invalid and the message is linked to it; screen readers read the hint first, then the error, then the unit.',
       },
       source: {
-        code: `<TextField\n  label="Room depth"\n  type="number"\n  inputMode="decimal"\n  unit="cm"\n  defaultValue={-40}\n  hint="Measure wall to wall."\n  invalid\n  error="Enter a room depth above 0 cm."\n/>`,
+        code: `<TextField\n  label="Room depth"\n  inputMode="decimal"\n  unit="cm"\n  defaultValue={-40}\n  hint="Measure wall to wall."\n  invalid\n  error="Enter a room depth above 0 cm."\n/>`,
       },
     },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const depth = canvas.getByRole('spinbutton', { name: 'Room depth' });
+    const depth = canvas.getByRole('textbox', { name: 'Room depth' });
     await expect(depth).toHaveAttribute('aria-invalid', 'true');
     await expect(depth).toHaveAccessibleDescription(
       'Measure wall to wall. Error: Enter a room depth above 0 cm. cm',
@@ -357,7 +357,6 @@ function RoomDimensionsForm() {
             key={dimension.name}
             name={dimension.name}
             label={dimension.label}
-            type="number"
             inputMode="decimal"
             unit="cm"
             required
@@ -384,18 +383,18 @@ export const FormExample: Story = {
           'A recipe composing `TextField` and `Button`. Validation runs on submit, each error names the field and how to fix it, and focus moves to the first invalid field.',
       },
       source: {
-        code: `<form noValidate onSubmit={handleSubmit}>\n  <TextField\n    name="width"\n    label="Width"\n    type="number"\n    unit="cm"\n    required\n    {...(errors.width ? { invalid: true, error: errors.width } : { invalid: false })}\n  />\n  <Button variant="primary" appearance="fill" size="lg" type="submit">Save room</Button>\n</form>`,
+        code: `<form noValidate onSubmit={handleSubmit}>\n  <TextField\n    name="width"\n    label="Width"\n    inputMode="decimal"\n    unit="cm"\n    required\n    {...(errors.width ? { invalid: true, error: errors.width } : { invalid: false })}\n  />\n  <Button variant="primary" appearance="fill" size="lg" type="submit">Save room</Button>\n</form>`,
       },
     },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.type(canvas.getByRole('spinbutton', { name: 'Width' }), '320');
+    await userEvent.type(canvas.getByRole('textbox', { name: 'Width' }), '320');
     await userEvent.click(canvas.getByRole('button', { name: 'Save room' }));
-    const depth = canvas.getByRole('spinbutton', { name: 'Depth' });
+    const depth = canvas.getByRole('textbox', { name: 'Depth' });
     await expect(depth).toHaveFocus();
     await expect(depth).toHaveAttribute('aria-invalid', 'true');
-    await expect(canvas.getByRole('spinbutton', { name: 'Width' })).not.toHaveAttribute(
+    await expect(canvas.getByRole('textbox', { name: 'Width' })).not.toHaveAttribute(
       'aria-invalid',
     );
   },

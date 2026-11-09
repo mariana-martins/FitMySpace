@@ -363,15 +363,6 @@ const FoundationCard = ({
       display: 'flex',
       flexDirection: 'column',
       gap: '16px',
-      transition: 'box-shadow 0.2s ease, transform 0.2s ease',
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04)';
-      e.currentTarget.style.transform = 'translateY(-2px)';
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02)';
-      e.currentTarget.style.transform = 'translateY(0)';
     }}
   >
     {/* Decorative preview */}

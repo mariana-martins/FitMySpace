@@ -1,5 +1,4 @@
 import type { InputProps } from '../Input/Input.types';
-import type { ReactNode } from 'react';
 
 /* ---------------------------------------------------------------
  * Props — discriminated union for error-message a11y enforcement
@@ -20,7 +19,7 @@ import type { ReactNode } from 'react';
 
 type TextFieldBaseProps = {
   label: string;
-  hint?: ReactNode;
+  hint?: string;
   id?: string;
   required?: boolean;
   className?: string;

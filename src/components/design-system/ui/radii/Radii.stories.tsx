@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Heading, Text } from '../Typography';
-import { useState } from 'react';
+import { CopyTokenButton } from '../../docs';
 
 const meta = {
   title: 'Design System/Foundation/Radii',
@@ -29,14 +29,6 @@ const resolvedValues: Record<string, string> = {
 
 // Helper components for the Storybook display
 const RadiiSwatch = ({ name, variable }: { name: string; variable: string }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    void navigator.clipboard.writeText(`var(${variable})`);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   const pixelValue = resolvedValues[variable] ?? '?';
 
   return (
@@ -80,31 +72,7 @@ const RadiiSwatch = ({ name, variable }: { name: string; variable: string }) => 
         </Text>
       </div>
 
-      {/* Copy button */}
-      <button
-        onClick={handleCopy}
-        title={`Click to copy var(${variable})`}
-        style={{
-          fontSize: '11px',
-          fontFamily: 'monospace',
-          background: copied
-            ? 'var(--ds-semantic-color-background-utility-success-base)'
-            : 'var(--ds-semantic-color-background-default-hover)',
-          color: copied
-            ? 'var(--ds-semantic-color-text-inverse)'
-            : 'var(--ds-semantic-color-text-subtle-base)',
-          padding: '4px 8px',
-          borderRadius: '4px',
-          border: 'none',
-          cursor: 'pointer',
-          transition: 'all 0.2s ease',
-          whiteSpace: 'nowrap',
-          flexShrink: 0,
-        }}
-        className="focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--ds-semantic-color-border-brand-base)"
-      >
-        {copied ? 'Copied!' : `var(${variable})`}
-      </button>
+      <CopyTokenButton variable={variable} />
     </div>
   );
 };
