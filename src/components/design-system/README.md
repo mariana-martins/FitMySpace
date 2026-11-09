@@ -22,8 +22,13 @@ design-system/
 │   ├── tier-3-definitions/    # Component-level token mappings
 │   │   ├── button.json        # Button variant colors, sizes, shapes, and icon sizing
 │   │   └── input.json         # Input + TextField colors, states, halo, sizes, and unit styling
-│   ├── sd.config.mjs  # Style Dictionary build config
-│   └── tokens.css     # AUTO-GENERATED — do not edit manually
+│   ├── sd.config.mjs              # Style Dictionary build config
+│   ├── tokens.contrast.test.ts    # WCAG contrast checks for every colour pair and state
+│   └── tokens.css                 # AUTO-GENERATED — do not edit manually
+├── docs/            # Storybook-only helpers for the Foundation pages (not public API)
+│   ├── index.tsx
+│   ├── CopyTokenButton.tsx        # Copy-to-clipboard button with icon and status announcement
+│   └── CopyTokenButton.test.tsx
 └── ui/              # Component folders (colocated with stories)
     ├── Button/
     │   ├── index.tsx
@@ -106,6 +111,8 @@ npm run test:storybook
 
 Runs all story `play` functions and automated WCAG accessibility checks (`@storybook/addon-a11y` configured with `test: 'error'`) in a headless Chromium browser via Vitest and Playwright.
 
+> ℹ️ **Interactive states:** `storybook-addon-pseudo-states` only applies hover, active and focus styles in the Storybook UI, not in the test runner, so axe checks every story in its default state only. Colour contrast in every state is covered by `tokens/tokens.contrast.test.ts` (run with `npm test`).
+
 ---
 
 ### Style Dictionary (Token Pipeline)
@@ -123,6 +130,18 @@ npm run tokens:build
 **When to run:** After editing **any** `.json` file inside the `tokens/` directory. The generated `tokens.css` is committed to the repository so that downstream consumers (Storybook, CSS Modules, components) can use the tokens without needing to run the build step first.
 
 > ⚠️ **Important:** Never edit `tokens.css` manually — it will be overwritten on the next build. Always edit the source `.json` files instead.
+
+**Contrast checks:** `tokens/tokens.contrast.test.ts` resolves every token to its hex value and checks text (4.5:1) and UI/focus (3:1) contrast for each component variant and state. When you add a component or a colour token, add its text/background and border/focus pairs there, then run:
+
+```bash
+npm test -- tokens.contrast
+```
+
+---
+
+### Foundation docs helpers
+
+The Foundation pages (Color, Spacing, Radii) use `docs/CopyTokenButton` to copy a token's `var(--…)` reference. It shows a copy icon, switches to a check (copied) or alert (failed) icon, and announces the result to screen readers through a `role="status"` live region. In narrow layouts (the Color swatch cards) use `iconOnly`: render the token name as wrapping text next to a square icon button whose accessible name is "Copy var(--…)". These helpers exist only for Storybook and are not part of the public design-system API.
 
 ---
 

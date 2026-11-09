@@ -46,6 +46,10 @@ rules below are its essentials.
   `Name.module.css`, `Name.test.tsx`, `Name.stories.tsx` and an `index.tsx`
   barrel that exports the component and its types (`export type`). `Button` is
   the reference implementation.
+- **Storybook-only helpers** (used by the Foundation pages, not public API) live
+  in `docs/`, not `ui/`. Reuse them instead of copying markup between stories:
+  `CopyTokenButton` copies a token's `var(--…)` reference, with an icon and a
+  screen-reader announcement (`iconOnly` for narrow cards).
 - **API**: extend native props with `ComponentPropsWithoutRef<'el'>`, omitting
   conflicting ones (e.g. `size` on `<input>`). Forward refs to the native
   element. Add `'use client'` to interactive components.
@@ -119,7 +123,8 @@ Run what applies before saying a change is done, and report failures honestly:
 ## Git
 
 - Conventional Commits, enforced by commitlint (`feat(button): ...`,
-  `fix(typography): ...`).
+  `fix(typography): ...`). Keep the header and each body bullet on a single line
+  of at most 100 characters (`header-max-length`, `body-max-line-length`).
 - The pre-commit hook runs lint-staged and the full test suite.
 - Versions, tags and `CHANGELOG.md` come only from `npm run release`. Never
   bump versions or edit the changelog by hand.
