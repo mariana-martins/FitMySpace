@@ -26,10 +26,11 @@ const meta = {
           '### Best Practices\n' +
           '- **Primary Actions:** Use the `primary` variant for the main action on a page. Only one primary button should be visible at a time.\n' +
           '- **Secondary Actions:** Use `secondary` or `outline` appearances for alternative actions.\n' +
+          '- **Low-emphasis Actions:** Use the `ghost` appearance for tertiary actions and for controls inside other components, such as a "Show password" button in an `Input`.\n' +
           '- **Destructive Actions:** Use the `error` variant for irreversible actions like deletions.\n' +
           '- **Icon-only Buttons:** Always provide an `aria-label` when using a button without text to ensure screen reader support.\n\n' +
           '### Key Features\n' +
-          '- **6 color variants** (`primary`, `secondary`, `error`, `success`, `warning`, `information`) × **2 appearances** (`fill`, `outline`).\n' +
+          '- **6 color variants** (`primary`, `secondary`, `error`, `success`, `warning`, `information`) × **3 appearances** (`fill`, `outline`, `ghost`).\n' +
           '- **4 sizes** (`xs`, `sm`, `md`, `lg`) with token-driven padding, font, gap, and icon sizing.\n' +
           '- **Icon support** — leading or trailing icons via the `icon` prop.\n' +
           '- **Icon-only mode** — TypeScript enforces `aria-label` when `children` is omitted.\n' +
@@ -63,8 +64,9 @@ export const Default: Story = {
     },
     appearance: {
       control: { type: 'select' },
-      options: ['fill', 'outline'],
-      description: 'The visual style. Use `fill` for emphasis and `outline` for secondary actions.',
+      options: ['fill', 'outline', 'ghost'],
+      description:
+        'The visual style. Use `fill` for emphasis, `outline` for secondary actions and `ghost` for low-emphasis actions.',
     },
     size: {
       control: { type: 'select' },
@@ -170,6 +172,49 @@ export const OutlineVariants: Story = {
           "Outline buttons have a transparent background and visible border. They are perfect for secondary actions that shouldn't distract from the primary focus.",
       },
     },
+  },
+};
+
+/* ---------------------------------------------------------------
+ * All variants — Ghost
+ * --------------------------------------------------------------- */
+
+export const GhostVariants: Story = {
+  name: 'All Variants (Ghost)',
+  render: () => (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+      <Button variant="primary" size="md" appearance="ghost">
+        Primary
+      </Button>
+      <Button variant="secondary" size="md" appearance="ghost">
+        Secondary
+      </Button>
+      <Button variant="error" size="md" appearance="ghost">
+        Error
+      </Button>
+      <Button variant="success" size="md" appearance="ghost">
+        Success
+      </Button>
+      <Button variant="warning" size="md" appearance="ghost">
+        Warning
+      </Button>
+      <Button variant="information" size="md" appearance="ghost">
+        Information
+      </Button>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Ghost buttons have no border or background until they are hovered, pressed or focused. Use them for low-emphasis actions and for controls inside other components. They keep the same size as fill and outline buttons.',
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('button', { name: 'Primary' })).toBeInTheDocument();
+    await expect(canvas.getByRole('button', { name: 'Information' })).toBeInTheDocument();
   },
 };
 
@@ -375,7 +420,7 @@ const PSEUDO_STATE_VARIANTS = [
   'information',
 ] as const;
 
-const PSEUDO_STATE_APPEARANCES = ['fill', 'outline'] as const;
+const PSEUDO_STATE_APPEARANCES = ['fill', 'outline', 'ghost'] as const;
 
 const PSEUDO_STATES = [
   { label: 'Default', className: undefined },
@@ -464,13 +509,14 @@ export const AllVariantsPseudoStates: Story = {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole('table', { name: 'Fill' })).toBeInTheDocument();
     await expect(canvas.getByRole('table', { name: 'Outline' })).toBeInTheDocument();
-    await expect(canvas.getAllByRole('button', { name: 'Button' })).toHaveLength(48);
+    await expect(canvas.getByRole('table', { name: 'Ghost' })).toBeInTheDocument();
+    await expect(canvas.getAllByRole('button', { name: 'Button' })).toHaveLength(72);
   },
   parameters: {
     docs: {
       description: {
         story:
-          'Every variant (rows) in every interactive state (columns), for fill and outline, for visual review. ' +
+          'Every variant (rows) in every interactive state (columns), for fill, outline and ghost, for visual review. ' +
           'Contrast in these states is enforced by `tokens/tokens.contrast.test.ts`: the pseudo-states addon only applies hover, active and focus styles in the Storybook UI, not in the automated test runner, so axe cannot check them here.',
       },
     },

@@ -24,6 +24,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     className,
     children,
     onClick,
+    onAuxClick,
     ...rest
   } = props;
 
@@ -56,10 +57,23 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     }
   };
 
+  /*
+   * Middle click (auxclick) opens a link in a new tab without firing `click`,
+   * so a disabled `asChild` link must block it separately.
+   */
+  const handleAuxClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (disabled) {
+      event.preventDefault();
+      return;
+    }
+    onAuxClick?.(event);
+  };
+
   const sharedProps = {
     ref,
     className: composedClassName,
     onClick: handleClick,
+    onAuxClick: handleAuxClick,
     ...rest,
   };
 

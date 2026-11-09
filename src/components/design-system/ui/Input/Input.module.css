@@ -8,6 +8,7 @@
  *   .input  — the native <input>, unstyled and transparent
  *   .icon   — decorative icon slot (start / end)
  *   .unit   — unit suffix, e.g. "cm", set off by a hairline divider
+ *   .action — interactive end slot (e.g. a clear button), not aria-hidden
  *
  * States are driven by data attributes on .field:
  *   [data-invalid], [data-disabled], [data-readonly]
@@ -62,8 +63,10 @@
 
 /* Hover ----------------------------------------------------------- */
 
-.field:hover:not([data-disabled]):not([data-invalid]):not(:focus-within) {
-  --input-border-color: var(--ds-component-input-border-hover);
+@media (hover: hover) {
+  .field:hover:not([data-disabled]):not([data-invalid]):not(:focus-within) {
+    --input-border-color: var(--ds-component-input-border-hover);
+  }
 }
 
 /* Focus ----------------------------------------------------------- */
@@ -149,9 +152,15 @@
   -webkit-text-fill-color: var(--ds-component-input-text-default);
 }
 
-/* Numbers: aligned digits, no spinner chrome (arrow keys still work). */
+/* Numeric fields: aligned digits. inputMode is the recommended way to ask for numbers. */
+.input[inputmode='decimal'],
+.input[inputmode='numeric'],
 .input[type='number'] {
   font-variant-numeric: tabular-nums;
+}
+
+/* type="number" is discouraged, but if used: no spinner chrome (arrow keys still work). */
+.input[type='number'] {
   appearance: textfield;
   -moz-appearance: textfield;
 }
@@ -199,6 +208,14 @@
 }
 
 /* Stays readable (6:1) so the unit still explains the field while it is disabled. */
+/* Interactive end action (e.g. clear or show-password button): keeps its own pointer events. */
+.action {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: default;
+}
+
 .field[data-disabled] .unit {
   color: var(--ds-component-input-unit-disabled);
 }

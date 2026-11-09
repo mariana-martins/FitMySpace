@@ -12,7 +12,7 @@ import type { InputProps } from './Input.types';
  *
  * Renders a native <input> inside a wrapper that draws the visible
  * box. The wrapper carries the border, halo and adornments (icons,
- * unit), so the native input stays unstyled and fully native:
+ * unit, end action), so the native input stays unstyled and fully native:
  * autofill, IME, spellcheck and mobile keyboards keep working.
  *
  * The ref points to the <input>, not the wrapper.
@@ -35,6 +35,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(pro
     iconStart,
     iconEnd,
     unit,
+    endAction,
     className,
     disabled,
     readOnly,
@@ -52,8 +53,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(pro
     assignRef(ref, node);
   };
 
+  const actionRef = useRef<HTMLSpanElement | null>(null);
+
   const handleFieldMouseDown = (event: MouseEvent<HTMLDivElement>) => {
-    if (disabled || event.target === inputRef.current) return;
+    const isOnInput = event.target === inputRef.current;
+    const isOnAction = actionRef.current?.contains(event.target as Node) ?? false;
+    if (disabled || isOnInput || isOnAction) return;
     event.preventDefault();
     inputRef.current?.focus();
   };
@@ -99,6 +104,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(pro
       {unit && (
         <span id={unitId} className={styles.unit}>
           {unit}
+        </span>
+      )}
+
+      {endAction && (
+        <span ref={actionRef} className={styles.action}>
+          {endAction}
         </span>
       )}
     </div>

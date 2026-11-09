@@ -149,6 +149,56 @@ describe('Input — interaction', () => {
 });
 
 /* ===============================================================
+ * END ACTION
+ * =============================================================== */
+
+describe('Input — end action', () => {
+  function renderSearchWithClearButton(handleClear = jest.fn()) {
+    render(
+      <Input
+        aria-label="Search furniture"
+        type="search"
+        endAction={
+          <button type="button" onClick={handleClear}>
+            Clear search
+          </button>
+        }
+      />,
+    );
+    return handleClear;
+  }
+
+  it('keeps the action visible to assistive technology', () => {
+    renderSearchWithClearButton();
+    expect(screen.getByRole('button', { name: 'Clear search' })).toBeInTheDocument();
+  });
+
+  it('runs the action when it is clicked', async () => {
+    const user = userEvent.setup();
+    const handleClear = renderSearchWithClearButton();
+    await user.click(screen.getByRole('button', { name: 'Clear search' }));
+    expect(handleClear).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not hijack a mousedown on the action to focus the input', () => {
+    renderSearchWithClearButton();
+    const clearButton = screen.getByRole('button', { name: 'Clear search' });
+    const isNotPrevented = fireEvent.mouseDown(clearButton);
+    expect(isNotPrevented).toBe(true);
+    expect(screen.getByRole('searchbox')).not.toHaveFocus();
+  });
+
+  it('is reached with Tab right after the input', async () => {
+    const user = userEvent.setup();
+    renderSearchWithClearButton();
+    await user.tab();
+    expect(screen.getByRole('searchbox')).toHaveFocus();
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Clear search' })).toHaveFocus();
+  });
+});
+
+/* ===============================================================
  * ACCESSIBILITY
  * =============================================================== */
 

@@ -1,6 +1,8 @@
+import { Search, Mail, Ruler, Eye, EyeOff } from 'lucide-react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
-import { Search, Mail, Ruler } from 'lucide-react';
+import { Button } from '../Button';
+import { useState } from 'react';
 import { Input } from './';
 
 const meta = {
@@ -21,12 +23,13 @@ const meta = {
           '- **Form fields:** Use `TextField` instead. It adds the visible label, hint and error message and wires them for assistive technology.\n' +
           '- **Standalone use:** Use `Input` directly only when the accessible name comes from elsewhere, such as a search box with `aria-label`.\n' +
           '- **Errors:** Always pair `invalid` with a visible message linked through `aria-describedby`. Colour alone never conveys the error.\n' +
-          '- **Input type:** Pick the right `type`, `inputMode` and `autoComplete` so mobile keyboards and autofill help the user.\n\n' +
+          '- **Input type:** Pick the right `type`, `inputMode` and `autoComplete` so mobile keyboards and autofill help the user.\n' +
+          '- **Numbers:** For measurements and other numbers, keep the default text type and set `inputMode="decimal"` (or `"numeric"`). Avoid `type="number"`: it accepts letters such as "e", changes the value on mouse scroll and returns an empty value when the input is invalid.\n\n' +
           '### Key Features\n' +
           '- **3 sizes** (`sm` 40px, `md` 48px, `lg` 56px) with token-driven height, padding, font and icon sizing.\n' +
           '- **Focus** — the border turns sage, thickens and gains a soft halo, so the change is visible without relying on colour alone.\n' +
           '- **States** — `invalid`, `disabled` and `readOnly`, all mapped to native attributes.\n' +
-          '- **Adornments** — decorative `iconStart` / `iconEnd`, and a `unit` suffix (e.g. `cm`) that is also announced to screen readers.\n' +
+          '- **Adornments** — decorative `iconStart` / `iconEnd`, a `unit` suffix (e.g. `cm`) that is also announced to screen readers, and an interactive `endAction` slot.\n' +
           '- **Native first** — the real `<input>` keeps autofill, mobile keyboards and spellcheck; `ref` points to it.',
       },
     },
@@ -176,31 +179,81 @@ export const WithUnit: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '20rem' }}>
       <Input
         aria-label="Width"
-        type="number"
         inputMode="decimal"
         unit="cm"
         iconStart={<Ruler />}
         placeholder="0"
       />
-      <Input aria-label="Depth" type="number" inputMode="decimal" unit="cm" defaultValue={240} />
+      <Input aria-label="Depth" inputMode="decimal" unit="cm" defaultValue={240} />
     </div>
   ),
   parameters: {
     docs: {
       description: {
         story:
-          'The `unit` sits after a hairline divider, with aligned digits. It is part of the accessible description, so a screen reader announces "Depth, 240, cm". Number fields hide the spinner buttons; arrow keys still change the value.',
+          'The `unit` sits after a hairline divider, with aligned digits. It is part of the accessible description, so a screen reader announces "Depth, 240, cm". For measurements, keep the default text type and set `inputMode="decimal"`: mobile keyboards show digits, and the field avoids the known problems of `type="number"`.',
       },
       source: {
-        code: `<Input aria-label="Depth" type="number" inputMode="decimal" unit="cm" />`,
+        code: `<Input aria-label="Depth" inputMode="decimal" unit="cm" />`,
       },
     },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(canvas.getByRole('spinbutton', { name: 'Depth' })).toHaveAccessibleDescription(
-      'cm',
-    );
+    await expect(canvas.getByRole('textbox', { name: 'Depth' })).toHaveAccessibleDescription('cm');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * With end action
+ * --------------------------------------------------------------- */
+
+function PasswordWithToggle() {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  return (
+    <div style={{ maxWidth: '20rem' }}>
+      <Input
+        aria-label="Password"
+        type={isPasswordVisible ? 'text' : 'password'}
+        autoComplete="current-password"
+        defaultValue="sofa-and-shelves"
+        endAction={
+          <Button
+            variant="secondary"
+            appearance="ghost"
+            size="xs"
+            icon={isPasswordVisible ? <EyeOff /> : <Eye />}
+            aria-label={isPasswordVisible ? 'Hide password' : 'Show password'}
+            onClick={() => setIsPasswordVisible((isVisible) => !isVisible)}
+          />
+        }
+      />
+    </div>
+  );
+}
+
+export const WithEndAction: Story = {
+  render: () => <PasswordWithToggle />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use `endAction` for an interactive control inside the field, such as "Show password" or "Clear search". ' +
+          'Unlike `iconStart` / `iconEnd`, it stays visible to screen readers, receives its own clicks and follows the input in the Tab order. Give it its own accessible name.',
+      },
+      source: {
+        code: `<Input\n  aria-label="Password"\n  type={isPasswordVisible ? 'text' : 'password'}\n  endAction={\n    <Button\n      variant="secondary"\n      appearance="ghost"\n      size="xs"\n      icon={isPasswordVisible ? <EyeOff /> : <Eye />}\n      aria-label={isPasswordVisible ? 'Hide password' : 'Show password'}\n      onClick={togglePasswordVisibility}\n    />\n  }\n/>`,
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const password = canvas.getByLabelText('Password');
+    await expect(password).toHaveAttribute('type', 'password');
+    await userEvent.click(canvas.getByRole('button', { name: 'Show password' }));
+    await expect(password).toHaveAttribute('type', 'text');
+    await expect(canvas.getByRole('button', { name: 'Hide password' })).toBeInTheDocument();
   },
 };
 
@@ -211,7 +264,7 @@ export const WithUnit: Story = {
 export const Invalid: Story = {
   render: () => (
     <div style={{ maxWidth: '20rem' }}>
-      <Input aria-label="Room depth" type="number" unit="cm" defaultValue={-40} invalid />
+      <Input aria-label="Room depth" inputMode="decimal" unit="cm" defaultValue={-40} invalid />
     </div>
   ),
   parameters: {
@@ -224,7 +277,7 @@ export const Invalid: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(canvas.getByRole('spinbutton', { name: 'Room depth' })).toHaveAttribute(
+    await expect(canvas.getByRole('textbox', { name: 'Room depth' })).toHaveAttribute(
       'aria-invalid',
       'true',
     );

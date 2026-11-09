@@ -108,6 +108,15 @@ describe('Button — variants', () => {
     );
     expect(container.firstChild).toHaveClass(`outline-${variant}`);
   });
+
+  it.each(variants)('applies ghost-%s class for variant="%s" appearance="ghost"', (variant) => {
+    const { container } = render(
+      <Button variant={variant} appearance="ghost" size="md">
+        {variant}
+      </Button>,
+    );
+    expect(container.firstChild).toHaveClass(`ghost-${variant}`);
+  });
 });
 
 /* ===============================================================
@@ -325,6 +334,30 @@ describe('Button — asChild', () => {
     );
     const link = screen.getByRole('link');
     expect(link).toHaveAttribute('tabindex', '-1');
+  });
+
+  function dispatchMiddleClick(element: HTMLElement) {
+    const middleClick = new MouseEvent('auxclick', { bubbles: true, cancelable: true, button: 1 });
+    element.dispatchEvent(middleClick);
+    return middleClick;
+  }
+
+  it('blocks a middle click (open in new tab) when asChild is disabled', () => {
+    render(
+      <Button variant="primary" appearance="fill" size="md" asChild disabled>
+        <a href="/disabled">Disabled Link</a>
+      </Button>,
+    );
+    expect(dispatchMiddleClick(screen.getByRole('link')).defaultPrevented).toBe(true);
+  });
+
+  it('allows a middle click when asChild is enabled', () => {
+    render(
+      <Button variant="primary" appearance="fill" size="md" asChild>
+        <a href="/rooms">Rooms</a>
+      </Button>,
+    );
+    expect(dispatchMiddleClick(screen.getByRole('link')).defaultPrevented).toBe(false);
   });
 });
 

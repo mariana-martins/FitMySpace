@@ -7,7 +7,7 @@ import type { ReactElement, ReactNode, ComponentPropsWithoutRef } from 'react';
 export type ButtonVariant =
   'primary' | 'secondary' | 'error' | 'success' | 'warning' | 'information';
 
-export type ButtonAppearance = 'fill' | 'outline';
+export type ButtonAppearance = 'fill' | 'outline' | 'ghost';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 export type IconPosition = 'start' | 'end';
 

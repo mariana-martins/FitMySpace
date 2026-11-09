@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ReactElement } from 'react';
+import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
 
 /* ---------------------------------------------------------------
  * Types
@@ -37,6 +37,13 @@ export interface InputProps extends Omit<ComponentPropsWithoutRef<'input'>, 'siz
    * field's accessible description, so screen readers announce it.
    */
   unit?: string;
+  /**
+   * Interactive control at the end of the field, e.g. a "Clear search" or
+   * "Show password" button. Unlike the icons it stays visible to assistive
+   * technology, receives its own clicks and comes right after the input in the
+   * Tab order. It must have its own accessible name.
+   */
+  endAction?: ReactNode;
   /** Class name for the outer field wrapper (the visible box). */
   className?: string;
 }
