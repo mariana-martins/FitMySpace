@@ -43,6 +43,7 @@
           "hover": { "value": "{color.ocean.800}" },
           "active": { "value": "{color.ocean.900}" }
         },
+        "transparent": { "value": "{color.transparent}" },
         "disabled": { "value": "{color.charcoal.100}" }
       },
       "text": {
@@ -120,6 +121,7 @@
           "hover": { "value": "{color.ocean.700}" },
           "active": { "value": "{color.ocean.800}" }
         },
+        "transparent": { "value": "{color.transparent}" },
         "disabled": { "value": "{color.charcoal.200}" }
       }
     }

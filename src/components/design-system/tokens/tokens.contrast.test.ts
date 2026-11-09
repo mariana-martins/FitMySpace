@@ -73,22 +73,28 @@ function relativeLuminance(hexColour: string): number {
   return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
 }
 
+const PAGE_BACKGROUND = 'semantic.color.background.default.base';
+
+/** Resolves a colour token to hex. A transparent background shows the page behind it. */
+function resolveColour(tokenPath: string): string {
+  const value = resolveToken(tokenPath);
+  return value === 'transparent' ? resolveToken(PAGE_BACKGROUND) : value;
+}
+
 function contrastRatio(foregroundToken: string, backgroundToken: string): number {
-  const foregroundLuminance = relativeLuminance(resolveToken(foregroundToken));
-  const backgroundLuminance = relativeLuminance(resolveToken(backgroundToken));
+  const foregroundLuminance = relativeLuminance(resolveColour(foregroundToken));
+  const backgroundLuminance = relativeLuminance(resolveColour(backgroundToken));
   const lighter = Math.max(foregroundLuminance, backgroundLuminance);
   const darker = Math.min(foregroundLuminance, backgroundLuminance);
   return (lighter + 0.05) / (darker + 0.05);
 }
-
-const PAGE_BACKGROUND = 'semantic.color.background.default.base';
 
 /* ===============================================================
  * BUTTON
  * =============================================================== */
 
 const BUTTON_VARIANTS = ['primary', 'secondary', 'error', 'success', 'warning', 'information'];
-const BUTTON_APPEARANCES = ['fill', 'outline'];
+const BUTTON_APPEARANCES = ['fill', 'outline', 'ghost'];
 const BUTTON_INTERACTIVE_STATES = ['default', 'hover', 'focus', 'active'];
 
 const buttonTextCases = BUTTON_VARIANTS.flatMap((variant) =>

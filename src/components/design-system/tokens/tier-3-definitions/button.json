@@ -48,6 +48,29 @@
             "active": { "value": "{semantic.color.text.brand.active}" },
             "disabled": { "value": "{semantic.color.text.disabled}" }
           }
+        },
+        "ghost": {
+          "background": {
+            "default": { "value": "{semantic.color.background.transparent}" },
+            "hover": { "value": "{semantic.color.background.default.hover}" },
+            "focus": { "value": "{semantic.color.background.default.active}" },
+            "active": { "value": "{semantic.color.background.default.active}" },
+            "disabled": { "value": "{semantic.color.background.transparent}" }
+          },
+          "border": {
+            "default": { "value": "{semantic.color.border.transparent}" },
+            "hover": { "value": "{semantic.color.border.transparent}" },
+            "focus": { "value": "{semantic.color.border.transparent}" },
+            "active": { "value": "{semantic.color.border.transparent}" },
+            "disabled": { "value": "{semantic.color.border.transparent}" }
+          },
+          "text": {
+            "default": { "value": "{semantic.color.text.brand.base}" },
+            "hover": { "value": "{semantic.color.text.brand.hover}" },
+            "focus": { "value": "{semantic.color.text.brand.active}" },
+            "active": { "value": "{semantic.color.text.brand.active}" },
+            "disabled": { "value": "{semantic.color.text.disabled}" }
+          }
         }
       },
       "secondary": {
@@ -89,6 +112,29 @@
             "focus": { "value": "{semantic.color.border.default.active}" },
             "active": { "value": "{semantic.color.border.default.active}" },
             "disabled": { "value": "{semantic.color.border.disabled}" }
+          },
+          "text": {
+            "default": { "value": "{semantic.color.text.default.base}" },
+            "hover": { "value": "{semantic.color.text.default.hover}" },
+            "focus": { "value": "{semantic.color.text.default.active}" },
+            "active": { "value": "{semantic.color.text.default.active}" },
+            "disabled": { "value": "{semantic.color.text.disabled}" }
+          }
+        },
+        "ghost": {
+          "background": {
+            "default": { "value": "{semantic.color.background.transparent}" },
+            "hover": { "value": "{semantic.color.background.default.hover}" },
+            "focus": { "value": "{semantic.color.background.default.active}" },
+            "active": { "value": "{semantic.color.background.default.active}" },
+            "disabled": { "value": "{semantic.color.background.transparent}" }
+          },
+          "border": {
+            "default": { "value": "{semantic.color.border.transparent}" },
+            "hover": { "value": "{semantic.color.border.transparent}" },
+            "focus": { "value": "{semantic.color.border.transparent}" },
+            "active": { "value": "{semantic.color.border.transparent}" },
+            "disabled": { "value": "{semantic.color.border.transparent}" }
           },
           "text": {
             "default": { "value": "{semantic.color.text.default.base}" },
@@ -146,6 +192,29 @@
             "active": { "value": "{semantic.color.text.utility-error.active}" },
             "disabled": { "value": "{semantic.color.text.disabled}" }
           }
+        },
+        "ghost": {
+          "background": {
+            "default": { "value": "{semantic.color.background.transparent}" },
+            "hover": { "value": "{semantic.color.background.default.hover}" },
+            "focus": { "value": "{semantic.color.background.default.active}" },
+            "active": { "value": "{semantic.color.background.default.active}" },
+            "disabled": { "value": "{semantic.color.background.transparent}" }
+          },
+          "border": {
+            "default": { "value": "{semantic.color.border.transparent}" },
+            "hover": { "value": "{semantic.color.border.transparent}" },
+            "focus": { "value": "{semantic.color.border.transparent}" },
+            "active": { "value": "{semantic.color.border.transparent}" },
+            "disabled": { "value": "{semantic.color.border.transparent}" }
+          },
+          "text": {
+            "default": { "value": "{semantic.color.text.utility-error.base}" },
+            "hover": { "value": "{semantic.color.text.utility-error.hover}" },
+            "focus": { "value": "{semantic.color.text.utility-error.active}" },
+            "active": { "value": "{semantic.color.text.utility-error.active}" },
+            "disabled": { "value": "{semantic.color.text.disabled}" }
+          }
         }
       },
       "success": {
@@ -187,6 +256,29 @@
             "focus": { "value": "{semantic.color.border.utility-success.active}" },
             "active": { "value": "{semantic.color.border.utility-success.active}" },
             "disabled": { "value": "{semantic.color.border.disabled}" }
+          },
+          "text": {
+            "default": { "value": "{semantic.color.text.utility-success.base}" },
+            "hover": { "value": "{semantic.color.text.utility-success.hover}" },
+            "focus": { "value": "{semantic.color.text.utility-success.active}" },
+            "active": { "value": "{semantic.color.text.utility-success.active}" },
+            "disabled": { "value": "{semantic.color.text.disabled}" }
+          }
+        },
+        "ghost": {
+          "background": {
+            "default": { "value": "{semantic.color.background.transparent}" },
+            "hover": { "value": "{semantic.color.background.default.hover}" },
+            "focus": { "value": "{semantic.color.background.default.active}" },
+            "active": { "value": "{semantic.color.background.default.active}" },
+            "disabled": { "value": "{semantic.color.background.transparent}" }
+          },
+          "border": {
+            "default": { "value": "{semantic.color.border.transparent}" },
+            "hover": { "value": "{semantic.color.border.transparent}" },
+            "focus": { "value": "{semantic.color.border.transparent}" },
+            "active": { "value": "{semantic.color.border.transparent}" },
+            "disabled": { "value": "{semantic.color.border.transparent}" }
           },
           "text": {
             "default": { "value": "{semantic.color.text.utility-success.base}" },
@@ -244,6 +336,29 @@
             "active": { "value": "{semantic.color.text.utility-warning.active}" },
             "disabled": { "value": "{semantic.color.text.disabled}" }
           }
+        },
+        "ghost": {
+          "background": {
+            "default": { "value": "{semantic.color.background.transparent}" },
+            "hover": { "value": "{semantic.color.background.default.hover}" },
+            "focus": { "value": "{semantic.color.background.default.active}" },
+            "active": { "value": "{semantic.color.background.default.active}" },
+            "disabled": { "value": "{semantic.color.background.transparent}" }
+          },
+          "border": {
+            "default": { "value": "{semantic.color.border.transparent}" },
+            "hover": { "value": "{semantic.color.border.transparent}" },
+            "focus": { "value": "{semantic.color.border.transparent}" },
+            "active": { "value": "{semantic.color.border.transparent}" },
+            "disabled": { "value": "{semantic.color.border.transparent}" }
+          },
+          "text": {
+            "default": { "value": "{semantic.color.text.utility-warning.base}" },
+            "hover": { "value": "{semantic.color.text.utility-warning.hover}" },
+            "focus": { "value": "{semantic.color.text.utility-warning.active}" },
+            "active": { "value": "{semantic.color.text.utility-warning.active}" },
+            "disabled": { "value": "{semantic.color.text.disabled}" }
+          }
         }
       },
       "information": {
@@ -285,6 +400,29 @@
             "focus": { "value": "{semantic.color.border.utility-information.active}" },
             "active": { "value": "{semantic.color.border.utility-information.active}" },
             "disabled": { "value": "{semantic.color.border.disabled}" }
+          },
+          "text": {
+            "default": { "value": "{semantic.color.text.utility-information.base}" },
+            "hover": { "value": "{semantic.color.text.utility-information.hover}" },
+            "focus": { "value": "{semantic.color.text.utility-information.active}" },
+            "active": { "value": "{semantic.color.text.utility-information.active}" },
+            "disabled": { "value": "{semantic.color.text.disabled}" }
+          }
+        },
+        "ghost": {
+          "background": {
+            "default": { "value": "{semantic.color.background.transparent}" },
+            "hover": { "value": "{semantic.color.background.default.hover}" },
+            "focus": { "value": "{semantic.color.background.default.active}" },
+            "active": { "value": "{semantic.color.background.default.active}" },
+            "disabled": { "value": "{semantic.color.background.transparent}" }
+          },
+          "border": {
+            "default": { "value": "{semantic.color.border.transparent}" },
+            "hover": { "value": "{semantic.color.border.transparent}" },
+            "focus": { "value": "{semantic.color.border.transparent}" },
+            "active": { "value": "{semantic.color.border.transparent}" },
+            "disabled": { "value": "{semantic.color.border.transparent}" }
           },
           "text": {
             "default": { "value": "{semantic.color.text.utility-information.base}" },

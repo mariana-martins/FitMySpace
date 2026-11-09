@@ -61,6 +61,7 @@
       "900": { "value": "#7f1d1d" }
     },
     "white": { "value": "#ffffff" },
-    "black": { "value": "#000000" }
+    "black": { "value": "#000000" },
+    "transparent": { "value": "transparent" }
   }
 }
