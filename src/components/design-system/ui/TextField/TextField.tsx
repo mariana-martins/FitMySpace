@@ -59,7 +59,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         <Label as="label" htmlFor={inputId} size={size} className={styles.label}>
           {label}
           {required && (
-            <span className={styles.requiredMarker} aria-hidden="true">
+            <span className={styles['required-marker']} aria-hidden="true">
               *
             </span>
           )}
@@ -89,9 +89,9 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
         {hasError && (
           <p className={styles.error}>
-            <CircleAlert className={styles.errorIcon} aria-hidden="true" focusable="false" />
+            <CircleAlert className={styles['error-icon']} aria-hidden="true" focusable="false" />
             <span id={errorId}>
-              <span className={styles.visuallyHidden}>Error: </span>
+              <span className={styles['visually-hidden']}>Error: </span>
               {error}
             </span>
           </p>

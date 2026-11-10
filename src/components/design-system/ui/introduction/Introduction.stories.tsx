@@ -236,9 +236,9 @@ const TokenArchitecture = () => (
         label="Component Tokens"
         description="Highly scoped aliases for specific UI components. These tie semantic tokens to specific elements."
         examples={[
-          '--ds-button-primary-bg',
-          '--ds-card-border-subtle',
-          '--ds-typography-heading-lg',
+          '--ds-component-button-primary-focus-ring',
+          '--ds-component-input-border-focus',
+          '--ds-component-text-field-hint-text',
         ]}
         accent="var(--ds-semantic-color-text-brand-base)"
       />

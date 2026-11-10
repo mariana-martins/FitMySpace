@@ -28,11 +28,11 @@
   cursor: not-allowed;
 }
 
-.requiredMarker {
+.required-marker {
   color: var(--ds-component-text-field-label-required-marker);
 }
 
-.root[data-disabled] .requiredMarker {
+.root[data-disabled] .required-marker {
   color: inherit;
 }
 
@@ -57,7 +57,7 @@
   color: var(--ds-component-text-field-error-text);
 }
 
-.errorIcon {
+.error-icon {
   flex-shrink: 0;
   inline-size: var(--ds-component-text-field-error-icon-size);
   block-size: var(--ds-component-text-field-error-icon-size);
@@ -66,7 +66,7 @@
 }
 
 /* Screen-reader-only prefix, so the message is announced as an error. */
-.visuallyHidden {
+.visually-hidden {
   position: absolute;
   inline-size: 1px;
   block-size: 1px;

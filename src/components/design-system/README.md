@@ -31,12 +31,14 @@ design-system/
 │   ├── sd.config.mjs              # Style Dictionary build config
 │   ├── tokens.contrast.test.ts    # WCAG contrast checks for every colour pair and state
 │   ├── tokens.tiers.test.ts       # Each tier references only the tier below it
+│   ├── tokens.usage.test.ts       # Every --ds-* name used exists; components skip tier 1
 │   └── tokens.css                 # AUTO-GENERATED — do not edit manually
 ├── docs/            # Storybook-only helpers for the Foundation pages (not public API)
 │   ├── index.tsx
 │   ├── CopyTokenButton.tsx        # Copy-to-clipboard button with icon and status announcement
 │   └── CopyTokenButton.test.tsx
 └── ui/              # Component folders (colocated with stories)
+    ├── css-modules.test.ts        # CSS Module class names are kebab-case
     ├── Button/
     │   ├── index.tsx
     │   ├── Button.types.ts
@@ -134,7 +136,7 @@ npm run tokens:build
 
 **Where the output goes:** `src/components/design-system/tokens/tokens.css`
 
-**When to run:** After editing **any** `.json` file inside the `tokens/` directory. The generated `tokens.css` is committed to the repository so that downstream consumers (Storybook, CSS Modules, components) can use the tokens without needing to run the build step first.
+**When to run:** After editing **any** `.json` file inside the `tokens/` directory. `npm run tokens:check` rebuilds in memory and fails if the committed `tokens.css` differs; the pre-commit hook and CI both run it. The generated `tokens.css` is committed to the repository so that downstream consumers (Storybook, CSS Modules, components) can use the tokens without needing to run the build step first.
 
 > ⚠️ **Important:** Never edit `tokens.css` manually — it will be overwritten on the next build. Always edit the source `.json` files instead.
 

@@ -79,6 +79,10 @@ rules below are its essentials.
     `parameters.docs.description.story`, a `play` test where it adds value, and
     `docs.source.code` when the render is complex;
   - layouts use inline `style`, not meta decorators or shared style constants.
+- **CSS Modules**: kebab-case class names (`.icon-only`, `.error-icon`), read
+  with bracket access (`styles['error-icon']`). `ui/css-modules.test.ts` enforces
+  it, and `tokens/tokens.usage.test.ts` fails on any `--ds-*` name missing from
+  `tokens.css` or any tier-1 token in a `.module.css`.
 - **Tests** mirror `Button.test.tsx`: `describe('Name — area')` blocks under
   `/* === AREA === */` banners, React Testing Library queries by role and name,
   and a `jest-axe` check.
@@ -121,8 +125,14 @@ Run what applies before saying a change is done, and report failures honestly:
 - `npm run lint` — ESLint.
 - `npm test` — Jest (app and design system).
 - `npm run test:storybook` — Storybook play and a11y tests (design system).
+- `npm run tokens:check` — `tokens.css` matches the token JSON (run
+  `npm run tokens:build` if it does not).
 - For visual changes, look at the result in Storybook (`npm run storybook`) or
   the app (`npm run dev`); jsdom never sees colour or layout.
+
+GitHub Actions (`.github/workflows/ci.yml`) runs all of these, plus
+`npm run format:check` and `npm run build`, on every pull request and on pushes
+to `main`.
 
 ## Git
 
