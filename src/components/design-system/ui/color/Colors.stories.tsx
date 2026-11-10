@@ -148,6 +148,7 @@ export const CorePalettes: Story = {
       { title: 'Ocean (Information)', colors: generateScale('Ocean', 'ocean') },
       { title: 'Honey (Warning)', colors: generateScale('Honey', 'honey') },
       { title: 'Berry (Error / Destructive)', colors: generateScale('Berry', 'berry') },
+      { title: 'Jade (Success)', colors: generateScale('Jade', 'jade') },
     ];
 
     return (
@@ -206,6 +207,7 @@ export const SemanticColors: Story = {
           { name: 'Subtle Base', variable: '--ds-semantic-color-text-subtle-base' },
           { name: 'Brand Base', variable: '--ds-semantic-color-text-brand-base' },
           { name: 'Inverse', variable: '--ds-semantic-color-text-inverse' },
+          { name: 'Placeholder', variable: '--ds-semantic-color-text-placeholder' },
           { name: 'Disabled', variable: '--ds-semantic-color-text-disabled' },
         ],
       },

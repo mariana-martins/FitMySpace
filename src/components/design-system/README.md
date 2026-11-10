@@ -12,18 +12,25 @@ design-system/
 │   │   ├── typography.json    # Font families, raw sizes, weights, and letter-spacing
 │   │   ├── spacing.json       # Base 4px scale spacing values
 │   │   ├── border-width.json  # Raw border-width pixel values
-│   │   └── radii.json         # Raw border-radius pixel values
+│   │   ├── radii.json         # Raw border-radius pixel values
+│   │   ├── motion.json        # Raw durations and easing curves
+│   │   └── shadow.json        # Raw box-shadow values
 │   ├── tier-2-definitions/    # Intent-based semantic aliases (use these in components)
-│   │   ├── color.json         # Semantic backgrounds, text, and borders (e.g. brand, utility)
-│   │   ├── typography.json    # Display, heading, body, label, and caption roles
-│   │   ├── spacing.json       # Inset (padding), gap, and section layout spacing
+│   │   ├── color.json         # Semantic backgrounds, text, borders and focus halos (e.g. brand, utility)
+│   │   ├── typography.json    # Display, heading, body, control, label, and caption roles
+│   │   ├── spacing.json       # Inset (padding), control padding, gap, and section layout spacing
+│   │   ├── size.json          # Control heights (32/40/48/56) and icon sizes
 │   │   ├── border-width.json  # Semantic border-width roles (default, interactive, heavy)
-│   │   └── radii.json         # Interactive, container, and surface border radiuses
+│   │   ├── radii.json         # Interactive, container, and surface border radiuses
+│   │   ├── focus.json         # Focus ring width and offset
+│   │   ├── motion.json        # Transition duration and easing roles
+│   │   └── shadow.json        # Elevation roles
 │   ├── tier-3-definitions/    # Component-level token mappings
 │   │   ├── button.json        # Button variant colors, sizes, shapes, and icon sizing
 │   │   └── input.json         # Input + TextField colors, states, halo, sizes, and unit styling
 │   ├── sd.config.mjs              # Style Dictionary build config
 │   ├── tokens.contrast.test.ts    # WCAG contrast checks for every colour pair and state
+│   ├── tokens.tiers.test.ts       # Each tier references only the tier below it
 │   └── tokens.css                 # AUTO-GENERATED — do not edit manually
 ├── docs/            # Storybook-only helpers for the Foundation pages (not public API)
 │   ├── index.tsx
@@ -130,6 +137,12 @@ npm run tokens:build
 **When to run:** After editing **any** `.json` file inside the `tokens/` directory. The generated `tokens.css` is committed to the repository so that downstream consumers (Storybook, CSS Modules, components) can use the tokens without needing to run the build step first.
 
 > ⚠️ **Important:** Never edit `tokens.css` manually — it will be overwritten on the next build. Always edit the source `.json` files instead.
+
+**Tier rule:** tier-2 tokens reference tier-1 literals; tier-3 tokens reference tier-2 (or other tier-3) tokens, never tier-1 directly. `tokens/tokens.tiers.test.ts` fails the build if a reference skips a tier. If a component needs a value with no semantic role yet, add the role to tier 2 first.
+
+**Control sizes:** Button and Input share the `semantic.size.control.*` heights (`xs` 32, `sm` 40, `md` 48, `lg` 56px, all multiples of 4), so a button lines up with the field next to it.
+
+**About `subtle`:** in colour tokens, `subtle` means neutral (low-chroma), not faint. `background.subtle` is a dark charcoal fill (the secondary Button) and `border.subtle` is darker than `border.default`. For a faint divider use `border.disabled`.
 
 **Contrast checks:** `tokens/tokens.contrast.test.ts` resolves every token to its hex value and checks text (4.5:1) and UI/focus (3:1) contrast for each component variant and state. When you add a component or a colour token, add its text/background and border/focus pairs there, then run:
 

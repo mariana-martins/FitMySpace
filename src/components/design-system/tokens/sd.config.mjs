@@ -1,20 +1,24 @@
 import StyleDictionary from 'style-dictionary';
-import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const sd = new StyleDictionary({
-  source: [resolve(__dirname, 'tier-1-definitions/*.json'), resolve(__dirname, 'tier-2-definitions/*.json'), resolve(__dirname, 'tier-3-definitions/*.json')],
+  source: [
+    resolve(__dirname, 'tier-1-definitions/*.json'),
+    resolve(__dirname, 'tier-2-definitions/*.json'),
+    resolve(__dirname, 'tier-3-definitions/*.json'),
+  ],
   platforms: {
     css: {
       transformGroup: 'css',
-      buildPath: resolve(__dirname, '/'),
+      buildPath: `${__dirname}/`,
       prefix: 'ds',
       files: [
         {
-          destination: resolve(__dirname, 'tokens.css'),
+          destination: 'tokens.css',
           format: 'css/variables',
           options: {
             outputReferences: true,

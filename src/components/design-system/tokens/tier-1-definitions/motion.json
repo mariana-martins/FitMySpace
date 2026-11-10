@@ -1,0 +1,11 @@
+{
+  "duration": {
+    "150": { "value": "150ms" }
+  },
+  "easing": {
+    "out": {
+      "value": "cubic-bezier(0.2, 0, 0, 1)",
+      "comment": "Fast start, gentle stop: for elements responding to the user."
+    }
+  }
+}

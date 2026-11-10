@@ -1,0 +1,18 @@
+{
+  "semantic": {
+    "size": {
+      "control": {
+        "xs": { "value": "{spacing.8}" },
+        "sm": { "value": "{spacing.10}" },
+        "md": { "value": "{spacing.12}" },
+        "lg": { "value": "{spacing.14}" }
+      },
+      "icon": {
+        "xs": { "value": "{font.size.14}" },
+        "sm": { "value": "{font.size.16}" },
+        "md": { "value": "{font.size.18}" },
+        "lg": { "value": "{font.size.20}" }
+      }
+    }
+  }
+}

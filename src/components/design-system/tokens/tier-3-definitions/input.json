@@ -10,6 +10,9 @@
         },
         "halo-width": {
           "value": "{semantic.border-width.heavy}"
+        },
+        "shadow": {
+          "value": "{semantic.shadow.raised}"
         }
       },
       "background": {
@@ -42,10 +45,10 @@
       },
       "halo": {
         "focus": {
-          "value": "{color.sage.100}"
+          "value": "{semantic.color.halo.brand}"
         },
         "invalid": {
-          "value": "{color.berry.100}"
+          "value": "{semantic.color.halo.utility-error}"
         }
       },
       "text": {
@@ -53,7 +56,7 @@
           "value": "{semantic.color.text.default.base}"
         },
         "placeholder": {
-          "value": "{color.charcoal.400}"
+          "value": "{semantic.color.text.placeholder}"
         },
         "disabled": {
           "value": "{semantic.color.text.disabled}"
@@ -78,95 +81,95 @@
           "value": "{semantic.color.border.disabled}"
         },
         "disabled": {
-          "value": "{color.charcoal.500}"
+          "value": "{semantic.color.text.subtle.disabled}"
         }
       },
       "size": {
         "sm": {
           "minHeight": {
-            "value": "{spacing.10}"
+            "value": "{semantic.size.control.sm}"
           },
           "paddingX": {
-            "value": "{spacing.3}"
+            "value": "{semantic.spacing.control.sm}"
           },
           "gap": {
             "value": "{semantic.spacing.gap.sm}"
           },
           "fontSize": {
-            "value": "{semantic.typography.body.md.fontSize}"
+            "value": "{semantic.typography.control.md.fontSize}"
           },
           "fontWeight": {
-            "value": "{semantic.typography.body.md.fontWeight}"
+            "value": "{semantic.typography.control.md.fontWeight}"
           },
           "fontFamily": {
-            "value": "{semantic.typography.body.md.fontFamily}"
+            "value": "{semantic.typography.control.md.fontFamily}"
           },
           "letterSpacing": {
-            "value": "{semantic.typography.body.md.letterSpacing}"
+            "value": "{semantic.typography.control.md.letterSpacing}"
           },
           "lineHeight": {
-            "value": "{font.lineHeight.150}"
+            "value": "{semantic.typography.control.md.lineHeight}"
           },
           "iconSize": {
-            "value": "{font.size.16}"
+            "value": "{semantic.size.icon.sm}"
           }
         },
         "md": {
           "minHeight": {
-            "value": "{spacing.12}"
+            "value": "{semantic.size.control.md}"
           },
           "paddingX": {
-            "value": "{semantic.spacing.inset.md}"
+            "value": "{semantic.spacing.control.md}"
           },
           "gap": {
             "value": "{semantic.spacing.gap.md}"
           },
           "fontSize": {
-            "value": "{semantic.typography.body.md.fontSize}"
+            "value": "{semantic.typography.control.md.fontSize}"
           },
           "fontWeight": {
-            "value": "{semantic.typography.body.md.fontWeight}"
+            "value": "{semantic.typography.control.md.fontWeight}"
           },
           "fontFamily": {
-            "value": "{semantic.typography.body.md.fontFamily}"
+            "value": "{semantic.typography.control.md.fontFamily}"
           },
           "letterSpacing": {
-            "value": "{semantic.typography.body.md.letterSpacing}"
+            "value": "{semantic.typography.control.md.letterSpacing}"
           },
           "lineHeight": {
-            "value": "{font.lineHeight.150}"
+            "value": "{semantic.typography.control.md.lineHeight}"
           },
           "iconSize": {
-            "value": "{font.size.18}"
+            "value": "{semantic.size.icon.md}"
           }
         },
         "lg": {
           "minHeight": {
-            "value": "{spacing.14}"
+            "value": "{semantic.size.control.lg}"
           },
           "paddingX": {
-            "value": "{spacing.5}"
+            "value": "{semantic.spacing.control.lg}"
           },
           "gap": {
             "value": "{semantic.spacing.gap.md}"
           },
           "fontSize": {
-            "value": "{semantic.typography.body.lg.fontSize}"
+            "value": "{semantic.typography.control.lg.fontSize}"
           },
           "fontWeight": {
-            "value": "{semantic.typography.body.lg.fontWeight}"
+            "value": "{semantic.typography.control.lg.fontWeight}"
           },
           "fontFamily": {
-            "value": "{semantic.typography.body.lg.fontFamily}"
+            "value": "{semantic.typography.control.lg.fontFamily}"
           },
           "letterSpacing": {
-            "value": "{semantic.typography.body.lg.letterSpacing}"
+            "value": "{semantic.typography.control.lg.letterSpacing}"
           },
           "lineHeight": {
-            "value": "{font.lineHeight.150}"
+            "value": "{semantic.typography.control.lg.lineHeight}"
           },
           "iconSize": {
-            "value": "{font.size.20}"
+            "value": "{semantic.size.icon.lg}"
           }
         }
       }
@@ -199,7 +202,7 @@
           "value": "{semantic.spacing.gap.xs}"
         },
         "iconSize": {
-          "value": "{font.size.16}"
+          "value": "{semantic.size.icon.sm}"
         }
       }
     }

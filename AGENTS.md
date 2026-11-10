@@ -57,7 +57,11 @@ rules below are its essentials.
   typings against MDN before writing the API.
 - **Tokens**: three tiers of JSON in `tokens/` (tier 1 literal values, tier 2
   semantic, tier 3 component). Components use tier-3 (or tier-2) variables only,
-  never hex values. After editing JSON run `npm run tokens:build`; never edit
+  never hex values. Tier-3 JSON references tier 2, never tier 1
+  (`tokens/tokens.tiers.test.ts` enforces it): add a semantic role first. Button
+  and Input share `semantic.size.control.*` heights (32/40/48/56px). In colour
+  tokens `subtle` means neutral, not faint: `border.subtle` is darker than
+  `border.default`. After editing JSON run `npm run tokens:build`; never edit
   `tokens.css` by hand. Never name a token key `value` inside a group (e.g.
   `text.value`): Style Dictionary reads it as the token's value and outputs
   `[object Object]`. Use `default`.

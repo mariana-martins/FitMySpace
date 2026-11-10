@@ -63,6 +63,22 @@
           "letterSpacing": { "value": "{font.letterSpacing.normal}" }
         }
       },
+      "control": {
+        "md": {
+          "fontSize": { "value": "{font.size.16}" },
+          "fontWeight": { "value": "{font.weight.400}" },
+          "lineHeight": { "value": "{font.lineHeight.150}" },
+          "fontFamily": { "value": "{font.family.sans}" },
+          "letterSpacing": { "value": "{font.letterSpacing.normal}" }
+        },
+        "lg": {
+          "fontSize": { "value": "{font.size.18}" },
+          "fontWeight": { "value": "{font.weight.400}" },
+          "lineHeight": { "value": "{font.lineHeight.150}" },
+          "fontFamily": { "value": "{font.family.sans}" },
+          "letterSpacing": { "value": "{font.letterSpacing.normal}" }
+        }
+      },
       "label": {
         "lg": {
           "fontSize": { "value": "{font.size.16}" },

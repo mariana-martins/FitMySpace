@@ -60,6 +60,18 @@
       "800": { "value": "#991b1b" },
       "900": { "value": "#7f1d1d" }
     },
+    "jade": {
+      "50": { "value": "#ecfdf5" },
+      "100": { "value": "#d1fae5" },
+      "200": { "value": "#a7f3d0" },
+      "300": { "value": "#6ee7b7" },
+      "400": { "value": "#34d399" },
+      "500": { "value": "#10b981" },
+      "600": { "value": "#059669" },
+      "700": { "value": "#047857" },
+      "800": { "value": "#065f46" },
+      "900": { "value": "#064e3b" }
+    },
     "white": { "value": "#ffffff" },
     "black": { "value": "#000000" },
     "transparent": { "value": "transparent" }

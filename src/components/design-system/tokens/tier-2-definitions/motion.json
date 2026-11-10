@@ -1,0 +1,12 @@
+{
+  "semantic": {
+    "motion": {
+      "duration": {
+        "fast": { "value": "{duration.150}" }
+      },
+      "easing": {
+        "standard": { "value": "{easing.out}" }
+      }
+    }
+  }
+}

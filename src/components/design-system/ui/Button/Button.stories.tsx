@@ -31,7 +31,7 @@ const meta = {
           '- **Icon-only Buttons:** Always provide an `aria-label` when using a button without text to ensure screen reader support.\n\n' +
           '### Key Features\n' +
           '- **6 color variants** (`primary`, `secondary`, `error`, `success`, `warning`, `information`) × **3 appearances** (`fill`, `outline`, `ghost`).\n' +
-          '- **4 sizes** (`xs`, `sm`, `md`, `lg`) with token-driven padding, font, gap, and icon sizing.\n' +
+          '- **4 sizes** (`xs` 32px, `sm` 40px, `md` 48px, `lg` 56px), the same heights as the Input sizes, with token-driven padding, font, gap, and icon sizing.\n' +
           '- **Icon support** — leading or trailing icons via the `icon` prop.\n' +
           '- **Icon-only mode** — TypeScript enforces `aria-label` when `children` is omitted.\n' +
           '- **`asChild` pattern** — renders as any child element (e.g. `<a>`, Next.js `<Link>`) via Radix `Slot`.\n' +
@@ -243,7 +243,7 @@ export const AllSizes: Story = {
     docs: {
       description: {
         story:
-          'The button comes in 4 sizes. Size `md` is the default standard size. Use `lg` for prominent calls to action, and `sm` or `xs` for dense layouts.',
+          'The button comes in 4 sizes, 32, 40, 48 and 56px tall: `sm`, `md` and `lg` match the Input sizes, so a button lines up with the field next to it. Size `md` is the default standard size. Use `lg` for prominent calls to action, and `sm` or `xs` for dense layouts.',
       },
     },
   },
@@ -327,7 +327,7 @@ export const IconOnly: Story = {
     docs: {
       description: {
         story:
-          "Icon-only buttons **require** the `aria-label` prop — TypeScript will error if it is omitted. This ensures screen readers always announce the button's purpose. They also adjust padding to remain perfectly square with an optimal hit area.",
+          "Icon-only buttons **require** the `aria-label` prop — TypeScript will error if it is omitted. This ensures screen readers always announce the button's purpose. They are perfectly square, as wide as the size is tall (32px at `xs`, above the 24×24 minimum of WCAG 2.5.8).",
       },
     },
   },

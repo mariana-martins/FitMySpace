@@ -1,0 +1,10 @@
+{
+  "semantic": {
+    "shadow": {
+      "raised": {
+        "value": "{shadow.xs}",
+        "comment": "Barely-there lift so a control reads as a surface."
+      }
+    }
+  }
+}

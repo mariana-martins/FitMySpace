@@ -24,7 +24,7 @@
   --input-halo-color: transparent;
   --input-focus-edge: 0px;
   --input-icon-color: var(--ds-component-input-icon-default);
-  --input-resting-shadow: 0 1px 2px color-mix(in srgb, var(--ds-color-charcoal-900) 6%, transparent);
+  --input-resting-shadow: var(--ds-component-input-shape-shadow);
 
   display: flex;
   align-items: center;
@@ -55,8 +55,8 @@
     var(--input-resting-shadow);
   cursor: text;
   transition-property: border-color, box-shadow, background-color;
-  transition-duration: 180ms;
-  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-standard);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -184,7 +184,8 @@
   block-size: var(--input-icon-size);
   color: var(--input-icon-color);
   pointer-events: none;
-  transition: color 180ms cubic-bezier(0.2, 0, 0, 1);
+  transition: color var(--ds-semantic-motion-duration-fast)
+    var(--ds-semantic-motion-easing-standard);
 }
 
 .icon > svg {
@@ -207,7 +208,6 @@
   user-select: none;
 }
 
-/* Stays readable (6:1) so the unit still explains the field while it is disabled. */
 /* Interactive end action (e.g. clear or show-password button): keeps its own pointer events. */
 .action {
   display: inline-flex;
@@ -216,6 +216,7 @@
   cursor: default;
 }
 
+/* Stays readable (6:1) so the unit still explains the field while it is disabled. */
 .field[data-disabled] .unit {
   color: var(--ds-component-input-unit-disabled);
 }
@@ -274,7 +275,7 @@
 /* Windows High Contrast drops box-shadow, so draw focus with an outline. */
 @media (forced-colors: active) {
   .field:focus-within {
-    outline: 2px solid CanvasText;
-    outline-offset: 2px;
+    outline: var(--ds-semantic-focus-ring-width) solid CanvasText;
+    outline-offset: var(--ds-semantic-focus-ring-offset);
   }
 }
