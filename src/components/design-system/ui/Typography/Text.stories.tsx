@@ -11,7 +11,8 @@ const meta = {
       description: {
         component:
           'The `Text` component is the workhorse for all standard reading material in your application, designed to optimize legibility and accessibility.\n\n' +
-          'By default, it renders as a semantic `<p>` paragraph, which is ideal for long-form content and screen readers. If you need to drop text inside another element (like a button or a badge) where a paragraph would create invalid HTML, you can switch it to an inline element using `as="span"`. The `size` prop adjusts the body scale without affecting the underlying HTML structure.',
+          'By default, it renders as a semantic `<p>` paragraph, which is ideal for long-form content and screen readers. If you need to drop text inside another element (like a button or a badge) where a paragraph would create invalid HTML, you can switch it to an inline element using `as="span"`. The `size` prop adjusts the body scale without affecting the underlying HTML structure.\n\n' +
+          'The values behind each size (font size, weight, line height, letter spacing) are on the [Foundation / Typography](?path=/story/design-system-foundation-typography--type-scale) page.',
       },
     },
   },

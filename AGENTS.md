@@ -49,7 +49,10 @@ rules below are its essentials.
 - **Storybook-only helpers** (used by the Foundation pages, not public API) live
   in `docs/`, not `ui/`. Reuse them instead of copying markup between stories:
   `CopyTokenButton` copies a token's `var(--…)` reference, with an icon and a
-  screen-reader announcement (`iconOnly` for narrow cards).
+  screen-reader announcement (`iconOnly` for narrow cards). Foundation pages
+  never hard-code token lists or values: read them with `getTokens` from
+  `docs/tokens.ts` (generated `tokens/tokens.docs.json`) and lay them out with
+  `FoundationPage`, `TokenGroup` and `TokenRow`.
 - **API**: extend native props with `ComponentPropsWithoutRef<'el'>`, omitting
   conflicting ones (e.g. `size` on `<input>`). Forward refs to the native
   element. Add `'use client'` to interactive components.
@@ -62,7 +65,7 @@ rules below are its essentials.
   and Input share `semantic.size.control.*` heights (32/40/48/56px). In colour
   tokens `subtle` means neutral, not faint: `border.subtle` is darker than
   `border.default`. After editing JSON run `npm run tokens:build`; never edit
-  `tokens.css` by hand. Never name a token key `value` inside a group (e.g.
+  `tokens.css` or `tokens.docs.json` by hand. Never name a token key `value` inside a group (e.g.
   `text.value`): Style Dictionary reads it as the token's value and outputs
   `[object Object]`. Use `default`.
 - **Stories** mirror `Button.stories.tsx`:
@@ -125,7 +128,7 @@ Run what applies before saying a change is done, and report failures honestly:
 - `npm run lint` — ESLint.
 - `npm test` — Jest (app and design system).
 - `npm run test:storybook` — Storybook play and a11y tests (design system).
-- `npm run tokens:check` — `tokens.css` matches the token JSON (run
+- `npm run tokens:check` — `tokens.css` and `tokens.docs.json` match the token JSON (run
   `npm run tokens:build` if it does not).
 - For visual changes, look at the result in Storybook (`npm run storybook`) or
   the app (`npm run dev`); jsdom never sees colour or layout.

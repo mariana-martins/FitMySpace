@@ -11,7 +11,8 @@ const meta = {
       description: {
         component:
           'The `Label` component is built with strict accessibility rules in mind (WCAG guidelines).\n\n' +
-          'By default, it renders as a purely visual `<span>`. When you use it to label form controls, pass `as="label"`: it renders the `@radix-ui/react-label` primitive (a native `<label>` that also prevents accidental text selection on double-click), and TypeScript makes the `htmlFor` prop **mandatory** so labels are always tied to their respective controls for screen readers.',
+          'By default, it renders as a purely visual `<span>`. When you use it to label form controls, pass `as="label"`: it renders the `@radix-ui/react-label` primitive (a native `<label>` that also prevents accidental text selection on double-click), and TypeScript makes the `htmlFor` prop **mandatory** so labels are always tied to their respective controls for screen readers.\n\n' +
+          'The values behind each size (font size, weight, line height, letter spacing) are on the [Foundation / Typography](?path=/story/design-system-foundation-typography--type-scale) page.',
       },
     },
   },

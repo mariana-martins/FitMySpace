@@ -14,3 +14,4 @@ storybook-static
 public/mockServiceWorker.js
 CHANGELOG.md
 src/components/design-system/tokens/tokens.css
+src/components/design-system/tokens/tokens.docs.json

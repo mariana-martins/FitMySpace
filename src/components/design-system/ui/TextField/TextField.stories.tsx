@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import { Mail, Search } from 'lucide-react';
 import type { FormEvent } from 'react';
+import { Text } from '../Typography';
 import { Button } from '../Button';
 import { useState } from 'react';
 import { TextField } from './';
@@ -23,6 +24,7 @@ const meta = {
           'The `TextField` component is the default form field: a visible `label`, the `Input`, an optional `hint` and an `error` message required whenever `invalid` is `true`, all linked for assistive technology.\n\n' +
           '### Best Practices\n' +
           '- **Always label:** The label stays visible. Never use the placeholder as the label.\n' +
+          '- **Required fields:** When a form marks fields with the asterisk, explain it once above the first field: "Fields marked with an asterisk (*) are required." The asterisk is hidden from screen readers, which announce the native `required` instead.\n' +
           '- **Hints:** Use them for format and context ("Measure wall to wall"), not to repeat the label.\n' +
           '- **Errors:** Whenever `invalid` is `true`, pass a descriptive `error` message that names the field and says how to fix it — "Enter the room width in centimetres", not "Invalid value". Set it after validation, not while the user is still typing.\n' +
           "- **Validation:** Validate on submit, then move focus to the first invalid field. Add `noValidate` to the `<form>` so the browser's own bubbles do not appear.\n" +
@@ -350,6 +352,9 @@ function RoomDimensionsForm() {
       aria-label="Room dimensions"
       style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '22rem' }}
     >
+      <Text size="sm" style={{ margin: 0 }}>
+        Fields marked with an asterisk (*) are required.
+      </Text>
       {ROOM_DIMENSIONS.map((dimension) => {
         const errorMessage = errors[dimension.name];
         return (
@@ -380,15 +385,18 @@ export const FormExample: Story = {
     docs: {
       description: {
         story:
-          'A recipe composing `TextField` and `Button`. Validation runs on submit, each error names the field and how to fix it, and focus moves to the first invalid field.',
+          'A recipe composing `TextField` and `Button`. A line above the fields explains the asterisk. Validation runs on submit, each error names the field and how to fix it, and focus moves to the first invalid field.',
       },
       source: {
-        code: `<form noValidate onSubmit={handleSubmit}>\n  <TextField\n    name="width"\n    label="Width"\n    inputMode="decimal"\n    unit="cm"\n    required\n    {...(errors.width ? { invalid: true, error: errors.width } : { invalid: false })}\n  />\n  <Button variant="primary" appearance="fill" size="lg" type="submit">Save room</Button>\n</form>`,
+        code: `<form noValidate onSubmit={handleSubmit}>\n  <Text size="sm">Fields marked with an asterisk (*) are required.</Text>\n  <TextField\n    name="width"\n    label="Width"\n    inputMode="decimal"\n    unit="cm"\n    required\n    {...(errors.width ? { invalid: true, error: errors.width } : { invalid: false })}\n  />\n  <Button variant="primary" appearance="fill" size="lg" type="submit">Save room</Button>\n</form>`,
       },
     },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    await expect(
+      canvas.getByText('Fields marked with an asterisk (*) are required.'),
+    ).toBeVisible();
     await userEvent.type(canvas.getByRole('textbox', { name: 'Width' }), '320');
     await userEvent.click(canvas.getByRole('button', { name: 'Save room' }));
     const depth = canvas.getByRole('textbox', { name: 'Depth' });

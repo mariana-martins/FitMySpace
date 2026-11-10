@@ -499,6 +499,95 @@ const TypographyPreview = () => (
   </div>
 );
 
+/* Size, border width, shadow, focus and motion previews read the semantic tokens they illustrate. */
+
+const SizePreview = () => {
+  const controlSizes = ['xs', 'sm', 'md', 'lg'];
+  return (
+    <div style={{ display: 'flex', gap: '8px', height: '32px', alignItems: 'flex-end' }}>
+      {controlSizes.map((controlSize) => (
+        <div
+          key={controlSize}
+          style={{
+            width: '24px',
+            // Half scale, so the largest control (56px) fits the 32px preview strip.
+            height: `calc(var(--ds-semantic-size-control-${controlSize}) / 2)`,
+            backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+            borderRadius: 'var(--ds-radii-sm)',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+const BorderWidthPreview = () => {
+  const borderWidths = [
+    'var(--ds-semantic-border-width-default)',
+    'var(--ds-semantic-border-width-interactive)',
+    'var(--ds-semantic-border-width-heavy)',
+  ];
+  return (
+    <div style={{ display: 'flex', gap: '8px', height: '32px', alignItems: 'center' }}>
+      {borderWidths.map((borderWidth) => (
+        <div
+          key={borderWidth}
+          style={{
+            width: '32px',
+            height: '32px',
+            boxSizing: 'border-box',
+            border: `${borderWidth} solid var(--ds-semantic-color-border-brand-base)`,
+            borderRadius: 'var(--ds-radii-md)',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+const ShadowPreview = () => (
+  <div style={{ display: 'flex', height: '32px', alignItems: 'center', paddingLeft: '4px' }}>
+    <div
+      style={{
+        width: '64px',
+        height: '24px',
+        borderRadius: 'var(--ds-radii-md)',
+        backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+        boxShadow: 'var(--ds-semantic-shadow-raised)',
+        border: '1px solid var(--ds-semantic-color-border-default-base)',
+      }}
+    />
+  </div>
+);
+
+const FocusPreview = () => (
+  <div style={{ display: 'flex', height: '32px', alignItems: 'center', paddingLeft: '4px' }}>
+    <div
+      style={{
+        width: '64px',
+        height: '20px',
+        borderRadius: 'var(--ds-radii-full)',
+        backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+        outline:
+          'var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-color-border-brand-base)',
+        outlineOffset: 'var(--ds-semantic-focus-ring-offset)',
+      }}
+    />
+  </div>
+);
+
+/** The standard easing curve, drawn with time on x and progress on y. */
+const MotionPreview = () => (
+  <svg width="48" height="32" viewBox="0 0 48 32" focusable="false" style={{ display: 'block' }}>
+    <path
+      d="M 0 32 C 9.6 32, 0 0, 48 0"
+      fill="none"
+      stroke="var(--ds-semantic-color-border-brand-base)"
+      strokeWidth="2"
+    />
+  </svg>
+);
+
 const FoundationGrid = () => (
   <section>
     <Heading level={3} size="sm" style={{ marginBottom: '8px' }}>
@@ -529,9 +618,19 @@ const FoundationGrid = () => (
         preview={<ColorPreview />}
       />
       <FoundationCard
+        title="Typography"
+        description="Type scale, font weights, and line heights for display, heading, body, label, and caption styles."
+        preview={<TypographyPreview />}
+      />
+      <FoundationCard
         title="Spacing"
         description="Inset, gap, and section tokens that control padding, element spacing, and page rhythm."
         preview={<SpacingPreview />}
+      />
+      <FoundationCard
+        title="Size"
+        description="Control heights shared by buttons and inputs, and icon sizes that follow the text."
+        preview={<SizePreview />}
       />
       <FoundationCard
         title="Radii"
@@ -539,9 +638,24 @@ const FoundationGrid = () => (
         preview={<RadiiPreview />}
       />
       <FoundationCard
-        title="Typography"
-        description="Type scale, font weights, and line heights for display, heading, body, label, and caption styles."
-        preview={<TypographyPreview />}
+        title="Border Width"
+        description="Stroke widths for quiet outlines, button outlines, and the halo around a focused input."
+        preview={<BorderWidthPreview />}
+      />
+      <FoundationCard
+        title="Shadow"
+        description="Faint elevation that lifts a control off the page without adding noise."
+        preview={<ShadowPreview />}
+      />
+      <FoundationCard
+        title="Focus"
+        description="The width and offset of the keyboard focus ring every interactive element shows."
+        preview={<FocusPreview />}
+      />
+      <FoundationCard
+        title="Motion"
+        description="Durations and easing curves for transitions that answer the user, with reduced motion respected."
+        preview={<MotionPreview />}
       />
     </div>
   </section>

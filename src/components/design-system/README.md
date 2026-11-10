@@ -32,11 +32,15 @@ design-system/
 │   ├── tokens.contrast.test.ts    # WCAG contrast checks for every colour pair and state
 │   ├── tokens.tiers.test.ts       # Each tier references only the tier below it
 │   ├── tokens.usage.test.ts       # Every --ds-* name used exists; components skip tier 1
-│   └── tokens.css                 # AUTO-GENERATED — do not edit manually
+│   ├── tokens.css                 # AUTO-GENERATED — do not edit manually
+│   └── tokens.docs.json           # AUTO-GENERATED — token list for the Foundation pages
 ├── docs/            # Storybook-only helpers for the Foundation pages (not public API)
 │   ├── index.tsx
 │   ├── CopyTokenButton.tsx        # Copy-to-clipboard button with icon and status announcement
-│   └── CopyTokenButton.test.tsx
+│   ├── CopyTokenButton.test.tsx
+│   ├── FoundationPage.tsx         # Page shell, token group card, token row, inline code, StorybookLink
+│   ├── tokens.ts                  # Reads tokens.docs.json: getTokens, groupTokens, labels
+│   └── tokens.test.ts
 └── ui/              # Component folders (colocated with stories)
     ├── css-modules.test.ts        # CSS Module class names are kebab-case
     ├── Button/
@@ -60,14 +64,26 @@ design-system/
     │   ├── TextField.module.css
     │   ├── TextField.test.tsx
     │   └── TextField.stories.tsx
+    ├── border-width/              # Foundation pages: one per tier-2 token file
+    │   └── BorderWidth.stories.tsx
     ├── color/
     │   └── Colors.stories.tsx
+    ├── focus/
+    │   └── Focus.stories.tsx
     ├── introduction/
     │   └── Introduction.stories.tsx
+    ├── motion/
+    │   └── Motion.stories.tsx
     ├── radii/
     │   └── Radii.stories.tsx
+    ├── shadow/
+    │   └── Shadow.stories.tsx
+    ├── size/
+    │   └── Size.stories.tsx
     ├── spacing/
     │   └── Spacing.stories.tsx
+    ├── type-scale/                # The Typography Foundation page (ui/typography would clash with ui/Typography on macOS)
+    │   └── TypeScale.stories.tsx
     └── Typography/
         ├── index.tsx
         ├── Typography.types.ts
@@ -126,7 +142,7 @@ Runs all story `play` functions and automated WCAG accessibility checks (`@story
 
 ### Style Dictionary (Token Pipeline)
 
-Style Dictionary processes the JSON token files in `tokens/` and generates `tokens.css` — a single CSS file with all design tokens as CSS custom properties.
+Style Dictionary processes the JSON token files in `tokens/` and generates two files: `tokens.css` — a single CSS file with all design tokens as CSS custom properties — and `tokens.docs.json`, one entry per token (CSS variable, JSON path, resolved value and `comment`; the tier-1 alias is left out so the pages never point consumers at tier 1) that the Storybook Foundation pages read.
 
 **How to run:**
 
@@ -134,11 +150,11 @@ Style Dictionary processes the JSON token files in `tokens/` and generates `toke
 npm run tokens:build
 ```
 
-**Where the output goes:** `src/components/design-system/tokens/tokens.css`
+**Where the output goes:** `src/components/design-system/tokens/tokens.css` and `tokens.docs.json`
 
-**When to run:** After editing **any** `.json` file inside the `tokens/` directory. `npm run tokens:check` rebuilds in memory and fails if the committed `tokens.css` differs; the pre-commit hook and CI both run it. The generated `tokens.css` is committed to the repository so that downstream consumers (Storybook, CSS Modules, components) can use the tokens without needing to run the build step first.
+**When to run:** After editing **any** `.json` file inside the `tokens/` directory. `npm run tokens:check` rebuilds in memory and fails if the committed `tokens.css` or `tokens.docs.json` differs; the pre-commit hook and CI both run it. The generated `tokens.css` is committed to the repository so that downstream consumers (Storybook, CSS Modules, components) can use the tokens without needing to run the build step first.
 
-> ⚠️ **Important:** Never edit `tokens.css` manually — it will be overwritten on the next build. Always edit the source `.json` files instead.
+> ⚠️ **Important:** Never edit `tokens.css` or `tokens.docs.json` manually — it will be overwritten on the next build. Always edit the source `.json` files instead.
 
 **Tier rule:** tier-2 tokens reference tier-1 literals; tier-3 tokens reference tier-2 (or other tier-3) tokens, never tier-1 directly. `tokens/tokens.tiers.test.ts` fails the build if a reference skips a tier. If a component needs a value with no semantic role yet, add the role to tier 2 first.
 
@@ -156,7 +172,9 @@ npm test -- tokens.contrast
 
 ### Foundation docs helpers
 
-The Foundation pages (Color, Spacing, Radii) use `docs/CopyTokenButton` to copy a token's `var(--…)` reference. It shows a copy icon, switches to a check (copied) or alert (failed) icon, and announces the result to screen readers through a `role="status"` live region. In narrow layouts (the Color swatch cards) use `iconOnly`: render the token name as wrapping text next to a square icon button whose accessible name is "Copy var(--…)". These helpers exist only for Storybook and are not part of the public design-system API.
+Each tier-2 token file has a Foundation page (Color, Typography, Spacing, Size, Radii, Border Width, Shadow, Focus, Motion). The pages never keep their own token lists: they read `tokens.docs.json` through `docs/tokens.ts` (`getTokens('semantic', 'spacing')`, `groupTokens(tokens, 2)`, `formatTokenLabel`) and render it with `docs/FoundationPage` (`FoundationPage`, `TokenGroup`, `TokenRow`, `InlineCode`). To link from a story to another Storybook page use `StorybookLink` (a story renders in an iframe, so a plain link would open inside it); in a `docs.description` Markdown string a plain `[text](?path=/docs/...)` link already works. A new token shows up on its page after `npm run tokens:build`; only the prose (group descriptions) is written by hand.
+
+They use `docs/CopyTokenButton` to copy a token's `var(--…)` reference. It shows a copy icon, switches to a check (copied) or alert (failed) icon, and announces the result to screen readers through a `role="status"` live region. In narrow layouts (the Color swatch cards) use `iconOnly`: render the token name as wrapping text next to a square icon button whose accessible name is "Copy var(--…)". These helpers exist only for Storybook and are not part of the public design-system API.
 
 ---
 

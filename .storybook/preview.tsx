@@ -35,7 +35,17 @@ const preview: Preview = {
           [
             'Introduction',
             'Foundation',
-            ['Color', 'Spacing', 'Radii'],
+            [
+              'Color',
+              'Typography',
+              'Spacing',
+              'Size',
+              'Radii',
+              'Border Width',
+              'Shadow',
+              'Focus',
+              'Motion',
+            ],
             'Components',
             ['Typography'],
             'Patterns',

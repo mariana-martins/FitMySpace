@@ -9,7 +9,7 @@ import type { CSSProperties } from 'react';
  * CopyTokenButton (Storybook docs helper)
  *
  * Copies a token's `var(--…)` reference to the clipboard. Used by the
- * Foundation stories (Color, Spacing, Radii); not part of the public
+ * Foundation stories; not part of the public
  * design system API.
  *
  * The result is announced through a polite live region, because a
