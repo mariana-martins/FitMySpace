@@ -1,0 +1,94 @@
+/* ---------------------------------------------------------------
+ * LinkCard (Storybook docs helper)
+ *
+ * The whole card is clickable through a stretched link: the title's
+ * link covers the card with ::after, so the link's accessible name
+ * stays the title alone instead of every word on the card.
+ * --------------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--ds-semantic-spacing-gap-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-semantic-spacing-gap-lg);
+  padding: var(--ds-semantic-spacing-inset-lg);
+  border: var(--ds-semantic-border-width-default) solid var(--ds-semantic-color-border-subtle-base);
+  border-radius: var(--ds-semantic-radii-container-lg);
+  background-color: var(--ds-semantic-color-background-default-base);
+  box-shadow: var(--ds-semantic-shadow-raised-base);
+  transition-property: box-shadow, border-color, transform;
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-standard);
+}
+
+.preview {
+  /* A column lets full-width previews (colour strips, spacing bars) stretch. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: var(--ds-semantic-size-control-xs);
+}
+
+.title {
+  margin: 0;
+}
+
+.link {
+  color: var(--ds-semantic-color-text-default-base);
+  text-decoration: none;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.description {
+  margin: 0;
+  color: var(--ds-semantic-color-text-subtle-base);
+}
+
+@media (hover: hover) {
+  .card:has(.link:hover) {
+    border-color: var(--ds-semantic-color-border-brand-base);
+    box-shadow: var(--ds-semantic-shadow-raised-hover);
+    transform: translateY(calc(-1 * var(--ds-semantic-spacing-gap-xs)));
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }
+}
+
+/* The ring goes around the whole card, which is what the link covers. */
+@supports selector(:has(*)) {
+  .link:focus-visible {
+    outline: none;
+  }
+
+  .card:has(.link:focus-visible) {
+    outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+    outline-offset: var(--ds-semantic-focus-ring-offset);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card:has(.link:hover) {
+    transform: none;
+  }
+}

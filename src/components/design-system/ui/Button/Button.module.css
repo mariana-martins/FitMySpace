@@ -26,8 +26,8 @@
   -moz-osx-font-smoothing: grayscale;
   border-radius: var(--ds-component-button-shape-radii);
   transition-property: background-color, border-color, color, box-shadow, transform;
-  transition-duration: 150ms;
-  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-standard);
   user-select: none;
   white-space: nowrap;
 }
@@ -44,8 +44,8 @@
 /* Focus ring ---------------------------------------------------- */
 
 .button:focus-visible {
-  outline: 2px solid var(--button-focus-ring-color, currentColor);
-  outline-offset: 2px;
+  outline: var(--ds-semantic-focus-ring-width) solid var(--button-focus-ring-color, currentColor);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
 }
 
 /* ---------------------------------------------------------------
@@ -53,7 +53,8 @@
  * --------------------------------------------------------------- */
 
 .size-lg {
-  padding: var(--ds-component-button-size-lg-padding-y) var(--ds-component-button-size-lg-padding-x);
+  min-height: var(--ds-component-button-size-lg-min-height);
+  padding: 0 var(--ds-component-button-size-lg-padding-x);
   font-family: var(--ds-component-button-size-lg-font-family);
   font-weight: var(--ds-component-button-size-lg-font-weight);
   font-size: var(--ds-component-button-size-lg-font-size);
@@ -62,10 +63,12 @@
   border-width: var(--ds-component-button-size-lg-border);
   border-style: var(--button-border-style);
   gap: var(--ds-component-button-size-lg-gap);
+  --btn-icon-size: var(--ds-component-button-size-lg-icon-size);
 }
 
 .size-md {
-  padding: var(--ds-component-button-size-md-padding-y) var(--ds-component-button-size-md-padding-x);
+  min-height: var(--ds-component-button-size-md-min-height);
+  padding: 0 var(--ds-component-button-size-md-padding-x);
   font-family: var(--ds-component-button-size-md-font-family);
   font-weight: var(--ds-component-button-size-md-font-weight);
   font-size: var(--ds-component-button-size-md-font-size);
@@ -74,10 +77,12 @@
   border-width: var(--ds-component-button-size-md-border);
   border-style: var(--button-border-style);
   gap: var(--ds-component-button-size-md-gap);
+  --btn-icon-size: var(--ds-component-button-size-md-icon-size);
 }
 
 .size-sm {
-  padding: var(--ds-component-button-size-sm-padding-y) var(--ds-component-button-size-sm-padding-x);
+  min-height: var(--ds-component-button-size-sm-min-height);
+  padding: 0 var(--ds-component-button-size-sm-padding-x);
   font-family: var(--ds-component-button-size-sm-font-family);
   font-weight: var(--ds-component-button-size-sm-font-weight);
   font-size: var(--ds-component-button-size-sm-font-size);
@@ -86,10 +91,12 @@
   border-width: var(--ds-component-button-size-sm-border);
   border-style: var(--button-border-style);
   gap: var(--ds-component-button-size-sm-gap);
+  --btn-icon-size: var(--ds-component-button-size-sm-icon-size);
 }
 
 .size-xs {
-  padding: var(--ds-component-button-size-xs-padding-y) var(--ds-component-button-size-xs-padding-x);
+  min-height: var(--ds-component-button-size-xs-min-height);
+  padding: 0 var(--ds-component-button-size-xs-padding-x);
   font-family: var(--ds-component-button-size-xs-font-family);
   font-weight: var(--ds-component-button-size-xs-font-weight);
   font-size: var(--ds-component-button-size-xs-font-size);
@@ -98,28 +105,16 @@
   border-width: var(--ds-component-button-size-xs-border);
   border-style: var(--button-border-style);
   gap: var(--ds-component-button-size-xs-gap);
+  --btn-icon-size: var(--ds-component-button-size-xs-icon-size);
 }
 
 /* ---------------------------------------------------------------
  * Icon sizing
  *
  * The .icon wrapper sets width/height via a CSS custom property
- * (--btn-icon-size) that is scoped per size class. Each size
- * class sets the property, and the .icon class consumes it.
+ * (--btn-icon-size). Each size class above sets the property, and
+ * the .icon class consumes it.
  * --------------------------------------------------------------- */
-
-.size-lg {
-  --btn-icon-size: var(--ds-component-button-size-lg-icon-size);
-}
-.size-md {
-  --btn-icon-size: var(--ds-component-button-size-md-icon-size);
-}
-.size-sm {
-  --btn-icon-size: var(--ds-component-button-size-sm-icon-size);
-}
-.size-xs {
-  --btn-icon-size: var(--ds-component-button-size-xs-icon-size);
-}
 
 .icon {
   display: inline-flex;
@@ -136,27 +131,24 @@
 }
 
 /* ---------------------------------------------------------------
- * Icon-only: equal padding for a square hit area
+ * Icon-only: a square as wide as the control is tall.
+ * The smallest (xs, 32px) is above the 24×24 minimum of WCAG 2.5.8 (AA).
  * --------------------------------------------------------------- */
 
+.icon-only {
+  padding: 0;
+}
 .icon-only.size-lg {
-  padding: var(--ds-component-button-size-lg-padding-y);
+  min-width: var(--ds-component-button-size-lg-min-height);
 }
 .icon-only.size-md {
-  padding: var(--ds-component-button-size-md-padding-y);
+  min-width: var(--ds-component-button-size-md-min-height);
 }
 .icon-only.size-sm {
-  padding: var(--ds-component-button-size-sm-padding-y);
+  min-width: var(--ds-component-button-size-sm-min-height);
 }
 .icon-only.size-xs {
-  padding: var(--ds-component-button-size-xs-padding-y);
-}
-
-/* Ensure minimum 40×40 hit area for xs/sm (a11y — WCAG 2.5.5) */
-.icon-only.size-xs,
-.icon-only.size-sm {
-  min-width: 40px;
-  min-height: 40px;
+  min-width: var(--ds-component-button-size-xs-min-height);
 }
 
 /* ---------------------------------------------------------------
@@ -170,10 +162,12 @@
   border-color: var(--ds-component-button-primary-fill-border-default);
   color: var(--ds-component-button-primary-fill-text-default);
 }
-.fill-primary:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-primary-fill-background-hover);
-  border-color: var(--ds-component-button-primary-fill-border-hover);
-  color: var(--ds-component-button-primary-fill-text-hover);
+@media (hover: hover) {
+  .fill-primary:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-primary-fill-background-hover);
+    border-color: var(--ds-component-button-primary-fill-border-hover);
+    color: var(--ds-component-button-primary-fill-text-hover);
+  }
 }
 .fill-primary:focus-visible {
   background-color: var(--ds-component-button-primary-fill-background-focus);
@@ -199,10 +193,12 @@
   border-color: var(--ds-component-button-secondary-fill-border-default);
   color: var(--ds-component-button-secondary-fill-text-default);
 }
-.fill-secondary:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-secondary-fill-background-hover);
-  border-color: var(--ds-component-button-secondary-fill-border-hover);
-  color: var(--ds-component-button-secondary-fill-text-hover);
+@media (hover: hover) {
+  .fill-secondary:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-secondary-fill-background-hover);
+    border-color: var(--ds-component-button-secondary-fill-border-hover);
+    color: var(--ds-component-button-secondary-fill-text-hover);
+  }
 }
 .fill-secondary:focus-visible {
   background-color: var(--ds-component-button-secondary-fill-background-focus);
@@ -228,10 +224,12 @@
   border-color: var(--ds-component-button-error-fill-border-default);
   color: var(--ds-component-button-error-fill-text-default);
 }
-.fill-error:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-error-fill-background-hover);
-  border-color: var(--ds-component-button-error-fill-border-hover);
-  color: var(--ds-component-button-error-fill-text-hover);
+@media (hover: hover) {
+  .fill-error:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-error-fill-background-hover);
+    border-color: var(--ds-component-button-error-fill-border-hover);
+    color: var(--ds-component-button-error-fill-text-hover);
+  }
 }
 .fill-error:focus-visible {
   background-color: var(--ds-component-button-error-fill-background-focus);
@@ -257,10 +255,12 @@
   border-color: var(--ds-component-button-success-fill-border-default);
   color: var(--ds-component-button-success-fill-text-default);
 }
-.fill-success:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-success-fill-background-hover);
-  border-color: var(--ds-component-button-success-fill-border-hover);
-  color: var(--ds-component-button-success-fill-text-hover);
+@media (hover: hover) {
+  .fill-success:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-success-fill-background-hover);
+    border-color: var(--ds-component-button-success-fill-border-hover);
+    color: var(--ds-component-button-success-fill-text-hover);
+  }
 }
 .fill-success:focus-visible {
   background-color: var(--ds-component-button-success-fill-background-focus);
@@ -286,10 +286,12 @@
   border-color: var(--ds-component-button-warning-fill-border-default);
   color: var(--ds-component-button-warning-fill-text-default);
 }
-.fill-warning:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-warning-fill-background-hover);
-  border-color: var(--ds-component-button-warning-fill-border-hover);
-  color: var(--ds-component-button-warning-fill-text-hover);
+@media (hover: hover) {
+  .fill-warning:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-warning-fill-background-hover);
+    border-color: var(--ds-component-button-warning-fill-border-hover);
+    color: var(--ds-component-button-warning-fill-text-hover);
+  }
 }
 .fill-warning:focus-visible {
   background-color: var(--ds-component-button-warning-fill-background-focus);
@@ -315,10 +317,12 @@
   border-color: var(--ds-component-button-information-fill-border-default);
   color: var(--ds-component-button-information-fill-text-default);
 }
-.fill-information:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-information-fill-background-hover);
-  border-color: var(--ds-component-button-information-fill-border-hover);
-  color: var(--ds-component-button-information-fill-text-hover);
+@media (hover: hover) {
+  .fill-information:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-information-fill-background-hover);
+    border-color: var(--ds-component-button-information-fill-border-hover);
+    color: var(--ds-component-button-information-fill-text-hover);
+  }
 }
 .fill-information:focus-visible {
   background-color: var(--ds-component-button-information-fill-background-focus);
@@ -348,10 +352,12 @@
   border-color: var(--ds-component-button-primary-outline-border-default);
   color: var(--ds-component-button-primary-outline-text-default);
 }
-.outline-primary:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-primary-outline-background-hover);
-  border-color: var(--ds-component-button-primary-outline-border-hover);
-  color: var(--ds-component-button-primary-outline-text-hover);
+@media (hover: hover) {
+  .outline-primary:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-primary-outline-background-hover);
+    border-color: var(--ds-component-button-primary-outline-border-hover);
+    color: var(--ds-component-button-primary-outline-text-hover);
+  }
 }
 .outline-primary:focus-visible {
   background-color: var(--ds-component-button-primary-outline-background-focus);
@@ -377,10 +383,12 @@
   border-color: var(--ds-component-button-secondary-outline-border-default);
   color: var(--ds-component-button-secondary-outline-text-default);
 }
-.outline-secondary:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-secondary-outline-background-hover);
-  border-color: var(--ds-component-button-secondary-outline-border-hover);
-  color: var(--ds-component-button-secondary-outline-text-hover);
+@media (hover: hover) {
+  .outline-secondary:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-secondary-outline-background-hover);
+    border-color: var(--ds-component-button-secondary-outline-border-hover);
+    color: var(--ds-component-button-secondary-outline-text-hover);
+  }
 }
 .outline-secondary:focus-visible {
   background-color: var(--ds-component-button-secondary-outline-background-focus);
@@ -406,10 +414,12 @@
   border-color: var(--ds-component-button-error-outline-border-default);
   color: var(--ds-component-button-error-outline-text-default);
 }
-.outline-error:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-error-outline-background-hover);
-  border-color: var(--ds-component-button-error-outline-border-hover);
-  color: var(--ds-component-button-error-outline-text-hover);
+@media (hover: hover) {
+  .outline-error:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-error-outline-background-hover);
+    border-color: var(--ds-component-button-error-outline-border-hover);
+    color: var(--ds-component-button-error-outline-text-hover);
+  }
 }
 .outline-error:focus-visible {
   background-color: var(--ds-component-button-error-outline-background-focus);
@@ -435,10 +445,12 @@
   border-color: var(--ds-component-button-success-outline-border-default);
   color: var(--ds-component-button-success-outline-text-default);
 }
-.outline-success:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-success-outline-background-hover);
-  border-color: var(--ds-component-button-success-outline-border-hover);
-  color: var(--ds-component-button-success-outline-text-hover);
+@media (hover: hover) {
+  .outline-success:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-success-outline-background-hover);
+    border-color: var(--ds-component-button-success-outline-border-hover);
+    color: var(--ds-component-button-success-outline-text-hover);
+  }
 }
 .outline-success:focus-visible {
   background-color: var(--ds-component-button-success-outline-background-focus);
@@ -464,10 +476,12 @@
   border-color: var(--ds-component-button-warning-outline-border-default);
   color: var(--ds-component-button-warning-outline-text-default);
 }
-.outline-warning:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-warning-outline-background-hover);
-  border-color: var(--ds-component-button-warning-outline-border-hover);
-  color: var(--ds-component-button-warning-outline-text-hover);
+@media (hover: hover) {
+  .outline-warning:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-warning-outline-background-hover);
+    border-color: var(--ds-component-button-warning-outline-border-hover);
+    color: var(--ds-component-button-warning-outline-text-hover);
+  }
 }
 .outline-warning:focus-visible {
   background-color: var(--ds-component-button-warning-outline-background-focus);
@@ -493,10 +507,12 @@
   border-color: var(--ds-component-button-information-outline-border-default);
   color: var(--ds-component-button-information-outline-text-default);
 }
-.outline-information:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--ds-component-button-information-outline-background-hover);
-  border-color: var(--ds-component-button-information-outline-border-hover);
-  color: var(--ds-component-button-information-outline-text-hover);
+@media (hover: hover) {
+  .outline-information:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-information-outline-background-hover);
+    border-color: var(--ds-component-button-information-outline-border-hover);
+    color: var(--ds-component-button-information-outline-text-hover);
+  }
 }
 .outline-information:focus-visible {
   background-color: var(--ds-component-button-information-outline-background-focus);
@@ -513,4 +529,212 @@
   background-color: var(--ds-component-button-information-outline-background-disabled);
   border-color: var(--ds-component-button-information-outline-border-disabled);
   color: var(--ds-component-button-information-outline-text-disabled);
+}
+
+/* ---------------------------------------------------------------
+ * Color variants — Ghost
+ *
+ * No border or background at rest, so it suits low-emphasis actions
+ * and controls inside other components (e.g. an Input endAction).
+ * The transparent border keeps the same size as fill and outline.
+ * --------------------------------------------------------------- */
+
+/* Primary Ghost */
+.ghost-primary {
+  --button-focus-ring-color: var(--ds-component-button-primary-focus-ring);
+  background-color: var(--ds-component-button-primary-ghost-background-default);
+  border-color: var(--ds-component-button-primary-ghost-border-default);
+  color: var(--ds-component-button-primary-ghost-text-default);
+}
+@media (hover: hover) {
+  .ghost-primary:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-primary-ghost-background-hover);
+    border-color: var(--ds-component-button-primary-ghost-border-hover);
+    color: var(--ds-component-button-primary-ghost-text-hover);
+  }
+}
+.ghost-primary:focus-visible {
+  background-color: var(--ds-component-button-primary-ghost-background-focus);
+  border-color: var(--ds-component-button-primary-ghost-border-focus);
+  color: var(--ds-component-button-primary-ghost-text-focus);
+}
+.ghost-primary:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-primary-ghost-background-active);
+  border-color: var(--ds-component-button-primary-ghost-border-active);
+  color: var(--ds-component-button-primary-ghost-text-active);
+}
+.ghost-primary:disabled,
+.ghost-primary[aria-disabled='true'] {
+  background-color: var(--ds-component-button-primary-ghost-background-disabled);
+  border-color: var(--ds-component-button-primary-ghost-border-disabled);
+  color: var(--ds-component-button-primary-ghost-text-disabled);
+}
+
+/* Secondary Ghost */
+.ghost-secondary {
+  --button-focus-ring-color: var(--ds-component-button-secondary-focus-ring);
+  background-color: var(--ds-component-button-secondary-ghost-background-default);
+  border-color: var(--ds-component-button-secondary-ghost-border-default);
+  color: var(--ds-component-button-secondary-ghost-text-default);
+}
+@media (hover: hover) {
+  .ghost-secondary:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-secondary-ghost-background-hover);
+    border-color: var(--ds-component-button-secondary-ghost-border-hover);
+    color: var(--ds-component-button-secondary-ghost-text-hover);
+  }
+}
+.ghost-secondary:focus-visible {
+  background-color: var(--ds-component-button-secondary-ghost-background-focus);
+  border-color: var(--ds-component-button-secondary-ghost-border-focus);
+  color: var(--ds-component-button-secondary-ghost-text-focus);
+}
+.ghost-secondary:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-secondary-ghost-background-active);
+  border-color: var(--ds-component-button-secondary-ghost-border-active);
+  color: var(--ds-component-button-secondary-ghost-text-active);
+}
+.ghost-secondary:disabled,
+.ghost-secondary[aria-disabled='true'] {
+  background-color: var(--ds-component-button-secondary-ghost-background-disabled);
+  border-color: var(--ds-component-button-secondary-ghost-border-disabled);
+  color: var(--ds-component-button-secondary-ghost-text-disabled);
+}
+
+/* Error Ghost */
+.ghost-error {
+  --button-focus-ring-color: var(--ds-component-button-error-focus-ring);
+  background-color: var(--ds-component-button-error-ghost-background-default);
+  border-color: var(--ds-component-button-error-ghost-border-default);
+  color: var(--ds-component-button-error-ghost-text-default);
+}
+@media (hover: hover) {
+  .ghost-error:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-error-ghost-background-hover);
+    border-color: var(--ds-component-button-error-ghost-border-hover);
+    color: var(--ds-component-button-error-ghost-text-hover);
+  }
+}
+.ghost-error:focus-visible {
+  background-color: var(--ds-component-button-error-ghost-background-focus);
+  border-color: var(--ds-component-button-error-ghost-border-focus);
+  color: var(--ds-component-button-error-ghost-text-focus);
+}
+.ghost-error:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-error-ghost-background-active);
+  border-color: var(--ds-component-button-error-ghost-border-active);
+  color: var(--ds-component-button-error-ghost-text-active);
+}
+.ghost-error:disabled,
+.ghost-error[aria-disabled='true'] {
+  background-color: var(--ds-component-button-error-ghost-background-disabled);
+  border-color: var(--ds-component-button-error-ghost-border-disabled);
+  color: var(--ds-component-button-error-ghost-text-disabled);
+}
+
+/* Success Ghost */
+.ghost-success {
+  --button-focus-ring-color: var(--ds-component-button-success-focus-ring);
+  background-color: var(--ds-component-button-success-ghost-background-default);
+  border-color: var(--ds-component-button-success-ghost-border-default);
+  color: var(--ds-component-button-success-ghost-text-default);
+}
+@media (hover: hover) {
+  .ghost-success:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-success-ghost-background-hover);
+    border-color: var(--ds-component-button-success-ghost-border-hover);
+    color: var(--ds-component-button-success-ghost-text-hover);
+  }
+}
+.ghost-success:focus-visible {
+  background-color: var(--ds-component-button-success-ghost-background-focus);
+  border-color: var(--ds-component-button-success-ghost-border-focus);
+  color: var(--ds-component-button-success-ghost-text-focus);
+}
+.ghost-success:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-success-ghost-background-active);
+  border-color: var(--ds-component-button-success-ghost-border-active);
+  color: var(--ds-component-button-success-ghost-text-active);
+}
+.ghost-success:disabled,
+.ghost-success[aria-disabled='true'] {
+  background-color: var(--ds-component-button-success-ghost-background-disabled);
+  border-color: var(--ds-component-button-success-ghost-border-disabled);
+  color: var(--ds-component-button-success-ghost-text-disabled);
+}
+
+/* Warning Ghost */
+.ghost-warning {
+  --button-focus-ring-color: var(--ds-component-button-warning-focus-ring);
+  background-color: var(--ds-component-button-warning-ghost-background-default);
+  border-color: var(--ds-component-button-warning-ghost-border-default);
+  color: var(--ds-component-button-warning-ghost-text-default);
+}
+@media (hover: hover) {
+  .ghost-warning:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-warning-ghost-background-hover);
+    border-color: var(--ds-component-button-warning-ghost-border-hover);
+    color: var(--ds-component-button-warning-ghost-text-hover);
+  }
+}
+.ghost-warning:focus-visible {
+  background-color: var(--ds-component-button-warning-ghost-background-focus);
+  border-color: var(--ds-component-button-warning-ghost-border-focus);
+  color: var(--ds-component-button-warning-ghost-text-focus);
+}
+.ghost-warning:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-warning-ghost-background-active);
+  border-color: var(--ds-component-button-warning-ghost-border-active);
+  color: var(--ds-component-button-warning-ghost-text-active);
+}
+.ghost-warning:disabled,
+.ghost-warning[aria-disabled='true'] {
+  background-color: var(--ds-component-button-warning-ghost-background-disabled);
+  border-color: var(--ds-component-button-warning-ghost-border-disabled);
+  color: var(--ds-component-button-warning-ghost-text-disabled);
+}
+
+/* Information Ghost */
+.ghost-information {
+  --button-focus-ring-color: var(--ds-component-button-information-focus-ring);
+  background-color: var(--ds-component-button-information-ghost-background-default);
+  border-color: var(--ds-component-button-information-ghost-border-default);
+  color: var(--ds-component-button-information-ghost-text-default);
+}
+@media (hover: hover) {
+  .ghost-information:hover:not(:disabled):not([aria-disabled='true']) {
+    background-color: var(--ds-component-button-information-ghost-background-hover);
+    border-color: var(--ds-component-button-information-ghost-border-hover);
+    color: var(--ds-component-button-information-ghost-text-hover);
+  }
+}
+.ghost-information:focus-visible {
+  background-color: var(--ds-component-button-information-ghost-background-focus);
+  border-color: var(--ds-component-button-information-ghost-border-focus);
+  color: var(--ds-component-button-information-ghost-text-focus);
+}
+.ghost-information:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-component-button-information-ghost-background-active);
+  border-color: var(--ds-component-button-information-ghost-border-active);
+  color: var(--ds-component-button-information-ghost-text-active);
+}
+.ghost-information:disabled,
+.ghost-information[aria-disabled='true'] {
+  background-color: var(--ds-component-button-information-ghost-background-disabled);
+  border-color: var(--ds-component-button-information-ghost-border-disabled);
+  color: var(--ds-component-button-information-ghost-text-disabled);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .button:active:not(:disabled):not([aria-disabled='true']) {
+    transform: none;
+  }
 }

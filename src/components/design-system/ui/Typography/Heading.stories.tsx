@@ -11,7 +11,8 @@ const meta = {
       description: {
         component:
           'The `Heading` component is the foundation for titles across the application. It is designed with a crucial principle in mind: **decoupling visual sizing from semantic HTML structure (Accessibility & SEO)**.\n\n' +
-          'Use the `level` prop to choose the correct HTML tag (`h1` through `h6`) based on your page document outline. Then, use the `size` prop to dictate how large the text should visually appear. This allows you to render an `<h3>` that visually looks like an `<h2>`, keeping your accessibility tree perfect without compromising the design.',
+          'Use the `level` prop to choose the correct HTML tag (`h1` through `h6`) based on your page document outline. Then, use the `size` prop to dictate how large the text should visually appear. This allows you to render an `<h3>` that visually looks like an `<h2>`, keeping your accessibility tree perfect without compromising the design.\n\n' +
+          'The values behind each size (font size, weight, line height, letter spacing) are on the [Foundation / Typography](?path=/story/design-system-foundation-typography--type-scale) page.',
       },
     },
   },

@@ -7,7 +7,7 @@ import type { ReactElement, ReactNode, ComponentPropsWithoutRef } from 'react';
 export type ButtonVariant =
   'primary' | 'secondary' | 'error' | 'success' | 'warning' | 'information';
 
-export type ButtonAppearance = 'fill' | 'outline';
+export type ButtonAppearance = 'fill' | 'outline' | 'ghost';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 export type IconPosition = 'start' | 'end';
 
@@ -33,6 +33,12 @@ type ButtonBaseProps = {
   iconPosition?: IconPosition;
   /** Render as a child element (Radix Slot pattern). */
   asChild?: boolean;
+  /**
+   * Native button type. Defaults to `"button"` so a button inside a form
+   * never submits by accident. Use `"submit"` for the form's main action.
+   * Ignored when `asChild` is true.
+   */
+  type?: 'button' | 'submit' | 'reset';
 };
 
 /** Button with visible text — `aria-label` is optional. */

@@ -1,0 +1,21 @@
+{
+  "semantic": {
+    "focus": {
+      "ring": {
+        "color": {
+          "value": "{color.sage.600}",
+          "comment": "The default ring colour, the same sage as border.brand. A component whose background is too close to it defines its own focus-ring token in tier 3."
+        },
+        "width": { "value": "{border-width.thick}" },
+        "offset": {
+          "value": "{border-width.thick}",
+          "comment": "Stroke geometry, not layout spacing: the gap matches the ring width, so it stays off the 4px spacing scale."
+        },
+        "offset-inset": {
+          "value": "calc(-1 * {border-width.thick})",
+          "comment": "Draws the ring inside the element, for items in clipped or tightly packed containers: menu options, tabs, table cells."
+        }
+      }
+    }
+  }
+}

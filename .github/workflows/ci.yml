@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# A new push to the same branch or pull request cancels the run it replaces.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  HUSKY: 0 # git hooks are for local commits only
+  NEXT_TELEMETRY_DISABLED: 1
+
+jobs:
+  checks:
+    name: Format, lint, types, tokens and unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm run lint:css
+      - run: npx tsc --noEmit -p .
+      - name: tokens.css matches the token JSON
+        run: npm run tokens:check
+      - run: npm test
+
+  storybook:
+    name: Storybook interaction and a11y tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:storybook
+
+  build:
+    name: Next.js production build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build

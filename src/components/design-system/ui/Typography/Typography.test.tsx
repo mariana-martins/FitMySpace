@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { Heading, Text, Label, Caption } from './';
 import { createRef } from 'react';
@@ -166,6 +166,33 @@ describe('Label', () => {
     render(<Label ref={ref}>Label</Label>);
     expect(ref.current).toBeInstanceOf(HTMLElement);
     expect(ref.current?.tagName).toBe('SPAN');
+  });
+
+  it('forwards ref to the <label> element when as="label"', () => {
+    const ref = createRef<HTMLElement>();
+    render(
+      <Label as="label" htmlFor="email-field" ref={ref}>
+        Email
+      </Label>,
+    );
+    expect(ref.current).toBeInstanceOf(HTMLLabelElement);
+    expect(ref.current?.tagName).toBe('LABEL');
+  });
+
+  it('prevents text selection on double-click when as="label" (Radix Label)', () => {
+    render(
+      <Label as="label" htmlFor="email-field">
+        Email
+      </Label>,
+    );
+    const label = screen.getByText('Email');
+    const mouseDownEvent = new MouseEvent('mousedown', {
+      bubbles: true,
+      cancelable: true,
+      detail: 2,
+    });
+    const wasNotCancelled = fireEvent(label, mouseDownEvent);
+    expect(wasNotCancelled).toBe(false);
   });
 
   it('has no accessibility violations (as span)', async () => {

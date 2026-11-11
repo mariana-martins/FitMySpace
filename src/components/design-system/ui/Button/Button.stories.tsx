@@ -1,10 +1,11 @@
 import { Plus, Trash2, ArrowRight, Download, Star } from 'lucide-react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { Caption, Label } from '../Typography';
 import { Button } from './';
 
 const meta = {
-  title: 'Design System/Components/Button',
+  title: 'Design System/Components/Actions/Button',
   component: Button,
   tags: ['autodocs'],
   args: {
@@ -25,11 +26,12 @@ const meta = {
           '### Best Practices\n' +
           '- **Primary Actions:** Use the `primary` variant for the main action on a page. Only one primary button should be visible at a time.\n' +
           '- **Secondary Actions:** Use `secondary` or `outline` appearances for alternative actions.\n' +
+          '- **Low-emphasis Actions:** Use the `ghost` appearance for tertiary actions and for controls inside other components, such as a "Show password" button in an `Input`.\n' +
           '- **Destructive Actions:** Use the `error` variant for irreversible actions like deletions.\n' +
           '- **Icon-only Buttons:** Always provide an `aria-label` when using a button without text to ensure screen reader support.\n\n' +
           '### Key Features\n' +
-          '- **6 color variants** (`primary`, `secondary`, `error`, `success`, `warning`, `information`) × **2 appearances** (`fill`, `outline`).\n' +
-          '- **4 sizes** (`xs`, `sm`, `md`, `lg`) with token-driven padding, font, gap, and icon sizing.\n' +
+          '- **6 color variants** (`primary`, `secondary`, `error`, `success`, `warning`, `information`) × **3 appearances** (`fill`, `outline`, `ghost`).\n' +
+          '- **4 sizes** (`xs` 32px, `sm` 40px, `md` 48px, `lg` 56px), the same heights as the Input sizes, with token-driven padding, font, gap, and icon sizing.\n' +
           '- **Icon support** — leading or trailing icons via the `icon` prop.\n' +
           '- **Icon-only mode** — TypeScript enforces `aria-label` when `children` is omitted.\n' +
           '- **`asChild` pattern** — renders as any child element (e.g. `<a>`, Next.js `<Link>`) via Radix `Slot`.\n' +
@@ -62,8 +64,9 @@ export const Default: Story = {
     },
     appearance: {
       control: { type: 'select' },
-      options: ['fill', 'outline'],
-      description: 'The visual style. Use `fill` for emphasis and `outline` for secondary actions.',
+      options: ['fill', 'outline', 'ghost'],
+      description:
+        'The visual style. Use `fill` for emphasis, `outline` for secondary actions and `ghost` for low-emphasis actions.',
     },
     size: {
       control: { type: 'select' },
@@ -173,6 +176,49 @@ export const OutlineVariants: Story = {
 };
 
 /* ---------------------------------------------------------------
+ * All variants — Ghost
+ * --------------------------------------------------------------- */
+
+export const GhostVariants: Story = {
+  name: 'All Variants (Ghost)',
+  render: () => (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+      <Button variant="primary" size="md" appearance="ghost">
+        Primary
+      </Button>
+      <Button variant="secondary" size="md" appearance="ghost">
+        Secondary
+      </Button>
+      <Button variant="error" size="md" appearance="ghost">
+        Error
+      </Button>
+      <Button variant="success" size="md" appearance="ghost">
+        Success
+      </Button>
+      <Button variant="warning" size="md" appearance="ghost">
+        Warning
+      </Button>
+      <Button variant="information" size="md" appearance="ghost">
+        Information
+      </Button>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Ghost buttons have no border or background until they are hovered, pressed or focused. Use them for low-emphasis actions and for controls inside other components. They keep the same size as fill and outline buttons.',
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('button', { name: 'Primary' })).toBeInTheDocument();
+    await expect(canvas.getByRole('button', { name: 'Information' })).toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
  * All sizes
  * --------------------------------------------------------------- */
 
@@ -197,7 +243,7 @@ export const AllSizes: Story = {
     docs: {
       description: {
         story:
-          'The button comes in 4 sizes. Size `md` is the default standard size. Use `lg` for prominent calls to action, and `sm` or `xs` for dense layouts.',
+          'The button comes in 4 sizes, 32, 40, 48 and 56px tall: `sm`, `md` and `lg` match the Input sizes, so a button lines up with the field next to it. Size `md` is the default standard size. Use `lg` for prominent calls to action, and `sm` or `xs` for dense layouts.',
       },
     },
   },
@@ -281,7 +327,7 @@ export const IconOnly: Story = {
     docs: {
       description: {
         story:
-          "Icon-only buttons **require** the `aria-label` prop — TypeScript will error if it is omitted. This ensures screen readers always announce the button's purpose. They also adjust padding to remain perfectly square with an optimal hit area.",
+          "Icon-only buttons **require** the `aria-label` prop — TypeScript will error if it is omitted. This ensures screen readers always announce the button's purpose. They are perfectly square, as wide as the size is tall (32px at `xs`, above the 24×24 minimum of WCAG 2.5.8).",
       },
     },
   },
@@ -351,6 +397,127 @@ export const PseudoStates: Story = {
       description: {
         story:
           'Demonstrates the different interactive states of the button using the `storybook-addon-pseudo-states` plugin. You can also use the toolbar above the canvas to toggle these states globally on any component.',
+      },
+    },
+    pseudo: {
+      hover: ['.pseudo-hover'],
+      active: ['.pseudo-active'],
+      focusVisible: ['.pseudo-focus-visible'],
+    },
+  },
+};
+
+/* ---------------------------------------------------------------
+ * All variants — Pseudo States
+ * --------------------------------------------------------------- */
+
+const PSEUDO_STATE_VARIANTS = [
+  'primary',
+  'secondary',
+  'error',
+  'success',
+  'warning',
+  'information',
+] as const;
+
+const PSEUDO_STATE_APPEARANCES = ['fill', 'outline', 'ghost'] as const;
+
+const PSEUDO_STATES = [
+  { label: 'Default', className: undefined },
+  { label: 'Hover', className: 'pseudo-hover' },
+  { label: 'Active', className: 'pseudo-active' },
+  { label: 'Focus visible', className: 'pseudo-focus-visible' },
+] as const;
+
+function toTitleCase(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+export const AllVariantsPseudoStates: Story = {
+  name: 'All Variants (Pseudo States)',
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      {PSEUDO_STATE_APPEARANCES.map((appearance) => (
+        <div
+          key={appearance}
+          style={{
+            width: 'fit-content',
+            padding: '1.5rem 1.75rem',
+            backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+            border: '1px solid var(--ds-color-charcoal-200)',
+            borderRadius: 'var(--ds-semantic-radii-container-lg)',
+          }}
+        >
+          <table style={{ borderCollapse: 'separate', borderSpacing: '1.5rem 0.75rem' }}>
+            <caption
+              style={{
+                captionSide: 'top',
+                textAlign: 'start',
+                paddingInline: '1.5rem',
+                paddingBottom: '0.5rem',
+              }}
+            >
+              <Label size="lg">{toTitleCase(appearance)}</Label>
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" style={{ textAlign: 'start', fontWeight: 'normal' }}>
+                  <Caption style={{ color: 'var(--ds-semantic-color-text-subtle-base)' }}>
+                    Variant
+                  </Caption>
+                </th>
+                {PSEUDO_STATES.map((state) => (
+                  <th
+                    key={state.label}
+                    scope="col"
+                    style={{ textAlign: 'start', fontWeight: 'normal' }}
+                  >
+                    <Caption style={{ color: 'var(--ds-semantic-color-text-subtle-base)' }}>
+                      {state.label}
+                    </Caption>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {PSEUDO_STATE_VARIANTS.map((variant) => (
+                <tr key={variant}>
+                  <th scope="row" style={{ textAlign: 'start', fontWeight: 'normal' }}>
+                    <Label size="sm">{toTitleCase(variant)}</Label>
+                  </th>
+                  {PSEUDO_STATES.map((state) => (
+                    <td key={state.label}>
+                      <Button
+                        variant={variant}
+                        appearance={appearance}
+                        size="md"
+                        className={state.className}
+                      >
+                        Button
+                      </Button>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('table', { name: 'Fill' })).toBeInTheDocument();
+    await expect(canvas.getByRole('table', { name: 'Outline' })).toBeInTheDocument();
+    await expect(canvas.getByRole('table', { name: 'Ghost' })).toBeInTheDocument();
+    await expect(canvas.getAllByRole('button', { name: 'Button' })).toHaveLength(72);
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Every variant (rows) in every interactive state (columns), for fill, outline and ghost, for visual review. ' +
+          'Contrast in these states is enforced by `tokens/tokens.contrast.test.ts`: the pseudo-states addon only applies hover, active and focus styles in the Storybook UI, not in the automated test runner, so axe cannot check them here.',
       },
     },
     pseudo: {

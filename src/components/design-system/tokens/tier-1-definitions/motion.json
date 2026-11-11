@@ -1,0 +1,28 @@
+{
+  "duration": {
+    "80": { "value": "80ms" },
+    "160": { "value": "160ms" },
+    "240": { "value": "240ms" },
+    "320": { "value": "320ms" },
+    "480": { "value": "480ms" }
+  },
+  "easing": {
+    "out": {
+      "value": "cubic-bezier(0.2, 0, 0, 1)",
+      "comment": "Fast start, gentle stop: for elements responding to the user."
+    },
+    "out-emphasized": {
+      "value": "cubic-bezier(0.05, 0.7, 0.1, 1)",
+      "comment": "Arrives quickly, then glides into place: for elements entering the screen."
+    },
+    "in": {
+      "value": "cubic-bezier(0.3, 0, 0.8, 0.15)",
+      "comment": "Slow start, fast finish: for elements leaving the screen."
+    },
+    "in-out": {
+      "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "comment": "Symmetric: for elements that move or resize while staying on screen."
+    },
+    "linear": { "value": "linear" }
+  }
+}

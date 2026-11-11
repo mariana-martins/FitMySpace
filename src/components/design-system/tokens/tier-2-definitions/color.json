@@ -13,7 +13,10 @@
           "active": { "value": "{color.sage.900}" }
         },
         "subtle": {
-          "base": { "value": "{color.charcoal.600}" },
+          "base": {
+            "value": "{color.charcoal.600}",
+            "comment": "Neutral dark fill (e.g. the secondary Button), not a faint surface: \"subtle\" means low-chroma, not low-contrast."
+          },
           "hover": { "value": "{color.charcoal.700}" },
           "active": { "value": "{color.charcoal.800}" }
         },
@@ -23,20 +26,27 @@
           "active": { "value": "{color.berry.900}" }
         },
         "utility-success": {
-          "base": { "value": "{color.sage.700}" },
-          "hover": { "value": "{color.sage.800}" },
-          "active": { "value": "{color.sage.900}" }
+          "base": { "value": "{color.jade.700}" },
+          "hover": { "value": "{color.jade.800}" },
+          "active": { "value": "{color.jade.900}" }
         },
         "utility-warning": {
           "base": { "value": "{color.honey.400}" },
-          "hover": { "value": "{color.honey.500}" },
-          "active": { "value": "{color.honey.600}" }
+          "hover": {
+            "value": "{color.honey.300}",
+            "comment": "Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1."
+          },
+          "active": {
+            "value": "{color.honey.200}",
+            "comment": "Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1."
+          }
         },
         "utility-information": {
           "base": { "value": "{color.ocean.700}" },
           "hover": { "value": "{color.ocean.800}" },
           "active": { "value": "{color.ocean.900}" }
         },
+        "transparent": { "value": "{color.transparent}" },
         "disabled": { "value": "{color.charcoal.100}" }
       },
       "text": {
@@ -54,7 +64,11 @@
         "subtle": {
           "base": { "value": "{color.charcoal.600}" },
           "hover": { "value": "{color.charcoal.700}" },
-          "active": { "value": "{color.charcoal.800}" }
+          "active": { "value": "{color.charcoal.800}" },
+          "disabled": {
+            "value": "{color.charcoal.500}",
+            "comment": "Secondary text that must stay readable on a disabled field (e.g. an Input unit)."
+          }
         },
         "utility-error": {
           "base": { "value": "{color.berry.700}" },
@@ -62,9 +76,9 @@
           "active": { "value": "{color.berry.900}" }
         },
         "utility-success": {
-          "base": { "value": "{color.sage.700}" },
-          "hover": { "value": "{color.sage.800}" },
-          "active": { "value": "{color.sage.900}" }
+          "base": { "value": "{color.jade.700}" },
+          "hover": { "value": "{color.jade.800}" },
+          "active": { "value": "{color.jade.900}" }
         },
         "utility-warning": {
           "base": { "value": "{color.honey.900}" },
@@ -76,6 +90,7 @@
           "hover": { "value": "{color.ocean.800}" },
           "active": { "value": "{color.ocean.900}" }
         },
+        "placeholder": { "value": "{color.charcoal.400}" },
         "disabled": { "value": "{color.charcoal.300}" }
       },
       "border": {
@@ -90,7 +105,10 @@
           "active": { "value": "{color.sage.800}" }
         },
         "subtle": {
-          "base": { "value": "{color.charcoal.600}" },
+          "base": {
+            "value": "{color.charcoal.600}",
+            "comment": "Darker than border.default on purpose: a neutral edge that pairs with background.subtle. For faint dividers use border.disabled."
+          },
           "hover": { "value": "{color.charcoal.700}" },
           "active": { "value": "{color.charcoal.800}" }
         },
@@ -100,9 +118,9 @@
           "active": { "value": "{color.berry.800}" }
         },
         "utility-success": {
-          "base": { "value": "{color.sage.600}" },
-          "hover": { "value": "{color.sage.700}" },
-          "active": { "value": "{color.sage.800}" }
+          "base": { "value": "{color.jade.600}" },
+          "hover": { "value": "{color.jade.700}" },
+          "active": { "value": "{color.jade.800}" }
         },
         "utility-warning": {
           "base": { "value": "{color.honey.600}" },
@@ -114,7 +132,12 @@
           "hover": { "value": "{color.ocean.700}" },
           "active": { "value": "{color.ocean.800}" }
         },
+        "transparent": { "value": "{color.transparent}" },
         "disabled": { "value": "{color.charcoal.200}" }
+      },
+      "halo": {
+        "brand": { "value": "{color.sage.100}" },
+        "utility-error": { "value": "{color.berry.100}" }
       }
     }
   }

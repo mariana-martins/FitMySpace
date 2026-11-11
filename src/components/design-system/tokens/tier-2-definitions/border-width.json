@@ -2,9 +2,26 @@
   "semantic": {
     "border-width": {
       "none": { "value": "{border-width.none}" },
-      "default": { "value": "{border-width.thin}" },
-      "interactive": { "value": "{border-width.thick}" },
-      "heavy": { "value": "{border-width.heavy}" }
+      "default": {
+        "value": "{border-width.thin}",
+        "comment": "Quiet outlines and dividers: an input's edge, a card, a separator."
+      },
+      "interactive": {
+        "value": "{border-width.thick}",
+        "comment": "The stronger outline of buttons and other controls you press."
+      },
+      "selected": {
+        "value": "{border-width.thick}",
+        "comment": "The outline of a selected card or option. Pair it with a colour change, never colour alone."
+      },
+      "indicator": {
+        "value": "{border-width.heavy}",
+        "comment": "Bars that mark the current item, such as an active tab or navigation link."
+      },
+      "halo": {
+        "value": "{border-width.heavy}",
+        "comment": "The soft ring around a focused input, drawn with box-shadow."
+      }
     }
   }
 }

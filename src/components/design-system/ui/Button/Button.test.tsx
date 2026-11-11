@@ -30,6 +30,50 @@ describe('Button — rendering', () => {
     expect(screen.getByRole('button')).toHaveAttribute('type', 'button');
   });
 
+  it.each(['submit', 'reset'] as const)('respects type="%s"', (type) => {
+    render(
+      <Button variant="primary" appearance="fill" size="md" type={type}>
+        Action
+      </Button>,
+    );
+    expect(screen.getByRole('button')).toHaveAttribute('type', type);
+  });
+
+  it('submits its form when type="submit"', () => {
+    const handleSubmit = jest.fn((event: React.FormEvent) => event.preventDefault());
+    render(
+      <form onSubmit={handleSubmit}>
+        <Button variant="primary" appearance="fill" size="md" type="submit">
+          Save room
+        </Button>
+      </form>,
+    );
+    screen.getByRole('button', { name: 'Save room' }).click();
+    expect(handleSubmit).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not submit its form by default', () => {
+    const handleSubmit = jest.fn((event: React.FormEvent) => event.preventDefault());
+    render(
+      <form onSubmit={handleSubmit}>
+        <Button variant="primary" appearance="fill" size="md">
+          Preview
+        </Button>
+      </form>,
+    );
+    screen.getByRole('button', { name: 'Preview' }).click();
+    expect(handleSubmit).not.toHaveBeenCalled();
+  });
+
+  it('does not pass type to the child element when asChild is true', () => {
+    render(
+      <Button variant="primary" appearance="fill" size="md" asChild type="submit">
+        <a href="/rooms">Rooms</a>
+      </Button>,
+    );
+    expect(screen.getByRole('link', { name: 'Rooms' })).not.toHaveAttribute('type');
+  });
+
   it('renders the text content', () => {
     render(
       <Button variant="primary" appearance="fill" size="md">
@@ -63,6 +107,15 @@ describe('Button — variants', () => {
       </Button>,
     );
     expect(container.firstChild).toHaveClass(`outline-${variant}`);
+  });
+
+  it.each(variants)('applies ghost-%s class for variant="%s" appearance="ghost"', (variant) => {
+    const { container } = render(
+      <Button variant={variant} appearance="ghost" size="md">
+        {variant}
+      </Button>,
+    );
+    expect(container.firstChild).toHaveClass(`ghost-${variant}`);
   });
 });
 
@@ -281,6 +334,30 @@ describe('Button — asChild', () => {
     );
     const link = screen.getByRole('link');
     expect(link).toHaveAttribute('tabindex', '-1');
+  });
+
+  function dispatchMiddleClick(element: HTMLElement) {
+    const middleClick = new MouseEvent('auxclick', { bubbles: true, cancelable: true, button: 1 });
+    element.dispatchEvent(middleClick);
+    return middleClick;
+  }
+
+  it('blocks a middle click (open in new tab) when asChild is disabled', () => {
+    render(
+      <Button variant="primary" appearance="fill" size="md" asChild disabled>
+        <a href="/disabled">Disabled Link</a>
+      </Button>,
+    );
+    expect(dispatchMiddleClick(screen.getByRole('link')).defaultPrevented).toBe(true);
+  });
+
+  it('allows a middle click when asChild is enabled', () => {
+    render(
+      <Button variant="primary" appearance="fill" size="md" asChild>
+        <a href="/rooms">Rooms</a>
+      </Button>,
+    );
+    expect(dispatchMiddleClick(screen.getByRole('link')).defaultPrevented).toBe(false);
   });
 });
 

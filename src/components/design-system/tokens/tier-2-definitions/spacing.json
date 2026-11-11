@@ -20,6 +20,11 @@
         "md": { "value": "{spacing.10}" },
         "lg": { "value": "{spacing.16}" },
         "xl": { "value": "{spacing.20}" }
+      },
+      "control": {
+        "sm": { "value": "{spacing.3}" },
+        "md": { "value": "{spacing.4}" },
+        "lg": { "value": "{spacing.5}" }
       }
     }
   }

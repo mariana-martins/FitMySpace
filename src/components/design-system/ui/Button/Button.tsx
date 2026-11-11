@@ -1,3 +1,5 @@
+'use client';
+
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import styles from './Button.module.css';
 import { forwardRef } from 'react';
@@ -17,10 +19,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     icon,
     iconPosition = 'start',
     asChild = false,
+    type = 'button',
     disabled,
     className,
     children,
     onClick,
+    onAuxClick,
     ...rest
   } = props;
 
@@ -53,10 +57,23 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     }
   };
 
+  /*
+   * Middle click (auxclick) opens a link in a new tab without firing `click`,
+   * so a disabled `asChild` link must block it separately.
+   */
+  const handleAuxClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (disabled) {
+      event.preventDefault();
+      return;
+    }
+    onAuxClick?.(event);
+  };
+
   const sharedProps = {
     ref,
     className: composedClassName,
     onClick: handleClick,
+    onAuxClick: handleAuxClick,
     ...rest,
   };
 
@@ -80,7 +97,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   }
 
   return (
-    <button {...sharedProps} type="button" disabled={disabled}>
+    <button {...sharedProps} type={type} disabled={disabled}>
       {iconElement && iconPosition === 'start' && iconElement}
       {children}
       {iconElement && iconPosition === 'end' && iconElement}
