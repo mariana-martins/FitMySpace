@@ -1,0 +1,56 @@
+name: Publish Storybook
+
+# Publishes only the design system's Storybook to GitHub Pages; the Next.js app is never deployed.
+# It starts when the CI workflow finishes on main and runs only if every CI job passed.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write # publish to GitHub Pages
+  id-token: write # prove the deployment comes from this workflow
+
+# One deployment at a time. A newer run waits instead of cancelling one that is mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  HUSKY: 0
+  STORYBOOK_DISABLE_TELEMETRY: 1
+
+jobs:
+  build:
+    name: Build Storybook
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # The commit CI tested, not whatever main points to now.
+          ref: ${{ github.event.workflow_run.head_sha }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build-storybook
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: storybook-static
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

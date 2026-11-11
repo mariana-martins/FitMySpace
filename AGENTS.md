@@ -149,6 +149,10 @@ Run what applies before saying a change is done, and report failures honestly:
 - For visual changes, look at the result in Storybook (`npm run storybook`) or
   the app (`npm run dev`); jsdom never sees colour or layout.
 
+`.github/workflows/storybook-pages.yml` publishes the Storybook (never the app)
+to GitHub Pages once CI passes on `main`. Links between Storybook pages must stay
+relative (`StorybookLink`, `LinkCard`) so they work under the Pages sub-path.
+
 GitHub Actions (`.github/workflows/ci.yml`) runs all of these, plus
 `npm run format:check` and `npm run build`, on every pull request and on pushes
 to `main`.
