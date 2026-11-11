@@ -30,6 +30,7 @@ jobs:
       - run: npm ci
       - run: npm run format:check
       - run: npm run lint
+      - run: npm run lint:css
       - run: npx tsc --noEmit -p .
       - name: tokens.css matches the token JSON
         run: npm run tokens:check

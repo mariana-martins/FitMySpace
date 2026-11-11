@@ -9,7 +9,7 @@ import {
 } from '../../docs';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import type { DocumentedToken } from '../../docs';
-import { Text } from '../Typography';
+import { Text } from '../../ui/Typography';
 
 const meta = {
   title: 'Design System/Foundation/Color',

@@ -47,7 +47,7 @@ const preview: Preview = {
               'Motion',
             ],
             'Components',
-            ['Typography'],
+            ['Actions', 'Forms', 'Typography'],
             'Patterns',
           ],
         ],

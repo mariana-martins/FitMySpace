@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { TextField } from './';
 
 const meta = {
-  title: 'Design System/Components/TextField',
+  title: 'Design System/Components/Forms/TextField',
   component: TextField,
   tags: ['autodocs'],
   args: {

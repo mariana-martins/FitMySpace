@@ -1,5 +1,11 @@
+import { Caption, Heading, Label, Text } from '../ui/Typography';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { Heading, Text } from '../Typography';
+import { LinkCard, LinkCardGrid } from '../docs';
+import { expect, within } from 'storybook/test';
+import { TextField } from '../ui/TextField';
+import { Search } from 'lucide-react';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
 
 const meta = {
   title: 'Design System/Introduction',
@@ -26,7 +32,7 @@ const codeStyle: React.CSSProperties = {
 const cardBase: React.CSSProperties = {
   backgroundColor: 'var(--ds-semantic-color-background-default-base)',
   borderRadius: 'var(--ds-radii-xl)',
-  boxShadow: '0 4px 20px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02)',
+  boxShadow: 'var(--ds-semantic-shadow-raised-base)',
   border: '1px solid var(--ds-semantic-color-border-subtle-base)',
   padding: '32px',
 };
@@ -74,9 +80,9 @@ const Hero = () => (
         textWrap: 'pretty',
       }}
     >
-      A shared language of colour, spacing, typography, and shape that keeps every FitMySpace
-      interface consistent, accessible, and easy to evolve. This guide will help you understand how
-      our design tokens work and how to use them in your components.
+      A shared language of colour, spacing, typography, and shape, and the accessible components
+      built from it, that keeps every FitMySpace interface consistent and easy to evolve. This guide
+      explains how the design tokens work and where to find each foundation and component.
     </Text>
   </header>
 );
@@ -348,45 +354,6 @@ const QuickStart = () => (
 /*  Foundation Navigation Cards                                        */
 /* ------------------------------------------------------------------ */
 
-const FoundationCard = ({
-  title,
-  description,
-  preview,
-}: {
-  title: string;
-  description: string;
-  preview: React.ReactNode;
-}) => (
-  <div
-    style={{
-      ...cardBase,
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '16px',
-    }}
-  >
-    {/* Decorative preview */}
-    <div aria-hidden="true">{preview}</div>
-
-    <div>
-      <Heading level={4} size="sm" style={{ marginBottom: '4px' }}>
-        {title}
-      </Heading>
-      <Text
-        size="sm"
-        as="span"
-        style={{
-          color: 'var(--ds-semantic-color-text-subtle-base)',
-          display: 'block',
-          textWrap: 'pretty',
-        }}
-      >
-        {description}
-      </Text>
-    </div>
-  </div>
-);
-
 /* Decorative preview strips for each foundation category */
 
 const ColorPreview = () => {
@@ -525,7 +492,7 @@ const BorderWidthPreview = () => {
   const borderWidths = [
     'var(--ds-semantic-border-width-default)',
     'var(--ds-semantic-border-width-interactive)',
-    'var(--ds-semantic-border-width-heavy)',
+    'var(--ds-semantic-border-width-halo)',
   ];
   return (
     <div style={{ display: 'flex', gap: '8px', height: '32px', alignItems: 'center' }}>
@@ -545,20 +512,30 @@ const BorderWidthPreview = () => {
   );
 };
 
-const ShadowPreview = () => (
-  <div style={{ display: 'flex', height: '32px', alignItems: 'center', paddingLeft: '4px' }}>
-    <div
-      style={{
-        width: '64px',
-        height: '24px',
-        borderRadius: 'var(--ds-radii-md)',
-        backgroundColor: 'var(--ds-semantic-color-background-default-base)',
-        boxShadow: 'var(--ds-semantic-shadow-raised)',
-        border: '1px solid var(--ds-semantic-color-border-default-base)',
-      }}
-    />
-  </div>
-);
+const ShadowPreview = () => {
+  const elevations = [
+    'var(--ds-semantic-shadow-raised-base)',
+    'var(--ds-semantic-shadow-floating)',
+    'var(--ds-semantic-shadow-overlay)',
+  ];
+  return (
+    <div style={{ display: 'flex', gap: '16px', height: '32px', alignItems: 'center' }}>
+      {elevations.map((elevation) => (
+        <div
+          key={elevation}
+          style={{
+            width: '40px',
+            height: '24px',
+            borderRadius: 'var(--ds-radii-md)',
+            backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+            boxShadow: elevation,
+            border: '1px solid var(--ds-semantic-color-border-default-base)',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 const FocusPreview = () => (
   <div style={{ display: 'flex', height: '32px', alignItems: 'center', paddingLeft: '4px' }}>
@@ -568,8 +545,7 @@ const FocusPreview = () => (
         height: '20px',
         borderRadius: 'var(--ds-radii-full)',
         backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
-        outline:
-          'var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-color-border-brand-base)',
+        outline: 'var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color)',
         outlineOffset: 'var(--ds-semantic-focus-ring-offset)',
       }}
     />
@@ -588,76 +564,159 @@ const MotionPreview = () => (
   </svg>
 );
 
+const sectionIntroStyle: React.CSSProperties = {
+  color: 'var(--ds-semantic-color-text-subtle-base)',
+  display: 'block',
+  marginBottom: '24px',
+};
+
 const FoundationGrid = () => (
-  <section>
+  <section style={{ marginBottom: '56px' }}>
     <Heading level={3} size="sm" style={{ marginBottom: '8px' }}>
       Foundation Tokens
     </Heading>
-    <Text
-      size="sm"
-      as="span"
-      style={{
-        color: 'var(--ds-semantic-color-text-subtle-base)',
-        display: 'block',
-        marginBottom: '24px',
-      }}
-    >
-      Explore each category in the sidebar to see every token with live previews and copy-ready CSS
-      variables.
+    <Text size="sm" as="span" style={sectionIntroStyle}>
+      Open a category to see every token with a live preview and a copy-ready CSS variable.
     </Text>
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-        gap: '16px',
-      }}
-    >
-      <FoundationCard
+    <LinkCardGrid>
+      <LinkCard
+        headingLevel={4}
+        path="/story/design-system-foundation-color--semantic-colors"
         title="Color"
         description="Core palettes and semantic colour roles for backgrounds, text, borders, and utility states."
         preview={<ColorPreview />}
       />
-      <FoundationCard
+      <LinkCard
+        headingLevel={4}
+        path="/story/design-system-foundation-typography--type-scale"
         title="Typography"
-        description="Type scale, font weights, and line heights for display, heading, body, label, and caption styles."
+        description="Display, heading, body, label, and caption styles, each with a one-line font shorthand."
         preview={<TypographyPreview />}
       />
-      <FoundationCard
+      <LinkCard
+        headingLevel={4}
+        path="/story/design-system-foundation-spacing--semantic-spacing"
         title="Spacing"
         description="Inset, gap, and section tokens that control padding, element spacing, and page rhythm."
         preview={<SpacingPreview />}
       />
-      <FoundationCard
+      <LinkCard
+        headingLevel={4}
+        path="/story/design-system-foundation-size--semantic-size"
         title="Size"
-        description="Control heights shared by buttons and inputs, and icon sizes that follow the text."
+        description="Control heights, icon sizes, click targets, image slots, and layout widths."
         preview={<SizePreview />}
       />
-      <FoundationCard
+      <LinkCard
+        headingLevel={4}
+        path="/story/design-system-foundation-radii--semantic-radii"
         title="Radii"
         description="Semantic border-radius tokens for interactive elements, containers, and surfaces."
         preview={<RadiiPreview />}
       />
-      <FoundationCard
+      <LinkCard
+        headingLevel={4}
+        path="/story/design-system-foundation-border-width--semantic-border-width"
         title="Border Width"
-        description="Stroke widths for quiet outlines, button outlines, and the halo around a focused input."
+        description="Stroke roles for outlines, selected items, current-item indicators, and focus halos."
         preview={<BorderWidthPreview />}
       />
-      <FoundationCard
+      <LinkCard
+        headingLevel={4}
+        path="/story/design-system-foundation-shadow--semantic-shadow"
         title="Shadow"
-        description="Faint elevation that lifts a control off the page without adding noise."
+        description="Soft, layered elevation from a resting card to a floating menu and an overlay dialog."
         preview={<ShadowPreview />}
       />
-      <FoundationCard
+      <LinkCard
+        headingLevel={4}
+        path="/story/design-system-foundation-focus--focus-ring"
         title="Focus"
-        description="The width and offset of the keyboard focus ring every interactive element shows."
+        description="The colour, width, and offsets of the keyboard focus ring, outside or inside the element."
         preview={<FocusPreview />}
       />
-      <FoundationCard
+      <LinkCard
+        headingLevel={4}
+        path="/story/design-system-foundation-motion--semantic-motion"
         title="Motion"
         description="Durations and easing curves for transitions that answer the user, with reduced motion respected."
         preview={<MotionPreview />}
       />
-    </div>
+    </LinkCardGrid>
+  </section>
+);
+
+/* ------------------------------------------------------------------ */
+/*  Component Navigation Cards                                         */
+/* ------------------------------------------------------------------ */
+
+/*
+ * The previews render the real components, so they never drift from
+ * the library. LinkCard makes them inert and hides them from assistive
+ * technology: they are pictures of the component, not controls.
+ */
+
+const ComponentGrid = () => (
+  <section>
+    <Heading level={3} size="sm" style={{ marginBottom: '8px' }}>
+      Components
+    </Heading>
+    <Text size="sm" as="span" style={sectionIntroStyle}>
+      Accessible building blocks made from the tokens above. Each page has live controls, every
+      variant and state, and recipes for composing them.
+    </Text>
+    <LinkCardGrid>
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-actions-button--docs"
+        title="Button"
+        description="Actions in six variants, three appearances, and four sizes, with icon-only and link modes."
+        preview={
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <Button variant="primary" appearance="fill" size="xs">
+              Save
+            </Button>
+            <Button variant="primary" appearance="outline" size="xs">
+              Cancel
+            </Button>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-forms-input--docs"
+        title="Input"
+        description="The bare text field: icons, a unit suffix, an end action, and invalid and disabled states."
+        preview={
+          <Input size="sm" aria-label="Search sample" placeholder="Search" iconStart={<Search />} />
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-forms-textfield--docs"
+        title="TextField"
+        description="An Input with its label, hint, and error message wired together for assistive technology."
+        preview={<TextField size="sm" label="Width" defaultValue="80" unit="cm" />}
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-typography-heading--docs"
+        title="Typography"
+        description="Heading, Text, Label, and Caption: the type scale as polymorphic components."
+        preview={
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+            <Heading level={5} size="sm">
+              Aa
+            </Heading>
+            <Text as="span" size="sm">
+              Text
+            </Text>
+            <Label size="sm">Label</Label>
+            <Caption>Caption</Caption>
+          </div>
+        }
+      />
+    </LinkCardGrid>
   </section>
 );
 
@@ -666,6 +725,14 @@ const FoundationGrid = () => (
 /* ------------------------------------------------------------------ */
 
 export const Welcome: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Landing page: token architecture, principles, and links to every foundation and component page.',
+      },
+    },
+  },
   render: () => (
     <div
       style={{
@@ -679,7 +746,21 @@ export const Welcome: Story = {
         <TokenArchitecture />
         <QuickStart />
         <FoundationGrid />
+        <ComponentGrid />
       </div>
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('link', { name: 'Motion' })).toHaveAttribute(
+      'href',
+      './?path=/story/design-system-foundation-motion--semantic-motion',
+    );
+    await expect(canvas.getByRole('link', { name: 'Button' })).toHaveAttribute(
+      'href',
+      './?path=/docs/design-system-components-actions-button--docs',
+    );
+    // The component previews are pictures: their controls are not exposed.
+    await expect(canvas.queryByRole('textbox')).not.toBeInTheDocument();
+  },
 };

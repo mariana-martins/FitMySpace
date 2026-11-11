@@ -5,7 +5,7 @@ import { Caption, Label } from '../Typography';
 import { Button } from './';
 
 const meta = {
-  title: 'Design System/Components/Button',
+  title: 'Design System/Components/Actions/Button',
   component: Button,
   tags: ['autodocs'],
   args: {

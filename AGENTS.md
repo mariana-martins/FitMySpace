@@ -42,6 +42,10 @@ rules below are its essentials.
   only after ALL design-system components are finished.
 - **Look**: modern, luxurious, serene. Do not copy how the legacy component was
   designed.
+- **Folders**: components in `ui/`, Foundation pages in `foundations/`, the
+  Introduction page in `introduction/`, Storybook-only helpers in `docs/`.
+  Sidebar: `Design System/Components/<Category>/<Name>` with the categories
+  Actions, Forms and Typography (add one in `.storybook/preview.tsx` when needed).
 - **Folder per component** in `ui/`: `Name.tsx`, `Name.types.ts`,
   `Name.module.css`, `Name.test.tsx`, `Name.stories.tsx` and an `index.tsx`
   barrel that exports the component and its types (`export type`). `Button` is
@@ -49,7 +53,8 @@ rules below are its essentials.
 - **Storybook-only helpers** (used by the Foundation pages, not public API) live
   in `docs/`, not `ui/`. Reuse them instead of copying markup between stories:
   `CopyTokenButton` copies a token's `var(--…)` reference, with an icon and a
-  screen-reader announcement (`iconOnly` for narrow cards). Foundation pages
+  screen-reader announcement (`iconOnly` for narrow cards); `LinkCard` /
+  `LinkCardGrid` link to another Storybook page with a whole-card link. Foundation pages
   never hard-code token lists or values: read them with `getTokens` from
   `docs/tokens.ts` (generated `tokens/tokens.docs.json`) and lay them out with
   `FoundationPage`, `TokenGroup` and `TokenRow`.
@@ -62,7 +67,10 @@ rules below are its essentials.
   semantic, tier 3 component). Components use tier-3 (or tier-2) variables only,
   never hex values. Tier-3 JSON references tier 2, never tier 1
   (`tokens/tokens.tiers.test.ts` enforces it): add a semantic role first. Button
-  and Input share `semantic.size.control.*` heights (32/40/48/56px). In colour
+  and Input share `semantic.size.control.*` heights (32/40/48/56px). Every size,
+  spacing, shadow offset and blur, and duration is a multiple of 4; only stroke
+  widths (1px, 2px) are exempt. The typography `shorthand` tokens are generated
+  by a preprocessor in `sd.config.mjs`, not written in the JSON. In colour
   tokens `subtle` means neutral, not faint: `border.subtle` is darker than
   `border.default`. After editing JSON run `npm run tokens:build`; never edit
   `tokens.css` or `tokens.docs.json` by hand. Never name a token key `value` inside a group (e.g.
@@ -83,9 +91,16 @@ rules below are its essentials.
     `docs.source.code` when the render is complex;
   - layouts use inline `style`, not meta decorators or shared style constants.
 - **CSS Modules**: kebab-case class names (`.icon-only`, `.error-icon`), read
-  with bracket access (`styles['error-icon']`). `ui/css-modules.test.ts` enforces
-  it, and `tokens/tokens.usage.test.ts` fails on any `--ds-*` name missing from
-  `tokens.css` or any tier-1 token in a `.module.css`.
+  with bracket access (`styles['error-icon']`). Stylelint (`stylelint.config.mjs`,
+  `npm run lint:css`) enforces it and fails on any unknown `--ds-*` token or any
+  tier-1 token in design-system CSS; `tokens/tokens.usage.test.ts` checks the
+  `--ds-*` names used in `.ts`, `.tsx` and `.mdx` files.
+- **Focus**: new components draw the ring with `semantic.focus.ring.color`,
+  `width` and `offset` (or `offset-inset` inside clipped or packed containers);
+  add a tier-3 `focus-ring` token only when the default colour lacks 3:1 contrast.
+- **Typography outside components**: use the generated shorthand,
+  `font: var(--ds-semantic-typography-<role>-<size>-shorthand)`, plus its
+  `letter-spacing` token. Never rebuild a style from separate font tokens.
 - **Tests** mirror `Button.test.tsx`: `describe('Name — area')` blocks under
   `/* === AREA === */` banners, React Testing Library queries by role and name,
   and a `jest-axe` check.
@@ -126,6 +141,7 @@ Run what applies before saying a change is done, and report failures honestly:
 
 - `npx tsc --noEmit -p .` — types.
 - `npm run lint` — ESLint.
+- `npm run lint:css` — Stylelint (design-system CSS).
 - `npm test` — Jest (app and design system).
 - `npm run test:storybook` — Storybook play and a11y tests (design system).
 - `npm run tokens:check` — `tokens.css` and `tokens.docs.json` match the token JSON (run

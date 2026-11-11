@@ -1,4 +1,5 @@
 import {
+  CopyTokenButton,
   formatTokenLabel,
   FoundationPage,
   getTokens,
@@ -10,12 +11,8 @@ import {
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import type { CSSProperties, ReactNode } from 'react';
 import type { DocumentedToken } from '../../docs';
-import { Text } from '../Typography';
+import { Text } from '../../ui/Typography';
 
-/*
- * The folder is `type-scale`, not `typography`: macOS file systems are
- * case-insensitive, so `ui/typography` would collide with `ui/Typography`.
- */
 const meta = {
   title: 'Design System/Foundation/Typography',
   parameters: {
@@ -87,16 +84,8 @@ const roleDescriptions: Record<string, ReactNode> = {
   ),
 };
 
-/** The token properties a text style is made of; their names match the CSS properties. */
-const TEXT_STYLE_PROPERTIES = [
-  'fontFamily',
-  'fontSize',
-  'fontWeight',
-  'lineHeight',
-  'letterSpacing',
-] as const satisfies readonly (keyof CSSProperties)[];
-
-type TextStyleProperty = (typeof TEXT_STYLE_PROPERTIES)[number];
+/** The parts of a text style shown in its specification line. */
+type TextStyleProperty = 'fontSize' | 'fontWeight' | 'lineHeight' | 'letterSpacing';
 
 const ROOT_FONT_SIZE_PX = 16;
 const REM_PATTERN = /^([\d.]+)rem$/;
@@ -105,17 +94,21 @@ function propertyOf(token: DocumentedToken): string {
   return token.path[4];
 }
 
-function isTextStyleProperty(property: string): property is TextStyleProperty {
-  return (TEXT_STYLE_PROPERTIES as readonly string[]).includes(property);
+function findToken(tokens: DocumentedToken[], property: string): DocumentedToken | undefined {
+  return tokens.find((token) => propertyOf(token) === property);
 }
 
-/** The specimen's inline style: every property points at its token. */
+/**
+ * The specimen is styled the way a consumer would style plain HTML:
+ * the `font` shorthand plus letter spacing, which `font` cannot carry.
+ */
 function specimenStyle(tokens: DocumentedToken[]): CSSProperties {
-  return Object.fromEntries(
-    tokens
-      .filter((token) => isTextStyleProperty(propertyOf(token)))
-      .map((token) => [propertyOf(token), `var(${token.name})`]),
-  );
+  const shorthand = findToken(tokens, 'shorthand');
+  const letterSpacing = findToken(tokens, 'letterSpacing');
+  return {
+    font: shorthand && `var(${shorthand.name})`,
+    letterSpacing: letterSpacing && `var(${letterSpacing.name})`,
+  };
 }
 
 /** `3rem` → `3rem (48px)`, so designers can match the value in Figma. */
@@ -125,12 +118,11 @@ function withPixels(value: string): string {
 }
 
 /**
- * A read-only summary of the style. The page deliberately offers no
- * per-property tokens to copy: a style is used whole, through its component.
+ * A read-only summary of the style. The page offers no per-property
+ * tokens to copy: a style is used whole, through its component or its shorthand.
  */
 function specification(tokens: DocumentedToken[]): string {
-  const valueOf = (property: TextStyleProperty) =>
-    tokens.find((token) => propertyOf(token) === property)?.value ?? '?';
+  const valueOf = (property: TextStyleProperty) => findToken(tokens, property)?.value ?? '?';
   return [
     `Size ${withPixels(valueOf('fontSize'))}`,
     `weight ${valueOf('fontWeight')}`,
@@ -139,22 +131,39 @@ function specification(tokens: DocumentedToken[]): string {
   ].join(', ');
 }
 
-const TextStyleSpecimen = ({ label, tokens }: { label: string; tokens: DocumentedToken[] }) => (
-  <div
-    style={{
-      padding: '24px 0',
-      borderBottom: '1px solid var(--ds-semantic-color-border-subtle-base)',
-    }}
-  >
-    <Text size="sm" as="span" style={{ fontWeight: 600, display: 'block', marginBottom: '8px' }}>
-      {label}
-    </Text>
-    <p style={{ margin: '0 0 8px', ...specimenStyle(tokens) }}>{SPECIMEN_TEXT}</p>
-    <Text size="sm" as="span" style={{ color: 'var(--ds-semantic-color-text-subtle-base)' }}>
-      {specification(tokens)}
-    </Text>
-  </div>
-);
+/** Letter spacing only needs its own declaration when the style changes it. */
+function hasCustomLetterSpacing(tokens: DocumentedToken[]): boolean {
+  const letterSpacing = findToken(tokens, 'letterSpacing');
+  return letterSpacing !== undefined && Number.parseFloat(letterSpacing.value) !== 0;
+}
+
+const TextStyleSpecimen = ({ label, tokens }: { label: string; tokens: DocumentedToken[] }) => {
+  const shorthand = findToken(tokens, 'shorthand');
+  const letterSpacing = findToken(tokens, 'letterSpacing');
+
+  return (
+    <div
+      style={{
+        padding: '24px 0',
+        borderBottom: '1px solid var(--ds-semantic-color-border-subtle-base)',
+      }}
+    >
+      <Text size="sm" as="span" style={{ fontWeight: 600, display: 'block', marginBottom: '8px' }}>
+        {label}
+      </Text>
+      <p style={{ margin: '0 0 8px', ...specimenStyle(tokens) }}>{SPECIMEN_TEXT}</p>
+      <Text size="sm" as="span" style={{ color: 'var(--ds-semantic-color-text-subtle-base)' }}>
+        {specification(tokens)}
+      </Text>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px' }}>
+        {shorthand && <CopyTokenButton variable={shorthand.name} />}
+        {letterSpacing && hasCustomLetterSpacing(tokens) && (
+          <CopyTokenButton variable={letterSpacing.name} />
+        )}
+      </div>
+    </div>
+  );
+};
 
 /* --- Type Scale --- */
 export const TypeScale: Story = {
@@ -166,9 +175,11 @@ export const TypeScale: Story = {
           Every text style is set in DM Sans and bundles a size, weight, line height and letter
           spacing. Sizes are in <InlineCode>rem</InlineCode>, so text follows the reader&apos;s
           browser font size. Apply a style through the <strong>Heading</strong>,{' '}
-          <strong>Text</strong>, <strong>Label</strong> or <strong>Caption</strong> component, never
-          by rebuilding it from its parts: a style only works as a whole. The values below are for
-          reference, for example to match a Figma file.
+          <strong>Text</strong>, <strong>Label</strong> or <strong>Caption</strong> component. When
+          no component fits, use the style&apos;s shorthand in one line, never its separate parts:{' '}
+          <InlineCode>font: var(--ds-semantic-typography-body-md-shorthand)</InlineCode>. The CSS{' '}
+          <InlineCode>font</InlineCode> property cannot carry letter spacing, so styles that change
+          it (display and label) also offer their <InlineCode>letter-spacing</InlineCode> token.
         </>
       }
     >

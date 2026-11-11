@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Input } from './';
 
 const meta = {
-  title: 'Design System/Components/Input',
+  title: 'Design System/Components/Forms/Input',
   component: Input,
   tags: ['autodocs'],
   args: {

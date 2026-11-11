@@ -90,6 +90,23 @@ function contrastRatio(foregroundToken: string, backgroundToken: string): number
 }
 
 /* ===============================================================
+ * FOCUS
+ * =============================================================== */
+
+describe('Focus tokens — contrast', () => {
+  it.each([
+    // The outset ring sits on the page; the inset ring sits on the item's own
+    // background, which is the hover tint when the pointer is also over it.
+    ['the page', PAGE_BACKGROUND],
+    ['a hovered item', 'semantic.color.background.default.hover'],
+  ])('default ring stands out from %s', (_description, backgroundToken) => {
+    expect(contrastRatio('semantic.focus.ring.color', backgroundToken)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+});
+
+/* ===============================================================
  * BUTTON
  * =============================================================== */
 

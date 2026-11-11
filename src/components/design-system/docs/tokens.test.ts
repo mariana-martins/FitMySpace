@@ -38,10 +38,15 @@ describe('Foundation tokens — grouping', () => {
   });
 
   it('groups by a custom key', () => {
-    const groups = groupTokens(getTokens('semantic', 'size'), (token) =>
+    const controlAndIconSizes = [
+      ...getTokens('semantic', 'size', 'control'),
+      ...getTokens('semantic', 'size', 'icon'),
+    ];
+    const groups = groupTokens(controlAndIconSizes, (token) =>
       token.value.endsWith('px') ? 'pixels' : 'other',
     );
     expect(groups.get('pixels')).toHaveLength(4);
+    expect(groups.get('other')).toHaveLength(4);
   });
 });
 

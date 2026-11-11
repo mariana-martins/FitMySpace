@@ -1,5 +1,24 @@
 {
   "shadow": {
-    "xs": { "value": "0 1px 2px rgb(28 25 23 / 0.06)", "comment": "charcoal.900 at 6% opacity." }
+    "xs": {
+      "value": "0 4px 8px -4px rgb(28 25 23 / 0.08)",
+      "comment": "charcoal.900 at 8% opacity."
+    },
+    "sm": {
+      "value": "0 4px 8px -4px rgb(28 25 23 / 0.08), 0 8px 16px -8px rgb(28 25 23 / 0.08)",
+      "comment": "Two layers of charcoal.900: a tight contact shadow and a soft ambient one."
+    },
+    "md": {
+      "value": "0 4px 8px -4px rgb(28 25 23 / 0.08), 0 12px 24px -8px rgb(28 25 23 / 0.12)",
+      "comment": "Two layers of charcoal.900: a tight contact shadow and a soft ambient one."
+    },
+    "lg": {
+      "value": "0 8px 16px -8px rgb(28 25 23 / 0.1), 0 24px 48px -12px rgb(28 25 23 / 0.18)",
+      "comment": "Two layers of charcoal.900: a tight contact shadow and a soft ambient one."
+    },
+    "inset": {
+      "value": "inset 0 4px 8px -4px rgb(28 25 23 / 0.08)",
+      "comment": "charcoal.900 at 8% opacity, cast inwards from the top edge."
+    }
   }
 }

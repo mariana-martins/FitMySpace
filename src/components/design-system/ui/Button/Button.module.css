@@ -63,6 +63,7 @@
   border-width: var(--ds-component-button-size-lg-border);
   border-style: var(--button-border-style);
   gap: var(--ds-component-button-size-lg-gap);
+  --btn-icon-size: var(--ds-component-button-size-lg-icon-size);
 }
 
 .size-md {
@@ -76,6 +77,7 @@
   border-width: var(--ds-component-button-size-md-border);
   border-style: var(--button-border-style);
   gap: var(--ds-component-button-size-md-gap);
+  --btn-icon-size: var(--ds-component-button-size-md-icon-size);
 }
 
 .size-sm {
@@ -89,6 +91,7 @@
   border-width: var(--ds-component-button-size-sm-border);
   border-style: var(--button-border-style);
   gap: var(--ds-component-button-size-sm-gap);
+  --btn-icon-size: var(--ds-component-button-size-sm-icon-size);
 }
 
 .size-xs {
@@ -102,28 +105,16 @@
   border-width: var(--ds-component-button-size-xs-border);
   border-style: var(--button-border-style);
   gap: var(--ds-component-button-size-xs-gap);
+  --btn-icon-size: var(--ds-component-button-size-xs-icon-size);
 }
 
 /* ---------------------------------------------------------------
  * Icon sizing
  *
  * The .icon wrapper sets width/height via a CSS custom property
- * (--btn-icon-size) that is scoped per size class. Each size
- * class sets the property, and the .icon class consumes it.
+ * (--btn-icon-size). Each size class above sets the property, and
+ * the .icon class consumes it.
  * --------------------------------------------------------------- */
-
-.size-lg {
-  --btn-icon-size: var(--ds-component-button-size-lg-icon-size);
-}
-.size-md {
-  --btn-icon-size: var(--ds-component-button-size-md-icon-size);
-}
-.size-sm {
-  --btn-icon-size: var(--ds-component-button-size-sm-icon-size);
-}
-.size-xs {
-  --btn-icon-size: var(--ds-component-button-size-xs-icon-size);
-}
 
 .icon {
   display: inline-flex;

@@ -8,10 +8,36 @@
         "lg": { "value": "{spacing.14}" }
       },
       "icon": {
-        "xs": { "value": "{font.size.14}" },
+        "xs": { "value": "{font.size.12}" },
         "sm": { "value": "{font.size.16}" },
-        "md": { "value": "{font.size.18}" },
-        "lg": { "value": "{font.size.20}" }
+        "md": { "value": "{font.size.20}" },
+        "lg": { "value": "{font.size.24}" }
+      },
+      "target": {
+        "min": {
+          "value": "{spacing.6}",
+          "comment": "The smallest pointer target WCAG 2.5.8 allows. Nothing clickable is smaller."
+        },
+        "comfortable": {
+          "value": "{spacing.12}",
+          "comment": "The target for touch-first controls and primary actions on small screens."
+        }
+      },
+      "thumbnail": {
+        "sm": { "value": "{spacing.12}" },
+        "md": { "value": "{spacing.16}" },
+        "lg": { "value": "{spacing.24}" },
+        "xl": { "value": "{spacing.32}" }
+      },
+      "container": {
+        "sm": { "value": "{size.640}" },
+        "md": { "value": "{size.768}" },
+        "lg": { "value": "{size.1024}" },
+        "xl": { "value": "{size.1280}" }
+      },
+      "prose": {
+        "value": "{size.640}",
+        "comment": "Maximum width of running text: about 70 to 80 characters of body copy per line."
       }
     }
   }

@@ -6,14 +6,17 @@ import path from 'path';
  *
  * A misspelled or deleted token is silent in CSS: `var(--ds-typo)`
  * resolves to nothing and the browser drops the declaration. These
- * tests read every design-system source file and check that each
- * `--ds-*` name it mentions is defined in the generated tokens.css,
- * and that component styles stay on tier 2 and tier 3.
+ * tests read every design-system TypeScript and MDX file (inline
+ * styles, stories) and check that each `--ds-*` name it mentions is
+ * defined in the generated tokens.css.
+ *
+ * Stylesheets are checked by Stylelint instead (`npm run lint:css`):
+ * unknown tokens, tier-1 tokens in components and class name casing.
  * --------------------------------------------------------------- */
 
 const DESIGN_SYSTEM_ROOT = path.join(__dirname, '..');
 const TOKENS_CSS = path.join(__dirname, 'tokens.css');
-const SOURCE_EXTENSIONS = ['.css', '.ts', '.tsx', '.mdx'];
+const SOURCE_EXTENSIONS = ['.ts', '.tsx', '.mdx'];
 
 /**
  * A complete token name. The lookahead skips names built at runtime,
@@ -26,7 +29,6 @@ function listSourceFiles(): string[] {
   const relativePaths = readdirSync(DESIGN_SYSTEM_ROOT, { recursive: true, encoding: 'utf8' });
   return relativePaths
     .filter((relativePath) => SOURCE_EXTENSIONS.includes(path.extname(relativePath)))
-    .filter((relativePath) => path.join(DESIGN_SYSTEM_ROOT, relativePath) !== TOKENS_CSS)
     .filter((relativePath) => !relativePath.endsWith('.test.ts'));
 }
 
@@ -58,25 +60,5 @@ describe('Token usage — defined tokens', () => {
         .map((tokenName) => `${relativePath}: ${tokenName}`),
     );
     expect(unknownTokens).toEqual([]);
-  });
-});
-
-/* ===============================================================
- * COMPONENT TIERS
- * =============================================================== */
-
-describe('Token usage — component tiers', () => {
-  it('component styles use semantic or component tokens only', () => {
-    const tierOneTokens = listSourceFiles()
-      .filter((relativePath) => relativePath.endsWith('.module.css'))
-      .flatMap((relativePath) =>
-        findTokenNames(readSource(relativePath))
-          .filter(
-            (tokenName) =>
-              !tokenName.startsWith('--ds-semantic-') && !tokenName.startsWith('--ds-component-'),
-          )
-          .map((tokenName) => `${relativePath}: ${tokenName}`),
-      );
-    expect(tierOneTokens).toEqual([]);
   });
 });

@@ -2,10 +2,48 @@
   "semantic": {
     "motion": {
       "duration": {
-        "fast": { "value": "{duration.150}" }
+        "instant": {
+          "value": "{duration.80}",
+          "comment": "Press feedback and small toggles, such as a checkbox tick."
+        },
+        "fast": {
+          "value": "{duration.160}",
+          "comment": "State changes in place: hover, focus and colour changes."
+        },
+        "moderate": {
+          "value": "{duration.240}",
+          "comment": "Small elements entering or leaving: tooltips, menus, an expanding section."
+        },
+        "slow": {
+          "value": "{duration.320}",
+          "comment": "Large surfaces entering or leaving: dialogs, drawers, sheets."
+        },
+        "deliberate": {
+          "value": "{duration.480}",
+          "comment": "Rare, emphasised moments that the reader should notice. Use sparingly."
+        }
       },
       "easing": {
-        "standard": { "value": "{easing.out}" }
+        "standard": {
+          "value": "{easing.out}",
+          "comment": "State changes in place, such as hover and pressed."
+        },
+        "enter": {
+          "value": "{easing.out-emphasized}",
+          "comment": "Elements arriving on screen: they settle softly into place."
+        },
+        "exit": {
+          "value": "{easing.in}",
+          "comment": "Elements leaving the screen: they speed up as they go."
+        },
+        "move": {
+          "value": "{easing.in-out}",
+          "comment": "Elements that move or resize while staying on screen."
+        },
+        "linear": {
+          "value": "{easing.linear}",
+          "comment": "Continuous motion with no start or end, such as a spinner or a progress bar."
+        }
       }
     }
   }

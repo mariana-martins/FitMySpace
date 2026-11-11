@@ -10,81 +10,66 @@ design-system/
 │   ├── tier-1-definitions/    # Core literal values (do not use directly in components)
 │   │   ├── color.json         # Hex codes and raw color palettes
 │   │   ├── typography.json    # Font families, raw sizes, weights, and letter-spacing
-│   │   ├── spacing.json       # Base 4px scale spacing values
-│   │   ├── border-width.json  # Raw border-width pixel values
+│   │   ├── spacing.json       # Base 4px scale (4–128px), also used by sizes
+│   │   ├── size.json          # Layout widths (640/768/1024/1280px)
+│   │   ├── border-width.json  # Raw stroke widths (0/1/2/4px)
 │   │   ├── radii.json         # Raw border-radius pixel values
-│   │   ├── motion.json        # Raw durations and easing curves
-│   │   └── shadow.json        # Raw box-shadow values
+│   │   ├── motion.json        # Durations on 80ms steps and easing curves
+│   │   └── shadow.json        # Layered box-shadows tinted with charcoal.900
 │   ├── tier-2-definitions/    # Intent-based semantic aliases (use these in components)
 │   │   ├── color.json         # Semantic backgrounds, text, borders and focus halos (e.g. brand, utility)
-│   │   ├── typography.json    # Display, heading, body, control, label, and caption roles
+│   │   ├── typography.json    # Display, heading, body, control, label, and caption roles (+ generated shorthand)
 │   │   ├── spacing.json       # Inset (padding), control padding, gap, and section layout spacing
-│   │   ├── size.json          # Control heights (32/40/48/56) and icon sizes
-│   │   ├── border-width.json  # Semantic border-width roles (default, interactive, heavy)
+│   │   ├── size.json          # Control heights, icons, click targets, thumbnails, containers, prose width
+│   │   ├── border-width.json  # Stroke roles (default, interactive, selected, indicator, halo)
 │   │   ├── radii.json         # Interactive, container, and surface border radiuses
-│   │   ├── focus.json         # Focus ring width and offset
-│   │   ├── motion.json        # Transition duration and easing roles
-│   │   └── shadow.json        # Elevation roles
+│   │   ├── focus.json         # Focus ring colour, width, offset and inset offset
+│   │   ├── motion.json        # Duration (instant → deliberate) and easing (standard, enter, exit, move, linear) roles
+│   │   └── shadow.json        # Elevation roles (raised, floating, overlay, sunken)
 │   ├── tier-3-definitions/    # Component-level token mappings
 │   │   ├── button.json        # Button variant colors, sizes, shapes, and icon sizing
 │   │   └── input.json         # Input + TextField colors, states, halo, sizes, and unit styling
-│   ├── sd.config.mjs              # Style Dictionary build config
+│   ├── sd.config.mjs              # Style Dictionary build config (+ typography shorthand preprocessor)
 │   ├── tokens.contrast.test.ts    # WCAG contrast checks for every colour pair and state
 │   ├── tokens.tiers.test.ts       # Each tier references only the tier below it
-│   ├── tokens.usage.test.ts       # Every --ds-* name used exists; components skip tier 1
+│   ├── tokens.usage.test.ts       # Every --ds-* name used in .ts/.tsx/.mdx exists
 │   ├── tokens.css                 # AUTO-GENERATED — do not edit manually
 │   └── tokens.docs.json           # AUTO-GENERATED — token list for the Foundation pages
-├── docs/            # Storybook-only helpers for the Foundation pages (not public API)
+├── docs/            # Storybook-only helpers (not public API)
 │   ├── index.tsx
 │   ├── CopyTokenButton.tsx        # Copy-to-clipboard button with icon and status announcement
 │   ├── CopyTokenButton.test.tsx
 │   ├── FoundationPage.tsx         # Page shell, token group card, token row, inline code, StorybookLink
+│   ├── LinkCard.tsx               # LinkCard + LinkCardGrid: whole-card links to other Storybook pages
+│   ├── LinkCard.module.css
+│   ├── LinkCard.test.tsx
 │   ├── tokens.ts                  # Reads tokens.docs.json: getTokens, groupTokens, labels
 │   └── tokens.test.ts
-└── ui/              # Component folders (colocated with stories)
-    ├── css-modules.test.ts        # CSS Module class names are kebab-case
-    ├── Button/
+├── introduction/    # Storybook landing page: token architecture, linked foundation and component cards
+│   └── Introduction.stories.tsx
+├── foundations/     # One Storybook page per tier-2 token file
+│   ├── border-width/BorderWidth.stories.tsx
+│   ├── color/Colors.stories.tsx
+│   ├── focus/Focus.stories.tsx
+│   ├── motion/Motion.stories.tsx
+│   ├── radii/Radii.stories.tsx
+│   ├── shadow/Shadow.stories.tsx
+│   ├── size/Size.stories.tsx
+│   ├── spacing/Spacing.stories.tsx
+│   └── typography/Typography.stories.tsx
+└── ui/              # Components only (colocated with stories)
+    ├── Button/      # Sidebar: Components/Actions/Button
     │   ├── index.tsx
     │   ├── Button.types.ts
     │   ├── Button.tsx
     │   ├── Button.module.css
     │   ├── Button.test.tsx
     │   └── Button.stories.tsx
-    ├── Input/
-    │   ├── index.tsx
-    │   ├── Input.types.ts
-    │   ├── Input.tsx
-    │   ├── Input.module.css
-    │   ├── Input.test.tsx
-    │   └── Input.stories.tsx
-    ├── TextField/
-    │   ├── index.tsx
-    │   ├── TextField.types.ts
-    │   ├── TextField.tsx
-    │   ├── TextField.module.css
-    │   ├── TextField.test.tsx
-    │   └── TextField.stories.tsx
-    ├── border-width/              # Foundation pages: one per tier-2 token file
-    │   └── BorderWidth.stories.tsx
-    ├── color/
-    │   └── Colors.stories.tsx
-    ├── focus/
-    │   └── Focus.stories.tsx
-    ├── introduction/
-    │   └── Introduction.stories.tsx
-    ├── motion/
-    │   └── Motion.stories.tsx
-    ├── radii/
-    │   └── Radii.stories.tsx
-    ├── shadow/
-    │   └── Shadow.stories.tsx
-    ├── size/
-    │   └── Size.stories.tsx
-    ├── spacing/
-    │   └── Spacing.stories.tsx
-    ├── type-scale/                # The Typography Foundation page (ui/typography would clash with ui/Typography on macOS)
-    │   └── TypeScale.stories.tsx
-    └── Typography/
+    ├── Input/       # Sidebar: Components/Forms/Input
+    │   └── … (same files as Button)
+    ├── TextField/   # Sidebar: Components/Forms/TextField
+    │   └── … (same files as Button)
+    └── Typography/  # Sidebar: Components/Typography/{Heading,Text,Label,Caption}
         ├── index.tsx
         ├── Typography.types.ts
         ├── Typography.tsx
@@ -158,6 +143,10 @@ npm run tokens:build
 
 **Tier rule:** tier-2 tokens reference tier-1 literals; tier-3 tokens reference tier-2 (or other tier-3) tokens, never tier-1 directly. `tokens/tokens.tiers.test.ts` fails the build if a reference skips a tier. If a component needs a value with no semantic role yet, add the role to tier 2 first.
 
+**The 4px rule:** every size, spacing step, shadow offset and blur, and motion duration (80ms steps) is a multiple of 4. Only stroke widths are exempt: hairlines are 1px and 2px.
+
+**Typography shorthand:** `sd.config.mjs` generates a `shorthand` token for every text style, e.g. `--ds-semantic-typography-heading-lg-shorthand` = `600 1.875rem/1.25 'DM Sans', sans-serif`, built from references to the style's own tokens so it can never drift. Outside a component, style text with `font: var(--…-shorthand)` and, for display and label styles, `letter-spacing: var(--…-letter-spacing)` (the CSS `font` property cannot carry letter spacing). Never rebuild a style from its separate font tokens.
+
 **Control sizes:** Button and Input share the `semantic.size.control.*` heights (`xs` 32, `sm` 40, `md` 48, `lg` 56px, all multiples of 4), so a button lines up with the field next to it.
 
 **About `subtle`:** in colour tokens, `subtle` means neutral (low-chroma), not faint. `background.subtle` is a dark charcoal fill (the secondary Button) and `border.subtle` is darker than `border.default`. For a faint divider use `border.disabled`.
@@ -170,9 +159,27 @@ npm test -- tokens.contrast
 
 ---
 
+### Linting CSS (Stylelint)
+
+```bash
+npm run lint:css
+```
+
+`stylelint.config.mjs` extends `stylelint-config-recommended` (rules that catch errors, no formatting: Prettier owns that) and adds the design-system rules:
+
+- `selector-class-pattern`: CSS Module class names are kebab-case, read with `styles['error-icon']`;
+- `csstools/value-no-unknown-custom-properties`: every `var(--ds-*)` exists in `tokens.css`;
+- `declaration-property-value-disallowed-list`: no tier-1 token (`--ds-*` that is not `--ds-semantic-*` or `--ds-component-*`) in design-system CSS.
+
+`tokens.css` (generated) and `src/app/globals.css` (legacy Tailwind, until the app migrates) are ignored. Lint-staged runs `stylelint --fix` on staged CSS, and CI runs `npm run lint:css`.
+
+---
+
 ### Foundation docs helpers
 
-Each tier-2 token file has a Foundation page (Color, Typography, Spacing, Size, Radii, Border Width, Shadow, Focus, Motion). The pages never keep their own token lists: they read `tokens.docs.json` through `docs/tokens.ts` (`getTokens('semantic', 'spacing')`, `groupTokens(tokens, 2)`, `formatTokenLabel`) and render it with `docs/FoundationPage` (`FoundationPage`, `TokenGroup`, `TokenRow`, `InlineCode`). To link from a story to another Storybook page use `StorybookLink` (a story renders in an iframe, so a plain link would open inside it); in a `docs.description` Markdown string a plain `[text](?path=/docs/...)` link already works. A new token shows up on its page after `npm run tokens:build`; only the prose (group descriptions) is written by hand.
+Each tier-2 token file has a Foundation page in `foundations/` (Color, Typography, Spacing, Size, Radii, Border Width, Shadow, Focus, Motion). The pages never keep their own token lists: they read `tokens.docs.json` through `docs/tokens.ts` (`getTokens('semantic', 'spacing')`, `groupTokens(tokens, 2)`, `formatTokenLabel`) and render it with `docs/FoundationPage` (`FoundationPage`, `TokenGroup`, `TokenRow`, `InlineCode`). To link from a story to another Storybook page use `StorybookLink` (a story renders in an iframe, so a plain link would open inside it); in a `docs.description` Markdown string a plain `[text](?path=/docs/...)` link already works. A new token shows up on its page after `npm run tokens:build`; only the prose (group descriptions) is written by hand.
+
+The Introduction page uses `docs/LinkCard` inside a `LinkCardGrid` (a list) to link to each foundation and component page. The title's link stretches over the whole card with `::after`, so the link's name stays the title; the preview is `aria-hidden` and `inert`, so real components can be rendered in it without taking focus.
 
 They use `docs/CopyTokenButton` to copy a token's `var(--…)` reference. It shows a copy icon, switches to a check (copied) or alert (failed) icon, and announces the result to screen readers through a `role="status"` live region. In narrow layouts (the Color swatch cards) use `iconOnly`: render the token name as wrapping text next to a square icon button whose accessible name is "Copy var(--…)". These helpers exist only for Storybook and are not part of the public design-system API.
 

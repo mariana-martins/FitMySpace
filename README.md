@@ -56,7 +56,7 @@ npm test
 npm test -- --testPathPatterns="a11y"
 ```
 
-GitHub Actions (`.github/workflows/ci.yml`) runs formatting, lint, types, the token check, Jest, the Storybook tests and a production build on every pull request.
+GitHub Actions (`.github/workflows/ci.yml`) runs formatting, lint (ESLint and Stylelint), types, the token check, Jest, the Storybook tests and a production build on every pull request.
 
 ## 📂 Documentation
 

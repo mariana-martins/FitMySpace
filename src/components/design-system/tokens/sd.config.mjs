@@ -12,6 +12,9 @@ import { fileURLToPath } from 'url';
  *
  * tokens.css is what components use. tokens.docs.json feeds the
  * Storybook Foundation pages, so they never keep a hand-written list.
+ *
+ * The `shorthand` token of each text style is generated here, not
+ * written in the JSON: it can never drift from the parts it is built from.
  * --------------------------------------------------------------- */
 
 const __filename = fileURLToPath(import.meta.url);
@@ -20,6 +23,33 @@ const __dirname = dirname(__filename);
 const CSS_OUTPUT_FILE = 'tokens.css';
 const DOCS_OUTPUT_FILE = 'tokens.docs.json';
 const isCheck = process.argv.includes('--check');
+
+/** The text style parts the CSS `font` shorthand can carry. Letter spacing is not one of them. */
+const SHORTHAND_PARTS = ['fontWeight', 'fontSize', 'lineHeight', 'fontFamily'];
+
+function isTextStyle(group) {
+  return SHORTHAND_PARTS.every((part) => part in group);
+}
+
+/**
+ * Adds `semantic.typography.<role>.<size>.shorthand` to every text style:
+ * a `font` value made of references to the style's own tokens, e.g.
+ * `font: var(--ds-semantic-typography-heading-lg-shorthand)`.
+ */
+function addTypographyShorthands(tokenTree) {
+  const textRoles = tokenTree.semantic?.typography ?? {};
+  for (const [role, textStyles] of Object.entries(textRoles)) {
+    for (const [size, textStyle] of Object.entries(textStyles)) {
+      if (!isTextStyle(textStyle)) continue;
+      const referenceTo = (part) => `{semantic.typography.${role}.${size}.${part}}`;
+      textStyle.shorthand = {
+        value: `${referenceTo('fontWeight')} ${referenceTo('fontSize')}/${referenceTo('lineHeight')} ${referenceTo('fontFamily')}`,
+        comment: 'The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too.',
+      };
+    }
+  }
+  return tokenTree;
+}
 
 /**
  * One entry per token: the CSS variable, its path in the JSON, the
@@ -44,7 +74,9 @@ const sd = new StyleDictionary({
   log: { verbosity: isCheck ? 'silent' : 'default' },
   hooks: {
     formats: { 'json/docs': formatDocs },
+    preprocessors: { 'typography/shorthand': addTypographyShorthands },
   },
+  preprocessors: ['typography/shorthand'],
   source: [
     resolve(__dirname, 'tier-1-definitions/*.json'),
     resolve(__dirname, 'tier-2-definitions/*.json'),

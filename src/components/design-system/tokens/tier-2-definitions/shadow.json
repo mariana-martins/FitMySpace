@@ -2,8 +2,26 @@
   "semantic": {
     "shadow": {
       "raised": {
-        "value": "{shadow.xs}",
-        "comment": "Barely-there lift so a control reads as a surface."
+        "base": {
+          "value": "{shadow.xs}",
+          "comment": "Barely-there lift so a control or card reads as a surface."
+        },
+        "hover": {
+          "value": "{shadow.sm}",
+          "comment": "A clickable card lifting under the pointer."
+        }
+      },
+      "floating": {
+        "value": "{shadow.md}",
+        "comment": "Menus, popovers and tooltips that float above the content."
+      },
+      "overlay": {
+        "value": "{shadow.lg}",
+        "comment": "Dialogs, drawers and sheets that sit above everything else."
+      },
+      "sunken": {
+        "value": "{shadow.inset}",
+        "comment": "A well pressed into the page, such as the track of a segmented control."
       }
     }
   }

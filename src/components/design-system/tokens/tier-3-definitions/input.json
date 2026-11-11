@@ -9,10 +9,10 @@
           "value": "{semantic.border-width.default}"
         },
         "halo-width": {
-          "value": "{semantic.border-width.heavy}"
+          "value": "{semantic.border-width.halo}"
         },
         "shadow": {
-          "value": "{semantic.shadow.raised}"
+          "value": "{semantic.shadow.raised.base}"
         }
       },
       "background": {
@@ -169,7 +169,7 @@
             "value": "{semantic.typography.control.lg.lineHeight}"
           },
           "iconSize": {
-            "value": "{semantic.size.icon.lg}"
+            "value": "{semantic.size.icon.md}"
           }
         }
       }
