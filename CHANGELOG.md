@@ -1,5 +1,25 @@
 # Changelog
 
+# [0.2.0](https://github.com/mariana-martins/FitMySpace/compare/v0.1.0...v0.2.0) (2026-11-11)
+
+### Bug Fixes
+
+* **button:** allow submit and reset types ([2043dab](https://github.com/mariana-martins/FitMySpace/commit/2043daba0909e020737f12671451f845207f6f7b))
+* **tokens:** darken utility-warning text base for contrast ([2b8ff64](https://github.com/mariana-martins/FitMySpace/commit/2b8ff649348d05265cccd00fe5c6ecc614f28a05))
+* **tokens:** enforce WCAG contrast and button a11y ([df2e386](https://github.com/mariana-martins/FitMySpace/commit/df2e38660a37f6e32d54bb668e5559cb7d91e9a5))
+
+### Features
+
+* add storybook addon-designs and integrate figma link for button component ([8dc9ae8](https://github.com/mariana-martins/FitMySpace/commit/8dc9ae8059c16ba85f2887d10be9e0dab0c930d0))
+* configure storybook linting, test scripts, and button interaction tests ([0a2630e](https://github.com/mariana-martins/FitMySpace/commit/0a2630e9798380c4deeef68f6a770399d6c190c3))
+* **design-system:** add CopyTokenButton helper and update stories and docs ([96ba42d](https://github.com/mariana-martins/FitMySpace/commit/96ba42da36ba291aba7dffc2166de3a026a3af69))
+* **design-system:** add ghost button appearance and input endAction ([08c222c](https://github.com/mariana-martins/FitMySpace/commit/08c222ca40c8ac9866c65f7cccf2cc6c0ae2e370))
+* **design-system:** build token-driven foundation pages and docs json ([55e4a84](https://github.com/mariana-martins/FitMySpace/commit/55e4a846553c0d0a9244c47fd4d56497449dcab3))
+* **design-system:** expand foundation tokens, regroup stories and add Stylelint ([806896c](https://github.com/mariana-martins/FitMySpace/commit/806896c022323d6990ce6b4db473579b0cce6569))
+* **input:** add Input component and tier-3 tokens ([9f1ff66](https://github.com/mariana-martins/FitMySpace/commit/9f1ff66ea0636b4b8ecaab6a982b2aefbaa43ad9))
+* **text-field:** add TextField and Radix Label ([c996a2d](https://github.com/mariana-martins/FitMySpace/commit/c996a2d6d2ef6ba0f74fab1a7985b629b43141e5))
+* **tokens:** add ghost button and transparent colour tokens ([b1d1296](https://github.com/mariana-martins/FitMySpace/commit/b1d1296dfb6e9a1e960838ad73007302b77b8a08))
+
 # 0.1.0 (2026-06-30)
 
 

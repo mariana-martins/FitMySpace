@@ -113,7 +113,7 @@ npm run build-storybook
 
 This generates a static Storybook site in `storybook-static/` (already in `.gitignore`).
 
-**Publishing (GitHub Pages):** `.github/workflows/storybook-pages.yml` publishes the static Storybook, and only the Storybook, to GitHub Pages after the CI workflow passes on `main` (it builds the exact commit CI tested). A static build has no dev server, so `.storybook/main.ts` leaves out the panels that would do nothing there (Vitest test runner, MCP server, onboarding checklist), the app's `public/` folder and `project.json`. Links between pages are relative, so they work under the `/fitmyspace/` sub-path.
+**Publishing (GitHub Pages):** `.github/workflows/storybook-pages.yml` publishes the static Storybook, and only the Storybook, to GitHub Pages after the CI workflow passes on `main` (it builds the exact commit CI tested). A static build has no dev server, so `.storybook/main.ts` leaves out the panels that would do nothing there (Vitest test runner, MCP server, onboarding checklist), the app's `public/` folder and `project.json`. It is live at https://mariana-martins.github.io/FitMySpace/ (the path follows the repository name and is case-sensitive). Links between pages are relative, so they work under that sub-path.
 
 **Running Storybook interaction and accessibility tests:**
 
