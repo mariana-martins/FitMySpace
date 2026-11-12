@@ -131,9 +131,13 @@
 
 /* ---------------------------------------------------------------
  * Label, hint and error
+ *
+ * The label is a Typography component, whose base class resets
+ * padding. Its selector uses two classes so the padding below wins
+ * whatever order the two CSS Modules load in.
  * --------------------------------------------------------------- */
 
-.label {
+.root .label {
   display: inline-flex;
   align-items: baseline;
   gap: var(--ds-semantic-spacing-gap-xs);

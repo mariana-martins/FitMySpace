@@ -1,0 +1,275 @@
+/* ---------------------------------------------------------------
+ * RadioGroup — CSS Module
+ * Maps component-level radio-group tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .root         — wrapper: group label, options, hint, error
+ *   .group-label  — the visible label the radiogroup points to
+ *   .options      — the Radix radiogroup, stacked or in a row
+ *   .item         — one option, a two-column grid: radio, then text
+ *     .control    — the radio column, one label line tall
+ *     .radio      — the Radix <button role="radio">, drawn as the circle
+ *     .dot        — the Radix indicator, the dot of a checked radio
+ *     .label      — the option's visible <label>
+ *     .item-hint  — the option's detail, under its label
+ *   .hint / .error — below the options
+ *
+ * States come from Radix's data-state on the radio and the dot
+ * (checked | unchecked), from :disabled and :focus-visible on the
+ * radio, and from data attributes on .root:
+ *   [data-invalid], [data-disabled]
+ *
+ * Variant classes: .variant-{primary|secondary} (colour of the checked radio)
+ * Size classes: .size-{sm|md|lg}
+ * --------------------------------------------------------------- */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-component-radio-group-group-gap);
+  inline-size: fit-content;
+  max-inline-size: 100%;
+}
+
+.root .group-label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--ds-semantic-spacing-gap-xs);
+  color: var(--ds-component-radio-group-label-text);
+}
+
+.required-marker {
+  color: var(--ds-component-radio-group-label-required-marker);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-component-radio-group-group-item-gap-vertical);
+}
+
+.options[data-orientation='horizontal'] {
+  flex-flow: row wrap;
+  column-gap: var(--ds-component-radio-group-group-item-gap-horizontal);
+}
+
+/* Item ------------------------------------------------------------ */
+
+.item {
+  --radio-border-color: var(--ds-component-radio-group-border-default);
+  --radio-background: var(--ds-component-radio-group-background-default);
+  --radio-dot-color: var(--ds-component-radio-group-dot-default);
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--radio-gap);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  block-size: max(1lh, var(--ds-semantic-size-target-min));
+  font: var(--radio-label-font);
+}
+
+.radio {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  box-sizing: border-box;
+  inline-size: var(--radio-box-size);
+  block-size: var(--radio-box-size);
+  padding: 0;
+  margin: 0;
+  background-color: var(--radio-background);
+  border: var(--ds-component-radio-group-shape-border-width) solid var(--radio-border-color);
+  border-radius: var(--ds-component-radio-group-shape-radii);
+  cursor: pointer;
+  transition-property: background-color, border-color;
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-standard);
+}
+
+.radio[data-state='checked'] {
+  --radio-border-color: var(--radio-checked-background);
+  --radio-background: var(--radio-checked-background);
+}
+
+.radio:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+.radio:disabled {
+  cursor: not-allowed;
+}
+
+/* Dot ------------------------------------------------------------- */
+
+.dot {
+  inline-size: var(--radio-dot-size);
+  block-size: var(--radio-dot-size);
+  background-color: var(--radio-dot-color);
+  border-radius: var(--ds-component-radio-group-shape-radii);
+  opacity: 0;
+  transform: scale(0.5);
+  transition-property: opacity, transform;
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-enter);
+}
+
+.dot[data-state='checked'] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hover (radio or label) ------------------------------------------ */
+
+@media (hover: hover) {
+  .root:not([data-invalid]) .item:not(:has(.radio:disabled)):has(.radio:hover, .label:hover) {
+    --radio-border-color: var(--ds-component-radio-group-border-hover);
+    --radio-checked-background: var(--radio-checked-hover-background);
+  }
+}
+
+/* Invalid --------------------------------------------------------- */
+
+.root[data-invalid] .item {
+  --radio-border-color: var(--ds-component-radio-group-border-invalid);
+  --radio-checked-background: var(--ds-component-radio-group-background-invalid-checked);
+}
+
+/* Disabled (the whole group or one option) ------------------------ */
+
+.item:has(.radio:disabled) {
+  --radio-border-color: var(--ds-component-radio-group-border-disabled);
+  --radio-background: var(--ds-component-radio-group-background-disabled);
+  --radio-checked-background: var(--ds-component-radio-group-background-disabled);
+  --radio-dot-color: var(--ds-component-radio-group-dot-disabled);
+}
+
+/* ---------------------------------------------------------------
+ * Labels, hints and error
+ *
+ * The labels and hints are Typography components, whose base class
+ * resets margin and padding. These selectors use two classes so they
+ * win whatever order the two CSS Modules load in.
+ * --------------------------------------------------------------- */
+
+.item .label {
+  padding-block: max(0px, calc((var(--ds-semantic-size-target-min) - 1lh) / 2));
+  color: var(--ds-component-radio-group-label-text);
+  cursor: pointer;
+}
+
+.item:has(.radio:disabled) .label {
+  color: var(--ds-component-radio-group-label-disabled);
+  cursor: not-allowed;
+}
+
+.item .item-hint {
+  grid-column: 2;
+  margin: 0;
+  color: var(--ds-component-radio-group-hint-text);
+}
+
+.root .hint {
+  margin: 0;
+  color: var(--ds-component-radio-group-hint-text);
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-component-radio-group-error-gap);
+  margin: 0;
+  font: var(--ds-semantic-typography-body-sm-shorthand);
+  font-weight: var(--ds-semantic-typography-label-sm-font-weight);
+  letter-spacing: var(--ds-semantic-typography-body-sm-letter-spacing);
+  color: var(--ds-component-radio-group-error-text);
+}
+
+.error-icon {
+  flex-shrink: 0;
+  inline-size: var(--ds-component-radio-group-error-icon-size);
+  block-size: var(--ds-component-radio-group-error-icon-size);
+  margin-block-start: calc((1lh - var(--ds-component-radio-group-error-icon-size)) / 2);
+}
+
+/* ---------------------------------------------------------------
+ * Colour variants (checked radio)
+ * --------------------------------------------------------------- */
+
+.variant-primary {
+  --radio-checked-background: var(--ds-component-radio-group-background-primary-checked);
+  --radio-checked-hover-background: var(
+    --ds-component-radio-group-background-primary-checked-hover
+  );
+}
+
+.variant-secondary {
+  --radio-checked-background: var(--ds-component-radio-group-background-secondary-checked);
+  --radio-checked-hover-background: var(
+    --ds-component-radio-group-background-secondary-checked-hover
+  );
+}
+
+/* ---------------------------------------------------------------
+ * Size variants
+ * --------------------------------------------------------------- */
+
+.size-sm {
+  --radio-box-size: var(--ds-component-radio-group-size-sm-box-size);
+  --radio-dot-size: var(--ds-component-radio-group-size-sm-dot-size);
+  --radio-gap: var(--ds-component-radio-group-size-sm-gap);
+  --radio-label-font: var(--ds-component-radio-group-size-sm-label-font);
+}
+
+.size-md {
+  --radio-box-size: var(--ds-component-radio-group-size-md-box-size);
+  --radio-dot-size: var(--ds-component-radio-group-size-md-dot-size);
+  --radio-gap: var(--ds-component-radio-group-size-md-gap);
+  --radio-label-font: var(--ds-component-radio-group-size-md-label-font);
+}
+
+.size-lg {
+  --radio-box-size: var(--ds-component-radio-group-size-lg-box-size);
+  --radio-dot-size: var(--ds-component-radio-group-size-lg-dot-size);
+  --radio-gap: var(--ds-component-radio-group-size-lg-gap);
+  --radio-label-font: var(--ds-component-radio-group-size-lg-label-font);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .radio,
+  .dot {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .radio[data-state='checked'] {
+    forced-color-adjust: none;
+    background-color: Highlight;
+    border-color: Highlight;
+  }
+
+  .dot {
+    forced-color-adjust: none;
+    background-color: HighlightText;
+  }
+
+  .radio:disabled {
+    border-color: GrayText;
+  }
+
+  .radio:disabled[data-state='checked'] {
+    background-color: GrayText;
+    border-color: GrayText;
+  }
+}
