@@ -1,0 +1,56 @@
+{
+  "component": {
+    "skeleton": {
+      "background": {
+        "default": {
+          "value": "{semantic.color.background.default.active}"
+        },
+        "highlight": {
+          "value": "{semantic.color.background.default.hover}",
+          "comment": "The lighter step of the pulse."
+        }
+      },
+      "shape": {
+        "radii-text": {
+          "value": "{semantic.radii.surface.sm}"
+        },
+        "radii-rectangle": {
+          "value": "{semantic.radii.surface.md}"
+        },
+        "radii-circle": {
+          "value": "{semantic.radii.surface.full}"
+        },
+        "circle-size": {
+          "value": "{semantic.size.thumbnail.sm}",
+          "comment": "The size of a circle without a width, such as a small avatar."
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.deliberate}",
+          "comment": "One half of the pulse; the loop runs it forth and back."
+        },
+        "easing": {
+          "value": "{semantic.motion.easing.standard}"
+        }
+      },
+      "size": {
+        "sm": {
+          "font": {
+            "value": "{semantic.typography.body.sm.shorthand}"
+          }
+        },
+        "md": {
+          "font": {
+            "value": "{semantic.typography.body.md.shorthand}"
+          }
+        },
+        "lg": {
+          "font": {
+            "value": "{semantic.typography.body.lg.shorthand}"
+          }
+        }
+      }
+    }
+  }
+}
