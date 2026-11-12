@@ -9,11 +9,12 @@ export type InputSize = 'sm' | 'md' | 'lg';
 /* ---------------------------------------------------------------
  * Props
  *
- * `Input` is the bare field: no label, hint or error text. Use it
- * directly only when the accessible name comes from elsewhere
- * (e.g. `aria-label` on a search box, or a `<label>` you render
- * yourself). For regular form fields, use `TextField`, which wires
- * the label, hint and error message for you.
+ * `Input` is the bare field: no label, hint or error text. For form
+ * fields, use `TextField`, which wires the label, hint and error
+ * message for you. Use `Input` directly only in layouts TextField
+ * does not cover, and still tie it to visible text: a `<label for>`
+ * you render yourself, or `aria-labelledby` pointing at a visible
+ * heading. `aria-label` or the placeholder alone is not enough.
  *
  * `size` is omitted from the native props because the HTML `size`
  * attribute (character width) conflicts with the visual size scale.

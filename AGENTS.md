@@ -43,9 +43,11 @@ rules below are its essentials.
 - **Look**: modern, luxurious, serene. Do not copy how the legacy component was
   designed.
 - **Folders**: components in `ui/`, Foundation pages in `foundations/`, the
-  Introduction page in `introduction/`, Storybook-only helpers in `docs/`.
+  Introduction page in `introduction/`, Storybook-only helpers in `docs/`,
+  plain helpers shared by components in `utils/` (e.g. `joinIds` for
+  `aria-describedby`). Reuse them instead of copying a helper into a component.
   Sidebar: `Design System/Components/<Category>/<Name>` with the categories
-  Actions, Forms and Typography (add one in `.storybook/preview.tsx` when needed).
+  Actions, Forms, Display and Typography (add one in `.storybook/preview.tsx` when needed).
 - **Folder per component** in `ui/`: `Name.tsx`, `Name.types.ts`,
   `Name.module.css`, `Name.test.tsx`, `Name.stories.tsx` and an `index.tsx`
   barrel that exports the component and its types (`export type`). `Button` is
@@ -54,13 +56,18 @@ rules below are its essentials.
   in `docs/`, not `ui/`. Reuse them instead of copying markup between stories:
   `CopyTokenButton` copies a token's `var(--…)` reference, with an icon and a
   screen-reader announcement (`iconOnly` for narrow cards); `LinkCard` /
-  `LinkCardGrid` link to another Storybook page with a whole-card link. Foundation pages
+  `LinkCardGrid` link to another Storybook page with a whole-card link;
+  `LabelledField` puts a visible label above a bare `Input` or `Select` in their
+  stories (never use `aria-label` alone in an example). Foundation pages
   never hard-code token lists or values: read them with `getTokens` from
   `docs/tokens.ts` (generated `tokens/tokens.docs.json`) and lay them out with
   `FoundationPage`, `TokenGroup` and `TokenRow`.
 - **API**: extend native props with `ComponentPropsWithoutRef<'el'>`, omitting
   conflicting ones (e.g. `size` on `<input>`). Forward refs to the native
   element. Add `'use client'` to interactive components.
+- **Screen-reader-only text**: use `VisuallyHidden` from
+  `@radix-ui/react-visually-hidden` (e.g. the "Error: " prefix, a `role="status"`
+  announcement). Never add a local `.visually-hidden` class or inline style.
 - **MDN check**: for every new component, verify the ARIA attributes and DOM
   typings against MDN before writing the API.
 - **Tokens**: three tiers of JSON in `tokens/` (tier 1 literal values, tier 2

@@ -1,0 +1,307 @@
+/* ---------------------------------------------------------------
+ * Select — CSS Module
+ * Maps component-level select tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .trigger  — the Radix trigger <button>, drawn as the Input box
+ *   .value    — the chosen option's text, or the placeholder
+ *   .icon     — decorative start icon and chevron
+ *   .content  — the list, rendered in a portal below the trigger
+ *   .viewport — the scrolling area inside the list
+ *   .item     — one option; .indicator is its check mark
+ *   .group-label — heading of a SelectGroup
+ *
+ * States come from Radix data attributes: [data-state='open'],
+ * [data-placeholder], [data-highlighted], [data-disabled], and from
+ * [data-invalid] on the trigger.
+ *
+ * Size classes (.size-{sm|md|lg}) go on both the trigger and the
+ * list, because the list lives in a portal outside the trigger.
+ * --------------------------------------------------------------- */
+
+/* Trigger (the visible box) --------------------------------------- */
+
+.trigger {
+  --select-border-color: var(--ds-component-select-border-default);
+  --select-halo-color: transparent;
+  --select-focus-edge: 0px;
+  --select-icon-color: var(--ds-component-select-icon-default);
+  --select-resting-shadow: var(--ds-component-select-shape-shadow);
+
+  display: flex;
+  align-items: center;
+  gap: var(--select-gap);
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: var(--select-min-height);
+  margin: 0;
+  padding-block: 0;
+  padding-inline: var(--select-padding-x);
+  font: var(--select-font);
+  letter-spacing: var(--select-letter-spacing);
+  color: var(--ds-component-select-text-default);
+  text-align: start;
+  background-color: var(--ds-component-select-background-default);
+  border: var(--ds-component-select-shape-border-width) solid var(--select-border-color);
+  border-radius: var(--ds-component-select-shape-radii);
+  box-shadow:
+    inset 0 0 0 var(--select-focus-edge) var(--select-border-color),
+    0 0 0 var(--ds-component-select-shape-halo-width) var(--select-halo-color),
+    var(--select-resting-shadow);
+  outline: none;
+  cursor: pointer;
+  transition-property: border-color, box-shadow, background-color;
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-standard);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.value {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trigger[data-placeholder] .value {
+  color: var(--ds-component-select-text-placeholder);
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  inline-size: var(--select-icon-size);
+  block-size: var(--select-icon-size);
+  color: var(--select-icon-color);
+  transition-property: color, transform;
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-standard);
+}
+
+.icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.trigger[data-state='open'] .chevron {
+  transform: rotate(180deg);
+}
+
+/* Hover ----------------------------------------------------------- */
+
+@media (hover: hover) {
+  .trigger:hover:not([data-disabled]):not([data-invalid]):not([data-state='open']) {
+    --select-border-color: var(--ds-component-select-border-hover);
+  }
+}
+
+/* Focus and open -------------------------------------------------- */
+
+.trigger:focus-visible,
+.trigger[data-state='open'] {
+  --select-border-color: var(--ds-component-select-border-focus);
+  --select-halo-color: var(--ds-component-select-halo-focus);
+  --select-focus-edge: var(--ds-component-select-shape-border-width);
+  --select-icon-color: var(--ds-component-select-icon-focus);
+}
+
+/* Invalid --------------------------------------------------------- */
+
+.trigger[data-invalid] {
+  --select-border-color: var(--ds-component-select-border-invalid);
+  --select-icon-color: var(--ds-component-select-icon-invalid);
+}
+
+.trigger[data-invalid]:focus-visible,
+.trigger[data-invalid][data-state='open'] {
+  --select-halo-color: var(--ds-component-select-halo-invalid);
+}
+
+/* Disabled -------------------------------------------------------- */
+
+.trigger[data-disabled] {
+  --select-border-color: var(--ds-component-select-border-disabled);
+  --select-icon-color: var(--ds-component-select-text-disabled);
+  --select-resting-shadow: 0 0 transparent;
+  color: var(--ds-component-select-text-disabled);
+  background-color: var(--ds-component-select-background-disabled);
+  cursor: not-allowed;
+}
+
+.trigger[data-disabled][data-placeholder] .value {
+  color: var(--ds-component-select-text-disabled);
+}
+
+/* ---------------------------------------------------------------
+ * List
+ * --------------------------------------------------------------- */
+
+.content {
+  box-sizing: border-box;
+  min-inline-size: var(--radix-select-trigger-width);
+  max-block-size: var(--radix-select-content-available-height);
+  overflow: hidden;
+  font: var(--select-font);
+  letter-spacing: var(--select-letter-spacing);
+  color: var(--ds-component-select-item-text);
+  background-color: var(--ds-component-select-content-background);
+  border: var(--ds-component-select-shape-border-width) solid
+    var(--ds-component-select-content-border);
+  border-radius: var(--ds-component-select-content-radii);
+  box-shadow: var(--ds-component-select-content-shadow);
+  transform-origin: var(--radix-select-content-transform-origin);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.content[data-state='open'] {
+  animation: list-enter var(--ds-semantic-motion-duration-fast)
+    var(--ds-semantic-motion-easing-enter);
+}
+
+.viewport {
+  padding: var(--ds-component-select-content-padding);
+}
+
+.scroll-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: var(--select-icon-size);
+  color: var(--ds-component-select-icon-default);
+  cursor: default;
+}
+
+.scroll-button > svg {
+  inline-size: var(--select-icon-size);
+  block-size: var(--select-icon-size);
+}
+
+/* Options --------------------------------------------------------- */
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--select-gap);
+  min-block-size: var(--select-item-min-height);
+  padding-inline: var(--select-padding-x);
+  border-radius: var(--ds-component-select-item-radii);
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.item[data-highlighted] {
+  color: var(--ds-component-select-item-highlighted-text);
+  background-color: var(--ds-component-select-item-highlighted-background);
+}
+
+.item:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset-inset);
+}
+
+.item[data-disabled] {
+  color: var(--ds-component-select-item-disabled);
+  cursor: not-allowed;
+}
+
+.indicator {
+  display: inline-flex;
+  margin-inline-start: auto;
+  inline-size: var(--select-icon-size);
+  block-size: var(--select-icon-size);
+  color: var(--ds-component-select-item-indicator);
+}
+
+.indicator > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.group + .group {
+  margin-block-start: var(--ds-component-select-content-padding);
+}
+
+.group-label {
+  padding-block: var(--ds-component-select-content-padding);
+  padding-inline: var(--select-padding-x);
+  font: var(--ds-component-select-group-label-font);
+  letter-spacing: var(--ds-component-select-group-label-letter-spacing);
+  color: var(--ds-component-select-group-label-text);
+}
+
+/* ---------------------------------------------------------------
+ * Size variants (trigger and list)
+ * --------------------------------------------------------------- */
+
+.size-sm {
+  --select-min-height: var(--ds-component-select-size-sm-min-height);
+  --select-item-min-height: var(--ds-component-select-size-sm-item-min-height);
+  --select-padding-x: var(--ds-component-select-size-sm-padding-x);
+  --select-gap: var(--ds-component-select-size-sm-gap);
+  --select-font: var(--ds-component-select-size-sm-font);
+  --select-letter-spacing: var(--ds-component-select-size-sm-letter-spacing);
+  --select-icon-size: var(--ds-component-select-size-sm-icon-size);
+}
+
+.size-md {
+  --select-min-height: var(--ds-component-select-size-md-min-height);
+  --select-item-min-height: var(--ds-component-select-size-md-item-min-height);
+  --select-padding-x: var(--ds-component-select-size-md-padding-x);
+  --select-gap: var(--ds-component-select-size-md-gap);
+  --select-font: var(--ds-component-select-size-md-font);
+  --select-letter-spacing: var(--ds-component-select-size-md-letter-spacing);
+  --select-icon-size: var(--ds-component-select-size-md-icon-size);
+}
+
+.size-lg {
+  --select-min-height: var(--ds-component-select-size-lg-min-height);
+  --select-item-min-height: var(--ds-component-select-size-lg-item-min-height);
+  --select-padding-x: var(--ds-component-select-size-lg-padding-x);
+  --select-gap: var(--ds-component-select-size-lg-gap);
+  --select-font: var(--ds-component-select-size-lg-font);
+  --select-letter-spacing: var(--ds-component-select-size-lg-letter-spacing);
+  --select-icon-size: var(--ds-component-select-size-lg-icon-size);
+}
+
+/* ---------------------------------------------------------------
+ * Motion and user preferences
+ * --------------------------------------------------------------- */
+
+@keyframes list-enter {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--ds-semantic-spacing-gap-xs)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trigger,
+  .icon {
+    transition: none;
+  }
+
+  .content[data-state='open'] {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  /* Box-shadow is dropped: draw focus and the open state with an outline. */
+  .trigger:focus-visible,
+  .trigger[data-state='open'] {
+    outline: var(--ds-semantic-focus-ring-width) solid CanvasText;
+    outline-offset: var(--ds-semantic-focus-ring-offset);
+  }
+
+  .item[data-highlighted] {
+    forced-color-adjust: none;
+    color: HighlightText;
+    background-color: Highlight;
+  }
+}

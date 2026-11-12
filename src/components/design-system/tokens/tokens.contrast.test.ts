@@ -178,3 +178,160 @@ describe('Input tokens — contrast', () => {
     expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
   });
 });
+
+/* ===============================================================
+ * CHECKBOX
+ * =============================================================== */
+
+describe('Checkbox tokens — contrast', () => {
+  it.each([
+    ['default', 'component.checkbox.border.default'],
+    ['hover', 'component.checkbox.border.hover'],
+    ['invalid', 'component.checkbox.border.invalid'],
+  ])('%s box border stands out from the page', (_state, borderToken) => {
+    expect(contrastRatio(borderToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['primary checked', 'component.checkbox.background.primary.checked'],
+    ['primary checked and hovered', 'component.checkbox.background.primary.checked-hover'],
+    ['secondary checked', 'component.checkbox.background.secondary.checked'],
+    ['secondary checked and hovered', 'component.checkbox.background.secondary.checked-hover'],
+    ['checked and invalid', 'component.checkbox.background.invalid-checked'],
+  ])('%s box stands out from the page', (_state, backgroundToken) => {
+    expect(contrastRatio(backgroundToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it.each([
+    ['primary checked', 'component.checkbox.background.primary.checked'],
+    ['primary checked and hovered', 'component.checkbox.background.primary.checked-hover'],
+    ['secondary checked', 'component.checkbox.background.secondary.checked'],
+    ['secondary checked and hovered', 'component.checkbox.background.secondary.checked-hover'],
+    ['checked and invalid', 'component.checkbox.background.invalid-checked'],
+  ])('mark stands out from the %s box', (_state, backgroundToken) => {
+    expect(
+      contrastRatio('component.checkbox.mark.default', backgroundToken),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['label', 'component.checkbox.label.text'],
+    ['required marker', 'component.checkbox.label.required-marker'],
+    ['hint', 'component.checkbox.hint.text'],
+    ['error message', 'component.checkbox.error.text'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * BADGE
+ * =============================================================== */
+
+const BADGE_VARIANTS = ['primary', 'secondary', 'error', 'success', 'warning', 'information'];
+const BADGE_APPEARANCES = ['fill', 'soft'];
+
+const badgeCases = BADGE_VARIANTS.flatMap((variant) =>
+  BADGE_APPEARANCES.map((appearance) => [variant, appearance]),
+);
+
+describe('Badge tokens — contrast', () => {
+  it.each(badgeCases)('%s %s text is readable', (variant, appearance) => {
+    const tokenGroup = `component.badge.${variant}.${appearance}`;
+    expect(contrastRatio(`${tokenGroup}.text`, `${tokenGroup}.background`)).toBeGreaterThanOrEqual(
+      TEXT_MINIMUM,
+    );
+  });
+});
+
+/* ===============================================================
+ * CHIP
+ * =============================================================== */
+
+describe('Chip tokens — contrast', () => {
+  it.each([
+    ['resting', 'component.chip.text.default', 'component.chip.background.default'],
+    ['hovered', 'component.chip.text.default', 'component.chip.background.hover'],
+    ['pressed', 'component.chip.text.default', 'component.chip.background.active'],
+    ['selected', 'component.chip.text.selected', 'component.chip.background.selected'],
+  ])('%s text is readable', (_state, textToken, backgroundToken) => {
+    expect(contrastRatio(textToken, backgroundToken)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['resting', 'component.chip.border.default'],
+    ['hovered', 'component.chip.border.hover'],
+    ['selected', 'component.chip.border.selected'],
+    ['selected and hovered', 'component.chip.border.selected-hover'],
+  ])('%s border stands out from the page', (_state, borderToken) => {
+    expect(contrastRatio(borderToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * SELECT AND SELECT FIELD
+ * =============================================================== */
+
+describe('Select tokens — contrast', () => {
+  it.each([
+    ['chosen option', 'component.select.text.default'],
+    ['placeholder', 'component.select.text.placeholder'],
+  ])('%s text is readable', (_description, textToken) => {
+    expect(contrastRatio(textToken, 'component.select.background.default')).toBeGreaterThanOrEqual(
+      TEXT_MINIMUM,
+    );
+  });
+
+  it.each([
+    ['default', 'component.select.border.default'],
+    ['hover', 'component.select.border.hover'],
+    ['focus', 'component.select.border.focus'],
+    ['invalid', 'component.select.border.invalid'],
+  ])('%s border stands out from the field', (_state, borderToken) => {
+    expect(
+      contrastRatio(borderToken, 'component.select.background.default'),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['default', 'component.select.icon.default'],
+    ['focus', 'component.select.icon.focus'],
+    ['invalid', 'component.select.icon.invalid'],
+  ])('%s chevron stands out from the field', (_state, iconToken) => {
+    expect(contrastRatio(iconToken, 'component.select.background.default')).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it.each([
+    ['option', 'component.select.item.text', 'component.select.content.background'],
+    [
+      'highlighted option',
+      'component.select.item.highlighted-text',
+      'component.select.item.highlighted-background',
+    ],
+    ['group label', 'component.select.group-label.text', 'component.select.content.background'],
+  ])('%s text is readable in the list', (_description, textToken, backgroundToken) => {
+    expect(contrastRatio(textToken, backgroundToken)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['the list', 'component.select.content.background'],
+    ['a highlighted option', 'component.select.item.highlighted-background'],
+  ])('selected check mark stands out from %s', (_description, backgroundToken) => {
+    expect(
+      contrastRatio('component.select.item.indicator', backgroundToken),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['label', 'component.select-field.label.text'],
+    ['required marker', 'component.select-field.label.required-marker'],
+    ['hint', 'component.select-field.hint.text'],
+    ['error message', 'component.select-field.error.text'],
+  ])('select field %s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});

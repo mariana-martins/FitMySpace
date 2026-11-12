@@ -20,15 +20,19 @@ design-system/
 │   │   ├── color.json         # Semantic backgrounds, text, borders and focus halos (e.g. brand, utility)
 │   │   ├── typography.json    # Display, heading, body, control, label, and caption roles (+ generated shorthand)
 │   │   ├── spacing.json       # Inset (padding), control padding, gap, and section layout spacing
-│   │   ├── size.json          # Control heights, icons, click targets, thumbnails, containers, prose width
+│   │   ├── size.json          # Control heights, icons, checkbox/radio boxes, badge heights, click targets, thumbnails, containers, prose width
 │   │   ├── border-width.json  # Stroke roles (default, interactive, selected, indicator, halo)
 │   │   ├── radii.json         # Interactive, container, and surface border radiuses
 │   │   ├── focus.json         # Focus ring colour, width, offset and inset offset
 │   │   ├── motion.json        # Duration (instant → deliberate) and easing (standard, enter, exit, move, linear) roles
 │   │   └── shadow.json        # Elevation roles (raised, floating, overlay, sunken)
 │   ├── tier-3-definitions/    # Component-level token mappings
+│   │   ├── badge.json         # Badge fill and soft colors, sizes, and shapes
 │   │   ├── button.json        # Button variant colors, sizes, shapes, and icon sizing
-│   │   └── input.json         # Input + TextField colors, states, halo, sizes, and unit styling
+│   │   ├── checkbox.json      # Checkbox box, mark, label, hint and error colors and sizes
+│   │   ├── chip.json          # Chip resting, hover, selected and disabled colors, sizes, edge
+│   │   ├── input.json         # Input + TextField colors, states, halo, sizes, and unit styling
+│   │   └── select.json        # Select + SelectField trigger, list, option, and group-label styling
 │   ├── sd.config.mjs              # Style Dictionary build config (+ typography shorthand preprocessor)
 │   ├── tokens.contrast.test.ts    # WCAG contrast checks for every colour pair and state
 │   ├── tokens.tiers.test.ts       # Each tier references only the tier below it
@@ -40,6 +44,8 @@ design-system/
 │   ├── CopyTokenButton.tsx        # Copy-to-clipboard button with icon and status announcement
 │   ├── CopyTokenButton.test.tsx
 │   ├── FoundationPage.tsx         # Page shell, token group card, token row, inline code, StorybookLink
+│   ├── LabelledField.tsx          # Visible label above a bare Input or Select in their stories
+│   ├── LabelledField.test.tsx
 │   ├── LinkCard.tsx               # LinkCard + LinkCardGrid: whole-card links to other Storybook pages
 │   ├── LinkCard.module.css
 │   ├── LinkCard.test.tsx
@@ -57,32 +63,46 @@ design-system/
 │   ├── size/Size.stories.tsx
 │   ├── spacing/Spacing.stories.tsx
 │   └── typography/Typography.stories.tsx
-└── ui/              # Components only (colocated with stories)
-    ├── Button/      # Sidebar: Components/Actions/Button
-    │   ├── index.tsx
-    │   ├── Button.types.ts
-    │   ├── Button.tsx
-    │   ├── Button.module.css
-    │   ├── Button.test.tsx
-    │   └── Button.stories.tsx
-    ├── Input/       # Sidebar: Components/Forms/Input
-    │   └── … (same files as Button)
-    ├── TextField/   # Sidebar: Components/Forms/TextField
-    │   └── … (same files as Button)
-    └── Typography/  # Sidebar: Components/Typography/{Heading,Text,Label,Caption}
-        ├── index.tsx
-        ├── Typography.types.ts
-        ├── Typography.tsx
-        ├── Typography.module.css
-        ├── Typography.test.tsx
-        ├── Heading.stories.tsx
-        ├── Text.stories.tsx
-        ├── Label.stories.tsx
-        └── Caption.stories.tsx
+├── ui/              # Components only (colocated with stories)
+│   ├── Badge/       # Sidebar: Components/Display/Badge
+│   │   └── … (same files as Button)
+│   ├── Button/      # Sidebar: Components/Actions/Button
+│   │   ├── index.tsx
+│   │   ├── Button.types.ts
+│   │   ├── Button.tsx
+│   │   ├── Button.module.css
+│   │   ├── Button.test.tsx
+│   │   └── Button.stories.tsx
+│   ├── Checkbox/    # Sidebar: Components/Forms/Checkbox (Radix Checkbox)
+│   │   └── … (same files as Button)
+│   ├── Chip/        # Sidebar: Components/Actions/Chip (toggle button, aria-pressed)
+│   │   └── … (same files as Button)
+│   ├── Input/       # Sidebar: Components/Forms/Input
+│   │   └── … (same files as Button)
+│   ├── Select/      # Sidebar: Components/Forms/Select (Radix Select: Select, SelectItem, SelectGroup)
+│   │   └── … (same files as Button)
+│   ├── SelectField/ # Sidebar: Components/Forms/SelectField
+│   │   └── … (same files as Button)
+│   ├── TextField/   # Sidebar: Components/Forms/TextField
+│   │   └── … (same files as Button)
+│   └── Typography/  # Sidebar: Components/Typography/{Heading,Text,Label,Caption}
+│       ├── index.tsx
+│       ├── Typography.types.ts
+│       ├── Typography.tsx
+│       ├── Typography.module.css
+│       ├── Typography.test.tsx
+│       ├── Heading.stories.tsx
+│       ├── Text.stories.tsx
+│       ├── Label.stories.tsx
+│       └── Caption.stories.tsx
+└── utils/           # Plain helpers shared by components (no React, no styles)
+    ├── index.ts
+    ├── joinIds.ts   # Joins ids for aria-describedby / aria-labelledby
+    └── joinIds.test.ts
 ```
 
-- Components are built using CSS Modules with native CSS custom properties (generated by Style Dictionary) and Radix UI primitives (`@radix-ui/react-slot`, `@radix-ui/react-label`).
-- Accessibility rules (such as `aria-label` on icon-only `Button`, `htmlFor` on `Label as="label"`, and a required `error` message when `TextField` is `invalid`) are enforced at compile time via TypeScript discriminated unions.
+- Components are built using CSS Modules with native CSS custom properties (generated by Style Dictionary) and Radix UI primitives (`@radix-ui/react-slot`, `@radix-ui/react-label`, `@radix-ui/react-checkbox`, `@radix-ui/react-select`, `@radix-ui/react-visually-hidden`). Interactive form controls with a custom look (`Checkbox`, `Select`) use Radix, which keeps a hidden native input for form submission; text fields stay native `<input>`.
+- Accessibility rules (such as `aria-label` on icon-only `Button`, `htmlFor` on `Label as="label"`, and a required `error` message when `TextField`, `SelectField` or `Checkbox` is `invalid`) are enforced at compile time via TypeScript discriminated unions.
 - Design tokens are managed using Style Dictionary.
 
 Refer to the root `src/PLANNING.md` for architectural guidelines and implementation details.
