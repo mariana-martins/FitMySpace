@@ -13,6 +13,30 @@
         "md": { "value": "{font.size.20}" },
         "lg": { "value": "{font.size.24}" }
       },
+      "selection-control": {
+        "sm": {
+          "value": "{font.size.16}",
+          "comment": "The box of a checkbox or radio. In rem, so it grows with the label next to it."
+        },
+        "md": {
+          "value": "{font.size.20}",
+          "comment": "The box of a checkbox or radio. In rem, so it grows with the label next to it."
+        },
+        "lg": {
+          "value": "{font.size.24}",
+          "comment": "The box of a checkbox or radio. In rem, so it grows with the label next to it."
+        }
+      },
+      "tag": {
+        "sm": {
+          "value": "{spacing.5}",
+          "comment": "Height of static labels such as badges. They are not clickable, so they may sit below the 24px target size."
+        },
+        "md": {
+          "value": "{spacing.6}",
+          "comment": "Height of static labels such as badges. They are not clickable, so they may sit below the 24px target size."
+        }
+      },
       "target": {
         "min": {
           "value": "{spacing.6}",

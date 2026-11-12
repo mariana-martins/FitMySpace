@@ -1,0 +1,152 @@
+/* ---------------------------------------------------------------
+ * Badge — CSS Module
+ * Maps component-level badge tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .badge — the label itself (shape, padding, text style)
+ *   .icon  — decorative icon slot before the text
+ *
+ * Colour classes: .{fill|soft}-{variant}
+ * Size classes:   .size-{sm|md}
+ * Shape classes:  .shape-{pill|rounded}
+ * --------------------------------------------------------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--badge-gap);
+  box-sizing: border-box;
+  min-block-size: var(--badge-min-height);
+  max-inline-size: 100%;
+  padding-inline: var(--badge-padding-x);
+  font: var(--badge-font);
+  letter-spacing: var(--badge-letter-spacing);
+  color: var(--badge-text);
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: var(--badge-background);
+  border: var(--ds-semantic-border-width-default) solid transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  inline-size: var(--badge-icon-size);
+  block-size: var(--badge-icon-size);
+}
+
+.icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+/* ---------------------------------------------------------------
+ * Colour variants
+ * --------------------------------------------------------------- */
+
+.fill-primary {
+  --badge-background: var(--ds-component-badge-primary-fill-background);
+  --badge-text: var(--ds-component-badge-primary-fill-text);
+}
+
+.fill-secondary {
+  --badge-background: var(--ds-component-badge-secondary-fill-background);
+  --badge-text: var(--ds-component-badge-secondary-fill-text);
+}
+
+.fill-error {
+  --badge-background: var(--ds-component-badge-error-fill-background);
+  --badge-text: var(--ds-component-badge-error-fill-text);
+}
+
+.fill-success {
+  --badge-background: var(--ds-component-badge-success-fill-background);
+  --badge-text: var(--ds-component-badge-success-fill-text);
+}
+
+.fill-warning {
+  --badge-background: var(--ds-component-badge-warning-fill-background);
+  --badge-text: var(--ds-component-badge-warning-fill-text);
+}
+
+.fill-information {
+  --badge-background: var(--ds-component-badge-information-fill-background);
+  --badge-text: var(--ds-component-badge-information-fill-text);
+}
+
+.soft-primary {
+  --badge-background: var(--ds-component-badge-primary-soft-background);
+  --badge-text: var(--ds-component-badge-primary-soft-text);
+}
+
+.soft-secondary {
+  --badge-background: var(--ds-component-badge-secondary-soft-background);
+  --badge-text: var(--ds-component-badge-secondary-soft-text);
+}
+
+.soft-error {
+  --badge-background: var(--ds-component-badge-error-soft-background);
+  --badge-text: var(--ds-component-badge-error-soft-text);
+}
+
+.soft-success {
+  --badge-background: var(--ds-component-badge-success-soft-background);
+  --badge-text: var(--ds-component-badge-success-soft-text);
+}
+
+.soft-warning {
+  --badge-background: var(--ds-component-badge-warning-soft-background);
+  --badge-text: var(--ds-component-badge-warning-soft-text);
+}
+
+.soft-information {
+  --badge-background: var(--ds-component-badge-information-soft-background);
+  --badge-text: var(--ds-component-badge-information-soft-text);
+}
+
+/* ---------------------------------------------------------------
+ * Size variants
+ * --------------------------------------------------------------- */
+
+.size-sm {
+  --badge-min-height: var(--ds-component-badge-size-sm-min-height);
+  --badge-padding-x: var(--ds-component-badge-size-sm-padding-x);
+  --badge-gap: var(--ds-component-badge-size-sm-gap);
+  --badge-font: var(--ds-component-badge-size-sm-font);
+  --badge-letter-spacing: var(--ds-component-badge-size-sm-letter-spacing);
+  --badge-icon-size: var(--ds-component-badge-size-sm-icon-size);
+}
+
+.size-md {
+  --badge-min-height: var(--ds-component-badge-size-md-min-height);
+  --badge-padding-x: var(--ds-component-badge-size-md-padding-x);
+  --badge-gap: var(--ds-component-badge-size-md-gap);
+  --badge-font: var(--ds-component-badge-size-md-font);
+  --badge-letter-spacing: var(--ds-component-badge-size-md-letter-spacing);
+  --badge-icon-size: var(--ds-component-badge-size-md-icon-size);
+}
+
+/* ---------------------------------------------------------------
+ * Shape variants
+ * --------------------------------------------------------------- */
+
+.shape-pill {
+  border-radius: var(--ds-component-badge-shape-radii-pill);
+}
+
+.shape-rounded {
+  border-radius: var(--ds-component-badge-shape-radii-rounded);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .badge {
+    border-color: CanvasText;
+  }
+}
