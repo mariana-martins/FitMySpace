@@ -16,6 +16,14 @@
       "value": "0 8px 16px -8px rgb(28 25 23 / 0.1), 0 24px 48px -12px rgb(28 25 23 / 0.18)",
       "comment": "Two layers of charcoal.900: a tight contact shadow and a soft ambient one."
     },
+    "ambient-md": {
+      "value": "0 4px 8px -4px rgb(28 25 23 / 0.12), 0 8px 24px 0 rgb(28 25 23 / 0.14)",
+      "comment": "A contact shadow plus an ambient one with no negative spread, so it outlines every edge."
+    },
+    "ambient-lg": {
+      "value": "0 4px 8px -4px rgb(28 25 23 / 0.14), 0 16px 40px 0 rgb(28 25 23 / 0.18)",
+      "comment": "A contact shadow plus a wider ambient one with no negative spread, so it outlines every edge."
+    },
     "inset": {
       "value": "inset 0 4px 8px -4px rgb(28 25 23 / 0.08)",
       "comment": "charcoal.900 at 8% opacity, cast inwards from the top edge."

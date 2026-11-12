@@ -1,0 +1,116 @@
+/* ---------------------------------------------------------------
+ * Card — CSS Module
+ * Maps component-level card tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .card  — the surface: a flex column with a gap between children
+ *   .media — CardMedia: an aspect-ratio frame that crops its image
+ *
+ * Appearance classes: .raised (shadow) | .outline (border)
+ * Padding classes: .padding-{sm|md|lg}
+ * Ratio classes: .ratio-{square|landscape|wide}
+ *
+ * A card holding a `<Link stretched>` (marked [data-link-stretched])
+ * lifts on hover: the whole card is that link's click area.
+ * --------------------------------------------------------------- */
+
+.card {
+  --link-stretched-radius: var(--ds-component-card-shape-radii);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+  box-sizing: border-box;
+  padding: var(--card-padding);
+  background-color: var(--ds-component-card-background);
+  border-radius: var(--ds-component-card-shape-radii);
+}
+
+.raised {
+  box-shadow: var(--ds-component-card-shadow-raised);
+}
+
+.outline {
+  border: var(--ds-component-card-shape-border-width) solid var(--ds-component-card-border-outline);
+}
+
+/* Whole-card link ------------------------------------------------- */
+
+.card:has([data-link-stretched]) {
+  transition-property: box-shadow;
+  transition-duration: var(--ds-component-card-motion-duration);
+  transition-timing-function: var(--ds-component-card-motion-easing);
+}
+
+@media (hover: hover) {
+  .card:has([data-link-stretched]):hover {
+    box-shadow: var(--ds-component-card-shadow-hover);
+  }
+}
+
+/* Padding --------------------------------------------------------- */
+
+.padding-sm {
+  --card-padding: var(--ds-component-card-padding-sm);
+  --card-gap: var(--ds-component-card-gap-sm);
+}
+
+.padding-md {
+  --card-padding: var(--ds-component-card-padding-md);
+  --card-gap: var(--ds-component-card-gap-md);
+}
+
+.padding-lg {
+  --card-padding: var(--ds-component-card-padding-lg);
+  --card-gap: var(--ds-component-card-gap-lg);
+}
+
+/* ---------------------------------------------------------------
+ * CardMedia
+ * --------------------------------------------------------------- */
+
+.media {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--ds-component-card-media-background);
+  border-radius: var(--ds-component-card-media-radii);
+}
+
+.media > img,
+.media > picture,
+.media > video {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.ratio-square {
+  aspect-ratio: 1;
+}
+
+.ratio-landscape {
+  aspect-ratio: 4 / 3;
+}
+
+.ratio-wide {
+  aspect-ratio: 16 / 9;
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .raised {
+    border: var(--ds-component-card-shape-border-width) solid CanvasText;
+  }
+}

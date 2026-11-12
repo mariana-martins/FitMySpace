@@ -241,7 +241,7 @@ export const ProductCardLabels: Story = {
         maxWidth: '18rem',
         padding: '1.5rem',
         borderRadius: 'var(--ds-semantic-radii-container-md)',
-        boxShadow: 'var(--ds-semantic-shadow-raised-base)',
+        boxShadow: 'var(--ds-semantic-shadow-card-base)',
       }}
     >
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>

@@ -65,7 +65,7 @@ const LayeredScene = () => (
         left: '24px',
         width: '200px',
         height: '144px',
-        boxShadow: 'var(--ds-semantic-shadow-raised-base)',
+        boxShadow: 'var(--ds-semantic-shadow-card-base)',
       }}
     />
     <div

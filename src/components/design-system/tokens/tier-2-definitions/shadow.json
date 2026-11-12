@@ -4,10 +4,20 @@
       "raised": {
         "base": {
           "value": "{shadow.xs}",
-          "comment": "Barely-there lift so a control or card reads as a surface."
+          "comment": "Barely-there lift so a control, such as an input, reads as a surface."
         },
         "hover": {
           "value": "{shadow.sm}",
+          "comment": "A raised surface lifting under the pointer."
+        }
+      },
+      "card": {
+        "base": {
+          "value": "{shadow.ambient-md}",
+          "comment": "A card resting on the page: a soft shadow on every edge, so it stands out without a border."
+        },
+        "hover": {
+          "value": "{shadow.ambient-lg}",
           "comment": "A clickable card lifting under the pointer."
         }
       },
