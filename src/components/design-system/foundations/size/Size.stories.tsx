@@ -29,6 +29,9 @@ const groupDescriptions: Record<string, string> = {
   control:
     'Minimum heights shared by every form control and button, on the 4px grid. A Button and an Input of the same size line up in a row, and the smallest step still clears the 24px minimum target size of WCAG 2.5.8.',
   icon: 'Icon sizes that sit next to text, on the 4px grid. They are set in rem, like the type scale, so icons grow with the reader’s browser font size.',
+  'selection-control':
+    'The box of a checkbox or radio, sized to sit on the first line of its label. Set in rem, like icons, so it grows with the text.',
+  tag: 'Heights of static labels such as badges. They are not clickable, so they may sit below the 24px target size.',
   target:
     'The clickable area of anything interactive, which can be larger than what is drawn. Make a small icon button reach at least the minimum with padding; prefer the comfortable size where people tap with a finger.',
   thumbnail:
@@ -68,6 +71,28 @@ const previewByGroup: Record<string, (token: DocumentedToken) => ReactNode> = {
     />
   ),
   icon: (token) => <Search focusable="false" style={iconStyle(token)} />,
+  tag: (token) => (
+    <div
+      style={{
+        width: '64px',
+        height: `var(${token.name})`,
+        borderRadius: 'var(--ds-semantic-radii-surface-full)',
+        backgroundColor: 'var(--ds-semantic-color-background-brand-soft)',
+      }}
+    />
+  ),
+  'selection-control': (token) => (
+    <div
+      style={{
+        width: `var(${token.name})`,
+        height: `var(${token.name})`,
+        boxSizing: 'border-box',
+        borderRadius: 'var(--ds-semantic-radii-interactive-sm)',
+        border:
+          'var(--ds-semantic-border-width-interactive) solid var(--ds-semantic-color-border-default-base)',
+      }}
+    />
+  ),
   target: (token) => (
     <div
       style={{

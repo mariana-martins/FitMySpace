@@ -1,5 +1,6 @@
 'use client';
 
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import styles from './TextField.module.css';
 import { Label, Text } from '../Typography';
 import { CircleAlert } from 'lucide-react';
@@ -8,6 +9,7 @@ import { Input } from '../Input';
 import clsx from 'clsx';
 
 import type { TextFieldProps } from './TextField.types';
+import { joinIds } from '../../utils';
 
 /* ---------------------------------------------------------------
  * TextField
@@ -21,11 +23,6 @@ import type { TextFieldProps } from './TextField.types';
  *
  * The ref points to the <input>.
  * --------------------------------------------------------------- */
-
-function joinIds(...ids: Array<string | undefined>) {
-  const joined = ids.filter(Boolean).join(' ');
-  return joined || undefined;
-}
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(props, ref) {
@@ -91,7 +88,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           <p className={styles.error}>
             <CircleAlert className={styles['error-icon']} aria-hidden="true" focusable="false" />
             <span id={errorId}>
-              <span className={styles['visually-hidden']}>Error: </span>
+              <VisuallyHidden>Error: </VisuallyHidden>
               {error}
             </span>
           </p>

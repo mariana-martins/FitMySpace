@@ -1,5 +1,6 @@
 'use client';
 
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Check, CircleAlert, Copy } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -21,18 +22,6 @@ import type { CSSProperties } from 'react';
 type CopyStatus = 'idle' | 'copied' | 'failed';
 
 const STATUS_RESET_DELAY_MS = 2000;
-
-const visuallyHiddenStyle: CSSProperties = {
-  position: 'absolute',
-  width: '1px',
-  height: '1px',
-  padding: 0,
-  margin: '-1px',
-  overflow: 'hidden',
-  clipPath: 'inset(50%)',
-  whiteSpace: 'nowrap',
-  border: 0,
-};
 
 const backgroundByStatus: Record<CopyStatus, string> = {
   idle: 'var(--ds-semantic-color-background-default-hover)',
@@ -138,9 +127,7 @@ export function CopyTokenButton({ variable, iconOnly = false, style }: CopyToken
         />
         {!iconOnly && buttonLabel}
       </button>
-      <span role="status" style={visuallyHiddenStyle}>
-        {statusMessage}
-      </span>
+      <VisuallyHidden role="status">{statusMessage}</VisuallyHidden>
     </>
   );
 }

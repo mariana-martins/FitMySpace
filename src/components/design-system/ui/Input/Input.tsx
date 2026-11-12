@@ -6,6 +6,7 @@ import styles from './Input.module.css';
 import clsx from 'clsx';
 
 import type { InputProps } from './Input.types';
+import { joinIds } from '../../utils';
 
 /* ---------------------------------------------------------------
  * Input
@@ -21,11 +22,6 @@ import type { InputProps } from './Input.types';
 function assignRef<T>(ref: Ref<T> | undefined, value: T | null) {
   if (typeof ref === 'function') ref(value);
   else if (ref) ref.current = value;
-}
-
-function joinIds(...ids: Array<string | undefined>) {
-  const joined = ids.filter(Boolean).join(' ');
-  return joined || undefined;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(props, ref) {

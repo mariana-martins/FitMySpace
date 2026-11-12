@@ -1,0 +1,134 @@
+{
+  "component": {
+    "checkbox": {
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.interactive.sm}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.interactive}"
+        }
+      },
+      "background": {
+        "default": {
+          "value": "{semantic.color.background.default.base}"
+        },
+        "primary": {
+          "checked": {
+            "value": "{semantic.color.background.brand.base}"
+          },
+          "checked-hover": {
+            "value": "{semantic.color.background.brand.hover}"
+          }
+        },
+        "secondary": {
+          "checked": {
+            "value": "{semantic.color.background.subtle.base}"
+          },
+          "checked-hover": {
+            "value": "{semantic.color.background.subtle.hover}"
+          }
+        },
+        "invalid-checked": {
+          "value": "{semantic.color.background.utility-error.base}"
+        },
+        "disabled": {
+          "value": "{semantic.color.background.disabled}"
+        }
+      },
+      "border": {
+        "default": {
+          "value": "{semantic.color.border.default.base}"
+        },
+        "hover": {
+          "value": "{semantic.color.border.default.active}"
+        },
+        "invalid": {
+          "value": "{semantic.color.border.utility-error.base}"
+        },
+        "disabled": {
+          "value": "{semantic.color.border.disabled}"
+        }
+      },
+      "mark": {
+        "default": {
+          "value": "{semantic.color.text.inverse}"
+        },
+        "disabled": {
+          "value": "{semantic.color.text.subtle.disabled}"
+        }
+      },
+      "label": {
+        "text": {
+          "value": "{semantic.color.text.default.base}"
+        },
+        "required-marker": {
+          "value": "{semantic.color.text.brand.base}"
+        },
+        "disabled": {
+          "value": "{semantic.color.text.disabled}"
+        }
+      },
+      "hint": {
+        "text": {
+          "value": "{semantic.color.text.subtle.base}"
+        }
+      },
+      "error": {
+        "text": {
+          "value": "{semantic.color.text.utility-error.base}"
+        },
+        "gap": {
+          "value": "{semantic.spacing.gap.xs}"
+        },
+        "iconSize": {
+          "value": "{semantic.size.icon.sm}"
+        }
+      },
+      "size": {
+        "sm": {
+          "boxSize": {
+            "value": "{semantic.size.selection-control.sm}"
+          },
+          "markSize": {
+            "value": "{semantic.size.icon.xs}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.sm}"
+          },
+          "labelFont": {
+            "value": "{semantic.typography.label.sm.shorthand}"
+          }
+        },
+        "md": {
+          "boxSize": {
+            "value": "{semantic.size.selection-control.md}"
+          },
+          "markSize": {
+            "value": "{semantic.size.icon.sm}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.sm}"
+          },
+          "labelFont": {
+            "value": "{semantic.typography.label.md.shorthand}"
+          }
+        },
+        "lg": {
+          "boxSize": {
+            "value": "{semantic.size.selection-control.lg}"
+          },
+          "markSize": {
+            "value": "{semantic.size.icon.md}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.md}"
+          },
+          "labelFont": {
+            "value": "{semantic.typography.label.lg.shorthand}"
+          }
+        }
+      }
+    }
+  }
+}
