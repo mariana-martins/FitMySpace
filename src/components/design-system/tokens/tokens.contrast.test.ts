@@ -394,3 +394,23 @@ describe('Link tokens — contrast', () => {
     expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
   });
 });
+
+/* ===============================================================
+ * BREADCRUMB
+ * =============================================================== */
+
+describe('Breadcrumb tokens — contrast', () => {
+  it.each([
+    ['ancestor', 'component.breadcrumb.text.default'],
+    ['hovered ancestor', 'component.breadcrumb.text.hover'],
+    ['current page', 'component.breadcrumb.text.current'],
+  ])('%s text is readable on the page', (_state, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('separator stands out from the page', () => {
+    expect(
+      contrastRatio('component.breadcrumb.separator.color', PAGE_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});

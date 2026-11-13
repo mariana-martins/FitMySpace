@@ -29,6 +29,7 @@ design-system/
 │   ├── tier-3-definitions/    # Component-level token mappings
 │   │   ├── badge.json         # Badge fill and soft colors, sizes, and shapes
 │   │   ├── card.json          # Card surface, border, shadow, media frame, padding and gap
+│   │   ├── breadcrumb.json    # Breadcrumb link, current page and separator colors, sizes, target height
 │   │   ├── button.json        # Button variant colors, sizes, shapes, and icon sizing
 │   │   ├── checkbox.json      # Checkbox box, mark, label, hint and error colors and sizes
 │   │   ├── chip.json          # Chip resting, hover, selected and disabled colors, sizes, edge
@@ -69,6 +70,8 @@ design-system/
 │   └── typography/Typography.stories.tsx
 ├── ui/              # Components only (colocated with stories)
 │   ├── Badge/       # Sidebar: Components/Display/Badge
+│   │   └── … (same files as Button)
+│   ├── Breadcrumb/  # Sidebar: Components/Navigation/Breadcrumb (Breadcrumb, BreadcrumbItem, BreadcrumbLink)
 │   │   └── … (same files as Button)
 │   ├── Button/      # Sidebar: Components/Actions/Button
 │   │   ├── index.tsx

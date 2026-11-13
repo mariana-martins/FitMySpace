@@ -1,3 +1,4 @@
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '../ui/Breadcrumb';
 import { Caption, Heading, Label, Text } from '../ui/Typography';
 import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
@@ -772,6 +773,26 @@ const ComponentGrid = () => (
               About us
             </Link>
           </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-navigation-breadcrumb--docs"
+        title="Breadcrumb"
+        description="The trail of ancestor pages, from Home to the page people are on."
+        preview={
+          <Breadcrumb size="sm">
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#home" home>
+                Home
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#bathroom" aria-current="page">
+                Bathroom
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
         }
       />
       <LinkCard

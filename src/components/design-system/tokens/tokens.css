@@ -415,6 +415,26 @@
   --ds-component-badge-size-md-gap: var(--ds-semantic-spacing-gap-xs);
   --ds-component-badge-size-md-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
   --ds-component-badge-size-md-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-breadcrumb-text-default: var(--ds-semantic-color-text-subtle-base); /** Ancestor links stay quiet so the current page and page title stand out. */
+  --ds-component-breadcrumb-text-hover: var(--ds-semantic-color-text-brand-base);
+  --ds-component-breadcrumb-text-current: var(--ds-semantic-color-text-default-base); /** The page the user is on, paired with heavier weight. */
+  --ds-component-breadcrumb-separator-color: var(--ds-semantic-color-border-default-hover); /** Muted stone divider that still clears 3:1 contrast against the page. */
+  --ds-component-breadcrumb-underline-thickness: var(--ds-semantic-border-width-default);
+  --ds-component-breadcrumb-underline-offset: var(--ds-semantic-spacing-inset-xs);
+  --ds-component-breadcrumb-shape-radii: var(--ds-semantic-radii-interactive-sm); /** Rounds the focus ring around each breadcrumb link. */
+  --ds-component-breadcrumb-motion-duration: var(--ds-semantic-motion-duration-fast);
+  --ds-component-breadcrumb-motion-easing: var(--ds-semantic-motion-easing-standard);
+  --ds-component-breadcrumb-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-breadcrumb-padding-x: var(--ds-semantic-spacing-inset-xs);
+  --ds-component-breadcrumb-min-target: var(--ds-semantic-size-target-min); /** Keeps standalone breadcrumb links at or above the 24px target height of WCAG 2.5.8. */
+  --ds-component-breadcrumb-size-sm-letter-spacing: var(--ds-semantic-typography-caption-md-letter-spacing);
+  --ds-component-breadcrumb-size-sm-current-letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
+  --ds-component-breadcrumb-size-sm-separator-size: var(--ds-semantic-size-icon-xs);
+  --ds-component-breadcrumb-size-sm-icon-size: var(--ds-semantic-size-icon-xs);
+  --ds-component-breadcrumb-size-md-letter-spacing: var(--ds-semantic-typography-body-sm-letter-spacing);
+  --ds-component-breadcrumb-size-md-current-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
+  --ds-component-breadcrumb-size-md-separator-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-breadcrumb-size-md-icon-size: var(--ds-semantic-size-icon-sm);
   --ds-component-button-primary-focus-ring: var(--ds-semantic-color-border-brand-base);
   --ds-component-button-primary-fill-background-default: var(--ds-semantic-color-background-brand-base);
   --ds-component-button-primary-fill-background-hover: var(--ds-semantic-color-background-brand-hover);
@@ -979,6 +999,10 @@
   --ds-component-skeleton-motion-easing: var(--ds-semantic-motion-easing-standard);
   --ds-component-badge-size-sm-font: var(--ds-semantic-typography-label-sm-shorthand);
   --ds-component-badge-size-md-font: var(--ds-semantic-typography-label-md-shorthand);
+  --ds-component-breadcrumb-size-sm-font: var(--ds-semantic-typography-caption-md-shorthand);
+  --ds-component-breadcrumb-size-sm-current-font: var(--ds-semantic-typography-label-sm-shorthand);
+  --ds-component-breadcrumb-size-md-font: var(--ds-semantic-typography-body-sm-shorthand);
+  --ds-component-breadcrumb-size-md-current-font: var(--ds-semantic-typography-label-md-shorthand);
   --ds-component-checkbox-size-sm-label-font: var(--ds-semantic-typography-label-sm-shorthand);
   --ds-component-checkbox-size-md-label-font: var(--ds-semantic-typography-label-md-shorthand);
   --ds-component-checkbox-size-lg-label-font: var(--ds-semantic-typography-label-lg-shorthand);
