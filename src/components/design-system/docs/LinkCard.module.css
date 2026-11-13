@@ -24,7 +24,7 @@
   border: var(--ds-semantic-border-width-default) solid var(--ds-semantic-color-border-subtle-base);
   border-radius: var(--ds-semantic-radii-container-lg);
   background-color: var(--ds-semantic-color-background-default-base);
-  box-shadow: var(--ds-semantic-shadow-raised-base);
+  box-shadow: var(--ds-semantic-shadow-card-base);
   transition-property: box-shadow, border-color, transform;
   transition-duration: var(--ds-semantic-motion-duration-fast);
   transition-timing-function: var(--ds-semantic-motion-easing-standard);
@@ -62,7 +62,7 @@
 @media (hover: hover) {
   .card:has(.link:hover) {
     border-color: var(--ds-semantic-color-border-brand-base);
-    box-shadow: var(--ds-semantic-shadow-raised-hover);
+    box-shadow: var(--ds-semantic-shadow-card-hover);
     transform: translateY(calc(-1 * var(--ds-semantic-spacing-gap-xs)));
   }
 

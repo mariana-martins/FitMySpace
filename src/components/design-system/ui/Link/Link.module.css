@@ -1,0 +1,143 @@
+/* ---------------------------------------------------------------
+ * Link — CSS Module
+ * Maps component-level link tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Appearance classes:
+ *   .inline     — inside running text: takes the text's font, always underlined
+ *   .standalone — on its own: own type size, underline slides in on hover
+ *                 and stays while aria-current="page"
+ * Size classes (standalone only): .size-{sm|md|lg}; without one, the
+ * standalone link takes the font of its parent (e.g. a card title).
+ * Modifiers: .stretched (click area over the nearest positioned ancestor)
+ * --------------------------------------------------------------- */
+
+.link {
+  border-radius: var(--ds-component-link-shape-radii);
+  cursor: pointer;
+  transition-property: color, background-size, text-decoration-thickness;
+  transition-duration: var(--ds-component-link-motion-duration);
+  transition-timing-function: var(--ds-component-link-motion-easing);
+}
+
+.link:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+/* Inline ---------------------------------------------------------- */
+
+.inline {
+  font: inherit;
+  color: var(--ds-component-link-text-inline-default);
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--ds-component-link-underline-rest-width);
+  text-underline-offset: var(--ds-component-link-underline-offset);
+}
+
+.inline:hover {
+  color: var(--ds-component-link-text-inline-hover);
+  text-decoration-thickness: var(--ds-component-link-underline-active-width);
+}
+
+/* Standalone ------------------------------------------------------ */
+
+.standalone {
+  display: inline-block;
+  padding-block-end: var(--ds-component-link-underline-offset);
+  font: var(--link-font, inherit);
+  letter-spacing: var(--link-letter-spacing, inherit);
+  color: var(--ds-component-link-text-standalone-default);
+  text-decoration: none;
+  background-image: linear-gradient(currentcolor, currentcolor);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-origin: content-box;
+  background-clip: content-box;
+  background-size: 0% var(--ds-component-link-underline-active-width);
+}
+
+.standalone:hover {
+  color: var(--ds-component-link-text-standalone-hover);
+}
+
+.standalone[aria-current='page'] {
+  color: var(--ds-component-link-text-standalone-current);
+}
+
+.standalone:hover,
+.standalone[aria-current='page'] {
+  background-position: left bottom;
+  background-size: 100% var(--ds-component-link-underline-active-width);
+}
+
+.size-sm {
+  --link-font: var(--ds-component-link-size-sm-font);
+  --link-letter-spacing: var(--ds-component-link-size-sm-letter-spacing);
+}
+
+.size-md {
+  --link-font: var(--ds-component-link-size-md-font);
+  --link-letter-spacing: var(--ds-component-link-size-md-letter-spacing);
+}
+
+.size-lg {
+  --link-font: var(--ds-component-link-size-lg-font);
+  --link-letter-spacing: var(--ds-component-link-size-lg-letter-spacing);
+}
+
+/* New tab icon ---------------------------------------------------- */
+
+.new-tab-icon {
+  display: inline-block;
+  inline-size: 0.875em;
+  block-size: 0.875em;
+  margin-inline-start: 0.125em;
+  vertical-align: -0.0625em;
+}
+
+/* Stretched ------------------------------------------------------- */
+
+/*
+ * The pseudo-element covers the nearest positioned ancestor, so the whole
+ * card is the link's click area. The focus ring moves onto that area; a
+ * container such as Card can round it with --link-stretched-radius.
+ */
+.stretched::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  border-radius: var(--link-stretched-radius, var(--ds-component-link-shape-radii));
+}
+
+.stretched:focus-visible {
+  outline: none;
+}
+
+.stretched:focus-visible::after {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .standalone {
+    background-image: none;
+  }
+
+  .standalone:hover,
+  .standalone[aria-current='page'] {
+    text-decoration-line: underline;
+    text-decoration-thickness: var(--ds-component-link-underline-active-width);
+    text-underline-offset: var(--ds-component-link-underline-offset);
+  }
+}

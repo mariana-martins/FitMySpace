@@ -18,6 +18,10 @@
           "value": "{duration.320}",
           "comment": "Large surfaces entering or leaving: dialogs, drawers, sheets."
         },
+        "relaxed": {
+          "value": "{duration.400}",
+          "comment": "Decorative motion that should feel calm, such as a link underline drawing in. Pair it with the move easing."
+        },
         "deliberate": {
           "value": "{duration.480}",
           "comment": "Rare, emphasised moments that the reader should notice. Use sparingly."

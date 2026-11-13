@@ -335,3 +335,62 @@ describe('Select tokens — contrast', () => {
     expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
   });
 });
+
+/* ===============================================================
+ * RADIO GROUP
+ * =============================================================== */
+
+describe('RadioGroup tokens — contrast', () => {
+  it.each([
+    ['default', 'component.radio-group.border.default'],
+    ['hover', 'component.radio-group.border.hover'],
+    ['invalid', 'component.radio-group.border.invalid'],
+  ])('%s circle border stands out from the page', (_state, borderToken) => {
+    expect(contrastRatio(borderToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  const checkedBackgrounds = [
+    ['primary checked', 'component.radio-group.background.primary.checked'],
+    ['primary checked and hovered', 'component.radio-group.background.primary.checked-hover'],
+    ['secondary checked', 'component.radio-group.background.secondary.checked'],
+    ['secondary checked and hovered', 'component.radio-group.background.secondary.checked-hover'],
+    ['checked and invalid', 'component.radio-group.background.invalid-checked'],
+  ];
+
+  it.each(checkedBackgrounds)('%s circle stands out from the page', (_state, backgroundToken) => {
+    expect(contrastRatio(backgroundToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it.each(checkedBackgrounds)('dot stands out from the %s circle', (_state, backgroundToken) => {
+    expect(
+      contrastRatio('component.radio-group.dot.default', backgroundToken),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['label', 'component.radio-group.label.text'],
+    ['required marker', 'component.radio-group.label.required-marker'],
+    ['hint', 'component.radio-group.hint.text'],
+    ['error message', 'component.radio-group.error.text'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * LINK
+ * =============================================================== */
+
+describe('Link tokens — contrast', () => {
+  it.each([
+    ['inline', 'component.link.text.inline.default'],
+    ['hovered inline', 'component.link.text.inline.hover'],
+    ['standalone', 'component.link.text.standalone.default'],
+    ['hovered standalone', 'component.link.text.standalone.hover'],
+    ['current page', 'component.link.text.standalone.current'],
+  ])('%s link text is readable on the page', (_state, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
