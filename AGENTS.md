@@ -47,7 +47,8 @@ rules below are its essentials.
   plain helpers shared by components in `utils/` (e.g. `joinIds` for
   `aria-describedby`). Reuse them instead of copying a helper into a component.
   Sidebar: `Design System/Components/<Category>/<Name>` with the categories
-  Actions, Forms, Navigation, Display and Typography (add one in `.storybook/preview.tsx` when needed).
+  Actions, Forms, Navigation, Display, Feedback and Typography (add one in
+  `.storybook/preview.tsx` when needed).
 - **Folder per component** in `ui/`: `Name.tsx`, `Name.types.ts`,
   `Name.module.css`, `Name.test.tsx`, `Name.stories.tsx` and an `index.tsx`
   barrel that exports the component and its types (`export type`). `Button` is

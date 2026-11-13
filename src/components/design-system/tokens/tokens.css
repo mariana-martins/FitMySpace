@@ -388,6 +388,36 @@
   --ds-semantic-typography-label-md-shorthand: var(--ds-semantic-typography-label-md-font-weight) var(--ds-semantic-typography-label-md-font-size)/var(--ds-semantic-typography-label-md-line-height) var(--ds-semantic-typography-label-md-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
   --ds-semantic-typography-label-sm-shorthand: var(--ds-semantic-typography-label-sm-font-weight) var(--ds-semantic-typography-label-sm-font-size)/var(--ds-semantic-typography-label-sm-line-height) var(--ds-semantic-typography-label-sm-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
   --ds-semantic-typography-caption-md-shorthand: var(--ds-semantic-typography-caption-md-font-weight) var(--ds-semantic-typography-caption-md-font-size)/var(--ds-semantic-typography-caption-md-line-height) var(--ds-semantic-typography-caption-md-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
+  --ds-component-alert-shape-radii: var(--ds-semantic-radii-container-sm);
+  --ds-component-alert-shape-border-width: var(--ds-semantic-border-width-default);
+  --ds-component-alert-icon-size: var(--ds-semantic-size-icon-md);
+  --ds-component-alert-spacing-padding: var(--ds-semantic-spacing-inset-md);
+  --ds-component-alert-spacing-icon-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-alert-spacing-text-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-alert-information-soft-background: var(--ds-semantic-color-background-utility-information-soft);
+  --ds-component-alert-information-soft-text: var(--ds-semantic-color-text-utility-information-base);
+  --ds-component-alert-information-soft-border: var(--ds-semantic-color-border-utility-information-active);
+  --ds-component-alert-information-fill-background: var(--ds-semantic-color-background-utility-information-base);
+  --ds-component-alert-information-fill-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-alert-information-fill-border: var(--ds-semantic-color-border-utility-information-active);
+  --ds-component-alert-success-soft-background: var(--ds-semantic-color-background-utility-success-soft);
+  --ds-component-alert-success-soft-text: var(--ds-semantic-color-text-utility-success-base);
+  --ds-component-alert-success-soft-border: var(--ds-semantic-color-border-utility-success-active);
+  --ds-component-alert-success-fill-background: var(--ds-semantic-color-background-utility-success-base);
+  --ds-component-alert-success-fill-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-alert-success-fill-border: var(--ds-semantic-color-border-utility-success-active);
+  --ds-component-alert-warning-soft-background: var(--ds-semantic-color-background-utility-warning-soft);
+  --ds-component-alert-warning-soft-text: var(--ds-semantic-color-text-utility-warning-base);
+  --ds-component-alert-warning-soft-border: var(--ds-semantic-color-border-utility-warning-active);
+  --ds-component-alert-warning-fill-background: var(--ds-semantic-color-background-utility-warning-base);
+  --ds-component-alert-warning-fill-text: var(--ds-semantic-color-text-utility-warning-base);
+  --ds-component-alert-warning-fill-border: var(--ds-semantic-color-border-utility-warning-active);
+  --ds-component-alert-error-soft-background: var(--ds-semantic-color-background-utility-error-soft);
+  --ds-component-alert-error-soft-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-alert-error-soft-border: var(--ds-semantic-color-border-utility-error-active);
+  --ds-component-alert-error-fill-background: var(--ds-semantic-color-background-utility-error-base);
+  --ds-component-alert-error-fill-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-alert-error-fill-border: var(--ds-semantic-color-border-utility-error-active);
   --ds-component-badge-shape-radii-pill: var(--ds-semantic-radii-surface-full);
   --ds-component-badge-shape-radii-rounded: var(--ds-semantic-radii-surface-sm);
   --ds-component-badge-primary-fill-background: var(--ds-semantic-color-background-brand-base);

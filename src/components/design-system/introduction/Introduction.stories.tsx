@@ -18,6 +18,7 @@ import { Switch } from '../ui/Switch';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Badge } from '../ui/Badge';
+import { Alert } from '../ui/Alert';
 import { Link } from '../ui/Link';
 import { Chip } from '../ui/Chip';
 import { Card } from '../ui/Card';
@@ -898,6 +899,13 @@ const ComponentGrid = () => (
         title="EmptyState"
         description="What to show when a list has nothing in it: what happened and what to do next."
         preview={<EmptyState title="No products found" headingLevel={5} style={{ padding: 0 }} />}
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-feedback-alert--docs"
+        title="Alert"
+        description="Status messages in the four utility colours, announced through a live region."
+        preview={<Alert variant="success">Room saved.</Alert>}
       />
       <LinkCard
         headingLevel={4}

@@ -571,3 +571,37 @@ describe('Textarea tokens — contrast', () => {
     expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
   });
 });
+
+/* ===============================================================
+ * ALERT
+ * =============================================================== */
+
+const ALERT_VARIANTS = ['information', 'success', 'warning', 'error'];
+const ALERT_APPEARANCES = ['soft', 'fill'];
+
+const ALERT_COLOUR_COMBINATIONS = ALERT_VARIANTS.flatMap((variant) =>
+  ALERT_APPEARANCES.map((appearance) => [variant, appearance]),
+);
+
+describe('Alert tokens — contrast', () => {
+  // The icon takes the message colour, so clearing the text pair clears it too.
+  it.each(ALERT_COLOUR_COMBINATIONS)('%s %s message is readable', (variant, appearance) => {
+    const tokenGroup = `component.alert.${variant}.${appearance}`;
+    expect(contrastRatio(`${tokenGroup}.text`, `${tokenGroup}.background`)).toBeGreaterThanOrEqual(
+      TEXT_MINIMUM,
+    );
+  });
+
+  // Against the page, not the block: a fill border blends into its own
+  // background on purpose, and the page is the side the edge has to show up on.
+  it.each(ALERT_COLOUR_COMBINATIONS)(
+    '%s %s border stands out from the page',
+    (variant, appearance) => {
+      const ratio = contrastRatio(
+        `component.alert.${variant}.${appearance}.border`,
+        PAGE_BACKGROUND,
+      );
+      expect(ratio).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+    },
+  );
+});
