@@ -47,7 +47,7 @@ rules below are its essentials.
   plain helpers shared by components in `utils/` (e.g. `joinIds` for
   `aria-describedby`). Reuse them instead of copying a helper into a component.
   Sidebar: `Design System/Components/<Category>/<Name>` with the categories
-  Actions, Forms, Display and Typography (add one in `.storybook/preview.tsx` when needed).
+  Actions, Forms, Navigation, Display and Typography (add one in `.storybook/preview.tsx` when needed).
 - **Folder per component** in `ui/`: `Name.tsx`, `Name.types.ts`,
   `Name.module.css`, `Name.test.tsx`, `Name.stories.tsx` and an `index.tsx`
   barrel that exports the component and its types (`export type`). `Button` is
@@ -128,7 +128,9 @@ rules below are its essentials.
 - Readable code: descriptive names, no one-letter variables (`(product) =>`,
   not `(p) =>`; `index`, not `i`), in source and tests. Prefer named functions
   over long chains or dense inline lambdas.
-- Comments explain the non-obvious why only. Do not restate the code.
+- Comments explain the non-obvious why only. Do not restate the code. Do not
+  comment every item: inside a type (between its props or members) and between CSS
+  declarations, add a comment only when the name or value does not already explain it.
 - Use the `@/` path alias for imports from `src/`.
 
 ## Accessibility (WCAG 2.2 AA)
