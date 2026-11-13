@@ -1,0 +1,35 @@
+{
+  "component": {
+    "search-field": {
+      "label": {
+        "text": {
+          "value": "{semantic.color.text.default.base}"
+        }
+      },
+      "hint": {
+        "text": {
+          "value": "{semantic.color.text.subtle.base}"
+        }
+      },
+      "gap": {
+        "value": "{semantic.spacing.gap.sm}",
+        "comment": "Between the label, the field row and the hint."
+      },
+      "row-gap": {
+        "value": "{semantic.spacing.gap.sm}",
+        "comment": "Between the field and the Search button."
+      },
+      "error": {
+        "text": {
+          "value": "{semantic.color.text.utility-error.base}"
+        },
+        "gap": {
+          "value": "{semantic.spacing.gap.xs}"
+        },
+        "iconSize": {
+          "value": "{semantic.size.icon.sm}"
+        }
+      }
+    }
+  }
+}

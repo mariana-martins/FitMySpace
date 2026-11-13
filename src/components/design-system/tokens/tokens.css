@@ -825,6 +825,16 @@
   --ds-component-chip-size-md-gap: var(--ds-semantic-spacing-gap-sm);
   --ds-component-chip-size-md-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
   --ds-component-chip-size-md-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-empty-state-icon-background: var(--ds-semantic-color-background-brand-soft);
+  --ds-component-empty-state-icon-color: var(--ds-semantic-color-text-brand-base);
+  --ds-component-empty-state-icon-box-size: var(--ds-semantic-size-thumbnail-md);
+  --ds-component-empty-state-icon-size: var(--ds-semantic-size-icon-lg);
+  --ds-component-empty-state-title-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-empty-state-description-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-empty-state-description-max-width: var(--ds-semantic-size-prose); /** Keeps the description to a comfortable line length. */
+  --ds-component-empty-state-gap: var(--ds-semantic-spacing-gap-lg);
+  --ds-component-empty-state-actions-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-empty-state-padding: var(--ds-semantic-spacing-section-sm);
   --ds-component-input-shape-radii: var(--ds-semantic-radii-interactive-lg);
   --ds-component-input-shape-border-width: var(--ds-semantic-border-width-default);
   --ds-component-input-shape-halo-width: var(--ds-semantic-border-width-halo);
@@ -950,6 +960,13 @@
   --ds-component-radio-group-size-lg-box-size: var(--ds-semantic-size-selection-control-lg);
   --ds-component-radio-group-size-lg-dot-size: var(--ds-semantic-size-selection-indicator-lg);
   --ds-component-radio-group-size-lg-gap: var(--ds-semantic-spacing-gap-md);
+  --ds-component-search-field-label-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-search-field-hint-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-search-field-gap: var(--ds-semantic-spacing-gap-sm); /** Between the label, the field row and the hint. */
+  --ds-component-search-field-row-gap: var(--ds-semantic-spacing-gap-sm); /** Between the field and the Search button. */
+  --ds-component-search-field-error-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-search-field-error-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-search-field-error-icon-size: var(--ds-semantic-size-icon-sm);
   --ds-component-select-shape-radii: var(--ds-semantic-radii-interactive-lg);
   --ds-component-select-shape-border-width: var(--ds-semantic-border-width-default);
   --ds-component-select-shape-halo-width: var(--ds-semantic-border-width-halo);

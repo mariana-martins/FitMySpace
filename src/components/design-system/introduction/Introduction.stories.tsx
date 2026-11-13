@@ -5,7 +5,9 @@ import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { LinkCard, LinkCardGrid } from '../docs';
 import { SelectField } from '../ui/SelectField';
+import { SearchField } from '../ui/SearchField';
 import { expect, within } from 'storybook/test';
+import { EmptyState } from '../ui/EmptyState';
 import { TextField } from '../ui/TextField';
 import { Skeleton } from '../ui/Skeleton';
 import { Checkbox } from '../ui/Checkbox';
@@ -762,6 +764,13 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-forms-searchfield--docs"
+        title="SearchField"
+        description="A search form with a visible label, a Clear button, and a Search button, named as a search landmark."
+        preview={<SearchField size="sm" label="Search products" defaultValue="basket" />}
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-navigation-link--docs"
         title="Link"
         description="Inline links inside text, and standalone links with an underline that slides in on hover."
@@ -859,6 +868,13 @@ const ComponentGrid = () => (
             <Skeleton lines={2} size="sm" />
           </div>
         }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-display-emptystate--docs"
+        title="EmptyState"
+        description="What to show when a list has nothing in it: what happened and what to do next."
+        preview={<EmptyState title="No products found" headingLevel={5} style={{ padding: 0 }} />}
       />
       <LinkCard
         headingLevel={4}

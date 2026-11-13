@@ -448,3 +448,36 @@ describe('Pagination tokens — contrast', () => {
     ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
   });
 });
+
+/* ===============================================================
+ * SEARCH FIELD
+ * =============================================================== */
+
+describe('SearchField tokens — contrast', () => {
+  it.each([
+    ['label', 'component.search-field.label.text'],
+    ['hint', 'component.search-field.hint.text'],
+    ['error message', 'component.search-field.error.text'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * EMPTY STATE
+ * =============================================================== */
+
+describe('EmptyState tokens — contrast', () => {
+  it.each([
+    ['title', 'component.empty-state.title.text'],
+    ['description', 'component.empty-state.description.text'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('icon stands out from its circle', () => {
+    expect(
+      contrastRatio('component.empty-state.icon.color', 'component.empty-state.icon.background'),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});

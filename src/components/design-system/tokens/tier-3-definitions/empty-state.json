@@ -1,0 +1,43 @@
+{
+  "component": {
+    "empty-state": {
+      "icon": {
+        "background": {
+          "value": "{semantic.color.background.brand.soft}"
+        },
+        "color": {
+          "value": "{semantic.color.text.brand.base}"
+        },
+        "boxSize": {
+          "value": "{semantic.size.thumbnail.md}"
+        },
+        "size": {
+          "value": "{semantic.size.icon.lg}"
+        }
+      },
+      "title": {
+        "text": {
+          "value": "{semantic.color.text.default.base}"
+        }
+      },
+      "description": {
+        "text": {
+          "value": "{semantic.color.text.subtle.base}"
+        },
+        "maxWidth": {
+          "value": "{semantic.size.prose}",
+          "comment": "Keeps the description to a comfortable line length."
+        }
+      },
+      "gap": {
+        "value": "{semantic.spacing.gap.lg}"
+      },
+      "actions-gap": {
+        "value": "{semantic.spacing.gap.sm}"
+      },
+      "padding": {
+        "value": "{semantic.spacing.section.sm}"
+      }
+    }
+  }
+}
