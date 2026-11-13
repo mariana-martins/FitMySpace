@@ -20,15 +20,30 @@ design-system/
 │   │   ├── color.json         # Semantic backgrounds, text, borders and focus halos (e.g. brand, utility)
 │   │   ├── typography.json    # Display, heading, body, control, label, and caption roles (+ generated shorthand)
 │   │   ├── spacing.json       # Inset (padding), control padding, gap, and section layout spacing
-│   │   ├── size.json          # Control heights, icons, click targets, thumbnails, containers, prose width
+│   │   ├── size.json          # Control heights, icons, checkbox/radio boxes, switch tracks and knobs, badge heights, click targets, thumbnails, containers, prose width
 │   │   ├── border-width.json  # Stroke roles (default, interactive, selected, indicator, halo)
 │   │   ├── radii.json         # Interactive, container, and surface border radiuses
 │   │   ├── focus.json         # Focus ring colour, width, offset and inset offset
 │   │   ├── motion.json        # Duration (instant → deliberate) and easing (standard, enter, exit, move, linear) roles
 │   │   └── shadow.json        # Elevation roles (raised, floating, overlay, sunken)
 │   ├── tier-3-definitions/    # Component-level token mappings
+│   │   ├── alert.json         # Alert background, text and border for each utility color, soft and fill, plus padding and gaps
+│   │   ├── badge.json         # Badge fill and soft colors, sizes, and shapes
+│   │   ├── card.json          # Card surface, border, shadow, media frame, padding and gap
+│   │   ├── breadcrumb.json    # Breadcrumb link, current page and separator colors, sizes, target height
 │   │   ├── button.json        # Button variant colors, sizes, shapes, and icon sizing
-│   │   └── input.json         # Input + TextField colors, states, halo, sizes, and unit styling
+│   │   ├── checkbox.json      # Checkbox box, mark, label, hint and error colors and sizes
+│   │   ├── chip.json          # Chip resting, hover, selected and disabled colors, sizes, edge
+│   │   ├── empty-state.json   # EmptyState icon circle, title and description colors, spacing
+│   │   ├── input.json         # Input + TextField colors, states, halo, sizes, and unit styling
+│   │   ├── link.json          # Link colors, underline widths and offset, motion, standalone sizes
+│   │   ├── pagination.json    # Pagination page, current page and ellipsis colors, sizes, shape
+│   │   ├── radio-group.json   # RadioGroup circle, dot, label, hint and error colors and sizes
+│   │   ├── search-field.json  # SearchField label and hint colors, spacing
+│   │   ├── select.json        # Select + SelectField trigger, list, option, and group-label styling
+│   │   ├── skeleton.json      # Skeleton pulse colors, shape radii, motion, and text sizes
+│   │   ├── switch.json        # Switch track edge and fill, knob, label, hint and error colors and sizes
+│   │   └── textarea.json      # Textarea + TextareaField colors, states, halo, and sizes
 │   ├── sd.config.mjs              # Style Dictionary build config (+ typography shorthand preprocessor)
 │   ├── tokens.contrast.test.ts    # WCAG contrast checks for every colour pair and state
 │   ├── tokens.tiers.test.ts       # Each tier references only the tier below it
@@ -40,6 +55,8 @@ design-system/
 │   ├── CopyTokenButton.tsx        # Copy-to-clipboard button with icon and status announcement
 │   ├── CopyTokenButton.test.tsx
 │   ├── FoundationPage.tsx         # Page shell, token group card, token row, inline code, StorybookLink
+│   ├── LabelledField.tsx          # Visible label above a bare Input, Select or Textarea in their stories
+│   ├── LabelledField.test.tsx
 │   ├── LinkCard.tsx               # LinkCard + LinkCardGrid: whole-card links to other Storybook pages
 │   ├── LinkCard.module.css
 │   ├── LinkCard.test.tsx
@@ -57,32 +74,71 @@ design-system/
 │   ├── size/Size.stories.tsx
 │   ├── spacing/Spacing.stories.tsx
 │   └── typography/Typography.stories.tsx
-└── ui/              # Components only (colocated with stories)
-    ├── Button/      # Sidebar: Components/Actions/Button
-    │   ├── index.tsx
-    │   ├── Button.types.ts
-    │   ├── Button.tsx
-    │   ├── Button.module.css
-    │   ├── Button.test.tsx
-    │   └── Button.stories.tsx
-    ├── Input/       # Sidebar: Components/Forms/Input
-    │   └── … (same files as Button)
-    ├── TextField/   # Sidebar: Components/Forms/TextField
-    │   └── … (same files as Button)
-    └── Typography/  # Sidebar: Components/Typography/{Heading,Text,Label,Caption}
-        ├── index.tsx
-        ├── Typography.types.ts
-        ├── Typography.tsx
-        ├── Typography.module.css
-        ├── Typography.test.tsx
-        ├── Heading.stories.tsx
-        ├── Text.stories.tsx
-        ├── Label.stories.tsx
-        └── Caption.stories.tsx
+├── ui/              # Components only (colocated with stories)
+│   ├── Alert/       # Sidebar: Components/Feedback/Alert (live region: role="status", "alert" or none, set by live)
+│   │   └── … (same files as Button)
+│   ├── Badge/       # Sidebar: Components/Display/Badge
+│   │   └── … (same files as Button)
+│   ├── Breadcrumb/  # Sidebar: Components/Navigation/Breadcrumb (Breadcrumb, BreadcrumbItem, BreadcrumbLink)
+│   │   └── … (same files as Button)
+│   ├── Button/      # Sidebar: Components/Actions/Button
+│   │   ├── index.tsx
+│   │   ├── Button.types.ts
+│   │   ├── Button.tsx
+│   │   ├── Button.module.css
+│   │   ├── Button.test.tsx
+│   │   └── Button.stories.tsx
+│   ├── Checkbox/    # Sidebar: Components/Forms/Checkbox (Radix Checkbox)
+│   │   └── … (same files as Button)
+│   ├── Chip/        # Sidebar: Components/Actions/Chip (toggle button, aria-pressed)
+│   │   └── … (same files as Button)
+│   ├── Card/        # Sidebar: Components/Display/Card (Card + CardMedia, asChild via Radix Slot)
+│   │   └── … (same files as Button)
+│   ├── EmptyState/  # Sidebar: Components/Display/EmptyState (icon, heading, description, actions)
+│   │   └── … (same files as Button)
+│   ├── Input/       # Sidebar: Components/Forms/Input
+│   │   └── … (same files as Button)
+│   ├── Link/        # Sidebar: Components/Navigation/Link (inline or standalone, asChild via Radix Slot)
+│   │   └── … (same files as Button)
+│   ├── Pagination/  # Sidebar: Components/Navigation/Pagination (Pagination, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis, getPaginationRange)
+│   │   └── … (same files as Button, plus getPaginationRange.ts)
+│   ├── RadioGroup/  # Sidebar: Components/Forms/RadioGroup (Radix RadioGroup: RadioGroup, RadioGroupItem)
+│   │   └── … (same files as Button)
+│   ├── SearchField/ # Sidebar: Components/Forms/SearchField (form role="search", Clear and Search buttons)
+│   │   └── … (same files as Button)
+│   ├── Select/      # Sidebar: Components/Forms/Select (Radix Select: Select, SelectItem, SelectGroup)
+│   │   └── … (same files as Button)
+│   ├── SelectField/ # Sidebar: Components/Forms/SelectField
+│   │   └── … (same files as Button)
+│   ├── Skeleton/    # Sidebar: Components/Display/Skeleton (loading placeholder, aria-hidden)
+│   │   └── … (same files as Button)
+│   ├── Switch/      # Sidebar: Components/Forms/Switch (Radix Switch)
+│   │   └── … (same files as Button)
+│   ├── TextField/   # Sidebar: Components/Forms/TextField
+│   │   └── … (same files as Button)
+│   ├── Textarea/    # Sidebar: Components/Forms/Textarea (native <textarea>, no client hooks)
+│   │   └── … (same files as Button)
+│   ├── TextareaField/ # Sidebar: Components/Forms/TextareaField
+│   │   └── … (same files as Button)
+│   └── Typography/  # Sidebar: Components/Typography/{Heading,Text,Label,Caption}
+│       ├── index.tsx
+│       ├── Typography.types.ts
+│       ├── Typography.tsx
+│       ├── Typography.module.css
+│       ├── Typography.test.tsx
+│       ├── Heading.stories.tsx
+│       ├── Text.stories.tsx
+│       ├── Label.stories.tsx
+│       └── Caption.stories.tsx
+└── utils/           # Plain helpers shared by components (no React, no styles)
+    ├── index.ts
+    ├── joinIds.ts   # Joins ids for aria-describedby / aria-labelledby
+    └── joinIds.test.ts
 ```
 
-- Components are built using CSS Modules with native CSS custom properties (generated by Style Dictionary) and Radix UI primitives (`@radix-ui/react-slot`, `@radix-ui/react-label`).
-- Accessibility rules (such as `aria-label` on icon-only `Button`, `htmlFor` on `Label as="label"`, and a required `error` message when `TextField` is `invalid`) are enforced at compile time via TypeScript discriminated unions.
+- Components are built using CSS Modules with native CSS custom properties (generated by Style Dictionary) and Radix UI primitives (`@radix-ui/react-slot`, `@radix-ui/react-label`, `@radix-ui/react-checkbox`, `@radix-ui/react-radio-group`, `@radix-ui/react-select`, `@radix-ui/react-switch`, `@radix-ui/react-visually-hidden`, and the `@radix-ui/react-use-controllable-state` and `@radix-ui/react-compose-refs` utilities). Interactive form controls with a custom look (`Checkbox`, `RadioGroup`, `Select`, `Switch`) use Radix, which keeps a hidden native input for form submission; text fields stay native `<input>` and `<textarea>`.
+- **Server rendering:** anything without client-only React renders on the server — no `'use client'`, no JavaScript to show it: `Alert`, `Textarea`, `TextareaField`, `Breadcrumb`, `Pagination`, `Link`, `Card`, `EmptyState`, `Skeleton`, `Typography`. `useId` works on the server, and a server component may render a client one (such as Radix `VisuallyHidden`) without becoming one. `Input` and `TextField` are client components because of a ref and a click handler, `SearchField` because of its state, and every Radix control (`Checkbox`, `RadioGroup`, `Select`, `SelectField`, `Switch`) because of its hooks.
+- Accessibility rules (such as `aria-label` on icon-only `Button`, `htmlFor` on `Label as="label"`, and a required `error` message when `TextField`, `TextareaField`, `SelectField`, `Checkbox` or `Switch` is `invalid`) are enforced at compile time via TypeScript discriminated unions.
 - Design tokens are managed using Style Dictionary.
 
 Refer to the root `src/PLANNING.md` for architectural guidelines and implementation details.
@@ -149,7 +205,7 @@ npm run tokens:build
 
 **Typography shorthand:** `sd.config.mjs` generates a `shorthand` token for every text style, e.g. `--ds-semantic-typography-heading-lg-shorthand` = `600 1.875rem/1.25 'DM Sans', sans-serif`, built from references to the style's own tokens so it can never drift. Outside a component, style text with `font: var(--…-shorthand)` and, for display and label styles, `letter-spacing: var(--…-letter-spacing)` (the CSS `font` property cannot carry letter spacing). Never rebuild a style from its separate font tokens.
 
-**Control sizes:** Button and Input share the `semantic.size.control.*` heights (`xs` 32, `sm` 40, `md` 48, `lg` 56px, all multiples of 4), so a button lines up with the field next to it.
+**Control sizes:** Button and Input share the `semantic.size.control.*` heights (`xs` 32, `sm` 40, `md` 48, `lg` 56px, all multiples of 4), so a button lines up with the field next to it. `Textarea` takes the same heights as its `min-height`, so even a one-row field matches the button beside it. Checkboxes and radios use `semantic.size.selection-control.*`, and switches their own `semantic.size.switch.{height,width,thumb}.*` (the track is always 8px taller than its knob, so the knob sits 4px inside the edge).
 
 **About `subtle`:** in colour tokens, `subtle` means neutral (low-chroma), not faint. `background.subtle` is a dark charcoal fill (the secondary Button) and `border.subtle` is darker than `border.default`. For a faint divider use `border.disabled`.
 

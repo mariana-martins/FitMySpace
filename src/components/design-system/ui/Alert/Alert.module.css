@@ -1,0 +1,147 @@
+/* ---------------------------------------------------------------
+ * Alert — CSS Module
+ * Maps component-level alert tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure (an icon column, then the text):
+ *   .root    — the live region and the visible box
+ *   .icon    — the decorative icon, centred on the first line of text
+ *   .content — title and message
+ *   .title / .body — the Typography components
+ *
+ * The type of message is carried by the variant class, the
+ * appearance by its own class: the two together pick the background,
+ * text and border tokens. Nothing here is interactive, so there are
+ * no hover or focus styles to show.
+ * --------------------------------------------------------------- */
+
+.root {
+  --alert-background: transparent;
+  --alert-text: currentcolor;
+  --alert-border: transparent;
+
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-component-alert-spacing-icon-gap);
+  padding: var(--ds-component-alert-spacing-padding);
+  /* The icon centres on this line height, so it is set here, not inherited. */
+  font: var(--ds-semantic-typography-body-md-shorthand);
+  letter-spacing: var(--ds-semantic-typography-body-md-letter-spacing);
+  color: var(--alert-text);
+  background-color: var(--alert-background);
+  border: var(--ds-component-alert-shape-border-width) solid var(--alert-border);
+  border-radius: var(--ds-component-alert-shape-radii);
+}
+
+/*
+ * `.root` sets `display: flex`, which out-specifies the browser's own
+ * `[hidden] { display: none }`. To keep a live region between messages,
+ * pass no message instead of `hidden`: the region stays in the
+ * accessibility tree and draws nothing.
+ */
+.root[hidden] {
+  display: none;
+}
+
+/* Icon ------------------------------------------------------------ */
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--ds-component-alert-icon-size);
+  block-size: var(--ds-component-alert-icon-size);
+  margin-block-start: calc((1lh - var(--ds-component-alert-icon-size)) / 2);
+  color: currentcolor;
+}
+
+.icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+/* Text ------------------------------------------------------------ */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-component-alert-spacing-text-gap);
+  min-inline-size: 0;
+}
+
+.root .title {
+  margin: 0;
+  color: inherit;
+}
+
+.root .body {
+  margin: 0;
+  color: inherit;
+}
+
+.body > :first-child {
+  margin-block-start: 0;
+}
+
+.body > :last-child {
+  margin-block-end: 0;
+}
+
+/* ---------------------------------------------------------------
+ * Variants and appearances
+ * --------------------------------------------------------------- */
+
+.variant-information.appearance-soft {
+  --alert-background: var(--ds-component-alert-information-soft-background);
+  --alert-text: var(--ds-component-alert-information-soft-text);
+  --alert-border: var(--ds-component-alert-information-soft-border);
+}
+
+.variant-information.appearance-fill {
+  --alert-background: var(--ds-component-alert-information-fill-background);
+  --alert-text: var(--ds-component-alert-information-fill-text);
+  --alert-border: var(--ds-component-alert-information-fill-border);
+}
+
+.variant-success.appearance-soft {
+  --alert-background: var(--ds-component-alert-success-soft-background);
+  --alert-text: var(--ds-component-alert-success-soft-text);
+  --alert-border: var(--ds-component-alert-success-soft-border);
+}
+
+.variant-success.appearance-fill {
+  --alert-background: var(--ds-component-alert-success-fill-background);
+  --alert-text: var(--ds-component-alert-success-fill-text);
+  --alert-border: var(--ds-component-alert-success-fill-border);
+}
+
+.variant-warning.appearance-soft {
+  --alert-background: var(--ds-component-alert-warning-soft-background);
+  --alert-text: var(--ds-component-alert-warning-soft-text);
+  --alert-border: var(--ds-component-alert-warning-soft-border);
+}
+
+.variant-warning.appearance-fill {
+  --alert-background: var(--ds-component-alert-warning-fill-background);
+  --alert-text: var(--ds-component-alert-warning-fill-text);
+  --alert-border: var(--ds-component-alert-warning-fill-border);
+}
+
+.variant-error.appearance-soft {
+  --alert-background: var(--ds-component-alert-error-soft-background);
+  --alert-text: var(--ds-component-alert-error-soft-text);
+  --alert-border: var(--ds-component-alert-error-soft-border);
+}
+
+.variant-error.appearance-fill {
+  --alert-background: var(--ds-component-alert-error-fill-background);
+  --alert-text: var(--ds-component-alert-error-fill-text);
+  --alert-border: var(--ds-component-alert-error-fill-border);
+}
+
+@media (forced-colors: active) {
+  .icon {
+    color: CanvasText;
+  }
+}

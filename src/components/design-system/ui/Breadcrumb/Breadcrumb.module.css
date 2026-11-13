@@ -1,0 +1,157 @@
+/* ---------------------------------------------------------------
+ * Breadcrumb — CSS Module
+ * Maps component-level breadcrumb tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .list       — the <ol>, wrapping cleanly on narrow screens
+ *   .item       — each <li> step and its trailing .separator
+ *   .link       — ancestor links and the [aria-current='page'] step
+ *   .icon       — decorative leading icon inside .link (e.g. Home)
+ *   .separator  — decorative divider, hidden on the last item; it holds
+ *                 both a .separator-chevron and a .separator-slash, and
+ *                 the list's [data-separator] shows one of them
+ *
+ * Size classes: .size-{sm|md}
+ * --------------------------------------------------------------- */
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ds-component-breadcrumb-gap);
+  margin: 0 calc(var(--ds-component-breadcrumb-padding-x) * -1);
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-component-breadcrumb-gap);
+  min-inline-size: 0;
+}
+
+.item:last-child .separator {
+  display: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-component-breadcrumb-gap);
+  min-block-size: var(--ds-component-breadcrumb-min-target);
+  padding-inline: var(--ds-component-breadcrumb-padding-x);
+  font: var(--breadcrumb-font);
+  letter-spacing: var(--breadcrumb-letter-spacing);
+  color: var(--ds-component-breadcrumb-text-default);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  border-radius: var(--ds-component-breadcrumb-shape-radii);
+  cursor: pointer;
+  transition-property: color;
+  transition-duration: var(--ds-component-breadcrumb-motion-duration);
+  transition-timing-function: var(--ds-component-breadcrumb-motion-easing);
+}
+
+@media (hover: hover) {
+  .link:not([aria-current='page']):hover {
+    color: var(--ds-component-breadcrumb-text-hover);
+    text-decoration-line: underline;
+    text-decoration-thickness: var(--ds-component-breadcrumb-underline-thickness);
+    text-underline-offset: var(--ds-component-breadcrumb-underline-offset);
+  }
+}
+
+.link:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+.link:not([aria-current='page']):focus-visible {
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--ds-component-breadcrumb-underline-thickness);
+  text-underline-offset: var(--ds-component-breadcrumb-underline-offset);
+}
+
+.link[aria-current='page'] {
+  font: var(--breadcrumb-current-font);
+  letter-spacing: var(--breadcrumb-current-letter-spacing);
+  color: var(--ds-component-breadcrumb-text-current);
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  inline-size: var(--breadcrumb-icon-size);
+  block-size: var(--breadcrumb-icon-size);
+}
+
+.icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.separator {
+  display: inline-flex;
+  align-items: center;
+  font: var(--breadcrumb-font);
+  color: var(--ds-component-breadcrumb-separator-color);
+  user-select: none;
+}
+
+.separator-chevron {
+  inline-size: var(--breadcrumb-separator-size);
+  block-size: var(--breadcrumb-separator-size);
+}
+
+.separator-slash,
+.list[data-separator='slash'] .separator-chevron {
+  display: none;
+}
+
+.list[data-separator='slash'] .separator-slash {
+  display: inline;
+}
+
+/* Sizes ----------------------------------------------------------- */
+
+.size-sm {
+  --breadcrumb-font: var(--ds-component-breadcrumb-size-sm-font);
+  --breadcrumb-letter-spacing: var(--ds-component-breadcrumb-size-sm-letter-spacing);
+  --breadcrumb-current-font: var(--ds-component-breadcrumb-size-sm-current-font);
+  --breadcrumb-current-letter-spacing: var(
+    --ds-component-breadcrumb-size-sm-current-letter-spacing
+  );
+  --breadcrumb-separator-size: var(--ds-component-breadcrumb-size-sm-separator-size);
+  --breadcrumb-icon-size: var(--ds-component-breadcrumb-size-sm-icon-size);
+}
+
+.size-md {
+  --breadcrumb-font: var(--ds-component-breadcrumb-size-md-font);
+  --breadcrumb-letter-spacing: var(--ds-component-breadcrumb-size-md-letter-spacing);
+  --breadcrumb-current-font: var(--ds-component-breadcrumb-size-md-current-font);
+  --breadcrumb-current-letter-spacing: var(
+    --ds-component-breadcrumb-size-md-current-letter-spacing
+  );
+  --breadcrumb-separator-size: var(--ds-component-breadcrumb-size-md-separator-size);
+  --breadcrumb-icon-size: var(--ds-component-breadcrumb-size-md-icon-size);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .link[aria-current='page'] {
+    text-decoration-line: underline;
+    text-decoration-thickness: var(--ds-component-breadcrumb-underline-thickness);
+    text-underline-offset: var(--ds-component-breadcrumb-underline-offset);
+  }
+}

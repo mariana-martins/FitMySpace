@@ -1,0 +1,105 @@
+{
+  "component": {
+    "chip": {
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.interactive.full}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}"
+        },
+        "selected-edge": {
+          "value": "{semantic.border-width.selected}",
+          "comment": "Total edge of a selected chip. The border stays 1px and an inset shadow adds the rest, so selecting never shifts the layout."
+        }
+      },
+      "background": {
+        "default": {
+          "value": "{semantic.color.background.default.base}"
+        },
+        "hover": {
+          "value": "{semantic.color.background.default.hover}"
+        },
+        "active": {
+          "value": "{semantic.color.background.default.active}"
+        },
+        "selected": {
+          "value": "{semantic.color.background.brand.soft}"
+        },
+        "disabled": {
+          "value": "{semantic.color.background.disabled}"
+        }
+      },
+      "border": {
+        "default": {
+          "value": "{semantic.color.border.default.base}"
+        },
+        "hover": {
+          "value": "{semantic.color.border.default.active}"
+        },
+        "selected": {
+          "value": "{semantic.color.border.brand.base}"
+        },
+        "selected-hover": {
+          "value": "{semantic.color.border.brand.hover}"
+        },
+        "disabled": {
+          "value": "{semantic.color.border.disabled}"
+        }
+      },
+      "text": {
+        "default": {
+          "value": "{semantic.color.text.default.base}"
+        },
+        "selected": {
+          "value": "{semantic.color.text.brand.active}"
+        },
+        "disabled": {
+          "value": "{semantic.color.text.disabled}"
+        }
+      },
+      "size": {
+        "sm": {
+          "minHeight": {
+            "value": "{semantic.size.control.xs}"
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.control.sm}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.xs}"
+          },
+          "font": {
+            "value": "{semantic.typography.label.sm.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.label.sm.letterSpacing}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.sm}"
+          }
+        },
+        "md": {
+          "minHeight": {
+            "value": "{semantic.size.control.sm}"
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.control.md}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.sm}"
+          },
+          "font": {
+            "value": "{semantic.typography.label.md.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.label.md.letterSpacing}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.sm}"
+          }
+        }
+      }
+    }
+  }
+}

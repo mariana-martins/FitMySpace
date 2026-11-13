@@ -178,3 +178,430 @@ describe('Input tokens — contrast', () => {
     expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
   });
 });
+
+/* ===============================================================
+ * CHECKBOX
+ * =============================================================== */
+
+describe('Checkbox tokens — contrast', () => {
+  it.each([
+    ['default', 'component.checkbox.border.default'],
+    ['hover', 'component.checkbox.border.hover'],
+    ['invalid', 'component.checkbox.border.invalid'],
+  ])('%s box border stands out from the page', (_state, borderToken) => {
+    expect(contrastRatio(borderToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['primary checked', 'component.checkbox.background.primary.checked'],
+    ['primary checked and hovered', 'component.checkbox.background.primary.checked-hover'],
+    ['secondary checked', 'component.checkbox.background.secondary.checked'],
+    ['secondary checked and hovered', 'component.checkbox.background.secondary.checked-hover'],
+    ['checked and invalid', 'component.checkbox.background.invalid-checked'],
+  ])('%s box stands out from the page', (_state, backgroundToken) => {
+    expect(contrastRatio(backgroundToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it.each([
+    ['primary checked', 'component.checkbox.background.primary.checked'],
+    ['primary checked and hovered', 'component.checkbox.background.primary.checked-hover'],
+    ['secondary checked', 'component.checkbox.background.secondary.checked'],
+    ['secondary checked and hovered', 'component.checkbox.background.secondary.checked-hover'],
+    ['checked and invalid', 'component.checkbox.background.invalid-checked'],
+  ])('mark stands out from the %s box', (_state, backgroundToken) => {
+    expect(
+      contrastRatio('component.checkbox.mark.default', backgroundToken),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['label', 'component.checkbox.label.text'],
+    ['required marker', 'component.checkbox.label.required-marker'],
+    ['hint', 'component.checkbox.hint.text'],
+    ['error message', 'component.checkbox.error.text'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * BADGE
+ * =============================================================== */
+
+const BADGE_VARIANTS = ['primary', 'secondary', 'error', 'success', 'warning', 'information'];
+const BADGE_APPEARANCES = ['fill', 'soft'];
+
+const badgeCases = BADGE_VARIANTS.flatMap((variant) =>
+  BADGE_APPEARANCES.map((appearance) => [variant, appearance]),
+);
+
+describe('Badge tokens — contrast', () => {
+  it.each(badgeCases)('%s %s text is readable', (variant, appearance) => {
+    const tokenGroup = `component.badge.${variant}.${appearance}`;
+    expect(contrastRatio(`${tokenGroup}.text`, `${tokenGroup}.background`)).toBeGreaterThanOrEqual(
+      TEXT_MINIMUM,
+    );
+  });
+});
+
+/* ===============================================================
+ * CHIP
+ * =============================================================== */
+
+describe('Chip tokens — contrast', () => {
+  it.each([
+    ['resting', 'component.chip.text.default', 'component.chip.background.default'],
+    ['hovered', 'component.chip.text.default', 'component.chip.background.hover'],
+    ['pressed', 'component.chip.text.default', 'component.chip.background.active'],
+    ['selected', 'component.chip.text.selected', 'component.chip.background.selected'],
+  ])('%s text is readable', (_state, textToken, backgroundToken) => {
+    expect(contrastRatio(textToken, backgroundToken)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['resting', 'component.chip.border.default'],
+    ['hovered', 'component.chip.border.hover'],
+    ['selected', 'component.chip.border.selected'],
+    ['selected and hovered', 'component.chip.border.selected-hover'],
+  ])('%s border stands out from the page', (_state, borderToken) => {
+    expect(contrastRatio(borderToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * SELECT AND SELECT FIELD
+ * =============================================================== */
+
+describe('Select tokens — contrast', () => {
+  it.each([
+    ['chosen option', 'component.select.text.default'],
+    ['placeholder', 'component.select.text.placeholder'],
+  ])('%s text is readable', (_description, textToken) => {
+    expect(contrastRatio(textToken, 'component.select.background.default')).toBeGreaterThanOrEqual(
+      TEXT_MINIMUM,
+    );
+  });
+
+  it.each([
+    ['default', 'component.select.border.default'],
+    ['hover', 'component.select.border.hover'],
+    ['focus', 'component.select.border.focus'],
+    ['invalid', 'component.select.border.invalid'],
+  ])('%s border stands out from the field', (_state, borderToken) => {
+    expect(
+      contrastRatio(borderToken, 'component.select.background.default'),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['default', 'component.select.icon.default'],
+    ['focus', 'component.select.icon.focus'],
+    ['invalid', 'component.select.icon.invalid'],
+  ])('%s chevron stands out from the field', (_state, iconToken) => {
+    expect(contrastRatio(iconToken, 'component.select.background.default')).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it.each([
+    ['option', 'component.select.item.text', 'component.select.content.background'],
+    [
+      'highlighted option',
+      'component.select.item.highlighted-text',
+      'component.select.item.highlighted-background',
+    ],
+    ['group label', 'component.select.group-label.text', 'component.select.content.background'],
+  ])('%s text is readable in the list', (_description, textToken, backgroundToken) => {
+    expect(contrastRatio(textToken, backgroundToken)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['the list', 'component.select.content.background'],
+    ['a highlighted option', 'component.select.item.highlighted-background'],
+  ])('selected check mark stands out from %s', (_description, backgroundToken) => {
+    expect(
+      contrastRatio('component.select.item.indicator', backgroundToken),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['label', 'component.select-field.label.text'],
+    ['required marker', 'component.select-field.label.required-marker'],
+    ['hint', 'component.select-field.hint.text'],
+    ['error message', 'component.select-field.error.text'],
+  ])('select field %s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * RADIO GROUP
+ * =============================================================== */
+
+describe('RadioGroup tokens — contrast', () => {
+  it.each([
+    ['default', 'component.radio-group.border.default'],
+    ['hover', 'component.radio-group.border.hover'],
+    ['invalid', 'component.radio-group.border.invalid'],
+  ])('%s circle border stands out from the page', (_state, borderToken) => {
+    expect(contrastRatio(borderToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  const checkedBackgrounds = [
+    ['primary checked', 'component.radio-group.background.primary.checked'],
+    ['primary checked and hovered', 'component.radio-group.background.primary.checked-hover'],
+    ['secondary checked', 'component.radio-group.background.secondary.checked'],
+    ['secondary checked and hovered', 'component.radio-group.background.secondary.checked-hover'],
+    ['checked and invalid', 'component.radio-group.background.invalid-checked'],
+  ];
+
+  it.each(checkedBackgrounds)('%s circle stands out from the page', (_state, backgroundToken) => {
+    expect(contrastRatio(backgroundToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it.each(checkedBackgrounds)('dot stands out from the %s circle', (_state, backgroundToken) => {
+    expect(
+      contrastRatio('component.radio-group.dot.default', backgroundToken),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['label', 'component.radio-group.label.text'],
+    ['required marker', 'component.radio-group.label.required-marker'],
+    ['hint', 'component.radio-group.hint.text'],
+    ['error message', 'component.radio-group.error.text'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * LINK
+ * =============================================================== */
+
+describe('Link tokens — contrast', () => {
+  it.each([
+    ['inline', 'component.link.text.inline.default'],
+    ['hovered inline', 'component.link.text.inline.hover'],
+    ['standalone', 'component.link.text.standalone.default'],
+    ['hovered standalone', 'component.link.text.standalone.hover'],
+    ['current page', 'component.link.text.standalone.current'],
+  ])('%s link text is readable on the page', (_state, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * BREADCRUMB
+ * =============================================================== */
+
+describe('Breadcrumb tokens — contrast', () => {
+  it.each([
+    ['ancestor', 'component.breadcrumb.text.default'],
+    ['hovered ancestor', 'component.breadcrumb.text.hover'],
+    ['current page', 'component.breadcrumb.text.current'],
+  ])('%s text is readable on the page', (_state, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('separator stands out from the page', () => {
+    expect(
+      contrastRatio('component.breadcrumb.separator.color', PAGE_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * PAGINATION
+ * =============================================================== */
+
+describe('Pagination tokens — contrast', () => {
+  it.each([
+    ['page number', 'component.pagination.text.default', PAGE_BACKGROUND],
+    [
+      'hovered page number',
+      'component.pagination.text.default',
+      'component.pagination.background.hover',
+    ],
+    [
+      'pressed page number',
+      'component.pagination.text.default',
+      'component.pagination.background.active',
+    ],
+    [
+      'current page number',
+      'component.pagination.text.current',
+      'component.pagination.background.current',
+    ],
+    ['ellipsis', 'component.pagination.text.ellipsis', PAGE_BACKGROUND],
+  ])('%s is readable', (_description, textToken, backgroundToken) => {
+    expect(contrastRatio(textToken, backgroundToken)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('current page stands out from the page', () => {
+    expect(
+      contrastRatio('component.pagination.background.current', PAGE_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * SEARCH FIELD
+ * =============================================================== */
+
+describe('SearchField tokens — contrast', () => {
+  it.each([
+    ['label', 'component.search-field.label.text'],
+    ['hint', 'component.search-field.hint.text'],
+    ['error message', 'component.search-field.error.text'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * EMPTY STATE
+ * =============================================================== */
+
+describe('EmptyState tokens — contrast', () => {
+  it.each([
+    ['title', 'component.empty-state.title.text'],
+    ['description', 'component.empty-state.description.text'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('icon stands out from its circle', () => {
+    expect(
+      contrastRatio('component.empty-state.icon.color', 'component.empty-state.icon.background'),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * SWITCH
+ * =============================================================== */
+
+describe('Switch tokens — contrast', () => {
+  it.each([
+    ['default', 'component.switch.track.edge.default'],
+    ['hover', 'component.switch.track.edge.hover'],
+    ['invalid', 'component.switch.track.edge.invalid'],
+  ])('%s track edge stands out from the page', (_state, edgeToken) => {
+    expect(contrastRatio(edgeToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  const checkedTracks = [
+    ['primary checked', 'component.switch.track.background.primary-checked'],
+    ['primary checked and hovered', 'component.switch.track.background.primary-checked-hover'],
+    ['secondary checked', 'component.switch.track.background.secondary-checked'],
+    ['secondary checked and hovered', 'component.switch.track.background.secondary-checked-hover'],
+    ['checked and invalid', 'component.switch.track.background.checked-invalid'],
+  ];
+
+  it.each(checkedTracks)('%s track stands out from the page', (_state, backgroundToken) => {
+    expect(contrastRatio(backgroundToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it.each(checkedTracks)('checked knob stands out from the %s track', (_state, backgroundToken) => {
+    expect(contrastRatio('component.switch.thumb.checked', backgroundToken)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it('unchecked knob stands out from the unchecked track', () => {
+    expect(
+      contrastRatio(
+        'component.switch.thumb.unchecked',
+        'component.switch.track.background.default',
+      ),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['label', 'component.switch.label.text'],
+    ['required marker', 'component.switch.label.required-marker'],
+    ['hint', 'component.switch.hint.text'],
+    ['error message', 'component.switch.error.text'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * TEXTAREA AND TEXTAREA FIELD
+ * =============================================================== */
+
+describe('Textarea tokens — contrast', () => {
+  it.each([
+    ['value text', 'component.textarea.text.default', 'component.textarea.background.default'],
+    ['placeholder', 'component.textarea.text.placeholder', 'component.textarea.background.default'],
+    [
+      'value text when read-only',
+      'component.textarea.text.default',
+      'component.textarea.background.readonly',
+    ],
+  ])('%s is readable', (_description, foregroundToken, backgroundToken) => {
+    expect(contrastRatio(foregroundToken, backgroundToken)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['default', 'component.textarea.border.default'],
+    ['hover', 'component.textarea.border.hover'],
+    ['focus', 'component.textarea.border.focus'],
+    ['invalid', 'component.textarea.border.invalid'],
+  ])('%s border stands out from the field', (_state, borderToken) => {
+    expect(
+      contrastRatio(borderToken, 'component.textarea.background.default'),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['label', 'component.textarea-field.label.text'],
+    ['required marker', 'component.textarea-field.label.required-marker'],
+    ['hint', 'component.textarea-field.hint.text'],
+    ['error message', 'component.textarea-field.error.text'],
+  ])('textarea field %s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * ALERT
+ * =============================================================== */
+
+const ALERT_VARIANTS = ['information', 'success', 'warning', 'error'];
+const ALERT_APPEARANCES = ['soft', 'fill'];
+
+const ALERT_COLOUR_COMBINATIONS = ALERT_VARIANTS.flatMap((variant) =>
+  ALERT_APPEARANCES.map((appearance) => [variant, appearance]),
+);
+
+describe('Alert tokens — contrast', () => {
+  // The icon takes the message colour, so clearing the text pair clears it too.
+  it.each(ALERT_COLOUR_COMBINATIONS)('%s %s message is readable', (variant, appearance) => {
+    const tokenGroup = `component.alert.${variant}.${appearance}`;
+    expect(contrastRatio(`${tokenGroup}.text`, `${tokenGroup}.background`)).toBeGreaterThanOrEqual(
+      TEXT_MINIMUM,
+    );
+  });
+
+  // Against the page, not the block: a fill border blends into its own
+  // background on purpose, and the page is the side the edge has to show up on.
+  it.each(ALERT_COLOUR_COMBINATIONS)(
+    '%s %s border stands out from the page',
+    (variant, appearance) => {
+      const ratio = contrastRatio(
+        `component.alert.${variant}.${appearance}.border`,
+        PAGE_BACKGROUND,
+      );
+      expect(ratio).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+    },
+  );
+});

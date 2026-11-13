@@ -1,0 +1,82 @@
+{
+  "component": {
+    "link": {
+      "text": {
+        "inline": {
+          "default": {
+            "value": "{semantic.color.text.brand.base}"
+          },
+          "hover": {
+            "value": "{semantic.color.text.brand.hover}"
+          }
+        },
+        "standalone": {
+          "default": {
+            "value": "{semantic.color.text.default.base}",
+            "comment": "Dark at rest, like the text around it: the context says it is a link."
+          },
+          "hover": {
+            "value": "{semantic.color.text.brand.base}",
+            "comment": "Turns to the brand colour of the underline."
+          },
+          "current": {
+            "value": "{semantic.color.text.brand.base}"
+          }
+        }
+      },
+      "underline": {
+        "rest-width": {
+          "value": "{semantic.border-width.default}",
+          "comment": "Inline links: the resting underline that tells a link apart from the text around it."
+        },
+        "active-width": {
+          "value": "{semantic.border-width.selected}",
+          "comment": "The underline of a hovered link and of the current page: it marks a selection, like an active tab."
+        },
+        "offset": {
+          "value": "{semantic.spacing.inset.xs}"
+        }
+      },
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.interactive.sm}",
+          "comment": "Rounds the focus ring around the link text."
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.relaxed}"
+        },
+        "easing": {
+          "value": "{semantic.motion.easing.move}"
+        }
+      },
+      "size": {
+        "sm": {
+          "font": {
+            "value": "{semantic.typography.label.sm.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.label.sm.letterSpacing}"
+          }
+        },
+        "md": {
+          "font": {
+            "value": "{semantic.typography.label.md.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.label.md.letterSpacing}"
+          }
+        },
+        "lg": {
+          "font": {
+            "value": "{semantic.typography.label.lg.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.label.lg.letterSpacing}"
+          }
+        }
+      }
+    }
+  }
+}

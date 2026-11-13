@@ -1,0 +1,87 @@
+/* ---------------------------------------------------------------
+ * Skeleton — CSS Module
+ * Maps component-level skeleton tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Shapes:
+ *   .text      — a bar one text line tall, for the Text size it replaces
+ *   .rectangle — an image or block; give it a height
+ *   .circle    — an avatar or icon; its width sets its height
+ *   .lines     — a column of .text bars; the .last-line is shorter
+ *
+ * Size classes (text only): .size-{sm|md|lg}
+ * --------------------------------------------------------------- */
+
+.skeleton {
+  display: block;
+  box-sizing: border-box;
+  background-color: var(--ds-component-skeleton-background-default);
+  background-clip: content-box;
+  animation: pulse calc(var(--ds-component-skeleton-motion-duration) * 2)
+    var(--ds-component-skeleton-motion-easing) infinite alternate;
+}
+
+.text {
+  inline-size: 100%;
+  block-size: 1lh;
+  padding-block: calc((1lh - 1em) / 2);
+  font: var(--skeleton-font);
+  border-radius: var(--ds-component-skeleton-shape-radii-text);
+}
+
+.rectangle {
+  inline-size: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--ds-component-skeleton-shape-radii-rectangle);
+}
+
+.circle {
+  inline-size: var(--ds-component-skeleton-shape-circle-size);
+  aspect-ratio: 1;
+  border-radius: var(--ds-component-skeleton-shape-radii-circle);
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+}
+
+.last-line {
+  inline-size: 60%;
+}
+
+.size-sm {
+  --skeleton-font: var(--ds-component-skeleton-size-sm-font);
+}
+
+.size-md {
+  --skeleton-font: var(--ds-component-skeleton-size-md-font);
+}
+
+.size-lg {
+  --skeleton-font: var(--ds-component-skeleton-size-lg-font);
+}
+
+@keyframes pulse {
+  to {
+    background-color: var(--ds-component-skeleton-background-highlight);
+  }
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+/* Windows High Contrast removes the fill, so the placeholder keeps an outline. */
+@media (forced-colors: active) {
+  .skeleton {
+    border: 1px solid GrayText;
+  }
+}

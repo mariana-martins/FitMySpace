@@ -1,0 +1,153 @@
+/* ---------------------------------------------------------------
+ * Chip — CSS Module
+ * Maps component-level chip tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .chip — the native <button> (pill shape, edge, text style)
+ *   .icon — decorative icon slot; holds the check mark when selected
+ *
+ * States: [aria-pressed='true'] (selected), :hover, :active,
+ * :focus-visible and :disabled on the button itself.
+ *
+ * Size classes: .size-{sm|md}
+ * --------------------------------------------------------------- */
+
+.chip {
+  --chip-background: var(--ds-component-chip-background-default);
+  --chip-border-color: var(--ds-component-chip-border-default);
+  --chip-text: var(--ds-component-chip-text-default);
+  --chip-inset-edge: 0px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--chip-gap);
+  box-sizing: border-box;
+  min-block-size: var(--chip-min-height);
+  margin: 0;
+  padding-block: 0;
+  padding-inline: var(--chip-padding-x);
+  font: var(--chip-font);
+  letter-spacing: var(--chip-letter-spacing);
+  color: var(--chip-text);
+  white-space: nowrap;
+  background-color: var(--chip-background);
+  border: var(--ds-component-chip-shape-border-width) solid var(--chip-border-color);
+  border-radius: var(--ds-component-chip-shape-radii);
+  box-shadow: inset 0 0 0 var(--chip-inset-edge) var(--chip-border-color);
+  cursor: pointer;
+  transition-property: background-color, border-color, box-shadow, color;
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-standard);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  inline-size: var(--chip-icon-size);
+  block-size: var(--chip-icon-size);
+}
+
+.icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+/* Selected -------------------------------------------------------- */
+
+.chip[aria-pressed='true'] {
+  --chip-background: var(--ds-component-chip-background-selected);
+  --chip-border-color: var(--ds-component-chip-border-selected);
+  --chip-text: var(--ds-component-chip-text-selected);
+  --chip-inset-edge: calc(
+    var(--ds-component-chip-shape-selected-edge) - var(--ds-component-chip-shape-border-width)
+  );
+}
+
+/* Hover and pressed ----------------------------------------------- */
+
+@media (hover: hover) {
+  .chip:hover:not(:disabled) {
+    --chip-background: var(--ds-component-chip-background-hover);
+    --chip-border-color: var(--ds-component-chip-border-hover);
+  }
+
+  .chip[aria-pressed='true']:hover:not(:disabled) {
+    --chip-background: var(--ds-component-chip-background-selected);
+    --chip-border-color: var(--ds-component-chip-border-selected-hover);
+  }
+}
+
+.chip:active:not(:disabled):not([aria-pressed='true']) {
+  --chip-background: var(--ds-component-chip-background-active);
+}
+
+/* Focus ----------------------------------------------------------- */
+
+.chip:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+/* Disabled -------------------------------------------------------- */
+
+.chip:disabled {
+  --chip-background: var(--ds-component-chip-background-disabled);
+  --chip-border-color: var(--ds-component-chip-border-disabled);
+  --chip-text: var(--ds-component-chip-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------
+ * Size variants
+ * --------------------------------------------------------------- */
+
+.size-sm {
+  --chip-min-height: var(--ds-component-chip-size-sm-min-height);
+  --chip-padding-x: var(--ds-component-chip-size-sm-padding-x);
+  --chip-gap: var(--ds-component-chip-size-sm-gap);
+  --chip-font: var(--ds-component-chip-size-sm-font);
+  --chip-letter-spacing: var(--ds-component-chip-size-sm-letter-spacing);
+  --chip-icon-size: var(--ds-component-chip-size-sm-icon-size);
+}
+
+.size-md {
+  --chip-min-height: var(--ds-component-chip-size-md-min-height);
+  --chip-padding-x: var(--ds-component-chip-size-md-padding-x);
+  --chip-gap: var(--ds-component-chip-size-md-gap);
+  --chip-font: var(--ds-component-chip-size-md-font);
+  --chip-letter-spacing: var(--ds-component-chip-size-md-letter-spacing);
+  --chip-icon-size: var(--ds-component-chip-size-md-icon-size);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .chip[aria-pressed='true'] {
+    forced-color-adjust: none;
+    color: HighlightText;
+    background-color: Highlight;
+    border-color: Highlight;
+  }
+
+  .chip:disabled {
+    color: GrayText;
+    border-color: GrayText;
+  }
+
+  .chip[aria-pressed='true']:disabled {
+    color: Canvas;
+    background-color: GrayText;
+  }
+}

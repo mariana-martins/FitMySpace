@@ -10,7 +10,11 @@
         "brand": {
           "base": { "value": "{color.sage.700}" },
           "hover": { "value": "{color.sage.800}" },
-          "active": { "value": "{color.sage.900}" }
+          "active": { "value": "{color.sage.900}" },
+          "soft": {
+            "value": "{color.sage.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
+          }
         },
         "subtle": {
           "base": {
@@ -18,17 +22,29 @@
             "comment": "Neutral dark fill (e.g. the secondary Button), not a faint surface: \"subtle\" means low-chroma, not low-contrast."
           },
           "hover": { "value": "{color.charcoal.700}" },
-          "active": { "value": "{color.charcoal.800}" }
+          "active": { "value": "{color.charcoal.800}" },
+          "soft": {
+            "value": "{color.charcoal.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
+          }
         },
         "utility-error": {
           "base": { "value": "{color.berry.700}" },
           "hover": { "value": "{color.berry.800}" },
-          "active": { "value": "{color.berry.900}" }
+          "active": { "value": "{color.berry.900}" },
+          "soft": {
+            "value": "{color.berry.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
+          }
         },
         "utility-success": {
           "base": { "value": "{color.jade.700}" },
           "hover": { "value": "{color.jade.800}" },
-          "active": { "value": "{color.jade.900}" }
+          "active": { "value": "{color.jade.900}" },
+          "soft": {
+            "value": "{color.jade.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
+          }
         },
         "utility-warning": {
           "base": { "value": "{color.honey.400}" },
@@ -39,12 +55,20 @@
           "active": {
             "value": "{color.honey.200}",
             "comment": "Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1."
+          },
+          "soft": {
+            "value": "{color.honey.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
           }
         },
         "utility-information": {
           "base": { "value": "{color.ocean.700}" },
           "hover": { "value": "{color.ocean.800}" },
-          "active": { "value": "{color.ocean.900}" }
+          "active": { "value": "{color.ocean.900}" },
+          "soft": {
+            "value": "{color.ocean.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
+          }
         },
         "transparent": { "value": "{color.transparent}" },
         "disabled": { "value": "{color.charcoal.100}" }

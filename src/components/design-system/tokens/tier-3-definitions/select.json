@@ -1,0 +1,226 @@
+{
+  "component": {
+    "select": {
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.interactive.lg}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}"
+        },
+        "halo-width": {
+          "value": "{semantic.border-width.halo}"
+        },
+        "shadow": {
+          "value": "{semantic.shadow.raised.base}"
+        }
+      },
+      "background": {
+        "default": {
+          "value": "{semantic.color.background.default.base}"
+        },
+        "disabled": {
+          "value": "{semantic.color.background.disabled}"
+        }
+      },
+      "border": {
+        "default": {
+          "value": "{semantic.color.border.default.base}"
+        },
+        "hover": {
+          "value": "{semantic.color.border.default.active}"
+        },
+        "focus": {
+          "value": "{semantic.color.border.brand.base}"
+        },
+        "invalid": {
+          "value": "{semantic.color.border.utility-error.base}"
+        },
+        "disabled": {
+          "value": "{semantic.color.border.disabled}"
+        }
+      },
+      "halo": {
+        "focus": {
+          "value": "{semantic.color.halo.brand}"
+        },
+        "invalid": {
+          "value": "{semantic.color.halo.utility-error}"
+        }
+      },
+      "text": {
+        "default": {
+          "value": "{semantic.color.text.default.base}"
+        },
+        "placeholder": {
+          "value": "{semantic.color.text.placeholder}"
+        },
+        "disabled": {
+          "value": "{semantic.color.text.disabled}"
+        }
+      },
+      "icon": {
+        "default": {
+          "value": "{semantic.color.text.subtle.base}"
+        },
+        "focus": {
+          "value": "{semantic.color.text.brand.base}"
+        },
+        "invalid": {
+          "value": "{semantic.color.text.utility-error.base}"
+        }
+      },
+      "size": {
+        "sm": {
+          "minHeight": {
+            "value": "{semantic.size.control.sm}"
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.control.sm}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.sm}"
+          },
+          "font": {
+            "value": "{semantic.typography.control.md.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.control.md.letterSpacing}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.sm}"
+          },
+          "itemMinHeight": {
+            "value": "{semantic.size.control.xs}"
+          }
+        },
+        "md": {
+          "minHeight": {
+            "value": "{semantic.size.control.md}"
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.control.md}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.md}"
+          },
+          "font": {
+            "value": "{semantic.typography.control.md.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.control.md.letterSpacing}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.md}"
+          },
+          "itemMinHeight": {
+            "value": "{semantic.size.control.sm}"
+          }
+        },
+        "lg": {
+          "minHeight": {
+            "value": "{semantic.size.control.lg}"
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.control.lg}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.md}"
+          },
+          "font": {
+            "value": "{semantic.typography.control.lg.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.control.lg.letterSpacing}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.md}"
+          },
+          "itemMinHeight": {
+            "value": "{semantic.size.control.md}"
+          }
+        }
+      },
+      "content": {
+        "background": {
+          "value": "{semantic.color.background.default.base}"
+        },
+        "border": {
+          "value": "{semantic.color.border.disabled}"
+        },
+        "radii": {
+          "value": "{semantic.radii.container.md}"
+        },
+        "shadow": {
+          "value": "{semantic.shadow.floating}"
+        },
+        "padding": {
+          "value": "{semantic.spacing.inset.xs}"
+        }
+      },
+      "item": {
+        "text": {
+          "value": "{semantic.color.text.default.base}"
+        },
+        "highlighted-background": {
+          "value": "{semantic.color.background.brand.soft}"
+        },
+        "highlighted-text": {
+          "value": "{semantic.color.text.brand.active}"
+        },
+        "indicator": {
+          "value": "{semantic.color.text.brand.base}"
+        },
+        "disabled": {
+          "value": "{semantic.color.text.disabled}"
+        },
+        "radii": {
+          "value": "{semantic.radii.interactive.md}"
+        }
+      },
+      "group-label": {
+        "text": {
+          "value": "{semantic.color.text.subtle.base}"
+        },
+        "font": {
+          "value": "{semantic.typography.label.sm.shorthand}"
+        },
+        "letterSpacing": {
+          "value": "{semantic.typography.label.sm.letterSpacing}"
+        }
+      }
+    },
+    "select-field": {
+      "gap": {
+        "value": "{semantic.spacing.gap.sm}"
+      },
+      "label": {
+        "text": {
+          "value": "{semantic.color.text.default.base}"
+        },
+        "required-marker": {
+          "value": "{semantic.color.text.brand.base}"
+        },
+        "disabled": {
+          "value": "{semantic.color.text.disabled}"
+        }
+      },
+      "hint": {
+        "text": {
+          "value": "{semantic.color.text.subtle.base}"
+        }
+      },
+      "error": {
+        "text": {
+          "value": "{semantic.color.text.utility-error.base}"
+        },
+        "gap": {
+          "value": "{semantic.spacing.gap.xs}"
+        },
+        "iconSize": {
+          "value": "{semantic.size.icon.sm}"
+        }
+      }
+    }
+  }
+}

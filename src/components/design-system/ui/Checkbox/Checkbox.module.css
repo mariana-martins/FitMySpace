@@ -1,0 +1,266 @@
+/* ---------------------------------------------------------------
+ * Checkbox — CSS Module
+ * Maps component-level checkbox tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure (a two-column grid: box, then text):
+ *   .control — the box column, one label line tall, so the box
+ *              stays centred on the first line of the label
+ *   .box     — the Radix <button role="checkbox">, drawn as the box
+ *   .mark    — the Radix indicator holding the check and mixed icons
+ *   .label   — the visible <label>
+ *   .hint / .error — below the label, aligned with its text
+ *
+ * States come from Radix's data-state on the box and the mark
+ * (checked | unchecked | indeterminate), from :disabled and
+ * :focus-visible on the box, and from data attributes on .root:
+ *   [data-invalid], [data-disabled]
+ *
+ * Variant classes: .variant-{primary|secondary} (colour of the checked box)
+ * Size classes: .size-{sm|md|lg}
+ * --------------------------------------------------------------- */
+
+.root {
+  --checkbox-border-color: var(--ds-component-checkbox-border-default);
+  --checkbox-background: var(--ds-component-checkbox-background-default);
+  --checkbox-mark-color: var(--ds-component-checkbox-mark-default);
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--checkbox-gap);
+  row-gap: var(--ds-semantic-spacing-gap-xs);
+  inline-size: fit-content;
+  max-inline-size: 100%;
+}
+
+/* Box ------------------------------------------------------------- */
+
+.control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  block-size: max(1lh, var(--ds-semantic-size-target-min));
+  font: var(--checkbox-label-font);
+}
+
+.box {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  box-sizing: border-box;
+  inline-size: var(--checkbox-box-size);
+  block-size: var(--checkbox-box-size);
+  padding: 0;
+  margin: 0;
+  background-color: var(--checkbox-background);
+  border: var(--ds-component-checkbox-shape-border-width) solid var(--checkbox-border-color);
+  border-radius: var(--ds-component-checkbox-shape-radii);
+  cursor: pointer;
+  transition-property: background-color, border-color;
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-standard);
+}
+
+.box[data-state='checked'],
+.box[data-state='indeterminate'] {
+  --checkbox-border-color: var(--checkbox-checked-background);
+  --checkbox-background: var(--checkbox-checked-background);
+}
+
+.box:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+/* Marks ----------------------------------------------------------- */
+
+.mark {
+  display: grid;
+  place-items: center;
+  color: var(--checkbox-mark-color);
+  pointer-events: none;
+}
+
+.check-icon,
+.mixed-icon {
+  grid-area: 1 / 1;
+  inline-size: var(--checkbox-mark-size);
+  block-size: var(--checkbox-mark-size);
+  opacity: 0;
+  transform: scale(0.5);
+  transition-property: opacity, transform;
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-enter);
+}
+
+.mark[data-state='checked'] .check-icon,
+.mark[data-state='indeterminate'] .mixed-icon {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hover (box or label) -------------------------------------------- */
+
+@media (hover: hover) {
+  .root:not([data-disabled]):not([data-invalid]):has(.box:hover, .label:hover) {
+    --checkbox-border-color: var(--ds-component-checkbox-border-hover);
+    --checkbox-checked-background: var(--checkbox-checked-hover-background);
+  }
+}
+
+/* Invalid --------------------------------------------------------- */
+
+.root[data-invalid] {
+  --checkbox-border-color: var(--ds-component-checkbox-border-invalid);
+  --checkbox-checked-background: var(--ds-component-checkbox-background-invalid-checked);
+}
+
+/* Disabled -------------------------------------------------------- */
+
+.root[data-disabled] {
+  --checkbox-border-color: var(--ds-component-checkbox-border-disabled);
+  --checkbox-background: var(--ds-component-checkbox-background-disabled);
+  --checkbox-checked-background: var(--ds-component-checkbox-background-disabled);
+  --checkbox-mark-color: var(--ds-component-checkbox-mark-disabled);
+}
+
+.box:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------
+ * Label, hint and error
+ *
+ * The label is a Typography component, whose base class resets
+ * padding. Its selector uses two classes so the padding below wins
+ * whatever order the two CSS Modules load in.
+ * --------------------------------------------------------------- */
+
+.root .label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--ds-semantic-spacing-gap-xs);
+  padding-block: max(0px, calc((var(--ds-semantic-size-target-min) - 1lh) / 2));
+  color: var(--ds-component-checkbox-label-text);
+  cursor: pointer;
+}
+
+.root[data-disabled] .label {
+  color: var(--ds-component-checkbox-label-disabled);
+  cursor: not-allowed;
+}
+
+.required-marker {
+  color: var(--ds-component-checkbox-label-required-marker);
+}
+
+.root[data-disabled] .required-marker {
+  color: inherit;
+}
+
+.hint,
+.error {
+  grid-column: 2;
+  margin: 0;
+}
+
+.hint {
+  color: var(--ds-component-checkbox-hint-text);
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-component-checkbox-error-gap);
+  font: var(--ds-semantic-typography-body-sm-shorthand);
+  font-weight: var(--ds-semantic-typography-label-sm-font-weight);
+  letter-spacing: var(--ds-semantic-typography-body-sm-letter-spacing);
+  color: var(--ds-component-checkbox-error-text);
+}
+
+.error-icon {
+  flex-shrink: 0;
+  inline-size: var(--ds-component-checkbox-error-icon-size);
+  block-size: var(--ds-component-checkbox-error-icon-size);
+  margin-block-start: calc((1lh - var(--ds-component-checkbox-error-icon-size)) / 2);
+}
+
+/* ---------------------------------------------------------------
+ * Colour variants (checked and mixed box)
+ * --------------------------------------------------------------- */
+
+.variant-primary {
+  --checkbox-checked-background: var(--ds-component-checkbox-background-primary-checked);
+  --checkbox-checked-hover-background: var(
+    --ds-component-checkbox-background-primary-checked-hover
+  );
+}
+
+.variant-secondary {
+  --checkbox-checked-background: var(--ds-component-checkbox-background-secondary-checked);
+  --checkbox-checked-hover-background: var(
+    --ds-component-checkbox-background-secondary-checked-hover
+  );
+}
+
+/* ---------------------------------------------------------------
+ * Size variants
+ * --------------------------------------------------------------- */
+
+.size-sm {
+  --checkbox-box-size: var(--ds-component-checkbox-size-sm-box-size);
+  --checkbox-mark-size: var(--ds-component-checkbox-size-sm-mark-size);
+  --checkbox-gap: var(--ds-component-checkbox-size-sm-gap);
+  --checkbox-label-font: var(--ds-component-checkbox-size-sm-label-font);
+}
+
+.size-md {
+  --checkbox-box-size: var(--ds-component-checkbox-size-md-box-size);
+  --checkbox-mark-size: var(--ds-component-checkbox-size-md-mark-size);
+  --checkbox-gap: var(--ds-component-checkbox-size-md-gap);
+  --checkbox-label-font: var(--ds-component-checkbox-size-md-label-font);
+}
+
+.size-lg {
+  --checkbox-box-size: var(--ds-component-checkbox-size-lg-box-size);
+  --checkbox-mark-size: var(--ds-component-checkbox-size-lg-mark-size);
+  --checkbox-gap: var(--ds-component-checkbox-size-lg-gap);
+  --checkbox-label-font: var(--ds-component-checkbox-size-lg-label-font);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .box,
+  .check-icon,
+  .mixed-icon {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .box[data-state='checked'],
+  .box[data-state='indeterminate'] {
+    forced-color-adjust: none;
+    background-color: Highlight;
+    border-color: Highlight;
+  }
+
+  .mark {
+    forced-color-adjust: none;
+    color: HighlightText;
+  }
+
+  .box:disabled {
+    border-color: GrayText;
+  }
+
+  .box:disabled[data-state='checked'],
+  .box:disabled[data-state='indeterminate'] {
+    background-color: GrayText;
+    border-color: GrayText;
+  }
+}

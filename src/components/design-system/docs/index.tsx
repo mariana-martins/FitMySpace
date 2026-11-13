@@ -11,3 +11,5 @@ export { formatTokenLabel, getTokens, groupTokens } from './tokens';
 export type { DocumentedToken } from './tokens';
 export { LinkCard, LinkCardGrid } from './LinkCard';
 export type { LinkCardGridProps, LinkCardProps } from './LinkCard';
+export { LabelledField } from './LabelledField';
+export type { LabelledFieldProps } from './LabelledField';

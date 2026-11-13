@@ -8,6 +8,18 @@
 
 const KEBAB_CASE = '^[a-z][a-z0-9]*(-[a-z0-9]+)*$';
 
+/**
+ * Custom properties that Radix sets at runtime on the elements it positions,
+ * so no stylesheet declares them (e.g. the Select list's width and height).
+ */
+const RADIX_RUNTIME_PROPERTIES = {
+  customProperties: {
+    '--radix-select-trigger-width': 'auto',
+    '--radix-select-content-available-height': 'auto',
+    '--radix-select-content-transform-origin': 'center',
+  },
+};
+
 /** A `--ds-*` token that is not semantic (tier 2) or component (tier 3), i.e. tier 1. */
 const TIER_ONE_TOKEN = '/var\\(\\s*--ds-(?!semantic-|component-)/';
 
@@ -33,7 +45,12 @@ export default {
         // A misspelled token is silent in CSS: var(--ds-typo) resolves to nothing.
         'csstools/value-no-unknown-custom-properties': [
           true,
-          { importFrom: ['src/components/design-system/tokens/tokens.css'] },
+          {
+            importFrom: [
+              'src/components/design-system/tokens/tokens.css',
+              RADIX_RUNTIME_PROPERTIES,
+            ],
+          },
         ],
         // Component styles use tier 2 and tier 3 only, so theming can swap them.
         'declaration-property-value-disallowed-list': [

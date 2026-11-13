@@ -1,0 +1,284 @@
+/* ---------------------------------------------------------------
+ * Switch — CSS Module
+ * Maps component-level switch tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure (a two-column grid: track, then text):
+ *   .control — the track column, one row tall, so the track stays
+ *              centred on the first line of the label
+ *   .track   — the Radix <button role="switch">, drawn as the track
+ *   .thumb   — the Radix thumb, the knob that slides to the right
+ *   .label   — the visible <label>
+ *   .hint / .error — below the label, aligned with its text
+ *
+ * States come from Radix's data-state on the track (checked |
+ * unchecked), from :disabled and :focus-visible on the track, and
+ * from data attributes on .root: [data-invalid], [data-disabled].
+ *
+ * Variant classes: .variant-{primary|secondary} (colour of the checked track)
+ * Size classes: .size-{sm|md|lg}
+ * --------------------------------------------------------------- */
+
+.root {
+  --switch-track-background: var(--ds-component-switch-track-background-default);
+  --switch-track-edge: var(--ds-component-switch-track-edge-default);
+  --switch-thumb-background: var(--ds-component-switch-thumb-unchecked);
+  --switch-edge-width: var(--ds-component-switch-shape-border-width);
+  --switch-row-height: max(var(--switch-track-height), var(--ds-semantic-size-target-min));
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--switch-gap);
+  row-gap: var(--ds-semantic-spacing-gap-xs);
+  inline-size: fit-content;
+  max-inline-size: 100%;
+}
+
+/* Track ----------------------------------------------------------- */
+
+.control {
+  display: flex;
+  align-items: center;
+  block-size: var(--switch-row-height);
+}
+
+.track {
+  --switch-thumb-inset: calc(
+    (var(--switch-track-height) - var(--switch-thumb-size)) / 2 - var(--switch-edge-width)
+  );
+
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  inline-size: var(--switch-track-width);
+  block-size: var(--switch-track-height);
+  padding: 0;
+  margin: 0;
+  background-color: var(--switch-track-background);
+  border: var(--switch-edge-width) solid var(--switch-track-edge);
+  border-radius: var(--ds-component-switch-shape-radii);
+  cursor: pointer;
+  transition-property: background-color, border-color;
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-standard);
+}
+
+.track[data-state='checked'] {
+  --switch-track-background: var(--switch-checked-background);
+  --switch-track-edge: var(--switch-checked-background);
+  --switch-thumb-background: var(--ds-component-switch-thumb-checked);
+}
+
+.track:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+/* Thumb ----------------------------------------------------------- */
+
+.thumb {
+  position: absolute;
+  inset-block-start: var(--switch-thumb-inset);
+  inset-inline-start: var(--switch-thumb-inset);
+  inline-size: var(--switch-thumb-size);
+  block-size: var(--switch-thumb-size);
+  background-color: var(--switch-thumb-background);
+  border-radius: var(--ds-component-switch-shape-radii);
+  box-shadow: var(--ds-component-switch-shape-thumb-shadow);
+  transition-property: inset-inline-start, background-color;
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-move);
+}
+
+.track[data-state='checked'] .thumb {
+  inset-inline-start: calc(100% - var(--switch-thumb-size) - var(--switch-thumb-inset));
+}
+
+/* Hover (track or label) ------------------------------------------ */
+
+@media (hover: hover) {
+  .root:not([data-disabled]):not([data-invalid]):has(.track:hover, .label:hover) {
+    --switch-track-edge: var(--ds-component-switch-track-edge-hover);
+    --switch-checked-background: var(--switch-checked-hover-background);
+  }
+}
+
+/* Invalid --------------------------------------------------------- */
+
+.root[data-invalid] {
+  --switch-track-edge: var(--ds-component-switch-track-edge-invalid);
+  --switch-checked-background: var(--ds-component-switch-track-background-checked-invalid);
+}
+
+/* Disabled -------------------------------------------------------- */
+
+.root[data-disabled] {
+  --switch-track-edge: var(--ds-component-switch-track-edge-disabled);
+  --switch-track-background: var(--ds-component-switch-track-background-disabled);
+  --switch-checked-background: var(--ds-component-switch-track-background-disabled);
+  --switch-thumb-background: var(--ds-component-switch-thumb-disabled);
+}
+
+.root[data-disabled] .track[data-state='checked'] {
+  --switch-thumb-background: var(--ds-component-switch-thumb-disabled);
+}
+
+.track:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------
+ * Label, hint and error
+ *
+ * The label is a Typography component, whose base class resets
+ * padding. Its selector uses two classes so the padding below wins
+ * whatever order the two CSS Modules load in.
+ * --------------------------------------------------------------- */
+
+.root .label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--ds-semantic-spacing-gap-xs);
+  padding-block: max(0px, calc((var(--switch-row-height) - 1lh) / 2));
+  color: var(--ds-component-switch-label-text);
+  cursor: pointer;
+}
+
+.root[data-disabled] .label {
+  color: var(--ds-component-switch-label-disabled);
+  cursor: not-allowed;
+}
+
+.required-marker {
+  color: var(--ds-component-switch-label-required-marker);
+}
+
+.root[data-disabled] .required-marker {
+  color: inherit;
+}
+
+.hint,
+.error {
+  grid-column: 2;
+  margin: 0;
+}
+
+.hint {
+  color: var(--ds-component-switch-hint-text);
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-component-switch-error-gap);
+  font: var(--ds-semantic-typography-body-sm-shorthand);
+  font-weight: var(--ds-semantic-typography-label-sm-font-weight);
+  letter-spacing: var(--ds-semantic-typography-body-sm-letter-spacing);
+  color: var(--ds-component-switch-error-text);
+}
+
+.error-icon {
+  flex-shrink: 0;
+  inline-size: var(--ds-component-switch-error-icon-size);
+  block-size: var(--ds-component-switch-error-icon-size);
+  margin-block-start: calc((1lh - var(--ds-component-switch-error-icon-size)) / 2);
+}
+
+/* ---------------------------------------------------------------
+ * Colour variants (checked track)
+ * --------------------------------------------------------------- */
+
+.variant-primary {
+  --switch-checked-background: var(--ds-component-switch-track-background-primary-checked);
+  --switch-checked-hover-background: var(
+    --ds-component-switch-track-background-primary-checked-hover
+  );
+}
+
+.variant-secondary {
+  --switch-checked-background: var(--ds-component-switch-track-background-secondary-checked);
+  --switch-checked-hover-background: var(
+    --ds-component-switch-track-background-secondary-checked-hover
+  );
+}
+
+/* ---------------------------------------------------------------
+ * Size variants
+ * --------------------------------------------------------------- */
+
+.size-sm {
+  --switch-track-height: var(--ds-component-switch-size-sm-track-height);
+  --switch-track-width: var(--ds-component-switch-size-sm-track-width);
+  --switch-thumb-size: var(--ds-component-switch-size-sm-thumb-size);
+  --switch-gap: var(--ds-component-switch-size-sm-gap);
+}
+
+.size-md {
+  --switch-track-height: var(--ds-component-switch-size-md-track-height);
+  --switch-track-width: var(--ds-component-switch-size-md-track-width);
+  --switch-thumb-size: var(--ds-component-switch-size-md-thumb-size);
+  --switch-gap: var(--ds-component-switch-size-md-gap);
+}
+
+.size-lg {
+  --switch-track-height: var(--ds-component-switch-size-lg-track-height);
+  --switch-track-width: var(--ds-component-switch-size-lg-track-width);
+  --switch-thumb-size: var(--ds-component-switch-size-lg-thumb-size);
+  --switch-gap: var(--ds-component-switch-size-lg-gap);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .thumb {
+    transition: none;
+  }
+}
+
+/*
+ * Forced colours replace our backgrounds, so the track and the knob are
+ * repainted from system colours: the knob is dark on an off track and
+ * light on an on track, and its side still carries the state.
+ */
+@media (forced-colors: active) {
+  .track {
+    forced-color-adjust: none;
+    background-color: Canvas;
+    border-color: CanvasText;
+  }
+
+  .thumb {
+    forced-color-adjust: none;
+    background-color: CanvasText;
+  }
+
+  .track[data-state='checked'] {
+    background-color: Highlight;
+    border-color: Highlight;
+  }
+
+  .track[data-state='checked'] .thumb {
+    background-color: HighlightText;
+  }
+
+  .track:disabled {
+    border-color: GrayText;
+  }
+
+  .track:disabled .thumb {
+    background-color: GrayText;
+  }
+
+  .track:disabled[data-state='checked'] {
+    background-color: GrayText;
+    border-color: GrayText;
+  }
+
+  .track:disabled[data-state='checked'] .thumb {
+    background-color: Canvas;
+  }
+}

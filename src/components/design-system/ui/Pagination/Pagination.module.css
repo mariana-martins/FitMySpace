@@ -1,0 +1,126 @@
+/* ---------------------------------------------------------------
+ * Pagination — CSS Module
+ * Maps component-level pagination tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .list      — the <ol>, wrapping on narrow screens
+ *   .item      — each <li>
+ *   .control   — shared box of every entry: page, direction, ellipsis
+ *   .page      — a page link; [aria-current='page'] is the current one
+ *   .direction — Previous / Next; [data-disabled] at either end keeps its
+ *                space but is invisible, so the page numbers never move
+ *   .ellipsis  — a run of hidden pages
+ *
+ * Size classes: .size-{sm|md}
+ * --------------------------------------------------------------- */
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--pagination-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pagination-gap);
+  box-sizing: border-box;
+  min-inline-size: var(--pagination-min-height);
+  min-block-size: var(--pagination-min-height);
+  padding-inline: var(--pagination-padding-x);
+  font: var(--pagination-font);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--pagination-letter-spacing);
+  color: var(--ds-component-pagination-text-default);
+  text-decoration: none;
+  border-radius: var(--ds-component-pagination-shape-radii);
+}
+
+a.control {
+  cursor: pointer;
+  transition-property: background-color, color;
+  transition-duration: var(--ds-component-pagination-motion-duration);
+  transition-timing-function: var(--ds-component-pagination-motion-easing);
+}
+
+@media (hover: hover) {
+  a.control:not([aria-current='page']):hover {
+    background-color: var(--ds-component-pagination-background-hover);
+  }
+}
+
+a.control:not([aria-current='page']):active {
+  background-color: var(--ds-component-pagination-background-active);
+}
+
+a.control:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+.page[aria-current='page'] {
+  color: var(--ds-component-pagination-text-current);
+  background-color: var(--ds-component-pagination-background-current);
+}
+
+.direction[data-disabled] {
+  visibility: hidden;
+}
+
+.icon {
+  flex-shrink: 0;
+  inline-size: var(--pagination-icon-size);
+  block-size: var(--pagination-icon-size);
+}
+
+.ellipsis {
+  color: var(--ds-component-pagination-text-ellipsis);
+}
+
+/* Sizes ----------------------------------------------------------- */
+
+.size-sm {
+  --pagination-min-height: var(--ds-component-pagination-size-sm-min-height);
+  --pagination-padding-x: var(--ds-component-pagination-size-sm-padding-x);
+  --pagination-gap: var(--ds-component-pagination-size-sm-gap);
+  --pagination-font: var(--ds-component-pagination-size-sm-font);
+  --pagination-letter-spacing: var(--ds-component-pagination-size-sm-letter-spacing);
+  --pagination-icon-size: var(--ds-component-pagination-size-sm-icon-size);
+}
+
+.size-md {
+  --pagination-min-height: var(--ds-component-pagination-size-md-min-height);
+  --pagination-padding-x: var(--ds-component-pagination-size-md-padding-x);
+  --pagination-gap: var(--ds-component-pagination-size-md-gap);
+  --pagination-font: var(--ds-component-pagination-size-md-font);
+  --pagination-letter-spacing: var(--ds-component-pagination-size-md-letter-spacing);
+  --pagination-icon-size: var(--ds-component-pagination-size-md-icon-size);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  a.control {
+    transition: none;
+  }
+}
+
+/* Windows High Contrast drops the fill, so the current page keeps an outline. */
+@media (forced-colors: active) {
+  .page[aria-current='page'] {
+    outline: var(--ds-semantic-border-width-selected) solid CanvasText;
+    outline-offset: calc(var(--ds-semantic-border-width-selected) * -1);
+  }
+}

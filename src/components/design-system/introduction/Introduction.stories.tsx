@@ -1,11 +1,27 @@
+import { Pagination, PaginationEllipsis, PaginationItem, PaginationLink } from '../ui/Pagination';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '../ui/Breadcrumb';
 import { Caption, Heading, Label, Text } from '../ui/Typography';
+import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { TextareaField } from '../ui/TextareaField';
 import { LinkCard, LinkCardGrid } from '../docs';
+import { SelectField } from '../ui/SelectField';
+import { SearchField } from '../ui/SearchField';
 import { expect, within } from 'storybook/test';
+import { EmptyState } from '../ui/EmptyState';
 import { TextField } from '../ui/TextField';
+import { Skeleton } from '../ui/Skeleton';
+import { Checkbox } from '../ui/Checkbox';
+import { SelectItem } from '../ui/Select';
 import { Search } from 'lucide-react';
+import { Switch } from '../ui/Switch';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
+import { Badge } from '../ui/Badge';
+import { Alert } from '../ui/Alert';
+import { Link } from '../ui/Link';
+import { Chip } from '../ui/Chip';
+import { Card } from '../ui/Card';
 
 const meta = {
   title: 'Design System/Introduction',
@@ -32,7 +48,7 @@ const codeStyle: React.CSSProperties = {
 const cardBase: React.CSSProperties = {
   backgroundColor: 'var(--ds-semantic-color-background-default-base)',
   borderRadius: 'var(--ds-radii-xl)',
-  boxShadow: 'var(--ds-semantic-shadow-raised-base)',
+  boxShadow: 'var(--ds-semantic-shadow-card-base)',
   border: '1px solid var(--ds-semantic-color-border-subtle-base)',
   padding: '32px',
 };
@@ -684,6 +700,22 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-actions-chip--docs"
+        title="Chip"
+        description="Toggle buttons for filters, announced as pressed, with a check mark when selected."
+        preview={
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <Chip size="sm" selected>
+              Kitchen
+            </Chip>
+            <Chip size="sm" selected={false}>
+              Bathroom
+            </Chip>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-forms-input--docs"
         title="Input"
         description="The bare text field: icons, a unit suffix, an end action, and invalid and disabled states."
@@ -693,10 +725,187 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-forms-selectfield--docs"
+        title="Select"
+        description="A single-choice field with a styled list of options, alone or with its label, hint, and error."
+        preview={
+          <SelectField size="sm" label="Room" defaultValue="kitchen">
+            <SelectItem value="kitchen">Kitchen</SelectItem>
+          </SelectField>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-forms-textfield--docs"
         title="TextField"
         description="An Input with its label, hint, and error message wired together for assistive technology."
         preview={<TextField size="sm" label="Width" defaultValue="80" unit="cm" />}
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-forms-textareafield--docs"
+        title="Textarea"
+        description="The same box for long answers, with its label, hint, and error message wired together."
+        preview={
+          <TextareaField size="sm" label="Assembly notes" rows={2} defaultValue="Two people" />
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-forms-checkbox--docs"
+        title="Checkbox"
+        description="A Radix checkbox with its label, hint, and error, plus a mixed state for select-all groups."
+        preview={
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Checkbox size="sm" label="Waterproof" defaultChecked />
+            <Checkbox size="sm" label="Stackable" />
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-forms-switch--docs"
+        title="Switch"
+        description="A Radix switch for settings that apply the moment they are flipped, with label, hint, and error."
+        preview={
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Switch size="sm" label="Order updates" defaultChecked />
+            <Switch size="sm" label="Price alerts" />
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-forms-radiogroup--docs"
+        title="RadioGroup"
+        description="One choice from a few options, with a visible group label, option hints, and an error message."
+        preview={
+          <RadioGroup size="sm" label="Delivery" defaultValue="standard">
+            <RadioGroupItem value="standard" label="Standard" />
+            <RadioGroupItem value="express" label="Express" />
+          </RadioGroup>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-forms-searchfield--docs"
+        title="SearchField"
+        description="A search form with a visible label, a Clear button, and a Search button, named as a search landmark."
+        preview={<SearchField size="sm" label="Search products" defaultValue="basket" />}
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-navigation-link--docs"
+        title="Link"
+        description="Inline links inside text, and standalone links with an underline that slides in on hover."
+        preview={
+          <div style={{ display: 'flex', gap: '16px' }}>
+            <Link href="#recent" appearance="standalone" aria-current="page">
+              Recent arrivals
+            </Link>
+            <Link href="#about" appearance="standalone">
+              About us
+            </Link>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-navigation-breadcrumb--docs"
+        title="Breadcrumb"
+        description="The trail of ancestor pages, from Home to the page people are on."
+        preview={
+          <Breadcrumb size="sm">
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#home" home>
+                Home
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#bathroom" aria-current="page">
+                Bathroom
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-navigation-pagination--docs"
+        title="Pagination"
+        description="Links to every page of a long list, with the current page marked and the rest folded into ellipses."
+        preview={
+          <Pagination size="sm">
+            <PaginationItem>
+              <PaginationLink page={1} href="#page-1" aria-current="page" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink page={2} href="#page-2" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink page={9} href="#page-9" />
+            </PaginationItem>
+          </Pagination>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-display-badge--docs"
+        title="Badge"
+        description="Short status and category labels in six variants, soft or filled, as pills or rounded tags."
+        preview={
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <Badge variant="success" appearance="soft" size="sm">
+              In stock
+            </Badge>
+            <Badge variant="secondary" appearance="soft" size="sm" shape="rounded">
+              IKEA
+            </Badge>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-display-card--docs"
+        title="Card"
+        description="A surface for one item, composed with media, text, and a link that makes the whole card clickable."
+        preview={
+          <Card padding="sm" style={{ width: '120px' }}>
+            <Skeleton shape="rectangle" height="40px" />
+            <Text size="sm" style={{ margin: 0 }}>
+              Oak shelf
+            </Text>
+          </Card>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-display-skeleton--docs"
+        title="Skeleton"
+        description="Calm, pulsing placeholders that hold the shape of content while it loads."
+        preview={
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '160px' }}>
+            <Skeleton shape="circle" width="32px" />
+            <Skeleton lines={2} size="sm" />
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-display-emptystate--docs"
+        title="EmptyState"
+        description="What to show when a list has nothing in it: what happened and what to do next."
+        preview={<EmptyState title="No products found" headingLevel={5} style={{ padding: 0 }} />}
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-feedback-alert--docs"
+        title="Alert"
+        description="Status messages in the four utility colours, announced through a live region."
+        preview={<Alert variant="success">Room saved.</Alert>}
       />
       <LinkCard
         headingLevel={4}
@@ -762,5 +971,9 @@ export const Welcome: Story = {
     );
     // The component previews are pictures: their controls are not exposed.
     await expect(canvas.queryByRole('textbox')).not.toBeInTheDocument();
+    await expect(canvas.queryByRole('checkbox')).not.toBeInTheDocument();
+    await expect(canvas.queryByRole('radiogroup')).not.toBeInTheDocument();
+    await expect(canvas.queryByRole('combobox')).not.toBeInTheDocument();
+    await expect(canvas.queryByRole('button', { name: 'Kitchen' })).not.toBeInTheDocument();
   },
 };

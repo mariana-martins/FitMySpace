@@ -1,0 +1,164 @@
+{
+  "component": {
+    "badge": {
+      "shape": {
+        "radii-pill": {
+          "value": "{semantic.radii.surface.full}"
+        },
+        "radii-rounded": {
+          "value": "{semantic.radii.surface.sm}"
+        }
+      },
+      "primary": {
+        "fill": {
+          "background": {
+            "value": "{semantic.color.background.brand.base}"
+          },
+          "text": {
+            "value": "{semantic.color.text.inverse}"
+          }
+        },
+        "soft": {
+          "background": {
+            "value": "{semantic.color.background.brand.soft}"
+          },
+          "text": {
+            "value": "{semantic.color.text.brand.base}"
+          }
+        }
+      },
+      "secondary": {
+        "fill": {
+          "background": {
+            "value": "{semantic.color.background.subtle.base}"
+          },
+          "text": {
+            "value": "{semantic.color.text.inverse}"
+          }
+        },
+        "soft": {
+          "background": {
+            "value": "{semantic.color.background.subtle.soft}"
+          },
+          "text": {
+            "value": "{semantic.color.text.default.base}"
+          }
+        }
+      },
+      "error": {
+        "fill": {
+          "background": {
+            "value": "{semantic.color.background.utility-error.base}"
+          },
+          "text": {
+            "value": "{semantic.color.text.inverse}"
+          }
+        },
+        "soft": {
+          "background": {
+            "value": "{semantic.color.background.utility-error.soft}"
+          },
+          "text": {
+            "value": "{semantic.color.text.utility-error.base}"
+          }
+        }
+      },
+      "success": {
+        "fill": {
+          "background": {
+            "value": "{semantic.color.background.utility-success.base}"
+          },
+          "text": {
+            "value": "{semantic.color.text.inverse}"
+          }
+        },
+        "soft": {
+          "background": {
+            "value": "{semantic.color.background.utility-success.soft}"
+          },
+          "text": {
+            "value": "{semantic.color.text.utility-success.base}"
+          }
+        }
+      },
+      "warning": {
+        "fill": {
+          "background": {
+            "value": "{semantic.color.background.utility-warning.base}"
+          },
+          "text": {
+            "value": "{semantic.color.text.utility-warning.base}"
+          }
+        },
+        "soft": {
+          "background": {
+            "value": "{semantic.color.background.utility-warning.soft}"
+          },
+          "text": {
+            "value": "{semantic.color.text.utility-warning.base}"
+          }
+        }
+      },
+      "information": {
+        "fill": {
+          "background": {
+            "value": "{semantic.color.background.utility-information.base}"
+          },
+          "text": {
+            "value": "{semantic.color.text.inverse}"
+          }
+        },
+        "soft": {
+          "background": {
+            "value": "{semantic.color.background.utility-information.soft}"
+          },
+          "text": {
+            "value": "{semantic.color.text.utility-information.base}"
+          }
+        }
+      },
+      "size": {
+        "sm": {
+          "minHeight": {
+            "value": "{semantic.size.tag.sm}"
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.inset.sm}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.xs}"
+          },
+          "font": {
+            "value": "{semantic.typography.label.sm.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.label.sm.letterSpacing}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.xs}"
+          }
+        },
+        "md": {
+          "minHeight": {
+            "value": "{semantic.size.tag.md}"
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.control.sm}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.xs}"
+          },
+          "font": {
+            "value": "{semantic.typography.label.md.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.label.md.letterSpacing}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.sm}"
+          }
+        }
+      }
+    }
+  }
+}

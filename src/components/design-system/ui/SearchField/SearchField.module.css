@@ -1,0 +1,68 @@
+/* ---------------------------------------------------------------
+ * SearchField — CSS Module
+ * Maps component-level search-field tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .root  — the <form role="search">
+ *   .label — the visible <label>, also the landmark's name
+ *   .row   — the field and the Search button side by side
+ *   .field — the Input box
+ *   .hint  — help text below the row
+ *   .error — the error message, after the hint
+ *
+ * The label and hint are Typography components; their selectors use
+ * two classes so they win whatever order the CSS Modules load in.
+ * --------------------------------------------------------------- */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-component-search-field-gap);
+  margin: 0;
+}
+
+.root .label {
+  inline-size: fit-content;
+  color: var(--ds-component-search-field-label-text);
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--ds-component-search-field-row-gap);
+}
+
+.field {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.field input::-webkit-search-cancel-button {
+  display: none;
+  appearance: none;
+}
+
+.root .hint {
+  margin: 0;
+  color: var(--ds-component-search-field-hint-text);
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-component-search-field-error-gap);
+  margin: 0;
+  font: var(--ds-semantic-typography-body-sm-shorthand);
+  font-weight: var(--ds-semantic-typography-label-sm-font-weight);
+  letter-spacing: var(--ds-semantic-typography-body-sm-letter-spacing);
+  color: var(--ds-component-search-field-error-text);
+}
+
+.error-icon {
+  flex-shrink: 0;
+  inline-size: var(--ds-component-search-field-error-icon-size);
+  block-size: var(--ds-component-search-field-error-icon-size);
+  margin-block-start: calc((1lh - var(--ds-component-search-field-error-icon-size)) / 2);
+}

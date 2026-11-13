@@ -1,0 +1,99 @@
+{
+  "component": {
+    "breadcrumb": {
+      "text": {
+        "default": {
+          "value": "{semantic.color.text.subtle.base}",
+          "comment": "Ancestor links stay quiet so the current page and page title stand out."
+        },
+        "hover": {
+          "value": "{semantic.color.text.brand.base}"
+        },
+        "current": {
+          "value": "{semantic.color.text.default.base}",
+          "comment": "The page the user is on, paired with heavier weight."
+        }
+      },
+      "separator": {
+        "color": {
+          "value": "{semantic.color.border.default.hover}",
+          "comment": "Muted stone divider that still clears 3:1 contrast against the page."
+        }
+      },
+      "underline": {
+        "thickness": {
+          "value": "{semantic.border-width.default}"
+        },
+        "offset": {
+          "value": "{semantic.spacing.inset.xs}"
+        }
+      },
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.interactive.sm}",
+          "comment": "Rounds the focus ring around each breadcrumb link."
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.fast}"
+        },
+        "easing": {
+          "value": "{semantic.motion.easing.standard}"
+        }
+      },
+      "gap": {
+        "value": "{semantic.spacing.gap.xs}"
+      },
+      "padding-x": {
+        "value": "{semantic.spacing.inset.xs}"
+      },
+      "min-target": {
+        "value": "{semantic.size.target.min}",
+        "comment": "Keeps standalone breadcrumb links at or above the 24px target height of WCAG 2.5.8."
+      },
+      "size": {
+        "sm": {
+          "font": {
+            "value": "{semantic.typography.caption.md.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.caption.md.letterSpacing}"
+          },
+          "currentFont": {
+            "value": "{semantic.typography.label.sm.shorthand}"
+          },
+          "currentLetterSpacing": {
+            "value": "{semantic.typography.label.sm.letterSpacing}"
+          },
+          "separatorSize": {
+            "value": "{semantic.size.icon.xs}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.xs}"
+          }
+        },
+        "md": {
+          "font": {
+            "value": "{semantic.typography.body.sm.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.body.sm.letterSpacing}"
+          },
+          "currentFont": {
+            "value": "{semantic.typography.label.md.shorthand}"
+          },
+          "currentLetterSpacing": {
+            "value": "{semantic.typography.label.md.letterSpacing}"
+          },
+          "separatorSize": {
+            "value": "{semantic.size.icon.sm}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.sm}"
+          }
+        }
+      }
+    }
+  }
+}

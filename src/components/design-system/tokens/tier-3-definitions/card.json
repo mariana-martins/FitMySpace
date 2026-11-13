@@ -1,0 +1,69 @@
+{
+  "component": {
+    "card": {
+      "background": {
+        "value": "{semantic.color.background.default.base}"
+      },
+      "border": {
+        "outline": {
+          "value": "{semantic.color.border.default.base}"
+        }
+      },
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.container.md}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}"
+        }
+      },
+      "shadow": {
+        "raised": {
+          "value": "{semantic.shadow.card.base}"
+        },
+        "hover": {
+          "value": "{semantic.shadow.card.hover}"
+        }
+      },
+      "media": {
+        "radii": {
+          "value": "{semantic.radii.surface.md}"
+        },
+        "background": {
+          "value": "{semantic.color.background.default.hover}",
+          "comment": "Shown while the image loads or when it has transparent areas."
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.fast}"
+        },
+        "easing": {
+          "value": "{semantic.motion.easing.standard}"
+        }
+      },
+      "padding": {
+        "sm": {
+          "value": "{semantic.spacing.inset.md}"
+        },
+        "md": {
+          "value": "{semantic.spacing.inset.lg}"
+        },
+        "lg": {
+          "value": "{semantic.spacing.inset.xl}"
+        }
+      },
+      "gap": {
+        "sm": {
+          "value": "{semantic.spacing.gap.md}"
+        },
+        "md": {
+          "value": "{semantic.spacing.gap.lg}"
+        },
+        "lg": {
+          "value": "{semantic.spacing.gap.xl}"
+        }
+      }
+    }
+  }
+}

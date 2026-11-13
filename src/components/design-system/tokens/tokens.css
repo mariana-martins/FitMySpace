@@ -74,6 +74,7 @@
   --ds-duration-160: 160ms;
   --ds-duration-240: 240ms;
   --ds-duration-320: 320ms;
+  --ds-duration-400: 400ms;
   --ds-duration-480: 480ms;
   --ds-easing-out: cubic-bezier(0.2, 0, 0, 1); /** Fast start, gentle stop: for elements responding to the user. */
   --ds-easing-out-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1); /** Arrives quickly, then glides into place: for elements entering the screen. */
@@ -91,6 +92,8 @@
   --ds-shadow-sm: 0 4px 8px -4px rgb(28 25 23 / 0.08), 0 8px 16px -8px rgb(28 25 23 / 0.08); /** Two layers of charcoal.900: a tight contact shadow and a soft ambient one. */
   --ds-shadow-md: 0 4px 8px -4px rgb(28 25 23 / 0.08), 0 12px 24px -8px rgb(28 25 23 / 0.12); /** Two layers of charcoal.900: a tight contact shadow and a soft ambient one. */
   --ds-shadow-lg: 0 8px 16px -8px rgb(28 25 23 / 0.1), 0 24px 48px -12px rgb(28 25 23 / 0.18); /** Two layers of charcoal.900: a tight contact shadow and a soft ambient one. */
+  --ds-shadow-ambient-md: 0 4px 8px -4px rgb(28 25 23 / 0.12), 0 8px 24px 0 rgb(28 25 23 / 0.14); /** A contact shadow plus an ambient one with no negative spread, so it outlines every edge. */
+  --ds-shadow-ambient-lg: 0 4px 8px -4px rgb(28 25 23 / 0.14), 0 16px 40px 0 rgb(28 25 23 / 0.18); /** A contact shadow plus a wider ambient one with no negative spread, so it outlines every edge. */
   --ds-shadow-inset: inset 0 4px 8px -4px rgb(28 25 23 / 0.08); /** charcoal.900 at 8% opacity, cast inwards from the top edge. */
   --ds-size-640: 640px;
   --ds-size-768: 768px;
@@ -142,21 +145,27 @@
   --ds-semantic-color-background-brand-base: var(--ds-color-sage-700);
   --ds-semantic-color-background-brand-hover: var(--ds-color-sage-800);
   --ds-semantic-color-background-brand-active: var(--ds-color-sage-900);
+  --ds-semantic-color-background-brand-soft: var(--ds-color-sage-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
   --ds-semantic-color-background-subtle-base: var(--ds-color-charcoal-600); /** Neutral dark fill (e.g. the secondary Button), not a faint surface: "subtle" means low-chroma, not low-contrast. */
   --ds-semantic-color-background-subtle-hover: var(--ds-color-charcoal-700);
   --ds-semantic-color-background-subtle-active: var(--ds-color-charcoal-800);
+  --ds-semantic-color-background-subtle-soft: var(--ds-color-charcoal-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
   --ds-semantic-color-background-utility-error-base: var(--ds-color-berry-700);
   --ds-semantic-color-background-utility-error-hover: var(--ds-color-berry-800);
   --ds-semantic-color-background-utility-error-active: var(--ds-color-berry-900);
+  --ds-semantic-color-background-utility-error-soft: var(--ds-color-berry-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
   --ds-semantic-color-background-utility-success-base: var(--ds-color-jade-700);
   --ds-semantic-color-background-utility-success-hover: var(--ds-color-jade-800);
   --ds-semantic-color-background-utility-success-active: var(--ds-color-jade-900);
+  --ds-semantic-color-background-utility-success-soft: var(--ds-color-jade-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
   --ds-semantic-color-background-utility-warning-base: var(--ds-color-honey-400);
   --ds-semantic-color-background-utility-warning-hover: var(--ds-color-honey-300); /** Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1. */
   --ds-semantic-color-background-utility-warning-active: var(--ds-color-honey-200); /** Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1. */
+  --ds-semantic-color-background-utility-warning-soft: var(--ds-color-honey-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
   --ds-semantic-color-background-utility-information-base: var(--ds-color-ocean-700);
   --ds-semantic-color-background-utility-information-hover: var(--ds-color-ocean-800);
   --ds-semantic-color-background-utility-information-active: var(--ds-color-ocean-900);
+  --ds-semantic-color-background-utility-information-soft: var(--ds-color-ocean-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
   --ds-semantic-color-background-transparent: var(--ds-color-transparent);
   --ds-semantic-color-background-disabled: var(--ds-color-charcoal-100);
   --ds-semantic-color-text-inverse: var(--ds-color-white);
@@ -217,6 +226,7 @@
   --ds-semantic-motion-duration-fast: var(--ds-duration-160); /** State changes in place: hover, focus and colour changes. */
   --ds-semantic-motion-duration-moderate: var(--ds-duration-240); /** Small elements entering or leaving: tooltips, menus, an expanding section. */
   --ds-semantic-motion-duration-slow: var(--ds-duration-320); /** Large surfaces entering or leaving: dialogs, drawers, sheets. */
+  --ds-semantic-motion-duration-relaxed: var(--ds-duration-400); /** Decorative motion that should feel calm, such as a link underline drawing in. Pair it with the move easing. */
   --ds-semantic-motion-duration-deliberate: var(--ds-duration-480); /** Rare, emphasised moments that the reader should notice. Use sparingly. */
   --ds-semantic-motion-easing-standard: var(--ds-easing-out); /** State changes in place, such as hover and pressed. */
   --ds-semantic-motion-easing-enter: var(--ds-easing-out-emphasized); /** Elements arriving on screen: they settle softly into place. */
@@ -234,8 +244,10 @@
   --ds-semantic-radii-surface-md: var(--ds-radii-md);
   --ds-semantic-radii-surface-lg: var(--ds-radii-lg);
   --ds-semantic-radii-surface-full: var(--ds-radii-full);
-  --ds-semantic-shadow-raised-base: var(--ds-shadow-xs); /** Barely-there lift so a control or card reads as a surface. */
-  --ds-semantic-shadow-raised-hover: var(--ds-shadow-sm); /** A clickable card lifting under the pointer. */
+  --ds-semantic-shadow-raised-base: var(--ds-shadow-xs); /** Barely-there lift so a control, such as an input, reads as a surface. */
+  --ds-semantic-shadow-raised-hover: var(--ds-shadow-sm); /** A raised surface lifting under the pointer. */
+  --ds-semantic-shadow-card-base: var(--ds-shadow-ambient-md); /** A card resting on the page: a soft shadow on every edge, so it stands out without a border. */
+  --ds-semantic-shadow-card-hover: var(--ds-shadow-ambient-lg); /** A clickable card lifting under the pointer. */
   --ds-semantic-shadow-floating: var(--ds-shadow-md); /** Menus, popovers and tooltips that float above the content. */
   --ds-semantic-shadow-overlay: var(--ds-shadow-lg); /** Dialogs, drawers and sheets that sit above everything else. */
   --ds-semantic-shadow-sunken: var(--ds-shadow-inset); /** A well pressed into the page, such as the track of a segmented control. */
@@ -247,6 +259,23 @@
   --ds-semantic-size-icon-sm: var(--ds-font-size-16);
   --ds-semantic-size-icon-md: var(--ds-font-size-20);
   --ds-semantic-size-icon-lg: var(--ds-font-size-24);
+  --ds-semantic-size-selection-control-sm: var(--ds-font-size-16); /** The box of a checkbox or radio. In rem, so it grows with the label next to it. */
+  --ds-semantic-size-selection-control-md: var(--ds-font-size-20); /** The box of a checkbox or radio. In rem, so it grows with the label next to it. */
+  --ds-semantic-size-selection-control-lg: var(--ds-font-size-24); /** The box of a checkbox or radio. In rem, so it grows with the label next to it. */
+  --ds-semantic-size-selection-indicator-sm: var(--ds-spacing-2); /** The dot of a checked radio, centred in its selection-control box. */
+  --ds-semantic-size-selection-indicator-md: var(--ds-spacing-3); /** The dot of a checked radio, centred in its selection-control box. */
+  --ds-semantic-size-selection-indicator-lg: var(--ds-spacing-3); /** The dot of a checked radio, centred in its selection-control box. */
+  --ds-semantic-size-switch-height-sm: var(--ds-spacing-6); /** Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air. */
+  --ds-semantic-size-switch-height-md: var(--ds-spacing-8); /** Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air. */
+  --ds-semantic-size-switch-height-lg: var(--ds-spacing-10); /** Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air. */
+  --ds-semantic-size-switch-width-sm: var(--ds-spacing-10); /** Switch track. Wide enough that the thumb sits clearly to the left or to the right. */
+  --ds-semantic-size-switch-width-md: var(--ds-spacing-14); /** Switch track. Wide enough that the thumb sits clearly to the left or to the right. */
+  --ds-semantic-size-switch-width-lg: var(--ds-spacing-16); /** Switch track. Wide enough that the thumb sits clearly to the left or to the right. */
+  --ds-semantic-size-switch-thumb-sm: var(--ds-spacing-4); /** The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge. */
+  --ds-semantic-size-switch-thumb-md: var(--ds-spacing-6); /** The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge. */
+  --ds-semantic-size-switch-thumb-lg: var(--ds-spacing-8); /** The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge. */
+  --ds-semantic-size-tag-sm: var(--ds-spacing-5); /** Height of static labels such as badges. They are not clickable, so they may sit below the 24px target size. */
+  --ds-semantic-size-tag-md: var(--ds-spacing-6); /** Height of static labels such as badges. They are not clickable, so they may sit below the 24px target size. */
   --ds-semantic-size-target-min: var(--ds-spacing-6); /** The smallest pointer target WCAG 2.5.8 allows. Nothing clickable is smaller. */
   --ds-semantic-size-target-comfortable: var(--ds-spacing-12); /** The target for touch-first controls and primary actions on small screens. */
   --ds-semantic-size-thumbnail-sm: var(--ds-spacing-12);
@@ -359,6 +388,92 @@
   --ds-semantic-typography-label-md-shorthand: var(--ds-semantic-typography-label-md-font-weight) var(--ds-semantic-typography-label-md-font-size)/var(--ds-semantic-typography-label-md-line-height) var(--ds-semantic-typography-label-md-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
   --ds-semantic-typography-label-sm-shorthand: var(--ds-semantic-typography-label-sm-font-weight) var(--ds-semantic-typography-label-sm-font-size)/var(--ds-semantic-typography-label-sm-line-height) var(--ds-semantic-typography-label-sm-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
   --ds-semantic-typography-caption-md-shorthand: var(--ds-semantic-typography-caption-md-font-weight) var(--ds-semantic-typography-caption-md-font-size)/var(--ds-semantic-typography-caption-md-line-height) var(--ds-semantic-typography-caption-md-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
+  --ds-component-alert-shape-radii: var(--ds-semantic-radii-container-sm);
+  --ds-component-alert-shape-border-width: var(--ds-semantic-border-width-default);
+  --ds-component-alert-icon-size: var(--ds-semantic-size-icon-md);
+  --ds-component-alert-spacing-padding: var(--ds-semantic-spacing-inset-md);
+  --ds-component-alert-spacing-icon-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-alert-spacing-text-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-alert-information-soft-background: var(--ds-semantic-color-background-utility-information-soft);
+  --ds-component-alert-information-soft-text: var(--ds-semantic-color-text-utility-information-base);
+  --ds-component-alert-information-soft-border: var(--ds-semantic-color-border-utility-information-active);
+  --ds-component-alert-information-fill-background: var(--ds-semantic-color-background-utility-information-base);
+  --ds-component-alert-information-fill-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-alert-information-fill-border: var(--ds-semantic-color-border-utility-information-active);
+  --ds-component-alert-success-soft-background: var(--ds-semantic-color-background-utility-success-soft);
+  --ds-component-alert-success-soft-text: var(--ds-semantic-color-text-utility-success-base);
+  --ds-component-alert-success-soft-border: var(--ds-semantic-color-border-utility-success-active);
+  --ds-component-alert-success-fill-background: var(--ds-semantic-color-background-utility-success-base);
+  --ds-component-alert-success-fill-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-alert-success-fill-border: var(--ds-semantic-color-border-utility-success-active);
+  --ds-component-alert-warning-soft-background: var(--ds-semantic-color-background-utility-warning-soft);
+  --ds-component-alert-warning-soft-text: var(--ds-semantic-color-text-utility-warning-base);
+  --ds-component-alert-warning-soft-border: var(--ds-semantic-color-border-utility-warning-active);
+  --ds-component-alert-warning-fill-background: var(--ds-semantic-color-background-utility-warning-base);
+  --ds-component-alert-warning-fill-text: var(--ds-semantic-color-text-utility-warning-base);
+  --ds-component-alert-warning-fill-border: var(--ds-semantic-color-border-utility-warning-active);
+  --ds-component-alert-error-soft-background: var(--ds-semantic-color-background-utility-error-soft);
+  --ds-component-alert-error-soft-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-alert-error-soft-border: var(--ds-semantic-color-border-utility-error-active);
+  --ds-component-alert-error-fill-background: var(--ds-semantic-color-background-utility-error-base);
+  --ds-component-alert-error-fill-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-alert-error-fill-border: var(--ds-semantic-color-border-utility-error-active);
+  --ds-component-badge-shape-radii-pill: var(--ds-semantic-radii-surface-full);
+  --ds-component-badge-shape-radii-rounded: var(--ds-semantic-radii-surface-sm);
+  --ds-component-badge-primary-fill-background: var(--ds-semantic-color-background-brand-base);
+  --ds-component-badge-primary-fill-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-badge-primary-soft-background: var(--ds-semantic-color-background-brand-soft);
+  --ds-component-badge-primary-soft-text: var(--ds-semantic-color-text-brand-base);
+  --ds-component-badge-secondary-fill-background: var(--ds-semantic-color-background-subtle-base);
+  --ds-component-badge-secondary-fill-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-badge-secondary-soft-background: var(--ds-semantic-color-background-subtle-soft);
+  --ds-component-badge-secondary-soft-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-badge-error-fill-background: var(--ds-semantic-color-background-utility-error-base);
+  --ds-component-badge-error-fill-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-badge-error-soft-background: var(--ds-semantic-color-background-utility-error-soft);
+  --ds-component-badge-error-soft-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-badge-success-fill-background: var(--ds-semantic-color-background-utility-success-base);
+  --ds-component-badge-success-fill-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-badge-success-soft-background: var(--ds-semantic-color-background-utility-success-soft);
+  --ds-component-badge-success-soft-text: var(--ds-semantic-color-text-utility-success-base);
+  --ds-component-badge-warning-fill-background: var(--ds-semantic-color-background-utility-warning-base);
+  --ds-component-badge-warning-fill-text: var(--ds-semantic-color-text-utility-warning-base);
+  --ds-component-badge-warning-soft-background: var(--ds-semantic-color-background-utility-warning-soft);
+  --ds-component-badge-warning-soft-text: var(--ds-semantic-color-text-utility-warning-base);
+  --ds-component-badge-information-fill-background: var(--ds-semantic-color-background-utility-information-base);
+  --ds-component-badge-information-fill-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-badge-information-soft-background: var(--ds-semantic-color-background-utility-information-soft);
+  --ds-component-badge-information-soft-text: var(--ds-semantic-color-text-utility-information-base);
+  --ds-component-badge-size-sm-min-height: var(--ds-semantic-size-tag-sm);
+  --ds-component-badge-size-sm-padding-x: var(--ds-semantic-spacing-inset-sm);
+  --ds-component-badge-size-sm-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-badge-size-sm-letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
+  --ds-component-badge-size-sm-icon-size: var(--ds-semantic-size-icon-xs);
+  --ds-component-badge-size-md-min-height: var(--ds-semantic-size-tag-md);
+  --ds-component-badge-size-md-padding-x: var(--ds-semantic-spacing-control-sm);
+  --ds-component-badge-size-md-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-badge-size-md-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
+  --ds-component-badge-size-md-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-breadcrumb-text-default: var(--ds-semantic-color-text-subtle-base); /** Ancestor links stay quiet so the current page and page title stand out. */
+  --ds-component-breadcrumb-text-hover: var(--ds-semantic-color-text-brand-base);
+  --ds-component-breadcrumb-text-current: var(--ds-semantic-color-text-default-base); /** The page the user is on, paired with heavier weight. */
+  --ds-component-breadcrumb-separator-color: var(--ds-semantic-color-border-default-hover); /** Muted stone divider that still clears 3:1 contrast against the page. */
+  --ds-component-breadcrumb-underline-thickness: var(--ds-semantic-border-width-default);
+  --ds-component-breadcrumb-underline-offset: var(--ds-semantic-spacing-inset-xs);
+  --ds-component-breadcrumb-shape-radii: var(--ds-semantic-radii-interactive-sm); /** Rounds the focus ring around each breadcrumb link. */
+  --ds-component-breadcrumb-motion-duration: var(--ds-semantic-motion-duration-fast);
+  --ds-component-breadcrumb-motion-easing: var(--ds-semantic-motion-easing-standard);
+  --ds-component-breadcrumb-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-breadcrumb-padding-x: var(--ds-semantic-spacing-inset-xs);
+  --ds-component-breadcrumb-min-target: var(--ds-semantic-size-target-min); /** Keeps standalone breadcrumb links at or above the 24px target height of WCAG 2.5.8. */
+  --ds-component-breadcrumb-size-sm-letter-spacing: var(--ds-semantic-typography-caption-md-letter-spacing);
+  --ds-component-breadcrumb-size-sm-current-letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
+  --ds-component-breadcrumb-size-sm-separator-size: var(--ds-semantic-size-icon-xs);
+  --ds-component-breadcrumb-size-sm-icon-size: var(--ds-semantic-size-icon-xs);
+  --ds-component-breadcrumb-size-md-letter-spacing: var(--ds-semantic-typography-body-sm-letter-spacing);
+  --ds-component-breadcrumb-size-md-current-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
+  --ds-component-breadcrumb-size-md-separator-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-breadcrumb-size-md-icon-size: var(--ds-semantic-size-icon-sm);
   --ds-component-button-primary-focus-ring: var(--ds-semantic-color-border-brand-base);
   --ds-component-button-primary-fill-background-default: var(--ds-semantic-color-background-brand-base);
   --ds-component-button-primary-fill-background-hover: var(--ds-semantic-color-background-brand-hover);
@@ -676,6 +791,89 @@
   --ds-component-button-size-xs-border: var(--ds-semantic-border-width-default);
   --ds-component-button-size-xs-gap: var(--ds-semantic-spacing-gap-xs);
   --ds-component-button-size-xs-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-card-background: var(--ds-semantic-color-background-default-base);
+  --ds-component-card-border-outline: var(--ds-semantic-color-border-default-base);
+  --ds-component-card-shape-radii: var(--ds-semantic-radii-container-md);
+  --ds-component-card-shape-border-width: var(--ds-semantic-border-width-default);
+  --ds-component-card-shadow-raised: var(--ds-semantic-shadow-card-base);
+  --ds-component-card-shadow-hover: var(--ds-semantic-shadow-card-hover);
+  --ds-component-card-media-radii: var(--ds-semantic-radii-surface-md);
+  --ds-component-card-media-background: var(--ds-semantic-color-background-default-hover); /** Shown while the image loads or when it has transparent areas. */
+  --ds-component-card-motion-duration: var(--ds-semantic-motion-duration-fast);
+  --ds-component-card-motion-easing: var(--ds-semantic-motion-easing-standard);
+  --ds-component-card-padding-sm: var(--ds-semantic-spacing-inset-md);
+  --ds-component-card-padding-md: var(--ds-semantic-spacing-inset-lg);
+  --ds-component-card-padding-lg: var(--ds-semantic-spacing-inset-xl);
+  --ds-component-card-gap-sm: var(--ds-semantic-spacing-gap-md);
+  --ds-component-card-gap-md: var(--ds-semantic-spacing-gap-lg);
+  --ds-component-card-gap-lg: var(--ds-semantic-spacing-gap-xl);
+  --ds-component-checkbox-shape-radii: var(--ds-semantic-radii-interactive-sm);
+  --ds-component-checkbox-shape-border-width: var(--ds-semantic-border-width-interactive);
+  --ds-component-checkbox-background-default: var(--ds-semantic-color-background-default-base);
+  --ds-component-checkbox-background-primary-checked: var(--ds-semantic-color-background-brand-base);
+  --ds-component-checkbox-background-primary-checked-hover: var(--ds-semantic-color-background-brand-hover);
+  --ds-component-checkbox-background-secondary-checked: var(--ds-semantic-color-background-subtle-base);
+  --ds-component-checkbox-background-secondary-checked-hover: var(--ds-semantic-color-background-subtle-hover);
+  --ds-component-checkbox-background-invalid-checked: var(--ds-semantic-color-background-utility-error-base);
+  --ds-component-checkbox-background-disabled: var(--ds-semantic-color-background-disabled);
+  --ds-component-checkbox-border-default: var(--ds-semantic-color-border-default-base);
+  --ds-component-checkbox-border-hover: var(--ds-semantic-color-border-default-active);
+  --ds-component-checkbox-border-invalid: var(--ds-semantic-color-border-utility-error-base);
+  --ds-component-checkbox-border-disabled: var(--ds-semantic-color-border-disabled);
+  --ds-component-checkbox-mark-default: var(--ds-semantic-color-text-inverse);
+  --ds-component-checkbox-mark-disabled: var(--ds-semantic-color-text-subtle-disabled);
+  --ds-component-checkbox-label-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-checkbox-label-required-marker: var(--ds-semantic-color-text-brand-base);
+  --ds-component-checkbox-label-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-checkbox-hint-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-checkbox-error-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-checkbox-error-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-checkbox-error-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-checkbox-size-sm-box-size: var(--ds-semantic-size-selection-control-sm);
+  --ds-component-checkbox-size-sm-mark-size: var(--ds-semantic-size-icon-xs);
+  --ds-component-checkbox-size-sm-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-checkbox-size-md-box-size: var(--ds-semantic-size-selection-control-md);
+  --ds-component-checkbox-size-md-mark-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-checkbox-size-md-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-checkbox-size-lg-box-size: var(--ds-semantic-size-selection-control-lg);
+  --ds-component-checkbox-size-lg-mark-size: var(--ds-semantic-size-icon-md);
+  --ds-component-checkbox-size-lg-gap: var(--ds-semantic-spacing-gap-md);
+  --ds-component-chip-shape-radii: var(--ds-semantic-radii-interactive-full);
+  --ds-component-chip-shape-border-width: var(--ds-semantic-border-width-default);
+  --ds-component-chip-shape-selected-edge: var(--ds-semantic-border-width-selected); /** Total edge of a selected chip. The border stays 1px and an inset shadow adds the rest, so selecting never shifts the layout. */
+  --ds-component-chip-background-default: var(--ds-semantic-color-background-default-base);
+  --ds-component-chip-background-hover: var(--ds-semantic-color-background-default-hover);
+  --ds-component-chip-background-active: var(--ds-semantic-color-background-default-active);
+  --ds-component-chip-background-selected: var(--ds-semantic-color-background-brand-soft);
+  --ds-component-chip-background-disabled: var(--ds-semantic-color-background-disabled);
+  --ds-component-chip-border-default: var(--ds-semantic-color-border-default-base);
+  --ds-component-chip-border-hover: var(--ds-semantic-color-border-default-active);
+  --ds-component-chip-border-selected: var(--ds-semantic-color-border-brand-base);
+  --ds-component-chip-border-selected-hover: var(--ds-semantic-color-border-brand-hover);
+  --ds-component-chip-border-disabled: var(--ds-semantic-color-border-disabled);
+  --ds-component-chip-text-default: var(--ds-semantic-color-text-default-base);
+  --ds-component-chip-text-selected: var(--ds-semantic-color-text-brand-active);
+  --ds-component-chip-text-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-chip-size-sm-min-height: var(--ds-semantic-size-control-xs);
+  --ds-component-chip-size-sm-padding-x: var(--ds-semantic-spacing-control-sm);
+  --ds-component-chip-size-sm-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-chip-size-sm-letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
+  --ds-component-chip-size-sm-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-chip-size-md-min-height: var(--ds-semantic-size-control-sm);
+  --ds-component-chip-size-md-padding-x: var(--ds-semantic-spacing-control-md);
+  --ds-component-chip-size-md-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-chip-size-md-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
+  --ds-component-chip-size-md-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-empty-state-icon-background: var(--ds-semantic-color-background-brand-soft);
+  --ds-component-empty-state-icon-color: var(--ds-semantic-color-text-brand-base);
+  --ds-component-empty-state-icon-box-size: var(--ds-semantic-size-thumbnail-md);
+  --ds-component-empty-state-icon-size: var(--ds-semantic-size-icon-lg);
+  --ds-component-empty-state-title-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-empty-state-description-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-empty-state-description-max-width: var(--ds-semantic-size-prose); /** Keeps the description to a comfortable line length. */
+  --ds-component-empty-state-gap: var(--ds-semantic-spacing-gap-lg);
+  --ds-component-empty-state-actions-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-empty-state-padding: var(--ds-semantic-spacing-section-sm);
   --ds-component-input-shape-radii: var(--ds-semantic-radii-interactive-lg);
   --ds-component-input-shape-border-width: var(--ds-semantic-border-width-default);
   --ds-component-input-shape-halo-width: var(--ds-semantic-border-width-halo);
@@ -734,4 +932,253 @@
   --ds-component-text-field-error-text: var(--ds-semantic-color-text-utility-error-base);
   --ds-component-text-field-error-gap: var(--ds-semantic-spacing-gap-xs);
   --ds-component-text-field-error-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-link-text-inline-default: var(--ds-semantic-color-text-brand-base);
+  --ds-component-link-text-inline-hover: var(--ds-semantic-color-text-brand-hover);
+  --ds-component-link-text-standalone-default: var(--ds-semantic-color-text-default-base); /** Dark at rest, like the text around it: the context says it is a link. */
+  --ds-component-link-text-standalone-hover: var(--ds-semantic-color-text-brand-base); /** Turns to the brand colour of the underline. */
+  --ds-component-link-text-standalone-current: var(--ds-semantic-color-text-brand-base);
+  --ds-component-link-underline-rest-width: var(--ds-semantic-border-width-default); /** Inline links: the resting underline that tells a link apart from the text around it. */
+  --ds-component-link-underline-active-width: var(--ds-semantic-border-width-selected); /** The underline of a hovered link and of the current page: it marks a selection, like an active tab. */
+  --ds-component-link-underline-offset: var(--ds-semantic-spacing-inset-xs);
+  --ds-component-link-shape-radii: var(--ds-semantic-radii-interactive-sm); /** Rounds the focus ring around the link text. */
+  --ds-component-link-motion-duration: var(--ds-semantic-motion-duration-relaxed);
+  --ds-component-link-motion-easing: var(--ds-semantic-motion-easing-move);
+  --ds-component-link-size-sm-letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
+  --ds-component-link-size-md-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
+  --ds-component-link-size-lg-letter-spacing: var(--ds-semantic-typography-label-lg-letter-spacing);
+  --ds-component-pagination-text-default: var(--ds-semantic-color-text-default-base);
+  --ds-component-pagination-text-current: var(--ds-semantic-color-text-inverse); /** On the brand fill of the current page. */
+  --ds-component-pagination-text-ellipsis: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-pagination-background-hover: var(--ds-semantic-color-background-default-hover);
+  --ds-component-pagination-background-active: var(--ds-semantic-color-background-default-active);
+  --ds-component-pagination-background-current: var(--ds-semantic-color-background-brand-base);
+  --ds-component-pagination-shape-radii: var(--ds-semantic-radii-interactive-md);
+  --ds-component-pagination-motion-duration: var(--ds-semantic-motion-duration-fast);
+  --ds-component-pagination-motion-easing: var(--ds-semantic-motion-easing-standard);
+  --ds-component-pagination-size-sm-min-height: var(--ds-semantic-size-control-xs);
+  --ds-component-pagination-size-sm-padding-x: var(--ds-semantic-spacing-inset-sm);
+  --ds-component-pagination-size-sm-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-pagination-size-sm-letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
+  --ds-component-pagination-size-sm-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-pagination-size-md-min-height: var(--ds-semantic-size-control-sm);
+  --ds-component-pagination-size-md-padding-x: var(--ds-semantic-spacing-inset-sm);
+  --ds-component-pagination-size-md-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-pagination-size-md-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
+  --ds-component-pagination-size-md-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-radio-group-shape-radii: var(--ds-semantic-radii-interactive-full);
+  --ds-component-radio-group-shape-border-width: var(--ds-semantic-border-width-interactive);
+  --ds-component-radio-group-background-default: var(--ds-semantic-color-background-default-base);
+  --ds-component-radio-group-background-primary-checked: var(--ds-semantic-color-background-brand-base);
+  --ds-component-radio-group-background-primary-checked-hover: var(--ds-semantic-color-background-brand-hover);
+  --ds-component-radio-group-background-secondary-checked: var(--ds-semantic-color-background-subtle-base);
+  --ds-component-radio-group-background-secondary-checked-hover: var(--ds-semantic-color-background-subtle-hover);
+  --ds-component-radio-group-background-invalid-checked: var(--ds-semantic-color-background-utility-error-base);
+  --ds-component-radio-group-background-disabled: var(--ds-semantic-color-background-disabled);
+  --ds-component-radio-group-border-default: var(--ds-semantic-color-border-default-base);
+  --ds-component-radio-group-border-hover: var(--ds-semantic-color-border-default-active);
+  --ds-component-radio-group-border-invalid: var(--ds-semantic-color-border-utility-error-base);
+  --ds-component-radio-group-border-disabled: var(--ds-semantic-color-border-disabled);
+  --ds-component-radio-group-dot-default: var(--ds-semantic-color-text-inverse);
+  --ds-component-radio-group-dot-disabled: var(--ds-semantic-color-text-subtle-disabled);
+  --ds-component-radio-group-label-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-radio-group-label-required-marker: var(--ds-semantic-color-text-brand-base);
+  --ds-component-radio-group-label-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-radio-group-hint-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-radio-group-error-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-radio-group-error-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-radio-group-error-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-radio-group-group-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-radio-group-group-item-gap-vertical: var(--ds-semantic-spacing-gap-md);
+  --ds-component-radio-group-group-item-gap-horizontal: var(--ds-semantic-spacing-gap-xl);
+  --ds-component-radio-group-size-sm-box-size: var(--ds-semantic-size-selection-control-sm);
+  --ds-component-radio-group-size-sm-dot-size: var(--ds-semantic-size-selection-indicator-sm);
+  --ds-component-radio-group-size-sm-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-radio-group-size-md-box-size: var(--ds-semantic-size-selection-control-md);
+  --ds-component-radio-group-size-md-dot-size: var(--ds-semantic-size-selection-indicator-md);
+  --ds-component-radio-group-size-md-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-radio-group-size-lg-box-size: var(--ds-semantic-size-selection-control-lg);
+  --ds-component-radio-group-size-lg-dot-size: var(--ds-semantic-size-selection-indicator-lg);
+  --ds-component-radio-group-size-lg-gap: var(--ds-semantic-spacing-gap-md);
+  --ds-component-search-field-label-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-search-field-hint-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-search-field-gap: var(--ds-semantic-spacing-gap-sm); /** Between the label, the field row and the hint. */
+  --ds-component-search-field-row-gap: var(--ds-semantic-spacing-gap-sm); /** Between the field and the Search button. */
+  --ds-component-search-field-error-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-search-field-error-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-search-field-error-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-select-shape-radii: var(--ds-semantic-radii-interactive-lg);
+  --ds-component-select-shape-border-width: var(--ds-semantic-border-width-default);
+  --ds-component-select-shape-halo-width: var(--ds-semantic-border-width-halo);
+  --ds-component-select-shape-shadow: var(--ds-semantic-shadow-raised-base);
+  --ds-component-select-background-default: var(--ds-semantic-color-background-default-base);
+  --ds-component-select-background-disabled: var(--ds-semantic-color-background-disabled);
+  --ds-component-select-border-default: var(--ds-semantic-color-border-default-base);
+  --ds-component-select-border-hover: var(--ds-semantic-color-border-default-active);
+  --ds-component-select-border-focus: var(--ds-semantic-color-border-brand-base);
+  --ds-component-select-border-invalid: var(--ds-semantic-color-border-utility-error-base);
+  --ds-component-select-border-disabled: var(--ds-semantic-color-border-disabled);
+  --ds-component-select-halo-focus: var(--ds-semantic-color-halo-brand);
+  --ds-component-select-halo-invalid: var(--ds-semantic-color-halo-utility-error);
+  --ds-component-select-text-default: var(--ds-semantic-color-text-default-base);
+  --ds-component-select-text-placeholder: var(--ds-semantic-color-text-placeholder);
+  --ds-component-select-text-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-select-icon-default: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-select-icon-focus: var(--ds-semantic-color-text-brand-base);
+  --ds-component-select-icon-invalid: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-select-size-sm-min-height: var(--ds-semantic-size-control-sm);
+  --ds-component-select-size-sm-padding-x: var(--ds-semantic-spacing-control-sm);
+  --ds-component-select-size-sm-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-select-size-sm-letter-spacing: var(--ds-semantic-typography-control-md-letter-spacing);
+  --ds-component-select-size-sm-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-select-size-sm-item-min-height: var(--ds-semantic-size-control-xs);
+  --ds-component-select-size-md-min-height: var(--ds-semantic-size-control-md);
+  --ds-component-select-size-md-padding-x: var(--ds-semantic-spacing-control-md);
+  --ds-component-select-size-md-gap: var(--ds-semantic-spacing-gap-md);
+  --ds-component-select-size-md-letter-spacing: var(--ds-semantic-typography-control-md-letter-spacing);
+  --ds-component-select-size-md-icon-size: var(--ds-semantic-size-icon-md);
+  --ds-component-select-size-md-item-min-height: var(--ds-semantic-size-control-sm);
+  --ds-component-select-size-lg-min-height: var(--ds-semantic-size-control-lg);
+  --ds-component-select-size-lg-padding-x: var(--ds-semantic-spacing-control-lg);
+  --ds-component-select-size-lg-gap: var(--ds-semantic-spacing-gap-md);
+  --ds-component-select-size-lg-letter-spacing: var(--ds-semantic-typography-control-lg-letter-spacing);
+  --ds-component-select-size-lg-icon-size: var(--ds-semantic-size-icon-md);
+  --ds-component-select-size-lg-item-min-height: var(--ds-semantic-size-control-md);
+  --ds-component-select-content-background: var(--ds-semantic-color-background-default-base);
+  --ds-component-select-content-border: var(--ds-semantic-color-border-disabled);
+  --ds-component-select-content-radii: var(--ds-semantic-radii-container-md);
+  --ds-component-select-content-shadow: var(--ds-semantic-shadow-floating);
+  --ds-component-select-content-padding: var(--ds-semantic-spacing-inset-xs);
+  --ds-component-select-item-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-select-item-highlighted-background: var(--ds-semantic-color-background-brand-soft);
+  --ds-component-select-item-highlighted-text: var(--ds-semantic-color-text-brand-active);
+  --ds-component-select-item-indicator: var(--ds-semantic-color-text-brand-base);
+  --ds-component-select-item-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-select-item-radii: var(--ds-semantic-radii-interactive-md);
+  --ds-component-select-group-label-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-select-group-label-letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
+  --ds-component-select-field-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-select-field-label-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-select-field-label-required-marker: var(--ds-semantic-color-text-brand-base);
+  --ds-component-select-field-label-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-select-field-hint-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-select-field-error-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-select-field-error-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-select-field-error-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-skeleton-background-default: var(--ds-semantic-color-background-default-active);
+  --ds-component-skeleton-background-highlight: var(--ds-semantic-color-background-default-hover); /** The lighter step of the pulse. */
+  --ds-component-skeleton-shape-radii-text: var(--ds-semantic-radii-surface-sm);
+  --ds-component-skeleton-shape-radii-rectangle: var(--ds-semantic-radii-surface-md);
+  --ds-component-skeleton-shape-radii-circle: var(--ds-semantic-radii-surface-full);
+  --ds-component-skeleton-shape-circle-size: var(--ds-semantic-size-thumbnail-sm); /** The size of a circle without a width, such as a small avatar. */
+  --ds-component-skeleton-motion-duration: var(--ds-semantic-motion-duration-deliberate); /** One half of the pulse; the loop runs it forth and back. */
+  --ds-component-skeleton-motion-easing: var(--ds-semantic-motion-easing-standard);
+  --ds-component-switch-shape-radii: var(--ds-semantic-radii-interactive-full);
+  --ds-component-switch-shape-border-width: var(--ds-semantic-border-width-interactive);
+  --ds-component-switch-shape-thumb-shadow: var(--ds-semantic-shadow-raised-base);
+  --ds-component-switch-track-background-default: var(--ds-semantic-color-background-default-base);
+  --ds-component-switch-track-background-primary-checked: var(--ds-semantic-color-background-brand-base);
+  --ds-component-switch-track-background-primary-checked-hover: var(--ds-semantic-color-background-brand-hover);
+  --ds-component-switch-track-background-secondary-checked: var(--ds-semantic-color-background-subtle-base);
+  --ds-component-switch-track-background-secondary-checked-hover: var(--ds-semantic-color-background-subtle-hover);
+  --ds-component-switch-track-background-checked-invalid: var(--ds-semantic-color-background-utility-error-base);
+  --ds-component-switch-track-background-disabled: var(--ds-semantic-color-background-disabled);
+  --ds-component-switch-track-edge-default: var(--ds-semantic-color-border-default-base);
+  --ds-component-switch-track-edge-hover: var(--ds-semantic-color-border-default-active);
+  --ds-component-switch-track-edge-invalid: var(--ds-semantic-color-border-utility-error-base);
+  --ds-component-switch-track-edge-disabled: var(--ds-semantic-color-border-disabled);
+  --ds-component-switch-track-gap: var(--ds-semantic-spacing-gap-sm); /** Space between the track and the label, so the label can be clicked as part of the control. */
+  --ds-component-switch-thumb-unchecked: var(--ds-semantic-color-text-subtle-base); /** The knob on the unchecked track: a neutral dark on a white track, so the state never rests on the track colour alone. */
+  --ds-component-switch-thumb-checked: var(--ds-semantic-color-text-inverse);
+  --ds-component-switch-thumb-disabled: var(--ds-semantic-color-text-subtle-disabled); /** Secondary text that stays readable on a disabled surface. */
+  --ds-component-switch-label-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-switch-label-required-marker: var(--ds-semantic-color-text-brand-base);
+  --ds-component-switch-label-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-switch-hint-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-switch-error-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-switch-error-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-switch-error-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-switch-size-sm-track-height: var(--ds-semantic-size-switch-height-sm);
+  --ds-component-switch-size-sm-track-width: var(--ds-semantic-size-switch-width-sm);
+  --ds-component-switch-size-sm-thumb-size: var(--ds-semantic-size-switch-thumb-sm);
+  --ds-component-switch-size-sm-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-switch-size-md-track-height: var(--ds-semantic-size-switch-height-md);
+  --ds-component-switch-size-md-track-width: var(--ds-semantic-size-switch-width-md);
+  --ds-component-switch-size-md-thumb-size: var(--ds-semantic-size-switch-thumb-md);
+  --ds-component-switch-size-md-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-switch-size-lg-track-height: var(--ds-semantic-size-switch-height-lg);
+  --ds-component-switch-size-lg-track-width: var(--ds-semantic-size-switch-width-lg);
+  --ds-component-switch-size-lg-thumb-size: var(--ds-semantic-size-switch-thumb-lg);
+  --ds-component-switch-size-lg-gap: var(--ds-semantic-spacing-gap-md);
+  --ds-component-textarea-shape-radii: var(--ds-semantic-radii-interactive-lg);
+  --ds-component-textarea-shape-border-width: var(--ds-semantic-border-width-default);
+  --ds-component-textarea-shape-halo-width: var(--ds-semantic-border-width-halo);
+  --ds-component-textarea-shape-shadow: var(--ds-semantic-shadow-raised-base);
+  --ds-component-textarea-background-default: var(--ds-semantic-color-background-default-base);
+  --ds-component-textarea-background-readonly: var(--ds-semantic-color-background-default-hover);
+  --ds-component-textarea-background-disabled: var(--ds-semantic-color-background-disabled);
+  --ds-component-textarea-border-default: var(--ds-semantic-color-border-default-base);
+  --ds-component-textarea-border-hover: var(--ds-semantic-color-border-default-active);
+  --ds-component-textarea-border-focus: var(--ds-semantic-color-border-brand-base);
+  --ds-component-textarea-border-invalid: var(--ds-semantic-color-border-utility-error-base);
+  --ds-component-textarea-border-disabled: var(--ds-semantic-color-border-disabled);
+  --ds-component-textarea-halo-focus: var(--ds-semantic-color-halo-brand);
+  --ds-component-textarea-halo-invalid: var(--ds-semantic-color-halo-utility-error);
+  --ds-component-textarea-text-default: var(--ds-semantic-color-text-default-base);
+  --ds-component-textarea-text-placeholder: var(--ds-semantic-color-text-placeholder);
+  --ds-component-textarea-text-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-textarea-size-sm-min-height: var(--ds-semantic-size-control-sm); /** Even with rows="1", the field is as tall as the Button beside it. */
+  --ds-component-textarea-size-sm-padding-x: var(--ds-semantic-spacing-control-sm);
+  --ds-component-textarea-size-sm-font-size: var(--ds-semantic-typography-control-md-font-size);
+  --ds-component-textarea-size-sm-font-weight: var(--ds-semantic-typography-control-md-font-weight);
+  --ds-component-textarea-size-sm-font-family: var(--ds-semantic-typography-control-md-font-family);
+  --ds-component-textarea-size-sm-letter-spacing: var(--ds-semantic-typography-control-md-letter-spacing);
+  --ds-component-textarea-size-sm-line-height: var(--ds-semantic-typography-control-md-line-height);
+  --ds-component-textarea-size-md-min-height: var(--ds-semantic-size-control-md); /** Even with rows="1", the field is as tall as the Button beside it. */
+  --ds-component-textarea-size-md-padding-x: var(--ds-semantic-spacing-control-md);
+  --ds-component-textarea-size-md-font-size: var(--ds-semantic-typography-control-md-font-size);
+  --ds-component-textarea-size-md-font-weight: var(--ds-semantic-typography-control-md-font-weight);
+  --ds-component-textarea-size-md-font-family: var(--ds-semantic-typography-control-md-font-family);
+  --ds-component-textarea-size-md-letter-spacing: var(--ds-semantic-typography-control-md-letter-spacing);
+  --ds-component-textarea-size-md-line-height: var(--ds-semantic-typography-control-md-line-height);
+  --ds-component-textarea-size-lg-min-height: var(--ds-semantic-size-control-lg); /** Even with rows="1", the field is as tall as the Button beside it. */
+  --ds-component-textarea-size-lg-padding-x: var(--ds-semantic-spacing-control-lg);
+  --ds-component-textarea-size-lg-font-size: var(--ds-semantic-typography-control-lg-font-size);
+  --ds-component-textarea-size-lg-font-weight: var(--ds-semantic-typography-control-lg-font-weight);
+  --ds-component-textarea-size-lg-font-family: var(--ds-semantic-typography-control-lg-font-family);
+  --ds-component-textarea-size-lg-letter-spacing: var(--ds-semantic-typography-control-lg-letter-spacing);
+  --ds-component-textarea-size-lg-line-height: var(--ds-semantic-typography-control-lg-line-height);
+  --ds-component-textarea-field-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-textarea-field-label-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-textarea-field-label-required-marker: var(--ds-semantic-color-text-brand-base);
+  --ds-component-textarea-field-label-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-textarea-field-hint-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-textarea-field-error-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-textarea-field-error-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-textarea-field-error-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-badge-size-sm-font: var(--ds-semantic-typography-label-sm-shorthand);
+  --ds-component-badge-size-md-font: var(--ds-semantic-typography-label-md-shorthand);
+  --ds-component-breadcrumb-size-sm-font: var(--ds-semantic-typography-caption-md-shorthand);
+  --ds-component-breadcrumb-size-sm-current-font: var(--ds-semantic-typography-label-sm-shorthand);
+  --ds-component-breadcrumb-size-md-font: var(--ds-semantic-typography-body-sm-shorthand);
+  --ds-component-breadcrumb-size-md-current-font: var(--ds-semantic-typography-label-md-shorthand);
+  --ds-component-checkbox-size-sm-label-font: var(--ds-semantic-typography-label-sm-shorthand);
+  --ds-component-checkbox-size-md-label-font: var(--ds-semantic-typography-label-md-shorthand);
+  --ds-component-checkbox-size-lg-label-font: var(--ds-semantic-typography-label-lg-shorthand);
+  --ds-component-chip-size-sm-font: var(--ds-semantic-typography-label-sm-shorthand);
+  --ds-component-chip-size-md-font: var(--ds-semantic-typography-label-md-shorthand);
+  --ds-component-link-size-sm-font: var(--ds-semantic-typography-label-sm-shorthand);
+  --ds-component-link-size-md-font: var(--ds-semantic-typography-label-md-shorthand);
+  --ds-component-link-size-lg-font: var(--ds-semantic-typography-label-lg-shorthand);
+  --ds-component-pagination-size-sm-font: var(--ds-semantic-typography-label-sm-shorthand);
+  --ds-component-pagination-size-md-font: var(--ds-semantic-typography-label-md-shorthand);
+  --ds-component-radio-group-size-sm-label-font: var(--ds-semantic-typography-label-sm-shorthand);
+  --ds-component-radio-group-size-md-label-font: var(--ds-semantic-typography-label-md-shorthand);
+  --ds-component-radio-group-size-lg-label-font: var(--ds-semantic-typography-label-lg-shorthand);
+  --ds-component-select-size-sm-font: var(--ds-semantic-typography-control-md-shorthand);
+  --ds-component-select-size-md-font: var(--ds-semantic-typography-control-md-shorthand);
+  --ds-component-select-size-lg-font: var(--ds-semantic-typography-control-lg-shorthand);
+  --ds-component-select-group-label-font: var(--ds-semantic-typography-label-sm-shorthand);
+  --ds-component-skeleton-size-sm-font: var(--ds-semantic-typography-body-sm-shorthand);
+  --ds-component-skeleton-size-md-font: var(--ds-semantic-typography-body-md-shorthand);
+  --ds-component-skeleton-size-lg-font: var(--ds-semantic-typography-body-lg-shorthand);
 }

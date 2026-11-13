@@ -1,0 +1,58 @@
+/* ---------------------------------------------------------------
+ * EmptyState — CSS Module
+ * Maps component-level empty-state tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure (a centred column):
+ *   .root        — the wrapper
+ *   .icon        — the decorative icon in a soft circle
+ *   .title       — the Heading
+ *   .description — the Text, kept to a readable line length
+ *   .actions     — optional buttons or links
+ *
+ * The title and description are Typography components; their
+ * selectors use two classes so they win whatever order the CSS
+ * Modules load in.
+ * --------------------------------------------------------------- */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ds-component-empty-state-gap);
+  padding: var(--ds-component-empty-state-padding);
+  text-align: center;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  inline-size: var(--ds-component-empty-state-icon-box-size);
+  block-size: var(--ds-component-empty-state-icon-box-size);
+  color: var(--ds-component-empty-state-icon-color);
+  background-color: var(--ds-component-empty-state-icon-background);
+  border-radius: var(--ds-semantic-radii-surface-full);
+}
+
+.icon > svg {
+  inline-size: var(--ds-component-empty-state-icon-size);
+  block-size: var(--ds-component-empty-state-icon-size);
+}
+
+.root .title {
+  margin: 0;
+  color: var(--ds-component-empty-state-title-text);
+}
+
+.root .description {
+  max-inline-size: var(--ds-component-empty-state-description-max-width);
+  margin: 0;
+  color: var(--ds-component-empty-state-description-text);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ds-component-empty-state-actions-gap);
+}
