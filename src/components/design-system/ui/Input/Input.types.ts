@@ -24,9 +24,9 @@ export interface InputProps extends Omit<ComponentPropsWithoutRef<'input'>, 'siz
   /** Visual size. Controls height, padding, font size and icon size. Defaults to `md`. */
   size?: InputSize;
   /**
-   * Marks the value as invalid. Sets `aria-invalid` and shows the error style.
-   * Pair it with a visible error message linked through `aria-describedby`
-   * (`TextField` does this for you).
+   * Marks the value as invalid. Sets `aria-invalid` and shows the error style,
+   * but draws no message and cannot require one: render it and link it through
+   * `aria-describedby`. `TextField` draws it and requires an `error`.
    */
   invalid?: boolean;
   /** Decorative icon before the value (e.g. a Lucide icon). Hidden from assistive technology. */

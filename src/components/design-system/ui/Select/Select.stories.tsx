@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import { ArrowUpDown, Store } from 'lucide-react';
+import { Label, Text } from '../Typography';
 import { LabelledField } from '../../docs';
 import { Select, SelectItem } from './';
-import { Label } from '../Typography';
 
 const STORE_OPTIONS = (
   <>
@@ -219,9 +219,24 @@ export const Disabled: Story = {
       </LabelledField>
       <LabelledField label="Pickup store">
         {(fieldId) => (
-          <Select id={fieldId} placeholder="Choose a store" invalid>
-            {STORE_OPTIONS}
-          </Select>
+          <>
+            <Select
+              id={fieldId}
+              placeholder="Choose a store"
+              invalid
+              aria-describedby={`${fieldId}-error`}
+            >
+              {STORE_OPTIONS}
+            </Select>
+            <Text
+              as="p"
+              size="sm"
+              id={`${fieldId}-error`}
+              style={{ margin: 0, color: 'var(--ds-semantic-color-text-utility-error-base)' }}
+            >
+              Error: Choose the store where you will collect the order.
+            </Text>
+          </>
         )}
       </LabelledField>
     </div>
@@ -230,16 +245,17 @@ export const Disabled: Story = {
     docs: {
       description: {
         story:
-          'A `disabled` select cannot be focused or opened. An `invalid` select shows the error colour; on its own it needs a visible message linked with `aria-describedby`, which `SelectField` wires for you.',
+          'A `disabled` select cannot be focused or opened. An `invalid` select shows the error colour, but the bare `Select` does not draw a message and cannot require one: render it yourself and link it with `aria-describedby`, as here. In a form, use `SelectField`: it draws the message, links it, and TypeScript requires an `error` whenever `invalid` is `true`.',
       },
     },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole('combobox', { name: 'Delivery store' })).toBeDisabled();
-    await expect(canvas.getByRole('combobox', { name: 'Pickup store' })).toHaveAttribute(
-      'aria-invalid',
-      'true',
+    const pickupStore = canvas.getByRole('combobox', { name: 'Pickup store' });
+    await expect(pickupStore).toHaveAttribute('aria-invalid', 'true');
+    await expect(pickupStore).toHaveAccessibleDescription(
+      'Error: Choose the store where you will collect the order.',
     );
   },
 };

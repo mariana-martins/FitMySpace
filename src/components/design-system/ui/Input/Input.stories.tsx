@@ -2,6 +2,7 @@ import { Search, Mail, Ruler, Eye, EyeOff } from 'lucide-react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import { LabelledField } from '../../docs';
+import { Text } from '../Typography';
 import { Button } from '../Button';
 import { useState } from 'react';
 import { Input } from './';
@@ -285,7 +286,24 @@ export const Invalid: Story = {
     <div style={{ maxWidth: '20rem' }}>
       <LabelledField label="Room depth">
         {(fieldId) => (
-          <Input id={fieldId} inputMode="decimal" unit="cm" defaultValue={-40} invalid />
+          <>
+            <Input
+              id={fieldId}
+              inputMode="decimal"
+              unit="cm"
+              defaultValue={-40}
+              invalid
+              aria-describedby={`${fieldId}-error`}
+            />
+            <Text
+              as="p"
+              size="sm"
+              id={`${fieldId}-error`}
+              style={{ margin: 0, color: 'var(--ds-semantic-color-text-utility-error-base)' }}
+            >
+              Error: Enter a depth of at least 1 cm.
+            </Text>
+          </>
         )}
       </LabelledField>
     </div>
@@ -294,16 +312,15 @@ export const Invalid: Story = {
     docs: {
       description: {
         story:
-          'The `invalid` prop sets `aria-invalid="true"` and switches the border and focus halo to the error colour. Set it only after validation, and always show a message — `TextField` does both for you.',
+          'The `invalid` prop sets `aria-invalid="true"` and switches the border and focus halo to the error colour. Set it only after validation. The bare `Input` does not draw a message and cannot require one, so render it yourself and link it with `aria-describedby`, as here; the unit is added to the description after it. In a form, use `TextField`: it draws the message, links it, and TypeScript requires an `error` whenever `invalid` is `true`.',
       },
     },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(canvas.getByRole('textbox', { name: 'Room depth' })).toHaveAttribute(
-      'aria-invalid',
-      'true',
-    );
+    const input = canvas.getByRole('textbox', { name: 'Room depth' });
+    await expect(input).toHaveAttribute('aria-invalid', 'true');
+    await expect(input).toHaveAccessibleDescription('Error: Enter a depth of at least 1 cm. cm');
   },
 };
 
