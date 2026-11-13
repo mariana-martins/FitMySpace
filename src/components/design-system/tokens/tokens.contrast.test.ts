@@ -414,3 +414,37 @@ describe('Breadcrumb tokens — contrast', () => {
     ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
   });
 });
+
+/* ===============================================================
+ * PAGINATION
+ * =============================================================== */
+
+describe('Pagination tokens — contrast', () => {
+  it.each([
+    ['page number', 'component.pagination.text.default', PAGE_BACKGROUND],
+    [
+      'hovered page number',
+      'component.pagination.text.default',
+      'component.pagination.background.hover',
+    ],
+    [
+      'pressed page number',
+      'component.pagination.text.default',
+      'component.pagination.background.active',
+    ],
+    [
+      'current page number',
+      'component.pagination.text.current',
+      'component.pagination.background.current',
+    ],
+    ['ellipsis', 'component.pagination.text.ellipsis', PAGE_BACKGROUND],
+  ])('%s is readable', (_description, textToken, backgroundToken) => {
+    expect(contrastRatio(textToken, backgroundToken)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('current page stands out from the page', () => {
+    expect(
+      contrastRatio('component.pagination.background.current', PAGE_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});

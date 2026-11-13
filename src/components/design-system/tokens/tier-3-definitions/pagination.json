@@ -1,0 +1,84 @@
+{
+  "component": {
+    "pagination": {
+      "text": {
+        "default": {
+          "value": "{semantic.color.text.default.base}"
+        },
+        "current": {
+          "value": "{semantic.color.text.inverse}",
+          "comment": "On the brand fill of the current page."
+        },
+        "ellipsis": {
+          "value": "{semantic.color.text.subtle.base}"
+        }
+      },
+      "background": {
+        "hover": {
+          "value": "{semantic.color.background.default.hover}"
+        },
+        "active": {
+          "value": "{semantic.color.background.default.active}"
+        },
+        "current": {
+          "value": "{semantic.color.background.brand.base}"
+        }
+      },
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.interactive.md}"
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.fast}"
+        },
+        "easing": {
+          "value": "{semantic.motion.easing.standard}"
+        }
+      },
+      "size": {
+        "sm": {
+          "minHeight": {
+            "value": "{semantic.size.control.xs}"
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.inset.sm}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.xs}"
+          },
+          "font": {
+            "value": "{semantic.typography.label.sm.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.label.sm.letterSpacing}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.sm}"
+          }
+        },
+        "md": {
+          "minHeight": {
+            "value": "{semantic.size.control.sm}"
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.inset.sm}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.xs}"
+          },
+          "font": {
+            "value": "{semantic.typography.label.md.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.label.md.letterSpacing}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.sm}"
+          }
+        }
+      }
+    }
+  }
+}

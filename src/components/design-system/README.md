@@ -35,6 +35,7 @@ design-system/
 │   │   ├── chip.json          # Chip resting, hover, selected and disabled colors, sizes, edge
 │   │   ├── input.json         # Input + TextField colors, states, halo, sizes, and unit styling
 │   │   ├── link.json          # Link colors, underline widths and offset, motion, standalone sizes
+│   │   ├── pagination.json    # Pagination page, current page and ellipsis colors, sizes, shape
 │   │   ├── radio-group.json   # RadioGroup circle, dot, label, hint and error colors and sizes
 │   │   ├── select.json        # Select + SelectField trigger, list, option, and group-label styling
 │   │   └── skeleton.json      # Skeleton pulse colors, shape radii, motion, and text sizes
@@ -90,6 +91,8 @@ design-system/
 │   │   └── … (same files as Button)
 │   ├── Link/        # Sidebar: Components/Navigation/Link (inline or standalone, asChild via Radix Slot)
 │   │   └── … (same files as Button)
+│   ├── Pagination/  # Sidebar: Components/Navigation/Pagination (Pagination, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis, getPaginationRange)
+│   │   └── … (same files as Button, plus getPaginationRange.ts)
 │   ├── RadioGroup/  # Sidebar: Components/Forms/RadioGroup (Radix RadioGroup: RadioGroup, RadioGroupItem)
 │   │   └── … (same files as Button)
 │   ├── Select/      # Sidebar: Components/Forms/Select (Radix Select: Select, SelectItem, SelectGroup)

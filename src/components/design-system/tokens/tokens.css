@@ -897,6 +897,25 @@
   --ds-component-link-size-sm-letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
   --ds-component-link-size-md-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
   --ds-component-link-size-lg-letter-spacing: var(--ds-semantic-typography-label-lg-letter-spacing);
+  --ds-component-pagination-text-default: var(--ds-semantic-color-text-default-base);
+  --ds-component-pagination-text-current: var(--ds-semantic-color-text-inverse); /** On the brand fill of the current page. */
+  --ds-component-pagination-text-ellipsis: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-pagination-background-hover: var(--ds-semantic-color-background-default-hover);
+  --ds-component-pagination-background-active: var(--ds-semantic-color-background-default-active);
+  --ds-component-pagination-background-current: var(--ds-semantic-color-background-brand-base);
+  --ds-component-pagination-shape-radii: var(--ds-semantic-radii-interactive-md);
+  --ds-component-pagination-motion-duration: var(--ds-semantic-motion-duration-fast);
+  --ds-component-pagination-motion-easing: var(--ds-semantic-motion-easing-standard);
+  --ds-component-pagination-size-sm-min-height: var(--ds-semantic-size-control-xs);
+  --ds-component-pagination-size-sm-padding-x: var(--ds-semantic-spacing-inset-sm);
+  --ds-component-pagination-size-sm-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-pagination-size-sm-letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
+  --ds-component-pagination-size-sm-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-pagination-size-md-min-height: var(--ds-semantic-size-control-sm);
+  --ds-component-pagination-size-md-padding-x: var(--ds-semantic-spacing-inset-sm);
+  --ds-component-pagination-size-md-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-pagination-size-md-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
+  --ds-component-pagination-size-md-icon-size: var(--ds-semantic-size-icon-sm);
   --ds-component-radio-group-shape-radii: var(--ds-semantic-radii-interactive-full);
   --ds-component-radio-group-shape-border-width: var(--ds-semantic-border-width-interactive);
   --ds-component-radio-group-background-default: var(--ds-semantic-color-background-default-base);
@@ -1011,6 +1030,8 @@
   --ds-component-link-size-sm-font: var(--ds-semantic-typography-label-sm-shorthand);
   --ds-component-link-size-md-font: var(--ds-semantic-typography-label-md-shorthand);
   --ds-component-link-size-lg-font: var(--ds-semantic-typography-label-lg-shorthand);
+  --ds-component-pagination-size-sm-font: var(--ds-semantic-typography-label-sm-shorthand);
+  --ds-component-pagination-size-md-font: var(--ds-semantic-typography-label-md-shorthand);
   --ds-component-radio-group-size-sm-label-font: var(--ds-semantic-typography-label-sm-shorthand);
   --ds-component-radio-group-size-md-label-font: var(--ds-semantic-typography-label-md-shorthand);
   --ds-component-radio-group-size-lg-label-font: var(--ds-semantic-typography-label-lg-shorthand);

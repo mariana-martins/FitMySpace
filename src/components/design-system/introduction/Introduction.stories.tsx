@@ -1,3 +1,4 @@
+import { Pagination, PaginationEllipsis, PaginationItem, PaginationLink } from '../ui/Pagination';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '../ui/Breadcrumb';
 import { Caption, Heading, Label, Text } from '../ui/Typography';
 import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
@@ -793,6 +794,28 @@ const ComponentGrid = () => (
               </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-navigation-pagination--docs"
+        title="Pagination"
+        description="Links to every page of a long list, with the current page marked and the rest folded into ellipses."
+        preview={
+          <Pagination size="sm">
+            <PaginationItem>
+              <PaginationLink page={1} href="#page-1" aria-current="page" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink page={2} href="#page-2" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink page={9} href="#page-9" />
+            </PaginationItem>
+          </Pagination>
         }
       />
       <LinkCard
