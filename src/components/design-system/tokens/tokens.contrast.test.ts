@@ -481,3 +481,93 @@ describe('EmptyState tokens — contrast', () => {
     ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
   });
 });
+
+/* ===============================================================
+ * SWITCH
+ * =============================================================== */
+
+describe('Switch tokens — contrast', () => {
+  it.each([
+    ['default', 'component.switch.track.edge.default'],
+    ['hover', 'component.switch.track.edge.hover'],
+    ['invalid', 'component.switch.track.edge.invalid'],
+  ])('%s track edge stands out from the page', (_state, edgeToken) => {
+    expect(contrastRatio(edgeToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  const checkedTracks = [
+    ['primary checked', 'component.switch.track.background.primary-checked'],
+    ['primary checked and hovered', 'component.switch.track.background.primary-checked-hover'],
+    ['secondary checked', 'component.switch.track.background.secondary-checked'],
+    ['secondary checked and hovered', 'component.switch.track.background.secondary-checked-hover'],
+    ['checked and invalid', 'component.switch.track.background.checked-invalid'],
+  ];
+
+  it.each(checkedTracks)('%s track stands out from the page', (_state, backgroundToken) => {
+    expect(contrastRatio(backgroundToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it.each(checkedTracks)('checked knob stands out from the %s track', (_state, backgroundToken) => {
+    expect(contrastRatio('component.switch.thumb.checked', backgroundToken)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it('unchecked knob stands out from the unchecked track', () => {
+    expect(
+      contrastRatio(
+        'component.switch.thumb.unchecked',
+        'component.switch.track.background.default',
+      ),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['label', 'component.switch.label.text'],
+    ['required marker', 'component.switch.label.required-marker'],
+    ['hint', 'component.switch.hint.text'],
+    ['error message', 'component.switch.error.text'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * TEXTAREA AND TEXTAREA FIELD
+ * =============================================================== */
+
+describe('Textarea tokens — contrast', () => {
+  it.each([
+    ['value text', 'component.textarea.text.default', 'component.textarea.background.default'],
+    ['placeholder', 'component.textarea.text.placeholder', 'component.textarea.background.default'],
+    [
+      'value text when read-only',
+      'component.textarea.text.default',
+      'component.textarea.background.readonly',
+    ],
+  ])('%s is readable', (_description, foregroundToken, backgroundToken) => {
+    expect(contrastRatio(foregroundToken, backgroundToken)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['default', 'component.textarea.border.default'],
+    ['hover', 'component.textarea.border.hover'],
+    ['focus', 'component.textarea.border.focus'],
+    ['invalid', 'component.textarea.border.invalid'],
+  ])('%s border stands out from the field', (_state, borderToken) => {
+    expect(
+      contrastRatio(borderToken, 'component.textarea.background.default'),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each([
+    ['label', 'component.textarea-field.label.text'],
+    ['required marker', 'component.textarea-field.label.required-marker'],
+    ['hint', 'component.textarea-field.hint.text'],
+    ['error message', 'component.textarea-field.error.text'],
+  ])('textarea field %s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});

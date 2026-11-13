@@ -3,6 +3,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '../ui/Breadcrumb';
 import { Caption, Heading, Label, Text } from '../ui/Typography';
 import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { TextareaField } from '../ui/TextareaField';
 import { LinkCard, LinkCardGrid } from '../docs';
 import { SelectField } from '../ui/SelectField';
 import { SearchField } from '../ui/SearchField';
@@ -13,6 +14,7 @@ import { Skeleton } from '../ui/Skeleton';
 import { Checkbox } from '../ui/Checkbox';
 import { SelectItem } from '../ui/Select';
 import { Search } from 'lucide-react';
+import { Switch } from '../ui/Switch';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Badge } from '../ui/Badge';
@@ -740,6 +742,15 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-forms-textareafield--docs"
+        title="Textarea"
+        description="The same box for long answers, with its label, hint, and error message wired together."
+        preview={
+          <TextareaField size="sm" label="Assembly notes" rows={2} defaultValue="Two people" />
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-forms-checkbox--docs"
         title="Checkbox"
         description="A Radix checkbox with its label, hint, and error, plus a mixed state for select-all groups."
@@ -747,6 +758,18 @@ const ComponentGrid = () => (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <Checkbox size="sm" label="Waterproof" defaultChecked />
             <Checkbox size="sm" label="Stackable" />
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-forms-switch--docs"
+        title="Switch"
+        description="A Radix switch for settings that apply the moment they are flipped, with label, hint, and error."
+        preview={
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Switch size="sm" label="Order updates" defaultChecked />
+            <Switch size="sm" label="Price alerts" />
           </div>
         }
       />

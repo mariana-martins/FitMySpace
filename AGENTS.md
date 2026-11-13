@@ -57,14 +57,18 @@ rules below are its essentials.
   `CopyTokenButton` copies a token's `var(--…)` reference, with an icon and a
   screen-reader announcement (`iconOnly` for narrow cards); `LinkCard` /
   `LinkCardGrid` link to another Storybook page with a whole-card link;
-  `LabelledField` puts a visible label above a bare `Input` or `Select` in their
-  stories (never use `aria-label` alone in an example). Foundation pages
+  `LabelledField` puts a visible label above a bare `Input`, `Select` or
+  `Textarea` in their stories (never use `aria-label` alone in an example). Foundation pages
   never hard-code token lists or values: read them with `getTokens` from
   `docs/tokens.ts` (generated `tokens/tokens.docs.json`) and lay them out with
   `FoundationPage`, `TokenGroup` and `TokenRow`.
 - **API**: extend native props with `ComponentPropsWithoutRef<'el'>`, omitting
   conflicting ones (e.g. `size` on `<input>`). Forward refs to the native
-  element. Add `'use client'` to interactive components.
+  element. Add `'use client'` only to components that use client-only React
+  (state, effects, refs, event handlers, or a Radix primitive with hooks).
+  `useId` works on the server, and rendering a client component such as Radix
+  `VisuallyHidden` does not make a component client: `Textarea`, `TextareaField`,
+  `Breadcrumb` and `Skeleton` stay server components.
 - **Screen-reader-only text**: use `VisuallyHidden` from
   `@radix-ui/react-visually-hidden` (e.g. the "Error: " prefix, a `role="status"`
   announcement). Never add a local `.visually-hidden` class or inline style.

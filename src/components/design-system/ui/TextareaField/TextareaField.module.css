@@ -1,0 +1,63 @@
+/* ---------------------------------------------------------------
+ * TextareaField — CSS Module
+ * Layout and colour for the label, hint and error around a Textarea.
+ * Typography comes from the Typography components (Label, Text);
+ * the field box itself is styled by Textarea.module.css.
+ * --------------------------------------------------------------- */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-component-textarea-field-gap);
+  min-inline-size: 0;
+}
+
+/* Label ----------------------------------------------------------- */
+
+.label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--ds-semantic-spacing-gap-xs);
+  inline-size: fit-content;
+  color: var(--ds-component-textarea-field-label-text);
+  cursor: pointer;
+}
+
+.root[data-disabled] .label {
+  color: var(--ds-component-textarea-field-label-disabled);
+  cursor: not-allowed;
+}
+
+.required-marker {
+  color: var(--ds-component-textarea-field-label-required-marker);
+}
+
+.root[data-disabled] .required-marker {
+  color: inherit;
+}
+
+/* Hint ------------------------------------------------------------ */
+
+.hint {
+  color: var(--ds-component-textarea-field-hint-text);
+}
+
+/* Error ----------------------------------------------------------- */
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-component-textarea-field-error-gap);
+  margin: 0;
+  font: var(--ds-semantic-typography-body-sm-shorthand);
+  font-weight: var(--ds-semantic-typography-label-sm-font-weight);
+  letter-spacing: var(--ds-semantic-typography-body-sm-letter-spacing);
+  color: var(--ds-component-textarea-field-error-text);
+}
+
+.error-icon {
+  flex-shrink: 0;
+  inline-size: var(--ds-component-textarea-field-error-icon-size);
+  block-size: var(--ds-component-textarea-field-error-icon-size);
+  margin-block-start: calc((1lh - var(--ds-component-textarea-field-error-icon-size)) / 2);
+}

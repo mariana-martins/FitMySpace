@@ -1,0 +1,178 @@
+/* ---------------------------------------------------------------
+ * Textarea — CSS Module
+ * Maps component-level textarea tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .textarea — the native <textarea>, which draws its own box
+ *
+ * States are driven by data attributes on the field:
+ *   [data-invalid], [data-disabled], [data-readonly]
+ * and by :focus for focus.
+ *
+ * Size classes: .size-{sm|md|lg}
+ * Resize classes: .resize-{none|vertical|both}
+ * --------------------------------------------------------------- */
+
+.textarea {
+  --textarea-border-color: var(--ds-component-textarea-border-default);
+  --textarea-halo-color: transparent;
+  --textarea-focus-edge: 0px;
+  --textarea-resting-shadow: var(--ds-component-textarea-shape-shadow);
+
+  display: block;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: var(--textarea-min-height);
+  padding-block: calc(
+    (var(--textarea-min-height) - 1lh - 2 * var(--ds-component-textarea-shape-border-width)) / 2
+  );
+  padding-inline: var(--textarea-padding-x);
+  font-family: var(--textarea-font-family);
+  font-size: var(--textarea-font-size);
+  font-weight: var(--textarea-font-weight);
+  letter-spacing: var(--textarea-letter-spacing);
+  line-height: var(--textarea-line-height);
+  color: var(--ds-component-textarea-text-default);
+  background-color: var(--ds-component-textarea-background-default);
+  border: var(--ds-component-textarea-shape-border-width) solid var(--textarea-border-color);
+  border-radius: var(--ds-component-textarea-shape-radii);
+  box-shadow:
+    inset 0 0 0 var(--textarea-focus-edge) var(--textarea-border-color),
+    0 0 0 var(--ds-component-textarea-shape-halo-width) var(--textarea-halo-color),
+    var(--textarea-resting-shadow);
+  cursor: text;
+  transition-property: border-color, box-shadow, background-color;
+  transition-duration: var(--ds-semantic-motion-duration-fast);
+  transition-timing-function: var(--ds-semantic-motion-easing-standard);
+  outline: none; /* focus is drawn by :focus below */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hover ----------------------------------------------------------- */
+
+@media (hover: hover) {
+  .textarea:hover:not([data-disabled]):not([data-invalid]):not(:focus) {
+    --textarea-border-color: var(--ds-component-textarea-border-hover);
+  }
+}
+
+/* Focus ----------------------------------------------------------- */
+
+.textarea:focus {
+  --textarea-border-color: var(--ds-component-textarea-border-focus);
+  --textarea-halo-color: var(--ds-component-textarea-halo-focus);
+  --textarea-focus-edge: var(--ds-component-textarea-shape-border-width);
+}
+
+/* Invalid --------------------------------------------------------- */
+
+.textarea[data-invalid] {
+  --textarea-border-color: var(--ds-component-textarea-border-invalid);
+}
+
+.textarea[data-invalid]:focus {
+  --textarea-halo-color: var(--ds-component-textarea-halo-invalid);
+}
+
+/* Read-only ------------------------------------------------------- */
+
+.textarea[data-readonly] {
+  background-color: var(--ds-component-textarea-background-readonly);
+}
+
+/* Disabled -------------------------------------------------------- */
+
+.textarea[data-disabled] {
+  --textarea-border-color: var(--ds-component-textarea-border-disabled);
+  --textarea-resting-shadow: 0 0 transparent;
+  color: var(--ds-component-textarea-text-disabled);
+  background-color: var(--ds-component-textarea-background-disabled);
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------
+ * Placeholder
+ * --------------------------------------------------------------- */
+
+.textarea::placeholder {
+  color: var(--ds-component-textarea-text-placeholder);
+  opacity: 1;
+}
+
+.textarea:disabled::placeholder {
+  color: var(--ds-component-textarea-text-disabled);
+}
+
+/* ---------------------------------------------------------------
+ * Resize
+ *
+ * `none` and `vertical` keep the column the field sits in intact;
+ * `both` is there for a field the person is meant to make bigger,
+ * such as a note-taking pane.
+ * --------------------------------------------------------------- */
+
+.resize-none {
+  resize: none;
+}
+
+.resize-vertical {
+  resize: vertical;
+}
+
+.resize-both {
+  resize: both;
+}
+
+/* ---------------------------------------------------------------
+ * Size variants
+ * --------------------------------------------------------------- */
+
+.size-sm {
+  --textarea-min-height: var(--ds-component-textarea-size-sm-min-height);
+  --textarea-padding-x: var(--ds-component-textarea-size-sm-padding-x);
+  --textarea-font-family: var(--ds-component-textarea-size-sm-font-family);
+  --textarea-font-size: var(--ds-component-textarea-size-sm-font-size);
+  --textarea-font-weight: var(--ds-component-textarea-size-sm-font-weight);
+  --textarea-letter-spacing: var(--ds-component-textarea-size-sm-letter-spacing);
+  --textarea-line-height: var(--ds-component-textarea-size-sm-line-height);
+}
+
+.size-md {
+  --textarea-min-height: var(--ds-component-textarea-size-md-min-height);
+  --textarea-padding-x: var(--ds-component-textarea-size-md-padding-x);
+  --textarea-font-family: var(--ds-component-textarea-size-md-font-family);
+  --textarea-font-size: var(--ds-component-textarea-size-md-font-size);
+  --textarea-font-weight: var(--ds-component-textarea-size-md-font-weight);
+  --textarea-letter-spacing: var(--ds-component-textarea-size-md-letter-spacing);
+  --textarea-line-height: var(--ds-component-textarea-size-md-line-height);
+}
+
+.size-lg {
+  --textarea-min-height: var(--ds-component-textarea-size-lg-min-height);
+  --textarea-padding-x: var(--ds-component-textarea-size-lg-padding-x);
+  --textarea-font-family: var(--ds-component-textarea-size-lg-font-family);
+  --textarea-font-size: var(--ds-component-textarea-size-lg-font-size);
+  --textarea-font-weight: var(--ds-component-textarea-size-lg-font-weight);
+  --textarea-letter-spacing: var(--ds-component-textarea-size-lg-letter-spacing);
+  --textarea-line-height: var(--ds-component-textarea-size-lg-line-height);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .textarea {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .textarea:focus {
+    outline: var(--ds-semantic-focus-ring-width) solid CanvasText;
+    outline-offset: var(--ds-semantic-focus-ring-offset);
+  }
+}

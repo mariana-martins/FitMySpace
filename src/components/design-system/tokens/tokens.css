@@ -265,6 +265,15 @@
   --ds-semantic-size-selection-indicator-sm: var(--ds-spacing-2); /** The dot of a checked radio, centred in its selection-control box. */
   --ds-semantic-size-selection-indicator-md: var(--ds-spacing-3); /** The dot of a checked radio, centred in its selection-control box. */
   --ds-semantic-size-selection-indicator-lg: var(--ds-spacing-3); /** The dot of a checked radio, centred in its selection-control box. */
+  --ds-semantic-size-switch-height-sm: var(--ds-spacing-6); /** Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air. */
+  --ds-semantic-size-switch-height-md: var(--ds-spacing-8); /** Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air. */
+  --ds-semantic-size-switch-height-lg: var(--ds-spacing-10); /** Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air. */
+  --ds-semantic-size-switch-width-sm: var(--ds-spacing-10); /** Switch track. Wide enough that the thumb sits clearly to the left or to the right. */
+  --ds-semantic-size-switch-width-md: var(--ds-spacing-14); /** Switch track. Wide enough that the thumb sits clearly to the left or to the right. */
+  --ds-semantic-size-switch-width-lg: var(--ds-spacing-16); /** Switch track. Wide enough that the thumb sits clearly to the left or to the right. */
+  --ds-semantic-size-switch-thumb-sm: var(--ds-spacing-4); /** The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge. */
+  --ds-semantic-size-switch-thumb-md: var(--ds-spacing-6); /** The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge. */
+  --ds-semantic-size-switch-thumb-lg: var(--ds-spacing-8); /** The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge. */
   --ds-semantic-size-tag-sm: var(--ds-spacing-5); /** Height of static labels such as badges. They are not clickable, so they may sit below the 24px target size. */
   --ds-semantic-size-tag-md: var(--ds-spacing-6); /** Height of static labels such as badges. They are not clickable, so they may sit below the 24px target size. */
   --ds-semantic-size-target-min: var(--ds-spacing-6); /** The smallest pointer target WCAG 2.5.8 allows. Nothing clickable is smaller. */
@@ -1033,6 +1042,89 @@
   --ds-component-skeleton-shape-circle-size: var(--ds-semantic-size-thumbnail-sm); /** The size of a circle without a width, such as a small avatar. */
   --ds-component-skeleton-motion-duration: var(--ds-semantic-motion-duration-deliberate); /** One half of the pulse; the loop runs it forth and back. */
   --ds-component-skeleton-motion-easing: var(--ds-semantic-motion-easing-standard);
+  --ds-component-switch-shape-radii: var(--ds-semantic-radii-interactive-full);
+  --ds-component-switch-shape-border-width: var(--ds-semantic-border-width-interactive);
+  --ds-component-switch-shape-thumb-shadow: var(--ds-semantic-shadow-raised-base);
+  --ds-component-switch-track-background-default: var(--ds-semantic-color-background-default-base);
+  --ds-component-switch-track-background-primary-checked: var(--ds-semantic-color-background-brand-base);
+  --ds-component-switch-track-background-primary-checked-hover: var(--ds-semantic-color-background-brand-hover);
+  --ds-component-switch-track-background-secondary-checked: var(--ds-semantic-color-background-subtle-base);
+  --ds-component-switch-track-background-secondary-checked-hover: var(--ds-semantic-color-background-subtle-hover);
+  --ds-component-switch-track-background-checked-invalid: var(--ds-semantic-color-background-utility-error-base);
+  --ds-component-switch-track-background-disabled: var(--ds-semantic-color-background-disabled);
+  --ds-component-switch-track-edge-default: var(--ds-semantic-color-border-default-base);
+  --ds-component-switch-track-edge-hover: var(--ds-semantic-color-border-default-active);
+  --ds-component-switch-track-edge-invalid: var(--ds-semantic-color-border-utility-error-base);
+  --ds-component-switch-track-edge-disabled: var(--ds-semantic-color-border-disabled);
+  --ds-component-switch-track-gap: var(--ds-semantic-spacing-gap-sm); /** Space between the track and the label, so the label can be clicked as part of the control. */
+  --ds-component-switch-thumb-unchecked: var(--ds-semantic-color-text-subtle-base); /** The knob on the unchecked track: a neutral dark on a white track, so the state never rests on the track colour alone. */
+  --ds-component-switch-thumb-checked: var(--ds-semantic-color-text-inverse);
+  --ds-component-switch-thumb-disabled: var(--ds-semantic-color-text-subtle-disabled); /** Secondary text that stays readable on a disabled surface. */
+  --ds-component-switch-label-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-switch-label-required-marker: var(--ds-semantic-color-text-brand-base);
+  --ds-component-switch-label-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-switch-hint-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-switch-error-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-switch-error-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-switch-error-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-switch-size-sm-track-height: var(--ds-semantic-size-switch-height-sm);
+  --ds-component-switch-size-sm-track-width: var(--ds-semantic-size-switch-width-sm);
+  --ds-component-switch-size-sm-thumb-size: var(--ds-semantic-size-switch-thumb-sm);
+  --ds-component-switch-size-sm-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-switch-size-md-track-height: var(--ds-semantic-size-switch-height-md);
+  --ds-component-switch-size-md-track-width: var(--ds-semantic-size-switch-width-md);
+  --ds-component-switch-size-md-thumb-size: var(--ds-semantic-size-switch-thumb-md);
+  --ds-component-switch-size-md-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-switch-size-lg-track-height: var(--ds-semantic-size-switch-height-lg);
+  --ds-component-switch-size-lg-track-width: var(--ds-semantic-size-switch-width-lg);
+  --ds-component-switch-size-lg-thumb-size: var(--ds-semantic-size-switch-thumb-lg);
+  --ds-component-switch-size-lg-gap: var(--ds-semantic-spacing-gap-md);
+  --ds-component-textarea-shape-radii: var(--ds-semantic-radii-interactive-lg);
+  --ds-component-textarea-shape-border-width: var(--ds-semantic-border-width-default);
+  --ds-component-textarea-shape-halo-width: var(--ds-semantic-border-width-halo);
+  --ds-component-textarea-shape-shadow: var(--ds-semantic-shadow-raised-base);
+  --ds-component-textarea-background-default: var(--ds-semantic-color-background-default-base);
+  --ds-component-textarea-background-readonly: var(--ds-semantic-color-background-default-hover);
+  --ds-component-textarea-background-disabled: var(--ds-semantic-color-background-disabled);
+  --ds-component-textarea-border-default: var(--ds-semantic-color-border-default-base);
+  --ds-component-textarea-border-hover: var(--ds-semantic-color-border-default-active);
+  --ds-component-textarea-border-focus: var(--ds-semantic-color-border-brand-base);
+  --ds-component-textarea-border-invalid: var(--ds-semantic-color-border-utility-error-base);
+  --ds-component-textarea-border-disabled: var(--ds-semantic-color-border-disabled);
+  --ds-component-textarea-halo-focus: var(--ds-semantic-color-halo-brand);
+  --ds-component-textarea-halo-invalid: var(--ds-semantic-color-halo-utility-error);
+  --ds-component-textarea-text-default: var(--ds-semantic-color-text-default-base);
+  --ds-component-textarea-text-placeholder: var(--ds-semantic-color-text-placeholder);
+  --ds-component-textarea-text-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-textarea-size-sm-min-height: var(--ds-semantic-size-control-sm); /** Even with rows="1", the field is as tall as the Button beside it. */
+  --ds-component-textarea-size-sm-padding-x: var(--ds-semantic-spacing-control-sm);
+  --ds-component-textarea-size-sm-font-size: var(--ds-semantic-typography-control-md-font-size);
+  --ds-component-textarea-size-sm-font-weight: var(--ds-semantic-typography-control-md-font-weight);
+  --ds-component-textarea-size-sm-font-family: var(--ds-semantic-typography-control-md-font-family);
+  --ds-component-textarea-size-sm-letter-spacing: var(--ds-semantic-typography-control-md-letter-spacing);
+  --ds-component-textarea-size-sm-line-height: var(--ds-semantic-typography-control-md-line-height);
+  --ds-component-textarea-size-md-min-height: var(--ds-semantic-size-control-md); /** Even with rows="1", the field is as tall as the Button beside it. */
+  --ds-component-textarea-size-md-padding-x: var(--ds-semantic-spacing-control-md);
+  --ds-component-textarea-size-md-font-size: var(--ds-semantic-typography-control-md-font-size);
+  --ds-component-textarea-size-md-font-weight: var(--ds-semantic-typography-control-md-font-weight);
+  --ds-component-textarea-size-md-font-family: var(--ds-semantic-typography-control-md-font-family);
+  --ds-component-textarea-size-md-letter-spacing: var(--ds-semantic-typography-control-md-letter-spacing);
+  --ds-component-textarea-size-md-line-height: var(--ds-semantic-typography-control-md-line-height);
+  --ds-component-textarea-size-lg-min-height: var(--ds-semantic-size-control-lg); /** Even with rows="1", the field is as tall as the Button beside it. */
+  --ds-component-textarea-size-lg-padding-x: var(--ds-semantic-spacing-control-lg);
+  --ds-component-textarea-size-lg-font-size: var(--ds-semantic-typography-control-lg-font-size);
+  --ds-component-textarea-size-lg-font-weight: var(--ds-semantic-typography-control-lg-font-weight);
+  --ds-component-textarea-size-lg-font-family: var(--ds-semantic-typography-control-lg-font-family);
+  --ds-component-textarea-size-lg-letter-spacing: var(--ds-semantic-typography-control-lg-letter-spacing);
+  --ds-component-textarea-size-lg-line-height: var(--ds-semantic-typography-control-lg-line-height);
+  --ds-component-textarea-field-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-textarea-field-label-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-textarea-field-label-required-marker: var(--ds-semantic-color-text-brand-base);
+  --ds-component-textarea-field-label-disabled: var(--ds-semantic-color-text-disabled);
+  --ds-component-textarea-field-hint-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-textarea-field-error-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-textarea-field-error-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-textarea-field-error-icon-size: var(--ds-semantic-size-icon-sm);
   --ds-component-badge-size-sm-font: var(--ds-semantic-typography-label-sm-shorthand);
   --ds-component-badge-size-md-font: var(--ds-semantic-typography-label-md-shorthand);
   --ds-component-breadcrumb-size-sm-font: var(--ds-semantic-typography-caption-md-shorthand);

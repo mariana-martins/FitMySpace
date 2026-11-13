@@ -1,0 +1,173 @@
+{
+  "component": {
+    "textarea": {
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.interactive.lg}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}"
+        },
+        "halo-width": {
+          "value": "{semantic.border-width.halo}"
+        },
+        "shadow": {
+          "value": "{semantic.shadow.raised.base}"
+        }
+      },
+      "background": {
+        "default": {
+          "value": "{semantic.color.background.default.base}"
+        },
+        "readonly": {
+          "value": "{semantic.color.background.default.hover}"
+        },
+        "disabled": {
+          "value": "{semantic.color.background.disabled}"
+        }
+      },
+      "border": {
+        "default": {
+          "value": "{semantic.color.border.default.base}"
+        },
+        "hover": {
+          "value": "{semantic.color.border.default.active}"
+        },
+        "focus": {
+          "value": "{semantic.color.border.brand.base}"
+        },
+        "invalid": {
+          "value": "{semantic.color.border.utility-error.base}"
+        },
+        "disabled": {
+          "value": "{semantic.color.border.disabled}"
+        }
+      },
+      "halo": {
+        "focus": {
+          "value": "{semantic.color.halo.brand}"
+        },
+        "invalid": {
+          "value": "{semantic.color.halo.utility-error}"
+        }
+      },
+      "text": {
+        "default": {
+          "value": "{semantic.color.text.default.base}"
+        },
+        "placeholder": {
+          "value": "{semantic.color.text.placeholder}"
+        },
+        "disabled": {
+          "value": "{semantic.color.text.disabled}"
+        }
+      },
+      "size": {
+        "sm": {
+          "minHeight": {
+            "value": "{semantic.size.control.sm}",
+            "comment": "Even with rows=\"1\", the field is as tall as the Button beside it."
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.control.sm}"
+          },
+          "fontSize": {
+            "value": "{semantic.typography.control.md.fontSize}"
+          },
+          "fontWeight": {
+            "value": "{semantic.typography.control.md.fontWeight}"
+          },
+          "fontFamily": {
+            "value": "{semantic.typography.control.md.fontFamily}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.control.md.letterSpacing}"
+          },
+          "lineHeight": {
+            "value": "{semantic.typography.control.md.lineHeight}"
+          }
+        },
+        "md": {
+          "minHeight": {
+            "value": "{semantic.size.control.md}",
+            "comment": "Even with rows=\"1\", the field is as tall as the Button beside it."
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.control.md}"
+          },
+          "fontSize": {
+            "value": "{semantic.typography.control.md.fontSize}"
+          },
+          "fontWeight": {
+            "value": "{semantic.typography.control.md.fontWeight}"
+          },
+          "fontFamily": {
+            "value": "{semantic.typography.control.md.fontFamily}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.control.md.letterSpacing}"
+          },
+          "lineHeight": {
+            "value": "{semantic.typography.control.md.lineHeight}"
+          }
+        },
+        "lg": {
+          "minHeight": {
+            "value": "{semantic.size.control.lg}",
+            "comment": "Even with rows=\"1\", the field is as tall as the Button beside it."
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.control.lg}"
+          },
+          "fontSize": {
+            "value": "{semantic.typography.control.lg.fontSize}"
+          },
+          "fontWeight": {
+            "value": "{semantic.typography.control.lg.fontWeight}"
+          },
+          "fontFamily": {
+            "value": "{semantic.typography.control.lg.fontFamily}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.control.lg.letterSpacing}"
+          },
+          "lineHeight": {
+            "value": "{semantic.typography.control.lg.lineHeight}"
+          }
+        }
+      }
+    },
+    "textarea-field": {
+      "gap": {
+        "value": "{semantic.spacing.gap.sm}"
+      },
+      "label": {
+        "text": {
+          "value": "{semantic.color.text.default.base}"
+        },
+        "required-marker": {
+          "value": "{semantic.color.text.brand.base}"
+        },
+        "disabled": {
+          "value": "{semantic.color.text.disabled}"
+        }
+      },
+      "hint": {
+        "text": {
+          "value": "{semantic.color.text.subtle.base}"
+        }
+      },
+      "error": {
+        "text": {
+          "value": "{semantic.color.text.utility-error.base}"
+        },
+        "gap": {
+          "value": "{semantic.spacing.gap.xs}"
+        },
+        "iconSize": {
+          "value": "{semantic.size.icon.sm}"
+        }
+      }
+    }
+  }
+}

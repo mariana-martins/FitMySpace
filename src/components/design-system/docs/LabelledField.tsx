@@ -6,8 +6,8 @@ import { useId } from 'react';
 /* ---------------------------------------------------------------
  * LabelledField (Storybook docs helper)
  *
- * Puts a visible <label> above a bare field (Input, Select) in the
- * stories of those components, so every example follows the rule
+ * Puts a visible <label> above a bare field (Input, Select, Textarea)
+ * in the stories of those components, so every example follows the rule
  * that a form control always has a visible label tied to it.
  * Not part of the public design system API: in an app, use
  * TextField or SelectField, or render the Label yourself.
