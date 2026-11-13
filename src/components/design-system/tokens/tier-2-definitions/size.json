@@ -57,6 +57,50 @@
           "comment": "The dot of a checked radio, centred in its selection-control box."
         }
       },
+      "switch": {
+        "height": {
+          "sm": {
+            "value": "{spacing.6}",
+            "comment": "Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air."
+          },
+          "md": {
+            "value": "{spacing.8}",
+            "comment": "Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air."
+          },
+          "lg": {
+            "value": "{spacing.10}",
+            "comment": "Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air."
+          }
+        },
+        "width": {
+          "sm": {
+            "value": "{spacing.10}",
+            "comment": "Switch track. Wide enough that the thumb sits clearly to the left or to the right."
+          },
+          "md": {
+            "value": "{spacing.14}",
+            "comment": "Switch track. Wide enough that the thumb sits clearly to the left or to the right."
+          },
+          "lg": {
+            "value": "{spacing.16}",
+            "comment": "Switch track. Wide enough that the thumb sits clearly to the left or to the right."
+          }
+        },
+        "thumb": {
+          "sm": {
+            "value": "{spacing.4}",
+            "comment": "The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge."
+          },
+          "md": {
+            "value": "{spacing.6}",
+            "comment": "The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge."
+          },
+          "lg": {
+            "value": "{spacing.8}",
+            "comment": "The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge."
+          }
+        }
+      },
       "tag": {
         "sm": {
           "value": "{spacing.5}",

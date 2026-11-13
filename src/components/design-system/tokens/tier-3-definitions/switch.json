@@ -1,0 +1,144 @@
+{
+  "component": {
+    "switch": {
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.interactive.full}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.interactive}"
+        },
+        "thumb-shadow": {
+          "value": "{semantic.shadow.raised.base}"
+        }
+      },
+      "track": {
+        "background": {
+          "default": {
+            "value": "{semantic.color.background.default.base}"
+          },
+          "primary-checked": {
+            "value": "{semantic.color.background.brand.base}"
+          },
+          "primary-checked-hover": {
+            "value": "{semantic.color.background.brand.hover}"
+          },
+          "secondary-checked": {
+            "value": "{semantic.color.background.subtle.base}"
+          },
+          "secondary-checked-hover": {
+            "value": "{semantic.color.background.subtle.hover}"
+          },
+          "checked-invalid": {
+            "value": "{semantic.color.background.utility-error.base}"
+          },
+          "disabled": {
+            "value": "{semantic.color.background.disabled}"
+          }
+        },
+        "edge": {
+          "default": {
+            "value": "{semantic.color.border.default.base}"
+          },
+          "hover": {
+            "value": "{semantic.color.border.default.active}"
+          },
+          "invalid": {
+            "value": "{semantic.color.border.utility-error.base}"
+          },
+          "disabled": {
+            "value": "{semantic.color.border.disabled}"
+          }
+        },
+        "gap": {
+          "value": "{semantic.spacing.gap.sm}",
+          "comment": "Space between the track and the label, so the label can be clicked as part of the control."
+        }
+      },
+      "thumb": {
+        "unchecked": {
+          "value": "{semantic.color.text.subtle.base}",
+          "comment": "The knob on the unchecked track: a neutral dark on a white track, so the state never rests on the track colour alone."
+        },
+        "checked": {
+          "value": "{semantic.color.text.inverse}"
+        },
+        "disabled": {
+          "value": "{semantic.color.text.subtle.disabled}",
+          "comment": "Secondary text that stays readable on a disabled surface."
+        }
+      },
+      "label": {
+        "text": {
+          "value": "{semantic.color.text.default.base}"
+        },
+        "required-marker": {
+          "value": "{semantic.color.text.brand.base}"
+        },
+        "disabled": {
+          "value": "{semantic.color.text.disabled}"
+        }
+      },
+      "hint": {
+        "text": {
+          "value": "{semantic.color.text.subtle.base}"
+        }
+      },
+      "error": {
+        "text": {
+          "value": "{semantic.color.text.utility-error.base}"
+        },
+        "gap": {
+          "value": "{semantic.spacing.gap.xs}"
+        },
+        "iconSize": {
+          "value": "{semantic.size.icon.sm}"
+        }
+      },
+      "size": {
+        "sm": {
+          "trackHeight": {
+            "value": "{semantic.size.switch.height.sm}"
+          },
+          "trackWidth": {
+            "value": "{semantic.size.switch.width.sm}"
+          },
+          "thumbSize": {
+            "value": "{semantic.size.switch.thumb.sm}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.sm}"
+          }
+        },
+        "md": {
+          "trackHeight": {
+            "value": "{semantic.size.switch.height.md}"
+          },
+          "trackWidth": {
+            "value": "{semantic.size.switch.width.md}"
+          },
+          "thumbSize": {
+            "value": "{semantic.size.switch.thumb.md}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.sm}"
+          }
+        },
+        "lg": {
+          "trackHeight": {
+            "value": "{semantic.size.switch.height.lg}"
+          },
+          "trackWidth": {
+            "value": "{semantic.size.switch.width.lg}"
+          },
+          "thumbSize": {
+            "value": "{semantic.size.switch.thumb.lg}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.md}"
+          }
+        }
+      }
+    }
+  }
+}
