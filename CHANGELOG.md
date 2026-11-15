@@ -1,5 +1,24 @@
 # Changelog
 
+# [0.3.0](https://github.com/mariana-martins/FitMySpace/compare/v0.2.0...v0.3.0) (2026-11-15)
+
+### Features
+
+* **alert:** add Alert feedback component and tokens ([f3f2991](https://github.com/mariana-martins/FitMySpace/commit/f3f29916e7f58f184d0c659cd51a64eaf245f334))
+* **badge:** add Badge component and soft colour tokens ([0bcd1c9](https://github.com/mariana-martins/FitMySpace/commit/0bcd1c9aeadd82525c3c7ff75c458814451ed627))
+* **breadcrumb:** add Breadcrumb navigation components and tokens ([709e42e](https://github.com/mariana-martins/FitMySpace/commit/709e42e28fe1670d6ee7d9bb4488f8654ce09aa3))
+* **card:** add Card and CardMedia surface components and tokens ([00c4d16](https://github.com/mariana-martins/FitMySpace/commit/00c4d1669bc71de6a52461a6f1c4d4f378854520))
+* **checkbox:** add Checkbox component and shared joinIds utility ([2a75f17](https://github.com/mariana-martins/FitMySpace/commit/2a75f1769dc1163cc5ae551d193e323963a59d7c))
+* **chip:** add Chip toggle button component and tier-3 tokens ([77825ae](https://github.com/mariana-martins/FitMySpace/commit/77825aed519161d49d1dfdea8f90259e9f321c38))
+* **design-system:** add EmptyState and SearchField components and tokens ([231a6f3](https://github.com/mariana-martins/FitMySpace/commit/231a6f37aa101c0da4f7beac0b7025311069e4f8))
+* **link:** add Link navigation component and tier-3 tokens ([e376c36](https://github.com/mariana-martins/FitMySpace/commit/e376c36b203f4bd6f2fe222e6f70a902b4c72313))
+* **pagination:** add Pagination navigation components and tokens ([189b5a8](https://github.com/mariana-martins/FitMySpace/commit/189b5a84388c3fa67ef11a74a25ca08061b12dcf))
+* **radio-group:** add RadioGroup and RadioGroupItem form components ([b8b1004](https://github.com/mariana-martins/FitMySpace/commit/b8b1004178aff7fa6a5bd1af5b6d053be1ad3552))
+* **select:** add Select and SelectField form components and tokens ([6a206b5](https://github.com/mariana-martins/FitMySpace/commit/6a206b57edc814e7d6bf812dba0adac7570bf4c6))
+* **skeleton:** add Skeleton loading placeholder component and tokens ([49c49b8](https://github.com/mariana-martins/FitMySpace/commit/49c49b8b334b8edd79264410c625444ed9def3e6))
+* **switch:** add Switch form component and tokens ([13d71c3](https://github.com/mariana-martins/FitMySpace/commit/13d71c306639adf17ee81ccf5ffe1b8d770a2a9b))
+* **textarea:** add Textarea and TextareaField form components and tokens ([46c646b](https://github.com/mariana-martins/FitMySpace/commit/46c646bb5d0b2af3512286d95b7286aee0b64a44))
+
 # [0.2.0](https://github.com/mariana-martins/FitMySpace/compare/v0.1.0...v0.2.0) (2026-11-11)
 
 ### Bug Fixes
