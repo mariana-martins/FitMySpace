@@ -620,3 +620,38 @@ describe('Inverse surface tokens — contrast', () => {
     ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
   });
 });
+
+/* ===============================================================
+ * DIALOG
+ * =============================================================== */
+
+const DIALOG_BACKGROUND = 'component.dialog.background';
+
+describe('Dialog tokens — contrast', () => {
+  it.each([
+    ['title', 'component.dialog.title.text'],
+    ['description', 'component.dialog.description.text'],
+  ])('%s is readable on the dialog', (_description, textToken) => {
+    expect(contrastRatio(textToken, DIALOG_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  // The Close button is the ghost secondary Button, so its icon follows that
+  // text colour — on the dialog, not on the page it covers.
+  it('close icon stands out from the dialog', () => {
+    expect(
+      contrastRatio('component.button.secondary.ghost.text.default', DIALOG_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it('footer divider separates the actions from the body', () => {
+    expect(
+      contrastRatio('component.dialog.footer.border', DIALOG_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it('the dialog edge stands out from its own surface', () => {
+    expect(contrastRatio('component.dialog.border', DIALOG_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+});

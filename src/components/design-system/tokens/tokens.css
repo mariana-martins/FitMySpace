@@ -879,6 +879,27 @@
   --ds-component-chip-size-md-gap: var(--ds-semantic-spacing-gap-sm);
   --ds-component-chip-size-md-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
   --ds-component-chip-size-md-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-dialog-shape-radii: var(--ds-semantic-radii-container-lg);
+  --ds-component-dialog-shape-border-width: var(--ds-semantic-border-width-default);
+  --ds-component-dialog-background: var(--ds-semantic-color-background-default-base);
+  --ds-component-dialog-border: var(--ds-semantic-color-border-default-base); /** The dialog sits on the scrim, so its edge is the same quiet line as a Card, not the dark edge of a control. */
+  --ds-component-dialog-shadow: var(--ds-semantic-shadow-overlay);
+  --ds-component-dialog-title-text: var(--ds-semantic-color-text-default-base);
+  --ds-component-dialog-description-text: var(--ds-semantic-color-text-subtle-base);
+  --ds-component-dialog-footer-border: var(--ds-semantic-color-border-default-base);
+  --ds-component-dialog-close-size: var(--ds-semantic-size-control-sm); /** The icon-only Close button: the same 40px square as a small Button, so it clears the 24px target minimum. */
+  --ds-component-dialog-spacing-margin: var(--ds-semantic-spacing-inset-lg); /** Gap between the dialog and the viewport edge, measured with the dialog's own padding so the two always match. */
+  --ds-component-dialog-spacing-margin-narrow: var(--ds-semantic-spacing-inset-md);
+  --ds-component-dialog-spacing-padding: var(--ds-semantic-spacing-inset-lg);
+  --ds-component-dialog-spacing-padding-narrow: var(--ds-semantic-spacing-inset-md);
+  --ds-component-dialog-spacing-title-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-dialog-spacing-section-gap: var(--ds-semantic-spacing-gap-lg);
+  --ds-component-dialog-spacing-footer-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-dialog-spacing-footer-padding: var(--ds-semantic-spacing-inset-md);
+  --ds-component-dialog-motion-duration: var(--ds-semantic-motion-duration-slow);
+  --ds-component-dialog-motion-easing-enter: var(--ds-semantic-motion-easing-enter);
+  --ds-component-dialog-motion-easing-exit: var(--ds-semantic-motion-easing-exit);
+  --ds-component-dialog-motion-travel: var(--ds-semantic-spacing-gap-sm);
   --ds-component-empty-state-icon-background: var(--ds-semantic-color-background-brand-soft);
   --ds-component-empty-state-icon-color: var(--ds-semantic-color-text-brand-base);
   --ds-component-empty-state-icon-box-size: var(--ds-semantic-size-thumbnail-md);

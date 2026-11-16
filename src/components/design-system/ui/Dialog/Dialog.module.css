@@ -1,0 +1,262 @@
+/* ---------------------------------------------------------------
+ * Dialog — CSS Module
+ * Maps component-level dialog tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure (Radix renders the scrim and the dialog in a portal, as
+ * siblings at the end of <body>):
+ *   .overlay  — the scrim over the page
+ *   .viewport — the full-viewport box that centres the dialog; it is
+ *               not the dialog itself
+ *   .content  — the dialog: title, description, body, footer, close,
+ *               and the element that carries role="dialog"
+ *   .title / .description — the fixed header
+ *   .body     — the part that scrolls
+ *   .footer   — the actions, fixed at the bottom
+ *   .close    — the icon-only Close, pinned to the top corner
+ *
+ * The header and the footer keep their place while only the body
+ * scrolls: the dialog is a column whose height stops at the viewport
+ * minus the margin, and the body is the one child allowed to overflow.
+ *
+ * States come from Radix: [data-state='open' | 'closed'] on the scrim
+ * and on the dialog, which is what the enter and exit animations read.
+ * --------------------------------------------------------------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  /* Radix renders this in a portal, so the layer goes on the root of what it
+     renders there, where nothing can trap it. */
+  z-index: var(--ds-semantic-layer-overlay);
+  background-color: var(--ds-semantic-color-background-scrim);
+}
+
+/* Centring box ---------------------------------------------------- */
+
+.viewport {
+  --dialog-margin: var(--ds-component-dialog-spacing-margin);
+  --dialog-padding: var(--ds-component-dialog-spacing-padding);
+
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-semantic-layer-overlay);
+  display: grid;
+  /* One track that never grows past the box: the dialog's own max sizes are
+     percentages of this area, so an auto-sized track would let them overflow. */
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  box-sizing: border-box;
+  padding: var(--dialog-margin);
+  /* The space around the dialog is not the dialog: a click there has to reach
+     the scrim underneath, so Radix counts it as outside and closes. */
+  pointer-events: none;
+}
+
+/* The dialog itself ----------------------------------------------- */
+
+.content {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  inline-size: var(--dialog-width);
+  max-inline-size: 100%;
+  max-block-size: 100%;
+  padding: var(--dialog-padding);
+  /* The dialog is portalled to the end of <body>, outside whatever container the
+     page sets its text colour on, so it sets its own. */
+  color: var(--ds-semantic-color-text-default-base);
+  background-color: var(--ds-component-dialog-background);
+  border: var(--ds-component-dialog-shape-border-width) solid var(--ds-component-dialog-border);
+  border-radius: var(--ds-component-dialog-shape-radii);
+  box-shadow: var(--ds-component-dialog-shadow);
+  /* The body is the scroller. This is the fallback for a screen so short that the
+     header and the footer alone fill it: without it the footer would be cut off,
+     and its buttons are the way out of the dialog. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Header ---------------------------------------------------------- */
+
+.title {
+  flex-shrink: 0;
+  margin: 0;
+  /* The Close button lives in this corner. The heading stops short of it with a
+     margin rather than padding, so its focus ring stays around the words. */
+  margin-inline-end: calc(
+    var(--ds-component-dialog-close-size) + var(--ds-component-dialog-spacing-title-gap)
+  );
+  color: var(--ds-component-dialog-title-text);
+}
+
+/* With nothing to fill in, the focus may rest on the heading itself. */
+.title:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+.description {
+  flex-shrink: 0;
+  margin-block-start: var(--ds-component-dialog-spacing-title-gap);
+  margin-inline-end: calc(
+    var(--ds-component-dialog-close-size) + var(--ds-component-dialog-spacing-title-gap)
+  );
+  color: var(--ds-component-dialog-description-text);
+}
+
+/* Body ------------------------------------------------------------ */
+
+.body {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  margin-block-start: var(--ds-component-dialog-spacing-section-gap);
+  overflow-y: auto;
+  /* The page behind is already locked; this stops a flick from moving it anyway. */
+  overscroll-behavior: contain;
+}
+
+.body > :first-child {
+  margin-block-start: 0;
+}
+
+.body > :last-child {
+  margin-block-end: 0;
+}
+
+/* Footer ---------------------------------------------------------- */
+
+.footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ds-component-dialog-spacing-footer-gap);
+  margin-block-start: var(--ds-component-dialog-spacing-section-gap);
+  /* The divider runs the whole width of the dialog, so the footer reaches past
+     the padding the dialog gives its parts. */
+  margin-inline: calc(-1 * var(--dialog-padding));
+  margin-block-end: calc(-1 * var(--dialog-padding));
+  padding-block: var(--ds-component-dialog-spacing-footer-padding);
+  padding-inline: var(--dialog-padding);
+  border-block-start: var(--ds-component-dialog-shape-border-width) solid
+    var(--ds-component-dialog-footer-border);
+}
+
+/* Close ----------------------------------------------------------- */
+
+/* The extra class is the Button's own: it draws itself `position: relative`, and
+   its stylesheet is loaded after this one, so the corner needs the weight. */
+.content .close {
+  position: absolute;
+  inset-block-start: var(--dialog-padding);
+  inset-inline-end: var(--dialog-padding);
+}
+
+/* ---------------------------------------------------------------
+ * Sizes
+ * --------------------------------------------------------------- */
+
+.size-sm {
+  --dialog-width: var(--ds-semantic-size-dialog-sm);
+}
+
+.size-md {
+  --dialog-width: var(--ds-semantic-size-dialog-md);
+}
+
+.size-lg {
+  --dialog-width: var(--ds-semantic-size-dialog-lg);
+}
+
+/* ---------------------------------------------------------------
+ * Narrow screens: less air around the dialog, and the actions one
+ * under the other, each across the whole width.
+ * A media query cannot read a custom property, so the 640px breakpoint
+ * is written out here.
+ * --------------------------------------------------------------- */
+
+@media (max-width: 639px) {
+  .viewport {
+    --dialog-margin: var(--ds-component-dialog-spacing-margin-narrow);
+    --dialog-padding: var(--ds-component-dialog-spacing-padding-narrow);
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer > * {
+    inline-size: 100%;
+  }
+}
+
+/* ---------------------------------------------------------------
+ * Motion and user preferences
+ * --------------------------------------------------------------- */
+
+.overlay[data-state='open'] {
+  animation: scrim-enter var(--ds-component-dialog-motion-duration)
+    var(--ds-component-dialog-motion-easing-enter);
+}
+
+.overlay[data-state='closed'] {
+  animation: scrim-exit var(--ds-component-dialog-motion-duration)
+    var(--ds-component-dialog-motion-easing-exit);
+}
+
+.content[data-state='open'] {
+  animation: dialog-enter var(--ds-component-dialog-motion-duration)
+    var(--ds-component-dialog-motion-easing-enter);
+}
+
+.content[data-state='closed'] {
+  animation: dialog-exit var(--ds-component-dialog-motion-duration)
+    var(--ds-component-dialog-motion-easing-exit);
+}
+
+@keyframes scrim-enter {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes scrim-exit {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes dialog-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ds-component-dialog-motion-travel));
+  }
+}
+
+@keyframes dialog-exit {
+  to {
+    opacity: 0;
+    transform: translateY(var(--ds-component-dialog-motion-travel));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay[data-state='open'],
+  .overlay[data-state='closed'],
+  .content[data-state='open'],
+  .content[data-state='closed'] {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  /* The shadow that held the dialog off the scrim is dropped, so the dialog
+     draws its own edge in the system colour. */
+  .content {
+    border: var(--ds-semantic-border-width-interactive) solid CanvasText;
+  }
+}

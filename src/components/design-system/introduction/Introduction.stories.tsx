@@ -923,6 +923,33 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-overlays-dialog--docs"
+        title="Dialog"
+        description="A form or a confirmation that interrupts the page, with the header and actions fixed and only the body scrolling."
+        preview={
+          /* Drawn by hand: the real dialog opens in a portal at the end of <body>,
+             so it cannot sit inside a card. */
+          <div
+            style={{
+              width: '160px',
+              padding: '12px',
+              borderRadius: 'var(--ds-semantic-radii-container-lg)',
+              border: '1px solid var(--ds-semantic-color-border-default-base)',
+              backgroundColor: 'var(--ds-component-dialog-background)',
+              boxShadow: 'var(--ds-semantic-shadow-overlay)',
+            }}
+          >
+            <Heading level={5} size="sm">
+              Edit room
+            </Heading>
+            <Text as="p" size="sm">
+              The name shows up in your list of rooms.
+            </Text>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-typography-heading--docs"
         title="Typography"
         description="Heading, Text, Label, and Caption: the type scale as polymorphic components."
