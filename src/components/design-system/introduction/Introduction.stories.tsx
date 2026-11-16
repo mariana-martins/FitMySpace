@@ -1,10 +1,11 @@
 import { Pagination, PaginationEllipsis, PaginationItem, PaginationLink } from '../ui/Pagination';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '../ui/Breadcrumb';
 import { Caption, Heading, Label, Text } from '../ui/Typography';
+import { LinkCard, LinkCardGrid, StorybookLink } from '../docs';
 import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { TextareaField } from '../ui/TextareaField';
-import { LinkCard, LinkCardGrid } from '../docs';
+import { version } from '../../../../package.json';
 import { SelectField } from '../ui/SelectField';
 import { SearchField } from '../ui/SearchField';
 import { expect, within } from 'storybook/test';
@@ -99,6 +100,19 @@ const Hero = () => (
       A shared language of colour, spacing, typography, and shape, and the accessible components
       built from it, that keeps every FitMySpace interface consistent and easy to evolve. This guide
       explains how the design tokens work and where to find each foundation and component.
+    </Text>
+
+    <Text
+      size="sm"
+      style={{
+        color: 'var(--ds-semantic-color-text-subtle-base)',
+        display: 'block',
+        marginTop: '16px',
+      }}
+    >
+      Version {version}
+      {' · '}
+      <StorybookLink path="/docs/design-system-changelog--docs">See what&apos;s new</StorybookLink>
     </Text>
   </header>
 );
@@ -968,6 +982,11 @@ export const Welcome: Story = {
     await expect(canvas.getByRole('link', { name: 'Button' })).toHaveAttribute(
       'href',
       './?path=/docs/design-system-components-actions-button--docs',
+    );
+    // The version comes from package.json, so only the link is checked here.
+    await expect(canvas.getByRole('link', { name: "See what's new" })).toHaveAttribute(
+      'href',
+      './?path=/docs/design-system-changelog--docs',
     );
     // The component previews are pictures: their controls are not exposed.
     await expect(canvas.queryByRole('textbox')).not.toBeInTheDocument();

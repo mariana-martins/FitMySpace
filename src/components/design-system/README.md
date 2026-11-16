@@ -64,6 +64,8 @@ design-system/
 │   └── tokens.test.ts
 ├── introduction/    # Storybook landing page: token architecture, linked foundation and component cards
 │   └── Introduction.stories.tsx
+├── changelog/       # Storybook page that renders CHANGELOG.md, so a release needs no code change
+│   └── Changelog.mdx
 ├── foundations/     # One Storybook page per tier-2 token file
 │   ├── border-width/BorderWidth.stories.tsx
 │   ├── color/Colors.stories.tsx
@@ -253,3 +255,4 @@ This Design System enforces the **Conventional Commits** standard to automatical
   npm run release
   ```
   This command will automatically determine the next semantic version, generate the changelog, and create the Git tag.
+- **Changelog page:** `changelog/Changelog.mdx` renders `CHANGELOG.md` through a `?raw` import and the addon-docs `Markdown` block, so a new release reaches the published Storybook without a code change. The page is MDX because the addon-docs blocks only render inside a docs page: in a story canvas their styled components have no theme and throw. The page writes its own `# Changelog` heading and drops the file's identical line, then demotes each release heading from `#` to `##`, so `### Features` never skips a level. Its `slugify` prefixes each section anchor with the release (`#v0-3-0-features`): every release has a "Features" heading, and duplicate ids would send every copied link to the first one. The Introduction hero shows the version from `package.json` and links here with `StorybookLink`.

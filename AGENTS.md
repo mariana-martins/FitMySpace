@@ -43,7 +43,8 @@ rules below are its essentials.
 - **Look**: modern, luxurious, serene. Do not copy how the legacy component was
   designed.
 - **Folders**: components in `ui/`, Foundation pages in `foundations/`, the
-  Introduction page in `introduction/`, Storybook-only helpers in `docs/`,
+  Introduction page in `introduction/`, the Changelog page in `changelog/` (renders
+  `CHANGELOG.md` through a `?raw` import), Storybook-only helpers in `docs/`,
   plain helpers shared by components in `utils/` (e.g. `joinIds` for
   `aria-describedby`). Reuse them instead of copying a helper into a component.
   Sidebar: `Design System/Components/<Category>/<Name>` with the categories
