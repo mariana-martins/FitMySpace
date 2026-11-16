@@ -49,6 +49,7 @@ const preview: Preview = {
             'Components',
             ['Actions', 'Forms', 'Navigation', 'Display', 'Feedback', 'Typography'],
             'Patterns',
+            'Changelog',
           ],
         ],
       },

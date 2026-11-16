@@ -1,0 +1,32 @@
+import { Markdown, Meta } from '@storybook/addon-docs/blocks';
+import changelog from '../../../../CHANGELOG.md?raw';
+
+<Meta title="Design System/Changelog" />
+
+# Changelog
+
+Every release of the design system, in the order it shipped. The page reads
+`CHANGELOG.md`, which `npm run release` writes from the commits under
+`src/components/design-system`, so publishing a version needs no change here.
+
+export const prepareChangelog = (markdown) =>
+  // The file opens with its own `# Changelog`, which would repeat the heading above.
+  // release-it writes each release as `# `, which would leave `### Features` two levels
+  // below it, so the releases drop one level and no heading level is skipped.
+  markdown.replace(/^# Changelog\n/, '').replace(/^# (?=\[?\d)/gm, '## ');
+
+export const createReleaseSlugify = () => {
+  // Every release has its own "Features" heading. Prefixing it with the release
+  // ("v0-3-0-features") keeps each anchor unique, so its copy-link opens the right section.
+  let release = '';
+  return (heading, defaultSlugify) => {
+    const version = heading.match(/^\[?(\d+\.\d+\.\d+)/)?.[1];
+    if (version) {
+      release = `v${version.replaceAll('.', '-')}`;
+      return release;
+    }
+    return release ? `${release}-${defaultSlugify(heading)}` : defaultSlugify(heading);
+  };
+};
+
+<Markdown options={{ slugify: createReleaseSlugify() }}>{prepareChangelog(changelog)}</Markdown>
