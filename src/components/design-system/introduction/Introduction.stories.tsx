@@ -950,6 +950,42 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-overlays-tooltip--docs"
+        title="Tooltip"
+        description="One short thought on a control, shown on hover or focus — never for information the reader needs."
+        preview={
+          /* Drawn by hand: the real bubble opens in a portal at the end of <body>,
+             and only while its control is hovered or focused. */
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: '8px',
+            }}
+          >
+            <div
+              style={{
+                maxWidth: '160px',
+                padding: '8px 12px',
+                borderRadius: 'var(--ds-component-tooltip-shape-radii)',
+                backgroundColor: 'var(--ds-component-tooltip-background)',
+                color: 'var(--ds-component-tooltip-text)',
+                boxShadow: 'var(--ds-component-tooltip-shadow)',
+                font: 'var(--ds-semantic-typography-body-sm-shorthand)',
+                letterSpacing: 'var(--ds-semantic-typography-body-sm-letter-spacing)',
+              }}
+            >
+              Opens the filters for this search.
+            </div>
+            <Button variant="secondary" appearance="outline" size="sm">
+              Filters
+            </Button>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-typography-heading--docs"
         title="Typography"
         description="Heading, Text, Label, and Caption: the type scale as polymorphic components."

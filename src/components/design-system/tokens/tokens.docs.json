@@ -95,6 +95,7 @@
   {"name":"--ds-shadow-ambient-md","path":["shadow","ambient-md"],"value":"0 4px 8px -4px rgb(28 25 23 / 0.12), 0 8px 24px 0 rgb(28 25 23 / 0.14)","comment":"A contact shadow plus an ambient one with no negative spread, so it outlines every edge."},
   {"name":"--ds-shadow-ambient-lg","path":["shadow","ambient-lg"],"value":"0 4px 8px -4px rgb(28 25 23 / 0.14), 0 16px 40px 0 rgb(28 25 23 / 0.18)","comment":"A contact shadow plus a wider ambient one with no negative spread, so it outlines every edge."},
   {"name":"--ds-shadow-inset","path":["shadow","inset"],"value":"inset 0 4px 8px -4px rgb(28 25 23 / 0.08)","comment":"charcoal.900 at 8% opacity, cast inwards from the top edge."},
+  {"name":"--ds-size-240","path":["size","240"],"value":"240px","comment":null},
   {"name":"--ds-size-400","path":["size","400"],"value":"400px","comment":null},
   {"name":"--ds-size-560","path":["size","560"],"value":"560px","comment":null},
   {"name":"--ds-size-640","path":["size","640"],"value":"640px","comment":null},
@@ -297,6 +298,7 @@
   {"name":"--ds-semantic-size-dialog-sm","path":["semantic","size","dialog","sm"],"value":"400px","comment":null},
   {"name":"--ds-semantic-size-dialog-md","path":["semantic","size","dialog","md"],"value":"560px","comment":null},
   {"name":"--ds-semantic-size-dialog-lg","path":["semantic","size","dialog","lg"],"value":"720px","comment":null},
+  {"name":"--ds-semantic-size-tooltip-max-width","path":["semantic","size","tooltip","max-width"],"value":"240px","comment":"A tooltip is one short thought; past this width it wraps instead of stretching across the screen."},
   {"name":"--ds-semantic-size-prose","path":["semantic","size","prose"],"value":"640px","comment":"Maximum width of running text: about 70 to 80 characters of body copy per line."},
   {"name":"--ds-semantic-spacing-inset-xs","path":["semantic","spacing","inset","xs"],"value":"4px","comment":null},
   {"name":"--ds-semantic-spacing-inset-sm","path":["semantic","spacing","inset","sm"],"value":"8px","comment":null},
@@ -1212,5 +1214,14 @@
   {"name":"--ds-component-textarea-field-hint-text","path":["component","textarea-field","hint","text"],"value":"#44403c","comment":null},
   {"name":"--ds-component-textarea-field-error-text","path":["component","textarea-field","error","text"],"value":"#b91c1c","comment":null},
   {"name":"--ds-component-textarea-field-error-gap","path":["component","textarea-field","error","gap"],"value":"4px","comment":null},
-  {"name":"--ds-component-textarea-field-error-icon-size","path":["component","textarea-field","error","iconSize"],"value":"1rem","comment":null}
+  {"name":"--ds-component-textarea-field-error-icon-size","path":["component","textarea-field","error","iconSize"],"value":"1rem","comment":null},
+  {"name":"--ds-component-tooltip-background","path":["component","tooltip","background"],"value":"#292524","comment":null},
+  {"name":"--ds-component-tooltip-text","path":["component","tooltip","text"],"value":"#ffffff","comment":null},
+  {"name":"--ds-component-tooltip-shadow","path":["component","tooltip","shadow"],"value":"0 4px 8px -4px rgb(28 25 23 / 0.08), 0 12px 24px -8px rgb(28 25 23 / 0.12)","comment":null},
+  {"name":"--ds-component-tooltip-shape-radii","path":["component","tooltip","shape","radii"],"value":"8px","comment":null},
+  {"name":"--ds-component-tooltip-max-width","path":["component","tooltip","max-width"],"value":"240px","comment":null},
+  {"name":"--ds-component-tooltip-spacing-padding","path":["component","tooltip","spacing","padding"],"value":"8px","comment":null},
+  {"name":"--ds-component-tooltip-motion-duration","path":["component","tooltip","motion","duration"],"value":"240ms","comment":null},
+  {"name":"--ds-component-tooltip-motion-easing-enter","path":["component","tooltip","motion","easing-enter"],"value":"cubic-bezier(0.05, 0.7, 0.1, 1)","comment":null},
+  {"name":"--ds-component-tooltip-motion-easing-exit","path":["component","tooltip","motion","easing-exit"],"value":"cubic-bezier(0.3, 0, 0.8, 0.15)","comment":null}
 ]

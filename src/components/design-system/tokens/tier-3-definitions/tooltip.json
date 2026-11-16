@@ -1,0 +1,39 @@
+{
+  "component": {
+    "tooltip": {
+      "background": {
+        "value": "{semantic.color.background.inverse}"
+      },
+      "text": {
+        "value": "{semantic.color.text.inverse}"
+      },
+      "shadow": {
+        "value": "{semantic.shadow.floating}"
+      },
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.surface.md}"
+        }
+      },
+      "max-width": {
+        "value": "{semantic.size.tooltip.max-width}"
+      },
+      "spacing": {
+        "padding": {
+          "value": "{semantic.spacing.inset.sm}"
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.moderate}"
+        },
+        "easing-enter": {
+          "value": "{semantic.motion.easing.enter}"
+        },
+        "easing-exit": {
+          "value": "{semantic.motion.easing.exit}"
+        }
+      }
+    }
+  }
+}

@@ -160,6 +160,12 @@
           "value": "{size.720}"
         }
       },
+      "tooltip": {
+        "max-width": {
+          "value": "{size.240}",
+          "comment": "A tooltip is one short thought; past this width it wraps instead of stretching across the screen."
+        }
+      },
       "prose": {
         "value": "{size.640}",
         "comment": "Maximum width of running text: about 70 to 80 characters of body copy per line."

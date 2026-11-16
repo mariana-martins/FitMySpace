@@ -99,6 +99,7 @@
   --ds-shadow-ambient-md: 0 4px 8px -4px rgb(28 25 23 / 0.12), 0 8px 24px 0 rgb(28 25 23 / 0.14); /** A contact shadow plus an ambient one with no negative spread, so it outlines every edge. */
   --ds-shadow-ambient-lg: 0 4px 8px -4px rgb(28 25 23 / 0.14), 0 16px 40px 0 rgb(28 25 23 / 0.18); /** A contact shadow plus a wider ambient one with no negative spread, so it outlines every edge. */
   --ds-shadow-inset: inset 0 4px 8px -4px rgb(28 25 23 / 0.08); /** charcoal.900 at 8% opacity, cast inwards from the top edge. */
+  --ds-size-240: 240px;
   --ds-size-400: 400px;
   --ds-size-560: 560px;
   --ds-size-640: 640px;
@@ -301,6 +302,7 @@
   --ds-semantic-size-dialog-sm: var(--ds-size-400);
   --ds-semantic-size-dialog-md: var(--ds-size-560);
   --ds-semantic-size-dialog-lg: var(--ds-size-720);
+  --ds-semantic-size-tooltip-max-width: var(--ds-size-240); /** A tooltip is one short thought; past this width it wraps instead of stretching across the screen. */
   --ds-semantic-size-prose: var(--ds-size-640); /** Maximum width of running text: about 70 to 80 characters of body copy per line. */
   --ds-semantic-spacing-inset-xs: var(--ds-spacing-1);
   --ds-semantic-spacing-inset-sm: var(--ds-spacing-2);
@@ -1191,6 +1193,15 @@
   --ds-component-textarea-field-error-text: var(--ds-semantic-color-text-utility-error-base);
   --ds-component-textarea-field-error-gap: var(--ds-semantic-spacing-gap-xs);
   --ds-component-textarea-field-error-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-tooltip-background: var(--ds-semantic-color-background-inverse);
+  --ds-component-tooltip-text: var(--ds-semantic-color-text-inverse);
+  --ds-component-tooltip-shadow: var(--ds-semantic-shadow-floating);
+  --ds-component-tooltip-shape-radii: var(--ds-semantic-radii-surface-md);
+  --ds-component-tooltip-max-width: var(--ds-semantic-size-tooltip-max-width);
+  --ds-component-tooltip-spacing-padding: var(--ds-semantic-spacing-inset-sm);
+  --ds-component-tooltip-motion-duration: var(--ds-semantic-motion-duration-moderate);
+  --ds-component-tooltip-motion-easing-enter: var(--ds-semantic-motion-easing-enter);
+  --ds-component-tooltip-motion-easing-exit: var(--ds-semantic-motion-easing-exit);
   --ds-component-badge-size-sm-font: var(--ds-semantic-typography-label-sm-shorthand);
   --ds-component-badge-size-md-font: var(--ds-semantic-typography-label-md-shorthand);
   --ds-component-breadcrumb-size-sm-font: var(--ds-semantic-typography-caption-md-shorthand);

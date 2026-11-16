@@ -17,6 +17,7 @@ const RADIX_RUNTIME_PROPERTIES = {
     '--radix-select-trigger-width': 'auto',
     '--radix-select-content-available-height': 'auto',
     '--radix-select-content-transform-origin': 'center',
+    '--radix-tooltip-content-transform-origin': 'center',
   },
 };
 

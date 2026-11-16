@@ -655,3 +655,17 @@ describe('Dialog tokens — contrast', () => {
     );
   });
 });
+
+/* ===============================================================
+ * TOOLTIP
+ * =============================================================== */
+
+describe('Tooltip tokens — contrast', () => {
+  // The bubble paints the component tokens, so the pair is checked on them: the
+  // inverse pair above covers the semantics, this one covers the component.
+  it('text is readable on the bubble', () => {
+    expect(
+      contrastRatio('component.tooltip.text', 'component.tooltip.background'),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});

@@ -1,0 +1,88 @@
+/* ---------------------------------------------------------------
+ * Tooltip — CSS Module
+ * Maps component-level tooltip tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure (Radix renders both in a portal at the end of <body>):
+ *   .content — the bubble: reversed colours, so it never reads as part
+ *              of the page it is describing
+ *   .arrow   — the pointer, filled with the bubble's own colour
+ *
+ * The bubble is never focusable and holds text only, so there are no
+ * hover or focus styles to draw: the trigger carries those.
+ * --------------------------------------------------------------- */
+
+.content {
+  /* The root of what Radix renders in this portal, so this is where the layer
+     goes: a tooltip has to stay readable over an open dialog. */
+  z-index: var(--ds-semantic-layer-floating);
+  box-sizing: border-box;
+  max-inline-size: var(--ds-component-tooltip-max-width);
+  padding: var(--ds-component-tooltip-spacing-padding);
+  font: var(--ds-semantic-typography-body-sm-shorthand);
+  letter-spacing: var(--ds-semantic-typography-body-sm-letter-spacing);
+  color: var(--ds-component-tooltip-text);
+  background-color: var(--ds-component-tooltip-background);
+  border-radius: var(--ds-component-tooltip-shape-radii);
+  box-shadow: var(--ds-component-tooltip-shadow);
+  text-align: start;
+  overflow-wrap: break-word;
+  transform-origin: var(--radix-tooltip-content-transform-origin);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Radix puts this class on the <svg> itself, not on a wrapper, and the polygon
+   inside has no fill of its own: `fill` is inherited, so it lands on the shape. */
+.arrow {
+  display: block;
+  fill: var(--ds-component-tooltip-background);
+}
+
+/* ---------------------------------------------------------------
+ * Motion and user preferences
+ * --------------------------------------------------------------- */
+
+/* Radix never writes `data-state="open"` here: a bubble that waited for the
+   delay is `delayed-open`, one that skipped it is `instantly-open`. */
+.content[data-state='delayed-open'],
+.content[data-state='instantly-open'] {
+  animation: tooltip-enter var(--ds-component-tooltip-motion-duration)
+    var(--ds-component-tooltip-motion-easing-enter);
+}
+
+.content[data-state='closed'] {
+  animation: tooltip-exit var(--ds-component-tooltip-motion-duration)
+    var(--ds-component-tooltip-motion-easing-exit);
+}
+
+@keyframes tooltip-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes tooltip-exit {
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content[data-state='delayed-open'],
+  .content[data-state='instantly-open'],
+  .content[data-state='closed'] {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  /* Kept as drawn: the system would otherwise repaint the bubble and its text
+     separately, and white text on a light system background is unreadable. */
+  .content,
+  .arrow {
+    forced-color-adjust: none;
+  }
+}
