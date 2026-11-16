@@ -18,6 +18,10 @@ const RADIX_RUNTIME_PROPERTIES = {
     '--radix-select-content-available-height': 'auto',
     '--radix-select-content-transform-origin': 'center',
     '--radix-tooltip-content-transform-origin': 'center',
+    '--radix-toast-swipe-move-x': '0',
+    '--radix-toast-swipe-move-y': '0',
+    '--radix-toast-swipe-end-x': '0',
+    '--radix-toast-swipe-end-y': '0',
   },
 };
 

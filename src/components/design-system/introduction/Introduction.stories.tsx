@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { TextareaField } from '../ui/TextareaField';
 import { version } from '../../../../package.json';
+import { CircleCheck, Search } from 'lucide-react';
 import { SelectField } from '../ui/SelectField';
 import { SearchField } from '../ui/SearchField';
 import { expect, within } from 'storybook/test';
@@ -14,7 +15,6 @@ import { TextField } from '../ui/TextField';
 import { Skeleton } from '../ui/Skeleton';
 import { Checkbox } from '../ui/Checkbox';
 import { SelectItem } from '../ui/Select';
-import { Search } from 'lucide-react';
 import { Switch } from '../ui/Switch';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
@@ -920,6 +920,53 @@ const ComponentGrid = () => (
         title="Alert"
         description="Status messages in the four utility colours, announced through a live region."
         preview={<Alert variant="success">Room saved.</Alert>}
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-feedback-toast--docs"
+        title="Toast"
+        description="What happened while the reader was elsewhere, in a card that waits to be dismissed."
+        preview={
+          /* Drawn by hand: the real card appears in the viewport fixed to the
+             corner of the screen, never inside a card on the page. */
+          <div
+            style={{
+              width: '220px',
+              display: 'flex',
+              gap: 'var(--ds-component-toast-spacing-icon-gap)',
+              padding: 'var(--ds-component-toast-spacing-padding)',
+              borderRadius: 'var(--ds-component-toast-shape-radii)',
+              border:
+                'var(--ds-component-toast-shape-border-width) solid var(--ds-component-toast-success-border)',
+              backgroundColor: 'var(--ds-component-toast-success-background)',
+              color: 'var(--ds-component-toast-success-text)',
+              boxShadow: 'var(--ds-component-toast-shadow)',
+              font: 'var(--ds-semantic-typography-body-md-shorthand)',
+              letterSpacing: 'var(--ds-semantic-typography-body-md-letter-spacing)',
+            }}
+          >
+            <CircleCheck
+              focusable="false"
+              aria-hidden
+              style={{
+                flexShrink: 0,
+                inlineSize: 'var(--ds-component-toast-icon-size)',
+                blockSize: 'var(--ds-component-toast-icon-size)',
+              }}
+            />
+            <div>
+              <div
+                style={{
+                  font: 'var(--ds-semantic-typography-heading-sm-shorthand)',
+                  letterSpacing: 'var(--ds-semantic-typography-heading-sm-letter-spacing)',
+                }}
+              >
+                Room saved
+              </div>
+              <div>The name shows up in your list of rooms.</div>
+            </div>
+          </div>
+        }
       />
       <LinkCard
         headingLevel={4}

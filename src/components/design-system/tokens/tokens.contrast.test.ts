@@ -669,3 +669,38 @@ describe('Tooltip tokens — contrast', () => {
     ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
   });
 });
+
+/* ===============================================================
+ * TOAST
+ * =============================================================== */
+
+const TOAST_VARIANTS = ['information', 'success', 'warning', 'error'];
+
+describe('Toast tokens — contrast', () => {
+  it.each(TOAST_VARIANTS)('%s text is readable on its card', (variant) => {
+    expect(
+      contrastRatio(`component.toast.${variant}.text`, `component.toast.${variant}.background`),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  // The card floats over anything, so its edge has to read against its own
+  // surface as well as against the page it covers.
+  it.each(TOAST_VARIANTS)('%s edge stands out from its card', (variant) => {
+    expect(
+      contrastRatio(`component.toast.${variant}.border`, `component.toast.${variant}.background`),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each(TOAST_VARIANTS)('%s edge stands out from the page behind it', (variant) => {
+    expect(
+      contrastRatio(`component.toast.${variant}.border`, PAGE_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  // The action fills with the variant's edge on hover, so its text reverses.
+  it.each(TOAST_VARIANTS)('%s action is readable while hovered', (variant) => {
+    expect(
+      contrastRatio('semantic.color.text.inverse', `component.toast.${variant}.border`),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});

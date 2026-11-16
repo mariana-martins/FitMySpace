@@ -1,0 +1,276 @@
+/* ---------------------------------------------------------------
+ * Toast — CSS Module
+ * Maps component-level toast tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure (Radix renders both in a portal at the end of <body>):
+ *   .viewport — the <ol> the cards stack in: bottom-right on a desktop,
+ *               bottom-centre on a phone, clear of the home indicator
+ *   .toast    — one card: icon column, text column, and the Close in the
+ *               corner, which sits outside the flow so it can be written
+ *               anywhere inside the card
+ *   .icon     — the decorative icon, centred on the first line of text
+ *   .body     — title, detail and action, stacked
+ *
+ * The card is above the page but below the tooltip that may explain a
+ * button inside it: `layer.toast` over `layer.floating`.
+ * --------------------------------------------------------------- */
+
+.viewport {
+  /* The distance from every edge of the screen, swapped on a narrow one. */
+  --toast-margin: var(--ds-component-toast-spacing-screen-margin);
+
+  position: fixed;
+  /* The top layer of the page: nothing the app draws may cover a message. */
+  z-index: var(--ds-semantic-layer-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-component-toast-spacing-stack-gap);
+  inline-size: min(
+    var(--ds-component-toast-size-max-width),
+    calc(100% - (var(--toast-margin) * 2))
+  );
+  inset-block-end: max(var(--toast-margin), env(safe-area-inset-bottom));
+  inset-inline-end: max(var(--toast-margin), env(safe-area-inset-right));
+  /* A stack longer than the screen would run past the top edge and become
+     unreachable: it stops at the screen and scrolls inside itself. The app
+     keeps the queue short; this is the floor, not the plan. */
+  max-block-size: calc(100% - (var(--toast-margin) * 2));
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* The gaps between cards must not swallow clicks meant for the page. */
+  pointer-events: none;
+}
+
+/* The region is reached by its hotkey, so the ring says where the reader is.
+   The stack sits clear of the screen edge, so the ring sits outside the cards. */
+.viewport:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+/* Card ------------------------------------------------------------ */
+
+.toast {
+  --toast-background: transparent;
+  --toast-text: currentcolor;
+  --toast-border: transparent;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--ds-component-toast-spacing-icon-gap);
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: var(--ds-component-toast-size-min-width);
+  padding: var(--ds-component-toast-spacing-padding);
+  font: var(--ds-semantic-typography-body-md-shorthand);
+  letter-spacing: var(--ds-semantic-typography-body-md-letter-spacing);
+  color: var(--toast-text);
+  text-align: start;
+  background-color: var(--toast-background);
+  border: var(--ds-component-toast-shape-border-width) solid var(--toast-border);
+  border-radius: var(--ds-component-toast-shape-radii);
+  box-shadow: var(--ds-component-toast-shadow);
+  list-style: none;
+  /* The stack lets the pointer through everywhere except here. */
+  pointer-events: auto;
+}
+
+/* A card is focusable so a keyboard reader can stop on it and press Escape. */
+.toast:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--ds-component-toast-icon-size);
+  block-size: var(--ds-component-toast-icon-size);
+  margin-block-start: calc((1lh - var(--ds-component-toast-icon-size)) / 2);
+  color: currentcolor;
+}
+
+.icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ds-component-toast-spacing-text-gap);
+  min-inline-size: 0;
+  /* The corner the Close sits in, so no line of text runs under it. */
+  padding-inline-end: calc(
+    var(--ds-component-toast-close-size) + var(--ds-component-toast-spacing-action-gap)
+  );
+}
+
+.title {
+  font: var(--ds-semantic-typography-heading-sm-shorthand);
+  letter-spacing: var(--ds-semantic-typography-heading-sm-letter-spacing);
+  color: inherit;
+}
+
+.description {
+  color: inherit;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-component-toast-spacing-action-gap);
+  min-block-size: var(--ds-semantic-size-control-xs);
+  padding-inline: var(--ds-semantic-spacing-inset-xs);
+  font: var(--ds-semantic-typography-control-md-shorthand);
+  letter-spacing: var(--ds-semantic-typography-control-md-letter-spacing);
+  color: var(--toast-text);
+  background-color: transparent;
+  border: var(--ds-component-toast-shape-border-width) solid var(--toast-border);
+  border-radius: var(--ds-semantic-radii-interactive-sm);
+  cursor: pointer;
+}
+
+.action:hover {
+  /* The variant's own edge, filled: the only solid thing on the card. */
+  color: var(--ds-semantic-color-text-inverse);
+  background-color: var(--toast-border);
+}
+
+.action:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+.toast .close {
+  position: absolute;
+  inset-block-start: var(--ds-component-toast-spacing-padding);
+  inset-inline-end: var(--ds-component-toast-spacing-padding);
+}
+
+/* ---------------------------------------------------------------
+ * Variants
+ * --------------------------------------------------------------- */
+
+.variant-information {
+  --toast-background: var(--ds-component-toast-information-background);
+  --toast-text: var(--ds-component-toast-information-text);
+  --toast-border: var(--ds-component-toast-information-border);
+}
+
+.variant-success {
+  --toast-background: var(--ds-component-toast-success-background);
+  --toast-text: var(--ds-component-toast-success-text);
+  --toast-border: var(--ds-component-toast-success-border);
+}
+
+.variant-warning {
+  --toast-background: var(--ds-component-toast-warning-background);
+  --toast-text: var(--ds-component-toast-warning-text);
+  --toast-border: var(--ds-component-toast-warning-border);
+}
+
+.variant-error {
+  --toast-background: var(--ds-component-toast-error-background);
+  --toast-text: var(--ds-component-toast-error-text);
+  --toast-border: var(--ds-component-toast-error-border);
+}
+
+/* ---------------------------------------------------------------
+ * Motion: the card arrives from the edge it will leave by, and a swipe
+ * drags it out. Radix writes the swipe distance into the custom
+ * properties below and the state into `data-state` and `data-swipe`.
+ * --------------------------------------------------------------- */
+
+.toast[data-state='open'] {
+  animation: toast-enter var(--ds-component-toast-motion-duration)
+    var(--ds-component-toast-motion-easing-enter);
+}
+
+.toast[data-state='closed'] {
+  animation: toast-exit var(--ds-component-toast-motion-duration)
+    var(--ds-component-toast-motion-easing-exit);
+}
+
+.toast[data-swipe='move'] {
+  transform: translate(var(--radix-toast-swipe-move-x, 0), var(--radix-toast-swipe-move-y, 0));
+  animation: none;
+}
+
+.toast[data-swipe='cancel'] {
+  animation: toast-swipe-back var(--ds-component-toast-motion-duration)
+    var(--ds-component-toast-motion-easing-enter);
+}
+
+.toast[data-swipe='end'] {
+  animation: toast-swipe-out var(--ds-component-toast-motion-duration)
+    var(--ds-component-toast-motion-easing-exit);
+}
+
+@keyframes toast-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ds-component-toast-motion-travel));
+  }
+}
+
+@keyframes toast-exit {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes toast-swipe-back {
+  from {
+    transform: translate(var(--radix-toast-swipe-move-x, 0), var(--radix-toast-swipe-move-y, 0));
+  }
+}
+
+@keyframes toast-swipe-out {
+  to {
+    opacity: 0;
+    transform: translate(var(--radix-toast-swipe-end-x, 0), var(--radix-toast-swipe-end-y, 0));
+  }
+}
+
+@media (max-width: 639px) {
+  .viewport {
+    --toast-margin: var(--ds-component-toast-spacing-screen-margin-narrow);
+  }
+
+  /* Below the card's own minimum the screen is simply narrower than it. */
+  .toast {
+    min-inline-size: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast[data-state='open'],
+  .toast[data-state='closed'],
+  .toast[data-swipe='cancel'],
+  .toast[data-swipe='end'] {
+    animation: none;
+  }
+
+  .toast[data-swipe='move'] {
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .icon {
+    color: CanvasText;
+  }
+
+  /* The card floats over anything, so its own edge has to be drawn by hand. */
+  .toast {
+    border: var(--ds-semantic-border-width-interactive) solid CanvasText;
+  }
+}

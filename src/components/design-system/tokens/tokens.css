@@ -100,6 +100,8 @@
   --ds-shadow-ambient-lg: 0 4px 8px -4px rgb(28 25 23 / 0.14), 0 16px 40px 0 rgb(28 25 23 / 0.18); /** A contact shadow plus a wider ambient one with no negative spread, so it outlines every edge. */
   --ds-shadow-inset: inset 0 4px 8px -4px rgb(28 25 23 / 0.08); /** charcoal.900 at 8% opacity, cast inwards from the top edge. */
   --ds-size-240: 240px;
+  --ds-size-288: 288px;
+  --ds-size-384: 384px;
   --ds-size-400: 400px;
   --ds-size-560: 560px;
   --ds-size-640: 640px;
@@ -303,6 +305,8 @@
   --ds-semantic-size-dialog-md: var(--ds-size-560);
   --ds-semantic-size-dialog-lg: var(--ds-size-720);
   --ds-semantic-size-tooltip-max-width: var(--ds-size-240); /** A tooltip is one short thought; past this width it wraps instead of stretching across the screen. */
+  --ds-semantic-size-toast-min-width: var(--ds-size-288); /** The narrowest notification: below this the card is a stub and the stack has no edge to line up on. */
+  --ds-semantic-size-toast-max-width: var(--ds-size-384); /** Wide enough for a title and a sentence; past it the card competes with the page it interrupts. */
   --ds-semantic-size-prose: var(--ds-size-640); /** Maximum width of running text: about 70 to 80 characters of body copy per line. */
   --ds-semantic-spacing-inset-xs: var(--ds-spacing-1);
   --ds-semantic-spacing-inset-sm: var(--ds-spacing-2);
@@ -1193,6 +1197,36 @@
   --ds-component-textarea-field-error-text: var(--ds-semantic-color-text-utility-error-base);
   --ds-component-textarea-field-error-gap: var(--ds-semantic-spacing-gap-xs);
   --ds-component-textarea-field-error-icon-size: var(--ds-semantic-size-icon-sm);
+  --ds-component-toast-shape-radii: var(--ds-semantic-radii-container-md);
+  --ds-component-toast-shape-border-width: var(--ds-semantic-border-width-default);
+  --ds-component-toast-shadow: var(--ds-semantic-shadow-floating); /** The same lift as a floating menu: the toast is above the page, below the tooltip that may explain a button inside it. */
+  --ds-component-toast-icon-size: var(--ds-semantic-size-icon-md);
+  --ds-component-toast-close-size: var(--ds-semantic-size-control-sm); /** The icon-only Close button: the same 40px square as a small Button, so it clears the 24px target minimum. */
+  --ds-component-toast-size-min-width: var(--ds-semantic-size-toast-min-width);
+  --ds-component-toast-size-max-width: var(--ds-semantic-size-toast-max-width);
+  --ds-component-toast-spacing-padding: var(--ds-semantic-spacing-inset-md);
+  --ds-component-toast-spacing-icon-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-toast-spacing-text-gap: var(--ds-semantic-spacing-gap-xs);
+  --ds-component-toast-spacing-action-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-toast-spacing-stack-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-toast-spacing-screen-margin: var(--ds-semantic-spacing-inset-lg); /** How far the stack sits from the edge of the screen, matched with the safe-area insets so the home indicator never covers a card. */
+  --ds-component-toast-spacing-screen-margin-narrow: var(--ds-semantic-spacing-inset-md);
+  --ds-component-toast-motion-duration: var(--ds-semantic-motion-duration-moderate);
+  --ds-component-toast-motion-easing-enter: var(--ds-semantic-motion-easing-enter);
+  --ds-component-toast-motion-easing-exit: var(--ds-semantic-motion-easing-exit);
+  --ds-component-toast-motion-travel: var(--ds-semantic-spacing-gap-md);
+  --ds-component-toast-information-background: var(--ds-semantic-color-background-utility-information-soft); /** The four variants are the Alert's soft appearance: same tier-2 colours, so the same message looks the same whether it sits in the page or floats over it. */
+  --ds-component-toast-information-text: var(--ds-semantic-color-text-utility-information-base);
+  --ds-component-toast-information-border: var(--ds-semantic-color-border-utility-information-active);
+  --ds-component-toast-success-background: var(--ds-semantic-color-background-utility-success-soft);
+  --ds-component-toast-success-text: var(--ds-semantic-color-text-utility-success-base);
+  --ds-component-toast-success-border: var(--ds-semantic-color-border-utility-success-active);
+  --ds-component-toast-warning-background: var(--ds-semantic-color-background-utility-warning-soft);
+  --ds-component-toast-warning-text: var(--ds-semantic-color-text-utility-warning-base);
+  --ds-component-toast-warning-border: var(--ds-semantic-color-border-utility-warning-active);
+  --ds-component-toast-error-background: var(--ds-semantic-color-background-utility-error-soft);
+  --ds-component-toast-error-text: var(--ds-semantic-color-text-utility-error-base);
+  --ds-component-toast-error-border: var(--ds-semantic-color-border-utility-error-active);
   --ds-component-tooltip-background: var(--ds-semantic-color-background-inverse);
   --ds-component-tooltip-text: var(--ds-semantic-color-text-inverse);
   --ds-component-tooltip-shadow: var(--ds-semantic-shadow-floating);
