@@ -605,3 +605,18 @@ describe('Alert tokens — contrast', () => {
     },
   );
 });
+
+/* ===============================================================
+ * INVERSE SURFACE
+ * =============================================================== */
+
+describe('Inverse surface tokens — contrast', () => {
+  // A reversed block (the Tooltip, and anything else that paints
+  // `background.inverse`) carries `text.inverse`, so the pair is
+  // checked here rather than once per component.
+  it('inverse text is readable on the inverse background', () => {
+    expect(
+      contrastRatio('semantic.color.text.inverse', 'semantic.color.background.inverse'),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});

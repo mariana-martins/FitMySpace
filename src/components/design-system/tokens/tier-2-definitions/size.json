@@ -149,6 +149,17 @@
           "value": "{size.1280}"
         }
       },
+      "dialog": {
+        "sm": {
+          "value": "{size.400}"
+        },
+        "md": {
+          "value": "{size.560}"
+        },
+        "lg": {
+          "value": "{size.720}"
+        }
+      },
       "prose": {
         "value": "{size.640}",
         "comment": "Maximum width of running text: about 70 to 80 characters of body copy per line."

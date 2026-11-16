@@ -11,10 +11,11 @@ design-system/
 │   │   ├── color.json         # Hex codes and raw color palettes
 │   │   ├── typography.json    # Font families, raw sizes, weights, and letter-spacing
 │   │   ├── spacing.json       # Base 4px scale (4–128px), also used by sizes
-│   │   ├── size.json          # Layout widths (640/768/1024/1280px)
+│   │   ├── size.json          # Layout widths (400/560/640/720/768/1024/1280px)
 │   │   ├── border-width.json  # Raw stroke widths (0/1/2/4px)
 │   │   ├── radii.json         # Raw border-radius pixel values
 │   │   ├── motion.json        # Durations on 80ms steps and easing curves
+│   │   ├── layer.json         # Raw z-index values (100 / 200 / 300)
 │   │   └── shadow.json        # Layered box-shadows tinted with charcoal.900
 │   ├── tier-2-definitions/    # Intent-based semantic aliases (use these in components)
 │   │   ├── color.json         # Semantic backgrounds, text, borders and focus halos (e.g. brand, utility)
@@ -25,6 +26,7 @@ design-system/
 │   │   ├── radii.json         # Interactive, container, and surface border radiuses
 │   │   ├── focus.json         # Focus ring colour, width, offset and inset offset
 │   │   ├── motion.json        # Duration (instant → deliberate) and easing (standard, enter, exit, move, linear) roles
+│   │   ├── layer.json         # Stacking layers (overlay, floating, toast)
 │   │   └── shadow.json        # Elevation roles (raised, floating, overlay, sunken)
 │   ├── tier-3-definitions/    # Component-level token mappings
 │   │   ├── alert.json         # Alert background, text and border for each utility color, soft and fill, plus padding and gaps
@@ -70,6 +72,7 @@ design-system/
 │   ├── border-width/BorderWidth.stories.tsx
 │   ├── color/Colors.stories.tsx
 │   ├── focus/Focus.stories.tsx
+│   ├── layer/Layer.stories.tsx
 │   ├── motion/Motion.stories.tsx
 │   ├── radii/Radii.stories.tsx
 │   ├── shadow/Shadow.stories.tsx
@@ -237,7 +240,7 @@ npm run lint:css
 
 ### Foundation docs helpers
 
-Each tier-2 token file has a Foundation page in `foundations/` (Color, Typography, Spacing, Size, Radii, Border Width, Shadow, Focus, Motion). The pages never keep their own token lists: they read `tokens.docs.json` through `docs/tokens.ts` (`getTokens('semantic', 'spacing')`, `groupTokens(tokens, 2)`, `formatTokenLabel`) and render it with `docs/FoundationPage` (`FoundationPage`, `TokenGroup`, `TokenRow`, `InlineCode`). To link from a story to another Storybook page use `StorybookLink` (a story renders in an iframe, so a plain link would open inside it); in a `docs.description` Markdown string a plain `[text](?path=/docs/...)` link already works. A new token shows up on its page after `npm run tokens:build`; only the prose (group descriptions) is written by hand.
+Each tier-2 token file has a Foundation page in `foundations/` (Color, Typography, Spacing, Size, Radii, Border Width, Layer, Shadow, Focus, Motion). The pages never keep their own token lists: they read `tokens.docs.json` through `docs/tokens.ts` (`getTokens('semantic', 'spacing')`, `groupTokens(tokens, 2)`, `formatTokenLabel`) and render it with `docs/FoundationPage` (`FoundationPage`, `TokenGroup`, `TokenRow`, `InlineCode`). To link from a story to another Storybook page use `StorybookLink` (a story renders in an iframe, so a plain link would open inside it); in a `docs.description` Markdown string a plain `[text](?path=/docs/...)` link already works. A new token shows up on its page after `npm run tokens:build`; only the prose (group descriptions) is written by hand.
 
 The Introduction page uses `docs/LinkCard` inside a `LinkCardGrid` (a list) to link to each foundation and component page. The title's link stretches over the whole card with `::after`, so the link's name stays the title; the preview is `aria-hidden` and `inert`, so real components can be rendered in it without taking focus.
 

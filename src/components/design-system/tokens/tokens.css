@@ -27,6 +27,7 @@
   --ds-color-charcoal-700: #362f2b;
   --ds-color-charcoal-800: #292524;
   --ds-color-charcoal-900: #1c1917;
+  --ds-color-charcoal-900-alpha-40: rgba(28, 25, 23, 0.4);
   --ds-color-ocean-50: #eff6ff;
   --ds-color-ocean-100: #dbeafe;
   --ds-color-ocean-200: #bfdbfe;
@@ -70,6 +71,9 @@
   --ds-color-white: #ffffff;
   --ds-color-black: #000000;
   --ds-color-transparent: transparent;
+  --ds-z-index-overlay: 100;
+  --ds-z-index-floating: 200;
+  --ds-z-index-toast: 300;
   --ds-duration-80: 80ms;
   --ds-duration-160: 160ms;
   --ds-duration-240: 240ms;
@@ -95,7 +99,10 @@
   --ds-shadow-ambient-md: 0 4px 8px -4px rgb(28 25 23 / 0.12), 0 8px 24px 0 rgb(28 25 23 / 0.14); /** A contact shadow plus an ambient one with no negative spread, so it outlines every edge. */
   --ds-shadow-ambient-lg: 0 4px 8px -4px rgb(28 25 23 / 0.14), 0 16px 40px 0 rgb(28 25 23 / 0.18); /** A contact shadow plus a wider ambient one with no negative spread, so it outlines every edge. */
   --ds-shadow-inset: inset 0 4px 8px -4px rgb(28 25 23 / 0.08); /** charcoal.900 at 8% opacity, cast inwards from the top edge. */
+  --ds-size-400: 400px;
+  --ds-size-560: 560px;
   --ds-size-640: 640px;
+  --ds-size-720: 720px;
   --ds-size-768: 768px;
   --ds-size-1024: 1024px;
   --ds-size-1280: 1280px;
@@ -168,6 +175,8 @@
   --ds-semantic-color-background-utility-information-soft: var(--ds-color-ocean-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
   --ds-semantic-color-background-transparent: var(--ds-color-transparent);
   --ds-semantic-color-background-disabled: var(--ds-color-charcoal-100);
+  --ds-semantic-color-background-inverse: var(--ds-color-charcoal-800); /** The dark side of the palette: a surface for text.inverse, such as a tooltip. */
+  --ds-semantic-color-background-scrim: var(--ds-color-charcoal-900-alpha-40); /** The veil over the page behind an open dialog. It dims whatever is underneath, so it is not a surface colour. */
   --ds-semantic-color-text-inverse: var(--ds-color-white);
   --ds-semantic-color-text-default-base: var(--ds-color-charcoal-900);
   --ds-semantic-color-text-default-hover: var(--ds-color-charcoal-700);
@@ -222,6 +231,9 @@
   --ds-semantic-focus-ring-width: var(--ds-border-width-thick);
   --ds-semantic-focus-ring-offset: var(--ds-border-width-thick); /** Stroke geometry, not layout spacing: the gap matches the ring width, so it stays off the 4px spacing scale. */
   --ds-semantic-focus-ring-offset-inset: calc(-1 * var(--ds-border-width-thick)); /** Draws the ring inside the element, for items in clipped or tightly packed containers: menu options, tabs, table cells. */
+  --ds-semantic-layer-overlay: var(--ds-z-index-overlay); /** A modal dialog and its scrim: above the page, below anything that floats over the dialog. */
+  --ds-semantic-layer-floating: var(--ds-z-index-floating); /** Select lists and tooltips. Above the overlay, so a select or a tooltip still shows inside an open dialog. */
+  --ds-semantic-layer-toast: var(--ds-z-index-toast); /** The toast viewport: the top layer of the page, above a dialog. */
   --ds-semantic-motion-duration-instant: var(--ds-duration-80); /** Press feedback and small toggles, such as a checkbox tick. */
   --ds-semantic-motion-duration-fast: var(--ds-duration-160); /** State changes in place: hover, focus and colour changes. */
   --ds-semantic-motion-duration-moderate: var(--ds-duration-240); /** Small elements entering or leaving: tooltips, menus, an expanding section. */
@@ -286,6 +298,9 @@
   --ds-semantic-size-container-md: var(--ds-size-768);
   --ds-semantic-size-container-lg: var(--ds-size-1024);
   --ds-semantic-size-container-xl: var(--ds-size-1280);
+  --ds-semantic-size-dialog-sm: var(--ds-size-400);
+  --ds-semantic-size-dialog-md: var(--ds-size-560);
+  --ds-semantic-size-dialog-lg: var(--ds-size-720);
   --ds-semantic-size-prose: var(--ds-size-640); /** Maximum width of running text: about 70 to 80 characters of body copy per line. */
   --ds-semantic-spacing-inset-xs: var(--ds-spacing-1);
   --ds-semantic-spacing-inset-sm: var(--ds-spacing-2);

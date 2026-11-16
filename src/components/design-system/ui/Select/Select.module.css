@@ -142,6 +142,9 @@
 
 .content {
   box-sizing: border-box;
+  /* Radix renders the list in a portal, as a direct child of <body>. The layer keeps it
+     above an open dialog, so a select inside a dialog is still readable. */
+  z-index: var(--ds-semantic-layer-floating);
   min-inline-size: var(--radix-select-trigger-width);
   max-block-size: var(--radix-select-content-available-height);
   overflow: hidden;

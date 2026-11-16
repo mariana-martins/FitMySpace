@@ -1,0 +1,18 @@
+{
+  "semantic": {
+    "layer": {
+      "overlay": {
+        "value": "{z-index.overlay}",
+        "comment": "A modal dialog and its scrim: above the page, below anything that floats over the dialog."
+      },
+      "floating": {
+        "value": "{z-index.floating}",
+        "comment": "Select lists and tooltips. Above the overlay, so a select or a tooltip still shows inside an open dialog."
+      },
+      "toast": {
+        "value": "{z-index.toast}",
+        "comment": "The toast viewport: the top layer of the page, above a dialog."
+      }
+    }
+  }
+}

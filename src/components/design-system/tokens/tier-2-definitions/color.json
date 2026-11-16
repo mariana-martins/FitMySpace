@@ -71,7 +71,15 @@
           }
         },
         "transparent": { "value": "{color.transparent}" },
-        "disabled": { "value": "{color.charcoal.100}" }
+        "disabled": { "value": "{color.charcoal.100}" },
+        "inverse": {
+          "value": "{color.charcoal.800}",
+          "comment": "The dark side of the palette: a surface for text.inverse, such as a tooltip."
+        },
+        "scrim": {
+          "value": "{color.charcoal.900-alpha-40}",
+          "comment": "The veil over the page behind an open dialog. It dims whatever is underneath, so it is not a surface colour."
+        }
       },
       "text": {
         "inverse": { "value": "{color.white}" },
