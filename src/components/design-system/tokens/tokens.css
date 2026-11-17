@@ -4,7 +4,7 @@
 
 :root {
   --ds-border-width-none: 0px;
-  --ds-border-width-thin: 1px; /** Strokes are the one exception to the 4px grid: a 4px hairline would be too heavy. */
+  --ds-border-width-thin: 1px;
   --ds-border-width-thick: 2px;
   --ds-border-width-heavy: 4px;
   --ds-color-sage-50: #f4f8f5;
@@ -80,10 +80,10 @@
   --ds-duration-320: 320ms;
   --ds-duration-400: 400ms;
   --ds-duration-480: 480ms;
-  --ds-easing-out: cubic-bezier(0.2, 0, 0, 1); /** Fast start, gentle stop: for elements responding to the user. */
-  --ds-easing-out-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1); /** Arrives quickly, then glides into place: for elements entering the screen. */
-  --ds-easing-in: cubic-bezier(0.3, 0, 0.8, 0.15); /** Slow start, fast finish: for elements leaving the screen. */
-  --ds-easing-in-out: cubic-bezier(0.4, 0, 0.2, 1); /** Symmetric: for elements that move or resize while staying on screen. */
+  --ds-easing-out: cubic-bezier(0.2, 0, 0, 1);
+  --ds-easing-out-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --ds-easing-in: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --ds-easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ds-easing-linear: linear;
   --ds-radii-none: 0;
   --ds-radii-sm: 4px;
@@ -92,13 +92,13 @@
   --ds-radii-xl: 16px;
   --ds-radii-2xl: 24px;
   --ds-radii-full: 9999px;
-  --ds-shadow-xs: 0 4px 8px -4px rgb(28 25 23 / 0.08); /** charcoal.900 at 8% opacity. */
-  --ds-shadow-sm: 0 4px 8px -4px rgb(28 25 23 / 0.08), 0 8px 16px -8px rgb(28 25 23 / 0.08); /** Two layers of charcoal.900: a tight contact shadow and a soft ambient one. */
-  --ds-shadow-md: 0 4px 8px -4px rgb(28 25 23 / 0.08), 0 12px 24px -8px rgb(28 25 23 / 0.12); /** Two layers of charcoal.900: a tight contact shadow and a soft ambient one. */
-  --ds-shadow-lg: 0 8px 16px -8px rgb(28 25 23 / 0.1), 0 24px 48px -12px rgb(28 25 23 / 0.18); /** Two layers of charcoal.900: a tight contact shadow and a soft ambient one. */
-  --ds-shadow-ambient-md: 0 4px 8px -4px rgb(28 25 23 / 0.12), 0 8px 24px 0 rgb(28 25 23 / 0.14); /** A contact shadow plus an ambient one with no negative spread, so it outlines every edge. */
-  --ds-shadow-ambient-lg: 0 4px 8px -4px rgb(28 25 23 / 0.14), 0 16px 40px 0 rgb(28 25 23 / 0.18); /** A contact shadow plus a wider ambient one with no negative spread, so it outlines every edge. */
-  --ds-shadow-inset: inset 0 4px 8px -4px rgb(28 25 23 / 0.08); /** charcoal.900 at 8% opacity, cast inwards from the top edge. */
+  --ds-shadow-xs: 0 4px 8px -4px rgb(28 25 23 / 0.08);
+  --ds-shadow-sm: 0 4px 8px -4px rgb(28 25 23 / 0.08), 0 8px 16px -8px rgb(28 25 23 / 0.08);
+  --ds-shadow-md: 0 4px 8px -4px rgb(28 25 23 / 0.08), 0 12px 24px -8px rgb(28 25 23 / 0.12);
+  --ds-shadow-lg: 0 8px 16px -8px rgb(28 25 23 / 0.1), 0 24px 48px -12px rgb(28 25 23 / 0.18);
+  --ds-shadow-ambient-md: 0 4px 8px -4px rgb(28 25 23 / 0.12), 0 8px 24px 0 rgb(28 25 23 / 0.14);
+  --ds-shadow-ambient-lg: 0 4px 8px -4px rgb(28 25 23 / 0.14), 0 16px 40px 0 rgb(28 25 23 / 0.18);
+  --ds-shadow-inset: inset 0 4px 8px -4px rgb(28 25 23 / 0.08);
   --ds-size-240: 240px;
   --ds-size-288: 288px;
   --ds-size-384: 384px;
@@ -144,42 +144,42 @@
   --ds-font-letter-spacing-normal: 0em;
   --ds-font-letter-spacing-wide: 0.02em;
   --ds-semantic-border-width-none: var(--ds-border-width-none);
-  --ds-semantic-border-width-default: var(--ds-border-width-thin); /** Quiet outlines and dividers: an input's edge, a card, a separator. */
-  --ds-semantic-border-width-interactive: var(--ds-border-width-thick); /** The stronger outline of buttons and other controls you press. */
-  --ds-semantic-border-width-selected: var(--ds-border-width-thick); /** The outline of a selected card or option. Pair it with a colour change, never colour alone. */
-  --ds-semantic-border-width-indicator: var(--ds-border-width-heavy); /** Bars that mark the current item, such as an active tab or navigation link. */
-  --ds-semantic-border-width-halo: var(--ds-border-width-heavy); /** The soft ring around a focused input, drawn with box-shadow. */
+  --ds-semantic-border-width-default: var(--ds-border-width-thin);
+  --ds-semantic-border-width-interactive: var(--ds-border-width-thick);
+  --ds-semantic-border-width-selected: var(--ds-border-width-thick);
+  --ds-semantic-border-width-indicator: var(--ds-border-width-heavy);
+  --ds-semantic-border-width-halo: var(--ds-border-width-heavy);
   --ds-semantic-color-background-default-base: var(--ds-color-white);
   --ds-semantic-color-background-default-hover: var(--ds-color-charcoal-50);
   --ds-semantic-color-background-default-active: var(--ds-color-charcoal-100);
   --ds-semantic-color-background-brand-base: var(--ds-color-sage-700);
   --ds-semantic-color-background-brand-hover: var(--ds-color-sage-800);
   --ds-semantic-color-background-brand-active: var(--ds-color-sage-900);
-  --ds-semantic-color-background-brand-soft: var(--ds-color-sage-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
-  --ds-semantic-color-background-subtle-base: var(--ds-color-charcoal-600); /** Neutral dark fill (e.g. the secondary Button), not a faint surface: "subtle" means low-chroma, not low-contrast. */
+  --ds-semantic-color-background-brand-soft: var(--ds-color-sage-100);
+  --ds-semantic-color-background-subtle-base: var(--ds-color-charcoal-600);
   --ds-semantic-color-background-subtle-hover: var(--ds-color-charcoal-700);
   --ds-semantic-color-background-subtle-active: var(--ds-color-charcoal-800);
-  --ds-semantic-color-background-subtle-soft: var(--ds-color-charcoal-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
+  --ds-semantic-color-background-subtle-soft: var(--ds-color-charcoal-100);
   --ds-semantic-color-background-utility-error-base: var(--ds-color-berry-700);
   --ds-semantic-color-background-utility-error-hover: var(--ds-color-berry-800);
   --ds-semantic-color-background-utility-error-active: var(--ds-color-berry-900);
-  --ds-semantic-color-background-utility-error-soft: var(--ds-color-berry-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
+  --ds-semantic-color-background-utility-error-soft: var(--ds-color-berry-100);
   --ds-semantic-color-background-utility-success-base: var(--ds-color-jade-700);
   --ds-semantic-color-background-utility-success-hover: var(--ds-color-jade-800);
   --ds-semantic-color-background-utility-success-active: var(--ds-color-jade-900);
-  --ds-semantic-color-background-utility-success-soft: var(--ds-color-jade-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
+  --ds-semantic-color-background-utility-success-soft: var(--ds-color-jade-100);
   --ds-semantic-color-background-utility-warning-base: var(--ds-color-honey-400);
-  --ds-semantic-color-background-utility-warning-hover: var(--ds-color-honey-300); /** Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1. */
-  --ds-semantic-color-background-utility-warning-active: var(--ds-color-honey-200); /** Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1. */
-  --ds-semantic-color-background-utility-warning-soft: var(--ds-color-honey-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
+  --ds-semantic-color-background-utility-warning-hover: var(--ds-color-honey-300);
+  --ds-semantic-color-background-utility-warning-active: var(--ds-color-honey-200);
+  --ds-semantic-color-background-utility-warning-soft: var(--ds-color-honey-100);
   --ds-semantic-color-background-utility-information-base: var(--ds-color-ocean-700);
   --ds-semantic-color-background-utility-information-hover: var(--ds-color-ocean-800);
   --ds-semantic-color-background-utility-information-active: var(--ds-color-ocean-900);
-  --ds-semantic-color-background-utility-information-soft: var(--ds-color-ocean-100); /** Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour. */
+  --ds-semantic-color-background-utility-information-soft: var(--ds-color-ocean-100);
   --ds-semantic-color-background-transparent: var(--ds-color-transparent);
   --ds-semantic-color-background-disabled: var(--ds-color-charcoal-100);
-  --ds-semantic-color-background-inverse: var(--ds-color-charcoal-800); /** The dark side of the palette: a surface for text.inverse, such as a tooltip. */
-  --ds-semantic-color-background-scrim: var(--ds-color-charcoal-900-alpha-40); /** The veil over the page behind an open dialog. It dims whatever is underneath, so it is not a surface colour. */
+  --ds-semantic-color-background-inverse: var(--ds-color-charcoal-800);
+  --ds-semantic-color-background-scrim: var(--ds-color-charcoal-900-alpha-40);
   --ds-semantic-color-text-inverse: var(--ds-color-white);
   --ds-semantic-color-text-default-base: var(--ds-color-charcoal-900);
   --ds-semantic-color-text-default-hover: var(--ds-color-charcoal-700);
@@ -190,7 +190,7 @@
   --ds-semantic-color-text-subtle-base: var(--ds-color-charcoal-600);
   --ds-semantic-color-text-subtle-hover: var(--ds-color-charcoal-700);
   --ds-semantic-color-text-subtle-active: var(--ds-color-charcoal-800);
-  --ds-semantic-color-text-subtle-disabled: var(--ds-color-charcoal-500); /** Secondary text that must stay readable on a disabled field (e.g. an Input unit). */
+  --ds-semantic-color-text-subtle-disabled: var(--ds-color-charcoal-500);
   --ds-semantic-color-text-utility-error-base: var(--ds-color-berry-700);
   --ds-semantic-color-text-utility-error-hover: var(--ds-color-berry-800);
   --ds-semantic-color-text-utility-error-active: var(--ds-color-berry-900);
@@ -211,7 +211,7 @@
   --ds-semantic-color-border-brand-base: var(--ds-color-sage-600);
   --ds-semantic-color-border-brand-hover: var(--ds-color-sage-700);
   --ds-semantic-color-border-brand-active: var(--ds-color-sage-800);
-  --ds-semantic-color-border-subtle-base: var(--ds-color-charcoal-600); /** Darker than border.default on purpose: a neutral edge that pairs with background.subtle. For faint dividers use border.disabled. */
+  --ds-semantic-color-border-subtle-base: var(--ds-color-charcoal-600);
   --ds-semantic-color-border-subtle-hover: var(--ds-color-charcoal-700);
   --ds-semantic-color-border-subtle-active: var(--ds-color-charcoal-800);
   --ds-semantic-color-border-utility-error-base: var(--ds-color-berry-600);
@@ -230,24 +230,24 @@
   --ds-semantic-color-border-disabled: var(--ds-color-charcoal-200);
   --ds-semantic-color-halo-brand: var(--ds-color-sage-100);
   --ds-semantic-color-halo-utility-error: var(--ds-color-berry-100);
-  --ds-semantic-focus-ring-color: var(--ds-color-sage-600); /** The default ring colour, the same sage as border.brand. A component whose background is too close to it defines its own focus-ring token in tier 3. */
+  --ds-semantic-focus-ring-color: var(--ds-color-sage-600);
   --ds-semantic-focus-ring-width: var(--ds-border-width-thick);
-  --ds-semantic-focus-ring-offset: var(--ds-border-width-thick); /** Stroke geometry, not layout spacing: the gap matches the ring width, so it stays off the 4px spacing scale. */
-  --ds-semantic-focus-ring-offset-inset: calc(-1 * var(--ds-border-width-thick)); /** Draws the ring inside the element, for items in clipped or tightly packed containers: menu options, tabs, table cells. */
-  --ds-semantic-layer-overlay: var(--ds-z-index-overlay); /** A modal dialog and its scrim: above the page, below anything that floats over the dialog. */
-  --ds-semantic-layer-floating: var(--ds-z-index-floating); /** Select lists and tooltips. Above the overlay, so a select or a tooltip still shows inside an open dialog. */
-  --ds-semantic-layer-toast: var(--ds-z-index-toast); /** The toast viewport: the top layer of the page, above a dialog. */
-  --ds-semantic-motion-duration-instant: var(--ds-duration-80); /** Press feedback and small toggles, such as a checkbox tick. */
-  --ds-semantic-motion-duration-fast: var(--ds-duration-160); /** State changes in place: hover, focus and colour changes. */
-  --ds-semantic-motion-duration-moderate: var(--ds-duration-240); /** Small elements entering or leaving: tooltips, menus, an expanding section. */
-  --ds-semantic-motion-duration-slow: var(--ds-duration-320); /** Large surfaces entering or leaving: dialogs, drawers, sheets. */
-  --ds-semantic-motion-duration-relaxed: var(--ds-duration-400); /** Decorative motion that should feel calm, such as a link underline drawing in. Pair it with the move easing. */
-  --ds-semantic-motion-duration-deliberate: var(--ds-duration-480); /** Rare, emphasised moments that the reader should notice. Use sparingly. */
-  --ds-semantic-motion-easing-standard: var(--ds-easing-out); /** State changes in place, such as hover and pressed. */
-  --ds-semantic-motion-easing-enter: var(--ds-easing-out-emphasized); /** Elements arriving on screen: they settle softly into place. */
-  --ds-semantic-motion-easing-exit: var(--ds-easing-in); /** Elements leaving the screen: they speed up as they go. */
-  --ds-semantic-motion-easing-move: var(--ds-easing-in-out); /** Elements that move or resize while staying on screen. */
-  --ds-semantic-motion-easing-linear: var(--ds-easing-linear); /** Continuous motion with no start or end, such as a spinner or a progress bar. */
+  --ds-semantic-focus-ring-offset: var(--ds-border-width-thick);
+  --ds-semantic-focus-ring-offset-inset: calc(-1 * var(--ds-border-width-thick));
+  --ds-semantic-layer-overlay: var(--ds-z-index-overlay);
+  --ds-semantic-layer-floating: var(--ds-z-index-floating);
+  --ds-semantic-layer-toast: var(--ds-z-index-toast);
+  --ds-semantic-motion-duration-instant: var(--ds-duration-80);
+  --ds-semantic-motion-duration-fast: var(--ds-duration-160);
+  --ds-semantic-motion-duration-moderate: var(--ds-duration-240);
+  --ds-semantic-motion-duration-slow: var(--ds-duration-320);
+  --ds-semantic-motion-duration-relaxed: var(--ds-duration-400);
+  --ds-semantic-motion-duration-deliberate: var(--ds-duration-480);
+  --ds-semantic-motion-easing-standard: var(--ds-easing-out);
+  --ds-semantic-motion-easing-enter: var(--ds-easing-out-emphasized);
+  --ds-semantic-motion-easing-exit: var(--ds-easing-in);
+  --ds-semantic-motion-easing-move: var(--ds-easing-in-out);
+  --ds-semantic-motion-easing-linear: var(--ds-easing-linear);
   --ds-semantic-radii-interactive-sm: var(--ds-radii-sm);
   --ds-semantic-radii-interactive-md: var(--ds-radii-md);
   --ds-semantic-radii-interactive-lg: var(--ds-radii-lg);
@@ -259,13 +259,13 @@
   --ds-semantic-radii-surface-md: var(--ds-radii-md);
   --ds-semantic-radii-surface-lg: var(--ds-radii-lg);
   --ds-semantic-radii-surface-full: var(--ds-radii-full);
-  --ds-semantic-shadow-raised-base: var(--ds-shadow-xs); /** Barely-there lift so a control, such as an input, reads as a surface. */
-  --ds-semantic-shadow-raised-hover: var(--ds-shadow-sm); /** A raised surface lifting under the pointer. */
-  --ds-semantic-shadow-card-base: var(--ds-shadow-ambient-md); /** A card resting on the page: a soft shadow on every edge, so it stands out without a border. */
-  --ds-semantic-shadow-card-hover: var(--ds-shadow-ambient-lg); /** A clickable card lifting under the pointer. */
-  --ds-semantic-shadow-floating: var(--ds-shadow-md); /** Menus, popovers and tooltips that float above the content. */
-  --ds-semantic-shadow-overlay: var(--ds-shadow-lg); /** Dialogs, drawers and sheets that sit above everything else. */
-  --ds-semantic-shadow-sunken: var(--ds-shadow-inset); /** A well pressed into the page, such as the track of a segmented control. */
+  --ds-semantic-shadow-raised-base: var(--ds-shadow-xs);
+  --ds-semantic-shadow-raised-hover: var(--ds-shadow-sm);
+  --ds-semantic-shadow-card-base: var(--ds-shadow-ambient-md);
+  --ds-semantic-shadow-card-hover: var(--ds-shadow-ambient-lg);
+  --ds-semantic-shadow-floating: var(--ds-shadow-md);
+  --ds-semantic-shadow-overlay: var(--ds-shadow-lg);
+  --ds-semantic-shadow-sunken: var(--ds-shadow-inset);
   --ds-semantic-size-control-xs: var(--ds-spacing-8);
   --ds-semantic-size-control-sm: var(--ds-spacing-10);
   --ds-semantic-size-control-md: var(--ds-spacing-12);
@@ -274,25 +274,25 @@
   --ds-semantic-size-icon-sm: var(--ds-font-size-16);
   --ds-semantic-size-icon-md: var(--ds-font-size-20);
   --ds-semantic-size-icon-lg: var(--ds-font-size-24);
-  --ds-semantic-size-selection-control-sm: var(--ds-font-size-16); /** The box of a checkbox or radio. In rem, so it grows with the label next to it. */
-  --ds-semantic-size-selection-control-md: var(--ds-font-size-20); /** The box of a checkbox or radio. In rem, so it grows with the label next to it. */
-  --ds-semantic-size-selection-control-lg: var(--ds-font-size-24); /** The box of a checkbox or radio. In rem, so it grows with the label next to it. */
-  --ds-semantic-size-selection-indicator-sm: var(--ds-spacing-2); /** The dot of a checked radio, centred in its selection-control box. */
-  --ds-semantic-size-selection-indicator-md: var(--ds-spacing-3); /** The dot of a checked radio, centred in its selection-control box. */
-  --ds-semantic-size-selection-indicator-lg: var(--ds-spacing-3); /** The dot of a checked radio, centred in its selection-control box. */
-  --ds-semantic-size-switch-height-sm: var(--ds-spacing-6); /** Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air. */
-  --ds-semantic-size-switch-height-md: var(--ds-spacing-8); /** Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air. */
-  --ds-semantic-size-switch-height-lg: var(--ds-spacing-10); /** Switch track. Height minus thumb is 8px: 4px on each side, 2px of edge and 2px of air. */
-  --ds-semantic-size-switch-width-sm: var(--ds-spacing-10); /** Switch track. Wide enough that the thumb sits clearly to the left or to the right. */
-  --ds-semantic-size-switch-width-md: var(--ds-spacing-14); /** Switch track. Wide enough that the thumb sits clearly to the left or to the right. */
-  --ds-semantic-size-switch-width-lg: var(--ds-spacing-16); /** Switch track. Wide enough that the thumb sits clearly to the left or to the right. */
-  --ds-semantic-size-switch-thumb-sm: var(--ds-spacing-4); /** The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge. */
-  --ds-semantic-size-switch-thumb-md: var(--ds-spacing-6); /** The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge. */
-  --ds-semantic-size-switch-thumb-lg: var(--ds-spacing-8); /** The knob of a switch. 8px smaller than its track height, so it sits 4px inside the edge. */
-  --ds-semantic-size-tag-sm: var(--ds-spacing-5); /** Height of static labels such as badges. They are not clickable, so they may sit below the 24px target size. */
-  --ds-semantic-size-tag-md: var(--ds-spacing-6); /** Height of static labels such as badges. They are not clickable, so they may sit below the 24px target size. */
-  --ds-semantic-size-target-min: var(--ds-spacing-6); /** The smallest pointer target WCAG 2.5.8 allows. Nothing clickable is smaller. */
-  --ds-semantic-size-target-comfortable: var(--ds-spacing-12); /** The target for touch-first controls and primary actions on small screens. */
+  --ds-semantic-size-selection-control-sm: var(--ds-font-size-16);
+  --ds-semantic-size-selection-control-md: var(--ds-font-size-20);
+  --ds-semantic-size-selection-control-lg: var(--ds-font-size-24);
+  --ds-semantic-size-selection-indicator-sm: var(--ds-spacing-2);
+  --ds-semantic-size-selection-indicator-md: var(--ds-spacing-3);
+  --ds-semantic-size-selection-indicator-lg: var(--ds-spacing-3);
+  --ds-semantic-size-switch-height-sm: var(--ds-spacing-6);
+  --ds-semantic-size-switch-height-md: var(--ds-spacing-8);
+  --ds-semantic-size-switch-height-lg: var(--ds-spacing-10);
+  --ds-semantic-size-switch-width-sm: var(--ds-spacing-10);
+  --ds-semantic-size-switch-width-md: var(--ds-spacing-14);
+  --ds-semantic-size-switch-width-lg: var(--ds-spacing-16);
+  --ds-semantic-size-switch-thumb-sm: var(--ds-spacing-4);
+  --ds-semantic-size-switch-thumb-md: var(--ds-spacing-6);
+  --ds-semantic-size-switch-thumb-lg: var(--ds-spacing-8);
+  --ds-semantic-size-tag-sm: var(--ds-spacing-5);
+  --ds-semantic-size-tag-md: var(--ds-spacing-6);
+  --ds-semantic-size-target-min: var(--ds-spacing-6);
+  --ds-semantic-size-target-comfortable: var(--ds-spacing-12);
   --ds-semantic-size-thumbnail-sm: var(--ds-spacing-12);
   --ds-semantic-size-thumbnail-md: var(--ds-spacing-16);
   --ds-semantic-size-thumbnail-lg: var(--ds-spacing-24);
@@ -304,10 +304,10 @@
   --ds-semantic-size-dialog-sm: var(--ds-size-400);
   --ds-semantic-size-dialog-md: var(--ds-size-560);
   --ds-semantic-size-dialog-lg: var(--ds-size-720);
-  --ds-semantic-size-tooltip-max-width: var(--ds-size-240); /** A tooltip is one short thought; past this width it wraps instead of stretching across the screen. */
-  --ds-semantic-size-toast-min-width: var(--ds-size-288); /** The narrowest notification: below this the card is a stub and the stack has no edge to line up on. */
-  --ds-semantic-size-toast-max-width: var(--ds-size-384); /** Wide enough for a title and a sentence; past it the card competes with the page it interrupts. */
-  --ds-semantic-size-prose: var(--ds-size-640); /** Maximum width of running text: about 70 to 80 characters of body copy per line. */
+  --ds-semantic-size-tooltip-max-width: var(--ds-size-240);
+  --ds-semantic-size-toast-min-width: var(--ds-size-288);
+  --ds-semantic-size-toast-max-width: var(--ds-size-384);
+  --ds-semantic-size-prose: var(--ds-size-640);
   --ds-semantic-spacing-inset-xs: var(--ds-spacing-1);
   --ds-semantic-spacing-inset-sm: var(--ds-spacing-2);
   --ds-semantic-spacing-inset-md: var(--ds-spacing-4);
@@ -395,20 +395,20 @@
   --ds-semantic-typography-caption-md-line-height: var(--ds-font-line-height-150);
   --ds-semantic-typography-caption-md-font-family: var(--ds-font-family-sans);
   --ds-semantic-typography-caption-md-letter-spacing: var(--ds-font-letter-spacing-normal);
-  --ds-semantic-typography-display-lg-shorthand: var(--ds-semantic-typography-display-lg-font-weight) var(--ds-semantic-typography-display-lg-font-size)/var(--ds-semantic-typography-display-lg-line-height) var(--ds-semantic-typography-display-lg-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-display-md-shorthand: var(--ds-semantic-typography-display-md-font-weight) var(--ds-semantic-typography-display-md-font-size)/var(--ds-semantic-typography-display-md-line-height) var(--ds-semantic-typography-display-md-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-heading-lg-shorthand: var(--ds-semantic-typography-heading-lg-font-weight) var(--ds-semantic-typography-heading-lg-font-size)/var(--ds-semantic-typography-heading-lg-line-height) var(--ds-semantic-typography-heading-lg-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-heading-md-shorthand: var(--ds-semantic-typography-heading-md-font-weight) var(--ds-semantic-typography-heading-md-font-size)/var(--ds-semantic-typography-heading-md-line-height) var(--ds-semantic-typography-heading-md-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-heading-sm-shorthand: var(--ds-semantic-typography-heading-sm-font-weight) var(--ds-semantic-typography-heading-sm-font-size)/var(--ds-semantic-typography-heading-sm-line-height) var(--ds-semantic-typography-heading-sm-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-body-lg-shorthand: var(--ds-semantic-typography-body-lg-font-weight) var(--ds-semantic-typography-body-lg-font-size)/var(--ds-semantic-typography-body-lg-line-height) var(--ds-semantic-typography-body-lg-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-body-md-shorthand: var(--ds-semantic-typography-body-md-font-weight) var(--ds-semantic-typography-body-md-font-size)/var(--ds-semantic-typography-body-md-line-height) var(--ds-semantic-typography-body-md-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-body-sm-shorthand: var(--ds-semantic-typography-body-sm-font-weight) var(--ds-semantic-typography-body-sm-font-size)/var(--ds-semantic-typography-body-sm-line-height) var(--ds-semantic-typography-body-sm-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-control-md-shorthand: var(--ds-semantic-typography-control-md-font-weight) var(--ds-semantic-typography-control-md-font-size)/var(--ds-semantic-typography-control-md-line-height) var(--ds-semantic-typography-control-md-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-control-lg-shorthand: var(--ds-semantic-typography-control-lg-font-weight) var(--ds-semantic-typography-control-lg-font-size)/var(--ds-semantic-typography-control-lg-line-height) var(--ds-semantic-typography-control-lg-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-label-lg-shorthand: var(--ds-semantic-typography-label-lg-font-weight) var(--ds-semantic-typography-label-lg-font-size)/var(--ds-semantic-typography-label-lg-line-height) var(--ds-semantic-typography-label-lg-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-label-md-shorthand: var(--ds-semantic-typography-label-md-font-weight) var(--ds-semantic-typography-label-md-font-size)/var(--ds-semantic-typography-label-md-line-height) var(--ds-semantic-typography-label-md-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-label-sm-shorthand: var(--ds-semantic-typography-label-sm-font-weight) var(--ds-semantic-typography-label-sm-font-size)/var(--ds-semantic-typography-label-sm-line-height) var(--ds-semantic-typography-label-sm-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
-  --ds-semantic-typography-caption-md-shorthand: var(--ds-semantic-typography-caption-md-font-weight) var(--ds-semantic-typography-caption-md-font-size)/var(--ds-semantic-typography-caption-md-line-height) var(--ds-semantic-typography-caption-md-font-family); /** The CSS font shorthand. It cannot carry letter spacing: set letter-spacing too. */
+  --ds-semantic-typography-display-lg-shorthand: var(--ds-semantic-typography-display-lg-font-weight) var(--ds-semantic-typography-display-lg-font-size)/var(--ds-semantic-typography-display-lg-line-height) var(--ds-semantic-typography-display-lg-font-family);
+  --ds-semantic-typography-display-md-shorthand: var(--ds-semantic-typography-display-md-font-weight) var(--ds-semantic-typography-display-md-font-size)/var(--ds-semantic-typography-display-md-line-height) var(--ds-semantic-typography-display-md-font-family);
+  --ds-semantic-typography-heading-lg-shorthand: var(--ds-semantic-typography-heading-lg-font-weight) var(--ds-semantic-typography-heading-lg-font-size)/var(--ds-semantic-typography-heading-lg-line-height) var(--ds-semantic-typography-heading-lg-font-family);
+  --ds-semantic-typography-heading-md-shorthand: var(--ds-semantic-typography-heading-md-font-weight) var(--ds-semantic-typography-heading-md-font-size)/var(--ds-semantic-typography-heading-md-line-height) var(--ds-semantic-typography-heading-md-font-family);
+  --ds-semantic-typography-heading-sm-shorthand: var(--ds-semantic-typography-heading-sm-font-weight) var(--ds-semantic-typography-heading-sm-font-size)/var(--ds-semantic-typography-heading-sm-line-height) var(--ds-semantic-typography-heading-sm-font-family);
+  --ds-semantic-typography-body-lg-shorthand: var(--ds-semantic-typography-body-lg-font-weight) var(--ds-semantic-typography-body-lg-font-size)/var(--ds-semantic-typography-body-lg-line-height) var(--ds-semantic-typography-body-lg-font-family);
+  --ds-semantic-typography-body-md-shorthand: var(--ds-semantic-typography-body-md-font-weight) var(--ds-semantic-typography-body-md-font-size)/var(--ds-semantic-typography-body-md-line-height) var(--ds-semantic-typography-body-md-font-family);
+  --ds-semantic-typography-body-sm-shorthand: var(--ds-semantic-typography-body-sm-font-weight) var(--ds-semantic-typography-body-sm-font-size)/var(--ds-semantic-typography-body-sm-line-height) var(--ds-semantic-typography-body-sm-font-family);
+  --ds-semantic-typography-control-md-shorthand: var(--ds-semantic-typography-control-md-font-weight) var(--ds-semantic-typography-control-md-font-size)/var(--ds-semantic-typography-control-md-line-height) var(--ds-semantic-typography-control-md-font-family);
+  --ds-semantic-typography-control-lg-shorthand: var(--ds-semantic-typography-control-lg-font-weight) var(--ds-semantic-typography-control-lg-font-size)/var(--ds-semantic-typography-control-lg-line-height) var(--ds-semantic-typography-control-lg-font-family);
+  --ds-semantic-typography-label-lg-shorthand: var(--ds-semantic-typography-label-lg-font-weight) var(--ds-semantic-typography-label-lg-font-size)/var(--ds-semantic-typography-label-lg-line-height) var(--ds-semantic-typography-label-lg-font-family);
+  --ds-semantic-typography-label-md-shorthand: var(--ds-semantic-typography-label-md-font-weight) var(--ds-semantic-typography-label-md-font-size)/var(--ds-semantic-typography-label-md-line-height) var(--ds-semantic-typography-label-md-font-family);
+  --ds-semantic-typography-label-sm-shorthand: var(--ds-semantic-typography-label-sm-font-weight) var(--ds-semantic-typography-label-sm-font-size)/var(--ds-semantic-typography-label-sm-line-height) var(--ds-semantic-typography-label-sm-font-family);
+  --ds-semantic-typography-caption-md-shorthand: var(--ds-semantic-typography-caption-md-font-weight) var(--ds-semantic-typography-caption-md-font-size)/var(--ds-semantic-typography-caption-md-line-height) var(--ds-semantic-typography-caption-md-font-family);
   --ds-component-alert-shape-radii: var(--ds-semantic-radii-container-sm);
   --ds-component-alert-shape-border-width: var(--ds-semantic-border-width-default);
   --ds-component-alert-icon-size: var(--ds-semantic-size-icon-md);
@@ -475,18 +475,18 @@
   --ds-component-badge-size-md-gap: var(--ds-semantic-spacing-gap-xs);
   --ds-component-badge-size-md-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
   --ds-component-badge-size-md-icon-size: var(--ds-semantic-size-icon-sm);
-  --ds-component-breadcrumb-text-default: var(--ds-semantic-color-text-subtle-base); /** Ancestor links stay quiet so the current page and page title stand out. */
+  --ds-component-breadcrumb-text-default: var(--ds-semantic-color-text-subtle-base);
   --ds-component-breadcrumb-text-hover: var(--ds-semantic-color-text-brand-base);
-  --ds-component-breadcrumb-text-current: var(--ds-semantic-color-text-default-base); /** The page the user is on, paired with heavier weight. */
-  --ds-component-breadcrumb-separator-color: var(--ds-semantic-color-border-default-hover); /** Muted stone divider that still clears 3:1 contrast against the page. */
+  --ds-component-breadcrumb-text-current: var(--ds-semantic-color-text-default-base);
+  --ds-component-breadcrumb-separator-color: var(--ds-semantic-color-border-default-hover);
   --ds-component-breadcrumb-underline-thickness: var(--ds-semantic-border-width-default);
   --ds-component-breadcrumb-underline-offset: var(--ds-semantic-spacing-inset-xs);
-  --ds-component-breadcrumb-shape-radii: var(--ds-semantic-radii-interactive-sm); /** Rounds the focus ring around each breadcrumb link. */
+  --ds-component-breadcrumb-shape-radii: var(--ds-semantic-radii-interactive-sm);
   --ds-component-breadcrumb-motion-duration: var(--ds-semantic-motion-duration-fast);
   --ds-component-breadcrumb-motion-easing: var(--ds-semantic-motion-easing-standard);
   --ds-component-breadcrumb-gap: var(--ds-semantic-spacing-gap-xs);
   --ds-component-breadcrumb-padding-x: var(--ds-semantic-spacing-inset-xs);
-  --ds-component-breadcrumb-min-target: var(--ds-semantic-size-target-min); /** Keeps standalone breadcrumb links at or above the 24px target height of WCAG 2.5.8. */
+  --ds-component-breadcrumb-min-target: var(--ds-semantic-size-target-min);
   --ds-component-breadcrumb-size-sm-letter-spacing: var(--ds-semantic-typography-caption-md-letter-spacing);
   --ds-component-breadcrumb-size-sm-current-letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
   --ds-component-breadcrumb-size-sm-separator-size: var(--ds-semantic-size-icon-xs);
@@ -819,7 +819,7 @@
   --ds-component-card-shadow-raised: var(--ds-semantic-shadow-card-base);
   --ds-component-card-shadow-hover: var(--ds-semantic-shadow-card-hover);
   --ds-component-card-media-radii: var(--ds-semantic-radii-surface-md);
-  --ds-component-card-media-background: var(--ds-semantic-color-background-default-hover); /** Shown while the image loads or when it has transparent areas. */
+  --ds-component-card-media-background: var(--ds-semantic-color-background-default-hover);
   --ds-component-card-motion-duration: var(--ds-semantic-motion-duration-fast);
   --ds-component-card-motion-easing: var(--ds-semantic-motion-easing-standard);
   --ds-component-card-padding-sm: var(--ds-semantic-spacing-inset-md);
@@ -861,7 +861,7 @@
   --ds-component-checkbox-size-lg-gap: var(--ds-semantic-spacing-gap-md);
   --ds-component-chip-shape-radii: var(--ds-semantic-radii-interactive-full);
   --ds-component-chip-shape-border-width: var(--ds-semantic-border-width-default);
-  --ds-component-chip-shape-selected-edge: var(--ds-semantic-border-width-selected); /** Total edge of a selected chip. The border stays 1px and an inset shadow adds the rest, so selecting never shifts the layout. */
+  --ds-component-chip-shape-selected-edge: var(--ds-semantic-border-width-selected);
   --ds-component-chip-background-default: var(--ds-semantic-color-background-default-base);
   --ds-component-chip-background-hover: var(--ds-semantic-color-background-default-hover);
   --ds-component-chip-background-active: var(--ds-semantic-color-background-default-active);
@@ -888,13 +888,13 @@
   --ds-component-dialog-shape-radii: var(--ds-semantic-radii-container-lg);
   --ds-component-dialog-shape-border-width: var(--ds-semantic-border-width-default);
   --ds-component-dialog-background: var(--ds-semantic-color-background-default-base);
-  --ds-component-dialog-border: var(--ds-semantic-color-border-default-base); /** The dialog sits on the scrim, so its edge is the same quiet line as a Card, not the dark edge of a control. */
+  --ds-component-dialog-border: var(--ds-semantic-color-border-default-base);
   --ds-component-dialog-shadow: var(--ds-semantic-shadow-overlay);
   --ds-component-dialog-title-text: var(--ds-semantic-color-text-default-base);
   --ds-component-dialog-description-text: var(--ds-semantic-color-text-subtle-base);
   --ds-component-dialog-footer-border: var(--ds-semantic-color-border-default-base);
-  --ds-component-dialog-close-size: var(--ds-semantic-size-control-sm); /** The icon-only Close button: the same 40px square as a small Button, so it clears the 24px target minimum. */
-  --ds-component-dialog-spacing-margin: var(--ds-semantic-spacing-inset-lg); /** Gap between the dialog and the viewport edge, measured with the dialog's own padding so the two always match. */
+  --ds-component-dialog-close-size: var(--ds-semantic-size-control-sm);
+  --ds-component-dialog-spacing-margin: var(--ds-semantic-spacing-inset-lg);
   --ds-component-dialog-spacing-margin-narrow: var(--ds-semantic-spacing-inset-md);
   --ds-component-dialog-spacing-padding: var(--ds-semantic-spacing-inset-lg);
   --ds-component-dialog-spacing-padding-narrow: var(--ds-semantic-spacing-inset-md);
@@ -912,7 +912,7 @@
   --ds-component-empty-state-icon-size: var(--ds-semantic-size-icon-lg);
   --ds-component-empty-state-title-text: var(--ds-semantic-color-text-default-base);
   --ds-component-empty-state-description-text: var(--ds-semantic-color-text-subtle-base);
-  --ds-component-empty-state-description-max-width: var(--ds-semantic-size-prose); /** Keeps the description to a comfortable line length. */
+  --ds-component-empty-state-description-max-width: var(--ds-semantic-size-prose);
   --ds-component-empty-state-gap: var(--ds-semantic-spacing-gap-lg);
   --ds-component-empty-state-actions-gap: var(--ds-semantic-spacing-gap-sm);
   --ds-component-empty-state-padding: var(--ds-semantic-spacing-section-sm);
@@ -976,20 +976,20 @@
   --ds-component-text-field-error-icon-size: var(--ds-semantic-size-icon-sm);
   --ds-component-link-text-inline-default: var(--ds-semantic-color-text-brand-base);
   --ds-component-link-text-inline-hover: var(--ds-semantic-color-text-brand-hover);
-  --ds-component-link-text-standalone-default: var(--ds-semantic-color-text-default-base); /** Dark at rest, like the text around it: the context says it is a link. */
-  --ds-component-link-text-standalone-hover: var(--ds-semantic-color-text-brand-base); /** Turns to the brand colour of the underline. */
+  --ds-component-link-text-standalone-default: var(--ds-semantic-color-text-default-base);
+  --ds-component-link-text-standalone-hover: var(--ds-semantic-color-text-brand-base);
   --ds-component-link-text-standalone-current: var(--ds-semantic-color-text-brand-base);
-  --ds-component-link-underline-rest-width: var(--ds-semantic-border-width-default); /** Inline links: the resting underline that tells a link apart from the text around it. */
-  --ds-component-link-underline-active-width: var(--ds-semantic-border-width-selected); /** The underline of a hovered link and of the current page: it marks a selection, like an active tab. */
+  --ds-component-link-underline-rest-width: var(--ds-semantic-border-width-default);
+  --ds-component-link-underline-active-width: var(--ds-semantic-border-width-selected);
   --ds-component-link-underline-offset: var(--ds-semantic-spacing-inset-xs);
-  --ds-component-link-shape-radii: var(--ds-semantic-radii-interactive-sm); /** Rounds the focus ring around the link text. */
+  --ds-component-link-shape-radii: var(--ds-semantic-radii-interactive-sm);
   --ds-component-link-motion-duration: var(--ds-semantic-motion-duration-relaxed);
   --ds-component-link-motion-easing: var(--ds-semantic-motion-easing-move);
   --ds-component-link-size-sm-letter-spacing: var(--ds-semantic-typography-label-sm-letter-spacing);
   --ds-component-link-size-md-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
   --ds-component-link-size-lg-letter-spacing: var(--ds-semantic-typography-label-lg-letter-spacing);
   --ds-component-pagination-text-default: var(--ds-semantic-color-text-default-base);
-  --ds-component-pagination-text-current: var(--ds-semantic-color-text-inverse); /** On the brand fill of the current page. */
+  --ds-component-pagination-text-current: var(--ds-semantic-color-text-inverse);
   --ds-component-pagination-text-ellipsis: var(--ds-semantic-color-text-subtle-base);
   --ds-component-pagination-background-hover: var(--ds-semantic-color-background-default-hover);
   --ds-component-pagination-background-active: var(--ds-semantic-color-background-default-active);
@@ -1043,8 +1043,8 @@
   --ds-component-radio-group-size-lg-gap: var(--ds-semantic-spacing-gap-md);
   --ds-component-search-field-label-text: var(--ds-semantic-color-text-default-base);
   --ds-component-search-field-hint-text: var(--ds-semantic-color-text-subtle-base);
-  --ds-component-search-field-gap: var(--ds-semantic-spacing-gap-sm); /** Between the label, the field row and the hint. */
-  --ds-component-search-field-row-gap: var(--ds-semantic-spacing-gap-sm); /** Between the field and the Search button. */
+  --ds-component-search-field-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-search-field-row-gap: var(--ds-semantic-spacing-gap-sm);
   --ds-component-search-field-error-text: var(--ds-semantic-color-text-utility-error-base);
   --ds-component-search-field-error-gap: var(--ds-semantic-spacing-gap-xs);
   --ds-component-search-field-error-icon-size: var(--ds-semantic-size-icon-sm);
@@ -1107,12 +1107,12 @@
   --ds-component-select-field-error-gap: var(--ds-semantic-spacing-gap-xs);
   --ds-component-select-field-error-icon-size: var(--ds-semantic-size-icon-sm);
   --ds-component-skeleton-background-default: var(--ds-semantic-color-background-default-active);
-  --ds-component-skeleton-background-highlight: var(--ds-semantic-color-background-default-hover); /** The lighter step of the pulse. */
+  --ds-component-skeleton-background-highlight: var(--ds-semantic-color-background-default-hover);
   --ds-component-skeleton-shape-radii-text: var(--ds-semantic-radii-surface-sm);
   --ds-component-skeleton-shape-radii-rectangle: var(--ds-semantic-radii-surface-md);
   --ds-component-skeleton-shape-radii-circle: var(--ds-semantic-radii-surface-full);
-  --ds-component-skeleton-shape-circle-size: var(--ds-semantic-size-thumbnail-sm); /** The size of a circle without a width, such as a small avatar. */
-  --ds-component-skeleton-motion-duration: var(--ds-semantic-motion-duration-deliberate); /** One half of the pulse; the loop runs it forth and back. */
+  --ds-component-skeleton-shape-circle-size: var(--ds-semantic-size-thumbnail-sm);
+  --ds-component-skeleton-motion-duration: var(--ds-semantic-motion-duration-deliberate);
   --ds-component-skeleton-motion-easing: var(--ds-semantic-motion-easing-standard);
   --ds-component-switch-shape-radii: var(--ds-semantic-radii-interactive-full);
   --ds-component-switch-shape-border-width: var(--ds-semantic-border-width-interactive);
@@ -1128,10 +1128,10 @@
   --ds-component-switch-track-edge-hover: var(--ds-semantic-color-border-default-active);
   --ds-component-switch-track-edge-invalid: var(--ds-semantic-color-border-utility-error-base);
   --ds-component-switch-track-edge-disabled: var(--ds-semantic-color-border-disabled);
-  --ds-component-switch-track-gap: var(--ds-semantic-spacing-gap-sm); /** Space between the track and the label, so the label can be clicked as part of the control. */
-  --ds-component-switch-thumb-unchecked: var(--ds-semantic-color-text-subtle-base); /** The knob on the unchecked track: a neutral dark on a white track, so the state never rests on the track colour alone. */
+  --ds-component-switch-track-gap: var(--ds-semantic-spacing-gap-sm);
+  --ds-component-switch-thumb-unchecked: var(--ds-semantic-color-text-subtle-base);
   --ds-component-switch-thumb-checked: var(--ds-semantic-color-text-inverse);
-  --ds-component-switch-thumb-disabled: var(--ds-semantic-color-text-subtle-disabled); /** Secondary text that stays readable on a disabled surface. */
+  --ds-component-switch-thumb-disabled: var(--ds-semantic-color-text-subtle-disabled);
   --ds-component-switch-label-text: var(--ds-semantic-color-text-default-base);
   --ds-component-switch-label-required-marker: var(--ds-semantic-color-text-brand-base);
   --ds-component-switch-label-disabled: var(--ds-semantic-color-text-disabled);
@@ -1168,21 +1168,21 @@
   --ds-component-textarea-text-default: var(--ds-semantic-color-text-default-base);
   --ds-component-textarea-text-placeholder: var(--ds-semantic-color-text-placeholder);
   --ds-component-textarea-text-disabled: var(--ds-semantic-color-text-disabled);
-  --ds-component-textarea-size-sm-min-height: var(--ds-semantic-size-control-sm); /** Even with rows="1", the field is as tall as the Button beside it. */
+  --ds-component-textarea-size-sm-min-height: var(--ds-semantic-size-control-sm);
   --ds-component-textarea-size-sm-padding-x: var(--ds-semantic-spacing-control-sm);
   --ds-component-textarea-size-sm-font-size: var(--ds-semantic-typography-control-md-font-size);
   --ds-component-textarea-size-sm-font-weight: var(--ds-semantic-typography-control-md-font-weight);
   --ds-component-textarea-size-sm-font-family: var(--ds-semantic-typography-control-md-font-family);
   --ds-component-textarea-size-sm-letter-spacing: var(--ds-semantic-typography-control-md-letter-spacing);
   --ds-component-textarea-size-sm-line-height: var(--ds-semantic-typography-control-md-line-height);
-  --ds-component-textarea-size-md-min-height: var(--ds-semantic-size-control-md); /** Even with rows="1", the field is as tall as the Button beside it. */
+  --ds-component-textarea-size-md-min-height: var(--ds-semantic-size-control-md);
   --ds-component-textarea-size-md-padding-x: var(--ds-semantic-spacing-control-md);
   --ds-component-textarea-size-md-font-size: var(--ds-semantic-typography-control-md-font-size);
   --ds-component-textarea-size-md-font-weight: var(--ds-semantic-typography-control-md-font-weight);
   --ds-component-textarea-size-md-font-family: var(--ds-semantic-typography-control-md-font-family);
   --ds-component-textarea-size-md-letter-spacing: var(--ds-semantic-typography-control-md-letter-spacing);
   --ds-component-textarea-size-md-line-height: var(--ds-semantic-typography-control-md-line-height);
-  --ds-component-textarea-size-lg-min-height: var(--ds-semantic-size-control-lg); /** Even with rows="1", the field is as tall as the Button beside it. */
+  --ds-component-textarea-size-lg-min-height: var(--ds-semantic-size-control-lg);
   --ds-component-textarea-size-lg-padding-x: var(--ds-semantic-spacing-control-lg);
   --ds-component-textarea-size-lg-font-size: var(--ds-semantic-typography-control-lg-font-size);
   --ds-component-textarea-size-lg-font-weight: var(--ds-semantic-typography-control-lg-font-weight);
@@ -1199,9 +1199,9 @@
   --ds-component-textarea-field-error-icon-size: var(--ds-semantic-size-icon-sm);
   --ds-component-toast-shape-radii: var(--ds-semantic-radii-container-md);
   --ds-component-toast-shape-border-width: var(--ds-semantic-border-width-default);
-  --ds-component-toast-shadow: var(--ds-semantic-shadow-floating); /** The same lift as a floating menu: the toast is above the page, below the tooltip that may explain a button inside it. */
+  --ds-component-toast-shadow: var(--ds-semantic-shadow-floating);
   --ds-component-toast-icon-size: var(--ds-semantic-size-icon-md);
-  --ds-component-toast-close-size: var(--ds-semantic-size-control-sm); /** The icon-only Close button: the same 40px square as a small Button, so it clears the 24px target minimum. */
+  --ds-component-toast-close-size: var(--ds-semantic-size-control-sm);
   --ds-component-toast-size-min-width: var(--ds-semantic-size-toast-min-width);
   --ds-component-toast-size-max-width: var(--ds-semantic-size-toast-max-width);
   --ds-component-toast-spacing-padding: var(--ds-semantic-spacing-inset-md);
@@ -1209,15 +1209,15 @@
   --ds-component-toast-spacing-text-gap: var(--ds-semantic-spacing-gap-xs);
   --ds-component-toast-spacing-action-gap: var(--ds-semantic-spacing-gap-sm);
   --ds-component-toast-spacing-stack-gap: var(--ds-semantic-spacing-gap-sm);
-  --ds-component-toast-spacing-screen-margin: var(--ds-semantic-spacing-inset-lg); /** How far the stack sits from the edge of the screen, matched with the safe-area insets so the home indicator never covers a card. */
+  --ds-component-toast-spacing-screen-margin: var(--ds-semantic-spacing-inset-lg);
   --ds-component-toast-spacing-screen-margin-narrow: var(--ds-semantic-spacing-inset-md);
-  --ds-component-toast-motion-duration: var(--ds-semantic-motion-duration-slow); /** The card crosses its own width to reach the screen edge, so it takes the time of a large surface, not of a small element. */
+  --ds-component-toast-motion-duration: var(--ds-semantic-motion-duration-slow);
   --ds-component-toast-motion-easing-enter: var(--ds-semantic-motion-easing-enter);
   --ds-component-toast-motion-easing-exit: var(--ds-semantic-motion-easing-exit);
-  --ds-component-toast-information-background: var(--ds-semantic-color-background-utility-information-soft); /** The four variants are the Alert's soft appearance: same tier-2 colours, so the same message looks the same whether it sits in the page or floats over it. */
+  --ds-component-toast-information-background: var(--ds-semantic-color-background-utility-information-soft);
   --ds-component-toast-information-text: var(--ds-semantic-color-text-utility-information-base);
   --ds-component-toast-information-border: var(--ds-semantic-color-border-utility-information-active);
-  --ds-component-toast-information-focus-ring: var(--ds-semantic-color-border-utility-information-active); /** The card's own edge colour, so a focused card, its action and its Close ring in the colour of the message instead of the brand green. */
+  --ds-component-toast-information-focus-ring: var(--ds-semantic-color-border-utility-information-active);
   --ds-component-toast-success-background: var(--ds-semantic-color-background-utility-success-soft);
   --ds-component-toast-success-text: var(--ds-semantic-color-text-utility-success-base);
   --ds-component-toast-success-border: var(--ds-semantic-color-border-utility-success-active);
@@ -1234,7 +1234,7 @@
   --ds-component-tooltip-text: var(--ds-semantic-color-text-inverse);
   --ds-component-tooltip-shadow: var(--ds-semantic-shadow-floating);
   --ds-component-tooltip-shape-radii: var(--ds-semantic-radii-surface-md);
-  --ds-component-tooltip-shape-border-width: var(--ds-semantic-border-width-default); /** A transparent outline that forced colors paint as the bubble's edge. */
+  --ds-component-tooltip-shape-border-width: var(--ds-semantic-border-width-default);
   --ds-component-tooltip-max-width: var(--ds-semantic-size-tooltip-max-width);
   --ds-component-tooltip-spacing-padding: var(--ds-semantic-spacing-inset-sm);
   --ds-component-tooltip-motion-duration: var(--ds-semantic-motion-duration-moderate);

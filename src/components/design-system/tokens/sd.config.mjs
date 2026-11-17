@@ -93,6 +93,9 @@ const sd = new StyleDictionary({
           format: 'css/variables',
           options: {
             outputReferences: true,
+            // Every token's comment already lives in tokens.docs.json, where the
+            // Foundation pages read it: the stylesheet only carries the header.
+            formatting: { commentStyle: 'none' },
           },
         },
       ],
