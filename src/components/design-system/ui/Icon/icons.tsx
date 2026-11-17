@@ -17,8 +17,8 @@ import {
   Download,
   Eye,
   EyeOff,
-  Filter,
-  Home,
+  Funnel,
+  House,
   ImageIcon,
   Info,
   Mail,
@@ -36,7 +36,7 @@ import {
   Sparkles,
   Star,
   Store,
-  Trash2,
+  Trash,
   TriangleAlert,
   X,
 } from 'lucide-react';
@@ -55,6 +55,13 @@ import type { ReactElement } from 'react';
  * `usedIn` says who draws the icon. An icon that only stories use is
  * listed as such: it is part of the set people may pick for an `icon`
  * prop, but no component draws it by itself.
+ *
+ * `usedIn` is written by hand: when a component starts or stops drawing
+ * an icon, update its line here in the same change.
+ *
+ * Import Lucide's current names (`House`, `Funnel`, `Trash`), never the
+ * old aliases (`Home`, `Filter`, `Trash2`): Lucide drops aliases in a
+ * major release. The keys below are ours and stay stable either way.
  *
  * `focusable="false"` keeps an old Blink from putting the SVG itself
  * in the tab order behind the control that owns it.
@@ -85,7 +92,10 @@ export const DS_ICONS = {
     icon: <Check focusable="false" />,
     usedIn: 'Checkbox, Chip, Select, and the docs copy button',
   },
-  'chevron-down': { icon: <ChevronDown focusable="false" />, usedIn: 'Select trigger' },
+  'chevron-down': {
+    icon: <ChevronDown focusable="false" />,
+    usedIn: 'Select trigger, Select list scroll down',
+  },
   'chevron-left': { icon: <ChevronLeft focusable="false" />, usedIn: 'Pagination previous step' },
   'chevron-right': {
     icon: <ChevronRight focusable="false" />,
@@ -94,7 +104,8 @@ export const DS_ICONS = {
   'chevron-up': { icon: <ChevronUp focusable="false" />, usedIn: 'Select list, scroll up' },
   'circle-alert': {
     icon: <CircleAlert focusable="false" />,
-    usedIn: 'The error variant of Alert and Toast, and every field error',
+    usedIn:
+      'The error variant of Alert and Toast, every field error, the docs copy button when it fails',
   },
   'circle-check': {
     icon: <CircleCheck focusable="false" />,
@@ -106,8 +117,8 @@ export const DS_ICONS = {
   download: { icon: <Download focusable="false" />, usedIn: 'Button stories (example)' },
   eye: { icon: <Eye focusable="false" />, usedIn: 'Input stories (show a password)' },
   'eye-off': { icon: <EyeOff focusable="false" />, usedIn: 'Input stories (hide a password)' },
-  filter: { icon: <Filter focusable="false" />, usedIn: 'Tooltip stories (toolbar)' },
-  home: { icon: <Home focusable="false" />, usedIn: 'Breadcrumb home step' },
+  filter: { icon: <Funnel focusable="false" />, usedIn: 'Tooltip stories (toolbar)' },
+  home: { icon: <House focusable="false" />, usedIn: 'Breadcrumb home step' },
   image: { icon: <ImageIcon focusable="false" />, usedIn: 'Foundation Size stories (example)' },
   info: {
     icon: <Info focusable="false" />,
@@ -137,7 +148,7 @@ export const DS_ICONS = {
   sparkles: { icon: <Sparkles focusable="false" />, usedIn: 'Badge stories (example)' },
   star: { icon: <Star focusable="false" />, usedIn: 'Button stories (example)' },
   store: { icon: <Store focusable="false" />, usedIn: 'Select and SelectField stories (example)' },
-  'trash-2': { icon: <Trash2 focusable="false" />, usedIn: 'Button stories (destructive example)' },
+  'trash-2': { icon: <Trash focusable="false" />, usedIn: 'Button stories (destructive example)' },
   'triangle-alert': {
     icon: <TriangleAlert focusable="false" />,
     usedIn: 'The warning variant of Alert and Toast',

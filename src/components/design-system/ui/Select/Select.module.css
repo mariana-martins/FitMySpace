@@ -163,8 +163,9 @@
 }
 
 .scroll-button {
-  display: flex;
   --icon-size: var(--select-icon-size);
+
+  display: flex;
   align-items: center;
   justify-content: center;
   block-size: var(--select-icon-size);

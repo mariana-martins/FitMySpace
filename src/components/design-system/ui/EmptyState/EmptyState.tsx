@@ -20,7 +20,7 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
 
     return (
       <div ref={ref} className={clsx(styles.root, className)} {...rest}>
-        <span className={styles.icon} aria-hidden="true">
+        <span className={styles.icon}>
           <Icon className={styles['icon-glyph']}>{DS_ICONS[icon ?? 'search-x'].icon}</Icon>
         </span>
         <Heading level={headingLevel} size="sm" className={styles.title}>
