@@ -1005,6 +1005,7 @@
   {"name":"--ds-component-pagination-text-default","path":["component","pagination","text","default"],"value":"#1c1917","comment":null},
   {"name":"--ds-component-pagination-text-current","path":["component","pagination","text","current"],"value":"#ffffff","comment":"On the brand fill of the current page."},
   {"name":"--ds-component-pagination-text-ellipsis","path":["component","pagination","text","ellipsis"],"value":"#44403c","comment":null},
+  {"name":"--ds-component-pagination-text-disabled","path":["component","pagination","text","disabled"],"value":"#a8a29e","comment":"Previous on the first page, Next on the last: shown, but not a link. Inactive controls are exempt from the contrast minimum (WCAG 1.4.3)."},
   {"name":"--ds-component-pagination-background-hover","path":["component","pagination","background","hover"],"value":"#f5f5f4","comment":null},
   {"name":"--ds-component-pagination-background-active","path":["component","pagination","background","active"],"value":"#e7e5e4","comment":null},
   {"name":"--ds-component-pagination-background-current","path":["component","pagination","background","current"],"value":"#335f3f","comment":null},

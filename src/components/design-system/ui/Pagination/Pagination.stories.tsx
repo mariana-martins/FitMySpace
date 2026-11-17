@@ -93,12 +93,12 @@ const meta = {
           '- **Move focus to the results:** After a page change, move focus to the top of the results (e.g. their heading), so keyboard and screen reader users start at the new content.\n\n' +
           '### Key Features\n' +
           '- **Clear names** — page links read "Page 3"; Previous and Next read "Previous page" and "Next page"; an ellipsis reads "More pages".\n' +
-          '- **Ends of the list** — on the first or last page, Previous or Next is hidden but keeps its space, as GOV.UK does, so nothing leads nowhere and the page numbers stay put.\n' +
+          '- **Ends of the list** — on the first or last page, Previous or Next stays in place in grey and is not a link, so the row lines up with the text above it and the page numbers stay put.\n' +
           '- **2 sizes** — `sm` (32px) and `md` (40px, default), the Chip heights, with tabular numbers so the entries keep their width.\n' +
           '- **Server-rendered** — no client hooks; `asChild` uses Radix `Slot`.\n' +
           '- **High contrast** — the current page keeps an outline in Windows High Contrast, where its fill disappears.\n\n' +
           '### Patterns\n' +
-          '- [Search Results](?path=/docs/design-system-patterns-search-results--docs) — page links that keep the query, with focus moved to the new range.',
+          '- [Paginated Results](?path=/docs/design-system-patterns-paginated-results--docs) — the summary line, the products and the page links, with the focus moved to the new range.',
       },
     },
   },
@@ -210,7 +210,7 @@ export const LongRanges: Story = {
     docs: {
       description: {
         story:
-          'Twenty pages on the first, a middle and the last page. `getPaginationRange` keeps 7 entries between Previous and Next, so the controls never move under the pointer; an ellipsis never hides a single page. At either end, Previous or Next is hidden but keeps its space.',
+          'Twenty pages on the first, a middle and the last page. `getPaginationRange` keeps 7 entries between Previous and Next, so the controls never move under the pointer; an ellipsis never hides a single page. At either end, Previous or Next is greyed out and leads nowhere.',
       },
       source: {
         code: `getPaginationRange({ page: 10, pageCount: 20 });\n// [1, 'start-ellipsis', 9, 10, 11, 'end-ellipsis', 20]`,
@@ -220,9 +220,10 @@ export const LongRanges: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const firstPage = canvas.getByRole('navigation', { name: 'First page of 20' });
-    await expect(
-      within(firstPage).queryByRole('link', { name: 'Previous page' }),
-    ).not.toBeInTheDocument();
+    await expect(within(firstPage).getByRole('link', { name: 'Previous page' })).toHaveAttribute(
+      'aria-disabled',
+      'true',
+    );
     const middlePage = canvas.getByRole('navigation', { name: 'Middle page of 20' });
     await expect(within(middlePage).getAllByText('More pages')).toHaveLength(2);
   },
@@ -264,7 +265,7 @@ export const PseudoStates: Story = {
       description: {
         story:
           'Demonstrates the states with the `storybook-addon-pseudo-states` plugin, from left to right:\n\n' +
-          '- **Hidden Previous** — on the first page, an empty space where Previous would be.\n' +
+          '- **Disabled Previous** — on the first page, Previous in grey, announced as unavailable and out of the tab order.\n' +
           '- **Current page (1)** — a sage fill with white text, set by `aria-current="page"`.\n' +
           '- **Default (2)** — plain text, no box.\n' +
           '- **Hover (3)** — a pale neutral box appears.\n' +

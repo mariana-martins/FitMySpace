@@ -11,6 +11,10 @@
         },
         "ellipsis": {
           "value": "{semantic.colour.text.subtle.base}"
+        },
+        "disabled": {
+          "value": "{semantic.colour.text.disabled}",
+          "comment": "Previous on the first page, Next on the last: shown, but not a link. Inactive controls are exempt from the contrast minimum (WCAG 1.4.3)."
         }
       },
       "background": {

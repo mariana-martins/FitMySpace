@@ -995,6 +995,7 @@
   --ds-component-pagination-text-default: var(--ds-semantic-colour-text-default-base);
   --ds-component-pagination-text-current: var(--ds-semantic-colour-text-inverse);
   --ds-component-pagination-text-ellipsis: var(--ds-semantic-colour-text-subtle-base);
+  --ds-component-pagination-text-disabled: var(--ds-semantic-colour-text-disabled);
   --ds-component-pagination-background-hover: var(--ds-semantic-colour-background-default-hover);
   --ds-component-pagination-background-active: var(--ds-semantic-colour-background-default-active);
   --ds-component-pagination-background-current: var(--ds-semantic-colour-background-brand-base);

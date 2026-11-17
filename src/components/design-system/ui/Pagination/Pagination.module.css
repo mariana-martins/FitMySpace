@@ -8,8 +8,9 @@
  *   .item      — each <li>
  *   .control   — shared box of every entry: page, direction, ellipsis
  *   .page      — a page link; [aria-current='page'] is the current one
- *   .direction — Previous / Next; [data-disabled] at either end keeps its
- *                space but is invisible, so the page numbers never move
+ *   .direction — Previous / Next; [data-disabled] at either end stays in
+ *                place in the disabled colour, so the row lines up with the
+ *                text above it and the page numbers never move
  *   .ellipsis  — a run of hidden pages
  *
  * Size classes: .size-{sm|md}
@@ -74,7 +75,8 @@ a.control:focus-visible {
 }
 
 .direction[data-disabled] {
-  visibility: hidden;
+  color: var(--ds-component-pagination-text-disabled);
+  cursor: default;
 }
 
 .icon {
@@ -117,6 +119,10 @@ a.control:focus-visible {
 
 /* Windows High Contrast drops the fill, so the current page keeps an outline. */
 @media (forced-colors: active) {
+  .direction[data-disabled] {
+    color: GrayText;
+  }
+
   .page[aria-current='page'] {
     outline: var(--ds-semantic-border-width-selected) solid CanvasText;
     outline-offset: calc(var(--ds-semantic-border-width-selected) * -1);
