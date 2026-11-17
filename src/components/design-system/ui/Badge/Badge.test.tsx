@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
+import { UTILITY_VARIANTS } from '../../utils';
 import { createRef } from 'react';
 import { Badge } from './';
 
@@ -7,14 +8,7 @@ import type { BadgeAppearance, BadgeVariant } from './';
 
 expect.extend(toHaveNoViolations);
 
-const VARIANTS: BadgeVariant[] = [
-  'primary',
-  'secondary',
-  'error',
-  'success',
-  'warning',
-  'information',
-];
+const VARIANTS: BadgeVariant[] = ['primary', 'secondary', ...UTILITY_VARIANTS];
 const APPEARANCES: BadgeAppearance[] = ['fill', 'soft'];
 
 /* ===============================================================

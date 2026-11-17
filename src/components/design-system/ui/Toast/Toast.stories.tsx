@@ -9,6 +9,7 @@ import {
 } from './';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
+import { UTILITY_VARIANTS } from '../../utils';
 import { Button } from '../Button';
 import { useState } from 'react';
 
@@ -96,7 +97,7 @@ export const Default: Story = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['information', 'success', 'warning', 'error'],
+      options: [...UTILITY_VARIANTS],
       description: 'The four utility messages, in the same colours as `Alert`.',
     },
     type: {

@@ -1,5 +1,6 @@
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { UTILITY_VARIANTS } from '../../utils';
 import { Button } from '../Button';
 import { useState } from 'react';
 import { Alert } from './';
@@ -78,7 +79,7 @@ export const Default: Story = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['information', 'success', 'warning', 'error'],
+      options: [...UTILITY_VARIANTS],
       description: 'Utility colour and default icon.',
     },
     appearance: {
@@ -134,7 +135,7 @@ export const Default: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '36rem' }}>
-      {(['information', 'success', 'warning', 'error'] as const).map((variant) => (
+      {UTILITY_VARIANTS.map((variant) => (
         <Alert key={variant} variant={variant} title={EXAMPLES[variant].title}>
           {EXAMPLES[variant].message}
         </Alert>
@@ -170,7 +171,7 @@ export const SoftAndFill: Story = {
         gap: '1rem',
       }}
     >
-      {(['information', 'success', 'warning', 'error'] as const).map((variant) => (
+      {UTILITY_VARIANTS.map((variant) => (
         <div key={variant} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <Alert variant={variant} appearance="soft">
             Soft, for a message inside a page.

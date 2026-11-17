@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
+import { UTILITY_VARIANTS } from '../../utils';
 import { createRef } from 'react';
 import { Alert } from './';
 
@@ -164,13 +165,10 @@ describe('Alert — variants and appearances', () => {
     expect(container.firstChild).toHaveClass('variant-information', 'appearance-soft');
   });
 
-  it.each(['information', 'success', 'warning', 'error'] as const)(
-    'applies variant-%s class',
-    (variant) => {
-      const { container } = render(<Alert variant={variant}>Saved.</Alert>);
-      expect(container.firstChild).toHaveClass(`variant-${variant}`);
-    },
-  );
+  it.each(UTILITY_VARIANTS)('applies variant-%s class', (variant) => {
+    const { container } = render(<Alert variant={variant}>Saved.</Alert>);
+    expect(container.firstChild).toHaveClass(`variant-${variant}`);
+  });
 
   it.each(['soft', 'fill'] as const)('applies appearance-%s class', (appearance) => {
     const { container } = render(<Alert appearance={appearance}>Saved.</Alert>);

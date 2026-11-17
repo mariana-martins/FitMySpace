@@ -1,12 +1,13 @@
 import type { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { UtilityVariant } from '../../utils';
 import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Types
  * --------------------------------------------------------------- */
 
-export type ButtonVariant =
-  'primary' | 'secondary' | 'error' | 'success' | 'warning' | 'information';
+/** The brand roles plus the four utility roles that `Alert` and `Toast` use. */
+export type ButtonVariant = 'primary' | 'secondary' | UtilityVariant;
 
 export type ButtonAppearance = 'fill' | 'outline' | 'ghost';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';

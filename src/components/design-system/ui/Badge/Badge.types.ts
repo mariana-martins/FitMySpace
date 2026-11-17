@@ -1,12 +1,13 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { UtilityVariant } from '../../utils';
 import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Types
  * --------------------------------------------------------------- */
 
-export type BadgeVariant =
-  'primary' | 'secondary' | 'error' | 'success' | 'warning' | 'information';
+/** The brand roles plus the four utility roles that `Alert` and `Toast` use. */
+export type BadgeVariant = 'primary' | 'secondary' | UtilityVariant;
 export type BadgeAppearance = 'fill' | 'soft';
 export type BadgeShape = 'pill' | 'rounded';
 export type BadgeSize = 'sm' | 'md';

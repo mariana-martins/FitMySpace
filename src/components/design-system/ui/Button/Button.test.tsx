@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
+import { UTILITY_VARIANTS } from '../../utils';
 import { createRef } from 'react';
 import { Button } from './';
 
@@ -89,7 +90,7 @@ describe('Button — rendering', () => {
  * =============================================================== */
 
 describe('Button — variants', () => {
-  const variants = ['primary', 'secondary', 'error', 'success', 'warning', 'information'] as const;
+  const variants = ['primary', 'secondary', ...UTILITY_VARIANTS] as const;
 
   it.each(variants)('applies fill-%s class for variant="%s" appearance="fill"', (variant) => {
     const { container } = render(

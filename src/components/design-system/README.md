@@ -151,7 +151,7 @@ design-system/
     ├── index.ts
     ├── joinIds.ts   # Joins ids for aria-describedby / aria-labelledby
     ├── joinIds.test.ts
-    ├── utilityVariants.ts   # Icon and screen-reader label of the four utility variants (Alert, Toast)
+    ├── utilityVariants.ts   # The four utility variants, their icons and labels (Alert, Toast, field errors)
     └── utilityVariants.test.ts
 ```
 

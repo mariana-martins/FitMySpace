@@ -1,6 +1,7 @@
 import { expect, fn, userEvent, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Caption, Label } from '../Typography';
+import { UTILITY_VARIANTS } from '../../utils';
 import { Button } from './';
 
 const meta = {
@@ -58,7 +59,7 @@ export const Default: Story = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'error', 'success', 'warning', 'information'],
+      options: ['primary', 'secondary', ...UTILITY_VARIANTS],
       description: 'The colour intent of the button.',
     },
     appearance: {
@@ -398,14 +399,7 @@ export const PseudoStates: Story = {
  * All variants — Pseudo States
  * --------------------------------------------------------------- */
 
-const PSEUDO_STATE_VARIANTS = [
-  'primary',
-  'secondary',
-  'error',
-  'success',
-  'warning',
-  'information',
-] as const;
+const PSEUDO_STATE_VARIANTS = ['primary', 'secondary', ...UTILITY_VARIANTS] as const;
 
 const PSEUDO_STATE_APPEARANCES = ['fill', 'outline', 'ghost'] as const;
 

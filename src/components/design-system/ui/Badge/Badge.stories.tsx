@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
+import { UTILITY_VARIANTS } from '../../utils';
 import { Heading, Text } from '../Typography';
 import { Badge } from './';
 
@@ -39,14 +40,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const VARIANTS: BadgeVariant[] = [
-  'primary',
-  'secondary',
-  'error',
-  'success',
-  'warning',
-  'information',
-];
+const VARIANTS: BadgeVariant[] = ['primary', 'secondary', ...UTILITY_VARIANTS];
 const APPEARANCES: BadgeAppearance[] = ['soft', 'fill'];
 
 /* ---------------------------------------------------------------

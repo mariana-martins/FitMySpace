@@ -1,6 +1,8 @@
 import { readdirSync, readFileSync } from 'fs';
 import path from 'path';
 
+import { UTILITY_VARIANTS } from '../utils';
+
 /* ---------------------------------------------------------------
  * Token contrast tests (WCAG 2.2 AA)
  *
@@ -110,7 +112,7 @@ describe('Focus tokens — contrast', () => {
  * BUTTON
  * =============================================================== */
 
-const BUTTON_VARIANTS = ['primary', 'secondary', 'error', 'success', 'warning', 'information'];
+const BUTTON_VARIANTS = ['primary', 'secondary', ...UTILITY_VARIANTS];
 const BUTTON_APPEARANCES = ['fill', 'outline', 'ghost'];
 const BUTTON_INTERACTIVE_STATES = ['default', 'hover', 'focus', 'active'];
 
@@ -230,7 +232,7 @@ describe('Checkbox tokens — contrast', () => {
  * BADGE
  * =============================================================== */
 
-const BADGE_VARIANTS = ['primary', 'secondary', 'error', 'success', 'warning', 'information'];
+const BADGE_VARIANTS = ['primary', 'secondary', ...UTILITY_VARIANTS];
 const BADGE_APPEARANCES = ['fill', 'soft'];
 
 const badgeCases = BADGE_VARIANTS.flatMap((variant) =>
@@ -576,7 +578,7 @@ describe('Textarea tokens — contrast', () => {
  * ALERT
  * =============================================================== */
 
-const ALERT_VARIANTS = ['information', 'success', 'warning', 'error'];
+const ALERT_VARIANTS = UTILITY_VARIANTS;
 const ALERT_APPEARANCES = ['soft', 'fill'];
 
 const ALERT_COLOUR_COMBINATIONS = ALERT_VARIANTS.flatMap((variant) =>
@@ -674,7 +676,7 @@ describe('Tooltip tokens — contrast', () => {
  * TOAST
  * =============================================================== */
 
-const TOAST_VARIANTS = ['information', 'success', 'warning', 'error'];
+const TOAST_VARIANTS = UTILITY_VARIANTS;
 
 describe('Toast tokens — contrast', () => {
   it.each(TOAST_VARIANTS)('%s text is readable on its card', (variant) => {
