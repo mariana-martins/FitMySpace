@@ -107,7 +107,13 @@ function StoreOffersRecipe() {
   return (
     <section
       aria-labelledby="offers-heading"
-      style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '36rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '36rem',
+        maxWidth: '100%',
+      }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
         <Heading id="offers-heading" level={2} size="sm" style={{ margin: 0 }}>

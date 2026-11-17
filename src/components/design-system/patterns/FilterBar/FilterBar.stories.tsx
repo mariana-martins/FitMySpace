@@ -342,7 +342,15 @@ function FilterDialogRecipe() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Text as="p" size="sm" role="status" style={{ margin: 0 }}>
           {countProducts(products.length)}

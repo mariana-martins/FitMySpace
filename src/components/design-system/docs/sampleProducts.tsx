@@ -75,6 +75,7 @@ export function SampleProductGrid({ products, headingLevel = 3 }: SampleProductG
     <ul
       style={{
         display: 'grid',
+        width: '100%',
         gridTemplateColumns: 'repeat(auto-fill, minmax(12rem, 1fr))',
         gap: '1.5rem',
         margin: 0,

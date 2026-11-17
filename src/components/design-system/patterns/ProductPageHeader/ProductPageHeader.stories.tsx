@@ -42,7 +42,15 @@ type Story = StoryObj<typeof meta>;
 export const ProductPageHeader: Story = {
   name: 'Product Page Header (A11y)',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.75rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <Breadcrumb>
         <BreadcrumbItem>
           <BreadcrumbLink href="#home" home>

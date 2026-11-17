@@ -167,8 +167,24 @@ function SearchResultsPageRecipe() {
     `?q=${encodeURIComponent(query)}&page=${String(pageNumber)}`;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '60rem' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '36rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '2rem',
+        width: '60rem',
+        maxWidth: '100%',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+          width: '36rem',
+          maxWidth: '100%',
+        }}
+      >
         <Heading level={1} size="lg" style={{ margin: 0 }}>
           Find storage that fits
         </Heading>

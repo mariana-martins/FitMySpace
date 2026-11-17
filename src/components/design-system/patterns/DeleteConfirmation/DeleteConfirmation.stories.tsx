@@ -11,6 +11,8 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Heading, Text } from '../../ui/Typography';
 import { EmptyState } from '../../ui/EmptyState';
+import { List, ListItem } from '../../ui/List';
+import type { IconName } from '../../ui/Icon';
 import { Button } from '../../ui/Button';
 import { useRef, useState } from 'react';
 
@@ -30,7 +32,7 @@ const meta = {
           '- **Deleting something people cannot get back**, or that takes other things with it: a room and the items saved in it.\n' +
           '- **Not for:** something that can be undone in one step (delete at once and offer Undo instead), or clearing a field.\n\n' +
           '### Anatomy\n' +
-          '- A heading and a list; each item has its name and a `Button` (`error`, `ghost`) whose name includes the item ("Delete Bedroom").\n' +
+          '- A heading and a `List`; each `ListItem` has the room\'s icon, its name, how many items it holds, and an outline `error` `Button` at the end whose name includes the room ("Delete Bedroom").\n' +
           '- One `Dialog` for the whole list, opened with the item to delete: `DialogContent` (`size="sm"`, `initialFocus="title"`), a `DialogTitle` that is the whole question, a `DialogDescription` that says what is lost, and the two ways out in `DialogFooter`.\n' +
           '- A status line — `Text` with `role="status"` — that says what was deleted.\n' +
           '- An `EmptyState` once the list is empty.\n\n' +
@@ -49,10 +51,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const ROOMS = [
-  { name: 'Bathroom', items: 4 },
-  { name: 'Bedroom', items: 12 },
-  { name: 'Kitchen', items: 7 },
+const ROOMS: { name: string; items: number; icon: IconName }[] = [
+  { name: 'Bathroom', items: 4, icon: 'bath' },
+  { name: 'Bedroom', items: 12, icon: 'bed' },
+  { name: 'Kitchen', items: 7, icon: 'cooking-pot' },
 ];
 
 function RoomList() {
@@ -92,53 +94,48 @@ function RoomList() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
+    >
       <Heading ref={headingRef} tabIndex={-1} level={2} size="sm" style={{ margin: 0 }}>
         Your rooms
       </Heading>
 
       {rooms.length > 0 ? (
-        <ul
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.5rem',
-            margin: 0,
-            padding: 0,
-            listStyle: 'none',
-          }}
-        >
+        <List aria-label="Your rooms">
           {rooms.map((room) => (
-            <li
+            <ListItem
               key={room.name}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '1rem',
-              }}
+              icon={room.icon}
+              description={`${room.items} saved items`}
+              trailing={
+                <Button
+                  ref={(button) => {
+                    if (button) deleteButtons.current.set(room.name, button);
+                    else deleteButtons.current.delete(room.name);
+                  }}
+                  variant="error"
+                  appearance="outline"
+                  size="sm"
+                  onClick={() => {
+                    setRoomToDelete(room);
+                    setDialogOpen(true);
+                  }}
+                >
+                  Delete<VisuallyHidden> {room.name}</VisuallyHidden>
+                </Button>
+              }
             >
-              <Text as="span" size="md">
-                {room.name} · {room.items} items
-              </Text>
-              <Button
-                ref={(button) => {
-                  if (button) deleteButtons.current.set(room.name, button);
-                  else deleteButtons.current.delete(room.name);
-                }}
-                variant="error"
-                appearance="ghost"
-                size="sm"
-                onClick={() => {
-                  setRoomToDelete(room);
-                  setDialogOpen(true);
-                }}
-              >
-                Delete<VisuallyHidden> {room.name}</VisuallyHidden>
-              </Button>
-            </li>
+              {room.name}
+            </ListItem>
           ))}
-        </ul>
+        </List>
       ) : (
         <EmptyState
           title="No rooms yet"
@@ -197,7 +194,7 @@ export const DeleteConfirmation: Story = {
         code: `<Button
   ref={registerDeleteButton(room.name)}
   variant="error"
-  appearance="ghost"
+  appearance="outline"
   size="sm"
   onClick={() => openConfirmation(room)}
 >

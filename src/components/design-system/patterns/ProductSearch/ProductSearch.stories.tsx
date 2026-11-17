@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import { SearchField } from '../../ui/SearchField';
 import { EmptyState } from '../../ui/EmptyState';
+import { List, ListItem } from '../../ui/List';
 import { Text } from '../../ui/Typography';
 import { Button } from '../../ui/Button';
 import { useRef, useState } from 'react';
@@ -29,7 +30,7 @@ const meta = {
           '### Anatomy\n' +
           '- `SearchField` — the search landmark, its label, the Clear and Search buttons, and the query error.\n' +
           '- A results summary — `Text` with `role="status"`, always on the page.\n' +
-          '- The results — a list of products, or an `EmptyState` with one way forward (`Button`).\n\n' +
+          '- The results — a `List` of products, or an `EmptyState` with one way forward (`Button`).\n\n' +
           '### Accessibility\n' +
           '- **The summary is the announcement:** it sits in a live region that exists before the search, so screen readers read "0 products for sofa" without moving focus. `EmptyState` is not a live region.\n' +
           '- **A query error is a field error:** a one-letter query is `invalid` with a message that says how to fix it, and focus returns to the field. No matches is not an error.\n' +
@@ -78,7 +79,15 @@ function ProductSearchRecipe() {
   const matches = PRODUCTS.filter((product) => product.toLowerCase().includes(query.toLowerCase()));
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '36rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '36rem',
+        maxWidth: '100%',
+      }}
+    >
       <SearchField
         ref={searchInputRef}
         label="Search products"
@@ -92,11 +101,11 @@ function ProductSearchRecipe() {
         {query ? `${countProducts(matches.length)} for “${query}”` : countProducts(PRODUCTS.length)}
       </Text>
       {matches.length > 0 ? (
-        <ul style={{ margin: 0, paddingInlineStart: '1.25rem' }}>
+        <List size="sm" aria-label="Products">
           {matches.map((product) => (
-            <li key={product}>{product}</li>
+            <ListItem key={product}>{product}</ListItem>
           ))}
-        </ul>
+        </List>
       ) : (
         <EmptyState
           title={`No products for “${query}”`}

@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import { Heading, Text } from '../../ui/Typography';
 import { SelectField } from '../../ui/SelectField';
+import { List, ListItem } from '../../ui/List';
 import { SelectItem } from '../../ui/Select';
 import type { CSSProperties } from 'react';
 import { Switch } from '../../ui/Switch';
@@ -25,7 +26,7 @@ const meta = {
           '- **Not for:** choices that only make sense together, or that cost something (a delivery address, a payment). Those are a form with a submit button — see Form Validation.\n\n' +
           '### Anatomy\n' +
           '- A page `Heading`, then one `<section>` per topic, each with its own `Heading`.\n' +
-          '- `Switch` for on/off settings, `RadioGroup` for two to five options people should see at once, `SelectField` for a longer list.\n' +
+          '- `Switch` for on/off settings, each a row of an outline `List`; `RadioGroup` for two to five options people should see at once; `SelectField` for a longer list.\n' +
           '- A status line — `Text` with `role="status"` — under the page heading, always on the page.\n\n' +
           '### Accessibility\n' +
           '- **Each control says its state itself:** a switch is announced "on" or "off", a radio "selected". The status line only adds that it was saved.\n' +
@@ -67,7 +68,15 @@ function PreferencesPage() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '28rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '2rem',
+        width: '28rem',
+        maxWidth: '100%',
+      }}
+    >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
         <Heading level={2} size="md" style={{ margin: 0 }}>
           Preferences
@@ -81,24 +90,30 @@ function PreferencesPage() {
         <Heading id="notifications-heading" level={3} size="sm" style={{ margin: 0 }}>
           Notifications
         </Heading>
-        <Switch
-          label="Order updates"
-          hint="Every step of the delivery."
-          checked={orderUpdates}
-          onCheckedChange={(isOn) => {
-            setOrderUpdates(isOn);
-            setLastSaved(`Order updates saved: ${onOff(isOn)}.`);
-          }}
-        />
-        <Switch
-          label="Price alerts"
-          hint="Only for items on your saved list."
-          checked={priceAlerts}
-          onCheckedChange={(isOn) => {
-            setPriceAlerts(isOn);
-            setLastSaved(`Price alerts saved: ${onOff(isOn)}.`);
-          }}
-        />
+        <List appearance="outline">
+          <ListItem>
+            <Switch
+              label="Order updates"
+              hint="Every step of the delivery."
+              checked={orderUpdates}
+              onCheckedChange={(isOn) => {
+                setOrderUpdates(isOn);
+                setLastSaved(`Order updates saved: ${onOff(isOn)}.`);
+              }}
+            />
+          </ListItem>
+          <ListItem>
+            <Switch
+              label="Price alerts"
+              hint="Only for items on your saved list."
+              checked={priceAlerts}
+              onCheckedChange={(isOn) => {
+                setPriceAlerts(isOn);
+                setLastSaved(`Price alerts saved: ${onOff(isOn)}.`);
+              }}
+            />
+          </ListItem>
+        </List>
       </section>
 
       <section aria-labelledby="measurements-heading" style={sectionStyle}>

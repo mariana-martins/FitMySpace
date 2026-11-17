@@ -28,7 +28,9 @@ const meta = {
           '- **Server-rendered** — no client hooks.\n\n' +
           '### Patterns\n' +
           '- [Results States](?path=/docs/design-system-patterns-results-states--docs) — loading, products, no products and a failed request in the same place.\n' +
-          '- [Search Results Page](?path=/docs/design-system-patterns-search-results-page--docs) — the whole page: search, filters, one summary line, the products and the pages.',
+          '- [Search Results Page](?path=/docs/design-system-patterns-search-results-page--docs) — the whole page: search, filters, one summary line, the products and the pages.\n' +
+          '- [Page Errors](?path=/docs/design-system-patterns-page-errors--docs) — a page that does not exist and a page that broke, each with a way on.\n' +
+          '- [Choosing Feedback](?path=/docs/design-system-patterns-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.',
       },
     },
   },
@@ -98,7 +100,13 @@ export const Default: Story = {
 export const WithIcon: Story = {
   name: 'With Icons',
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(16rem, 1fr))' }}>
+    <div
+      style={{
+        display: 'grid',
+        width: '100%',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(16rem, 1fr))',
+      }}
+    >
       <EmptyState
         title="Your list is empty"
         headingLevel={3}

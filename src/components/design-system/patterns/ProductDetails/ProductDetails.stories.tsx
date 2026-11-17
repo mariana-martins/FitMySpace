@@ -68,7 +68,15 @@ function ProductDetailsRecipe() {
   const [saved, setSaved] = useState(false);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '56rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '56rem',
+        maxWidth: '100%',
+      }}
+    >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         <Breadcrumb>
           <BreadcrumbItem>
@@ -93,6 +101,7 @@ function ProductDetailsRecipe() {
       <div
         style={{
           display: 'grid',
+          width: '100%',
           gridTemplateColumns: 'repeat(auto-fit, minmax(16rem, 1fr))',
           gap: '2rem',
           alignItems: 'start',

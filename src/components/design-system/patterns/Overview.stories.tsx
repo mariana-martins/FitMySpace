@@ -95,6 +95,44 @@ const PatternGrid = () => (
     />
     <LinkCard
       headingLevel={4}
+      path="/docs/design-system-patterns-remove-with-undo--docs"
+      title="Remove with Undo"
+      description="Take an item out at once, then offer Undo in a toast, with the focus kept in place."
+      preview={
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <Text size="sm" as="span">
+            Removed from your list
+          </Text>
+          <Button variant="secondary" appearance="outline" size="xs">
+            Undo
+          </Button>
+        </div>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-page-errors--docs"
+      title="Page Errors"
+      description="A page that does not exist and a page that broke: plain words and a way on."
+      preview={
+        <Text size="sm" as="span">
+          <strong>We could not find that page</strong>
+        </Text>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-choosing-feedback--docs"
+      title="Choosing Feedback"
+      description="Field error, alert, toast, empty state or dialog: which one fits which situation."
+      preview={
+        <Alert variant="information" live="off">
+          Pick by where people act and whether they must stop.
+        </Alert>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
       path="/docs/design-system-patterns-product-search--docs"
       title="Product Search"
       description="A search box and what the page says after each search: products found, nothing found, or an error."

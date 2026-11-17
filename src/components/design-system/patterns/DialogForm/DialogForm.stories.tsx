@@ -18,8 +18,9 @@ import {
 } from '../../ui/Toast';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { Heading, Text } from '../../ui/Typography';
 import { TextField } from '../../ui/TextField';
+import { List, ListItem } from '../../ui/List';
+import { Heading } from '../../ui/Typography';
 import { Button } from '../../ui/Button';
 import { useRef, useState } from 'react';
 import type { FormEvent } from 'react';
@@ -101,19 +102,25 @@ function AddRoomDialog() {
 
   return (
     <ToastProvider>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '24rem' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+          width: '24rem',
+          maxWidth: '100%',
+        }}
+      >
         <Heading level={2} size="sm" style={{ margin: 0 }}>
           Your rooms
         </Heading>
-        <ul style={{ margin: 0, paddingInlineStart: '1.25rem' }}>
+        <List size="sm" aria-label="Your rooms">
           {rooms.map((room) => (
-            <li key={room}>
-              <Text as="span" size="md">
-                {room}
-              </Text>
-            </li>
+            <ListItem key={room} icon="home">
+              {room}
+            </ListItem>
           ))}
-        </ul>
+        </List>
 
         <Dialog open={dialogOpen} onOpenChange={handleOpenChange}>
           <DialogTrigger asChild>

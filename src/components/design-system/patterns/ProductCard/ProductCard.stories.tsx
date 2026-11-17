@@ -52,6 +52,7 @@ export const ProductCard: Story = {
     <ul
       style={{
         display: 'grid',
+        width: '100%',
         gridTemplateColumns: 'repeat(auto-fill, minmax(15rem, 1fr))',
         gap: '1.5rem',
         margin: 0,

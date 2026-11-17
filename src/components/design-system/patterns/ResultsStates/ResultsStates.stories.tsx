@@ -65,6 +65,7 @@ function LoadingCards() {
     <ul
       style={{
         display: 'grid',
+        width: '100%',
         gridTemplateColumns: 'repeat(auto-fill, minmax(12rem, 1fr))',
         gap: '1.5rem',
         margin: 0,
@@ -107,7 +108,7 @@ function ResultsArea({ initialState }: { initialState: ResultsState }) {
     <section
       aria-labelledby="results-heading"
       aria-busy={state === 'loading'}
-      style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+      style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%' }}
     >
       <Heading
         ref={headingRef}

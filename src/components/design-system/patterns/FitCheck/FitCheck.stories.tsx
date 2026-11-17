@@ -133,7 +133,13 @@ function FitCheckRecipe() {
   return (
     <section
       aria-labelledby="fit-check-heading"
-      style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '32rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '32rem',
+        maxWidth: '100%',
+      }}
     >
       <Heading id="fit-check-heading" level={2} size="sm" style={{ margin: 0 }}>
         Will it fit?

@@ -75,7 +75,13 @@ function PaginatedResultsRecipe() {
   return (
     <section
       aria-labelledby="results-summary"
-      style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '36rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '36rem',
+        maxWidth: '100%',
+      }}
     >
       <Text as="p" id="results-summary" tabIndex={-1} style={{ margin: 0 }}>
         Showing {firstShown}–{lastShown} of {PRODUCT_COUNT} storage products
@@ -83,6 +89,7 @@ function PaginatedResultsRecipe() {
       <ul
         style={{
           display: 'grid',
+          width: '100%',
           gridTemplateColumns: 'repeat(auto-fill, minmax(10rem, 1fr))',
           gap: '0.5rem 1.5rem',
           margin: 0,

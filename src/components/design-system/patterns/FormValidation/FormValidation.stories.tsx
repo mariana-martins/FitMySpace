@@ -156,7 +156,13 @@ function AddRoomForm() {
       noValidate
       aria-label="Add a room"
       onSubmit={handleSubmit}
-      style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '28rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '28rem',
+        maxWidth: '100%',
+      }}
     >
       {errorEntries.length > 0 && (
         <Alert
