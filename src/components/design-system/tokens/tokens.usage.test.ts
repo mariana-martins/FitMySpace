@@ -20,7 +20,7 @@ const SOURCE_EXTENSIONS = ['.ts', '.tsx', '.mdx'];
 
 /**
  * A complete token name. The lookahead skips names built at runtime,
- * such as `--ds-color-${prefix}-${weight}`, which cannot be checked statically.
+ * such as `--ds-colour-${prefix}-${weight}`, which cannot be checked statically.
  */
 const TOKEN_NAME_PATTERN = /--ds-[a-z0-9-]*[a-z0-9](?![\w$-])/g;
 const DEFINITION_PATTERN = /^\s*(--ds-[a-z0-9-]+):/gm;

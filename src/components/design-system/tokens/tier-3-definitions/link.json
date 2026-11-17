@@ -4,23 +4,23 @@
       "text": {
         "inline": {
           "default": {
-            "value": "{semantic.color.text.brand.base}"
+            "value": "{semantic.colour.text.brand.base}"
           },
           "hover": {
-            "value": "{semantic.color.text.brand.hover}"
+            "value": "{semantic.colour.text.brand.hover}"
           }
         },
         "standalone": {
           "default": {
-            "value": "{semantic.color.text.default.base}",
+            "value": "{semantic.colour.text.default.base}",
             "comment": "Dark at rest, like the text around it: the context says it is a link."
           },
           "hover": {
-            "value": "{semantic.color.text.brand.base}",
+            "value": "{semantic.colour.text.brand.base}",
             "comment": "Turns to the brand colour of the underline."
           },
           "current": {
-            "value": "{semantic.color.text.brand.base}"
+            "value": "{semantic.colour.text.brand.base}"
           }
         }
       },

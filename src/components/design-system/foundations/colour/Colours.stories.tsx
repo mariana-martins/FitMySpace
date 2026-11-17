@@ -12,7 +12,7 @@ import type { DocumentedToken } from '../../docs';
 import { Text } from '../../ui/Typography';
 
 const meta = {
-  title: 'Design System/Foundation/Color',
+  title: 'Design System/Foundation/Colour',
   parameters: {
     layout: 'fullscreen',
   },
@@ -41,8 +41,8 @@ function contrastRatio(firstLuminance: number, secondLuminance: number): number 
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-const [defaultTextToken] = getTokens('semantic', 'color', 'text', 'default', 'base');
-const [inverseTextToken] = getTokens('semantic', 'color', 'text', 'inverse');
+const [defaultTextToken] = getTokens('semantic', 'colour', 'text', 'default', 'base');
+const [inverseTextToken] = getTokens('semantic', 'colour', 'text', 'inverse');
 
 /** The text token (default or inverse) with the higher contrast on the swatch. */
 function sampleTextVariable(swatchColour: string): string {
@@ -59,7 +59,7 @@ function sampleTextVariable(swatchColour: string): string {
 }
 
 // Helper components for the Storybook display
-const ColorSwatch = ({
+const ColourSwatch = ({
   token,
   label,
   showSample = false,
@@ -75,7 +75,7 @@ const ColorSwatch = ({
         height: '60px',
         backgroundColor: `var(${token.name})`,
         borderRadius: 'var(--ds-radii-md)',
-        border: '1px solid var(--ds-semantic-color-border-subtle-base)',
+        border: '1px solid var(--ds-semantic-colour-border-subtle-base)',
         boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
         display: 'flex',
         alignItems: 'center',
@@ -94,7 +94,7 @@ const ColorSwatch = ({
       <Text
         size="sm"
         as="span"
-        style={{ color: 'var(--ds-semantic-color-text-subtle-base)', display: 'block' }}
+        style={{ color: 'var(--ds-semantic-colour-text-subtle-base)', display: 'block' }}
       >
         {token.value}
       </Text>
@@ -107,7 +107,7 @@ const ColorSwatch = ({
             fontFamily: 'monospace',
             fontSize: '12px',
             lineHeight: 1.5,
-            color: 'var(--ds-semantic-color-text-subtle-base)',
+            color: 'var(--ds-semantic-colour-text-subtle-base)',
             overflowWrap: 'anywhere',
           }}
         >
@@ -120,7 +120,7 @@ const ColorSwatch = ({
           size="sm"
           as="span"
           style={{
-            color: 'var(--ds-semantic-color-text-subtle-base)',
+            color: 'var(--ds-semantic-colour-text-subtle-base)',
             display: 'block',
             marginTop: '6px',
           }}
@@ -149,7 +149,12 @@ const SwatchGrid = ({
     }}
   >
     {tokens.map((token) => (
-      <ColorSwatch key={token.name} token={token} label={getLabel(token)} showSample={showSample} />
+      <ColourSwatch
+        key={token.name}
+        token={token}
+        label={getLabel(token)}
+        showSample={showSample}
+      />
     ))}
   </div>
 );
@@ -186,13 +191,13 @@ export const CorePalettes: Story = {
           Core Palettes are the primitive building blocks of the design system (the absolute hex
           values). Think of them as the raw paint tubes in an artist&apos;s palette. You should{' '}
           <strong>almost never</strong> use these variables directly in your application code.
-          Instead, rely on the <strong>Semantic Colors</strong> below, which act as smart aliases to
-          these core values, ensuring your components automatically adapt to dark mode and theme
+          Instead, rely on the <strong>Semantic Colours</strong> below, which act as smart aliases
+          to these core values, ensuring your components automatically adapt to dark mode and theme
           changes without requiring complex media queries.
         </>
       }
     >
-      {[...groupTokens(getTokens('color'), paletteKey)].map(([palette, tokens]) => (
+      {[...groupTokens(getTokens('colour'), paletteKey)].map(([palette, tokens]) => (
         <TokenGroup
           key={palette}
           title={
@@ -212,7 +217,7 @@ export const CorePalettes: Story = {
   ),
 };
 
-/* --- Semantic Colors --- */
+/* --- Semantic Colours --- */
 
 const UTILITY_PREFIX = 'utility-';
 
@@ -245,22 +250,22 @@ function semanticLabel(token: DocumentedToken): string {
   ]);
 }
 
-export const SemanticColors: Story = {
+export const SemanticColours: Story = {
   render: () => (
     <FoundationPage
-      title="Semantic Colors"
+      title="Semantic Colours"
       introduction={
         <>
-          Semantic Colors express the <strong>intent</strong> of an element rather than its actual
+          Semantic Colours express the <strong>intent</strong> of an element rather than its actual
           hue. For example, <InlineCode>background-brand-base</InlineCode> tells you <em>why</em>{' '}
-          the color is used, not <em>what</em> color it is. By exclusively using Semantic Colors in
-          your CSS, you guarantee that your components will seamlessly invert during Dark Mode (when
-          available) and automatically inherit any future rebranding efforts (like changing the
-          primary brand color) without modifying a single line of component code.
+          the colour is used, not <em>what</em> colour it is. By exclusively using Semantic Colours
+          in your CSS, you guarantee that your components will seamlessly invert during Dark Mode
+          (when available) and automatically inherit any future rebranding efforts (like changing
+          the primary brand colour) without modifying a single line of component code.
         </>
       }
     >
-      {[...groupTokens(getTokens('semantic', 'color'), semanticGroupKey)].map(
+      {[...groupTokens(getTokens('semantic', 'colour'), semanticGroupKey)].map(
         ([groupKey, tokens]) => (
           <TokenGroup key={groupKey} title={semanticGroupTitles[groupKey] ?? groupKey}>
             <SwatchGrid tokens={tokens} getLabel={semanticLabel} />

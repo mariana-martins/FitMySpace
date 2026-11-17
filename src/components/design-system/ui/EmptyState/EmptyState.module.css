@@ -29,7 +29,7 @@
   place-items: center;
   inline-size: var(--ds-component-empty-state-icon-box-size);
   block-size: var(--ds-component-empty-state-icon-box-size);
-  color: var(--ds-component-empty-state-icon-color);
+  color: var(--ds-component-empty-state-icon-colour);
   background-color: var(--ds-component-empty-state-icon-background);
   border-radius: var(--ds-semantic-radii-surface-full);
 }

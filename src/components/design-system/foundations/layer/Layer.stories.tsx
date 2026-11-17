@@ -39,11 +39,11 @@ const StackSample = ({ depth }: { depth: number }) => (
           blockSize: '20px',
           borderRadius: 'var(--ds-semantic-radii-surface-sm)',
           border:
-            'var(--ds-semantic-border-width-default) solid var(--ds-semantic-color-border-subtle-base)',
+            'var(--ds-semantic-border-width-default) solid var(--ds-semantic-colour-border-subtle-base)',
           backgroundColor:
             position === depth - 1
-              ? 'var(--ds-semantic-color-background-brand-soft)'
-              : 'var(--ds-semantic-color-background-default-base)',
+              ? 'var(--ds-semantic-colour-background-brand-soft)'
+              : 'var(--ds-semantic-colour-background-default-base)',
           boxShadow: 'var(--ds-semantic-shadow-raised-base)',
         }}
       />
@@ -70,7 +70,7 @@ const LayeredScene = () => (
       isolation: 'isolate',
       blockSize: '240px',
       borderRadius: 'var(--ds-semantic-radii-container-md)',
-      backgroundColor: 'var(--ds-semantic-color-background-default-hover)',
+      backgroundColor: 'var(--ds-semantic-colour-background-default-hover)',
       overflow: 'hidden',
     }}
   >
@@ -80,9 +80,9 @@ const LayeredScene = () => (
         insetInlineStart: '24px',
         insetBlockStart: '160px',
         border:
-          'var(--ds-semantic-border-width-default) solid var(--ds-semantic-color-border-subtle-base)',
-        backgroundColor: 'var(--ds-semantic-color-background-default-base)',
-        color: 'var(--ds-semantic-color-text-subtle-base)',
+          'var(--ds-semantic-border-width-default) solid var(--ds-semantic-colour-border-subtle-base)',
+        backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
+        color: 'var(--ds-semantic-colour-text-subtle-base)',
       }}
     >
       page
@@ -92,7 +92,7 @@ const LayeredScene = () => (
         position: 'absolute',
         inset: '0',
         zIndex: 'var(--ds-semantic-layer-overlay)',
-        backgroundColor: 'var(--ds-semantic-color-background-scrim)',
+        backgroundColor: 'var(--ds-semantic-colour-background-scrim)',
       }}
     />
     <div
@@ -102,9 +102,9 @@ const LayeredScene = () => (
         insetBlockStart: '96px',
         zIndex: 'var(--ds-semantic-layer-overlay)',
         border:
-          'var(--ds-semantic-border-width-default) solid var(--ds-semantic-color-border-subtle-base)',
-        backgroundColor: 'var(--ds-semantic-color-background-default-base)',
-        color: 'var(--ds-semantic-color-text-default-base)',
+          'var(--ds-semantic-border-width-default) solid var(--ds-semantic-colour-border-subtle-base)',
+        backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
+        color: 'var(--ds-semantic-colour-text-default-base)',
         boxShadow: 'var(--ds-semantic-shadow-overlay)',
       }}
     >
@@ -116,8 +116,8 @@ const LayeredScene = () => (
         insetInlineStart: '300px',
         insetBlockStart: '56px',
         zIndex: 'var(--ds-semantic-layer-floating)',
-        backgroundColor: 'var(--ds-semantic-color-background-inverse)',
-        color: 'var(--ds-semantic-color-text-inverse)',
+        backgroundColor: 'var(--ds-semantic-colour-background-inverse)',
+        color: 'var(--ds-semantic-colour-text-inverse)',
         boxShadow: 'var(--ds-semantic-shadow-floating)',
       }}
     >
@@ -130,9 +130,9 @@ const LayeredScene = () => (
         insetBlockStart: '160px',
         zIndex: 'var(--ds-semantic-layer-toast)',
         border:
-          'var(--ds-semantic-border-width-default) solid var(--ds-semantic-color-border-subtle-base)',
-        backgroundColor: 'var(--ds-semantic-color-background-default-base)',
-        color: 'var(--ds-semantic-color-text-default-base)',
+          'var(--ds-semantic-border-width-default) solid var(--ds-semantic-colour-border-subtle-base)',
+        backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
+        color: 'var(--ds-semantic-colour-text-default-base)',
         boxShadow: 'var(--ds-semantic-shadow-overlay)',
       }}
     >
@@ -151,7 +151,7 @@ export const SemanticLayers: Story = {
         title="Layer"
         introduction={
           <>
-            Three heights, from the page upward, because a design system with no stacking rule ends
+            Three heights, from the page upwards, because a design system with no stacking rule ends
             up with <InlineCode>z-index: 9999</InlineCode> scattered across the app. Write{' '}
             <InlineCode>z-index: var(--ds-semantic-layer-overlay)</InlineCode> and nothing else: a
             layer goes only on the root of what Radix renders in a portal, since an ancestor with{' '}

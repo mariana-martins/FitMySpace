@@ -13,11 +13,11 @@ import type { DocumentedToken } from './tokens';
  * --------------------------------------------------------------- */
 
 const subtleTextStyle: CSSProperties = {
-  color: 'var(--ds-semantic-color-text-subtle-base)',
+  color: 'var(--ds-semantic-colour-text-subtle-base)',
   display: 'block',
 };
 
-const dividerBorder = '1px solid var(--ds-semantic-color-border-subtle-base)';
+const dividerBorder = '1px solid var(--ds-semantic-colour-border-subtle-base)';
 
 /* ===============================================================
  * INLINE CODE
@@ -28,7 +28,7 @@ export function InlineCode({ children }: { children: ReactNode }) {
     <code
       style={{
         fontFamily: 'monospace',
-        background: 'var(--ds-semantic-color-background-default-hover)',
+        background: 'var(--ds-semantic-colour-background-default-hover)',
         padding: '2px 4px',
         borderRadius: '4px',
       }}
@@ -58,7 +58,7 @@ export function StorybookLink({ path, children }: StorybookLinkProps) {
     <a
       href={`./?path=${path}`}
       target="_top"
-      style={{ color: 'var(--ds-semantic-color-text-brand-base)', textDecoration: 'underline' }}
+      style={{ color: 'var(--ds-semantic-colour-text-brand-base)', textDecoration: 'underline' }}
     >
       {children}
     </a>
@@ -80,7 +80,7 @@ export function FoundationPage({ title, introduction, children }: FoundationPage
   return (
     <div
       style={{
-        backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+        backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
         minHeight: '100vh',
         width: '100%',
       }}
@@ -113,7 +113,7 @@ export function TokenGroup({ title, description, children }: TokenGroupProps) {
     <section
       style={{
         marginBottom: '40px',
-        backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+        backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
         padding: '32px',
         borderRadius: 'var(--ds-radii-xl)',
         boxShadow: '0 4px 20px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02)',

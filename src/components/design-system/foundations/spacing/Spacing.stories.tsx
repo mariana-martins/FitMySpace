@@ -62,7 +62,7 @@ export const SemanticSpacing: Story = {
                     width: `var(${token.name})`,
                     minWidth: '4px',
                     height: '32px',
-                    backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+                    backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
                     borderRadius: 'var(--ds-radii-sm)',
                   }}
                 />

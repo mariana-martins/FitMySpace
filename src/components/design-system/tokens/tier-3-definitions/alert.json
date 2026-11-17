@@ -28,96 +28,96 @@
       "information": {
         "soft": {
           "background": {
-            "value": "{semantic.color.background.utility-information.soft}"
+            "value": "{semantic.colour.background.utility-information.soft}"
           },
           "text": {
-            "value": "{semantic.color.text.utility-information.base}"
+            "value": "{semantic.colour.text.utility-information.base}"
           },
           "border": {
-            "value": "{semantic.color.border.utility-information.active}"
+            "value": "{semantic.colour.border.utility-information.active}"
           }
         },
         "fill": {
           "background": {
-            "value": "{semantic.color.background.utility-information.base}"
+            "value": "{semantic.colour.background.utility-information.base}"
           },
           "text": {
-            "value": "{semantic.color.text.inverse}"
+            "value": "{semantic.colour.text.inverse}"
           },
           "border": {
-            "value": "{semantic.color.border.utility-information.active}"
+            "value": "{semantic.colour.border.utility-information.active}"
           }
         }
       },
       "success": {
         "soft": {
           "background": {
-            "value": "{semantic.color.background.utility-success.soft}"
+            "value": "{semantic.colour.background.utility-success.soft}"
           },
           "text": {
-            "value": "{semantic.color.text.utility-success.base}"
+            "value": "{semantic.colour.text.utility-success.base}"
           },
           "border": {
-            "value": "{semantic.color.border.utility-success.active}"
+            "value": "{semantic.colour.border.utility-success.active}"
           }
         },
         "fill": {
           "background": {
-            "value": "{semantic.color.background.utility-success.base}"
+            "value": "{semantic.colour.background.utility-success.base}"
           },
           "text": {
-            "value": "{semantic.color.text.inverse}"
+            "value": "{semantic.colour.text.inverse}"
           },
           "border": {
-            "value": "{semantic.color.border.utility-success.active}"
+            "value": "{semantic.colour.border.utility-success.active}"
           }
         }
       },
       "warning": {
         "soft": {
           "background": {
-            "value": "{semantic.color.background.utility-warning.soft}"
+            "value": "{semantic.colour.background.utility-warning.soft}"
           },
           "text": {
-            "value": "{semantic.color.text.utility-warning.base}"
+            "value": "{semantic.colour.text.utility-warning.base}"
           },
           "border": {
-            "value": "{semantic.color.border.utility-warning.active}"
+            "value": "{semantic.colour.border.utility-warning.active}"
           }
         },
         "fill": {
           "background": {
-            "value": "{semantic.color.background.utility-warning.base}"
+            "value": "{semantic.colour.background.utility-warning.base}"
           },
           "text": {
-            "value": "{semantic.color.text.utility-warning.base}"
+            "value": "{semantic.colour.text.utility-warning.base}"
           },
           "border": {
-            "value": "{semantic.color.border.utility-warning.active}"
+            "value": "{semantic.colour.border.utility-warning.active}"
           }
         }
       },
       "error": {
         "soft": {
           "background": {
-            "value": "{semantic.color.background.utility-error.soft}"
+            "value": "{semantic.colour.background.utility-error.soft}"
           },
           "text": {
-            "value": "{semantic.color.text.utility-error.base}"
+            "value": "{semantic.colour.text.utility-error.base}"
           },
           "border": {
-            "value": "{semantic.color.border.utility-error.active}"
+            "value": "{semantic.colour.border.utility-error.active}"
           }
         },
         "fill": {
           "background": {
-            "value": "{semantic.color.background.utility-error.base}"
+            "value": "{semantic.colour.background.utility-error.base}"
           },
           "text": {
-            "value": "{semantic.color.text.inverse}"
+            "value": "{semantic.colour.text.inverse}"
           },
           "border": {
-            "value": "{semantic.color.border.utility-error.active}"
+            "value": "{semantic.colour.border.utility-error.active}"
           }
         }
       }

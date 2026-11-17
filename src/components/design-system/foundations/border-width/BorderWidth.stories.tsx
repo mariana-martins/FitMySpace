@@ -25,12 +25,12 @@ const sampleStyle: CSSProperties = {
   height: '48px',
   boxSizing: 'border-box',
   borderRadius: 'var(--ds-radii-md)',
-  backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+  backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
 };
 
 const outlined = (token: DocumentedToken): CSSProperties => ({
   ...sampleStyle,
-  border: `var(${token.name}) solid var(--ds-semantic-color-border-brand-base)`,
+  border: `var(${token.name}) solid var(--ds-semantic-colour-border-brand-base)`,
 });
 
 /** Each role is drawn the way it is used: an outline, a selected card, a tab marker, a halo. */
@@ -39,7 +39,7 @@ const previewByRole: Record<string, (token: DocumentedToken) => ReactNode> = {
     <div
       style={{
         ...sampleStyle,
-        backgroundColor: 'var(--ds-semantic-color-background-default-hover)',
+        backgroundColor: 'var(--ds-semantic-colour-background-default-hover)',
       }}
     />
   ),
@@ -47,7 +47,7 @@ const previewByRole: Record<string, (token: DocumentedToken) => ReactNode> = {
     <div
       style={{
         ...sampleStyle,
-        border: `var(${token.name}) solid var(--ds-semantic-color-border-subtle-base)`,
+        border: `var(${token.name}) solid var(--ds-semantic-colour-border-subtle-base)`,
       }}
     />
   ),
@@ -61,7 +61,7 @@ const previewByRole: Record<string, (token: DocumentedToken) => ReactNode> = {
         ...sampleStyle,
         height: '32px',
         borderRadius: 0,
-        borderBottom: `var(${token.name}) solid var(--ds-semantic-color-border-brand-base)`,
+        borderBottom: `var(${token.name}) solid var(--ds-semantic-colour-border-brand-base)`,
       }}
     />
   ),
@@ -72,8 +72,8 @@ const previewByRole: Record<string, (token: DocumentedToken) => ReactNode> = {
         height: '32px',
         margin: '4px',
         border:
-          'var(--ds-semantic-border-width-default) solid var(--ds-semantic-color-border-brand-base)',
-        boxShadow: `0 0 0 var(${token.name}) var(--ds-semantic-color-halo-brand)`,
+          'var(--ds-semantic-border-width-default) solid var(--ds-semantic-colour-border-brand-base)',
+        boxShadow: `0 0 0 var(${token.name}) var(--ds-semantic-colour-halo-brand)`,
       }}
     />
   ),

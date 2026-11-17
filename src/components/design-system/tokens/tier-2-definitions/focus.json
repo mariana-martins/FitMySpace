@@ -2,8 +2,8 @@
   "semantic": {
     "focus": {
       "ring": {
-        "color": {
-          "value": "{color.sage.600}",
+        "colour": {
+          "value": "{colour.sage.600}",
           "comment": "The default ring colour, the same sage as border.brand. A component whose background is too close to it defines its own focus-ring token in tier 3."
         },
         "width": { "value": "{border-width.thick}" },

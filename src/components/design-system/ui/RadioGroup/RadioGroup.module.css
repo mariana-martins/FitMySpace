@@ -57,9 +57,9 @@
 /* Item ------------------------------------------------------------ */
 
 .item {
-  --radio-border-color: var(--ds-component-radio-group-border-default);
+  --radio-border-colour: var(--ds-component-radio-group-border-default);
   --radio-background: var(--ds-component-radio-group-background-default);
-  --radio-dot-color: var(--ds-component-radio-group-dot-default);
+  --radio-dot-colour: var(--ds-component-radio-group-dot-default);
 
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -84,7 +84,7 @@
   padding: 0;
   margin: 0;
   background-color: var(--radio-background);
-  border: var(--ds-component-radio-group-shape-border-width) solid var(--radio-border-color);
+  border: var(--ds-component-radio-group-shape-border-width) solid var(--radio-border-colour);
   border-radius: var(--ds-component-radio-group-shape-radii);
   cursor: pointer;
   transition-property: background-color, border-color;
@@ -93,12 +93,12 @@
 }
 
 .radio[data-state='checked'] {
-  --radio-border-color: var(--radio-checked-background);
+  --radio-border-colour: var(--radio-checked-background);
   --radio-background: var(--radio-checked-background);
 }
 
 .radio:focus-visible {
-  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
   outline-offset: var(--ds-semantic-focus-ring-offset);
 }
 
@@ -111,7 +111,7 @@
 .dot {
   inline-size: var(--radio-dot-size);
   block-size: var(--radio-dot-size);
-  background-color: var(--radio-dot-color);
+  background-color: var(--radio-dot-colour);
   border-radius: var(--ds-component-radio-group-shape-radii);
   opacity: 0;
   transform: scale(0.5);
@@ -129,7 +129,7 @@
 
 @media (hover: hover) {
   .root:not([data-invalid]) .item:not(:has(.radio:disabled)):has(.radio:hover, .label:hover) {
-    --radio-border-color: var(--ds-component-radio-group-border-hover);
+    --radio-border-colour: var(--ds-component-radio-group-border-hover);
     --radio-checked-background: var(--radio-checked-hover-background);
   }
 }
@@ -137,17 +137,17 @@
 /* Invalid --------------------------------------------------------- */
 
 .root[data-invalid] .item {
-  --radio-border-color: var(--ds-component-radio-group-border-invalid);
+  --radio-border-colour: var(--ds-component-radio-group-border-invalid);
   --radio-checked-background: var(--ds-component-radio-group-background-invalid-checked);
 }
 
 /* Disabled (the whole group or one option) ------------------------ */
 
 .item:has(.radio:disabled) {
-  --radio-border-color: var(--ds-component-radio-group-border-disabled);
+  --radio-border-colour: var(--ds-component-radio-group-border-disabled);
   --radio-background: var(--ds-component-radio-group-background-disabled);
   --radio-checked-background: var(--ds-component-radio-group-background-disabled);
-  --radio-dot-color: var(--ds-component-radio-group-dot-disabled);
+  --radio-dot-colour: var(--ds-component-radio-group-dot-disabled);
 }
 
 /* ---------------------------------------------------------------

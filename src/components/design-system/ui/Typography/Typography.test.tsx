@@ -258,10 +258,10 @@ describe('Caption', () => {
 });
 
 /* ===============================================================
- * SHARED BEHAVIOR
+ * SHARED BEHAVIOUR
  * =============================================================== */
 
-describe('Shared behavior', () => {
+describe('Shared behaviour', () => {
   it('all components apply the base class', () => {
     const { container: c1 } = render(<Heading>H</Heading>);
     const { container: c2 } = render(<Text>T</Text>);

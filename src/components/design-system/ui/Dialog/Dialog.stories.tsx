@@ -45,7 +45,7 @@ const meta = {
           '- **Fixed header and footer** — only the body scrolls, on any height.\n' +
           '- **Close button included** — icon-only, in the corner, named by `closeLabel`, so no dialog can be rendered without a way out.\n' +
           '- **`modal` on `Dialog`** — defaults to `true`; `false` leaves the page usable, and `aria-modal` follows it.\n' +
-          '- **Reduced motion and forced colors** — the scrim and the dialog stop moving when asked, and the dialog draws its own edge when the system drops shadows.',
+          '- **Reduced motion and `forced-colors`** — the scrim and the dialog stop moving when asked, and the dialog draws its own edge when the system drops shadows.',
       },
     },
   },

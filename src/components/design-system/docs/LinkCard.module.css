@@ -21,9 +21,9 @@
   flex-direction: column;
   gap: var(--ds-semantic-spacing-gap-lg);
   padding: var(--ds-semantic-spacing-inset-lg);
-  border: var(--ds-semantic-border-width-default) solid var(--ds-semantic-color-border-subtle-base);
+  border: var(--ds-semantic-border-width-default) solid var(--ds-semantic-colour-border-subtle-base);
   border-radius: var(--ds-semantic-radii-container-lg);
-  background-color: var(--ds-semantic-color-background-default-base);
+  background-color: var(--ds-semantic-colour-background-default-base);
   box-shadow: var(--ds-semantic-shadow-card-base);
   transition-property: box-shadow, border-color, transform;
   transition-duration: var(--ds-semantic-motion-duration-fast);
@@ -43,7 +43,7 @@
 }
 
 .link {
-  color: var(--ds-semantic-color-text-default-base);
+  color: var(--ds-semantic-colour-text-default-base);
   text-decoration: none;
 }
 
@@ -56,12 +56,12 @@
 
 .description {
   margin: 0;
-  color: var(--ds-semantic-color-text-subtle-base);
+  color: var(--ds-semantic-colour-text-subtle-base);
 }
 
 @media (hover: hover) {
   .card:has(.link:hover) {
-    border-color: var(--ds-semantic-color-border-brand-base);
+    border-color: var(--ds-semantic-colour-border-brand-base);
     box-shadow: var(--ds-semantic-shadow-card-hover);
     transform: translateY(calc(-1 * var(--ds-semantic-spacing-gap-xs)));
   }
@@ -78,7 +78,7 @@
   }
 
   .card:has(.link:focus-visible) {
-    outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+    outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
     outline-offset: var(--ds-semantic-focus-ring-offset);
   }
 }

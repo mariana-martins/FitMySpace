@@ -8,7 +8,7 @@ This directory houses the foundational design system components, tokens, and uti
 design-system/
 ├── tokens/          # Tier 1, 2, and 3 JSON token files + Style Dictionary config
 │   ├── tier-1-definitions/    # Core literal values (do not use directly in components)
-│   │   ├── color.json         # Hex codes and raw color palettes
+│   │   ├── colour.json         # Hex codes and raw colour palettes
 │   │   ├── typography.json    # Font families, raw sizes, weights, and letter-spacing
 │   │   ├── spacing.json       # Base 4px scale (4–128px), also used by sizes
 │   │   ├── size.json          # Layout widths (400/560/640/720/768/1024/1280px)
@@ -18,7 +18,7 @@ design-system/
 │   │   ├── layer.json         # Raw z-index values (100 / 200 / 300)
 │   │   └── shadow.json        # Layered box-shadows tinted with charcoal.900
 │   ├── tier-2-definitions/    # Intent-based semantic aliases (use these in components)
-│   │   ├── color.json         # Semantic backgrounds, text, borders and focus halos (e.g. brand, utility)
+│   │   ├── colour.json         # Semantic backgrounds, text, borders and focus halos (e.g. brand, utility)
 │   │   ├── typography.json    # Display, heading, body, control, label, and caption roles (+ generated shorthand)
 │   │   ├── spacing.json       # Inset (padding), control padding, gap, and section layout spacing
 │   │   ├── size.json          # Control heights, icons, checkbox/radio boxes, switch tracks and knobs, badge heights, click targets, thumbnails, containers, prose width
@@ -29,24 +29,24 @@ design-system/
 │   │   ├── layer.json         # Stacking layers (overlay, floating, toast)
 │   │   └── shadow.json        # Elevation roles (raised, floating, overlay, sunken)
 │   ├── tier-3-definitions/    # Component-level token mappings
-│   │   ├── alert.json         # Alert background, text and border for each utility color, soft and fill, plus padding and gaps
-│   │   ├── badge.json         # Badge fill and soft colors, sizes, and shapes
+│   │   ├── alert.json         # Alert background, text and border for each utility colour, soft and fill, plus padding and gaps
+│   │   ├── badge.json         # Badge fill and soft colours, sizes, and shapes
 │   │   ├── card.json          # Card surface, border, shadow, media frame, padding and gap
-│   │   ├── breadcrumb.json    # Breadcrumb link, current page and separator colors, sizes, target height
-│   │   ├── button.json        # Button variant colors, sizes, shapes, and icon sizing
-│   │   ├── checkbox.json      # Checkbox box, mark, label, hint and error colors and sizes
-│   │   ├── chip.json          # Chip resting, hover, selected and disabled colors, sizes, edge
+│   │   ├── breadcrumb.json    # Breadcrumb link, current page and separator colours, sizes, target height
+│   │   ├── button.json        # Button variant colours, sizes, shapes, and icon sizing
+│   │   ├── checkbox.json      # Checkbox box, mark, label, hint and error colours and sizes
+│   │   ├── chip.json          # Chip resting, hover, selected and disabled colours, sizes, edge
 │   │   ├── dialog.json        # Dialog surface, edge, shadow, header text, footer divider, spacing and motion
-│   │   ├── empty-state.json   # EmptyState icon circle, title and description colors, spacing
-│   │   ├── input.json         # Input + TextField colors, states, halo, sizes, and unit styling
-│   │   ├── link.json          # Link colors, underline widths and offset, motion, standalone sizes
-│   │   ├── pagination.json    # Pagination page, current page and ellipsis colors, sizes, shape
-│   │   ├── radio-group.json   # RadioGroup circle, dot, label, hint and error colors and sizes
-│   │   ├── search-field.json  # SearchField label and hint colors, spacing
+│   │   ├── empty-state.json   # EmptyState icon circle, title and description colours, spacing
+│   │   ├── input.json         # Input + TextField colours, states, halo, sizes, and unit styling
+│   │   ├── link.json          # Link colours, underline widths and offset, motion, standalone sizes
+│   │   ├── pagination.json    # Pagination page, current page and ellipsis colours, sizes, shape
+│   │   ├── radio-group.json   # RadioGroup circle, dot, label, hint and error colours and sizes
+│   │   ├── search-field.json  # SearchField label and hint colours, spacing
 │   │   ├── select.json        # Select + SelectField trigger, list, option, and group-label styling
-│   │   ├── skeleton.json      # Skeleton pulse colors, shape radii, motion, and text sizes
-│   │   ├── switch.json        # Switch track edge and fill, knob, label, hint and error colors and sizes
-│   │   ├── textarea.json      # Textarea + TextareaField colors, states, halo, and sizes
+│   │   ├── skeleton.json      # Skeleton pulse colours, shape radii, motion, and text sizes
+│   │   ├── switch.json        # Switch track edge and fill, knob, label, hint and error colours and sizes
+│   │   ├── textarea.json      # Textarea + TextareaField colours, states, halo, and sizes
 │   │   ├── toast.json         # Toast card surface, text and edge per variant, sizes, spacing and motion
 │   │   └── tooltip.json       # Tooltip bubble surface, text, shadow, shape, max width, padding and motion
 │   ├── sd.config.mjs              # Style Dictionary build config (+ typography shorthand preprocessor)
@@ -73,7 +73,7 @@ design-system/
 │   └── Changelog.mdx
 ├── foundations/     # One Storybook page per tier-2 token file
 │   ├── border-width/BorderWidth.stories.tsx
-│   ├── color/Colors.stories.tsx
+│   ├── colour/Colours.stories.tsx
 │   ├── focus/Focus.stories.tsx
 │   ├── layer/Layer.stories.tsx
 │   ├── motion/Motion.stories.tsx
@@ -251,11 +251,11 @@ npm run lint:css
 
 ### Foundation docs helpers
 
-Each tier-2 token file has a Foundation page in `foundations/` (Color, Typography, Spacing, Size, Radii, Border Width, Layer, Shadow, Focus, Motion). The pages never keep their own token lists: they read `tokens.docs.json` through `docs/tokens.ts` (`getTokens('semantic', 'spacing')`, `groupTokens(tokens, 2)`, `formatTokenLabel`) and render it with `docs/FoundationPage` (`FoundationPage`, `TokenGroup`, `TokenRow`, `InlineCode`). To link from a story to another Storybook page use `StorybookLink` (a story renders in an iframe, so a plain link would open inside it); in a `docs.description` Markdown string a plain `[text](?path=/docs/...)` link already works. A new token shows up on its page after `npm run tokens:build`; only the prose (group descriptions) is written by hand.
+Each tier-2 token file has a Foundation page in `foundations/` (Colour, Typography, Spacing, Size, Radii, Border Width, Layer, Shadow, Focus, Motion). The pages never keep their own token lists: they read `tokens.docs.json` through `docs/tokens.ts` (`getTokens('semantic', 'spacing')`, `groupTokens(tokens, 2)`, `formatTokenLabel`) and render it with `docs/FoundationPage` (`FoundationPage`, `TokenGroup`, `TokenRow`, `InlineCode`). To link from a story to another Storybook page use `StorybookLink` (a story renders in an iframe, so a plain link would open inside it); in a `docs.description` Markdown string a plain `[text](?path=/docs/...)` link already works. A new token shows up on its page after `npm run tokens:build`; only the prose (group descriptions) is written by hand.
 
 The Introduction page uses `docs/LinkCard` inside a `LinkCardGrid` (a list) to link to each foundation and component page. The title's link stretches over the whole card with `::after`, so the link's name stays the title; the preview is `aria-hidden` and `inert`, so real components can be rendered in it without taking focus.
 
-They use `docs/CopyTokenButton` to copy a token's `var(--…)` reference. It shows a copy icon, switches to a check (copied) or alert (failed) icon, and announces the result to screen readers through a `role="status"` live region. In narrow layouts (the Color swatch cards) use `iconOnly`: render the token name as wrapping text next to a square icon button whose accessible name is "Copy var(--…)". These helpers exist only for Storybook and are not part of the public design-system API.
+They use `docs/CopyTokenButton` to copy a token's `var(--…)` reference. It shows a copy icon, switches to a check (copied) or alert (failed) icon, and announces the result to screen readers through a `role="status"` live region. In narrow layouts (the Colour swatch cards) use `iconOnly`: render the token name as wrapping text next to a square icon button whose accessible name is "Copy var(--…)". These helpers exist only for Storybook and are not part of the public design-system API.
 
 ---
 

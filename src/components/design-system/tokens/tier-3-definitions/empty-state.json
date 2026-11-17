@@ -3,10 +3,10 @@
     "empty-state": {
       "icon": {
         "background": {
-          "value": "{semantic.color.background.brand.soft}"
+          "value": "{semantic.colour.background.brand.soft}"
         },
-        "color": {
-          "value": "{semantic.color.text.brand.base}"
+        "colour": {
+          "value": "{semantic.colour.text.brand.base}"
         },
         "boxSize": {
           "value": "{semantic.size.thumbnail.md}"
@@ -17,12 +17,12 @@
       },
       "title": {
         "text": {
-          "value": "{semantic.color.text.default.base}"
+          "value": "{semantic.colour.text.default.base}"
         }
       },
       "description": {
         "text": {
-          "value": "{semantic.color.text.subtle.base}"
+          "value": "{semantic.colour.text.subtle.base}"
         },
         "maxWidth": {
           "value": "{semantic.size.prose}",

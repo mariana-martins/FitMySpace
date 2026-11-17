@@ -42,7 +42,7 @@ const meta = {
           '### Best Practices\n' +
           '- **Use for hierarchies only:** Breadcrumbs show parent pages (`Home › Rooms › Bathroom › Product`). Do not use them for view switching (`Tabs`) or site-wide top menus (`Link`).\n' +
           '- **Keep the current page as a link:** Put `aria-current="page"` on the final `BreadcrumbLink` so the trail structure stays consistent and screen readers announce "current page".\n' +
-          '- **Keep labels concise:** Match each step to its destination page title so people recognize where each link leads.\n' +
+          '- **Keep labels concise:** Match each step to its destination page title so people recognise where each link leads.\n' +
           '- **One landmark name:** `Breadcrumb` sets `aria-label="Breadcrumb"` automatically so screen readers distinguish it from the main `<nav>`.\n\n' +
           '### Key Features\n' +
           '- **Semantic HTML** — renders `<nav aria-label="Breadcrumb">` and an `<ol>` with decorative `aria-hidden` dividers inside each `<li>`.\n' +

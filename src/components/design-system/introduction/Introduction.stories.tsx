@@ -40,17 +40,17 @@ type Story = StoryObj<typeof meta>;
 
 const codeStyle: React.CSSProperties = {
   fontFamily: 'monospace',
-  background: 'var(--ds-semantic-color-background-default-hover)',
+  background: 'var(--ds-semantic-colour-background-default-hover)',
   padding: '2px 6px',
   borderRadius: '4px',
   fontSize: '13px',
 };
 
 const cardBase: React.CSSProperties = {
-  backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+  backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
   borderRadius: 'var(--ds-radii-xl)',
   boxShadow: 'var(--ds-semantic-shadow-card-base)',
-  border: '1px solid var(--ds-semantic-color-border-subtle-base)',
+  border: '1px solid var(--ds-semantic-colour-border-subtle-base)',
   padding: '32px',
 };
 
@@ -71,7 +71,7 @@ const Hero = () => (
         width: '48px',
         height: '4px',
         borderRadius: 'var(--ds-radii-full)',
-        backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+        backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
         marginBottom: '24px',
       }}
       aria-hidden="true"
@@ -91,7 +91,7 @@ const Hero = () => (
     <Text
       size="md"
       style={{
-        color: 'var(--ds-semantic-color-text-subtle-base)',
+        color: 'var(--ds-semantic-colour-text-subtle-base)',
         display: 'block',
         maxWidth: '640px',
         textWrap: 'pretty',
@@ -105,7 +105,7 @@ const Hero = () => (
     <Text
       size="sm"
       style={{
-        color: 'var(--ds-semantic-color-text-subtle-base)',
+        color: 'var(--ds-semantic-colour-text-subtle-base)',
         display: 'block',
         marginTop: '16px',
       }}
@@ -162,7 +162,7 @@ const TierCard = ({
       size="sm"
       as="span"
       style={{
-        color: 'var(--ds-semantic-color-text-subtle-base)',
+        color: 'var(--ds-semantic-colour-text-subtle-base)',
         display: 'block',
         marginBottom: '16px',
         textWrap: 'pretty',
@@ -204,7 +204,7 @@ const ArrowConnector = () => (
       viewBox="0 0 40 40"
       fill="none"
       style={{
-        color: 'var(--ds-semantic-color-text-subtle-base)',
+        color: 'var(--ds-semantic-colour-text-subtle-base)',
         opacity: 0.5,
       }}
     >
@@ -229,7 +229,7 @@ const TokenArchitecture = () => (
       size="sm"
       as="span"
       style={{
-        color: 'var(--ds-semantic-color-text-subtle-base)',
+        color: 'var(--ds-semantic-colour-text-subtle-base)',
         display: 'block',
         marginBottom: '24px',
         textWrap: 'pretty',
@@ -251,8 +251,8 @@ const TokenArchitecture = () => (
         tier="Tier 1"
         label="Core Definitions"
         description="Literal values that define the palette. Never reference these directly in component code."
-        examples={['--ds-color-sage-700', '--ds-radii-md', '--ds-spacing-4']}
-        accent="var(--ds-semantic-color-text-brand-base)"
+        examples={['--ds-colour-sage-700', '--ds-radii-md', '--ds-spacing-4']}
+        accent="var(--ds-semantic-colour-text-brand-base)"
       />
       <ArrowConnector />
       <TierCard
@@ -260,11 +260,11 @@ const TokenArchitecture = () => (
         label="Semantic Aliases"
         description="Intent-based names that reference Tier 1. These are what you use globally."
         examples={[
-          '--ds-semantic-color-background-brand-base',
+          '--ds-semantic-colour-background-brand-base',
           '--ds-semantic-radii-interactive-md',
           '--ds-semantic-spacing-inset-md',
         ]}
-        accent="var(--ds-semantic-color-text-brand-base)"
+        accent="var(--ds-semantic-colour-text-brand-base)"
       />
       <ArrowConnector />
       <TierCard
@@ -276,7 +276,7 @@ const TokenArchitecture = () => (
           '--ds-component-input-border-focus',
           '--ds-component-text-field-hint-text',
         ]}
-        accent="var(--ds-semantic-color-text-brand-base)"
+        accent="var(--ds-semantic-colour-text-brand-base)"
       />
     </div>
   </section>
@@ -309,8 +309,8 @@ const StepCard = ({
         width: '32px',
         height: '32px',
         borderRadius: 'var(--ds-radii-full)',
-        backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
-        color: 'var(--ds-semantic-color-text-inverse)',
+        backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
+        color: 'var(--ds-semantic-colour-text-inverse)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -329,7 +329,7 @@ const StepCard = ({
       size="sm"
       as="span"
       style={{
-        color: 'var(--ds-semantic-color-text-subtle-base)',
+        color: 'var(--ds-semantic-colour-text-subtle-base)',
         display: 'block',
         textWrap: 'pretty',
       }}
@@ -348,7 +348,7 @@ const QuickStart = () => (
       size="sm"
       as="span"
       style={{
-        color: 'var(--ds-semantic-color-text-subtle-base)',
+        color: 'var(--ds-semantic-colour-text-subtle-base)',
         display: 'block',
         marginBottom: '24px',
       }}
@@ -359,7 +359,7 @@ const QuickStart = () => (
       <StepCard step={1} title="Use the right token tier">
         Always reach for a Tier 2 (Semantic) or Tier 3 (Component) variable. Instead of{' '}
         <code style={codeStyle}>background: #e3efe9</code>, write{' '}
-        <code style={codeStyle}>background: var(--ds-semantic-color-background-brand-base)</code>.
+        <code style={codeStyle}>background: var(--ds-semantic-colour-background-brand-base)</code>.
         Semantic names tell future readers <em>why</em> the value exists.
       </StepCard>
 
@@ -386,24 +386,24 @@ const QuickStart = () => (
 
 /* Decorative preview strips for each foundation category */
 
-const ColorPreview = () => {
-  const colors = [
-    'var(--ds-color-sage-400)',
-    'var(--ds-color-sage-600)',
-    'var(--ds-color-sage-800)',
-    'var(--ds-color-charcoal-300)',
-    'var(--ds-color-ocean-500)',
-    'var(--ds-color-honey-400)',
-    'var(--ds-color-berry-500)',
+const ColourPreview = () => {
+  const colours = [
+    'var(--ds-colour-sage-400)',
+    'var(--ds-colour-sage-600)',
+    'var(--ds-colour-sage-800)',
+    'var(--ds-colour-charcoal-300)',
+    'var(--ds-colour-ocean-500)',
+    'var(--ds-colour-honey-400)',
+    'var(--ds-colour-berry-500)',
   ];
   return (
     <div style={{ display: 'flex', gap: '4px', height: '32px' }}>
-      {colors.map((c) => (
+      {colours.map((colour) => (
         <div
-          key={c}
+          key={colour}
           style={{
             flex: 1,
-            backgroundColor: c,
+            backgroundColor: colour,
             borderRadius: 'var(--ds-radii-sm)',
           }}
         />
@@ -430,7 +430,7 @@ const SpacingPreview = () => {
           style={{
             width: w,
             height: '5px',
-            backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+            backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
             borderRadius: 'var(--ds-radii-sm)',
           }}
         />
@@ -454,7 +454,7 @@ const RadiiPreview = () => {
           style={{
             width: '32px',
             height: '32px',
-            backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+            backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
             borderRadius: r,
             flexShrink: 0,
           }}
@@ -478,7 +478,7 @@ const TypographyPreview = () => (
       style={{
         fontSize: '18px',
         fontWeight: 700,
-        color: 'var(--ds-semantic-color-text-default-base)',
+        color: 'var(--ds-semantic-colour-text-default-base)',
         lineHeight: 1,
       }}
     >
@@ -487,7 +487,7 @@ const TypographyPreview = () => (
     <div
       style={{
         fontSize: '11px',
-        color: 'var(--ds-semantic-color-text-subtle-base)',
+        color: 'var(--ds-semantic-colour-text-subtle-base)',
         fontFamily: 'var(--ds-font-family-sans)',
       }}
     >
@@ -509,7 +509,7 @@ const SizePreview = () => {
             width: '24px',
             // Half scale, so the largest control (56px) fits the 32px preview strip.
             height: `calc(var(--ds-semantic-size-control-${controlSize}) / 2)`,
-            backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+            backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
             borderRadius: 'var(--ds-radii-sm)',
           }}
         />
@@ -533,7 +533,7 @@ const BorderWidthPreview = () => {
             width: '32px',
             height: '32px',
             boxSizing: 'border-box',
-            border: `${borderWidth} solid var(--ds-semantic-color-border-brand-base)`,
+            border: `${borderWidth} solid var(--ds-semantic-colour-border-brand-base)`,
             borderRadius: 'var(--ds-radii-md)',
           }}
         />
@@ -557,9 +557,9 @@ const ShadowPreview = () => {
             width: '40px',
             height: '24px',
             borderRadius: 'var(--ds-radii-md)',
-            backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+            backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
             boxShadow: elevation,
-            border: '1px solid var(--ds-semantic-color-border-default-base)',
+            border: '1px solid var(--ds-semantic-colour-border-default-base)',
           }}
         />
       ))}
@@ -574,8 +574,8 @@ const FocusPreview = () => (
         width: '64px',
         height: '20px',
         borderRadius: 'var(--ds-radii-full)',
-        backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
-        outline: 'var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color)',
+        backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
+        outline: 'var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour)',
         outlineOffset: 'var(--ds-semantic-focus-ring-offset)',
       }}
     />
@@ -588,14 +588,14 @@ const MotionPreview = () => (
     <path
       d="M 0 32 C 9.6 32, 0 0, 48 0"
       fill="none"
-      stroke="var(--ds-semantic-color-border-brand-base)"
+      stroke="var(--ds-semantic-colour-border-brand-base)"
       strokeWidth="2"
     />
   </svg>
 );
 
 const sectionIntroStyle: React.CSSProperties = {
-  color: 'var(--ds-semantic-color-text-subtle-base)',
+  color: 'var(--ds-semantic-colour-text-subtle-base)',
   display: 'block',
   marginBottom: '24px',
 };
@@ -611,10 +611,10 @@ const FoundationGrid = () => (
     <LinkCardGrid>
       <LinkCard
         headingLevel={4}
-        path="/story/design-system-foundation-color--semantic-colors"
-        title="Color"
+        path="/story/design-system-foundation-colour--semantic-colours"
+        title="Colour"
         description="Core palettes and semantic colour roles for backgrounds, text, borders, and utility states."
-        preview={<ColorPreview />}
+        preview={<ColourPreview />}
       />
       <LinkCard
         headingLevel={4}
@@ -981,7 +981,7 @@ const ComponentGrid = () => (
               width: '160px',
               padding: '12px',
               borderRadius: 'var(--ds-semantic-radii-container-lg)',
-              border: '1px solid var(--ds-semantic-color-border-default-base)',
+              border: '1px solid var(--ds-semantic-colour-border-default-base)',
               backgroundColor: 'var(--ds-component-dialog-background)',
               boxShadow: 'var(--ds-semantic-shadow-overlay)',
             }}
@@ -1069,7 +1069,7 @@ export const Welcome: Story = {
   render: () => (
     <div
       style={{
-        backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+        backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
         minHeight: '100vh',
         width: '100%',
       }}

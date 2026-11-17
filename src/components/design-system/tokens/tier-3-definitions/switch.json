@@ -15,39 +15,39 @@
       "track": {
         "background": {
           "default": {
-            "value": "{semantic.color.background.default.base}"
+            "value": "{semantic.colour.background.default.base}"
           },
           "primary-checked": {
-            "value": "{semantic.color.background.brand.base}"
+            "value": "{semantic.colour.background.brand.base}"
           },
           "primary-checked-hover": {
-            "value": "{semantic.color.background.brand.hover}"
+            "value": "{semantic.colour.background.brand.hover}"
           },
           "secondary-checked": {
-            "value": "{semantic.color.background.subtle.base}"
+            "value": "{semantic.colour.background.subtle.base}"
           },
           "secondary-checked-hover": {
-            "value": "{semantic.color.background.subtle.hover}"
+            "value": "{semantic.colour.background.subtle.hover}"
           },
           "checked-invalid": {
-            "value": "{semantic.color.background.utility-error.base}"
+            "value": "{semantic.colour.background.utility-error.base}"
           },
           "disabled": {
-            "value": "{semantic.color.background.disabled}"
+            "value": "{semantic.colour.background.disabled}"
           }
         },
         "edge": {
           "default": {
-            "value": "{semantic.color.border.default.base}"
+            "value": "{semantic.colour.border.default.base}"
           },
           "hover": {
-            "value": "{semantic.color.border.default.active}"
+            "value": "{semantic.colour.border.default.active}"
           },
           "invalid": {
-            "value": "{semantic.color.border.utility-error.base}"
+            "value": "{semantic.colour.border.utility-error.base}"
           },
           "disabled": {
-            "value": "{semantic.color.border.disabled}"
+            "value": "{semantic.colour.border.disabled}"
           }
         },
         "gap": {
@@ -57,36 +57,36 @@
       },
       "thumb": {
         "unchecked": {
-          "value": "{semantic.color.text.subtle.base}",
+          "value": "{semantic.colour.text.subtle.base}",
           "comment": "The knob on the unchecked track: a neutral dark on a white track, so the state never rests on the track colour alone."
         },
         "checked": {
-          "value": "{semantic.color.text.inverse}"
+          "value": "{semantic.colour.text.inverse}"
         },
         "disabled": {
-          "value": "{semantic.color.text.subtle.disabled}",
+          "value": "{semantic.colour.text.subtle.disabled}",
           "comment": "Secondary text that stays readable on a disabled surface."
         }
       },
       "label": {
         "text": {
-          "value": "{semantic.color.text.default.base}"
+          "value": "{semantic.colour.text.default.base}"
         },
         "required-marker": {
-          "value": "{semantic.color.text.brand.base}"
+          "value": "{semantic.colour.text.brand.base}"
         },
         "disabled": {
-          "value": "{semantic.color.text.disabled}"
+          "value": "{semantic.colour.text.disabled}"
         }
       },
       "hint": {
         "text": {
-          "value": "{semantic.color.text.subtle.base}"
+          "value": "{semantic.colour.text.subtle.base}"
         }
       },
       "error": {
         "text": {
-          "value": "{semantic.color.text.utility-error.base}"
+          "value": "{semantic.colour.text.utility-error.base}"
         },
         "gap": {
           "value": "{semantic.spacing.gap.xs}"

@@ -71,7 +71,7 @@
 }
 
 .track:focus-visible {
-  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
   outline-offset: var(--ds-semantic-focus-ring-offset);
 }
 

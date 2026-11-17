@@ -73,7 +73,7 @@ function relativeLuminance(hexColour: string): number {
   return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
 }
 
-const PAGE_BACKGROUND = 'semantic.color.background.default.base';
+const PAGE_BACKGROUND = 'semantic.colour.background.default.base';
 
 /** Resolves a colour token to hex. A transparent background shows the page behind it. */
 function resolveColour(tokenPath: string): string {
@@ -98,9 +98,9 @@ describe('Focus tokens — contrast', () => {
     // The outset ring sits on the page; the inset ring sits on the item's own
     // background, which is the hover tint when the pointer is also over it.
     ['the page', PAGE_BACKGROUND],
-    ['a hovered item', 'semantic.color.background.default.hover'],
+    ['a hovered item', 'semantic.colour.background.default.hover'],
   ])('default ring stands out from %s', (_description, backgroundToken) => {
-    expect(contrastRatio('semantic.focus.ring.color', backgroundToken)).toBeGreaterThanOrEqual(
+    expect(contrastRatio('semantic.focus.ring.colour', backgroundToken)).toBeGreaterThanOrEqual(
       NON_TEXT_MINIMUM,
     );
   });
@@ -410,7 +410,7 @@ describe('Breadcrumb tokens — contrast', () => {
 
   it('separator stands out from the page', () => {
     expect(
-      contrastRatio('component.breadcrumb.separator.color', PAGE_BACKGROUND),
+      contrastRatio('component.breadcrumb.separator.colour', PAGE_BACKGROUND),
     ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
   });
 });
@@ -477,7 +477,7 @@ describe('EmptyState tokens — contrast', () => {
 
   it('icon stands out from its circle', () => {
     expect(
-      contrastRatio('component.empty-state.icon.color', 'component.empty-state.icon.background'),
+      contrastRatio('component.empty-state.icon.colour', 'component.empty-state.icon.background'),
     ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
   });
 });
@@ -616,7 +616,7 @@ describe('Inverse surface tokens — contrast', () => {
   // checked here rather than once per component.
   it('inverse text is readable on the inverse background', () => {
     expect(
-      contrastRatio('semantic.color.text.inverse', 'semantic.color.background.inverse'),
+      contrastRatio('semantic.colour.text.inverse', 'semantic.colour.background.inverse'),
     ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
   });
 });
@@ -727,7 +727,7 @@ describe('Toast tokens — contrast', () => {
   // The action fills with the variant's edge on hover, so its text reverses.
   it.each(TOAST_VARIANTS)('%s action is readable while hovered', (variant) => {
     expect(
-      contrastRatio('semantic.color.text.inverse', `component.toast.${variant}.border`),
+      contrastRatio('semantic.colour.text.inverse', `component.toast.${variant}.border`),
     ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
   });
 });

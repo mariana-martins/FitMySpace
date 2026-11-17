@@ -10,10 +10,10 @@
         }
       },
       "background": {
-        "value": "{semantic.color.background.default.base}"
+        "value": "{semantic.colour.background.default.base}"
       },
       "border": {
-        "value": "{semantic.color.border.default.base}",
+        "value": "{semantic.colour.border.default.base}",
         "comment": "The dialog sits on the scrim, so its edge is the same quiet line as a Card, not the dark edge of a control."
       },
       "shadow": {
@@ -21,17 +21,17 @@
       },
       "title": {
         "text": {
-          "value": "{semantic.color.text.default.base}"
+          "value": "{semantic.colour.text.default.base}"
         }
       },
       "description": {
         "text": {
-          "value": "{semantic.color.text.subtle.base}"
+          "value": "{semantic.colour.text.subtle.base}"
         }
       },
       "footer": {
         "border": {
-          "value": "{semantic.color.border.default.base}"
+          "value": "{semantic.colour.border.default.base}"
         }
       },
       "close": {

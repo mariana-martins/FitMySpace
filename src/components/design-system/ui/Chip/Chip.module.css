@@ -15,7 +15,7 @@
 
 .chip {
   --chip-background: var(--ds-component-chip-background-default);
-  --chip-border-color: var(--ds-component-chip-border-default);
+  --chip-border-colour: var(--ds-component-chip-border-default);
   --chip-text: var(--ds-component-chip-text-default);
   --chip-inset-edge: 0px;
 
@@ -33,9 +33,9 @@
   color: var(--chip-text);
   white-space: nowrap;
   background-color: var(--chip-background);
-  border: var(--ds-component-chip-shape-border-width) solid var(--chip-border-color);
+  border: var(--ds-component-chip-shape-border-width) solid var(--chip-border-colour);
   border-radius: var(--ds-component-chip-shape-radii);
-  box-shadow: inset 0 0 0 var(--chip-inset-edge) var(--chip-border-color);
+  box-shadow: inset 0 0 0 var(--chip-inset-edge) var(--chip-border-colour);
   cursor: pointer;
   transition-property: background-color, border-color, box-shadow, color;
   transition-duration: var(--ds-semantic-motion-duration-fast);
@@ -60,7 +60,7 @@
 
 .chip[aria-pressed='true'] {
   --chip-background: var(--ds-component-chip-background-selected);
-  --chip-border-color: var(--ds-component-chip-border-selected);
+  --chip-border-colour: var(--ds-component-chip-border-selected);
   --chip-text: var(--ds-component-chip-text-selected);
   --chip-inset-edge: calc(
     var(--ds-component-chip-shape-selected-edge) - var(--ds-component-chip-shape-border-width)
@@ -72,12 +72,12 @@
 @media (hover: hover) {
   .chip:hover:not(:disabled) {
     --chip-background: var(--ds-component-chip-background-hover);
-    --chip-border-color: var(--ds-component-chip-border-hover);
+    --chip-border-colour: var(--ds-component-chip-border-hover);
   }
 
   .chip[aria-pressed='true']:hover:not(:disabled) {
     --chip-background: var(--ds-component-chip-background-selected);
-    --chip-border-color: var(--ds-component-chip-border-selected-hover);
+    --chip-border-colour: var(--ds-component-chip-border-selected-hover);
   }
 }
 
@@ -88,7 +88,7 @@
 /* Focus ----------------------------------------------------------- */
 
 .chip:focus-visible {
-  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
   outline-offset: var(--ds-semantic-focus-ring-offset);
 }
 
@@ -96,7 +96,7 @@
 
 .chip:disabled {
   --chip-background: var(--ds-component-chip-background-disabled);
-  --chip-border-color: var(--ds-component-chip-border-disabled);
+  --chip-border-colour: var(--ds-component-chip-border-disabled);
   --chip-text: var(--ds-component-chip-text-disabled);
   cursor: not-allowed;
 }

@@ -22,8 +22,8 @@ type Story = StoryObj<typeof meta>;
 
 const surfaceStyle: CSSProperties = {
   borderRadius: 'var(--ds-radii-lg)',
-  border: 'var(--ds-semantic-border-width-default) solid var(--ds-semantic-color-border-disabled)',
-  backgroundColor: 'var(--ds-semantic-color-background-default-base)',
+  border: 'var(--ds-semantic-border-width-default) solid var(--ds-semantic-colour-border-disabled)',
+  backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
 };
 
 /** A sunken shadow falls inside the element, so it is drawn on a tinted well instead of a card. */
@@ -38,8 +38,8 @@ const ShadowSample = ({ token }: { token: DocumentedToken }) => (
       width: '96px',
       height: '64px',
       backgroundColor: isInset(token)
-        ? 'var(--ds-semantic-color-background-default-hover)'
-        : 'var(--ds-semantic-color-background-default-base)',
+        ? 'var(--ds-semantic-colour-background-default-hover)'
+        : 'var(--ds-semantic-colour-background-default-base)',
       boxShadow: `var(${token.name})`,
     }}
   />
@@ -53,7 +53,7 @@ const LayeredScene = () => (
       position: 'relative',
       height: '240px',
       borderRadius: 'var(--ds-radii-lg)',
-      backgroundColor: 'var(--ds-semantic-color-background-default-hover)',
+      backgroundColor: 'var(--ds-semantic-colour-background-default-hover)',
       overflow: 'hidden',
     }}
   >

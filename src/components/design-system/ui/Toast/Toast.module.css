@@ -136,7 +136,7 @@
 }
 
 .action:hover {
-  color: var(--ds-semantic-color-text-inverse);
+  color: var(--ds-semantic-colour-text-inverse);
   background-color: var(--toast-border);
 }
 
@@ -150,7 +150,7 @@
     var(--ds-semantic-typography-heading-sm-font-size) *
       var(--ds-semantic-typography-heading-sm-line-height)
   );
-  --button-focus-ring-color: var(--toast-focus-ring);
+  --button-focus-ring-colour: var(--toast-focus-ring);
 
   position: absolute;
   inset-block-start: calc(

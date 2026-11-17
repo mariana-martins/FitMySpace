@@ -27,7 +27,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--ds-semantic-layer-overlay);
-  background-color: var(--ds-semantic-color-background-scrim);
+  background-color: var(--ds-semantic-colour-background-scrim);
 }
 
 /* Centring box ---------------------------------------------------- */
@@ -59,7 +59,7 @@
   max-inline-size: 100%;
   max-block-size: 100%;
   padding: var(--dialog-padding);
-  color: var(--ds-semantic-color-text-default-base);
+  color: var(--ds-semantic-colour-text-default-base);
   background-color: var(--ds-component-dialog-background);
   border: var(--ds-component-dialog-shape-border-width) solid var(--ds-component-dialog-border);
   border-radius: var(--ds-component-dialog-shape-radii);
@@ -80,7 +80,7 @@
 }
 
 .title:focus-visible {
-  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
   outline-offset: var(--ds-semantic-focus-ring-offset);
 }
 

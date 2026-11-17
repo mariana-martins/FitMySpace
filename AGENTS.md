@@ -108,7 +108,7 @@ rules below are its essentials.
   `npm run lint:css`) enforces it and fails on any unknown `--ds-*` token or any
   tier-1 token in design-system CSS; `tokens/tokens.usage.test.ts` checks the
   `--ds-*` names used in `.ts`, `.tsx` and `.mdx` files.
-- **Focus**: new components draw the ring with `semantic.focus.ring.color`,
+- **Focus**: new components draw the ring with `semantic.focus.ring.colour`,
   `width` and `offset` (or `offset-inset` inside clipped or packed containers);
   add a tier-3 `focus-ring` token only when the default colour lacks 3:1 contrast.
 - **Layers**: `z-index` only through `semantic.layer.overlay` (dialog and its scrim),

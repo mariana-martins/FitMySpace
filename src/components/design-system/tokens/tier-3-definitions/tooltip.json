@@ -2,10 +2,10 @@
   "component": {
     "tooltip": {
       "background": {
-        "value": "{semantic.color.background.inverse}"
+        "value": "{semantic.colour.background.inverse}"
       },
       "text": {
-        "value": "{semantic.color.text.inverse}"
+        "value": "{semantic.colour.text.inverse}"
       },
       "shadow": {
         "value": "{semantic.shadow.floating}"
@@ -16,7 +16,7 @@
         },
         "border-width": {
           "value": "{semantic.border-width.default}",
-          "comment": "A transparent outline that forced colors paint as the bubble's edge."
+          "comment": "A transparent outline that forced-colors paints as the bubble's edge."
         }
       },
       "max-width": {

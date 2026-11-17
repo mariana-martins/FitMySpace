@@ -30,7 +30,7 @@ const meta = {
           '- **Destructive Actions:** Use the `error` variant for irreversible actions like deletions.\n' +
           '- **Icon-only Buttons:** Always provide an `aria-label` when using a button without text to ensure screen reader support.\n\n' +
           '### Key Features\n' +
-          '- **6 color variants** (`primary`, `secondary`, `error`, `success`, `warning`, `information`) × **3 appearances** (`fill`, `outline`, `ghost`).\n' +
+          '- **6 colour variants** (`primary`, `secondary`, `error`, `success`, `warning`, `information`) × **3 appearances** (`fill`, `outline`, `ghost`).\n' +
           '- **4 sizes** (`xs` 32px, `sm` 40px, `md` 48px, `lg` 56px), the same heights as the Input sizes, with token-driven padding, font, gap, and icon sizing.\n' +
           '- **Icon support** — leading or trailing icons via the `icon` prop.\n' +
           '- **Icon-only mode** — TypeScript enforces `aria-label` when `children` is omitted.\n' +
@@ -60,7 +60,7 @@ export const Default: Story = {
     variant: {
       control: { type: 'select' },
       options: ['primary', 'secondary', 'error', 'success', 'warning', 'information'],
-      description: 'The color intent of the button.',
+      description: 'The colour intent of the button.',
     },
     appearance: {
       control: { type: 'select' },
@@ -281,7 +281,7 @@ export const WithIcon: Story = {
         Continue
       </Button>
       <Button variant="information" appearance="fill" size="md" icon={<Star />} iconPosition="end">
-        Favorite
+        Favourite
       </Button>
     </div>
   ),
@@ -320,7 +320,13 @@ export const IconOnly: Story = {
         icon={<Download />}
         aria-label="Download file"
       />
-      <Button variant="warning" appearance="fill" size="xs" icon={<Star />} aria-label="Favorite" />
+      <Button
+        variant="warning"
+        appearance="fill"
+        size="xs"
+        icon={<Star />}
+        aria-label="Favourite"
+      />
     </div>
   ),
   parameters: {
@@ -364,7 +370,7 @@ export const Disabled: Story = {
     docs: {
       description: {
         story:
-          'A standard disabled state that removes pointer events and adjusts colors according to the design system semantic tokens.',
+          'A standard disabled state that removes pointer events and adjusts colours according to the design system semantic tokens.',
       },
     },
   },
@@ -443,8 +449,8 @@ export const AllVariantsPseudoStates: Story = {
           style={{
             width: 'fit-content',
             padding: '1.5rem 1.75rem',
-            backgroundColor: 'var(--ds-semantic-color-background-default-base)',
-            border: '1px solid var(--ds-color-charcoal-200)',
+            backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
+            border: '1px solid var(--ds-colour-charcoal-200)',
             borderRadius: 'var(--ds-semantic-radii-container-lg)',
           }}
         >
@@ -462,7 +468,7 @@ export const AllVariantsPseudoStates: Story = {
             <thead>
               <tr>
                 <th scope="col" style={{ textAlign: 'start', fontWeight: 'normal' }}>
-                  <Caption style={{ color: 'var(--ds-semantic-color-text-subtle-base)' }}>
+                  <Caption style={{ color: 'var(--ds-semantic-colour-text-subtle-base)' }}>
                     Variant
                   </Caption>
                 </th>
@@ -472,7 +478,7 @@ export const AllVariantsPseudoStates: Story = {
                     scope="col"
                     style={{ textAlign: 'start', fontWeight: 'normal' }}
                   >
-                    <Caption style={{ color: 'var(--ds-semantic-color-text-subtle-base)' }}>
+                    <Caption style={{ color: 'var(--ds-semantic-colour-text-subtle-base)' }}>
                       {state.label}
                     </Caption>
                   </th>
@@ -569,10 +575,10 @@ export const AsChild: Story = {
 };
 
 /* ---------------------------------------------------------------
- * Click behavior
+ * Click behaviour
  * --------------------------------------------------------------- */
 
-export const ClickBehavior: Story = {
+export const ClickBehaviour: Story = {
   args: {
     onClick: fn(),
   },

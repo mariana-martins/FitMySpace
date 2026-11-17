@@ -19,14 +19,14 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const ring = 'var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color)';
+const ring = 'var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour)';
 
 const pillStyle: CSSProperties = {
   width: '48px',
   height: '32px',
   margin: '8px',
   borderRadius: 'var(--ds-radii-md)',
-  backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+  backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
 };
 
 /** The outset ring: a gap between the element and the ring. */
@@ -53,7 +53,7 @@ const InsetSample = () => (
       overflow: 'hidden',
       borderRadius: 'var(--ds-radii-md)',
       border:
-        'var(--ds-semantic-border-width-default) solid var(--ds-semantic-color-border-disabled)',
+        'var(--ds-semantic-border-width-default) solid var(--ds-semantic-colour-border-disabled)',
     }}
   >
     {['first', 'focused', 'last'].map((item) => (
@@ -63,8 +63,8 @@ const InsetSample = () => (
           height: '20px',
           backgroundColor:
             item === 'focused'
-              ? 'var(--ds-semantic-color-background-default-hover)'
-              : 'var(--ds-semantic-color-background-default-base)',
+              ? 'var(--ds-semantic-colour-background-default-hover)'
+              : 'var(--ds-semantic-colour-background-default-base)',
           outline: item === 'focused' ? ring : 'none',
           outlineOffset: 'var(--ds-semantic-focus-ring-offset-inset)',
         }}
@@ -81,7 +81,7 @@ const previewByToken: Record<string, ReactNode> = {
         height: '32px',
         margin: '8px',
         borderRadius: 'var(--ds-radii-full)',
-        backgroundColor: 'var(--ds-semantic-focus-ring-color)',
+        backgroundColor: 'var(--ds-semantic-focus-ring-colour)',
       }}
     />
   ),
@@ -104,7 +104,7 @@ export const FocusRing: Story = {
           grid. A new component starts from the shared colour:
           <br />
           <InlineCode>
-            outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+            outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
           </InlineCode>
           <br />
           <InlineCode>outline-offset: var(--ds-semantic-focus-ring-offset);</InlineCode>

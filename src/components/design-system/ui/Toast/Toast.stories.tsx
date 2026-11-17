@@ -45,7 +45,7 @@ const meta = {
           '- **The card is not the live region** — Radix announces through a hidden region of its own, which is what lets the card hold a button: MDN says `role="alert"` holds text, not controls.\n' +
           '- **Above the dialog** — `semantic.layer.toast`, over `layer.floating`, so a tooltip explaining a button in the card still shows.\n' +
           '- **Slides in and out** — the card arrives from the screen edge and leaves the same way, by itself or by a swipe; bottom-right, or bottom-centre on a phone, clear of the home indicator through `env(safe-area-inset-*)`.\n' +
-          '- **Reduced motion and forced colors** — the card stops moving when asked, and draws its own edge when the system drops shadows.',
+          '- **Reduced motion and `forced-colors`** — the card stops moving when asked, and draws its own edge when the system drops shadows.',
       },
     },
   },
@@ -400,7 +400,7 @@ export const SeveralAtOnce: Story = {
       story: { height: '520px' },
       description: {
         story:
-          "Cards stack from the bottom edge upward, newest nearest it. How many are on screen, and what happens to the older ones, is the app's queue — in `src/hooks/`, next to the queries that raise them. The viewport itself only stops a long stack from running past the top of the screen: it then scrolls inside itself, and the region's hotkey (F8) moves focus into it so the cards can be read one at a time.",
+          "Cards stack from the bottom edge upwards, newest nearest it. How many are on screen, and what happens to the older ones, is the app's queue — in `src/hooks/`, next to the queries that raise them. The viewport itself only stops a long stack from running past the top of the screen: it then scrolls inside itself, and the region's hotkey (F8) moves focus into it so the cards can be read one at a time.",
       },
       source: {
         code: `{queue.map((message) => (
