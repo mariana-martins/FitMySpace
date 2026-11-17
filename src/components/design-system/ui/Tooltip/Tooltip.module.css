@@ -13,8 +13,6 @@
  * --------------------------------------------------------------- */
 
 .content {
-  /* The root of what Radix renders in this portal, so this is where the layer
-     goes: a tooltip has to stay readable over an open dialog. */
   z-index: var(--ds-semantic-layer-floating);
   box-sizing: border-box;
   max-inline-size: var(--ds-component-tooltip-max-width);
@@ -25,6 +23,7 @@
   background-color: var(--ds-component-tooltip-background);
   border-radius: var(--ds-component-tooltip-shape-radii);
   box-shadow: var(--ds-component-tooltip-shadow);
+  outline: var(--ds-component-tooltip-shape-border-width) solid transparent;
   text-align: start;
   overflow-wrap: break-word;
   transform-origin: var(--radix-tooltip-content-transform-origin);
@@ -32,8 +31,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Radix puts this class on the <svg> itself, not on a wrapper, and the polygon
-   inside has no fill of its own: `fill` is inherited, so it lands on the shape. */
 .arrow {
   display: block;
   fill: var(--ds-component-tooltip-background);
@@ -43,8 +40,6 @@
  * Motion and user preferences
  * --------------------------------------------------------------- */
 
-/* Radix never writes `data-state="open"` here: a bubble that waited for the
-   delay is `delayed-open`, one that skipped it is `instantly-open`. */
 .content[data-state='delayed-open'],
 .content[data-state='instantly-open'] {
   animation: tooltip-enter var(--ds-component-tooltip-motion-duration)
@@ -79,10 +74,7 @@
 }
 
 @media (forced-colors: active) {
-  /* Kept as drawn: the system would otherwise repaint the bubble and its text
-     separately, and white text on a light system background is unreadable. */
-  .content,
   .arrow {
-    forced-color-adjust: none;
+    fill: CanvasText;
   }
 }

@@ -1,13 +1,13 @@
-import { CircleAlert, CircleCheck, Info, TriangleAlert } from 'lucide-react';
+import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS } from '../../utils';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Heading, Text } from '../Typography';
 import styles from './Alert.module.css';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
 
-import type { AlertLive, AlertProps, AlertVariant } from './Alert.types';
+import type { AlertLive, AlertProps } from './Alert.types';
 
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 /* ---------------------------------------------------------------
  * Alert
@@ -32,13 +32,6 @@ import type { ReactElement, ReactNode } from 'react';
  * No client hooks, so it renders on the server.
  * --------------------------------------------------------------- */
 
-const VARIANT_ICONS: Record<AlertVariant, ReactElement> = {
-  information: <Info focusable="false" />,
-  success: <CircleCheck focusable="false" />,
-  warning: <TriangleAlert focusable="false" />,
-  error: <CircleAlert focusable="false" />,
-};
-
 const LIVE_ROLES: Record<AlertLive, 'status' | 'alert' | undefined> = {
   polite: 'status',
   assertive: 'alert',
@@ -49,13 +42,6 @@ function hasMessage(children: ReactNode): boolean {
   if (typeof children === 'string') return children.trim() !== '';
   return children != null && typeof children !== 'boolean';
 }
-
-const VARIANT_LABELS: Record<AlertVariant, string> = {
-  information: 'Information',
-  success: 'Success',
-  warning: 'Warning',
-  error: 'Error',
-};
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
   const {
@@ -89,11 +75,11 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(props
       {...rest}
     >
       <span className={styles.icon} aria-hidden="true">
-        {icon ?? VARIANT_ICONS[variant]}
+        {icon ?? UTILITY_VARIANT_ICONS[variant]}
       </span>
 
       <div className={styles.content}>
-        <VisuallyHidden>{`${VARIANT_LABELS[variant]}: `}</VisuallyHidden>
+        <VisuallyHidden>{`${UTILITY_VARIANT_LABELS[variant]}: `}</VisuallyHidden>
 
         {title && (
           <Heading level={headingLevel} size="sm" className={styles.title}>

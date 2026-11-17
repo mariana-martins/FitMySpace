@@ -35,7 +35,8 @@ const meta = {
           '- **Points at the control** — a filled arrow, with `side`, `align` and `sideOffset` from Radix.\n' +
           '- **One shared delay** — `TooltipProvider` sets `delayDuration` (700ms by default) and `skipDelayDuration`, so the first tooltip waits and the ones after it appear at once.\n' +
           '- **`body-sm` at 240px** — the small text role and a width that keeps the lines short.\n' +
-          '- **Reduced motion and forced colors** — the bubble stops moving when it is asked to, and keeps its own colors when the system would repaint it unreadable.',
+          '- **Moving along a toolbar** — entering the next trigger closes the open tooltip at once, so the next one is never held back while the pointer crosses towards the first bubble.\n' +
+          "- **Reduced motion and forced colors** — the bubble stops moving when it is asked to, and takes the reader's system colours with a drawn edge.",
       },
     },
   },

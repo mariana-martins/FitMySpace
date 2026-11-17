@@ -1,5 +1,6 @@
 'use client';
 
+import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { createContext, forwardRef, useContext, useRef } from 'react';
 import { useComposedRefs } from '@radix-ui/react-compose-refs';
 import * as RadixDialog from '@radix-ui/react-dialog';
@@ -33,15 +34,29 @@ import type {
  * a confirmation and a wall of text alike.
  * --------------------------------------------------------------- */
 
-/* Radix keeps `modal` to itself, so `DialogContent` could not tell whether
-   to claim `aria-modal`. This context carries it down instead. */
-const DialogModalContext = createContext(true);
+/* Radix keeps `modal` and `open` to itself. `DialogContent` needs `modal` to
+   claim `aria-modal`, and `open` to put `data-state` on the centring box, so
+   this context carries both down. */
+const DialogStateContext = createContext({ modal: true, open: false });
 
-export function Dialog({ modal = true, ...rootProps }: DialogProps) {
+export function Dialog({
+  modal = true,
+  open: openProp,
+  defaultOpen,
+  onOpenChange,
+  ...rootProps
+}: DialogProps) {
+  const [open, setOpen] = useControllableState({
+    prop: openProp,
+    defaultProp: defaultOpen ?? false,
+    onChange: onOpenChange,
+    caller: 'Dialog',
+  });
+
   return (
-    <DialogModalContext.Provider value={modal}>
-      <RadixDialog.Root modal={modal} {...rootProps} />
-    </DialogModalContext.Provider>
+    <DialogStateContext.Provider value={{ modal, open }}>
+      <RadixDialog.Root modal={modal} open={open} onOpenChange={setOpen} {...rootProps} />
+    </DialogStateContext.Provider>
   );
 }
 
@@ -79,28 +94,23 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       ...contentProps
     } = props;
 
-    const isModal = useContext(DialogModalContext);
+    const { modal: isModal, open } = useContext(DialogStateContext);
     const frameRef = useRef<HTMLDivElement>(null);
     const composedRef = useComposedRefs(ref, frameRef);
 
-    /* Radix focuses the first control, which is right for a form and wrong for a
-     dialog with nothing to fill in: there the title is what the reader needs
-     first, so `initialFocus="title"` takes the focus there instead. */
     function handleOpenAutoFocus(event: Event) {
       onOpenAutoFocus?.(event);
       if (initialFocus !== 'title' || event.defaultPrevented) return;
 
       event.preventDefault();
-      frameRef.current?.querySelector<HTMLElement>('[data-dialog-title]')?.focus();
+      const title = frameRef.current?.querySelector<HTMLElement>('[data-dialog-title]');
+      (title ?? frameRef.current)?.focus();
     }
 
     return (
       <RadixDialog.Portal>
         <RadixDialog.Overlay className={styles.overlay} />
-
-        {/* Radix centres nothing, so this box does: the dialog inside it is the
-          visible surface and the whole of the accessibility tree's dialog. */}
-        <div className={styles.viewport}>
+        <div className={styles.viewport} data-state={open ? 'open' : 'closed'}>
           <RadixDialog.Content
             asChild
             aria-modal={isModal ? true : undefined}

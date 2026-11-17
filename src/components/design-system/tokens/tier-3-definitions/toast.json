@@ -58,16 +58,14 @@
       },
       "motion": {
         "duration": {
-          "value": "{semantic.motion.duration.moderate}"
+          "value": "{semantic.motion.duration.slow}",
+          "comment": "The card crosses its own width to reach the screen edge, so it takes the time of a large surface, not of a small element."
         },
         "easing-enter": {
           "value": "{semantic.motion.easing.enter}"
         },
         "easing-exit": {
           "value": "{semantic.motion.easing.exit}"
-        },
-        "travel": {
-          "value": "{semantic.spacing.gap.md}"
         }
       },
       "information": {
@@ -80,6 +78,10 @@
         },
         "border": {
           "value": "{semantic.color.border.utility-information.active}"
+        },
+        "focus-ring": {
+          "value": "{semantic.color.border.utility-information.active}",
+          "comment": "The card's own edge colour, so a focused card, its action and its Close ring in the colour of the message instead of the brand green."
         }
       },
       "success": {
@@ -90,6 +92,9 @@
           "value": "{semantic.color.text.utility-success.base}"
         },
         "border": {
+          "value": "{semantic.color.border.utility-success.active}"
+        },
+        "focus-ring": {
           "value": "{semantic.color.border.utility-success.active}"
         }
       },
@@ -102,6 +107,9 @@
         },
         "border": {
           "value": "{semantic.color.border.utility-warning.active}"
+        },
+        "focus-ring": {
+          "value": "{semantic.color.border.utility-warning.active}"
         }
       },
       "error": {
@@ -112,6 +120,9 @@
           "value": "{semantic.color.text.utility-error.base}"
         },
         "border": {
+          "value": "{semantic.color.border.utility-error.active}"
+        },
+        "focus-ring": {
           "value": "{semantic.color.border.utility-error.active}"
         }
       }

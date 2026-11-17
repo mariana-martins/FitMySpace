@@ -7,8 +7,8 @@ import {
   ToastTitle,
   ToastViewport,
 } from './';
-import { expect, userEvent, waitFor, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, within } from 'storybook/test';
 import { Button } from '../Button';
 import { useState } from 'react';
 
@@ -24,6 +24,10 @@ const meta = {
   parameters: {
     controls: { include: ['variant'] },
     docs: {
+      // A docs page draws each story in a box with a transform, which makes the
+      // box, not the screen, what the fixed stack is placed against: the box has
+      // to be tall enough for the card it raises, or the card is cut off.
+      story: { height: '320px' },
       description: {
         component:
           'A `Toast` tells the reader something happened while they were somewhere else: a save that finished, a sync that failed, a background job that came in. It is built on Radix Toast, which is the W3C toast pattern: one labelled region the cards stack in, a hidden live region per card for the announcement, and a hotkey (F8) that moves focus *into* the region instead of the card stealing focus from wherever the reader was.\n\n' +
@@ -40,7 +44,7 @@ const meta = {
           '- **Loudness that follows the variant** — `type` defaults to `foreground` (assertive) for an error or a warning and `background` (polite) for a confirmation; MDN says `alert` "must be used sparingly".\n' +
           '- **The card is not the live region** — Radix announces through a hidden region of its own, which is what lets the card hold a button: MDN says `role="alert"` holds text, not controls.\n' +
           '- **Above the dialog** — `semantic.layer.toast`, over `layer.floating`, so a tooltip explaining a button in the card still shows.\n' +
-          '- **Bottom-right, or bottom-centre on a phone** — clear of the home indicator through `env(safe-area-inset-*)`, and swipeable to the side.\n' +
+          '- **Slides in and out** — the card arrives from the screen edge and leaves the same way, by itself or by a swipe; bottom-right, or bottom-centre on a phone, clear of the home indicator through `env(safe-area-inset-*)`.\n' +
           '- **Reduced motion and forced colors** — the card stops moving when asked, and draws its own edge when the system drops shadows.',
       },
     },
@@ -49,6 +53,17 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+/*
+ * The plays only check the resting state. A play runs as soon as the page loads, so
+ * one that raised and closed a card showed it flying past before anyone pressed a
+ * button. Raising, announcing, the action and the timer are covered in Toast.test.tsx.
+ */
+async function expectRestingStack(canvasElement: HTMLElement) {
+  const canvas = within(canvasElement);
+  await expect(canvas.getByRole('region', { name: /Notifications/ })).toBeInTheDocument();
+  await expect(canvas.queryByRole('listitem')).not.toBeInTheDocument();
+}
 
 /* ---------------------------------------------------------------
  * Default (with controls)
@@ -122,17 +137,8 @@ export const Default: Story = {
     },
   },
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByRole('button', { name: 'Save room' }));
-    const card = await canvas.findByRole('listitem');
-    await expect(within(card).getByText('Room saved')).toBeInTheDocument();
-
-    // The card never takes focus: the reader keeps typing where they were.
-    await expect(canvas.getByRole('button', { name: 'Save room' })).toHaveFocus();
-
-    await userEvent.click(within(card).getByRole('button', { name: 'Close' }));
-    await waitFor(() => expect(canvas.queryByRole('listitem')).not.toBeInTheDocument());
+    await expectRestingStack(canvasElement);
+    await expect(within(canvasElement).getByRole('button', { name: 'Save room' })).toBeEnabled();
   },
 };
 
@@ -200,15 +206,21 @@ export const AllVariants: Story = {
       },
     },
   },
+  // The page waits for the reader: no card until a button is pressed.
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByRole('button', { name: 'Raise an error' }));
-    const card = await canvas.findByRole('listitem');
-    await expect(within(card).getByText('Could not save the room')).toBeInTheDocument();
-
-    await userEvent.click(within(card).getByRole('button', { name: 'Close' }));
-    await waitFor(() => expect(canvas.queryByRole('listitem')).not.toBeInTheDocument());
+    await expectRestingStack(canvasElement);
+    await expect(
+      within(canvasElement).getByRole('button', { name: 'Raise an information' }),
+    ).toBeEnabled();
+    await expect(
+      within(canvasElement).getByRole('button', { name: 'Raise a success' }),
+    ).toBeEnabled();
+    await expect(
+      within(canvasElement).getByRole('button', { name: 'Raise a warning' }),
+    ).toBeEnabled();
+    await expect(
+      within(canvasElement).getByRole('button', { name: 'Raise an error' }),
+    ).toBeEnabled();
   },
 };
 
@@ -271,15 +283,10 @@ export const WithAction: Story = {
       },
     },
   },
+  // The page waits for the reader: no card until a button is pressed.
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByRole('button', { name: 'Remove items' }));
-    const card = await canvas.findByRole('listitem');
-    await expect(within(card).getByRole('button', { name: 'Undo' })).toBeInTheDocument();
-
-    await userEvent.click(within(card).getByRole('button', { name: 'Undo' }));
-    await waitFor(() => expect(canvas.queryByRole('listitem')).not.toBeInTheDocument());
+    await expectRestingStack(canvasElement);
+    await expect(within(canvasElement).getByRole('button', { name: 'Remove items' })).toBeEnabled();
   },
 };
 
@@ -318,7 +325,8 @@ export const AutoDismiss: Story = {
     docs: {
       description: {
         story:
-          'The only card allowed to leave on its own is a low-importance confirmation, and then 6 to 8 seconds: enough to read twice. The timer pauses while the pointer is over the card or focus is inside it, so nothing is lost mid-sentence. Anything the reader might act on — an action, an error, a warning — has no timer at all.',
+          'The only card allowed to leave on its own is a low-importance confirmation, and then 6 to 8 seconds: enough to read twice. The timer pauses while the pointer is over the card or focus is inside it, so nothing is lost mid-sentence. Anything the reader might act on — an action, an error, a warning — has no timer at all.\n\n' +
+          'This demo closes after 3 seconds so you can watch it slide out without waiting; the code below shows the 7 seconds to use in the app.',
       },
       source: {
         code: `<Toast open={copied} onOpenChange={setCopied} variant="success" duration={7000}>
@@ -327,14 +335,10 @@ export const AutoDismiss: Story = {
       },
     },
   },
+  // The page waits for the reader: no card until a button is pressed.
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByRole('button', { name: 'Copy link' }));
-    const card = await canvas.findByRole('listitem');
-    await expect(within(card).getByText('Link copied')).toBeInTheDocument();
-
-    await userEvent.click(within(card).getByRole('button', { name: 'Close' }));
+    await expectRestingStack(canvasElement);
+    await expect(within(canvasElement).getByRole('button', { name: 'Copy link' })).toBeEnabled();
   },
 };
 
@@ -349,7 +353,8 @@ function TimedToast() {
 
       <ToastViewport />
 
-      <Toast open={copied} onOpenChange={setCopied} variant="success" duration={7000}>
+      {/* Shorter than the 6–8s the app uses, only so the demo leaves while you watch. */}
+      <Toast open={copied} onOpenChange={setCopied} variant="success" duration={3000}>
         <ToastTitle>Link copied</ToastTitle>
         <ToastClose />
       </Toast>
@@ -392,6 +397,7 @@ export const SeveralAtOnce: Story = {
   ),
   parameters: {
     docs: {
+      story: { height: '520px' },
       description: {
         story:
           "Cards stack from the bottom edge upward, newest nearest it. How many are on screen, and what happens to the older ones, is the app's queue — in `src/hooks/`, next to the queries that raise them. The viewport itself only stops a long stack from running past the top of the screen: it then scrolls inside itself, and the region's hotkey (F8) moves focus into it so the cards can be read one at a time.",

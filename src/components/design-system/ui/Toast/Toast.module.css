@@ -17,37 +17,35 @@
  * --------------------------------------------------------------- */
 
 .viewport {
-  /* The distance from every edge of the screen, swapped on a narrow one. */
   --toast-margin: var(--ds-component-toast-spacing-screen-margin);
 
   position: fixed;
-  /* The top layer of the page: nothing the app draws may cover a message. */
+
   z-index: var(--ds-semantic-layer-toast);
   display: flex;
   flex-direction: column;
   gap: var(--ds-component-toast-spacing-stack-gap);
+  box-sizing: border-box;
   inline-size: min(
-    var(--ds-component-toast-size-max-width),
-    calc(100% - (var(--toast-margin) * 2))
+    calc(var(--ds-component-toast-size-max-width) + (var(--toast-margin) * 2)),
+    100%
   );
-  inset-block-end: max(var(--toast-margin), env(safe-area-inset-bottom));
-  inset-inline-end: max(var(--toast-margin), env(safe-area-inset-right));
-  /* A stack longer than the screen would run past the top edge and become
-     unreachable: it stops at the screen and scrolls inside itself. The app
-     keeps the queue short; this is the floor, not the plan. */
-  max-block-size: calc(100% - (var(--toast-margin) * 2));
-  overflow-y: auto;
+  inset-block-end: env(safe-area-inset-bottom, 0);
+  inset-inline-end: env(safe-area-inset-right, 0);
+  max-block-size: 100%;
+  overflow: hidden auto;
   margin: 0;
-  padding: 0;
+  padding: var(--toast-margin);
   list-style: none;
-  /* The gaps between cards must not swallow clicks meant for the page. */
   pointer-events: none;
 }
 
-/* The region is reached by its hotkey, so the ring says where the reader is.
-   The stack sits clear of the screen edge, so the ring sits outside the cards. */
 .viewport:focus-visible {
-  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline: none;
+}
+
+.viewport:focus-visible > .toast {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--toast-focus-ring);
   outline-offset: var(--ds-semantic-focus-ring-offset);
 }
 
@@ -57,6 +55,7 @@
   --toast-background: transparent;
   --toast-text: currentcolor;
   --toast-border: transparent;
+  --toast-focus-ring: transparent;
 
   position: relative;
   display: grid;
@@ -75,13 +74,11 @@
   border-radius: var(--ds-component-toast-shape-radii);
   box-shadow: var(--ds-component-toast-shadow);
   list-style: none;
-  /* The stack lets the pointer through everywhere except here. */
   pointer-events: auto;
 }
 
-/* A card is focusable so a keyboard reader can stop on it and press Escape. */
 .toast:focus-visible {
-  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline: var(--ds-semantic-focus-ring-width) solid var(--toast-focus-ring);
   outline-offset: var(--ds-semantic-focus-ring-offset);
 }
 
@@ -92,6 +89,7 @@
   justify-content: center;
   inline-size: var(--ds-component-toast-icon-size);
   block-size: var(--ds-component-toast-icon-size);
+  font: var(--ds-semantic-typography-heading-sm-shorthand);
   margin-block-start: calc((1lh - var(--ds-component-toast-icon-size)) / 2);
   color: currentcolor;
 }
@@ -107,7 +105,6 @@
   align-items: flex-start;
   gap: var(--ds-component-toast-spacing-text-gap);
   min-inline-size: 0;
-  /* The corner the Close sits in, so no line of text runs under it. */
   padding-inline-end: calc(
     var(--ds-component-toast-close-size) + var(--ds-component-toast-spacing-action-gap)
   );
@@ -139,19 +136,27 @@
 }
 
 .action:hover {
-  /* The variant's own edge, filled: the only solid thing on the card. */
   color: var(--ds-semantic-color-text-inverse);
   background-color: var(--toast-border);
 }
 
 .action:focus-visible {
-  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline: var(--ds-semantic-focus-ring-width) solid var(--toast-focus-ring);
   outline-offset: var(--ds-semantic-focus-ring-offset);
 }
 
 .toast .close {
+  --toast-title-line: calc(
+    var(--ds-semantic-typography-heading-sm-font-size) *
+      var(--ds-semantic-typography-heading-sm-line-height)
+  );
+  --button-focus-ring-color: var(--toast-focus-ring);
+
   position: absolute;
-  inset-block-start: var(--ds-component-toast-spacing-padding);
+  inset-block-start: calc(
+    var(--ds-component-toast-spacing-padding) +
+      (var(--toast-title-line) - var(--ds-component-toast-close-size)) / 2
+  );
   inset-inline-end: var(--ds-component-toast-spacing-padding);
 }
 
@@ -163,29 +168,33 @@
   --toast-background: var(--ds-component-toast-information-background);
   --toast-text: var(--ds-component-toast-information-text);
   --toast-border: var(--ds-component-toast-information-border);
+  --toast-focus-ring: var(--ds-component-toast-information-focus-ring);
 }
 
 .variant-success {
   --toast-background: var(--ds-component-toast-success-background);
   --toast-text: var(--ds-component-toast-success-text);
   --toast-border: var(--ds-component-toast-success-border);
+  --toast-focus-ring: var(--ds-component-toast-success-focus-ring);
 }
 
 .variant-warning {
   --toast-background: var(--ds-component-toast-warning-background);
   --toast-text: var(--ds-component-toast-warning-text);
   --toast-border: var(--ds-component-toast-warning-border);
+  --toast-focus-ring: var(--ds-component-toast-warning-focus-ring);
 }
 
 .variant-error {
   --toast-background: var(--ds-component-toast-error-background);
   --toast-text: var(--ds-component-toast-error-text);
   --toast-border: var(--ds-component-toast-error-border);
+  --toast-focus-ring: var(--ds-component-toast-error-focus-ring);
 }
 
 /* ---------------------------------------------------------------
- * Motion: the card arrives from the edge it will leave by, and a swipe
- * drags it out. Radix writes the swipe distance into the custom
+ * Motion: the card slides in from the screen edge and slides back out
+ * to it when it closes, the same way a swipe drags it out. Radix writes the swipe distance into the custom
  * properties below and the state into `data-state` and `data-swipe`.
  * --------------------------------------------------------------- */
 
@@ -216,14 +225,13 @@
 
 @keyframes toast-enter {
   from {
-    opacity: 0;
-    transform: translateY(var(--ds-component-toast-motion-travel));
+    transform: translateX(calc(100% + var(--toast-margin)));
   }
 }
 
 @keyframes toast-exit {
   to {
-    opacity: 0;
+    transform: translateX(calc(100% + var(--toast-margin)));
   }
 }
 
@@ -243,9 +251,11 @@
 @media (max-width: 639px) {
   .viewport {
     --toast-margin: var(--ds-component-toast-spacing-screen-margin-narrow);
+
+    inset-inline: env(safe-area-inset-left, 0) env(safe-area-inset-right, 0);
+    margin-inline: auto;
   }
 
-  /* Below the card's own minimum the screen is simply narrower than it. */
   .toast {
     min-inline-size: 0;
   }
@@ -269,7 +279,6 @@
     color: CanvasText;
   }
 
-  /* The card floats over anything, so its own edge has to be drawn by hand. */
   .toast {
     border: var(--ds-semantic-border-width-interactive) solid CanvasText;
   }

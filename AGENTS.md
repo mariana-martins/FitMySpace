@@ -46,7 +46,7 @@ rules below are its essentials.
   Introduction page in `introduction/`, the Changelog page in `changelog/` (renders
   `CHANGELOG.md` through a `?raw` import), Storybook-only helpers in `docs/`,
   plain helpers shared by components in `utils/` (e.g. `joinIds` for
-  `aria-describedby`). Reuse them instead of copying a helper into a component.
+  `aria-describedby`, the utility-variant icons and labels of `Alert` and `Toast`). Reuse them instead of copying a helper into a component.
   Sidebar: `Design System/Components/<Category>/<Name>` with the categories
   Actions, Forms, Navigation, Display, Feedback, Overlays and Typography (add one in
   `.storybook/preview.tsx` when needed).

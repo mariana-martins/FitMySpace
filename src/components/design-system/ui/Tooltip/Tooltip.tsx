@@ -1,11 +1,19 @@
 'use client';
 
+import { createContext, forwardRef, useCallback, useContext, useEffect, useRef } from 'react';
+import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import styles from './Tooltip.module.css';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
-import type { TooltipContentProps } from './Tooltip.types';
+import type {
+  TooltipContentProps,
+  TooltipProps,
+  TooltipProviderProps,
+  TooltipTriggerProps,
+} from './Tooltip.types';
+
+import type { RefObject } from 'react';
 
 /* ---------------------------------------------------------------
  * Tooltip
@@ -15,25 +23,89 @@ import type { TooltipContentProps } from './Tooltip.types';
  * so the app can configure the delay and render its own control.
  * --------------------------------------------------------------- */
 
-// Gap between the control and the bubble: the arrow is 8px of it, so 4px of air
-// is left, which is the semantic gap.xs.
 const SIDE_OFFSET_PX = 12;
 const ARROW_WIDTH_PX = 12;
 const ARROW_HEIGHT_PX = 8;
 
-/** Delays every tooltip inside it with one shared timer. Usually once, at the app root. */
-export const TooltipProvider = RadixTooltip.Provider;
+/* ---------------------------------------------------------------
+ * Moving from one trigger to the next
+ *
+ * When the pointer leaves a trigger, Radix keeps the bubble open while
+ * the pointer crosses the area between the trigger and the bubble, so
+ * the reader can move onto it (WCAG 1.4.13). While that area is live,
+ * the provider ignores every other trigger: in a toolbar, the next
+ * button's tooltip waited, sometimes for seconds, until the pointer
+ * happened to leave the area. So the provider remembers the open
+ * tooltip, and entering another trigger closes it, which ends the
+ * crossing and lets the new one open.
+ * --------------------------------------------------------------- */
 
-/** The state of one tooltip: `open`, `defaultOpen`, `onOpenChange`, and its own `delayDuration`. */
-export const Tooltip = RadixTooltip.Root;
+type CloseTooltip = () => void;
 
-/** The control the thought is about. Pass `asChild` so your own control stays the thing you see. */
-export const TooltipTrigger = RadixTooltip.Trigger;
+const OpenTooltipContext = createContext<RefObject<CloseTooltip | null> | null>(null);
+const TooltipCloseOthersContext = createContext<() => void>(() => undefined);
 
-/**
- * The bubble, in a portal above everything the page can open, on
- * `semantic.layer.floating` so it still shows over an open dialog.
- */
+export function TooltipProvider(providerProps: TooltipProviderProps) {
+  const closeOpenTooltipRef = useRef<CloseTooltip | null>(null);
+
+  return (
+    <OpenTooltipContext.Provider value={closeOpenTooltipRef}>
+      <RadixTooltip.Provider {...providerProps} />
+    </OpenTooltipContext.Provider>
+  );
+}
+
+export function Tooltip({ open: openProp, defaultOpen, onOpenChange, ...rootProps }: TooltipProps) {
+  const closeOpenTooltipRef = useContext(OpenTooltipContext);
+  const [open, setOpen] = useControllableState({
+    prop: openProp,
+    defaultProp: defaultOpen ?? false,
+    onChange: onOpenChange,
+    caller: 'Tooltip',
+  });
+
+  const close = useCallback(() => setOpen(false), [setOpen]);
+
+  useEffect(() => {
+    if (!closeOpenTooltipRef) return;
+    if (open) {
+      closeOpenTooltipRef.current = close;
+    } else if (closeOpenTooltipRef.current === close) {
+      closeOpenTooltipRef.current = null;
+    }
+  }, [open, close, closeOpenTooltipRef]);
+
+  const closeOthers = useCallback(() => {
+    const closeOpenTooltip = closeOpenTooltipRef?.current;
+    if (closeOpenTooltip && closeOpenTooltip !== close) closeOpenTooltip();
+  }, [close, closeOpenTooltipRef]);
+
+  return (
+    <TooltipCloseOthersContext.Provider value={closeOthers}>
+      <RadixTooltip.Root open={open} onOpenChange={setOpen} {...rootProps} />
+    </TooltipCloseOthersContext.Provider>
+  );
+}
+
+export const TooltipTrigger = forwardRef<HTMLButtonElement, TooltipTriggerProps>(
+  function TooltipTrigger({ onPointerEnter, ...triggerProps }, ref) {
+    const closeOthers = useContext(TooltipCloseOthersContext);
+
+    return (
+      <RadixTooltip.Trigger
+        ref={ref}
+        onPointerEnter={(event) => {
+          onPointerEnter?.(event);
+          closeOthers();
+        }}
+        {...triggerProps}
+      />
+    );
+  },
+);
+
+TooltipTrigger.displayName = 'TooltipTrigger';
+
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   function TooltipContent(
     { children, className, side = 'top', sideOffset = SIDE_OFFSET_PX, ...contentProps },

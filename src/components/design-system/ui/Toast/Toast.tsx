@@ -1,11 +1,12 @@
 'use client';
 
-import { CircleAlert, CircleCheck, Info, TriangleAlert, X } from 'lucide-react';
+import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS } from '../../utils';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import * as RadixToast from '@radix-ui/react-toast';
 import styles from './Toast.module.css';
 import { Button } from '../Button';
 import { forwardRef } from 'react';
+import { X } from 'lucide-react';
 import clsx from 'clsx';
 
 import type {
@@ -13,12 +14,11 @@ import type {
   ToastCloseProps,
   ToastDescriptionProps,
   ToastProps,
+  ToastProviderProps,
   ToastTitleProps,
   ToastVariant,
   ToastViewportProps,
 } from './Toast.types';
-
-import type { ReactElement } from 'react';
 
 /* ---------------------------------------------------------------
  * Toast
@@ -38,20 +38,6 @@ import type { ReactElement } from 'react';
  * "Error:" and so on.
  * --------------------------------------------------------------- */
 
-const VARIANT_ICONS: Record<ToastVariant, ReactElement> = {
-  information: <Info focusable="false" />,
-  success: <CircleCheck focusable="false" />,
-  warning: <TriangleAlert focusable="false" />,
-  error: <CircleAlert focusable="false" />,
-};
-
-const VARIANT_LABELS: Record<ToastVariant, string> = {
-  information: 'Information',
-  success: 'Success',
-  warning: 'Warning',
-  error: 'Error',
-};
-
 /**
  * Only a wrong turn is worth interrupting the reader for; a confirmation
  * can wait for the pause between two sentences. MDN: `alert` "must be used
@@ -65,21 +51,12 @@ const VARIANT_LIVENESS: Record<ToastVariant, 'foreground' | 'background'> = {
   error: 'foreground',
 };
 
-/**
- * Radix counts down from `duration`; `Infinity` is its own signal to never
- * start the timer. A card that vanishes mid-sentence is a card nobody read,
- * so the design keeps the timer off unless the app asks for one.
- */
 const DISMISS_NEVER = Number.POSITIVE_INFINITY;
 
-/** One per app, around everything that can raise a toast: it holds the shared label and default duration. */
-export const ToastProvider = RadixToast.Provider;
+export function ToastProvider({ duration = DISMISS_NEVER, ...providerProps }: ToastProviderProps) {
+  return <RadixToast.Provider duration={duration} {...providerProps} />;
+}
 
-/**
- * The stack the cards appear in, bottom-right on a desktop and bottom-centre
- * on a phone. Render it once, inside `ToastProvider`; Radix names the region
- * "Notifications (F8)" and the hotkey moves focus into it.
- */
 export const ToastViewport = forwardRef<HTMLOListElement, ToastViewportProps>(
   function ToastViewport({ className, ...viewportProps }, ref) {
     return (
@@ -92,33 +69,23 @@ export const ToastViewport = forwardRef<HTMLOListElement, ToastViewportProps>(
   },
 );
 
-/** One card in the stack. Its text is announced; it never takes focus by itself. */
 export const Toast = forwardRef<HTMLLIElement, ToastProps>(function Toast(
-  {
-    variant = 'information',
-    type,
-    icon,
-    duration = DISMISS_NEVER,
-    className,
-    children,
-    ...toastProps
-  },
+  { variant = 'information', type, icon, className, children, ...toastProps },
   ref,
 ) {
   return (
     <RadixToast.Root
       ref={ref}
       type={type ?? VARIANT_LIVENESS[variant]}
-      duration={duration}
       className={clsx(styles.toast, styles[`variant-${variant}` as keyof typeof styles], className)}
       {...toastProps}
     >
       <span className={styles.icon} aria-hidden="true">
-        {icon ?? VARIANT_ICONS[variant]}
+        {icon ?? UTILITY_VARIANT_ICONS[variant]}
       </span>
 
       <div className={styles.body}>
-        <VisuallyHidden>{`${VARIANT_LABELS[variant]}: `}</VisuallyHidden>
+        <VisuallyHidden>{`${UTILITY_VARIANT_LABELS[variant]}: `}</VisuallyHidden>
         {children}
       </div>
     </RadixToast.Root>
@@ -127,7 +94,6 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(function Toast(
 
 Toast.displayName = 'Toast';
 
-/** The first line: what happened. */
 export const ToastTitle = forwardRef<HTMLDivElement, ToastTitleProps>(function ToastTitle(
   { className, ...titleProps },
   ref,
@@ -137,7 +103,6 @@ export const ToastTitle = forwardRef<HTMLDivElement, ToastTitleProps>(function T
 
 ToastTitle.displayName = 'ToastTitle';
 
-/** The second line: the detail, if the title cannot carry it alone. */
 export const ToastDescription = forwardRef<HTMLDivElement, ToastDescriptionProps>(
   function ToastDescription({ className, ...descriptionProps }, ref) {
     return (
@@ -152,11 +117,6 @@ export const ToastDescription = forwardRef<HTMLDivElement, ToastDescriptionProps
 
 ToastDescription.displayName = 'ToastDescription';
 
-/**
- * The one thing the reader can do about it, and it closes the card.
- * `altText` says in one phrase what the button does, because the reader
- * hears the announcement long before they can reach the button.
- */
 export const ToastAction = forwardRef<HTMLButtonElement, ToastActionProps>(function ToastAction(
   { className, ...actionProps },
   ref,
@@ -168,7 +128,6 @@ export const ToastAction = forwardRef<HTMLButtonElement, ToastActionProps>(funct
 
 ToastAction.displayName = 'ToastAction';
 
-/** Dismiss without acting: the X in the corner. Pass `aria-label` to name it otherwise. */
 export const ToastClose = forwardRef<HTMLButtonElement, ToastCloseProps>(function ToastClose(
   { className, ...closeProps },
   ref,

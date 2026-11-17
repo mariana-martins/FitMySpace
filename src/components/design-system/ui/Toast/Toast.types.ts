@@ -7,6 +7,7 @@ import type {
   ToastTitleProps as RadixToastTitleProps,
   ToastViewportProps as RadixToastViewportProps,
 } from '@radix-ui/react-toast';
+import type { UtilityVariant } from '../../utils';
 
 import type { ReactElement } from 'react';
 
@@ -18,7 +19,7 @@ import type { ReactElement } from 'react';
  * --------------------------------------------------------------- */
 
 /** The four utility messages, the same four as `Alert`. */
-export type ToastVariant = 'information' | 'success' | 'warning' | 'error';
+export type ToastVariant = UtilityVariant;
 
 /**
  * How loudly the toast is announced. `foreground` interrupts whatever the
@@ -32,13 +33,10 @@ export type ToastProviderProps = RadixToastProviderProps;
 export type ToastViewportProps = RadixToastViewportProps;
 export type ToastTitleProps = RadixToastTitleProps;
 export type ToastDescriptionProps = RadixToastDescriptionProps;
-
-/** `altText` is required by Radix: it says what the button does in the announcement. */
 export type ToastActionProps = RadixToastActionProps;
 export type ToastCloseProps = RadixToastCloseProps;
 
 export interface ToastProps extends RadixToastProps {
   variant?: ToastVariant;
-  /** Defaults to the variant's own icon: `information`, `success`, `warning` or `error`. */
   icon?: ReactElement;
 }

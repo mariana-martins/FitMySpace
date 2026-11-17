@@ -160,6 +160,33 @@ describe('Tooltip — opening and closing', () => {
     expect(screen.getByRole('tooltip')).toHaveTextContent(TIP);
   });
 
+  it('opens the next tooltip when the pointer moves to another trigger', async () => {
+    const user = userEvent.setup();
+    render(
+      <TooltipProvider delayDuration={0}>
+        <Tooltip>
+          <TooltipTrigger>Search</TooltipTrigger>
+          <TooltipContent>Searches every store.</TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger>Sort</TooltipTrigger>
+          <TooltipContent>Changes the order of the results.</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>,
+    );
+
+    await user.hover(screen.getByRole('button', { name: 'Search' }));
+    expect(await screen.findByRole('tooltip')).toHaveTextContent('Searches every store.');
+
+    // jsdom puts every box at 0,0, so the pointer never leaves the area Radix keeps
+    // open towards the first bubble: without the provider closing it, the second
+    // trigger would be ignored, as it was in a toolbar.
+    await user.hover(screen.getByRole('button', { name: 'Sort' }));
+    await waitFor(() =>
+      expect(screen.getByRole('tooltip')).toHaveTextContent('Changes the order of the results.'),
+    );
+  });
+
   it('tells the app when it closes', async () => {
     const user = userEvent.setup();
     const handleOpenChange = jest.fn();

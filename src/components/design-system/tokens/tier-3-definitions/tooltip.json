@@ -13,6 +13,10 @@
       "shape": {
         "radii": {
           "value": "{semantic.radii.surface.md}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}",
+          "comment": "A transparent outline that forced colors paint as the bubble's edge."
         }
       },
       "max-width": {

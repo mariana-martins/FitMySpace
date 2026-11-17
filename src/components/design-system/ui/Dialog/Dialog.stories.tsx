@@ -60,15 +60,15 @@ function page() {
   return within(document.body);
 }
 
-/** Opens the dialog, checks it, then closes it and waits for it to leave. */
-async function openAndClose(triggerName: string, expectedTitle: string) {
-  await userEvent.click(page().getByRole('button', { name: triggerName }));
-
-  const dialog = await page().findByRole('dialog');
-  await expect(dialog).toHaveAccessibleName(expectedTitle);
-
-  await userEvent.keyboard('{Escape}');
-  await waitFor(() => expect(page().queryByRole('dialog')).not.toBeInTheDocument());
+/*
+ * The plays of the visible stories only check the resting state. A play runs as soon
+ * as the page loads, so one that opened and closed the dialog made it flash on screen
+ * before anyone pressed a button. Opening, focus, Escape and the scrim are covered in
+ * Dialog.test.tsx; what only a real browser can show is in the test-only story at the end.
+ */
+async function expectClosed(triggerName: string) {
+  await expect(page().getByRole('button', { name: triggerName })).toBeEnabled();
+  await expect(page().queryByRole('dialog')).not.toBeInTheDocument();
 }
 
 /* ---------------------------------------------------------------
@@ -167,7 +167,7 @@ export const Default: Story = {
     },
   },
   play: async () => {
-    await openAndClose('Edit room', 'Edit room');
+    await expectClosed('Edit room');
   },
 };
 
@@ -229,7 +229,9 @@ export const AllSizes: Story = {
     },
   },
   play: async () => {
-    await openAndClose('Large dialog', 'Large dialog');
+    await expectClosed('Small dialog');
+    await expectClosed('Medium dialog');
+    await expectClosed('Large dialog');
   },
 };
 
@@ -285,12 +287,7 @@ export const ReadOnly: Story = {
     },
   },
   play: async () => {
-    await userEvent.click(page().getByRole('button', { name: 'Why this fits' }));
-    const heading = await page().findByRole('heading', { name: 'Why this fits' });
-    await expect(heading).toHaveFocus();
-
-    await userEvent.keyboard('{Escape}');
-    await waitFor(() => expect(page().queryByRole('dialog')).not.toBeInTheDocument());
+    await expectClosed('Why this fits');
   },
 };
 
@@ -371,7 +368,7 @@ export const LongContent: Story = {
     },
   },
   play: async () => {
-    await openAndClose('Delivery checklist', 'Delivery checklist');
+    await expectClosed('Delivery checklist');
   },
 };
 
@@ -473,16 +470,7 @@ export const FormExample: Story = {
     },
   },
   play: async () => {
-    await userEvent.click(page().getByRole('button', { name: 'Add room' }));
-
-    // The required marker sits inside the label, so the field is found by its
-    // role and accessible name, which leave the marker out.
-    const field = await page().findByRole('textbox', { name: 'Room name' });
-    await expect(field).toHaveFocus();
-
-    await userEvent.type(field, 'Study{Enter}');
-    await waitFor(() => expect(page().queryByRole('dialog')).not.toBeInTheDocument());
-    await expect(page().getByText('Room added: Study')).toBeInTheDocument();
+    await expectClosed('Add room');
   },
 };
 
@@ -542,15 +530,48 @@ export const Confirmation: Story = {
     },
   },
   play: async () => {
-    // Before it opens, "Delete room" is only the trigger; inside the dialog it is also the action.
-    const trigger = page().getByRole('button', { name: 'Delete room' });
-    await userEvent.click(trigger);
+    await expectClosed('Delete room');
+  },
+};
 
-    const dialog = await page().findByRole('dialog');
-    await expect(dialog).toHaveAccessibleName('Delete “Bedroom”?');
+/* ---------------------------------------------------------------
+ * Browser behaviour (test only)
+ *
+ * Hidden from the sidebar and the docs page (`!dev`, `!autodocs`), so nobody
+ * watches it run, but `npm run test:storybook` still plays it. It holds what
+ * jsdom cannot show: the exit animation, and the form recipe end to end.
+ * --------------------------------------------------------------- */
 
-    await userEvent.click(within(dialog).getByRole('button', { name: 'Keep room' }));
-    await waitFor(() => expect(page().queryByRole('dialog')).not.toBeInTheDocument());
-    await expect(trigger).toHaveFocus();
+export const BrowserBehaviour: Story = {
+  name: 'Browser Behaviour (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  render: () => <SaveRoomForm />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Test-only: opens the form recipe, submits it, and checks that the dialog fades out with the scrim instead of vanishing at once.',
+      },
+    },
+  },
+  play: async () => {
+    await userEvent.click(page().getByRole('button', { name: 'Add room' }));
+
+    // The required marker sits inside the label, so the field is found by its
+    // role and accessible name, which leave the marker out.
+    const field = await page().findByRole('textbox', { name: 'Room name' });
+    await expect(field).toHaveFocus();
+    const dialog = page().getByRole('dialog');
+
+    await userEvent.type(field, 'Study{Enter}');
+
+    // Right after the submit the dialog is still on screen, closing: Radix keeps it
+    // until its exit animation ends, instead of removing it at once.
+    await expect(dialog).toBeInTheDocument();
+    await expect(dialog).toHaveAttribute('data-state', 'closed');
+    await waitFor(() => expect(dialog).not.toBeInTheDocument());
+
+    await expect(page().getByText('Room added: Study')).toBeInTheDocument();
+    await expect(page().getByRole('button', { name: 'Add room' })).toHaveFocus();
   },
 };

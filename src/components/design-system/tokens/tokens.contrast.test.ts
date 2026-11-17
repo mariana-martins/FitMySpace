@@ -697,6 +697,33 @@ describe('Toast tokens — contrast', () => {
     ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
   });
 
+  // The Close in the corner is the ghost secondary Button, drawn on the tinted card.
+  it.each(TOAST_VARIANTS)('%s close icon stands out from its card', (variant) => {
+    expect(
+      contrastRatio(
+        'component.button.secondary.ghost.text.default',
+        `component.toast.${variant}.background`,
+      ),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  // The ring is the variant's own colour: around the card it sits on the page, around
+  // the action and the Close it sits on the card.
+  it.each(TOAST_VARIANTS)('%s focus ring stands out from its card', (variant) => {
+    expect(
+      contrastRatio(
+        `component.toast.${variant}.focus-ring`,
+        `component.toast.${variant}.background`,
+      ),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each(TOAST_VARIANTS)('%s focus ring stands out from the page', (variant) => {
+    expect(
+      contrastRatio(`component.toast.${variant}.focus-ring`, PAGE_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
   // The action fills with the variant's edge on hover, so its text reverses.
   it.each(TOAST_VARIANTS)('%s action is readable while hovered', (variant) => {
     expect(

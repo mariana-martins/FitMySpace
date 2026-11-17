@@ -12,7 +12,7 @@ import userEvent from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { act } from 'react';
 
-import type { ToastProps } from './';
+import type { ToastProps, ToastProviderProps } from './';
 
 expect.extend(toHaveNoViolations);
 
@@ -28,16 +28,18 @@ beforeAll(() => {
  * hidden region of its own, so every check runs on the whole document.
  */
 function ToastFixture({
+  providerProps,
   rootProps,
   withAction = false,
   variant = 'success',
 }: {
+  providerProps?: ToastProviderProps;
   rootProps?: ToastProps;
   withAction?: boolean;
   variant?: 'success' | 'error';
 }) {
   return (
-    <ToastProvider>
+    <ToastProvider {...providerProps}>
       <ToastViewport />
       <Toast defaultOpen variant={variant} {...rootProps}>
         <ToastTitle>Room saved</ToastTitle>
@@ -166,6 +168,30 @@ describe('Toast — opening and closing', () => {
       jest.advanceTimersByTime(7_000);
     });
     expect(screen.queryByRole('listitem')).not.toBeInTheDocument();
+
+    jest.useRealTimers();
+  });
+
+  it('takes the default time from the provider', () => {
+    jest.useFakeTimers();
+    render(ToastFixture({ providerProps: { duration: 7_000 } }));
+
+    act(() => {
+      jest.advanceTimersByTime(7_000);
+    });
+    expect(screen.queryByRole('listitem')).not.toBeInTheDocument();
+
+    jest.useRealTimers();
+  });
+
+  it('lets one card override the provider time', () => {
+    jest.useFakeTimers();
+    render(ToastFixture({ providerProps: { duration: 7_000 }, rootProps: { duration: 20_000 } }));
+
+    act(() => {
+      jest.advanceTimersByTime(7_000);
+    });
+    expect(screen.getByRole('listitem')).toBeInTheDocument();
 
     jest.useRealTimers();
   });
