@@ -2,7 +2,6 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from './';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
 import { Heading } from '../Typography';
-import { Bath } from 'lucide-react';
 
 const DEFAULT_TRAIL = (
   <>
@@ -47,8 +46,8 @@ const meta = {
           '### Key Features\n' +
           '- **Semantic HTML** — renders `<nav aria-label="Breadcrumb">` and an `<ol>` with decorative `aria-hidden` dividers inside each `<li>`.\n' +
           '- **2 sizes** (`sm` 12px, `md` 14px) with heavier weight and darker text on `[aria-current="page"]`.\n' +
-          '- **2 separators** — `chevron` (Lucide chevron, default) or `slash` (`/`).\n' +
-          '- **Home and custom icons** — pass `home` on the root `BreadcrumbLink` to render Lucide’s `Home` icon, or `icon` for a custom leading icon.\n' +
+          '- **2 separators** — `chevron` (the `chevron-right` icon, default) or `slash` (`/`).\n' +
+          '- **Home and custom icons** — pass `home` on the root `BreadcrumbLink` to render the `home` icon, or `icon` with any registry name for another leading icon.\n' +
           '- **`asChild` support** — Radix `Slot` on `BreadcrumbLink` forwards styles and `aria-current` onto Next.js `<Link>` or any router link.\n' +
           '- **Reflow and contrast** — items wrap cleanly on narrow screens, meet 24px target height (WCAG 2.5.8), and restore an underline on the current page in Windows High Contrast.',
       },
@@ -171,7 +170,7 @@ export const WithIcon: Story = {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink href="#bathroom" icon={<Bath />}>
+          <BreadcrumbLink href="#bathroom" icon="bath">
             Bathroom
           </BreadcrumbLink>
         </BreadcrumbItem>
@@ -200,10 +199,10 @@ export const WithIcon: Story = {
     docs: {
       description: {
         story:
-          '`home` adds the Lucide `Home` icon before the first step; `icon` takes any icon, such as a room, and wins over `home` when both are set. Icons are decorative and hidden from screen readers. For a compact trail, leave the Home link without text and give it `aria-label="Home"`, so it keeps an accessible name.',
+          '`home` adds the `home` icon before the first step; `icon` takes any name from the `DS_ICONS` registry, such as a room (`"bath"`), and wins over `home` when both are set. Icons are decorative and hidden from screen readers. For a compact trail, leave the Home link without text and give it `aria-label="Home"`, so it keeps an accessible name.',
       },
       source: {
-        code: `<BreadcrumbLink href="/" home>Home</BreadcrumbLink>\n<BreadcrumbLink href="/rooms/bathroom" icon={<Bath />}>Bathroom</BreadcrumbLink>\n\n{/* Icon only */}\n<BreadcrumbLink href="/" home aria-label="Home" />`,
+        code: `<BreadcrumbLink href="/" home>Home</BreadcrumbLink>\n<BreadcrumbLink href="/rooms/bathroom" icon="bath">Bathroom</BreadcrumbLink>\n\n{/* Icon only */}\n<BreadcrumbLink href="/" home aria-label="Home" />`,
       },
     },
   },

@@ -7,7 +7,6 @@ import * as RadixDialog from '@radix-ui/react-dialog';
 import { Heading, Text } from '../Typography';
 import styles from './Dialog.module.css';
 import { Button } from '../Button';
-import { X } from 'lucide-react';
 import clsx from 'clsx';
 
 import type {
@@ -125,7 +124,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
                   variant="secondary"
                   appearance="ghost"
                   size="sm"
-                  icon={<X />}
+                  icon="x"
                   aria-label={closeLabel}
                   className={styles.close}
                 />

@@ -1,8 +1,8 @@
 'use client';
 
-import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import * as RadixSelect from '@radix-ui/react-select';
 import styles from './Select.module.css';
+import { DS_ICONS, Icon } from '../Icon';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
 
@@ -73,16 +73,13 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(function Select
         data-invalid={isInvalid || undefined}
         {...triggerProps}
       >
-        {iconStart && (
-          <span className={styles.icon} aria-hidden="true">
-            {iconStart}
-          </span>
-        )}
+        {iconStart && <Icon className={styles.icon}>{DS_ICONS[iconStart].icon}</Icon>}
         <span className={styles.value}>
           <RadixSelect.Value placeholder={placeholder} />
         </span>
+        {/* Radix's own icon slot sizes the box through `--icon-size`; `Icon` inherits it. */}
         <RadixSelect.Icon className={clsx(styles.icon, styles.chevron)}>
-          <ChevronDown aria-hidden="true" focusable="false" />
+          <Icon>{DS_ICONS['chevron-down'].icon}</Icon>
         </RadixSelect.Icon>
       </RadixSelect.Trigger>
 
@@ -93,11 +90,11 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(function Select
           sideOffset={LIST_OFFSET_PX}
         >
           <RadixSelect.ScrollUpButton className={styles['scroll-button']}>
-            <ChevronUp aria-hidden="true" focusable="false" />
+            <Icon>{DS_ICONS['chevron-up'].icon}</Icon>
           </RadixSelect.ScrollUpButton>
           <RadixSelect.Viewport className={styles.viewport}>{children}</RadixSelect.Viewport>
           <RadixSelect.ScrollDownButton className={styles['scroll-button']}>
-            <ChevronDown aria-hidden="true" focusable="false" />
+            <Icon>{DS_ICONS['chevron-down'].icon}</Icon>
           </RadixSelect.ScrollDownButton>
         </RadixSelect.Content>
       </RadixSelect.Portal>
@@ -119,7 +116,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(function S
     <RadixSelect.Item ref={ref} className={clsx(styles.item, className)} {...itemProps}>
       <RadixSelect.ItemText>{children}</RadixSelect.ItemText>
       <RadixSelect.ItemIndicator className={styles.indicator}>
-        <Check aria-hidden="true" focusable="false" />
+        <Icon>{DS_ICONS.check.icon}</Icon>
       </RadixSelect.ItemIndicator>
     </RadixSelect.Item>
   );

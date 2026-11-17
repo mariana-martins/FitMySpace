@@ -34,9 +34,9 @@
   border-radius: var(--ds-semantic-radii-surface-full);
 }
 
-.icon > svg {
-  inline-size: var(--ds-component-empty-state-icon-size);
-  block-size: var(--ds-component-empty-state-icon-size);
+/* The glyph inside the circle: the circle is this component's, the box is `Icon`'s. */
+.icon-glyph {
+  --icon-size: var(--ds-component-empty-state-icon-size);
 }
 
 .root .title {

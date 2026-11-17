@@ -1,4 +1,5 @@
-import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Types
@@ -29,10 +30,10 @@ export interface InputProps extends Omit<ComponentPropsWithoutRef<'input'>, 'siz
    * `aria-describedby`. `TextField` draws it and requires an `error`.
    */
   invalid?: boolean;
-  /** Decorative icon before the value (e.g. a Lucide icon). Hidden from assistive technology. */
-  iconStart?: ReactElement;
-  /** Decorative icon after the value. Hidden from assistive technology. */
-  iconEnd?: ReactElement;
+  /** Decorative icon before the value, by name. Hidden from assistive technology. */
+  iconStart?: IconName;
+  /** Decorative icon after the value, by name. Hidden from assistive technology. */
+  iconEnd?: IconName;
   /**
    * Unit shown after the value, e.g. `"cm"`. It is visible and also added to the
    * field's accessible description, so screen readers announce it.

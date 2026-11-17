@@ -152,11 +152,11 @@ describe('Breadcrumb — rendering', () => {
     expect(homeLink.querySelector('.icon svg')).toHaveClass('lucide-house');
   });
 
-  it('renders a custom leading icon and prefers it over home when both are set', () => {
+  it('renders the icon it is given and prefers it over home when both are set', () => {
     render(
       <Breadcrumb separator="slash">
         <BreadcrumbItem>
-          <BreadcrumbLink href="/" home icon={<span data-testid="custom-icon">*</span>}>
+          <BreadcrumbLink href="/" home icon="bath">
             Home
           </BreadcrumbLink>
         </BreadcrumbItem>
@@ -164,8 +164,8 @@ describe('Breadcrumb — rendering', () => {
     );
 
     const homeLink = screen.getByRole('link', { name: 'Home' });
-    expect(homeLink.querySelector('.icon')).toContainElement(screen.getByTestId('custom-icon'));
-    expect(homeLink.querySelector('svg')).toBeNull();
+    expect(homeLink.querySelector('.icon .lucide-bath')).not.toBeNull();
+    expect(homeLink.querySelector('.lucide-house')).toBeNull();
   });
 });
 

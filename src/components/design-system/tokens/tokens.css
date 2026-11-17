@@ -916,6 +916,10 @@
   --ds-component-empty-state-gap: var(--ds-semantic-spacing-gap-lg);
   --ds-component-empty-state-actions-gap: var(--ds-semantic-spacing-gap-sm);
   --ds-component-empty-state-padding: var(--ds-semantic-spacing-section-sm);
+  --ds-component-icon-size-xs: var(--ds-semantic-size-icon-xs);
+  --ds-component-icon-size-sm: var(--ds-semantic-size-icon-sm);
+  --ds-component-icon-size-md: var(--ds-semantic-size-icon-md);
+  --ds-component-icon-size-lg: var(--ds-semantic-size-icon-lg);
   --ds-component-input-shape-radii: var(--ds-semantic-radii-interactive-lg);
   --ds-component-input-shape-border-width: var(--ds-semantic-border-width-default);
   --ds-component-input-shape-halo-width: var(--ds-semantic-border-width-halo);

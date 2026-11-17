@@ -1,6 +1,6 @@
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { Clock, MapPin } from 'lucide-react';
+import { UTILITY_VARIANTS } from '../../utils';
 import { Button } from '../Button';
 import { useState } from 'react';
 import { Alert } from './';
@@ -33,7 +33,7 @@ const meta = {
           '- **Fit the page outline:** Set `headingLevel` so the title sits under the heading above it.\n\n' +
           '### Key Features\n' +
           '- **Four utility colours** — `information`, `success`, `warning` and `error`, each with a `soft` block for a message inside a page and a `fill` block for when the message is the main thing on the screen.\n' +
-          '- **Icons from Lucide** — one per variant by default; pass `icon` to replace it.\n' +
+          '- **One icon per variant** — drawn from the `DS_ICONS` registry; pass `icon` with another registry name to replace it.\n' +
           '- **Text or structure** — plain text is set in a paragraph; pass your own `<p>` or `<ul>` for longer messages, such as a list of errors.\n' +
           '- **Server-rendered** — no client hooks.',
       },
@@ -79,7 +79,7 @@ export const Default: Story = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['information', 'success', 'warning', 'error'],
+      options: [...UTILITY_VARIANTS],
       description: 'Utility colour and default icon.',
     },
     appearance: {
@@ -105,7 +105,7 @@ export const Default: Story = {
     },
     icon: {
       control: false,
-      description: 'Replaces the variant icon. Decorative.',
+      description: "A registered icon in place of the variant's own. Decorative either way.",
     },
     children: {
       control: 'text',
@@ -135,7 +135,7 @@ export const Default: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '36rem' }}>
-      {(['information', 'success', 'warning', 'error'] as const).map((variant) => (
+      {UTILITY_VARIANTS.map((variant) => (
         <Alert key={variant} variant={variant} title={EXAMPLES[variant].title}>
           {EXAMPLES[variant].message}
         </Alert>
@@ -171,7 +171,7 @@ export const SoftAndFill: Story = {
         gap: '1rem',
       }}
     >
-      {(['information', 'success', 'warning', 'error'] as const).map((variant) => (
+      {UTILITY_VARIANTS.map((variant) => (
         <div key={variant} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <Alert variant={variant} appearance="soft">
             Soft, for a message inside a page.
@@ -232,10 +232,10 @@ export const WithIcon: Story = {
   name: 'With Icons',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '36rem' }}>
-      <Alert variant="warning" icon={<MapPin />} title="Pickup only">
+      <Alert variant="warning" icon="map-pin" title="Pickup only">
         This wardrobe is too wide for the lift in your building.
       </Alert>
-      <Alert variant="information" icon={<Clock />} title="Order cut-off at 14:00">
+      <Alert variant="information" icon="clock" title="Order cut-off at 14:00">
         Orders placed after that time ship the next working day.
       </Alert>
     </div>
@@ -244,10 +244,10 @@ export const WithIcon: Story = {
     docs: {
       description: {
         story:
-          'Pass a Lucide icon when the message is about something the default icon does not show: a place, a deadline. It stays decorative — the title and the spoken prefix carry the meaning.',
+          'Pass the name of another registry icon (`icon="map-pin"`) when the message is about something the default icon does not show: a place, a deadline. It stays decorative — the title and the spoken prefix carry the meaning.',
       },
       source: {
-        code: `<Alert variant="warning" icon={<MapPin />} title="Pickup only">
+        code: `<Alert variant="warning" icon="map-pin" title="Pickup only">
   This wardrobe is too wide for the lift in your building.
 </Alert>`,
       },
@@ -313,6 +313,21 @@ export const LiveUpdate: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('button', { name: 'Save room' })).toBeEnabled();
+    await expect(canvas.getByRole('status')).toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Live Update (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const LiveUpdateInteraction: Story = {
+  ...LiveUpdate,
+  name: 'Live Update (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button', { name: 'Save room' }));

@@ -130,6 +130,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const group = canvas.getByRole('radiogroup', { name: 'Delivery' });
     await expect(group).toHaveAccessibleDescription('Free delivery on orders over €50.');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const group = canvas.getByRole('radiogroup', { name: 'Delivery' });
+    await expect(group).toHaveAccessibleDescription('Free delivery on orders over €50.');
     await userEvent.click(canvas.getByText('Express'));
     await expect(canvas.getByRole('radio', { name: 'Express' })).toBeChecked();
   },
@@ -416,6 +431,23 @@ export const FormExample: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('radiogroup', { name: 'Delivery' })).not.toHaveAttribute(
+      'aria-invalid',
+    );
+    await expect(canvas.getByRole('radio', { name: 'Standard' })).not.toBeChecked();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Form Example (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const FormExampleInteraction: Story = {
+  ...FormExample,
+  name: 'Form Example (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button', { name: 'Place order' }));

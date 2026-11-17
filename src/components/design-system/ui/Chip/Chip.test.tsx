@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { createRef, useState } from 'react';
-import { Bath } from 'lucide-react';
 import { Chip } from './';
 
 expect.extend(toHaveNoViolations);
@@ -85,18 +84,18 @@ describe('Chip — selection', () => {
 
   it('shows a decorative check mark in place of the icon while selected', () => {
     const { container, rerender } = render(
-      <Chip size="md" selected={false} icon={<Bath data-testid="room-icon" />}>
+      <Chip size="md" selected={false} icon="bath">
         Bathroom
       </Chip>,
     );
-    expect(screen.getByTestId('room-icon')).toBeInTheDocument();
+    expect(container.querySelector('.lucide-bath')).toBeInTheDocument();
 
     rerender(
-      <Chip size="md" selected icon={<Bath data-testid="room-icon" />}>
+      <Chip size="md" selected icon="bath">
         Bathroom
       </Chip>,
     );
-    expect(screen.queryByTestId('room-icon')).not.toBeInTheDocument();
+    expect(container.querySelector('.lucide-bath')).not.toBeInTheDocument();
     const checkMark = container.querySelector('svg');
     expect(checkMark?.closest('[aria-hidden="true"]')).not.toBeNull();
   });
@@ -140,7 +139,7 @@ describe('Chip — accessibility', () => {
   it('has no axe violations across states', async () => {
     const { container } = render(
       <div role="group" aria-label="Rooms">
-        <Chip size="md" selected={false} icon={<Bath />}>
+        <Chip size="md" selected={false} icon="bath">
           Bathroom
         </Chip>
         <Chip size="md" selected>

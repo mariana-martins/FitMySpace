@@ -176,21 +176,11 @@
  * --------------------------------------------------------------- */
 
 .icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  inline-size: var(--input-icon-size);
-  block-size: var(--input-icon-size);
+  --icon-size: var(--input-icon-size);
   color: var(--input-icon-colour);
   pointer-events: none;
   transition: color var(--ds-semantic-motion-duration-fast)
     var(--ds-semantic-motion-easing-standard);
-}
-
-.icon > svg {
-  inline-size: 100%;
-  block-size: 100%;
 }
 
 .unit {

@@ -1,6 +1,6 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Slot, Slottable } from '@radix-ui/react-slot';
-import { ArrowUpRight } from 'lucide-react';
+import { DS_ICONS, Icon } from '../Icon';
 import styles from './Link.module.css';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
@@ -53,7 +53,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(props
       <Slottable>{children}</Slottable>
       {opensInNewTab && (
         <>
-          <ArrowUpRight className={styles['new-tab-icon']} aria-hidden="true" focusable="false" />
+          <Icon className={styles['new-tab-icon']}>{DS_ICONS['arrow-up-right'].icon}</Icon>
           <VisuallyHidden> (opens in a new tab)</VisuallyHidden>
         </>
       )}

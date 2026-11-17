@@ -2,6 +2,7 @@
 
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import styles from './Button.module.css';
+import { DS_ICONS, Icon } from '../Icon';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
 
@@ -41,11 +42,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     className,
   );
 
-  const iconElement = icon ? (
-    <span className={styles.icon} aria-hidden="true">
-      {icon}
-    </span>
-  ) : null;
+  const iconElement = icon ? <Icon className={styles.icon}>{DS_ICONS[icon].icon}</Icon> : null;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (disabled) {

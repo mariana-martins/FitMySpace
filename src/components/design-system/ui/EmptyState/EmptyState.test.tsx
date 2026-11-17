@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { PackageOpen } from 'lucide-react';
 import { createRef } from 'react';
 import { EmptyState } from './';
 
@@ -34,7 +33,7 @@ describe('EmptyState — content', () => {
   it('hides the default and a custom icon from assistive technology', () => {
     const { container, rerender } = render(<EmptyState title="No products found" />);
     expect(container.querySelector('svg')?.closest('[aria-hidden="true"]')).not.toBeNull();
-    rerender(<EmptyState title="Your list is empty" icon={<PackageOpen />} />);
+    rerender(<EmptyState title="Your list is empty" icon="package-open" />);
     expect(container.querySelector('svg')).toHaveClass('lucide-package-open');
     expect(container.querySelector('svg')?.closest('[aria-hidden="true"]')).not.toBeNull();
   });

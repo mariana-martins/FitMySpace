@@ -115,6 +115,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const textarea = canvas.getByRole('textbox', { name: 'Assembly notes' });
     await expect(textarea).toHaveAccessibleDescription('Shown to the assembly team.');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const textarea = canvas.getByRole('textbox', { name: 'Assembly notes' });
+    await expect(textarea).toHaveAccessibleDescription('Shown to the assembly team.');
     await userEvent.type(textarea, 'Start with the shelf.');
     await expect(textarea).toHaveValue('Start with the shelf.');
   },
@@ -351,6 +366,22 @@ export const FormExample: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const notes = canvas.getByRole('textbox', { name: 'Assembly notes' });
+    await expect(notes).toHaveValue('');
+    await expect(notes).not.toHaveAttribute('aria-invalid');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Form Example (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const FormExampleInteraction: Story = {
+  ...FormExample,
+  name: 'Form Example (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button', { name: 'Place order' }));

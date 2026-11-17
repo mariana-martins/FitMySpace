@@ -2,14 +2,14 @@
 
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
-import { Check, CircleAlert, Minus } from 'lucide-react';
 import { Label, Text } from '../Typography';
 import styles from './Checkbox.module.css';
 import { forwardRef, useId } from 'react';
+import { DS_ICONS, Icon } from '../Icon';
 import clsx from 'clsx';
 
+import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS, joinIds } from '../../utils';
 import type { CheckboxProps } from './Checkbox.types';
-import { joinIds } from '../../utils';
 
 /* ---------------------------------------------------------------
  * Checkbox
@@ -29,8 +29,6 @@ import { joinIds } from '../../utils';
  *
  * The ref points to the <button>.
  * --------------------------------------------------------------- */
-
-const MARK_STROKE_WIDTH = 3;
 
 export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(function Checkbox(props, ref) {
   const {
@@ -81,16 +79,8 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(function Ch
           {...rest}
         >
           <RadixCheckbox.Indicator forceMount className={styles.mark} aria-hidden="true">
-            <Check
-              className={styles['check-icon']}
-              strokeWidth={MARK_STROKE_WIDTH}
-              focusable="false"
-            />
-            <Minus
-              className={styles['mixed-icon']}
-              strokeWidth={MARK_STROKE_WIDTH}
-              focusable="false"
-            />
+            <Icon className={styles['check-icon']}>{DS_ICONS.check.icon}</Icon>
+            <Icon className={styles['mixed-icon']}>{DS_ICONS.minus.icon}</Icon>
           </RadixCheckbox.Indicator>
         </RadixCheckbox.Root>
       </span>
@@ -112,9 +102,9 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(function Ch
 
       {hasError && (
         <p className={styles.error}>
-          <CircleAlert className={styles['error-icon']} aria-hidden="true" focusable="false" />
+          <Icon className={styles['error-icon']}>{DS_ICONS[UTILITY_VARIANT_ICONS.error].icon}</Icon>
           <span id={errorId}>
-            <VisuallyHidden>Error: </VisuallyHidden>
+            <VisuallyHidden>{`${UTILITY_VARIANT_LABELS.error}: `}</VisuallyHidden>
             {error}
           </span>
         </p>

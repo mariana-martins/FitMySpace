@@ -2,7 +2,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Search } from 'lucide-react';
 import { Button } from '../Button';
 
 import type { TooltipContentProps, TooltipProps } from './';
@@ -36,7 +35,7 @@ function SearchTooltip({
             variant="secondary"
             appearance="outline"
             size="md"
-            icon={<Search />}
+            icon="search"
             aria-label="Clear filters"
           />
         </TooltipTrigger>

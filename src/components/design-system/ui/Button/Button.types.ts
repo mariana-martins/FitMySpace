@@ -1,11 +1,13 @@
-import type { ReactElement, ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { UtilityVariant } from '../../utils';
+import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Types
  * --------------------------------------------------------------- */
 
-export type ButtonVariant =
-  'primary' | 'secondary' | 'error' | 'success' | 'warning' | 'information';
+/** The brand roles plus the four utility roles that `Alert` and `Toast` use. */
+export type ButtonVariant = 'primary' | 'secondary' | UtilityVariant;
 
 export type ButtonAppearance = 'fill' | 'outline' | 'ghost';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
@@ -27,8 +29,8 @@ type ButtonBaseProps = {
   appearance: ButtonAppearance;
   /** Button size. */
   size: ButtonSize;
-  /** Optional icon element (e.g. a Lucide icon). */
-  icon?: ReactElement;
+  /** One of the icons the design system ships, asked for by name. */
+  icon?: IconName;
   /** Position of the icon relative to the text. */
   iconPosition?: IconPosition;
   /** Render as a child element (Radix Slot pattern). */

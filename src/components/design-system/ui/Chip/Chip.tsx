@@ -1,10 +1,11 @@
 'use client';
 
-import type { MouseEvent } from 'react';
+import { DS_ICONS, Icon } from '../Icon';
 import styles from './Chip.module.css';
-import { Check } from 'lucide-react';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
+
+import type { MouseEvent } from 'react';
 
 import type { ChipProps } from './Chip.types';
 
@@ -27,7 +28,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(props
     if (!event.defaultPrevented) onSelectedChange?.(!selected);
   };
 
-  const leadingIcon = selected ? <Check /> : icon;
+  const leadingIcon = selected ? 'check' : icon;
 
   return (
     <button
@@ -38,11 +39,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(props
       onClick={handleClick}
       {...rest}
     >
-      {leadingIcon && (
-        <span className={styles.icon} aria-hidden="true">
-          {leadingIcon}
-        </span>
-      )}
+      {leadingIcon && <Icon className={styles.icon}>{DS_ICONS[leadingIcon].icon}</Icon>}
       {children}
     </button>
   );

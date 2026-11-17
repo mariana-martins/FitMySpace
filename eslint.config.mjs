@@ -153,6 +153,26 @@ export default fixupConfigRules([
     },
   },
 
+  // Design system icons: every icon comes from the Icon registry, the only lucide-react import.
+  {
+    files: ["src/components/design-system/**/*.{ts,tsx}"],
+    ignores: ["src/components/design-system/ui/Icon/icons.tsx"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              name: "lucide-react",
+              message:
+                "Use DS_ICONS and Icon from ui/Icon. Add a missing icon to ui/Icon/icons.tsx, the only lucide-react import.",
+            },
+          ],
+        },
+      ],
+    },
+  },
+
   // Prettier (must be last)
   prettier,
 ]);

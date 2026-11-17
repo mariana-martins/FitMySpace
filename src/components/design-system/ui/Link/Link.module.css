@@ -89,9 +89,7 @@
 /* New tab icon ---------------------------------------------------- */
 
 .new-tab-icon {
-  display: inline-block;
-  inline-size: 0.875em;
-  block-size: 0.875em;
+  --icon-size: 0.875em;
   margin-inline-start: 0.125em;
   vertical-align: -0.0625em;
 }

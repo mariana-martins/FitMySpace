@@ -1,7 +1,7 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import styles from './Pagination.module.css';
+import { DS_ICONS, Icon } from '../Icon';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
 
@@ -89,8 +89,8 @@ const PaginationDirection = forwardRef<
     ...rest
   } = props;
   const text = label ?? (direction === 'previous' ? 'Previous' : 'Next');
-  const Icon = direction === 'previous' ? ChevronLeft : ChevronRight;
-  const icon = <Icon className={styles.icon} aria-hidden="true" focusable="false" />;
+  const chevron = direction === 'previous' ? 'chevron-left' : 'chevron-right';
+  const icon = <Icon className={styles.icon}>{DS_ICONS[chevron].icon}</Icon>;
   const content = (
     <>
       {direction === 'previous' && icon}

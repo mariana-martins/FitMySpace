@@ -1,4 +1,5 @@
-import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Types
@@ -31,6 +32,7 @@ export interface BreadcrumbItemProps extends ComponentPropsWithoutRef<'li'> {
 
 export interface BreadcrumbLinkProps extends ComponentPropsWithoutRef<'a'> {
   home?: boolean;
-  icon?: ReactElement;
+  /** One of the icons the design system ships. `home` defaults it to the house. */
+  icon?: IconName;
   asChild?: boolean;
 }

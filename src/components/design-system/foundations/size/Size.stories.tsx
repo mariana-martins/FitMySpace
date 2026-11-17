@@ -3,13 +3,14 @@ import {
   FoundationPage,
   getTokens,
   groupTokens,
+  iconSizeStyle,
   InlineCode,
   TokenGroup,
   TokenRow,
 } from '../../docs';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import type { DocumentedToken } from '../../docs';
-import { ImageIcon, Search } from 'lucide-react';
+import { DS_ICONS, Icon } from '../../ui/Icon';
 import type { ReactNode } from 'react';
 
 const meta = {
@@ -43,10 +44,10 @@ const groupDescriptions: Record<string, string> = {
   prose: 'The longest comfortable line for running text. Wider lines make the eye lose its place.',
 };
 
+/* The row shows the token itself, so the box is sized by writing `--icon-size`
+   rather than by picking one of the `size` steps. */
 const iconStyle = (token: DocumentedToken) => ({
-  display: 'block',
-  width: `var(${token.name})`,
-  height: `var(${token.name})`,
+  ...iconSizeStyle(`var(${token.name})`),
   color: 'var(--ds-semantic-colour-text-brand-base)',
 });
 
@@ -61,6 +62,9 @@ const layoutBar = (token: DocumentedToken) => (
   />
 );
 
+/** The thumbnail placeholder takes 40% of whichever slot it sits in. */
+const thumbnailIconStyle = iconSizeStyle('40%');
+
 const previewByGroup: Record<string, (token: DocumentedToken) => ReactNode> = {
   control: (token) => (
     <div
@@ -72,7 +76,7 @@ const previewByGroup: Record<string, (token: DocumentedToken) => ReactNode> = {
       }}
     />
   ),
-  icon: (token) => <Search focusable="false" style={iconStyle(token)} />,
+  icon: (token) => <Icon style={iconStyle(token)}>{DS_ICONS.search.icon}</Icon>,
   tag: (token) => (
     <div
       style={{
@@ -142,7 +146,7 @@ const previewByGroup: Record<string, (token: DocumentedToken) => ReactNode> = {
         color: 'var(--ds-semantic-colour-text-subtle-base)',
       }}
     >
-      <ImageIcon focusable="false" style={{ width: '40%', height: '40%' }} />
+      <Icon style={thumbnailIconStyle}>{DS_ICONS.image.icon}</Icon>
     </div>
   ),
   container: layoutBar,

@@ -102,6 +102,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const textarea = canvas.getByRole('textbox', { name: 'Assembly notes' });
     await expect(textarea).toHaveAttribute('rows', '4');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const textarea = canvas.getByRole('textbox', { name: 'Assembly notes' });
+    await expect(textarea).toHaveAttribute('rows', '4');
     await userEvent.type(textarea, 'Two people.');
     await expect(textarea).toHaveValue('Two people.');
   },

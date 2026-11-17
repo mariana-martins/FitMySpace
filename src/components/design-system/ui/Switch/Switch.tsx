@@ -3,13 +3,13 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import * as RadixSwitch from '@radix-ui/react-switch';
 import { Label, Text } from '../Typography';
-import { CircleAlert } from 'lucide-react';
 import { forwardRef, useId } from 'react';
 import styles from './Switch.module.css';
+import { DS_ICONS, Icon } from '../Icon';
 import clsx from 'clsx';
 
+import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS, joinIds } from '../../utils';
 import type { SwitchProps } from './Switch.types';
-import { joinIds } from '../../utils';
 
 /* ---------------------------------------------------------------
  * Switch
@@ -101,9 +101,9 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(function Switch
 
       {hasError && (
         <p className={styles.error}>
-          <CircleAlert className={styles['error-icon']} aria-hidden="true" focusable="false" />
+          <Icon className={styles['error-icon']}>{DS_ICONS[UTILITY_VARIANT_ICONS.error].icon}</Icon>
           <span id={errorId}>
-            <VisuallyHidden>Error: </VisuallyHidden>
+            <VisuallyHidden>{`${UTILITY_VARIANT_LABELS.error}: `}</VisuallyHidden>
             {error}
           </span>
         </p>

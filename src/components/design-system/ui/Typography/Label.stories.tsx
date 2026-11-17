@@ -95,6 +95,25 @@ export const FormExample: Story = {
 
     const input = canvas.getByLabelText('Email Address');
     await expect(input).toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Form Example (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const FormExampleInteraction: Story = {
+  ...FormExample,
+  name: 'Form Example (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const label = canvas.getByText('Email Address');
+    await expect(label.tagName).toBe('LABEL');
+    await expect(label).toHaveAttribute('for', 'email-demo');
+
+    const input = canvas.getByLabelText('Email Address');
+    await expect(input).toBeInTheDocument();
     await userEvent.click(label);
     await expect(input).toHaveFocus();
   },

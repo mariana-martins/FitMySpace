@@ -6,12 +6,12 @@ import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { TextareaField } from '../ui/TextareaField';
 import { version } from '../../../../package.json';
-import { CircleCheck, Search } from 'lucide-react';
 import { SelectField } from '../ui/SelectField';
 import { SearchField } from '../ui/SearchField';
 import { expect, within } from 'storybook/test';
 import { EmptyState } from '../ui/EmptyState';
 import { TextField } from '../ui/TextField';
+import { DS_ICONS, Icon } from '../ui/Icon';
 import { Skeleton } from '../ui/Skeleton';
 import { Checkbox } from '../ui/Checkbox';
 import { SelectItem } from '../ui/Select';
@@ -734,7 +734,7 @@ const ComponentGrid = () => (
         title="Input"
         description="The bare text field: icons, a unit suffix, an end action, and invalid and disabled states."
         preview={
-          <Input size="sm" aria-label="Search sample" placeholder="Search" iconStart={<Search />} />
+          <Input size="sm" aria-label="Search sample" placeholder="Search" iconStart="search" />
         }
       />
       <LinkCard
@@ -916,6 +916,19 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-display-icon--docs"
+        title="Icon"
+        description="The box every icon is drawn in: centred, never squeezed, and quiet unless the icon is the only thing that says it."
+        preview={
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Icon size="md">{DS_ICONS['map-pin'].icon}</Icon>
+            <Icon size="md">{DS_ICONS.home.icon}</Icon>
+            <Icon size="lg">{DS_ICONS.ruler.icon}</Icon>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-feedback-alert--docs"
         title="Alert"
         description="Status messages in the four utility colours, announced through a live region."
@@ -945,15 +958,7 @@ const ComponentGrid = () => (
               letterSpacing: 'var(--ds-semantic-typography-body-md-letter-spacing)',
             }}
           >
-            <CircleCheck
-              focusable="false"
-              aria-hidden
-              style={{
-                flexShrink: 0,
-                inlineSize: 'var(--ds-component-toast-icon-size)',
-                blockSize: 'var(--ds-component-toast-icon-size)',
-              }}
-            />
+            <Icon>{DS_ICONS['circle-check'].icon}</Icon>
             <div>
               <div
                 style={{

@@ -3,7 +3,6 @@ import { expect, userEvent, within } from 'storybook/test';
 import { SelectGroup, SelectItem } from '../Select';
 import type { FormEvent } from 'react';
 import { Text } from '../Typography';
-import { Store } from 'lucide-react';
 import { Button } from '../Button';
 import { useState } from 'react';
 import { SelectField } from './';
@@ -131,6 +130,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const select = canvas.getByRole('combobox', { name: 'Room' });
     await expect(select).toHaveAccessibleDescription('Shows products made for this room.');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole('combobox', { name: 'Room' });
+    await expect(select).toHaveAccessibleDescription('Shows products made for this room.');
     await chooseOption(canvasElement, select, 'Kitchen');
     await expect(select).toHaveTextContent('Kitchen');
   },
@@ -180,7 +194,7 @@ export const WithIcon: Story = {
   name: 'With Icons and Groups',
   render: () => (
     <div style={{ maxWidth: '22rem' }}>
-      <SelectField label="Store" placeholder="Choose a store" iconStart={<Store />}>
+      <SelectField label="Store" placeholder="Choose a store" iconStart="store">
         <SelectGroup label="Furniture">
           <SelectItem value="ikea">IKEA</SelectItem>
           <SelectItem value="habitat">Habitat</SelectItem>
@@ -199,10 +213,27 @@ export const WithIcon: Story = {
           'The icon is passed straight to the `Select` and hidden from screen readers. `SelectGroup` splits a long list into named sections that screen readers announce.',
       },
       source: {
-        code: `<SelectField label="Store" placeholder="Choose a store" iconStart={<Store />}>\n  <SelectGroup label="Furniture">\n    <SelectItem value="ikea">IKEA</SelectItem>\n  </SelectGroup>\n  <SelectGroup label="Storage">\n    <SelectItem value="muji">Muji</SelectItem>\n  </SelectGroup>\n</SelectField>`,
+        code: `<SelectField label="Store" placeholder="Choose a store" iconStart="store">\n  <SelectGroup label="Furniture">\n    <SelectItem value="ikea">IKEA</SelectItem>\n  </SelectGroup>\n  <SelectGroup label="Storage">\n    <SelectItem value="muji">Muji</SelectItem>\n  </SelectGroup>\n</SelectField>`,
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('combobox', { name: 'Store' })).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    );
+  },
+};
+
+/* ---------------------------------------------------------------
+ * With Icons and Groups: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const WithIconInteraction: Story = {
+  ...WithIcon,
+  name: 'With Icons and Groups: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('combobox', { name: 'Store' }));
@@ -418,6 +449,25 @@ export const FormExample: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('combobox', { name: 'Room' })).not.toHaveAttribute(
+      'aria-invalid',
+    );
+    await expect(canvas.getByRole('combobox', { name: 'Store' })).not.toHaveAttribute(
+      'aria-invalid',
+    );
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Form Example (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const FormExampleInteraction: Story = {
+  ...FormExample,
+  name: 'Form Example (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await chooseOption(canvasElement, canvas.getByRole('combobox', { name: 'Room' }), 'Kitchen');

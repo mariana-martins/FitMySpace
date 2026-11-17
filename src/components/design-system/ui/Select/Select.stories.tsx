@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
-import { ArrowUpDown, Store } from 'lucide-react';
 import { Label, Text } from '../Typography';
 import { LabelledField } from '../../docs';
 import { Select, SelectItem } from './';
@@ -119,6 +118,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const select = canvas.getByRole('combobox', { name: 'Store' });
     await expect(select).toHaveTextContent('Choose a store');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole('combobox', { name: 'Store' });
+    await expect(select).toHaveTextContent('Choose a store');
     await chooseOption(canvasElement, select, 'Muji');
     await expect(select).toHaveTextContent('Muji');
   },
@@ -182,7 +196,7 @@ export const WithIcon: Story = {
     <div style={{ maxWidth: '22rem' }}>
       <LabelledField label="Store">
         {(fieldId) => (
-          <Select id={fieldId} placeholder="Choose a store" iconStart={<Store />}>
+          <Select id={fieldId} placeholder="Choose a store" iconStart="store">
             {STORE_OPTIONS}
           </Select>
         )}
@@ -196,7 +210,7 @@ export const WithIcon: Story = {
           'An icon before the value hints at what the list holds. It is decorative and hidden from screen readers; the visible label gives the select its name.',
       },
       source: {
-        code: `<Label as="label" htmlFor="store">Store</Label>\n<Select id="store" placeholder="Choose a store" iconStart={<Store />}>\n  <SelectItem value="ikea">IKEA</SelectItem>\n  …\n</Select>`,
+        code: `<Label as="label" htmlFor="store">Store</Label>\n<Select id="store" placeholder="Choose a store" iconStart="store">\n  <SelectItem value="ikea">IKEA</SelectItem>\n  …\n</Select>`,
       },
     },
   },
@@ -333,7 +347,7 @@ export const SortMenu: Story = {
       <Label as="label" htmlFor="sort-results" size="sm" style={{ whiteSpace: 'nowrap' }}>
         Sort by
       </Label>
-      <Select id="sort-results" size="sm" defaultValue="relevance" iconStart={<ArrowUpDown />}>
+      <Select id="sort-results" size="sm" defaultValue="relevance" iconStart="arrow-up-down">
         <SelectItem value="relevance">Relevance</SelectItem>
         <SelectItem value="price-ascending">Price: low to high</SelectItem>
         <SelectItem value="price-descending">Price: high to low</SelectItem>
@@ -348,10 +362,25 @@ export const SortMenu: Story = {
           'A recipe for a results toolbar: the bare `Select` next to a short inline label. The `Label` uses `htmlFor`, so the select is named "Sort by" and clicking the label focuses it. No placeholder: a sort order always has a value.',
       },
       source: {
-        code: `<Label as="label" htmlFor="sort-results" size="sm">Sort by</Label>\n<Select id="sort-results" size="sm" defaultValue="relevance" iconStart={<ArrowUpDown />}>\n  <SelectItem value="relevance">Relevance</SelectItem>\n  <SelectItem value="price-ascending">Price: low to high</SelectItem>\n  …\n</Select>`,
+        code: `<Label as="label" htmlFor="sort-results" size="sm">Sort by</Label>\n<Select id="sort-results" size="sm" defaultValue="relevance" iconStart="arrow-up-down">\n  <SelectItem value="relevance">Relevance</SelectItem>\n  <SelectItem value="price-ascending">Price: low to high</SelectItem>\n  …\n</Select>`,
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const sort = canvas.getByRole('combobox', { name: 'Sort by' });
+    await expect(sort).toHaveTextContent('Relevance');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Sort Menu (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const SortMenuInteraction: Story = {
+  ...SortMenu,
+  name: 'Sort Menu (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const sort = canvas.getByRole('combobox', { name: 'Sort by' });

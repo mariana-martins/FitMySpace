@@ -1,6 +1,7 @@
-import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import type { HeadingLevel } from '../Typography';
 import type { UtilityVariant } from '../../utils';
+import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Types
@@ -36,7 +37,8 @@ export interface AlertProps extends Omit<ComponentPropsWithoutRef<'div'>, 'role'
   appearance?: AlertAppearance;
   title?: string;
   headingLevel?: HeadingLevel;
-  icon?: ReactElement;
+  /** One of the icons the design system ships. Defaults to the variant's own. */
+  icon?: IconName;
   live?: AlertLive;
   children?: ReactNode;
 }

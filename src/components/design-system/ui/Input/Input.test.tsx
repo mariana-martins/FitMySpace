@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Search } from 'lucide-react';
 import { createRef } from 'react';
 import { Input } from './';
 
@@ -101,8 +100,8 @@ describe('Input — states', () => {
 
 describe('Input — adornments', () => {
   it('hides icons from assistive technology', () => {
-    render(<Input aria-label="Search" iconStart={<Search data-testid="icon" />} />);
-    expect(screen.getByTestId('icon').parentElement).toHaveAttribute('aria-hidden', 'true');
+    const { container } = render(<Input aria-label="Search" iconStart="search" />);
+    expect(container.querySelector('svg')?.closest('[aria-hidden="true"]')).not.toBeNull();
     expect(screen.getByRole('textbox')).not.toHaveAccessibleDescription();
   });
 
@@ -207,7 +206,7 @@ describe('Input — accessibility', () => {
     const { container } = render(
       <>
         <label htmlFor="room-width">Room width</label>
-        <Input id="room-width" unit="cm" iconStart={<Search />} />
+        <Input id="room-width" unit="cm" iconStart="search" />
         <Input aria-label="Disabled field" disabled />
         <Input aria-label="Invalid field" invalid />
       </>,

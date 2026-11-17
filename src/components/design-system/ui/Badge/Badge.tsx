@@ -1,3 +1,4 @@
+import { DS_ICONS, Icon } from '../Icon';
 import styles from './Badge.module.css';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
@@ -29,11 +30,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(prop
       )}
       {...rest}
     >
-      {icon && (
-        <span className={styles.icon} aria-hidden="true">
-          {icon}
-        </span>
-      )}
+      {icon && <Icon className={styles.icon}>{DS_ICONS[icon].icon}</Icon>}
       {children}
     </span>
   );

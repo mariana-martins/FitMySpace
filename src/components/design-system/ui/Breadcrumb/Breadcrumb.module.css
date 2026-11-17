@@ -81,15 +81,7 @@
 }
 
 .icon {
-  display: inline-flex;
-  flex-shrink: 0;
-  inline-size: var(--breadcrumb-icon-size);
-  block-size: var(--breadcrumb-icon-size);
-}
-
-.icon > svg {
-  inline-size: 100%;
-  block-size: 100%;
+  --icon-size: var(--breadcrumb-icon-size);
 }
 
 .separator {
@@ -101,8 +93,7 @@
 }
 
 .separator-chevron {
-  inline-size: var(--breadcrumb-separator-size);
-  block-size: var(--breadcrumb-separator-size);
+  --icon-size: var(--breadcrumb-separator-size);
 }
 
 .separator-slash,

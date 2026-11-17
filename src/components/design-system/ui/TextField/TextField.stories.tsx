@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
-import { Mail, Search } from 'lucide-react';
 import type { FormEvent } from 'react';
 import { Text } from '../Typography';
 import { Button } from '../Button';
@@ -111,6 +110,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const input = canvas.getByRole('textbox', { name: 'Room name' });
     await expect(input).toHaveAccessibleDescription('Shown on your saved rooms.');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('textbox', { name: 'Room name' });
+    await expect(input).toHaveAccessibleDescription('Shown on your saved rooms.');
     await userEvent.type(input, 'Studio');
     await expect(input).toHaveValue('Studio');
   },
@@ -158,13 +172,13 @@ export const WithIcon: Story = {
         label="Email"
         type="email"
         autoComplete="email"
-        iconStart={<Mail />}
+        iconStart="mail"
         placeholder="you@example.com"
       />
       <TextField
         label="Search furniture"
         type="search"
-        iconStart={<Search />}
+        iconStart="search"
         placeholder="Sofa, desk, shelf…"
       />
     </div>
@@ -176,7 +190,7 @@ export const WithIcon: Story = {
           'Icons are passed straight to the `Input`. They are decorative and hidden from screen readers; the label gives the field its name.',
       },
       source: {
-        code: `<TextField label="Email" type="email" autoComplete="email" iconStart={<Mail />} />`,
+        code: `<TextField label="Email" type="email" autoComplete="email" iconStart="mail" />`,
       },
     },
   },
@@ -392,6 +406,22 @@ export const FormExample: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      canvas.getByText('Fields marked with an asterisk (*) are required.'),
+    ).toBeVisible();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Form Example (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const FormExampleInteraction: Story = {
+  ...FormExample,
+  name: 'Form Example (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(

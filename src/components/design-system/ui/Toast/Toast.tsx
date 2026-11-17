@@ -3,10 +3,10 @@
 import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS } from '../../utils';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import * as RadixToast from '@radix-ui/react-toast';
+import { DS_ICONS, Icon } from '../Icon';
 import styles from './Toast.module.css';
 import { Button } from '../Button';
 import { forwardRef } from 'react';
-import { X } from 'lucide-react';
 import clsx from 'clsx';
 
 import type {
@@ -80,9 +80,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(function Toast(
       className={clsx(styles.toast, styles[`variant-${variant}` as keyof typeof styles], className)}
       {...toastProps}
     >
-      <span className={styles.icon} aria-hidden="true">
-        {icon ?? UTILITY_VARIANT_ICONS[variant]}
-      </span>
+      <Icon className={styles.icon}>{DS_ICONS[icon ?? UTILITY_VARIANT_ICONS[variant]].icon}</Icon>
 
       <div className={styles.body}>
         <VisuallyHidden>{`${UTILITY_VARIANT_LABELS[variant]}: `}</VisuallyHidden>
@@ -139,7 +137,7 @@ export const ToastClose = forwardRef<HTMLButtonElement, ToastCloseProps>(functio
         variant="secondary"
         appearance="ghost"
         size="sm"
-        icon={<X focusable="false" />}
+        icon="x"
         aria-label="Close"
         className={clsx(styles.close, className)}
         {...closeProps}

@@ -5,8 +5,7 @@ import { Caption } from '../Typography';
 import { Button } from '../Button';
 
 import type { TooltipContentProps } from './';
-
-import { Filter, RotateCcw, Search, SlidersHorizontal } from 'lucide-react';
+import type { IconName } from '../Icon';
 
 const meta = {
   title: 'Design System/Components/Overlays/Tooltip',
@@ -77,7 +76,7 @@ function ClearFiltersTooltip(contentProps: TooltipContentProps) {
               variant="secondary"
               appearance="outline"
               size="md"
-              icon={<RotateCcw />}
+              icon="rotate-ccw"
               aria-label="Clear filters"
             />
           </TooltipTrigger>
@@ -125,7 +124,7 @@ export const Default: Story = {
         code: `<TooltipProvider>
   <Tooltip>
     <TooltipTrigger asChild>
-      <Button variant="secondary" appearance="outline" icon={<RotateCcw />} aria-label="Clear filters" />
+      <Button variant="secondary" appearance="outline" icon="rotate-ccw" aria-label="Clear filters" />
     </TooltipTrigger>
     <TooltipContent side="top" align="center">Clears every filter in this search.</TooltipContent>
   </Tooltip>
@@ -133,6 +132,20 @@ export const Default: Story = {
       },
     },
   },
+  play: async () => {
+    await expect(page().getByRole('button', { name: 'Clear filters' })).toBeEnabled();
+    await expect(page().queryByRole('tooltip')).not.toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async () => {
     await openAndLeave('Clear filters', 'Clears every filter in this search.');
   },
@@ -184,11 +197,11 @@ export const AllSides: Story = {
  * On an icon-only button
  * --------------------------------------------------------------- */
 
-const TOOLBAR = [
-  { icon: <Search />, label: 'Search', tip: 'Searches product names and rooms.' },
-  { icon: <Filter />, label: 'Filters', tip: 'Opens the filters for this search.' },
+const TOOLBAR: { icon: IconName; label: string; tip: string }[] = [
+  { icon: 'search', label: 'Search', tip: 'Searches product names and rooms.' },
+  { icon: 'filter', label: 'Filters', tip: 'Opens the filters for this search.' },
   {
-    icon: <SlidersHorizontal />,
+    icon: 'sliders-horizontal',
     label: 'Sort',
     tip: 'Sorts by how well the item fits the room you picked.',
   },
@@ -231,13 +244,27 @@ export const OnIconButton: Story = {
       source: {
         code: `<Tooltip>
   <TooltipTrigger asChild>
-    <Button variant="secondary" appearance="ghost" size="md" icon={<Filter />} aria-label="Filters" />
+    <Button variant="secondary" appearance="ghost" size="md" icon="filter" aria-label="Filters" />
   </TooltipTrigger>
   <TooltipContent>Opens the filters for this search.</TooltipContent>
 </Tooltip>`,
       },
     },
   },
+  play: async () => {
+    await expect(page().getByRole('button', { name: 'Filters' })).toBeEnabled();
+    await expect(page().queryByRole('tooltip')).not.toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * On an Icon-only Button: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const OnIconButtonInteraction: Story = {
+  ...OnIconButton,
+  name: 'On an Icon-only Button: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async () => {
     await openAndLeave('Filters', 'Opens the filters for this search.');
   },
@@ -274,6 +301,20 @@ export const LongText: Story = {
       },
     },
   },
+  play: async () => {
+    await expect(page().getByRole('button', { name: 'Why this fits' })).toBeEnabled();
+    await expect(page().queryByRole('tooltip')).not.toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Long Text (It Wraps at 240px): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const LongTextInteraction: Story = {
+  ...LongText,
+  name: 'Long Text (It Wraps at 240px): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async () => {
     await openAndLeave('Why this fits', 'Sizes are measured with the doors open');
   },

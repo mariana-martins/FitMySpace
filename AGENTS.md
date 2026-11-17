@@ -46,7 +46,7 @@ rules below are its essentials.
   Introduction page in `introduction/`, the Changelog page in `changelog/` (renders
   `CHANGELOG.md` through a `?raw` import), Storybook-only helpers in `docs/`,
   plain helpers shared by components in `utils/` (e.g. `joinIds` for
-  `aria-describedby`, the utility-variant icons and labels of `Alert` and `Toast`). Reuse them instead of copying a helper into a component.
+  `aria-describedby`, `UTILITY_VARIANTS` with the icon and label of each, shared by `Alert`, `Toast`, the field errors and the variant types of `Button` and `Badge`). Reuse them instead of copying a helper into a component.
   Sidebar: `Design System/Components/<Category>/<Name>` with the categories
   Actions, Forms, Navigation, Display, Feedback, Overlays and Typography (add one in
   `.storybook/preview.tsx` when needed).
@@ -71,6 +71,13 @@ rules below are its essentials.
   `useId` works on the server, and rendering a client component such as Radix
   `VisuallyHidden` does not make a component client: `Textarea`, `TextareaField`,
   `Breadcrumb` and `Skeleton` stay server components.
+- **Icons**: every icon is drawn through `Icon` with an entry from `DS_ICONS`
+  (`ui/Icon/icons.tsx`), the only file that imports `lucide-react`; ESLint
+  rejects the import anywhere else in the design system. An `icon` prop takes a
+  name (`icon="search"`), never an element. A component sizes its icon by
+  writing `--icon-size` from its own token in the class it passes. A new icon
+  goes into the registry, with its current Lucide name (not an old alias) and a
+  `usedIn` line.
 - **Screen-reader-only text**: use `VisuallyHidden` from
   `@radix-ui/react-visually-hidden` (e.g. the "Error: " prefix, a `role="status"`
   announcement). Never add a local `.visually-hidden` class or inline style.
@@ -102,6 +109,13 @@ rules below are its essentials.
   - every story has a `/* --- Name --- */` header comment,
     `parameters.docs.description.story`, a `play` test where it adds value, and
     `docs.source.code` when the render is complex;
+  - a visible story's `play` only checks the resting state. Storybook runs it on
+    every load, so a play that clicks, types, hovers or opens something leaves the
+    story changed before anyone touches it (a list flashes open, an error shows up).
+    Put the interaction in a copy named `NameInteraction`: spread the story
+    (`...Name`), name it 'Name: Interaction (Test Only)', add
+    `tags: ['!dev', '!autodocs']` and give it the interactive `play`. It is hidden
+    from the sidebar and the docs page, and `npm run test:storybook` still runs it;
   - layouts use inline `style`, not meta decorators or shared style constants.
 - **CSS Modules**: kebab-case class names (`.icon-only`, `.error-icon`), read
   with bracket access (`styles['error-icon']`). Stylelint (`stylelint.config.mjs`,

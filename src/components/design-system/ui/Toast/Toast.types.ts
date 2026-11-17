@@ -8,8 +8,7 @@ import type {
   ToastViewportProps as RadixToastViewportProps,
 } from '@radix-ui/react-toast';
 import type { UtilityVariant } from '../../utils';
-
-import type { ReactElement } from 'react';
+import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Toast
@@ -38,5 +37,6 @@ export type ToastCloseProps = RadixToastCloseProps;
 
 export interface ToastProps extends RadixToastProps {
   variant?: ToastVariant;
-  icon?: ReactElement;
+  /** One of the icons the design system ships. Defaults to the variant's own. */
+  icon?: IconName;
 }

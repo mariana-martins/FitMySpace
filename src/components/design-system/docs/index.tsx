@@ -7,6 +7,7 @@ export type {
   TokenGroupProps,
   TokenRowProps,
 } from './FoundationPage';
+export { iconSizeStyle } from './iconSizeStyle';
 export { formatTokenLabel, getTokens, groupTokens } from './tokens';
 export type { DocumentedToken } from './tokens';
 export { LinkCard, LinkCardGrid } from './LinkCard';

@@ -144,6 +144,23 @@ export const Default: Story = {
       'aria-current',
       'page',
     );
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('link', { name: 'Page 5' })).toHaveAttribute(
+      'aria-current',
+      'page',
+    );
     await userEvent.click(canvas.getByRole('link', { name: 'Next page' }));
     await expect(canvas.getByRole('link', { name: 'Page 6' })).toHaveAttribute(
       'aria-current',
@@ -337,6 +354,24 @@ export const SearchResultsExample: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('link', { name: 'Page 2' })).toHaveAttribute(
+      'href',
+      '?q=shelf&page=2',
+    );
+    await expect(canvas.getByRole('link', { name: 'Page 2' })).not.toHaveAttribute('aria-current');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Search Results (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const SearchResultsExampleInteraction: Story = {
+  ...SearchResultsExample,
+  name: 'Search Results (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('link', { name: 'Page 2' }));

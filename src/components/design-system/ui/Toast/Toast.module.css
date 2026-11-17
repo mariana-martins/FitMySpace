@@ -83,20 +83,10 @@
 }
 
 .icon {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  inline-size: var(--ds-component-toast-icon-size);
-  block-size: var(--ds-component-toast-icon-size);
+  --icon-size: var(--ds-component-toast-icon-size);
   font: var(--ds-semantic-typography-heading-sm-shorthand);
   margin-block-start: calc((1lh - var(--ds-component-toast-icon-size)) / 2);
   color: currentcolor;
-}
-
-.icon > svg {
-  inline-size: 100%;
-  block-size: 100%;
 }
 
 .body {

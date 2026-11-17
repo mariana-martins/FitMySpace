@@ -46,19 +46,9 @@
 /* Icon ------------------------------------------------------------ */
 
 .icon {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  inline-size: var(--ds-component-alert-icon-size);
-  block-size: var(--ds-component-alert-icon-size);
+  --icon-size: var(--ds-component-alert-icon-size);
   margin-block-start: calc((1lh - var(--ds-component-alert-icon-size)) / 2);
   color: currentcolor;
-}
-
-.icon > svg {
-  inline-size: 100%;
-  block-size: 100%;
 }
 
 /* Text ------------------------------------------------------------ */

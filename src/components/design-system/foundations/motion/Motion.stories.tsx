@@ -276,6 +276,20 @@ export const SemanticMotion: Story = {
   ),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    await expect(canvas.getByRole('combobox', { name: 'Duration' })).toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Semantic Motion: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const SemanticMotionInteraction: Story = {
+  ...SemanticMotion,
+  name: 'Semantic Motion: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
     const durationSelect = canvas.getByRole('combobox', { name: 'Duration' });
     await userEvent.selectOptions(durationSelect, '--ds-semantic-motion-duration-slow');
     await expect(durationSelect).toHaveValue('--ds-semantic-motion-duration-slow');
