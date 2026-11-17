@@ -119,6 +119,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const select = canvas.getByRole('combobox', { name: 'Store' });
     await expect(select).toHaveTextContent('Choose a store');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole('combobox', { name: 'Store' });
+    await expect(select).toHaveTextContent('Choose a store');
     await chooseOption(canvasElement, select, 'Muji');
     await expect(select).toHaveTextContent('Muji');
   },
@@ -352,6 +367,21 @@ export const SortMenu: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const sort = canvas.getByRole('combobox', { name: 'Sort by' });
+    await expect(sort).toHaveTextContent('Relevance');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Sort Menu (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const SortMenuInteraction: Story = {
+  ...SortMenu,
+  name: 'Sort Menu (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const sort = canvas.getByRole('combobox', { name: 'Sort by' });

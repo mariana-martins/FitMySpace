@@ -131,6 +131,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const select = canvas.getByRole('combobox', { name: 'Room' });
     await expect(select).toHaveAccessibleDescription('Shows products made for this room.');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole('combobox', { name: 'Room' });
+    await expect(select).toHaveAccessibleDescription('Shows products made for this room.');
     await chooseOption(canvasElement, select, 'Kitchen');
     await expect(select).toHaveTextContent('Kitchen');
   },
@@ -203,6 +218,23 @@ export const WithIcon: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('combobox', { name: 'Store' })).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    );
+  },
+};
+
+/* ---------------------------------------------------------------
+ * With Icons and Groups: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const WithIconInteraction: Story = {
+  ...WithIcon,
+  name: 'With Icons and Groups: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('combobox', { name: 'Store' }));
@@ -418,6 +450,25 @@ export const FormExample: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('combobox', { name: 'Room' })).not.toHaveAttribute(
+      'aria-invalid',
+    );
+    await expect(canvas.getByRole('combobox', { name: 'Store' })).not.toHaveAttribute(
+      'aria-invalid',
+    );
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Form Example (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const FormExampleInteraction: Story = {
+  ...FormExample,
+  name: 'Form Example (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await chooseOption(canvasElement, canvas.getByRole('combobox', { name: 'Room' }), 'Kitchen');

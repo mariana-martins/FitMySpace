@@ -110,6 +110,23 @@ export const Default: Story = {
     await expect(checkbox).toHaveAccessibleDescription(
       'Safe to use in bathrooms and on balconies.',
     );
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const checkbox = canvas.getByRole('checkbox', { name: 'Waterproof' });
+    await expect(checkbox).toHaveAccessibleDescription(
+      'Safe to use in bathrooms and on balconies.',
+    );
     await userEvent.click(canvas.getByText('Waterproof'));
     await expect(checkbox).toBeChecked();
   },
@@ -404,6 +421,22 @@ export const SelectAll: Story = {
     await expect(canvas.getByRole('group', { name: 'Features' })).toBeInTheDocument();
     const allFeatures = canvas.getByRole('checkbox', { name: 'All features' });
     await expect(allFeatures).toBePartiallyChecked();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Select All Group (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const SelectAllInteraction: Story = {
+  ...SelectAll,
+  name: 'Select All Group (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('group', { name: 'Features' })).toBeInTheDocument();
+    const allFeatures = canvas.getByRole('checkbox', { name: 'All features' });
+    await expect(allFeatures).toBePartiallyChecked();
 
     await userEvent.click(allFeatures);
     await expect(allFeatures).toBeChecked();
@@ -473,6 +506,22 @@ export const FormExample: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const terms = canvas.getByRole('checkbox', { name: 'I accept the terms of sale' });
+    await expect(terms).not.toBeChecked();
+    await expect(terms).not.toHaveAttribute('aria-invalid');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Form Example (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const FormExampleInteraction: Story = {
+  ...FormExample,
+  name: 'Form Example (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button', { name: 'Place order' }));

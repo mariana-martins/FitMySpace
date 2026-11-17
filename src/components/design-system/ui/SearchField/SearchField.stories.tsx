@@ -103,6 +103,20 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole('search', { name: 'Search products' })).toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('search', { name: 'Search products' })).toBeInTheDocument();
     await userEvent.type(canvas.getByRole('searchbox', { name: 'Search products' }), 'basket');
     await expect(canvas.getByRole('button', { name: 'Clear search' })).toBeInTheDocument();
   },
@@ -284,6 +298,20 @@ export const SearchPageExample: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('searchbox', { name: 'Search products' })).toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Search Page (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const SearchPageExampleInteraction: Story = {
+  ...SearchPageExample,
+  name: 'Search Page (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const input = canvas.getByRole('searchbox', { name: 'Search products' });

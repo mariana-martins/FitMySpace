@@ -106,6 +106,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const switchControl = canvas.getByRole('switch', { name: 'Email me new storage ideas' });
     await expect(switchControl).toHaveAccessibleDescription('One email a week, at most.');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const switchControl = canvas.getByRole('switch', { name: 'Email me new storage ideas' });
+    await expect(switchControl).toHaveAccessibleDescription('One email a week, at most.');
     await userEvent.click(canvas.getByText('Email me new storage ideas'));
     await expect(switchControl).toBeChecked();
   },
@@ -368,6 +383,21 @@ export const SettingsGroup: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('group', { name: 'Notifications' })).toBeInTheDocument();
+    await expect(canvas.getByRole('switch', { name: 'Price alerts' })).toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Settings Group (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const SettingsGroupInteraction: Story = {
+  ...SettingsGroup,
+  name: 'Settings Group (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole('group', { name: 'Notifications' })).toBeInTheDocument();

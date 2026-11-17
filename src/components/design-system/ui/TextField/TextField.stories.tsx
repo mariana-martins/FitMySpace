@@ -111,6 +111,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const input = canvas.getByRole('textbox', { name: 'Room name' });
     await expect(input).toHaveAccessibleDescription('Shown on your saved rooms.');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('textbox', { name: 'Room name' });
+    await expect(input).toHaveAccessibleDescription('Shown on your saved rooms.');
     await userEvent.type(input, 'Studio');
     await expect(input).toHaveValue('Studio');
   },
@@ -392,6 +407,22 @@ export const FormExample: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      canvas.getByText('Fields marked with an asterisk (*) are required.'),
+    ).toBeVisible();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Form Example (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const FormExampleInteraction: Story = {
+  ...FormExample,
+  name: 'Form Example (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(

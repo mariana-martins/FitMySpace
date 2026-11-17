@@ -103,6 +103,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const chip = canvas.getByRole('button', { name: 'Bathroom' });
     await expect(chip).toHaveAttribute('aria-pressed', 'false');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const chip = canvas.getByRole('button', { name: 'Bathroom' });
+    await expect(chip).toHaveAttribute('aria-pressed', 'false');
     await userEvent.click(chip);
     await expect(chip).toHaveAttribute('aria-pressed', 'true');
     await userEvent.click(chip);
@@ -343,6 +358,20 @@ export const RoomFilterExample: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('group', { name: 'Filter by room' })).toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Room Filter (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const RoomFilterExampleInteraction: Story = {
+  ...RoomFilterExample,
+  name: 'Room Filter (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const group = canvas.getByRole('group', { name: 'Filter by room' });

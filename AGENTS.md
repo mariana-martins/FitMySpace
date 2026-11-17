@@ -102,6 +102,13 @@ rules below are its essentials.
   - every story has a `/* --- Name --- */` header comment,
     `parameters.docs.description.story`, a `play` test where it adds value, and
     `docs.source.code` when the render is complex;
+  - a visible story's `play` only checks the resting state. Storybook runs it on
+    every load, so a play that clicks, types, hovers or opens something leaves the
+    story changed before anyone touches it (a list flashes open, an error shows up).
+    Put the interaction in a copy named `NameInteraction`: spread the story
+    (`...Name`), name it 'Name: Interaction (Test Only)', add
+    `tags: ['!dev', '!autodocs']` and give it the interactive `play`. It is hidden
+    from the sidebar and the docs page, and `npm run test:storybook` still runs it;
   - layouts use inline `style`, not meta decorators or shared style constants.
 - **CSS Modules**: kebab-case class names (`.icon-only`, `.error-icon`), read
   with bracket access (`styles['error-icon']`). Stylelint (`stylelint.config.mjs`,

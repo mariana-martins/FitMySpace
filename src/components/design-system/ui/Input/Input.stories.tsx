@@ -96,6 +96,21 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const input = canvas.getByRole('textbox', { name: 'Room name' });
     await expect(input).toHaveAttribute('type', 'text');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('textbox', { name: 'Room name' });
+    await expect(input).toHaveAttribute('type', 'text');
     await userEvent.type(input, 'Living room');
     await expect(input).toHaveValue('Living room');
   },
@@ -267,6 +282,21 @@ export const WithEndAction: Story = {
       },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const password = canvas.getByLabelText('Password');
+    await expect(password).toHaveAttribute('type', 'password');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * With End Action: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const WithEndActionInteraction: Story = {
+  ...WithEndAction,
+  name: 'With End Action: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const password = canvas.getByLabelText('Password');

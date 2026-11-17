@@ -606,6 +606,21 @@ export const ClickBehaviour: Story = {
   },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
+    await expect(canvas.getByRole('button', { name: 'Save' })).toBeEnabled();
+    await expect(args.onClick).not.toHaveBeenCalled();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Click Behaviour: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const ClickBehaviourInteraction: Story = {
+  ...ClickBehaviour,
+  name: 'Click Behaviour: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
 
     await userEvent.click(canvas.getByRole('button', { name: 'Save' }));
     await expect(args.onClick).toHaveBeenCalledTimes(1);

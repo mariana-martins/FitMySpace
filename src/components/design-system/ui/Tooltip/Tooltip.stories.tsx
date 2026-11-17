@@ -134,6 +134,20 @@ export const Default: Story = {
     },
   },
   play: async () => {
+    await expect(page().getByRole('button', { name: 'Clear filters' })).toBeEnabled();
+    await expect(page().queryByRole('tooltip')).not.toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Default: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const DefaultInteraction: Story = {
+  ...Default,
+  name: 'Default: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async () => {
     await openAndLeave('Clear filters', 'Clears every filter in this search.');
   },
 };
@@ -239,6 +253,20 @@ export const OnIconButton: Story = {
     },
   },
   play: async () => {
+    await expect(page().getByRole('button', { name: 'Filters' })).toBeEnabled();
+    await expect(page().queryByRole('tooltip')).not.toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * On an Icon-only Button: interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const OnIconButtonInteraction: Story = {
+  ...OnIconButton,
+  name: 'On an Icon-only Button: Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async () => {
     await openAndLeave('Filters', 'Opens the filters for this search.');
   },
 };
@@ -274,6 +302,20 @@ export const LongText: Story = {
       },
     },
   },
+  play: async () => {
+    await expect(page().getByRole('button', { name: 'Why this fits' })).toBeEnabled();
+    await expect(page().queryByRole('tooltip')).not.toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Long Text (It Wraps at 240px): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const LongTextInteraction: Story = {
+  ...LongText,
+  name: 'Long Text (It Wraps at 240px): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
   play: async () => {
     await openAndLeave('Why this fits', 'Sizes are measured with the doors open');
   },

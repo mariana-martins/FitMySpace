@@ -315,6 +315,21 @@ export const LiveUpdate: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    await expect(canvas.getByRole('button', { name: 'Save room' })).toBeEnabled();
+    await expect(canvas.getByRole('status')).toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Live Update (A11y): interaction (test only)
+ * --------------------------------------------------------------- */
+
+export const LiveUpdateInteraction: Story = {
+  ...LiveUpdate,
+  name: 'Live Update (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button', { name: 'Save room' }));
     await expect(canvas.getByRole('status')).toHaveTextContent('Information: Saving…');
     await waitFor(
