@@ -1,0 +1,22 @@
+{
+  "component": {
+    "icon": {
+      "size": {
+        "xs": {
+          "value": "{semantic.size.icon.xs}",
+          "comment": "An icon read next to `caption` or `label-xs` text."
+        },
+        "sm": {
+          "value": "{semantic.size.icon.sm}"
+        },
+        "md": {
+          "value": "{semantic.size.icon.md}",
+          "comment": "The default: the icon of a `md` control or of `body` text."
+        },
+        "lg": {
+          "value": "{semantic.size.icon.lg}"
+        }
+      }
+    }
+  }
+}
