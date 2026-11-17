@@ -71,6 +71,13 @@ rules below are its essentials.
   `useId` works on the server, and rendering a client component such as Radix
   `VisuallyHidden` does not make a component client: `Textarea`, `TextareaField`,
   `Breadcrumb` and `Skeleton` stay server components.
+- **Icons**: every icon is drawn through `Icon` with an entry from `DS_ICONS`
+  (`ui/Icon/icons.tsx`), the only file that imports `lucide-react`; ESLint
+  rejects the import anywhere else in the design system. An `icon` prop takes a
+  name (`icon="search"`), never an element. A component sizes its icon by
+  writing `--icon-size` from its own token in the class it passes. A new icon
+  goes into the registry, with its current Lucide name (not an old alias) and a
+  `usedIn` line.
 - **Screen-reader-only text**: use `VisuallyHidden` from
   `@radix-ui/react-visually-hidden` (e.g. the "Error: " prefix, a `role="status"`
   announcement). Never add a local `.visually-hidden` class or inline style.
