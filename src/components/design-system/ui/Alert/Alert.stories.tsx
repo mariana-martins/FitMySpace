@@ -34,8 +34,11 @@ const meta = {
           '### Key Features\n' +
           '- **Four utility colours** — `information`, `success`, `warning` and `error`, each with a `soft` block for a message inside a page and a `fill` block for when the message is the main thing on the screen.\n' +
           '- **One icon per variant** — drawn from the `DS_ICONS` registry; pass `icon` with another registry name to replace it.\n' +
+          "- **Links in the message** — take the alert's text colour and keep their underline, so an error summary reads as one red block.\n" +
           '- **Text or structure** — plain text is set in a paragraph; pass your own `<p>` or `<ul>` for longer messages, such as a list of errors.\n' +
-          '- **Server-rendered** — no client hooks.',
+          '- **Server-rendered** — no client hooks.\n\n' +
+          '### Patterns\n' +
+          '- [Form Validation](?path=/docs/design-system-patterns-form-validation--docs) — field errors plus a summary at the top that links to each one.',
       },
     },
   },
