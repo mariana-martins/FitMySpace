@@ -35,7 +35,9 @@ const meta = {
           '- **Descriptions** — `aria-describedby` points to the hint, then the error.\n' +
           '- **Errors** — TypeScript enforces a required `error` message whenever `invalid` is `true`. Sets `aria-invalid` and prefixes the message with a screen-reader-only "Error:".\n' +
           '- **State** — the Radix API, as in `Select`: `checked` / `defaultChecked` take `true`, `false` or `"indeterminate"`, and `onCheckedChange` receives the new state.\n' +
-          '- **Pass-through** — every other prop (`name`, `value`, `id`, `aria-*`…) goes to the Radix root; `ref` points to the `<button>`.',
+          '- **Pass-through** — every other prop (`name`, `value`, `id`, `aria-*`…) goes to the Radix root; `ref` points to the `<button>`.\n\n' +
+          '### Patterns\n' +
+          '- [Form Validation](?path=/docs/design-system-patterns-form-validation--docs) — field errors plus a summary at the top that links to each one.',
       },
     },
   },

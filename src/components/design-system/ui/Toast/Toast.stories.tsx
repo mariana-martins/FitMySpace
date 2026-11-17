@@ -46,7 +46,9 @@ const meta = {
           '- **The card is not the live region** — Radix announces through a hidden region of its own, which is what lets the card hold a button: MDN says `role="alert"` holds text, not controls.\n' +
           '- **Above the dialog** — `semantic.layer.toast`, over `layer.floating`, so a tooltip explaining a button in the card still shows.\n' +
           '- **Slides in and out** — the card arrives from the screen edge and leaves the same way, by itself or by a swipe; bottom-right, or bottom-centre on a phone, clear of the home indicator through `env(safe-area-inset-*)`.\n' +
-          '- **Reduced motion and `forced-colors`** — the card stops moving when asked, and draws its own edge when the system drops shadows.',
+          '- **Reduced motion and `forced-colors`** — the card stops moving when asked, and draws its own edge when the system drops shadows.\n\n' +
+          '### Patterns\n' +
+          '- [Dialog Form](?path=/docs/design-system-patterns-dialog-form--docs) — a short form in a dialog, then a toast once the dialog has closed.',
       },
     },
   },

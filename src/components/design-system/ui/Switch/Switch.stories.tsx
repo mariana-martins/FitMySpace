@@ -33,7 +33,9 @@ const meta = {
           '- **Descriptions** — `aria-describedby` points to the hint, then the error.\n' +
           '- **Errors** — TypeScript enforces a required `error` message whenever `invalid` is `true`. Sets `aria-invalid` and prefixes the message with a screen-reader-only "Error:".\n' +
           '- **State** — the Radix API: `checked` / `defaultChecked` take a boolean and `onCheckedChange` receives the new one. A switch has no mixed state, so unlike `Checkbox` there is no `"indeterminate"`.\n' +
-          '- **Pass-through** — every other prop (`name`, `value`, `id`, `aria-*`…) goes to the Radix root; `ref` points to the `<button>`.',
+          '- **Pass-through** — every other prop (`name`, `value`, `id`, `aria-*`…) goes to the Radix root; `ref` points to the `<button>`.\n\n' +
+          '### Patterns\n' +
+          '- [Preferences](?path=/docs/design-system-patterns-preferences--docs) — settings that apply the moment they change, with a status line for each save.',
       },
     },
   },

@@ -41,7 +41,7 @@ design-system/
 │   │   ├── icon.json          # Icon box sizes (xs 12 / sm 16 / md 20 / lg 24px)
 │   │   ├── input.json         # Input + TextField colours, states, halo, sizes, and unit styling
 │   │   ├── link.json          # Link colours, underline widths and offset, motion, standalone sizes
-│   │   ├── pagination.json    # Pagination page, current page and ellipsis colours, sizes, shape
+│   │   ├── pagination.json    # Pagination page, current page, ellipsis and disabled colours, sizes, shape
 │   │   ├── radio-group.json   # RadioGroup circle, dot, label, hint and error colours and sizes
 │   │   ├── search-field.json  # SearchField label and hint colours, spacing
 │   │   ├── select.json        # Select + SelectField trigger, list, option, and group-label styling
@@ -60,6 +60,8 @@ design-system/
 │   ├── index.tsx
 │   ├── CopyTokenButton.tsx        # Copy-to-clipboard button with icon and status announcement
 │   ├── CopyTokenButton.test.tsx
+│   ├── formText.ts                # Reads a text field's value from FormData (patterns that validate)
+│   ├── formText.test.ts
 │   ├── FoundationPage.tsx         # Page shell, token group card, token row, inline code, StorybookLink
 │   ├── LabelledField.tsx          # Visible label above a bare Input, Select or Textarea in their stories
 │   ├── LabelledField.test.tsx
@@ -86,11 +88,15 @@ design-system/
 │   └── typography/Typography.stories.tsx
 ├── patterns/        # Recipes: several components composed into a piece of a page (stories only)
 │   ├── Overview.stories.tsx       # Sidebar: Patterns/Overview (what a pattern is, the rules, every pattern)
+│   ├── DeleteConfirmation/DeleteConfirmation.stories.tsx
+│   ├── DialogForm/DialogForm.stories.tsx
+│   ├── FormValidation/FormValidation.stories.tsx
 │   ├── MainNavigation/MainNavigation.stories.tsx
+│   ├── PaginatedResults/PaginatedResults.stories.tsx
+│   ├── Preferences/Preferences.stories.tsx
 │   ├── ProductCard/ProductCard.stories.tsx
 │   ├── ProductPageHeader/ProductPageHeader.stories.tsx
-│   ├── SearchPage/SearchPage.stories.tsx
-│   └── SearchResults/SearchResults.stories.tsx
+│   └── ProductSearch/ProductSearch.stories.tsx
 ├── ui/              # Components only (colocated with stories)
 │   ├── Alert/       # Sidebar: Components/Feedback/Alert (live region: role="status", "alert" or none, set by live)
 │   │   └── … (same files as Button)

@@ -7,17 +7,22 @@ import { Button } from '../../ui/Button';
 import { useRef, useState } from 'react';
 
 /* ---------------------------------------------------------------
- * Search page (pattern)
+ * Product search (pattern)
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Search Page',
+  title: 'Design System/Patterns/Product Search',
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component:
-          'A search form above its results: the query goes in, a summary says how many products came back, and an empty state says what to try when nothing did.\n\n' +
+          'A search box above the products it finds, and what the page says after each search.\n\n' +
+          '### What It Solves\n' +
+          'A search can end three ways, and each one needs its own answer:\n' +
+          '- **Products found:** the line under the search box counts them ("1 product for wire") and the list shows them.\n' +
+          '- **Nothing found:** this is not a mistake, so there is no error. A message says what to try instead, with a button to see everything again.\n' +
+          '- **The search cannot run** (a one-letter word): this is a mistake people must fix, so the search box shows an error and takes the focus back.\n\n' +
           '### When to Use\n' +
           '- **A page whose main job is finding products:** the home page and the results page.\n' +
           '- **Not for:** filtering a short list already on screen (use `Chip` filters) or picking one value from a known set (use `Select`).\n\n' +
@@ -44,7 +49,11 @@ const PRODUCTS = ['Bamboo shower caddy', 'Oak wall shelf', 'Linen storage basket
 const MINIMUM_QUERY_LENGTH = 2;
 const QUERY_TOO_SHORT = `Enter at least ${MINIMUM_QUERY_LENGTH} characters to search.`;
 
-function SearchPageRecipe() {
+function countProducts(count: number) {
+  return `${count} ${count === 1 ? 'product' : 'products'}`;
+}
+
+function ProductSearchRecipe() {
   const [inputValue, setInputValue] = useState('');
   const [query, setQuery] = useState('');
   const [queryError, setQueryError] = useState<string | null>(null);
@@ -80,7 +89,7 @@ function SearchPageRecipe() {
         {...(queryError ? { invalid: true, error: queryError } : { invalid: false })}
       />
       <Text as="p" role="status" style={{ margin: 0 }}>
-        {query ? `${matches.length} products for “${query}”` : `${PRODUCTS.length} products`}
+        {query ? `${countProducts(matches.length)} for “${query}”` : countProducts(PRODUCTS.length)}
       </Text>
       {matches.length > 0 ? (
         <ul style={{ margin: 0, paddingInlineStart: '1.25rem' }}>
@@ -104,17 +113,17 @@ function SearchPageRecipe() {
 }
 
 /* ---------------------------------------------------------------
- * Search page
+ * Product search
  * --------------------------------------------------------------- */
 
-export const SearchPage: Story = {
-  name: 'Search Page (A11y)',
-  render: () => <SearchPageRecipe />,
+export const ProductSearch: Story = {
+  name: 'Product Search (A11y)',
+  render: () => <ProductSearchRecipe />,
   parameters: {
     docs: {
       description: {
         story:
-          'Search for "wire" to see one result, "sofa" to see the empty state, or "a" to see the query error. The summary under the field is the live region: it changes with every search, and screen readers read it where it is.',
+          'Try the three endings: search "wire" to find one product, "sofa" to find nothing, and "a" to see the error. The line under the search box always says what happened, and screen readers read it without moving the focus.',
       },
       source: {
         code: `<SearchField\n  ref={searchInputRef}\n  label="Search products"\n  defaultValue={searchParams.q}\n  onSearch={search}\n  onClear={() => router.push('/')}\n  {...(queryError ? { invalid: true, error: queryError } : { invalid: false })}\n/>\n<Text as="p" role="status">{resultsSummary}</Text>\n{products.length > 0 ? (\n  <ProductList products={products} />\n) : (\n  <EmptyState title={\`No products for “\${query}”\`} headingLevel={2} description="…">\n    <Button variant="secondary" appearance="outline" size="md" onClick={showAll}>\n      Show all products\n    </Button>\n  </EmptyState>\n)}`,
@@ -129,12 +138,12 @@ export const SearchPage: Story = {
 };
 
 /* ---------------------------------------------------------------
- * Search Page (A11y): interaction (test only)
+ * Product Search (A11y): interaction (test only)
  * --------------------------------------------------------------- */
 
-export const SearchPageInteraction: Story = {
-  ...SearchPage,
-  name: 'Search Page (A11y): Interaction (Test Only)',
+export const ProductSearchInteraction: Story = {
+  ...ProductSearch,
+  name: 'Product Search (A11y): Interaction (Test Only)',
   tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

@@ -32,7 +32,9 @@ const meta = {
           '- **Sizes** — `sm`, `md`, `lg` drive the field and the label together, so they never drift apart.\n' +
           '- **Descriptions** — `aria-describedby` points to the hint, then the error, so a screen reader reads them in that order.\n' +
           '- **Errors** — TypeScript enforces a required `error` message whenever `invalid` is `true`. The message gets an icon, a screen-reader-only "Error:" prefix, and `aria-invalid` on the field.\n' +
-          '- **Pass-through** — every other prop (`name`, `rows`, `maxLength`, `required`, `defaultValue`…) goes to the native `<textarea>`; `ref` points to it.',
+          '- **Pass-through** — every other prop (`name`, `rows`, `maxLength`, `required`, `defaultValue`…) goes to the native `<textarea>`; `ref` points to it.\n\n' +
+          '### Patterns\n' +
+          '- [Form Validation](?path=/docs/design-system-patterns-form-validation--docs) — field errors plus a summary at the top that links to each one.',
       },
     },
   },

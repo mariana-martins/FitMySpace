@@ -34,7 +34,9 @@ const meta = {
           '- **Descriptions** — `aria-describedby` points to the hint, then the error, then the unit, read in that order.\n' +
           '- **Errors** — TypeScript enforces a required `error` message whenever `invalid` is `true`. Sets `aria-invalid` and prefixes the message with a screen-reader-only "Error:". No live region, because focus moves to the field on submit.\n' +
           '- **Required** — `required` sets the native attribute and shows a decorative asterisk.\n' +
-          '- **Pass-through** — every other prop (`name`, `type`, `onChange`, `unit`, icons…) goes to the `Input`; `ref` points to the `<input>`.',
+          '- **Pass-through** — every other prop (`name`, `type`, `onChange`, `unit`, icons…) goes to the `Input`; `ref` points to the `<input>`.\n\n' +
+          '### Patterns\n' +
+          '- [Form Validation](?path=/docs/design-system-patterns-form-validation--docs) — field errors plus a summary at the top that links to each one.',
       },
     },
   },

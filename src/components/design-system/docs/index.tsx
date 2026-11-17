@@ -7,6 +7,7 @@ export type {
   TokenGroupProps,
   TokenRowProps,
 } from './FoundationPage';
+export { formText } from './formText';
 export { iconSizeStyle } from './iconSizeStyle';
 export { formatTokenLabel, getTokens, groupTokens } from './tokens';
 export type { DocumentedToken } from './tokens';

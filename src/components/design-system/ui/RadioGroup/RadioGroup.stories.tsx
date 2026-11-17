@@ -40,7 +40,10 @@ const meta = {
           '- **State** — the Radix API, as in `Select`: `value` / `defaultValue` and `onValueChange`.\n' +
           '- **Labels** — the group is named by its visible label (`aria-labelledby`); each option has a real `<label for>`, and an optional `hint` per option is linked with `aria-describedby`.\n' +
           '- **Required and errors** — `aria-required` and `aria-invalid` sit on the group, as MDN asks. TypeScript enforces the `error` message, prefixed with a screen-reader-only "Error:".\n' +
-          '- **Variants and sizes** — `primary` (brand) and `secondary` (neutral) checked colours, and 3 sizes, both shared with `Checkbox`.',
+          '- **Variants and sizes** — `primary` (brand) and `secondary` (neutral) checked colours, and 3 sizes, both shared with `Checkbox`.\n\n' +
+          '### Patterns\n' +
+          '- [Form Validation](?path=/docs/design-system-patterns-form-validation--docs) — field errors plus a summary at the top that links to each one.\n' +
+          '- [Preferences](?path=/docs/design-system-patterns-preferences--docs) — settings that apply the moment they change, with a status line for each save.',
       },
     },
   },

@@ -6,7 +6,10 @@ import { SearchField } from '../ui/SearchField';
 import { expect, within } from 'storybook/test';
 import type { CSSProperties } from 'react';
 import { Text } from '../ui/Typography';
+import { Switch } from '../ui/Switch';
+import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
+import { Alert } from '../ui/Alert';
 import { Link } from '../ui/Link';
 import { Card } from '../ui/Card';
 
@@ -40,16 +43,66 @@ const PatternGrid = () => (
   <LinkCardGrid>
     <LinkCard
       headingLevel={4}
-      path="/docs/design-system-patterns-search-page--docs"
-      title="Search Page"
-      description="A search form above its results, with a live summary, an empty state and a query error."
+      path="/docs/design-system-patterns-form-validation--docs"
+      title="Form Validation"
+      description="Field errors plus a summary at the top that links to each one, focused after a failed submit."
+      preview={
+        <Alert variant="error" live="off" title="There are 2 problems">
+          Enter the width in centimetres.
+        </Alert>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-preferences--docs"
+      title="Preferences"
+      description="Settings that apply the moment they change, with one quiet line that confirms each save."
+      preview={
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <Switch size="sm" label="Order updates" defaultChecked />
+          <Switch size="sm" label="Price alerts" />
+        </div>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-dialog-form--docs"
+      title="Dialog Form"
+      description="A short form in a dialog that checks its field, gives the focus back, then confirms with a toast."
+      preview={
+        <Button variant="primary" appearance="fill" size="sm" icon="plus">
+          Add room
+        </Button>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-delete-confirmation--docs"
+      title="Delete Confirmation"
+      description="One question before a delete, and a focus that lands on the next item once it is gone."
+      preview={
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <Text size="sm" as="span">
+            Bedroom
+          </Text>
+          <Button variant="error" appearance="ghost" size="sm">
+            Delete
+          </Button>
+        </div>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-product-search--docs"
+      title="Product Search"
+      description="A search box and what the page says after each search: products found, nothing found, or an error."
       preview={<SearchField size="sm" label="Search products" />}
     />
     <LinkCard
       headingLevel={4}
-      path="/docs/design-system-patterns-search-results--docs"
-      title="Search Results"
-      description="Page links that keep the query, and focus that moves to the new range."
+      path="/docs/design-system-patterns-paginated-results--docs"
+      title="Paginated Results"
+      description="A long list split into pages, with the focus taken back to the top of each new page."
       preview={
         <Pagination aria-label="Sample pages" size="sm">
           <PaginationItem>
@@ -204,9 +257,9 @@ export const Overview: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole('heading', { name: 'Patterns', level: 2 })).toBeVisible();
-    await expect(canvas.getByRole('link', { name: 'Search Page' })).toHaveAttribute(
+    await expect(canvas.getByRole('link', { name: 'Product Search' })).toHaveAttribute(
       'href',
-      './?path=/docs/design-system-patterns-search-page--docs',
+      './?path=/docs/design-system-patterns-product-search--docs',
     );
     // The previews are pictures: their controls are not exposed.
     await expect(canvas.queryByRole('searchbox')).not.toBeInTheDocument();
