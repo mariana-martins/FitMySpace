@@ -78,9 +78,7 @@ a.control:focus-visible {
 }
 
 .icon {
-  flex-shrink: 0;
-  inline-size: var(--pagination-icon-size);
-  block-size: var(--pagination-icon-size);
+  --icon-size: var(--pagination-icon-size);
 }
 
 .ellipsis {

@@ -1,6 +1,5 @@
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { Clock, MapPin } from 'lucide-react';
 import { Button } from '../Button';
 import { useState } from 'react';
 import { Alert } from './';
@@ -105,7 +104,7 @@ export const Default: Story = {
     },
     icon: {
       control: false,
-      description: 'Replaces the variant icon. Decorative.',
+      description: "A registered icon in place of the variant's own. Decorative either way.",
     },
     children: {
       control: 'text',
@@ -232,10 +231,10 @@ export const WithIcon: Story = {
   name: 'With Icons',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '36rem' }}>
-      <Alert variant="warning" icon={<MapPin />} title="Pickup only">
+      <Alert variant="warning" icon="map-pin" title="Pickup only">
         This wardrobe is too wide for the lift in your building.
       </Alert>
-      <Alert variant="information" icon={<Clock />} title="Order cut-off at 14:00">
+      <Alert variant="information" icon="clock" title="Order cut-off at 14:00">
         Orders placed after that time ship the next working day.
       </Alert>
     </div>
@@ -247,7 +246,7 @@ export const WithIcon: Story = {
           'Pass a Lucide icon when the message is about something the default icon does not show: a place, a deadline. It stays decorative — the title and the spoken prefix carry the meaning.',
       },
       source: {
-        code: `<Alert variant="warning" icon={<MapPin />} title="Pickup only">
+        code: `<Alert variant="warning" icon="map-pin" title="Pickup only">
   This wardrobe is too wide for the lift in your building.
 </Alert>`,
       },

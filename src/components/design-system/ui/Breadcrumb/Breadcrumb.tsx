@@ -1,6 +1,6 @@
 import { Slot, Slottable } from '@radix-ui/react-slot';
-import { ChevronRight, Home } from 'lucide-react';
 import styles from './Breadcrumb.module.css';
+import { DS_ICONS, Icon } from '../Icon';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
 
@@ -61,7 +61,7 @@ export const BreadcrumbItem = forwardRef<HTMLLIElement, BreadcrumbItemProps>(
       <li ref={ref} className={clsx(styles.item, className)} {...rest}>
         {children}
         <span className={styles.separator} aria-hidden="true">
-          <ChevronRight className={styles['separator-chevron']} focusable="false" />
+          <Icon className={styles['separator-chevron']}>{DS_ICONS['chevron-right'].icon}</Icon>
           <span className={styles['separator-slash']}>/</span>
         </span>
       </li>
@@ -81,11 +81,9 @@ export const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>
     ref,
   ) {
     const Component = asChild ? Slot : 'a';
-    const leadingIcon = icon ?? (home ? <Home focusable="false" /> : null);
+    const leadingIcon = icon ?? (home ? 'home' : null);
     const iconElement = leadingIcon ? (
-      <span className={styles.icon} aria-hidden="true">
-        {leadingIcon}
-      </span>
+      <Icon className={styles.icon}>{DS_ICONS[leadingIcon].icon}</Icon>
     ) : null;
 
     return (

@@ -1,4 +1,3 @@
-import { Plus, Trash2, ArrowRight, Download, Star } from 'lucide-react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Caption, Label } from '../Typography';
@@ -262,25 +261,19 @@ export const WithIcon: Story = {
   name: 'With Icons',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-      <Button variant="primary" appearance="fill" size="md" icon={<Plus />}>
+      <Button variant="primary" appearance="fill" size="md" icon="plus">
         Add Item
       </Button>
-      <Button variant="secondary" appearance="fill" size="md" icon={<Download />}>
+      <Button variant="secondary" appearance="fill" size="md" icon="download">
         Download
       </Button>
-      <Button variant="error" appearance="fill" size="md" icon={<Trash2 />}>
+      <Button variant="error" appearance="fill" size="md" icon="trash-2">
         Delete
       </Button>
-      <Button
-        variant="warning"
-        appearance="fill"
-        size="md"
-        icon={<ArrowRight />}
-        iconPosition="end"
-      >
+      <Button variant="warning" appearance="fill" size="md" icon="arrow-right" iconPosition="end">
         Continue
       </Button>
-      <Button variant="information" appearance="fill" size="md" icon={<Star />} iconPosition="end">
+      <Button variant="information" appearance="fill" size="md" icon="star" iconPosition="end">
         Favourite
       </Button>
     </div>
@@ -292,7 +285,7 @@ export const WithIcon: Story = {
           "Icons can be added to the start (default) or end of the button text. The gap spacing and icon size are automatically adjusted based on the button's size token.",
       },
       source: {
-        code: `<Button icon={<Plus />}>Add Item</Button>\n<Button icon={<ArrowRight />} iconPosition="end">Continue</Button>`,
+        code: `<Button icon="plus">Add Item</Button>\n<Button icon="arrow-right" iconPosition="end">Continue</Button>`,
       },
     },
   },
@@ -305,28 +298,16 @@ export const WithIcon: Story = {
 export const IconOnly: Story = {
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-      <Button variant="primary" appearance="fill" size="md" icon={<Plus />} aria-label="Add item" />
-      <Button
-        variant="error"
-        appearance="fill"
-        size="md"
-        icon={<Trash2 />}
-        aria-label="Delete item"
-      />
+      <Button variant="primary" appearance="fill" size="md" icon="plus" aria-label="Add item" />
+      <Button variant="error" appearance="fill" size="md" icon="trash-2" aria-label="Delete item" />
       <Button
         variant="secondary"
         appearance="fill"
         size="sm"
-        icon={<Download />}
+        icon="download"
         aria-label="Download file"
       />
-      <Button
-        variant="warning"
-        appearance="fill"
-        size="xs"
-        icon={<Star />}
-        aria-label="Favourite"
-      />
+      <Button variant="warning" appearance="fill" size="xs" icon="star" aria-label="Favourite" />
     </div>
   ),
   parameters: {
@@ -361,7 +342,7 @@ export const Disabled: Story = {
       <Button disabled variant="error" appearance="fill" size="md">
         Error
       </Button>
-      <Button disabled variant="primary" appearance="fill" icon={<Plus />} size="md">
+      <Button disabled variant="primary" appearance="fill" icon="plus" size="md">
         With Icon
       </Button>
     </div>
@@ -550,7 +531,7 @@ export const AsChild: Story = {
         variant="secondary"
         appearance="outline"
         size="md"
-        icon={<ArrowRight />}
+        icon="arrow-right"
         iconPosition="end"
       >
         <a href="https://example.com/docs">Documentation</a>

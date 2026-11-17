@@ -32,15 +32,7 @@
 }
 
 .icon {
-  display: inline-flex;
-  flex-shrink: 0;
-  inline-size: var(--badge-icon-size);
-  block-size: var(--badge-icon-size);
-}
-
-.icon > svg {
-  inline-size: 100%;
-  block-size: 100%;
+  --icon-size: var(--badge-icon-size);
 }
 
 /* ---------------------------------------------------------------

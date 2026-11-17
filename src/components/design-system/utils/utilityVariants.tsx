@@ -1,16 +1,14 @@
-import { CircleAlert, CircleCheck, Info, TriangleAlert } from 'lucide-react';
-
-import type { ReactElement } from 'react';
+import type { IconName } from '../ui/Icon';
 
 /** The four utility messages shared by `Alert` and `Toast`. */
 export type UtilityVariant = 'information' | 'success' | 'warning' | 'error';
 
-/** The decorative icon of each variant. The colour never carries the meaning alone. */
-export const UTILITY_VARIANT_ICONS: Record<UtilityVariant, ReactElement> = {
-  information: <Info focusable="false" />,
-  success: <CircleCheck focusable="false" />,
-  warning: <TriangleAlert focusable="false" />,
-  error: <CircleAlert focusable="false" />,
+/** The decorative icon of each variant, named from the design system's set. The colour never carries the meaning alone. */
+export const UTILITY_VARIANT_ICONS: Record<UtilityVariant, IconName> = {
+  information: 'info',
+  success: 'circle-check',
+  warning: 'triangle-alert',
+  error: 'circle-alert',
 };
 
 /** The screen-reader-only prefix of each variant, read before the message ("Error: …"). */

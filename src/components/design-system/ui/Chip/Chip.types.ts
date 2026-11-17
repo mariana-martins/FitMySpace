@@ -1,4 +1,5 @@
-import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Types
@@ -22,7 +23,8 @@ type ChipBaseProps = {
   selected: boolean;
   onSelectedChange?: (selected: boolean) => void;
   size: ChipSize;
-  icon?: ReactElement;
+  /** One of the icons the design system ships, asked for by name. */
+  icon?: IconName;
   children: ReactNode;
 };
 

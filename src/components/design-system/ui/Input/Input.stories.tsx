@@ -1,4 +1,3 @@
-import { Search, Mail, Ruler, Eye, EyeOff } from 'lucide-react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import { LabelledField } from '../../docs';
@@ -162,12 +161,7 @@ export const WithIcon: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '20rem' }}>
       <LabelledField label="Search furniture">
         {(fieldId) => (
-          <Input
-            id={fieldId}
-            type="search"
-            iconStart={<Search />}
-            placeholder="Sofa, desk, shelf…"
-          />
+          <Input id={fieldId} type="search" iconStart="search" placeholder="Sofa, desk, shelf…" />
         )}
       </LabelledField>
       <LabelledField label="Email">
@@ -176,7 +170,7 @@ export const WithIcon: Story = {
             id={fieldId}
             type="email"
             autoComplete="email"
-            iconStart={<Mail />}
+            iconStart="mail"
             placeholder="you@example.com"
           />
         )}
@@ -190,7 +184,7 @@ export const WithIcon: Story = {
           "Icons can be added to the start (`iconStart`) or end (`iconEnd`) of the field. They are decorative, hidden from screen readers, and sized by the field's size token. An icon never replaces the visible label.",
       },
       source: {
-        code: `<Label as="label" htmlFor="search-furniture">Search furniture</Label>\n<Input id="search-furniture" type="search" iconStart={<Search />} />`,
+        code: `<Label as="label" htmlFor="search-furniture">Search furniture</Label>\n<Input id="search-furniture" type="search" iconStart="search" />`,
       },
     },
   },
@@ -210,7 +204,7 @@ export const WithUnit: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '20rem' }}>
       <LabelledField label="Width">
         {(fieldId) => (
-          <Input id={fieldId} inputMode="decimal" unit="cm" iconStart={<Ruler />} placeholder="0" />
+          <Input id={fieldId} inputMode="decimal" unit="cm" iconStart="ruler" placeholder="0" />
         )}
       </LabelledField>
       <LabelledField label="Depth">
@@ -256,7 +250,7 @@ function PasswordWithToggle() {
                 variant="secondary"
                 appearance="ghost"
                 size="xs"
-                icon={isPasswordVisible ? <EyeOff /> : <Eye />}
+                icon={isPasswordVisible ? 'eye-off' : 'eye'}
                 aria-label={isPasswordVisible ? 'Hide password' : 'Show password'}
                 onClick={() => setIsPasswordVisible((isVisible) => !isVisible)}
               />
@@ -278,7 +272,7 @@ export const WithEndAction: Story = {
           'Unlike `iconStart` / `iconEnd`, it stays visible to screen readers, receives its own clicks and follows the input in the Tab order. Give it its own accessible name.',
       },
       source: {
-        code: `<Label as="label" htmlFor="password">Password</Label>\n<Input\n  id="password"\n  type={isPasswordVisible ? 'text' : 'password'}\n  endAction={\n    <Button\n      variant="secondary"\n      appearance="ghost"\n      size="xs"\n      icon={isPasswordVisible ? <EyeOff /> : <Eye />}\n      aria-label={isPasswordVisible ? 'Hide password' : 'Show password'}\n      onClick={togglePasswordVisibility}\n    />\n  }\n/>`,
+        code: `<Label as="label" htmlFor="password">Password</Label>\n<Input\n  id="password"\n  type={isPasswordVisible ? 'text' : 'password'}\n  endAction={\n    <Button\n      variant="secondary"\n      appearance="ghost"\n      size="xs"\n      icon={isPasswordVisible ? 'eye-off' : 'eye'}\n      aria-label={isPasswordVisible ? 'Hide password' : 'Show password'}\n      onClick={togglePasswordVisibility}\n    />\n  }\n/>`,
       },
     },
   },

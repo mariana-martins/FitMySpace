@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
-import { Bath, Bed, CookingPot, Sofa } from 'lucide-react';
-import type { ComponentProps, ReactElement } from 'react';
+import type { ComponentProps } from 'react';
+
 import { Label, Text } from '../Typography';
+import type { IconName } from '../Icon';
 import { Button } from '../Button';
 import { useState } from 'react';
 import { Chip } from './';
@@ -177,10 +178,10 @@ export const WithIcon: Story = {
   name: 'With Icons',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-      <Chip size="md" selected={false} icon={<Bath />}>
+      <Chip size="md" selected={false} icon="bath">
         Bathroom
       </Chip>
-      <Chip size="md" selected icon={<CookingPot />}>
+      <Chip size="md" selected icon="cooking-pot">
         Kitchen
       </Chip>
     </div>
@@ -192,7 +193,7 @@ export const WithIcon: Story = {
           'An icon helps people scan a long row of filters. It is decorative and hidden from screen readers, and the check mark takes its place while the chip is selected (Kitchen).',
       },
       source: {
-        code: `<Chip size="md" selected={false} icon={<Bath />}>Bathroom</Chip>`,
+        code: `<Chip size="md" selected={false} icon="bath">Bathroom</Chip>`,
       },
     },
   },
@@ -272,11 +273,11 @@ export const PseudoStates: Story = {
  * Room filter (recipe)
  * --------------------------------------------------------------- */
 
-const ROOMS: { name: string; icon: ReactElement }[] = [
-  { name: 'Bathroom', icon: <Bath /> },
-  { name: 'Bedroom', icon: <Bed /> },
-  { name: 'Kitchen', icon: <CookingPot /> },
-  { name: 'Living room', icon: <Sofa /> },
+const ROOMS: { name: string; icon: IconName }[] = [
+  { name: 'Bathroom', icon: 'bath' },
+  { name: 'Bedroom', icon: 'bed' },
+  { name: 'Kitchen', icon: 'cooking-pot' },
+  { name: 'Living room', icon: 'sofa' },
 ];
 
 const PRODUCT_COUNT_BY_ROOM: Record<string, number> = {

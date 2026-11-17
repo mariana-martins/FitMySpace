@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
-import { Mail, Search } from 'lucide-react';
 import type { FormEvent } from 'react';
 import { Text } from '../Typography';
 import { Button } from '../Button';
@@ -173,13 +172,13 @@ export const WithIcon: Story = {
         label="Email"
         type="email"
         autoComplete="email"
-        iconStart={<Mail />}
+        iconStart="mail"
         placeholder="you@example.com"
       />
       <TextField
         label="Search furniture"
         type="search"
-        iconStart={<Search />}
+        iconStart="search"
         placeholder="Sofa, desk, shelf…"
       />
     </div>
@@ -191,7 +190,7 @@ export const WithIcon: Story = {
           'Icons are passed straight to the `Input`. They are decorative and hidden from screen readers; the label gives the field its name.',
       },
       source: {
-        code: `<TextField label="Email" type="email" autoComplete="email" iconStart={<Mail />} />`,
+        code: `<TextField label="Email" type="email" autoComplete="email" iconStart="mail" />`,
       },
     },
   },

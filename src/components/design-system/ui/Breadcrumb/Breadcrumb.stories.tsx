@@ -2,7 +2,6 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from './';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
 import { Heading } from '../Typography';
-import { Bath } from 'lucide-react';
 
 const DEFAULT_TRAIL = (
   <>
@@ -171,7 +170,7 @@ export const WithIcon: Story = {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink href="#bathroom" icon={<Bath />}>
+          <BreadcrumbLink href="#bathroom" icon="bath">
             Bathroom
           </BreadcrumbLink>
         </BreadcrumbItem>
@@ -203,7 +202,7 @@ export const WithIcon: Story = {
           '`home` adds the Lucide `Home` icon before the first step; `icon` takes any icon, such as a room, and wins over `home` when both are set. Icons are decorative and hidden from screen readers. For a compact trail, leave the Home link without text and give it `aria-label="Home"`, so it keeps an accessible name.',
       },
       source: {
-        code: `<BreadcrumbLink href="/" home>Home</BreadcrumbLink>\n<BreadcrumbLink href="/rooms/bathroom" icon={<Bath />}>Bathroom</BreadcrumbLink>\n\n{/* Icon only */}\n<BreadcrumbLink href="/" home aria-label="Home" />`,
+        code: `<BreadcrumbLink href="/" home>Home</BreadcrumbLink>\n<BreadcrumbLink href="/rooms/bathroom" icon="bath">Bathroom</BreadcrumbLink>\n\n{/* Icon only */}\n<BreadcrumbLink href="/" home aria-label="Home" />`,
       },
     },
   },

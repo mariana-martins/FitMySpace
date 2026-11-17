@@ -3,7 +3,6 @@ import { expect, userEvent, within } from 'storybook/test';
 import { SelectGroup, SelectItem } from '../Select';
 import type { FormEvent } from 'react';
 import { Text } from '../Typography';
-import { Store } from 'lucide-react';
 import { Button } from '../Button';
 import { useState } from 'react';
 import { SelectField } from './';
@@ -195,7 +194,7 @@ export const WithIcon: Story = {
   name: 'With Icons and Groups',
   render: () => (
     <div style={{ maxWidth: '22rem' }}>
-      <SelectField label="Store" placeholder="Choose a store" iconStart={<Store />}>
+      <SelectField label="Store" placeholder="Choose a store" iconStart="store">
         <SelectGroup label="Furniture">
           <SelectItem value="ikea">IKEA</SelectItem>
           <SelectItem value="habitat">Habitat</SelectItem>
@@ -214,7 +213,7 @@ export const WithIcon: Story = {
           'The icon is passed straight to the `Select` and hidden from screen readers. `SelectGroup` splits a long list into named sections that screen readers announce.',
       },
       source: {
-        code: `<SelectField label="Store" placeholder="Choose a store" iconStart={<Store />}>\n  <SelectGroup label="Furniture">\n    <SelectItem value="ikea">IKEA</SelectItem>\n  </SelectGroup>\n  <SelectGroup label="Storage">\n    <SelectItem value="muji">Muji</SelectItem>\n  </SelectGroup>\n</SelectField>`,
+        code: `<SelectField label="Store" placeholder="Choose a store" iconStart="store">\n  <SelectGroup label="Furniture">\n    <SelectItem value="ikea">IKEA</SelectItem>\n  </SelectGroup>\n  <SelectGroup label="Storage">\n    <SelectItem value="muji">Muji</SelectItem>\n  </SelectGroup>\n</SelectField>`,
       },
     },
   },

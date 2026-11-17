@@ -1,10 +1,12 @@
 'use client';
 
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-import { Check, CircleAlert, Copy } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { iconSizeStyle } from './iconSizeStyle';
+import { DS_ICONS, Icon } from '../ui/Icon';
 import { useEffect, useState } from 'react';
 import type { CSSProperties } from 'react';
+
+import type { IconName } from '../ui/Icon';
 
 /* ---------------------------------------------------------------
  * CopyTokenButton (Storybook docs helper)
@@ -29,10 +31,10 @@ const backgroundByStatus: Record<CopyStatus, string> = {
   failed: 'var(--ds-semantic-colour-background-utility-error-base)',
 };
 
-const iconByStatus: Record<CopyStatus, LucideIcon> = {
-  idle: Copy,
-  copied: Check,
-  failed: CircleAlert,
+const iconByStatus: Record<CopyStatus, IconName> = {
+  idle: 'copy',
+  copied: 'check',
+  failed: 'circle-alert',
 };
 
 const ICON_SIZE_PX = 12;
@@ -76,8 +78,10 @@ export function CopyTokenButton({ variable, iconOnly = false, style }: CopyToken
   };
 
   const buttonLabel = { idle: reference, copied: 'Copied!', failed: 'Copy failed' }[status];
-  const StatusIcon = iconByStatus[status];
-  const iconSize = iconOnly ? ICON_ONLY_ICON_SIZE_PX : ICON_SIZE_PX;
+  const icon = DS_ICONS[iconByStatus[status]].icon;
+  /* The helper has no CSS module of its own, so it sizes the box inline.
+     Neither 12px nor 14px is an icon size token. */
+  const iconStyle = iconSizeStyle(`${iconOnly ? ICON_ONLY_ICON_SIZE_PX : ICON_SIZE_PX}px`);
 
   const iconOnlyStyle: CSSProperties = {
     justifyContent: 'center',
@@ -118,13 +122,7 @@ export function CopyTokenButton({ variable, iconOnly = false, style }: CopyToken
           ...style,
         }}
       >
-        <StatusIcon
-          aria-hidden="true"
-          focusable="false"
-          width={iconSize}
-          height={iconSize}
-          style={{ flexShrink: 0 }}
-        />
+        <Icon style={iconStyle}>{icon}</Icon>
         {!iconOnly && buttonLabel}
       </button>
       <VisuallyHidden role="status">{statusMessage}</VisuallyHidden>

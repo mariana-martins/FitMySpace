@@ -1,6 +1,6 @@
 import { Heading, Text } from '../Typography';
 import styles from './EmptyState.module.css';
-import { SearchX } from 'lucide-react';
+import { DS_ICONS, Icon } from '../Icon';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
 
@@ -21,7 +21,7 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
     return (
       <div ref={ref} className={clsx(styles.root, className)} {...rest}>
         <span className={styles.icon} aria-hidden="true">
-          {icon ?? <SearchX focusable="false" />}
+          <Icon className={styles['icon-glyph']}>{DS_ICONS[icon ?? 'search-x'].icon}</Icon>
         </span>
         <Heading level={headingLevel} size="sm" className={styles.title}>
           {title}

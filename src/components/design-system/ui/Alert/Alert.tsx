@@ -1,6 +1,7 @@
 import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS } from '../../utils';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Heading, Text } from '../Typography';
+import { DS_ICONS, Icon } from '../Icon';
 import styles from './Alert.module.css';
 import { forwardRef } from 'react';
 import clsx from 'clsx';
@@ -74,9 +75,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(props
       )}
       {...rest}
     >
-      <span className={styles.icon} aria-hidden="true">
-        {icon ?? UTILITY_VARIANT_ICONS[variant]}
-      </span>
+      <Icon className={styles.icon}>{DS_ICONS[icon ?? UTILITY_VARIANT_ICONS[variant]].icon}</Icon>
 
       <div className={styles.content}>
         <VisuallyHidden>{`${UTILITY_VARIANT_LABELS[variant]}: `}</VisuallyHidden>

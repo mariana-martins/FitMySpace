@@ -3,9 +3,9 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import * as RadixSwitch from '@radix-ui/react-switch';
 import { Label, Text } from '../Typography';
-import { CircleAlert } from 'lucide-react';
 import { forwardRef, useId } from 'react';
 import styles from './Switch.module.css';
+import { DS_ICONS, Icon } from '../Icon';
 import clsx from 'clsx';
 
 import type { SwitchProps } from './Switch.types';
@@ -101,7 +101,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(function Switch
 
       {hasError && (
         <p className={styles.error}>
-          <CircleAlert className={styles['error-icon']} aria-hidden="true" focusable="false" />
+          <Icon className={styles['error-icon']}>{DS_ICONS['circle-alert'].icon}</Icon>
           <span id={errorId}>
             <VisuallyHidden>Error: </VisuallyHidden>
             {error}

@@ -3,8 +3,8 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import styles from './SelectField.module.css';
 import { Label, Text } from '../Typography';
-import { CircleAlert } from 'lucide-react';
 import { forwardRef, useId } from 'react';
+import { DS_ICONS, Icon } from '../Icon';
 import { Select } from '../Select';
 import clsx from 'clsx';
 
@@ -85,7 +85,7 @@ export const SelectField = forwardRef<HTMLButtonElement, SelectFieldProps>(
 
         {hasError && (
           <p className={styles.error}>
-            <CircleAlert className={styles['error-icon']} aria-hidden="true" focusable="false" />
+            <Icon className={styles['error-icon']}>{DS_ICONS['circle-alert'].icon}</Icon>
             <span id={errorId}>
               <VisuallyHidden>Error: </VisuallyHidden>
               {error}

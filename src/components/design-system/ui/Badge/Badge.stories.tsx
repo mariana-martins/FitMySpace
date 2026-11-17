@@ -1,4 +1,3 @@
-import { CircleAlert, Clock, PackageCheck, Sparkles } from 'lucide-react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
 import { Heading, Text } from '../Typography';
@@ -193,16 +192,16 @@ export const WithIcon: Story = {
   name: 'With Icons',
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.5rem' }}>
-      <Badge variant="success" appearance="soft" size="md" icon={<PackageCheck />}>
+      <Badge variant="success" appearance="soft" size="md" icon="package-check">
         In stock
       </Badge>
-      <Badge variant="warning" appearance="soft" size="md" icon={<Clock />}>
+      <Badge variant="warning" appearance="soft" size="md" icon="clock">
         Ships in 2 weeks
       </Badge>
-      <Badge variant="error" appearance="soft" size="md" icon={<CircleAlert />}>
+      <Badge variant="error" appearance="soft" size="md" icon="circle-alert">
         Out of stock
       </Badge>
-      <Badge variant="primary" appearance="fill" size="sm" icon={<Sparkles />}>
+      <Badge variant="primary" appearance="fill" size="sm" icon="sparkles">
         New
       </Badge>
     </div>
@@ -214,7 +213,7 @@ export const WithIcon: Story = {
           'An icon before the text helps scanning. It is decorative and hidden from screen readers, so the text alone must name the status.',
       },
       source: {
-        code: `<Badge variant="success" appearance="soft" size="md" icon={<PackageCheck />}>\n  In stock\n</Badge>`,
+        code: `<Badge variant="success" appearance="soft" size="md" icon="package-check">\n  In stock\n</Badge>`,
       },
     },
   },
@@ -259,7 +258,7 @@ export const ProductCardLabels: Story = {
         Three shelves that hold shampoo, soap and a razor.
       </Text>
       <div>
-        <Badge variant="success" appearance="soft" size="md" icon={<PackageCheck />}>
+        <Badge variant="success" appearance="soft" size="md" icon="package-check">
           In stock
         </Badge>
       </div>
@@ -272,7 +271,7 @@ export const ProductCardLabels: Story = {
           'A recipe for a product card: soft badges for the room and the store, and a status badge whose text says what the colour means. The badges are plain text inside the card, read in order with the title.',
       },
       source: {
-        code: `<Badge variant="primary" appearance="soft" size="sm">Bathroom</Badge>\n<Badge variant="secondary" appearance="soft" size="sm" shape="rounded">IKEA</Badge>\n<Heading level={3} size="sm">Bamboo shower caddy</Heading>\n<Badge variant="success" appearance="soft" size="md" icon={<PackageCheck />}>In stock</Badge>`,
+        code: `<Badge variant="primary" appearance="soft" size="sm">Bathroom</Badge>\n<Badge variant="secondary" appearance="soft" size="sm" shape="rounded">IKEA</Badge>\n<Heading level={3} size="sm">Bamboo shower caddy</Heading>\n<Badge variant="success" appearance="soft" size="md" icon="package-check">In stock</Badge>`,
       },
     },
   },

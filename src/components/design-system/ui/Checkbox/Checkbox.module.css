@@ -84,9 +84,8 @@
 
 .check-icon,
 .mixed-icon {
+  --icon-size: var(--checkbox-mark-size);
   grid-area: 1 / 1;
-  inline-size: var(--checkbox-mark-size);
-  block-size: var(--checkbox-mark-size);
   opacity: 0;
   transform: scale(0.5);
   transition-property: opacity, transform;
@@ -98,6 +97,13 @@
 .mark[data-state='indeterminate'] .mixed-icon {
   opacity: 1;
   transform: none;
+}
+
+/* The mark is stroked heavier than any other icon: it sits on a filled box at
+   16px, where the 2px stroke reads as part of the shape instead of as a check. */
+.check-icon > svg,
+.mixed-icon > svg {
+  stroke-width: 3;
 }
 
 /* Hover (box or label) -------------------------------------------- */
@@ -180,9 +186,7 @@
 }
 
 .error-icon {
-  flex-shrink: 0;
-  inline-size: var(--ds-component-checkbox-error-icon-size);
-  block-size: var(--ds-component-checkbox-error-icon-size);
+  --icon-size: var(--ds-component-checkbox-error-icon-size);
   margin-block-start: calc((1lh - var(--ds-component-checkbox-error-icon-size)) / 2);
 }
 

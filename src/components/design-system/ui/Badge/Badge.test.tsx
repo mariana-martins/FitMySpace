@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Check } from 'lucide-react';
 import { createRef } from 'react';
 import { Badge } from './';
 
@@ -114,7 +113,7 @@ describe('Badge — variants', () => {
 describe('Badge — icon', () => {
   it('hides the icon from assistive technology', () => {
     const { container } = render(
-      <Badge variant="success" appearance="soft" size="md" icon={<Check />}>
+      <Badge variant="success" appearance="soft" size="md" icon="check">
         In stock
       </Badge>,
     );
@@ -138,7 +137,7 @@ describe('Badge — accessibility', () => {
               variant={variant}
               appearance={appearance}
               size="md"
-              icon={<Check />}
+              icon="check"
             >
               {variant}
             </Badge>

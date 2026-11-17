@@ -192,9 +192,7 @@
 }
 
 .error-icon {
-  flex-shrink: 0;
-  inline-size: var(--ds-component-radio-group-error-icon-size);
-  block-size: var(--ds-component-radio-group-error-icon-size);
+  --icon-size: var(--ds-component-radio-group-error-icon-size);
   margin-block-start: calc((1lh - var(--ds-component-radio-group-error-icon-size)) / 2);
 }
 

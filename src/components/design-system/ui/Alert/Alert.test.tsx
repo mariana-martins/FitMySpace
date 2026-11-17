@@ -147,11 +147,9 @@ describe('Alert — icon', () => {
     expect(svgs[0].closest('[aria-hidden="true"]')).not.toBeNull();
   });
 
-  it('swaps the icon for the one given', () => {
-    const { container } = render(
-      <Alert icon={<svg data-testid="custom-icon" />}>Two people needed.</Alert>,
-    );
-    expect(screen.getByTestId('custom-icon')).toBeInTheDocument();
+  it('swaps the variant icon for the one given', () => {
+    const { container } = render(<Alert icon="map-pin">Two people needed.</Alert>);
+    expect(container.querySelector('svg')).toHaveClass('lucide-map-pin');
     expect(container.querySelectorAll('svg')).toHaveLength(1);
   });
 });

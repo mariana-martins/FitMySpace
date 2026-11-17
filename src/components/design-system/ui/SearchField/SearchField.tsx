@@ -3,10 +3,10 @@
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { useComposedRefs } from '@radix-ui/react-compose-refs';
-import { CircleAlert, Search, X } from 'lucide-react';
 import { forwardRef, useId, useRef } from 'react';
 import styles from './SearchField.module.css';
 import { Label, Text } from '../Typography';
+import { DS_ICONS, Icon } from '../Icon';
 import type { SubmitEvent } from 'react';
 import { joinIds } from '../../utils';
 import { Button } from '../Button';
@@ -89,7 +89,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
           variant="secondary"
           appearance="ghost"
           size="xs"
-          icon={<X />}
+          icon="x"
           aria-label={clearLabel}
           onClick={handleClear}
         />
@@ -119,7 +119,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
             disabled={disabled}
             autoComplete="off"
             enterKeyHint="search"
-            iconStart={<Search />}
+            iconStart="search"
             endAction={clearButton}
             className={styles.field}
             invalid={hasError}
@@ -139,7 +139,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
 
         {hasError && (
           <p className={styles.error}>
-            <CircleAlert className={styles['error-icon']} aria-hidden="true" focusable="false" />
+            <Icon className={styles['error-icon']}>{DS_ICONS['circle-alert'].icon}</Icon>
             <span id={errorId}>
               <VisuallyHidden>Error: </VisuallyHidden>
               {error}

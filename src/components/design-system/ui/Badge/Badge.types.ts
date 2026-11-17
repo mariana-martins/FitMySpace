@@ -1,4 +1,5 @@
-import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Types
@@ -26,7 +27,8 @@ type BadgeBaseProps = {
   appearance: BadgeAppearance;
   size: BadgeSize;
   shape?: BadgeShape;
-  icon?: ReactElement;
+  /** One of the icons the design system ships, asked for by name. */
+  icon?: IconName;
   children: ReactNode;
 };
 

@@ -1,4 +1,5 @@
-import type { ReactElement, ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Types
@@ -27,8 +28,8 @@ type ButtonBaseProps = {
   appearance: ButtonAppearance;
   /** Button size. */
   size: ButtonSize;
-  /** Optional icon element (e.g. a Lucide icon). */
-  icon?: ReactElement;
+  /** One of the icons the design system ships, asked for by name. */
+  icon?: IconName;
   /** Position of the icon relative to the text. */
   iconPosition?: IconPosition;
   /** Render as a child element (Radix Slot pattern). */

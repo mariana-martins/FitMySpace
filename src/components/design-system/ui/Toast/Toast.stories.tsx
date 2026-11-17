@@ -111,7 +111,7 @@ export const Default: Story = {
     },
     icon: {
       control: false,
-      description: "A Lucide icon in place of the variant's own. Decorative either way.",
+      description: "A registered icon in place of the variant's own. Decorative either way.",
     },
   },
   render: (args) => <SaveRoomToast {...args} />,

@@ -2,6 +2,7 @@
 
 import { forwardRef, useId, useRef } from 'react';
 import type { MouseEvent, Ref } from 'react';
+import { DS_ICONS, Icon } from '../Icon';
 import styles from './Input.module.css';
 import clsx from 'clsx';
 
@@ -74,11 +75,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(pro
       data-readonly={readOnly || undefined}
       onMouseDown={handleFieldMouseDown}
     >
-      {iconStart && (
-        <span className={styles.icon} aria-hidden="true">
-          {iconStart}
-        </span>
-      )}
+      {iconStart && <Icon className={styles.icon}>{DS_ICONS[iconStart].icon}</Icon>}
 
       <input
         ref={setInputRef}
@@ -91,11 +88,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(pro
         {...rest}
       />
 
-      {iconEnd && (
-        <span className={styles.icon} aria-hidden="true">
-          {iconEnd}
-        </span>
-      )}
+      {iconEnd && <Icon className={styles.icon}>{DS_ICONS[iconEnd].icon}</Icon>}
 
       {unit && (
         <span id={unitId} className={styles.unit}>

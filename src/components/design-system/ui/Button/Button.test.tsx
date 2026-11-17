@@ -141,42 +141,34 @@ describe('Button — sizes', () => {
  * =============================================================== */
 
 describe('Button — icons', () => {
-  const MockIcon = () => (
-    <svg data-testid="mock-icon" viewBox="0 0 24 24">
-      <path d="M12 2v20" />
-    </svg>
-  );
-
   it('renders the icon when provided', () => {
-    render(
-      <Button variant="primary" appearance="fill" size="md" icon={<MockIcon />}>
+    const { container } = render(
+      <Button variant="primary" appearance="fill" size="md" icon="plus">
         Add
       </Button>,
     );
-    expect(screen.getByTestId('mock-icon')).toBeInTheDocument();
+    expect(container.querySelector('.lucide-plus')).toBeInTheDocument();
   });
 
-  it('marks the icon wrapper as aria-hidden="true"', () => {
-    render(
-      <Button variant="primary" appearance="fill" size="md" icon={<MockIcon />}>
+  it('keeps the icon box hidden from assistive technology', () => {
+    const { container } = render(
+      <Button variant="primary" appearance="fill" size="md" icon="plus">
         Add
       </Button>,
     );
-    const iconWrapper = screen.getByTestId('mock-icon').closest('span');
-    expect(iconWrapper).toHaveAttribute('aria-hidden', 'true');
+    const iconBox = container.querySelector('.lucide-plus')?.closest('span');
+    expect(iconBox).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('places icon before text by default (start)', () => {
     const { container } = render(
-      <Button variant="primary" appearance="fill" size="md" icon={<MockIcon />}>
+      <Button variant="primary" appearance="fill" size="md" icon="plus">
         Add
       </Button>,
     );
     const button = container.firstChild as HTMLElement;
     const children = Array.from(button.childNodes);
-    const iconIndex = children.findIndex(
-      (n) => n instanceof HTMLElement && n.querySelector('[data-testid="mock-icon"]'),
-    );
+    const iconIndex = children.findIndex((n) => n instanceof HTMLElement && n.querySelector('svg'));
     const textIndex = children.findIndex(
       (n) => n.textContent === 'Add' && n.nodeType === Node.TEXT_NODE,
     );
@@ -185,15 +177,13 @@ describe('Button — icons', () => {
 
   it('places icon after text when iconPosition="end"', () => {
     const { container } = render(
-      <Button variant="primary" appearance="fill" size="md" icon={<MockIcon />} iconPosition="end">
+      <Button variant="primary" appearance="fill" size="md" icon="plus" iconPosition="end">
         Add
       </Button>,
     );
     const button = container.firstChild as HTMLElement;
     const children = Array.from(button.childNodes);
-    const iconIndex = children.findIndex(
-      (n) => n instanceof HTMLElement && n.querySelector('[data-testid="mock-icon"]'),
-    );
+    const iconIndex = children.findIndex((n) => n instanceof HTMLElement && n.querySelector('svg'));
     const textIndex = children.findIndex(
       (n) => n.textContent === 'Add' && n.nodeType === Node.TEXT_NODE,
     );
@@ -206,21 +196,9 @@ describe('Button — icons', () => {
  * =============================================================== */
 
 describe('Button — icon-only', () => {
-  const MockIcon = () => (
-    <svg data-testid="mock-icon" viewBox="0 0 24 24">
-      <path d="M12 2v20" />
-    </svg>
-  );
-
   it('renders an icon-only button with aria-label', () => {
     render(
-      <Button
-        variant="primary"
-        appearance="fill"
-        size="md"
-        icon={<MockIcon />}
-        aria-label="Add item"
-      />,
+      <Button variant="primary" appearance="fill" size="md" icon="plus" aria-label="Add item" />,
     );
     const btn = screen.getByRole('button', { name: 'Add item' });
     expect(btn).toBeInTheDocument();
@@ -228,13 +206,7 @@ describe('Button — icon-only', () => {
 
   it('applies the icon-only class', () => {
     const { container } = render(
-      <Button
-        variant="primary"
-        appearance="fill"
-        size="md"
-        icon={<MockIcon />}
-        aria-label="Delete"
-      />,
+      <Button variant="primary" appearance="fill" size="md" icon="plus" aria-label="Delete" />,
     );
     expect(container.firstChild).toHaveClass('icon-only');
   });
@@ -409,12 +381,6 @@ describe('Button — custom props', () => {
  * =============================================================== */
 
 describe('Button — accessibility', () => {
-  const MockIcon = () => (
-    <svg data-testid="mock-icon" viewBox="0 0 24 24">
-      <path d="M12 2v20" />
-    </svg>
-  );
-
   it('has no a11y violations for a default button', async () => {
     const { container } = render(
       <Button variant="primary" appearance="fill" size="md">
@@ -427,13 +393,7 @@ describe('Button — accessibility', () => {
 
   it('has no a11y violations for an icon-only button with aria-label', async () => {
     const { container } = render(
-      <Button
-        variant="primary"
-        appearance="fill"
-        size="md"
-        icon={<MockIcon />}
-        aria-label="Delete item"
-      />,
+      <Button variant="primary" appearance="fill" size="md" icon="plus" aria-label="Delete item" />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -441,7 +401,7 @@ describe('Button — accessibility', () => {
 
   it('has no a11y violations for a button with icon and text', async () => {
     const { container } = render(
-      <Button variant="primary" appearance="fill" size="md" icon={<MockIcon />}>
+      <Button variant="primary" appearance="fill" size="md" icon="plus">
         Add item
       </Button>,
     );

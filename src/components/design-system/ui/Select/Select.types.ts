@@ -1,5 +1,6 @@
-import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import type * as RadixSelect from '@radix-ui/react-select';
+import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Types
@@ -48,7 +49,8 @@ export interface SelectProps extends SelectTriggerProps, SelectRootProps {
   size?: SelectSize;
   invalid?: boolean;
   placeholder?: string;
-  iconStart?: ReactElement;
+  /** Decorative icon before the value, by name. Hidden from assistive technology. */
+  iconStart?: IconName;
   children: ReactNode;
   className?: string;
 }

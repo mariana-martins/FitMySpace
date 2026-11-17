@@ -227,15 +227,10 @@ export const HiddenOrNamed: Story = {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
         <Caption>Hidden: the words already say it</Caption>
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <Button
-            variant="secondary"
-            appearance="outline"
-            size="md"
-            icon={DS_ICONS['arrow-up-right'].icon}
-          >
+          <Button variant="secondary" appearance="outline" size="md" icon="arrow-up-right">
             Open the listing
           </Button>
-          <Badge variant="success" appearance="soft" size="md" icon={DS_ICONS['circle-check'].icon}>
+          <Badge variant="success" appearance="soft" size="md" icon="circle-check">
             Fits the room
           </Badge>
         </div>

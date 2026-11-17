@@ -179,9 +179,7 @@
 }
 
 .error-icon {
-  flex-shrink: 0;
-  inline-size: var(--ds-component-switch-error-icon-size);
-  block-size: var(--ds-component-switch-error-icon-size);
+  --icon-size: var(--ds-component-switch-error-icon-size);
   margin-block-start: calc((1lh - var(--ds-component-switch-error-icon-size)) / 2);
 }
 

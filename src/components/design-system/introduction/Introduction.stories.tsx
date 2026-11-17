@@ -6,7 +6,6 @@ import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { TextareaField } from '../ui/TextareaField';
 import { version } from '../../../../package.json';
-import { CircleCheck, Search } from 'lucide-react';
 import { SelectField } from '../ui/SelectField';
 import { SearchField } from '../ui/SearchField';
 import { expect, within } from 'storybook/test';
@@ -735,7 +734,7 @@ const ComponentGrid = () => (
         title="Input"
         description="The bare text field: icons, a unit suffix, an end action, and invalid and disabled states."
         preview={
-          <Input size="sm" aria-label="Search sample" placeholder="Search" iconStart={<Search />} />
+          <Input size="sm" aria-label="Search sample" placeholder="Search" iconStart="search" />
         }
       />
       <LinkCard
@@ -959,15 +958,7 @@ const ComponentGrid = () => (
               letterSpacing: 'var(--ds-semantic-typography-body-md-letter-spacing)',
             }}
           >
-            <CircleCheck
-              focusable="false"
-              aria-hidden
-              style={{
-                flexShrink: 0,
-                inlineSize: 'var(--ds-component-toast-icon-size)',
-                blockSize: 'var(--ds-component-toast-icon-size)',
-              }}
-            />
+            <Icon>{DS_ICONS['circle-check'].icon}</Icon>
             <div>
               <div
                 style={{

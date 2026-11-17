@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import { Select, SelectGroup, SelectItem } from './';
 import userEvent from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Store } from 'lucide-react';
 import { createRef } from 'react';
 
 expect.extend(toHaveNoViolations);
@@ -80,7 +79,7 @@ describe('Select — rendering', () => {
 
   it('hides the start icon and the chevron from assistive technology', () => {
     render(
-      <Select aria-label="Store" iconStart={<Store />}>
+      <Select aria-label="Store" iconStart="store">
         {STORE_ITEMS}
       </Select>,
     );
@@ -211,7 +210,7 @@ describe('Select — accessibility', () => {
   it('has no axe violations across states', async () => {
     const { container } = render(
       <form>
-        <Select aria-label="Store" placeholder="Choose a store" iconStart={<Store />}>
+        <Select aria-label="Store" placeholder="Choose a store" iconStart="store">
           {STORE_ITEMS}
         </Select>
         <Select aria-label="Pickup store" defaultValue="muji" invalid>

@@ -1,4 +1,3 @@
-import { PackageOpen, SlidersHorizontal } from 'lucide-react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
 import { Button } from '../Button';
@@ -61,7 +60,7 @@ export const Default: Story = {
     },
     icon: {
       control: false,
-      description: 'Decorative icon. Defaults to a search icon with a cross.',
+      description: 'A registered icon, decorative. Defaults to `search-x`.',
     },
     children: {
       control: false,
@@ -100,13 +99,13 @@ export const WithIcon: Story = {
       <EmptyState
         title="Your list is empty"
         headingLevel={3}
-        icon={<PackageOpen />}
+        icon="package-open"
         description="Save products you like and they will wait for you here."
       />
       <EmptyState
         title="No matches for these filters"
         headingLevel={3}
-        icon={<SlidersHorizontal />}
+        icon="sliders-horizontal"
         description="Remove a filter to see more products."
       >
         <Button variant="secondary" appearance="outline" size="sm">
@@ -122,7 +121,7 @@ export const WithIcon: Story = {
           'Pick an icon that matches the situation: an open box for an empty list, sliders when filters hide everything. It stays decorative; the title carries the meaning.',
       },
       source: {
-        code: `<EmptyState title="Your list is empty" icon={<PackageOpen />} description="…" />`,
+        code: `<EmptyState title="Your list is empty" icon="package-open" description="…" />`,
       },
     },
   },

@@ -1,5 +1,6 @@
-import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import type { HeadingLevel } from '../Typography';
+import type { IconName } from '../Icon';
 
 /* ---------------------------------------------------------------
  * Props
@@ -19,6 +20,7 @@ export interface EmptyStateProps extends Omit<ComponentPropsWithoutRef<'div'>, '
   title: string;
   headingLevel?: HeadingLevel;
   description?: ReactNode;
-  icon?: ReactElement;
+  /** One of the icons the design system ships. Defaults to `search-x`. */
+  icon?: IconName;
   children?: ReactNode;
 }

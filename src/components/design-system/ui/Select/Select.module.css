@@ -72,19 +72,11 @@
 }
 
 .icon {
-  display: inline-flex;
-  flex-shrink: 0;
-  inline-size: var(--select-icon-size);
-  block-size: var(--select-icon-size);
+  --icon-size: var(--select-icon-size);
   color: var(--select-icon-colour);
   transition-property: color, transform;
   transition-duration: var(--ds-semantic-motion-duration-fast);
   transition-timing-function: var(--ds-semantic-motion-easing-standard);
-}
-
-.icon > svg {
-  inline-size: 100%;
-  block-size: 100%;
 }
 
 .trigger[data-state='open'] .chevron {
@@ -172,16 +164,12 @@
 
 .scroll-button {
   display: flex;
+  --icon-size: var(--select-icon-size);
   align-items: center;
   justify-content: center;
   block-size: var(--select-icon-size);
   color: var(--ds-component-select-icon-default);
   cursor: default;
-}
-
-.scroll-button > svg {
-  inline-size: var(--select-icon-size);
-  block-size: var(--select-icon-size);
 }
 
 /* Options --------------------------------------------------------- */
@@ -214,16 +202,9 @@
 }
 
 .indicator {
-  display: inline-flex;
+  --icon-size: var(--select-icon-size);
   margin-inline-start: auto;
-  inline-size: var(--select-icon-size);
-  block-size: var(--select-icon-size);
   color: var(--ds-component-select-item-indicator);
-}
-
-.indicator > svg {
-  inline-size: 100%;
-  block-size: 100%;
 }
 
 .group + .group {
