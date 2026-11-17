@@ -50,7 +50,8 @@ const meta = {
           '- **`asChild` support** — Radix `Slot` on `BreadcrumbLink` forwards styles and `aria-current` onto Next.js `<Link>` or any router link.\n' +
           '- **Reflow and contrast** — items wrap cleanly on narrow screens, meet 24px target height (WCAG 2.5.8), and restore an underline on the current page in Windows High Contrast.\n\n' +
           '### Patterns\n' +
-          '- [Product Page Header](?path=/docs/design-system-patterns-product-page-header--docs) — the trail above the page heading, wrapping in a narrow column.',
+          '- [Product Page Header](?path=/docs/design-system-patterns-product-page-header--docs) — the trail above the page heading, wrapping in a narrow column.\n' +
+          '- [Product Details](?path=/docs/design-system-patterns-product-details--docs) — the top of a product page: name, labels, price, measurements and actions.',
       },
     },
   },

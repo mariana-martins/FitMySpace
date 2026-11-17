@@ -203,6 +203,55 @@ const PatternGrid = () => (
     />
     <LinkCard
       headingLevel={4}
+      path="/docs/design-system-patterns-product-details--docs"
+      title="Product Details"
+      description="The top of a product page: name, labels, price, measurements, the store link and Save."
+      preview={
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <Button
+            variant="primary"
+            appearance="fill"
+            size="xs"
+            icon="arrow-up-right"
+            iconPosition="end"
+          >
+            View at IKEA
+          </Button>
+          <Button variant="secondary" appearance="outline" size="xs" icon="star">
+            Save
+          </Button>
+        </div>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-fit-check--docs"
+      title="Fit Check"
+      description="Compares a product with a saved space: fits, fits only just, or does not fit, and why."
+      preview={
+        <Alert variant="success" live="off" title="Fits, with 4 cm to spare">
+          In depth, the tightest measurement.
+        </Alert>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-store-offers--docs"
+      title="Store Offers"
+      description="The same product in several stores: price, delivery and stock, cheapest first."
+      preview={
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Text size="sm" as="span">
+            Kmart · $22.00
+          </Text>
+          <Badge variant="success" appearance="soft" size="sm">
+            Lowest price
+          </Badge>
+        </div>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
       path="/docs/design-system-patterns-main-navigation--docs"
       title="Main Navigation"
       description="The links to the main sections of the site, with the current one said and seen."

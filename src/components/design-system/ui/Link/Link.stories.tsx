@@ -29,7 +29,8 @@ const meta = {
           '- **`stretched`** — makes a whole `Card` the click area of its title link, with the focus ring around the card.\n' +
           '- **Motion and contrast** — the animation stops with `prefers-reduced-motion`, and Windows High Contrast gets a real underline.\n\n' +
           '### Patterns\n' +
-          '- [Main Navigation](?path=/docs/design-system-patterns-main-navigation--docs) — a named `<nav>` of standalone links with the current page marked.',
+          '- [Main Navigation](?path=/docs/design-system-patterns-main-navigation--docs) — a named `<nav>` of standalone links with the current page marked.\n' +
+          '- [Store Offers](?path=/docs/design-system-patterns-store-offers--docs) — the same product in several stores, cheapest first, each link naming its store.',
       },
     },
   },

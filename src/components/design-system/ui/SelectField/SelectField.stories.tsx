@@ -46,7 +46,8 @@ const meta = {
           '- **Pass-through** — every other prop (`name`, `value`, `onValueChange`, the `SelectItem` children…) goes to the `Select`; `ref` points to the trigger `<button>`.\n\n' +
           '### Patterns\n' +
           '- [Form Validation](?path=/docs/design-system-patterns-form-validation--docs) — field errors plus a summary at the top that links to each one.\n' +
-          '- [Preferences](?path=/docs/design-system-patterns-preferences--docs) — settings that apply the moment they change, with a status line for each save.',
+          '- [Preferences](?path=/docs/design-system-patterns-preferences--docs) — settings that apply the moment they change, with a status line for each save.\n' +
+          '- [Fit Check](?path=/docs/design-system-patterns-fit-check--docs) — compares a product with a saved space and says whether it fits, and why.',
       },
     },
   },

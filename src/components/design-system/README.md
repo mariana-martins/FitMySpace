@@ -68,6 +68,7 @@ design-system/
 │   ├── LinkCard.tsx               # LinkCard + LinkCardGrid: whole-card links to other Storybook pages
 │   ├── LinkCard.module.css
 │   ├── LinkCard.test.tsx
+│   ├── priceStyle.ts              # The price type style shared by the product patterns
 │   ├── sampleImages.ts            # Inline SVG pictures for stories and patterns (SHELF_IMAGE)
 │   ├── sampleProducts.tsx         # Sample catalogue + SampleProductGrid for the search patterns
 │   ├── sampleProducts.test.tsx
@@ -93,15 +94,18 @@ design-system/
 │   ├── DeleteConfirmation/DeleteConfirmation.stories.tsx
 │   ├── DialogForm/DialogForm.stories.tsx
 │   ├── FilterBar/FilterBar.stories.tsx
+│   ├── FitCheck/FitCheck.stories.tsx
 │   ├── FormValidation/FormValidation.stories.tsx
 │   ├── MainNavigation/MainNavigation.stories.tsx
 │   ├── PaginatedResults/PaginatedResults.stories.tsx
 │   ├── Preferences/Preferences.stories.tsx
 │   ├── ProductCard/ProductCard.stories.tsx
+│   ├── ProductDetails/ProductDetails.stories.tsx
 │   ├── ProductPageHeader/ProductPageHeader.stories.tsx
 │   ├── ProductSearch/ProductSearch.stories.tsx
 │   ├── ResultsStates/ResultsStates.stories.tsx
-│   └── SearchResultsPage/SearchResultsPage.stories.tsx
+│   ├── SearchResultsPage/SearchResultsPage.stories.tsx
+│   └── StoreOffers/StoreOffers.stories.tsx
 ├── ui/              # Components only (colocated with stories)
 │   ├── Alert/       # Sidebar: Components/Feedback/Alert (live region: role="status", "alert" or none, set by live)
 │   │   └── … (same files as Button)
