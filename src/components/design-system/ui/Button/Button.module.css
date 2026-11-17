@@ -29,7 +29,13 @@
   transition-duration: var(--ds-semantic-motion-duration-fast);
   transition-timing-function: var(--ds-semantic-motion-easing-standard);
   user-select: none;
-  white-space: nowrap;
+  /* A label longer than its container (a long store name on a phone) wraps instead of
+     pushing the page sideways; balanced, so the two lines are about the same length. A
+     label that fits stays on one line at the size's min-height. */
+  max-inline-size: 100%;
+  text-align: center;
+  text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
 .button:active:not(:disabled):not([aria-disabled='true']) {
@@ -54,7 +60,7 @@
 
 .size-lg {
   min-height: var(--ds-component-button-size-lg-min-height);
-  padding: 0 var(--ds-component-button-size-lg-padding-x);
+  padding: var(--ds-component-button-shape-padding-y) var(--ds-component-button-size-lg-padding-x);
   font-family: var(--ds-component-button-size-lg-font-family);
   font-weight: var(--ds-component-button-size-lg-font-weight);
   font-size: var(--ds-component-button-size-lg-font-size);
@@ -68,7 +74,7 @@
 
 .size-md {
   min-height: var(--ds-component-button-size-md-min-height);
-  padding: 0 var(--ds-component-button-size-md-padding-x);
+  padding: var(--ds-component-button-shape-padding-y) var(--ds-component-button-size-md-padding-x);
   font-family: var(--ds-component-button-size-md-font-family);
   font-weight: var(--ds-component-button-size-md-font-weight);
   font-size: var(--ds-component-button-size-md-font-size);
@@ -82,7 +88,7 @@
 
 .size-sm {
   min-height: var(--ds-component-button-size-sm-min-height);
-  padding: 0 var(--ds-component-button-size-sm-padding-x);
+  padding: var(--ds-component-button-shape-padding-y) var(--ds-component-button-size-sm-padding-x);
   font-family: var(--ds-component-button-size-sm-font-family);
   font-weight: var(--ds-component-button-size-sm-font-weight);
   font-size: var(--ds-component-button-size-sm-font-size);
@@ -96,7 +102,7 @@
 
 .size-xs {
   min-height: var(--ds-component-button-size-xs-min-height);
-  padding: 0 var(--ds-component-button-size-xs-padding-x);
+  padding: var(--ds-component-button-shape-padding-y) var(--ds-component-button-size-xs-padding-x);
   font-family: var(--ds-component-button-size-xs-font-family);
   font-weight: var(--ds-component-button-size-xs-font-weight);
   font-size: var(--ds-component-button-size-xs-font-size);

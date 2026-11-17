@@ -35,7 +35,10 @@ const meta = {
           '- **Icon support** — leading or trailing icons via the `icon` prop.\n' +
           '- **Icon-only mode** — TypeScript enforces `aria-label` when `children` is omitted.\n' +
           '- **`asChild` pattern** — renders as any child element (e.g. `<a>`, Next.js `<Link>`) via Radix `Slot`.\n' +
-          '- **Keyboard accessible** — `:focus-visible` ring, native `<button>` semantics, and `scale(0.96)` on press.',
+          '- **Long labels wrap** — a label wider than its container breaks onto balanced lines instead of overflowing; one that fits stays on a single line.\n' +
+          '- **Keyboard accessible** — `:focus-visible` ring, native `<button>` semantics, and `scale(0.96)` on press.\n\n' +
+          '### Patterns\n' +
+          '- [Product Details](?path=/docs/design-system-patterns-product-details--docs) — the top of a product page: name, labels, price, measurements and actions.',
       },
     },
   },
@@ -355,6 +358,54 @@ export const Disabled: Story = {
           'A standard disabled state that removes pointer events and adjusts colours according to the design system semantic tokens.',
       },
     },
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Long label
+ * --------------------------------------------------------------- */
+
+export const LongLabel: Story = {
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        gap: '1rem',
+        inlineSize: '16rem',
+      }}
+    >
+      <Button
+        variant="primary"
+        appearance="fill"
+        size="md"
+        icon="arrow-up-right"
+        iconPosition="end"
+      >
+        View at Howards Storage World
+      </Button>
+      <Button variant="secondary" appearance="outline" size="md">
+        Save
+      </Button>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'In a 16rem column — about a phone — a label too long for one line wraps onto two balanced lines and the button grows taller; the short one next to it keeps its single line and height. Nothing pushes the page sideways.',
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const longButton = canvas.getByRole('button', { name: 'View at Howards Storage World' });
+    const shortButton = canvas.getByRole('button', { name: 'Save' });
+    // The long label wraps, so its button is taller; neither is wider than the column.
+    await expect(longButton.offsetHeight).toBeGreaterThan(shortButton.offsetHeight);
+    const columnWidth = longButton.parentElement?.offsetWidth ?? 0;
+    await expect(longButton.offsetWidth).toBeLessThanOrEqual(columnWidth);
   },
 };
 

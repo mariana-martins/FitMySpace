@@ -772,6 +772,7 @@
   --ds-component-button-information-ghost-text-active: var(--ds-semantic-colour-text-utility-information-active);
   --ds-component-button-information-ghost-text-disabled: var(--ds-semantic-colour-text-disabled);
   --ds-component-button-shape-radii: var(--ds-semantic-radii-interactive-md);
+  --ds-component-button-shape-padding-y: var(--ds-semantic-spacing-inset-xs);
   --ds-component-button-size-lg-min-height: var(--ds-semantic-size-control-lg);
   --ds-component-button-size-lg-padding-x: var(--ds-semantic-spacing-inset-lg);
   --ds-component-button-size-lg-font-size: var(--ds-semantic-typography-label-lg-font-size);

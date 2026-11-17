@@ -774,6 +774,7 @@
   {"name":"--ds-component-button-information-ghost-text-active","path":["component","button","information","ghost","text","active"],"value":"#1e3a8a","comment":null},
   {"name":"--ds-component-button-information-ghost-text-disabled","path":["component","button","information","ghost","text","disabled"],"value":"#a8a29e","comment":null},
   {"name":"--ds-component-button-shape-radii","path":["component","button","shape","radii"],"value":"8px","comment":null},
+  {"name":"--ds-component-button-shape-padding-y","path":["component","button","shape","paddingY"],"value":"4px","comment":"Space above and below a label that wraps onto two lines. One line stays at the size's minHeight."},
   {"name":"--ds-component-button-size-lg-min-height","path":["component","button","size","lg","minHeight"],"value":"56px","comment":null},
   {"name":"--ds-component-button-size-lg-padding-x","path":["component","button","size","lg","paddingX"],"value":"24px","comment":null},
   {"name":"--ds-component-button-size-lg-font-size","path":["component","button","size","lg","fontSize"],"value":"1rem","comment":null},
