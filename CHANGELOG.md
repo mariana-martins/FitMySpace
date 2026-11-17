@@ -1,5 +1,17 @@
 # Changelog
 
+# [0.5.0](https://github.com/mariana-martins/FitMySpace/compare/v0.4.0...v0.5.0) (2026-11-17)
+
+### Bug Fixes
+
+* **icon:** name the box when aria-labelledby points at a visible label ([e505fca](https://github.com/mariana-martins/FitMySpace/commit/e505fca758eba71faf511ae2095a5f17a41debfa))
+* **stories:** keep the play of a visible story on its resting state ([7410915](https://github.com/mariana-martins/FitMySpace/commit/7410915206f344b6b209cc5c51d58deaa368e05b))
+
+### Features
+
+* **icon:** add the Icon box and the registry the design system draws from ([4ae03d5](https://github.com/mariana-martins/FitMySpace/commit/4ae03d5a9682efacc1b30bad814cd62cfc9c73b8))
+* **tokens:** add the icon size tokens ([9d4c42e](https://github.com/mariana-martins/FitMySpace/commit/9d4c42eb31661040df7ce9d9ecea032385bd58d3))
+
 # [0.4.0](https://github.com/mariana-martins/FitMySpace/compare/v0.3.0...v0.4.0) (2026-11-17)
 
 * refactor(tokens)!: spell colour the Australian way across the design system ([c6f9289](https://github.com/mariana-martins/FitMySpace/commit/c6f928901c6864ac0f0fa45152dd40e151fb48a2))
