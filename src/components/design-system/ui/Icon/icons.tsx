@@ -58,6 +58,11 @@ import type { ReactElement } from 'react';
  *
  * `focusable="false"` keeps an old Blink from putting the SVG itself
  * in the tab order behind the control that owns it.
+ *
+ * The artwork is not ours: every icon here is drawn by Lucide
+ * (https://lucide.dev, ISC licence). This file reuses their icons and
+ * never redraws them, which is why the credit belongs here as well as
+ * on the Icon page.
  * --------------------------------------------------------------- */
 
 type RegisteredIcon = {

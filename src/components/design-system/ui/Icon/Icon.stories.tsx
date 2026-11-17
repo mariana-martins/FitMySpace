@@ -5,6 +5,7 @@ import { formatTokenLabel } from '../../docs';
 import { DS_ICONS, Icon } from './';
 import { Button } from '../Button';
 import { Badge } from '../Badge';
+import { Link } from '../Link';
 
 import type { IconName } from './';
 
@@ -26,6 +27,7 @@ const meta = {
         component:
           'An `Icon` is the box an icon is drawn in. It centres the SVG, keeps the row from squeezing it, and decides whether assistive technology sees it. It draws nothing itself and holds no state, so it renders on the server.\n\n' +
           'Icons are decoration. MDN names icons as the case for `aria-hidden="true"`: exposing an icon the visible text already names reads the same thought twice, and reads a wrong one when the icon means something else. So the box is hidden unless you name it.\n\n' +
+          'These icons are not ours. Every mark in this design system is drawn by [Lucide](https://lucide.dev), an open-source icon set under the ISC licence: we reuse their artwork and never redraw it. `icons.tsx` is the only file that imports Lucide, so the whole set — and the credit for it — sits in one place.\n\n' +
           '### Best Practices\n' +
           '- **Leave `label` out beside text:** inside a `Button`, a `Badge`, a field or before a heading, the words already carry the meaning and the icon must stay quiet.\n' +
           '- **Name it only when it stands alone:** a column of icons with no words, a map marker with no caption. `label` makes the box one image with a name, so the SVG inside is never read out piece by piece.\n' +
@@ -38,6 +40,7 @@ const meta = {
           '- **Token sizes** — `component.icon.size.*` over `semantic.size.icon.*` (12 / 16 / 20 / 24px).\n' +
           '- **Yours or theirs** — write `--icon-size` in the class you pass and the box keeps using your component token, which is how `Badge` and `Select` size their own icons.\n' +
           '- **Named when it has to be** — `label` sets `role="img"` and `aria-label`; `aria-hidden` is not in the props, because writing it beside a label would hide the name.\n' +
+          '- **Drawn by Lucide** — the artwork belongs to [Lucide](https://lucide.dev) (ISC licence); this design system only picks the set and sizes it.\n' +
           '- **Server-rendered** — no state and no client hooks.',
       },
     },
@@ -155,6 +158,13 @@ export const UsedInTheDesignSystem: Story = {
         Under each name is who draws it: a component that uses it on its own, or only the stories,
         where it is example content you can still pick by name.
       </Text>
+      <Caption as="p" style={{ display: 'block', marginBlockEnd: '24px' }}>
+        None of these marks were drawn here: they are reused from{' '}
+        <Link href="https://lucide.dev" opensInNewTab>
+          Lucide
+        </Link>
+        , under the ISC licence.
+      </Caption>
       <ul
         style={{
           listStyle: 'none',
