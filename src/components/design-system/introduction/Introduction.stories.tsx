@@ -11,6 +11,7 @@ import { SearchField } from '../ui/SearchField';
 import { expect, within } from 'storybook/test';
 import { EmptyState } from '../ui/EmptyState';
 import { TextField } from '../ui/TextField';
+import { List, ListItem } from '../ui/List';
 import { DS_ICONS, Icon } from '../ui/Icon';
 import { Skeleton } from '../ui/Skeleton';
 import { Checkbox } from '../ui/Checkbox';
@@ -893,6 +894,18 @@ const ComponentGrid = () => (
               Oak shelf
             </Text>
           </Card>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-display-list--docs"
+        title="List"
+        description="Rows about one kind of thing, each with an icon or picture, a title, a description, and an action."
+        preview={
+          <List size="sm" appearance="outline" style={{ width: '200px' }}>
+            <ListItem icon="bath">Bathroom</ListItem>
+            <ListItem icon="bed">Bedroom</ListItem>
+          </List>
         }
       />
       <LinkCard

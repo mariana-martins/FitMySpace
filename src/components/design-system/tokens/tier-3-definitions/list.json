@@ -1,0 +1,103 @@
+{
+  "component": {
+    "list": {
+      "background": {
+        "value": "{semantic.colour.background.default.base}"
+      },
+      "border": {
+        "outline": {
+          "value": "{semantic.colour.border.default.base}"
+        },
+        "divider": {
+          "value": "{semantic.colour.border.disabled}",
+          "comment": "A faint line between rows: it separates without competing with the content."
+        }
+      },
+      "title": {
+        "text": {
+          "value": "{semantic.colour.text.default.base}"
+        }
+      },
+      "description": {
+        "text": {
+          "value": "{semantic.colour.text.subtle.base}"
+        }
+      },
+      "leading": {
+        "icon": {
+          "value": "{semantic.colour.text.brand.base}"
+        },
+        "background": {
+          "value": "{semantic.colour.background.brand.soft}",
+          "comment": "The soft circle behind a leading icon, as in EmptyState."
+        }
+      },
+      "hover": {
+        "background": {
+          "value": "{semantic.colour.background.default.hover}",
+          "comment": "A row whose title is a stretched link: the whole row is its click area."
+        }
+      },
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.container.md}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}"
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.fast}"
+        },
+        "easing": {
+          "value": "{semantic.motion.easing.standard}"
+        }
+      },
+      "spacing": {
+        "padding-x": {
+          "value": "{semantic.spacing.inset.md}",
+          "comment": "Side padding of a row in an outline list, and of a clickable row in a plain one."
+        },
+        "gap": {
+          "value": "{semantic.spacing.gap.lg}",
+          "comment": "Between the leading element, the text and the trailing element."
+        },
+        "text-gap": {
+          "value": "{semantic.spacing.gap.xs}",
+          "comment": "Between the title and the description."
+        }
+      },
+      "size": {
+        "sm": {
+          "min-height": {
+            "value": "{semantic.size.control.md}"
+          },
+          "padding-y": {
+            "value": "{semantic.spacing.inset.sm}"
+          },
+          "leading-size": {
+            "value": "{semantic.size.control.sm}"
+          },
+          "icon-size": {
+            "value": "{semantic.size.icon.sm}"
+          }
+        },
+        "md": {
+          "min-height": {
+            "value": "{semantic.size.control.lg}"
+          },
+          "padding-y": {
+            "value": "{semantic.spacing.inset.md}"
+          },
+          "leading-size": {
+            "value": "{semantic.size.control.md}"
+          },
+          "icon-size": {
+            "value": "{semantic.size.icon.md}"
+          }
+        }
+      }
+    }
+  }
+}
