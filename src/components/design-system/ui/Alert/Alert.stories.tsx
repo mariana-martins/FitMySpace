@@ -32,7 +32,7 @@ const meta = {
           '- **Fit the page outline:** Set `headingLevel` so the title sits under the heading above it.\n\n' +
           '### Key Features\n' +
           '- **Four utility colours** — `information`, `success`, `warning` and `error`, each with a `soft` block for a message inside a page and a `fill` block for when the message is the main thing on the screen.\n' +
-          '- **Icons from Lucide** — one per variant by default; pass `icon` to replace it.\n' +
+          '- **One icon per variant** — drawn from the `DS_ICONS` registry; pass `icon` with another registry name to replace it.\n' +
           '- **Text or structure** — plain text is set in a paragraph; pass your own `<p>` or `<ul>` for longer messages, such as a list of errors.\n' +
           '- **Server-rendered** — no client hooks.',
       },
@@ -243,7 +243,7 @@ export const WithIcon: Story = {
     docs: {
       description: {
         story:
-          'Pass a Lucide icon when the message is about something the default icon does not show: a place, a deadline. It stays decorative — the title and the spoken prefix carry the meaning.',
+          'Pass the name of another registry icon (`icon="map-pin"`) when the message is about something the default icon does not show: a place, a deadline. It stays decorative — the title and the spoken prefix carry the meaning.',
       },
       source: {
         code: `<Alert variant="warning" icon="map-pin" title="Pickup only">

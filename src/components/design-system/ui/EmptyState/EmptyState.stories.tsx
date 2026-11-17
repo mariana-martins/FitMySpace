@@ -23,7 +23,7 @@ const meta = {
           '- **Fit the page outline:** Set `headingLevel` so the title follows the headings above it.\n' +
           '- **Announce it elsewhere:** `EmptyState` is not a live region. Announce "0 products" in a results summary that is already on the page.\n\n' +
           '### Key Features\n' +
-          '- **Calm by default** — a search icon with a cross in a pale sage circle; pass `icon` for another Lucide icon. The icon is decorative and hidden from screen readers.\n' +
+          '- **Calm by default** — a search icon with a cross in a pale sage circle; pass `icon` with another name from the `DS_ICONS` registry. The icon is decorative and hidden from screen readers.\n' +
           '- **Readable** — the description keeps to a comfortable line length and the column centres in any container.\n' +
           '- **Server-rendered** — no client hooks.',
       },

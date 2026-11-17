@@ -7,7 +7,7 @@ import { Button } from '../Button';
 import { Badge } from '../Badge';
 import { Link } from '../Link';
 
-import type { IconName } from './';
+import type { IconName, IconSize } from './';
 
 /* ---------------------------------------------------------------
  * Icon
@@ -111,6 +111,8 @@ export const Default: Story = {
 
 const SIZES = ['xs', 'sm', 'md', 'lg'] as const;
 
+const SIZE_PIXELS: Record<IconSize, number> = { xs: 12, sm: 16, md: 20, lg: 24 };
+
 export const AllSizes: Story = {
   render: () => (
     <div style={{ padding: '32px', display: 'flex', alignItems: 'flex-end', gap: '32px' }}>
@@ -118,7 +120,7 @@ export const AllSizes: Story = {
         <div key={size} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           <Icon size={size}>{DS_ICONS.ruler.icon}</Icon>
           <Caption>
-            {size} · {size === 'xs' ? '12' : size === 'sm' ? '16' : size === 'md' ? '20' : '24'}px
+            {size} · {SIZE_PIXELS[size]}px
           </Caption>
         </div>
       ))}
@@ -253,7 +255,7 @@ export const HiddenOrNamed: Story = {
       },
       source: {
         code: `{/* Hidden: the text carries it. */}
-<Button icon={DS_ICONS['arrow-up-right'].icon}>Open the listing</Button>
+<Button icon="arrow-up-right">Open the listing</Button>
 
 {/* Named: there is nothing else to read. */}
 <Icon label="The room has a bath">{DS_ICONS.bath.icon}</Icon>`,
