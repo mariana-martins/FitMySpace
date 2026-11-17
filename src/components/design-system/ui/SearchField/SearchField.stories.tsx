@@ -1,9 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
-import { EmptyState } from '../EmptyState';
-import { useRef, useState } from 'react';
-import { Text } from '../Typography';
-import { Button } from '../Button';
 import { SearchField } from './';
 
 const meta = {
@@ -33,7 +29,9 @@ const meta = {
           '- **Controlled or uncontrolled** — `value` / `onValueChange` or `defaultValue`, through Radix `useControllableState`.\n' +
           '- **Mobile keyboards** — `type="search"` and `enterKeyHint="search"` show a Search key; Enter submits.\n' +
           '- **Errors** — the `TextField` pattern: TypeScript requires an `error` message whenever `invalid` is `true`; the field gets `aria-invalid` and the error style, and the message, prefixed with a screen-reader-only "Error:", is linked after the hint.\n' +
-          '- **3 sizes** — `sm`, `md` and `lg`, the `Input` and `Button` heights, so the field and its button always line up.',
+          '- **3 sizes** — `sm`, `md` and `lg`, the `Input` and `Button` heights, so the field and its button always line up.\n\n' +
+          '### Patterns\n' +
+          '- [Search Page](?path=/docs/design-system-patterns-search-page--docs) — the field above its results, with a live summary, an empty state and a query error.',
       },
     },
   },
@@ -213,124 +211,5 @@ export const PseudoStates: Story = {
     pseudo: {
       focusWithin: ['.pseudo-focus-within [role="presentation"]'],
     },
-  },
-};
-
-/* ---------------------------------------------------------------
- * Search page (recipe)
- * --------------------------------------------------------------- */
-
-const PRODUCTS = ['Bamboo shower caddy', 'Oak wall shelf', 'Linen storage basket', 'Wire basket'];
-
-const MINIMUM_QUERY_LENGTH = 2;
-const QUERY_TOO_SHORT = `Enter at least ${MINIMUM_QUERY_LENGTH} characters to search.`;
-
-function SearchPage() {
-  const [inputValue, setInputValue] = useState('');
-  const [query, setQuery] = useState('');
-  const [queryError, setQueryError] = useState<string | null>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
-
-  const showAllProducts = () => {
-    setInputValue('');
-    setQuery('');
-    setQueryError(null);
-  };
-
-  const search = (submittedQuery: string) => {
-    // An empty query is fine: it shows every product.
-    if (submittedQuery.length > 0 && submittedQuery.length < MINIMUM_QUERY_LENGTH) {
-      setQueryError(QUERY_TOO_SHORT);
-      searchInputRef.current?.focus();
-      return;
-    }
-    setQueryError(null);
-    setQuery(submittedQuery);
-  };
-  const matches = PRODUCTS.filter((product) => product.toLowerCase().includes(query.toLowerCase()));
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '36rem' }}>
-      <SearchField
-        ref={searchInputRef}
-        label="Search products"
-        value={inputValue}
-        onValueChange={setInputValue}
-        onSearch={search}
-        onClear={showAllProducts}
-        {...(queryError ? { invalid: true, error: queryError } : { invalid: false })}
-      />
-      <Text as="p" role="status" style={{ margin: 0 }}>
-        {query ? `${matches.length} products for “${query}”` : `${PRODUCTS.length} products`}
-      </Text>
-      {matches.length > 0 ? (
-        <ul style={{ margin: 0, paddingInlineStart: '1.25rem' }}>
-          {matches.map((product) => (
-            <li key={product}>{product}</li>
-          ))}
-        </ul>
-      ) : (
-        <EmptyState
-          title={`No products for “${query}”`}
-          headingLevel={3}
-          description="Check the spelling or try a broader word, such as basket or shelf."
-        >
-          <Button variant="secondary" appearance="outline" size="md" onClick={showAllProducts}>
-            Show all products
-          </Button>
-        </EmptyState>
-      )}
-    </div>
-  );
-}
-
-export const SearchPageExample: Story = {
-  name: 'Search Page (A11y)',
-  render: () => <SearchPage />,
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'A recipe for a results page: `onSearch` filters the list, and the summary sits in a `role="status"` live region that is always on the page, so screen readers announce "1 products for wire" or "0 products for sofa". With no results, an `EmptyState` says what to try next. A one-letter query is a field error: the message says how to fix it and focus returns to the field.',
-      },
-      source: {
-        code: `<SearchField\n  ref={searchInputRef}\n  label="Search products"\n  defaultValue={searchParams.q}\n  onSearch={search}\n  onClear={() => router.push('/')}\n  {...(queryError ? { invalid: true, error: queryError } : { invalid: false })}\n/>\n<Text as="p" role="status">{resultsSummary}</Text>`,
-      },
-    },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await expect(canvas.getByRole('searchbox', { name: 'Search products' })).toBeInTheDocument();
-  },
-};
-
-/* ---------------------------------------------------------------
- * Search Page (A11y): interaction (test only)
- * --------------------------------------------------------------- */
-
-export const SearchPageExampleInteraction: Story = {
-  ...SearchPageExample,
-  name: 'Search Page (A11y): Interaction (Test Only)',
-  tags: ['!dev', '!autodocs'],
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const input = canvas.getByRole('searchbox', { name: 'Search products' });
-    await userEvent.type(input, 'a{Enter}');
-    await expect(input).toHaveAttribute('aria-invalid', 'true');
-    await expect(input).toHaveFocus();
-    await userEvent.clear(input);
-
-    await userEvent.type(input, 'sofa{Enter}');
-    await expect(input).not.toHaveAttribute('aria-invalid');
-    await expect(canvas.getByRole('status')).toHaveTextContent('0 products for “sofa”');
-    await expect(canvas.getByRole('heading', { name: 'No products for “sofa”' })).toBeVisible();
-    await userEvent.click(canvas.getByRole('button', { name: 'Show all products' }));
-    await expect(input).toHaveValue('');
-    await expect(canvas.getByRole('status')).toHaveTextContent('4 products');
-
-    await userEvent.type(input, 'oak{Enter}');
-    await userEvent.click(canvas.getByRole('button', { name: 'Clear search' }));
-    await expect(input).toHaveFocus();
-    await expect(canvas.getByRole('status')).toHaveTextContent('4 products');
   },
 };

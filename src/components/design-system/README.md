@@ -66,6 +66,7 @@ design-system/
 │   ├── LinkCard.tsx               # LinkCard + LinkCardGrid: whole-card links to other Storybook pages
 │   ├── LinkCard.module.css
 │   ├── LinkCard.test.tsx
+│   ├── sampleImages.ts            # Inline SVG pictures for stories and patterns (SHELF_IMAGE)
 │   ├── tokens.ts                  # Reads tokens.docs.json: getTokens, groupTokens, labels
 │   └── tokens.test.ts
 ├── introduction/    # Storybook landing page: token architecture, linked foundation and component cards
@@ -83,6 +84,13 @@ design-system/
 │   ├── size/Size.stories.tsx
 │   ├── spacing/Spacing.stories.tsx
 │   └── typography/Typography.stories.tsx
+├── patterns/        # Recipes: several components composed into a piece of a page (stories only)
+│   ├── Overview.stories.tsx       # Sidebar: Patterns/Overview (what a pattern is, the rules, every pattern)
+│   ├── MainNavigation/MainNavigation.stories.tsx
+│   ├── ProductCard/ProductCard.stories.tsx
+│   ├── ProductPageHeader/ProductPageHeader.stories.tsx
+│   ├── SearchPage/SearchPage.stories.tsx
+│   └── SearchResults/SearchResults.stories.tsx
 ├── ui/              # Components only (colocated with stories)
 │   ├── Alert/       # Sidebar: Components/Feedback/Alert (live region: role="status", "alert" or none, set by live)
 │   │   └── … (same files as Button)

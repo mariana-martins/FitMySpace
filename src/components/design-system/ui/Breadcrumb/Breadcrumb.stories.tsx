@@ -1,7 +1,6 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from './';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
-import { Heading } from '../Typography';
 
 const DEFAULT_TRAIL = (
   <>
@@ -49,7 +48,9 @@ const meta = {
           '- **2 separators** — `chevron` (the `chevron-right` icon, default) or `slash` (`/`).\n' +
           '- **Home and custom icons** — pass `home` on the root `BreadcrumbLink` to render the `home` icon, or `icon` with any registry name for another leading icon.\n' +
           '- **`asChild` support** — Radix `Slot` on `BreadcrumbLink` forwards styles and `aria-current` onto Next.js `<Link>` or any router link.\n' +
-          '- **Reflow and contrast** — items wrap cleanly on narrow screens, meet 24px target height (WCAG 2.5.8), and restore an underline on the current page in Windows High Contrast.',
+          '- **Reflow and contrast** — items wrap cleanly on narrow screens, meet 24px target height (WCAG 2.5.8), and restore an underline on the current page in Windows High Contrast.\n\n' +
+          '### Patterns\n' +
+          '- [Product Page Header](?path=/docs/design-system-patterns-product-page-header--docs) — the trail above the page heading, wrapping in a narrow column.',
       },
     },
   },
@@ -313,63 +314,5 @@ export const PseudoStates: Story = {
       hover: ['.pseudo-hover'],
       focusVisible: ['.pseudo-focus-visible'],
     },
-  },
-};
-
-/* ---------------------------------------------------------------
- * Product page trail (recipe)
- * --------------------------------------------------------------- */
-
-export const ProductPageExample: Story = {
-  name: 'Product Page Trail (A11y)',
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '22rem' }}>
-      <Breadcrumb>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#home" home>
-            Home
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#rooms">Rooms</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#bathroom">Bathroom</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#wall-shelves">Wall shelves & caddies</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#bamboo-shower-caddy" aria-current="page">
-            Bamboo shower caddy
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-      </Breadcrumb>
-      <Heading level={1} size="lg" style={{ margin: 0 }}>
-        Bamboo shower caddy
-      </Heading>
-    </div>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'A recipe placing `Breadcrumb` above a page heading inside a narrow column to show wrapping behaviour without horizontal scroll. With Next.js App Router, wrap `<NextLink>` with `asChild` on each `BreadcrumbLink`.',
-      },
-      source: {
-        code: `<Breadcrumb>\n  {crumbs.map((crumb, index) => (\n    <BreadcrumbItem key={crumb.href}>\n      <BreadcrumbLink\n        asChild\n        home={index === 0}\n        aria-current={index === crumbs.length - 1 ? 'page' : undefined}\n      >\n        <NextLink href={crumb.href}>{crumb.label}</NextLink>\n      </BreadcrumbLink>\n    </BreadcrumbItem>\n  ))}\n</Breadcrumb>`,
-      },
-    },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await expect(canvas.getByRole('navigation', { name: 'Breadcrumb' })).toBeInTheDocument();
-    await expect(canvas.getByRole('heading', { level: 1 })).toHaveTextContent(
-      'Bamboo shower caddy',
-    );
-    await expect(canvas.getByRole('link', { name: 'Bamboo shower caddy' })).toHaveAttribute(
-      'aria-current',
-      'page',
-    );
   },
 };

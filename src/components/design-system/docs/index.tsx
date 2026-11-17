@@ -13,4 +13,5 @@ export type { DocumentedToken } from './tokens';
 export { LinkCard, LinkCardGrid } from './LinkCard';
 export type { LinkCardGridProps, LinkCardProps } from './LinkCard';
 export { LabelledField } from './LabelledField';
+export { SHELF_IMAGE } from './sampleImages';
 export type { LabelledFieldProps } from './LabelledField';

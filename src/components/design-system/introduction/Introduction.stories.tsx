@@ -1059,6 +1059,25 @@ const ComponentGrid = () => (
 );
 
 /* ------------------------------------------------------------------ */
+/*  Patterns                                                           */
+/* ------------------------------------------------------------------ */
+
+const PatternsSection = () => (
+  <section style={{ marginTop: '56px' }}>
+    <Heading level={3} size="sm" style={{ marginBottom: '8px' }}>
+      Patterns
+    </Heading>
+    <Text size="sm" as="span" style={sectionIntroStyle}>
+      Recipes that put several components together into a piece of a page, such as a search page or
+      a product grid, with the code to copy.{' '}
+      <StorybookLink path="/story/design-system-patterns-overview--overview">
+        See all patterns
+      </StorybookLink>
+    </Text>
+  </section>
+);
+
+/* ------------------------------------------------------------------ */
 /*  Exported Story                                                     */
 /* ------------------------------------------------------------------ */
 
@@ -1067,7 +1086,7 @@ export const Welcome: Story = {
     docs: {
       description: {
         story:
-          'Landing page: token architecture, principles, and links to every foundation and component page.',
+          'Landing page: token architecture, principles, and links to every foundation and component page, and to the patterns.',
       },
     },
   },
@@ -1085,6 +1104,7 @@ export const Welcome: Story = {
         <QuickStart />
         <FoundationGrid />
         <ComponentGrid />
+        <PatternsSection />
       </div>
     </div>
   ),
@@ -1097,6 +1117,10 @@ export const Welcome: Story = {
     await expect(canvas.getByRole('link', { name: 'Button' })).toHaveAttribute(
       'href',
       './?path=/docs/design-system-components-actions-button--docs',
+    );
+    await expect(canvas.getByRole('link', { name: 'See all patterns' })).toHaveAttribute(
+      'href',
+      './?path=/story/design-system-patterns-overview--overview',
     );
     // The version comes from package.json, so only the link is checked here.
     await expect(canvas.getByRole('link', { name: "See what's new" })).toHaveAttribute(

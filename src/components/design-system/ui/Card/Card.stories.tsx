@@ -1,23 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
 import { Heading, Text } from '../Typography';
+import { SHELF_IMAGE } from '../../docs';
 import { Card, CardMedia } from './';
-import { Badge } from '../Badge';
 import Image from 'next/image';
 import { Link } from '../Link';
-
-/** A drawn shelf, inlined so the stories never load an image from the network. */
-const SHELF_IMAGE = `data:image/svg+xml,${encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">' +
-    '<rect width="400" height="300" fill="#e3efe9"/>' +
-    '<rect x="90" y="70" width="220" height="12" rx="4" fill="#5b8a72"/>' +
-    '<rect x="90" y="150" width="220" height="12" rx="4" fill="#5b8a72"/>' +
-    '<rect x="90" y="230" width="220" height="12" rx="4" fill="#5b8a72"/>' +
-    '<rect x="110" y="30" width="36" height="40" rx="6" fill="#c9a98a"/>' +
-    '<rect x="160" y="110" width="52" height="40" rx="6" fill="#9fb8c9"/>' +
-    '<circle cx="250" cy="208" r="22" fill="#d8c3a5"/>' +
-    '</svg>',
-)}`;
 
 const meta = {
   title: 'Design System/Components/Display/Card',
@@ -43,7 +30,9 @@ const meta = {
           '- **3 paddings** (`sm` 16px, `md` 24px, `lg` 32px), each with a matching gap between the children.\n' +
           '- **`CardMedia`** — a `square`, `landscape` (4:3) or `wide` (16:9) frame that crops `<img>`, Next.js `<Image fill>` or `<video>`, with a placeholder colour while it loads.\n' +
           '- **`asChild`** — Radix `Slot` merges the card styles onto your element.\n' +
-          '- **High contrast** — a raised card gains a border in Windows High Contrast, where shadows disappear.',
+          '- **High contrast** — a raised card gains a border in Windows High Contrast, where shadows disappear.\n\n' +
+          '### Patterns\n' +
+          '- [Product Card](?path=/docs/design-system-patterns-product-card--docs) — a grid of products, each card a list item with a stretched title link.',
       },
     },
   },
@@ -250,75 +239,5 @@ export const PseudoStates: Story = {
       hover: ['.pseudo-hover', '.pseudo-hover a'],
       focusVisible: ['.pseudo-focus-visible a'],
     },
-  },
-};
-
-/* ---------------------------------------------------------------
- * Product card (recipe)
- * --------------------------------------------------------------- */
-
-export const ProductCardExample: Story = {
-  name: 'Product Card (A11y)',
-  render: () => (
-    <ul
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(15rem, 1fr))',
-        gap: '1.5rem',
-        margin: 0,
-        padding: 0,
-        listStyle: 'none',
-      }}
-    >
-      {['Bamboo shower caddy', 'Oak wall shelf'].map((productName) => (
-        <Card key={productName} asChild padding="sm">
-          <li>
-            <CardMedia aspectRatio="square">
-              <Image src={SHELF_IMAGE} alt="" fill unoptimized sizes="15rem" />
-            </CardMedia>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <Badge variant="primary" appearance="soft" size="sm">
-                Bathroom
-              </Badge>
-              <Badge variant="secondary" appearance="soft" size="sm" shape="rounded">
-                IKEA
-              </Badge>
-            </div>
-            <Heading level={3} size="sm">
-              <Link
-                href={`#${productName.toLowerCase().replaceAll(' ', '-')}`}
-                appearance="standalone"
-                stretched
-              >
-                {productName}
-              </Link>
-            </Heading>
-            <Text size="sm" style={{ margin: 0 }}>
-              €24.99
-            </Text>
-          </li>
-        </Card>
-      ))}
-    </ul>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'A recipe for the product grid: a list of cards rendered as `<li>` with `asChild`, a decorative image (`alt=""`, because the title names the product), badges, and a stretched title link. Screen readers hear one link per product, named by its title, and the whole card is clickable.',
-      },
-      source: {
-        code: `<ul>\n  <Card asChild padding="sm">\n    <li>\n      <CardMedia aspectRatio="square">\n        <Image src={product.image} alt="" fill sizes="…" />\n      </CardMedia>\n      <Badge variant="primary" appearance="soft" size="sm">Bathroom</Badge>\n      <Heading level={3} size="sm">\n        <Link asChild appearance="standalone" stretched>\n          <NextLink href={\`/products/\${product.id}\`}>{product.name}</NextLink>\n        </Link>\n      </Heading>\n      <Text size="sm">{formatPrice(product.price)}</Text>\n    </li>\n  </Card>\n</ul>`,
-      },
-    },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await expect(canvas.getAllByRole('listitem')).toHaveLength(2);
-    await expect(canvas.getAllByRole('link')).toHaveLength(2);
-    await expect(canvas.getByRole('link', { name: 'Oak wall shelf' })).toHaveAttribute(
-      'data-link-stretched',
-      'true',
-    );
   },
 };

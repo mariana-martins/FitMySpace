@@ -11,7 +11,6 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import type { PaginationSize } from './';
 import type { MouseEvent } from 'react';
-import { Text } from '../Typography';
 import { useState } from 'react';
 
 type ProductPagesProps = {
@@ -97,7 +96,9 @@ const meta = {
           '- **Ends of the list** — on the first or last page, Previous or Next is hidden but keeps its space, as GOV.UK does, so nothing leads nowhere and the page numbers stay put.\n' +
           '- **2 sizes** — `sm` (32px) and `md` (40px, default), the Chip heights, with tabular numbers so the entries keep their width.\n' +
           '- **Server-rendered** — no client hooks; `asChild` uses Radix `Slot`.\n' +
-          '- **High contrast** — the current page keeps an outline in Windows High Contrast, where its fill disappears.',
+          '- **High contrast** — the current page keeps an outline in Windows High Contrast, where its fill disappears.\n\n' +
+          '### Patterns\n' +
+          '- [Search Results](?path=/docs/design-system-patterns-search-results--docs) — page links that keep the query, with focus moved to the new range.',
       },
     },
   },
@@ -276,110 +277,5 @@ export const PseudoStates: Story = {
       active: ['.pseudo-active'],
       focusVisible: ['.pseudo-focus-visible'],
     },
-  },
-};
-
-/* ---------------------------------------------------------------
- * Search results (recipe)
- * --------------------------------------------------------------- */
-
-const PRODUCT_COUNT = 47;
-const PRODUCTS_PER_PAGE = 12;
-
-function SearchResultsPages() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageCount = Math.ceil(PRODUCT_COUNT / PRODUCTS_PER_PAGE);
-  const firstShown = (currentPage - 1) * PRODUCTS_PER_PAGE + 1;
-  const lastShown = Math.min(currentPage * PRODUCTS_PER_PAGE, PRODUCT_COUNT);
-
-  const goTo = (page: number) => (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    setCurrentPage(page);
-    document.getElementById('results-summary')?.focus();
-  };
-
-  return (
-    <section
-      aria-labelledby="results-summary"
-      style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
-    >
-      <Text as="p" id="results-summary" tabIndex={-1} style={{ margin: 0 }}>
-        Showing {firstShown}–{lastShown} of {PRODUCT_COUNT} storage products
-      </Text>
-      <Pagination aria-label="Search results pages">
-        <PaginationItem>
-          <PaginationPrevious
-            href={`?q=shelf&page=${currentPage - 1}`}
-            disabled={currentPage === 1}
-            onClick={goTo(currentPage - 1)}
-          />
-        </PaginationItem>
-        {getPaginationRange({ page: currentPage, pageCount }).map((rangeItem) => (
-          <PaginationItem key={rangeItem}>
-            {typeof rangeItem === 'number' ? (
-              <PaginationLink
-                page={rangeItem}
-                href={`?q=shelf&page=${rangeItem}`}
-                aria-current={rangeItem === currentPage ? 'page' : undefined}
-                onClick={goTo(rangeItem)}
-              />
-            ) : (
-              <PaginationEllipsis />
-            )}
-          </PaginationItem>
-        ))}
-        <PaginationItem>
-          <PaginationNext
-            href={`?q=shelf&page=${currentPage + 1}`}
-            disabled={currentPage === pageCount}
-            onClick={goTo(currentPage + 1)}
-          />
-        </PaginationItem>
-      </Pagination>
-    </section>
-  );
-}
-
-export const SearchResultsExample: Story = {
-  name: 'Search Results (A11y)',
-  render: () => <SearchResultsPages />,
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'A recipe for the search results: every link keeps the query (`?q=shelf&page=2`), and after a page change focus moves to the results summary, so screen readers announce the new range. In the app, wrap Next.js `<Link>` with `asChild` and let the URL drive the page.',
-      },
-      source: {
-        code: `{totalPages > 1 && (\n  <Pagination>\n    <PaginationItem>\n      <PaginationPrevious asChild disabled={currentPage === 1}>\n        <NextLink href={pageHref(currentPage - 1)} />\n      </PaginationPrevious>\n    </PaginationItem>\n    {getPaginationRange({ page: currentPage, pageCount: totalPages }).map((rangeItem) => (\n      <PaginationItem key={rangeItem}>\n        {typeof rangeItem === 'number' ? (\n          <PaginationLink\n            asChild\n            page={rangeItem}\n            aria-current={rangeItem === currentPage ? 'page' : undefined}\n          >\n            <NextLink href={pageHref(rangeItem)} />\n          </PaginationLink>\n        ) : (\n          <PaginationEllipsis />\n        )}\n      </PaginationItem>\n    ))}\n    <PaginationItem>\n      <PaginationNext asChild disabled={currentPage === totalPages}>\n        <NextLink href={pageHref(currentPage + 1)} />\n      </PaginationNext>\n    </PaginationItem>\n  </Pagination>\n)}`,
-      },
-    },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await expect(canvas.getByRole('link', { name: 'Page 2' })).toHaveAttribute(
-      'href',
-      '?q=shelf&page=2',
-    );
-    await expect(canvas.getByRole('link', { name: 'Page 2' })).not.toHaveAttribute('aria-current');
-  },
-};
-
-/* ---------------------------------------------------------------
- * Search Results (A11y): interaction (test only)
- * --------------------------------------------------------------- */
-
-export const SearchResultsExampleInteraction: Story = {
-  ...SearchResultsExample,
-  name: 'Search Results (A11y): Interaction (Test Only)',
-  tags: ['!dev', '!autodocs'],
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole('link', { name: 'Page 2' }));
-    const summary = canvas.getByText(/Showing 13–24 of 47/);
-    await expect(summary).toHaveFocus();
-    await expect(canvas.getByRole('link', { name: 'Page 2' })).toHaveAttribute(
-      'href',
-      '?q=shelf&page=2',
-    );
   },
 };
