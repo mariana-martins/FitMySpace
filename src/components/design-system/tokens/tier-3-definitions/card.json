@@ -2,11 +2,11 @@
   "component": {
     "card": {
       "background": {
-        "value": "{semantic.color.background.default.base}"
+        "value": "{semantic.colour.background.default.base}"
       },
       "border": {
         "outline": {
-          "value": "{semantic.color.border.default.base}"
+          "value": "{semantic.colour.border.default.base}"
         }
       },
       "shape": {
@@ -30,7 +30,7 @@
           "value": "{semantic.radii.surface.md}"
         },
         "background": {
-          "value": "{semantic.color.background.default.hover}",
+          "value": "{semantic.colour.background.default.hover}",
           "comment": "Shown while the image loads or when it has transparent areas."
         }
       },

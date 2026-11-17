@@ -17,57 +17,57 @@
       },
       "background": {
         "default": {
-          "value": "{semantic.color.background.default.base}"
+          "value": "{semantic.colour.background.default.base}"
         },
         "disabled": {
-          "value": "{semantic.color.background.disabled}"
+          "value": "{semantic.colour.background.disabled}"
         }
       },
       "border": {
         "default": {
-          "value": "{semantic.color.border.default.base}"
+          "value": "{semantic.colour.border.default.base}"
         },
         "hover": {
-          "value": "{semantic.color.border.default.active}"
+          "value": "{semantic.colour.border.default.active}"
         },
         "focus": {
-          "value": "{semantic.color.border.brand.base}"
+          "value": "{semantic.colour.border.brand.base}"
         },
         "invalid": {
-          "value": "{semantic.color.border.utility-error.base}"
+          "value": "{semantic.colour.border.utility-error.base}"
         },
         "disabled": {
-          "value": "{semantic.color.border.disabled}"
+          "value": "{semantic.colour.border.disabled}"
         }
       },
       "halo": {
         "focus": {
-          "value": "{semantic.color.halo.brand}"
+          "value": "{semantic.colour.halo.brand}"
         },
         "invalid": {
-          "value": "{semantic.color.halo.utility-error}"
+          "value": "{semantic.colour.halo.utility-error}"
         }
       },
       "text": {
         "default": {
-          "value": "{semantic.color.text.default.base}"
+          "value": "{semantic.colour.text.default.base}"
         },
         "placeholder": {
-          "value": "{semantic.color.text.placeholder}"
+          "value": "{semantic.colour.text.placeholder}"
         },
         "disabled": {
-          "value": "{semantic.color.text.disabled}"
+          "value": "{semantic.colour.text.disabled}"
         }
       },
       "icon": {
         "default": {
-          "value": "{semantic.color.text.subtle.base}"
+          "value": "{semantic.colour.text.subtle.base}"
         },
         "focus": {
-          "value": "{semantic.color.text.brand.base}"
+          "value": "{semantic.colour.text.brand.base}"
         },
         "invalid": {
-          "value": "{semantic.color.text.utility-error.base}"
+          "value": "{semantic.colour.text.utility-error.base}"
         }
       },
       "size": {
@@ -143,10 +143,10 @@
       },
       "content": {
         "background": {
-          "value": "{semantic.color.background.default.base}"
+          "value": "{semantic.colour.background.default.base}"
         },
         "border": {
-          "value": "{semantic.color.border.disabled}"
+          "value": "{semantic.colour.border.disabled}"
         },
         "radii": {
           "value": "{semantic.radii.container.md}"
@@ -160,19 +160,19 @@
       },
       "item": {
         "text": {
-          "value": "{semantic.color.text.default.base}"
+          "value": "{semantic.colour.text.default.base}"
         },
         "highlighted-background": {
-          "value": "{semantic.color.background.brand.soft}"
+          "value": "{semantic.colour.background.brand.soft}"
         },
         "highlighted-text": {
-          "value": "{semantic.color.text.brand.active}"
+          "value": "{semantic.colour.text.brand.active}"
         },
         "indicator": {
-          "value": "{semantic.color.text.brand.base}"
+          "value": "{semantic.colour.text.brand.base}"
         },
         "disabled": {
-          "value": "{semantic.color.text.disabled}"
+          "value": "{semantic.colour.text.disabled}"
         },
         "radii": {
           "value": "{semantic.radii.interactive.md}"
@@ -180,7 +180,7 @@
       },
       "group-label": {
         "text": {
-          "value": "{semantic.color.text.subtle.base}"
+          "value": "{semantic.colour.text.subtle.base}"
         },
         "font": {
           "value": "{semantic.typography.label.sm.shorthand}"
@@ -196,23 +196,23 @@
       },
       "label": {
         "text": {
-          "value": "{semantic.color.text.default.base}"
+          "value": "{semantic.colour.text.default.base}"
         },
         "required-marker": {
-          "value": "{semantic.color.text.brand.base}"
+          "value": "{semantic.colour.text.brand.base}"
         },
         "disabled": {
-          "value": "{semantic.color.text.disabled}"
+          "value": "{semantic.colour.text.disabled}"
         }
       },
       "hint": {
         "text": {
-          "value": "{semantic.color.text.subtle.base}"
+          "value": "{semantic.colour.text.subtle.base}"
         }
       },
       "error": {
         "text": {
-          "value": "{semantic.color.text.utility-error.base}"
+          "value": "{semantic.colour.text.utility-error.base}"
         },
         "gap": {
           "value": "{semantic.spacing.gap.xs}"

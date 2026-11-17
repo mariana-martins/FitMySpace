@@ -8,16 +8,17 @@ This directory houses the foundational design system components, tokens, and uti
 design-system/
 ├── tokens/          # Tier 1, 2, and 3 JSON token files + Style Dictionary config
 │   ├── tier-1-definitions/    # Core literal values (do not use directly in components)
-│   │   ├── color.json         # Hex codes and raw color palettes
+│   │   ├── colour.json         # Hex codes and raw colour palettes
 │   │   ├── typography.json    # Font families, raw sizes, weights, and letter-spacing
 │   │   ├── spacing.json       # Base 4px scale (4–128px), also used by sizes
-│   │   ├── size.json          # Layout widths (640/768/1024/1280px)
+│   │   ├── size.json          # Layout widths (400/560/640/720/768/1024/1280px)
 │   │   ├── border-width.json  # Raw stroke widths (0/1/2/4px)
 │   │   ├── radii.json         # Raw border-radius pixel values
 │   │   ├── motion.json        # Durations on 80ms steps and easing curves
+│   │   ├── layer.json         # Raw z-index values (100 / 200 / 300)
 │   │   └── shadow.json        # Layered box-shadows tinted with charcoal.900
 │   ├── tier-2-definitions/    # Intent-based semantic aliases (use these in components)
-│   │   ├── color.json         # Semantic backgrounds, text, borders and focus halos (e.g. brand, utility)
+│   │   ├── colour.json         # Semantic backgrounds, text, borders and focus halos (e.g. brand, utility)
 │   │   ├── typography.json    # Display, heading, body, control, label, and caption roles (+ generated shorthand)
 │   │   ├── spacing.json       # Inset (padding), control padding, gap, and section layout spacing
 │   │   ├── size.json          # Control heights, icons, checkbox/radio boxes, switch tracks and knobs, badge heights, click targets, thumbnails, containers, prose width
@@ -25,25 +26,29 @@ design-system/
 │   │   ├── radii.json         # Interactive, container, and surface border radiuses
 │   │   ├── focus.json         # Focus ring colour, width, offset and inset offset
 │   │   ├── motion.json        # Duration (instant → deliberate) and easing (standard, enter, exit, move, linear) roles
+│   │   ├── layer.json         # Stacking layers (overlay, floating, toast)
 │   │   └── shadow.json        # Elevation roles (raised, floating, overlay, sunken)
 │   ├── tier-3-definitions/    # Component-level token mappings
-│   │   ├── alert.json         # Alert background, text and border for each utility color, soft and fill, plus padding and gaps
-│   │   ├── badge.json         # Badge fill and soft colors, sizes, and shapes
+│   │   ├── alert.json         # Alert background, text and border for each utility colour, soft and fill, plus padding and gaps
+│   │   ├── badge.json         # Badge fill and soft colours, sizes, and shapes
 │   │   ├── card.json          # Card surface, border, shadow, media frame, padding and gap
-│   │   ├── breadcrumb.json    # Breadcrumb link, current page and separator colors, sizes, target height
-│   │   ├── button.json        # Button variant colors, sizes, shapes, and icon sizing
-│   │   ├── checkbox.json      # Checkbox box, mark, label, hint and error colors and sizes
-│   │   ├── chip.json          # Chip resting, hover, selected and disabled colors, sizes, edge
-│   │   ├── empty-state.json   # EmptyState icon circle, title and description colors, spacing
-│   │   ├── input.json         # Input + TextField colors, states, halo, sizes, and unit styling
-│   │   ├── link.json          # Link colors, underline widths and offset, motion, standalone sizes
-│   │   ├── pagination.json    # Pagination page, current page and ellipsis colors, sizes, shape
-│   │   ├── radio-group.json   # RadioGroup circle, dot, label, hint and error colors and sizes
-│   │   ├── search-field.json  # SearchField label and hint colors, spacing
+│   │   ├── breadcrumb.json    # Breadcrumb link, current page and separator colours, sizes, target height
+│   │   ├── button.json        # Button variant colours, sizes, shapes, and icon sizing
+│   │   ├── checkbox.json      # Checkbox box, mark, label, hint and error colours and sizes
+│   │   ├── chip.json          # Chip resting, hover, selected and disabled colours, sizes, edge
+│   │   ├── dialog.json        # Dialog surface, edge, shadow, header text, footer divider, spacing and motion
+│   │   ├── empty-state.json   # EmptyState icon circle, title and description colours, spacing
+│   │   ├── input.json         # Input + TextField colours, states, halo, sizes, and unit styling
+│   │   ├── link.json          # Link colours, underline widths and offset, motion, standalone sizes
+│   │   ├── pagination.json    # Pagination page, current page and ellipsis colours, sizes, shape
+│   │   ├── radio-group.json   # RadioGroup circle, dot, label, hint and error colours and sizes
+│   │   ├── search-field.json  # SearchField label and hint colours, spacing
 │   │   ├── select.json        # Select + SelectField trigger, list, option, and group-label styling
-│   │   ├── skeleton.json      # Skeleton pulse colors, shape radii, motion, and text sizes
-│   │   ├── switch.json        # Switch track edge and fill, knob, label, hint and error colors and sizes
-│   │   └── textarea.json      # Textarea + TextareaField colors, states, halo, and sizes
+│   │   ├── skeleton.json      # Skeleton pulse colours, shape radii, motion, and text sizes
+│   │   ├── switch.json        # Switch track edge and fill, knob, label, hint and error colours and sizes
+│   │   ├── textarea.json      # Textarea + TextareaField colours, states, halo, and sizes
+│   │   ├── toast.json         # Toast card surface, text and edge per variant, sizes, spacing and motion
+│   │   └── tooltip.json       # Tooltip bubble surface, text, shadow, shape, max width, padding and motion
 │   ├── sd.config.mjs              # Style Dictionary build config (+ typography shorthand preprocessor)
 │   ├── tokens.contrast.test.ts    # WCAG contrast checks for every colour pair and state
 │   ├── tokens.tiers.test.ts       # Each tier references only the tier below it
@@ -68,8 +73,9 @@ design-system/
 │   └── Changelog.mdx
 ├── foundations/     # One Storybook page per tier-2 token file
 │   ├── border-width/BorderWidth.stories.tsx
-│   ├── color/Colors.stories.tsx
+│   ├── colour/Colours.stories.tsx
 │   ├── focus/Focus.stories.tsx
+│   ├── layer/Layer.stories.tsx
 │   ├── motion/Motion.stories.tsx
 │   ├── radii/Radii.stories.tsx
 │   ├── shadow/Shadow.stories.tsx
@@ -95,6 +101,8 @@ design-system/
 │   ├── Chip/        # Sidebar: Components/Actions/Chip (toggle button, aria-pressed)
 │   │   └── … (same files as Button)
 │   ├── Card/        # Sidebar: Components/Display/Card (Card + CardMedia, asChild via Radix Slot)
+│   │   └── … (same files as Button)
+│   ├── Dialog/      # Sidebar: Components/Overlays/Dialog (Radix Dialog: Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose)
 │   │   └── … (same files as Button)
 │   ├── EmptyState/  # Sidebar: Components/Display/EmptyState (icon, heading, description, actions)
 │   │   └── … (same files as Button)
@@ -122,6 +130,10 @@ design-system/
 │   │   └── … (same files as Button)
 │   ├── TextareaField/ # Sidebar: Components/Forms/TextareaField
 │   │   └── … (same files as Button)
+│   ├── Toast/       # Sidebar: Components/Feedback/Toast (Radix Toast: ToastProvider, ToastViewport, Toast, ToastTitle, ToastDescription, ToastAction, ToastClose)
+│   │   └── … (same files as Button)
+│   ├── Tooltip/     # Sidebar: Components/Overlays/Tooltip (Radix Tooltip: TooltipProvider, Tooltip, TooltipTrigger, TooltipContent)
+│   │   └── … (same files as Button)
 │   └── Typography/  # Sidebar: Components/Typography/{Heading,Text,Label,Caption}
 │       ├── index.tsx
 │       ├── Typography.types.ts
@@ -132,14 +144,16 @@ design-system/
 │       ├── Text.stories.tsx
 │       ├── Label.stories.tsx
 │       └── Caption.stories.tsx
-└── utils/           # Plain helpers shared by components (no React, no styles)
+└── utils/           # Plain helpers shared by components (no state, no styles)
     ├── index.ts
     ├── joinIds.ts   # Joins ids for aria-describedby / aria-labelledby
-    └── joinIds.test.ts
+    ├── joinIds.test.ts
+    ├── utilityVariants.tsx  # Icon and screen-reader label of the four utility variants (Alert, Toast)
+    └── utilityVariants.test.tsx
 ```
 
-- Components are built using CSS Modules with native CSS custom properties (generated by Style Dictionary) and Radix UI primitives (`@radix-ui/react-slot`, `@radix-ui/react-label`, `@radix-ui/react-checkbox`, `@radix-ui/react-radio-group`, `@radix-ui/react-select`, `@radix-ui/react-switch`, `@radix-ui/react-visually-hidden`, and the `@radix-ui/react-use-controllable-state` and `@radix-ui/react-compose-refs` utilities). Interactive form controls with a custom look (`Checkbox`, `RadioGroup`, `Select`, `Switch`) use Radix, which keeps a hidden native input for form submission; text fields stay native `<input>` and `<textarea>`.
-- **Server rendering:** anything without client-only React renders on the server — no `'use client'`, no JavaScript to show it: `Alert`, `Textarea`, `TextareaField`, `Breadcrumb`, `Pagination`, `Link`, `Card`, `EmptyState`, `Skeleton`, `Typography`. `useId` works on the server, and a server component may render a client one (such as Radix `VisuallyHidden`) without becoming one. `Input` and `TextField` are client components because of a ref and a click handler, `SearchField` because of its state, and every Radix control (`Checkbox`, `RadioGroup`, `Select`, `SelectField`, `Switch`) because of its hooks.
+- Components are built using CSS Modules with native CSS custom properties (generated by Style Dictionary) and Radix UI primitives (`@radix-ui/react-slot`, `@radix-ui/react-label`, `@radix-ui/react-checkbox`, `@radix-ui/react-radio-group`, `@radix-ui/react-select`, `@radix-ui/react-switch`, `@radix-ui/react-dialog`, `@radix-ui/react-toast`, `@radix-ui/react-tooltip`, `@radix-ui/react-visually-hidden`, and the `@radix-ui/react-use-controllable-state` and `@radix-ui/react-compose-refs` utilities). Interactive form controls with a custom look (`Checkbox`, `RadioGroup`, `Select`, `Switch`) use Radix, which keeps a hidden native input for form submission; text fields stay native `<input>` and `<textarea>`.
+- **Server rendering:** anything without client-only React renders on the server — no `'use client'`, no JavaScript to show it: `Alert`, `Textarea`, `TextareaField`, `Breadcrumb`, `Pagination`, `Link`, `Card`, `EmptyState`, `Skeleton`, `Typography`. `useId` works on the server, and a server component may render a client one (such as Radix `VisuallyHidden`) without becoming one. `Input` and `TextField` are client components because of a ref and a click handler, `SearchField` because of its state, and every Radix control (`Checkbox`, `RadioGroup`, `Select`, `SelectField`, `Switch`, `Dialog`, `Tooltip`, `Toast`) because of its hooks.
 - Accessibility rules (such as `aria-label` on icon-only `Button`, `htmlFor` on `Label as="label"`, and a required `error` message when `TextField`, `TextareaField`, `SelectField`, `Checkbox` or `Switch` is `invalid`) are enforced at compile time via TypeScript discriminated unions.
 - Design tokens are managed using Style Dictionary.
 
@@ -237,11 +251,11 @@ npm run lint:css
 
 ### Foundation docs helpers
 
-Each tier-2 token file has a Foundation page in `foundations/` (Color, Typography, Spacing, Size, Radii, Border Width, Shadow, Focus, Motion). The pages never keep their own token lists: they read `tokens.docs.json` through `docs/tokens.ts` (`getTokens('semantic', 'spacing')`, `groupTokens(tokens, 2)`, `formatTokenLabel`) and render it with `docs/FoundationPage` (`FoundationPage`, `TokenGroup`, `TokenRow`, `InlineCode`). To link from a story to another Storybook page use `StorybookLink` (a story renders in an iframe, so a plain link would open inside it); in a `docs.description` Markdown string a plain `[text](?path=/docs/...)` link already works. A new token shows up on its page after `npm run tokens:build`; only the prose (group descriptions) is written by hand.
+Each tier-2 token file has a Foundation page in `foundations/` (Colour, Typography, Spacing, Size, Radii, Border Width, Layer, Shadow, Focus, Motion). The pages never keep their own token lists: they read `tokens.docs.json` through `docs/tokens.ts` (`getTokens('semantic', 'spacing')`, `groupTokens(tokens, 2)`, `formatTokenLabel`) and render it with `docs/FoundationPage` (`FoundationPage`, `TokenGroup`, `TokenRow`, `InlineCode`). To link from a story to another Storybook page use `StorybookLink` (a story renders in an iframe, so a plain link would open inside it); in a `docs.description` Markdown string a plain `[text](?path=/docs/...)` link already works. A new token shows up on its page after `npm run tokens:build`; only the prose (group descriptions) is written by hand.
 
 The Introduction page uses `docs/LinkCard` inside a `LinkCardGrid` (a list) to link to each foundation and component page. The title's link stretches over the whole card with `::after`, so the link's name stays the title; the preview is `aria-hidden` and `inert`, so real components can be rendered in it without taking focus.
 
-They use `docs/CopyTokenButton` to copy a token's `var(--…)` reference. It shows a copy icon, switches to a check (copied) or alert (failed) icon, and announces the result to screen readers through a `role="status"` live region. In narrow layouts (the Color swatch cards) use `iconOnly`: render the token name as wrapping text next to a square icon button whose accessible name is "Copy var(--…)". These helpers exist only for Storybook and are not part of the public design-system API.
+They use `docs/CopyTokenButton` to copy a token's `var(--…)` reference. It shows a copy icon, switches to a check (copied) or alert (failed) icon, and announces the result to screen readers through a `role="status"` live region. In narrow layouts (the Colour swatch cards) use `iconOnly`: render the token name as wrapping text next to a square icon button whose accessible name is "Copy var(--…)". These helpers exist only for Storybook and are not part of the public design-system API.
 
 ---
 

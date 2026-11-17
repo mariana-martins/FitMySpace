@@ -232,7 +232,7 @@ export const Disabled: Story = {
               as="p"
               size="sm"
               id={`${fieldId}-error`}
-              style={{ margin: 0, color: 'var(--ds-semantic-color-text-utility-error-base)' }}
+              style={{ margin: 0, color: 'var(--ds-semantic-colour-text-utility-error-base)' }}
             >
               Error: Choose the store where you will collect the order.
             </Text>

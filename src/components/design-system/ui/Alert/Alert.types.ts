@@ -1,11 +1,12 @@
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
 import type { HeadingLevel } from '../Typography';
+import type { UtilityVariant } from '../../utils';
 
 /* ---------------------------------------------------------------
  * Types
  * --------------------------------------------------------------- */
 
-export type AlertVariant = 'information' | 'success' | 'warning' | 'error';
+export type AlertVariant = UtilityVariant;
 export type AlertAppearance = 'soft' | 'fill';
 export type AlertLive = 'polite' | 'assertive' | 'off';
 

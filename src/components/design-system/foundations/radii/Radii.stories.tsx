@@ -61,9 +61,9 @@ export const SemanticRadii: Story = {
                   style={{
                     width: '48px',
                     height: '48px',
-                    backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+                    backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
                     borderRadius: `var(${token.name})`,
-                    border: '1px solid var(--ds-semantic-color-border-subtle-base)',
+                    border: '1px solid var(--ds-semantic-colour-border-subtle-base)',
                   }}
                 />
               }

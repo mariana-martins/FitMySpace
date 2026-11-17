@@ -17,9 +17,9 @@ describe('Foundation tokens — query', () => {
   });
 
   it('matches whole path segments, not name prefixes', () => {
-    // `semantic.color.halo.utility-error` exists, but `utility` is not one of its segments.
-    expect(getTokens('semantic', 'color', 'halo', 'utility')).toEqual([]);
-    expect(getTokens('semantic', 'color', 'halo', 'utility-error')).toHaveLength(1);
+    // `semantic.colour.halo.utility-error` exists, but `utility` is not one of its segments.
+    expect(getTokens('semantic', 'colour', 'halo', 'utility')).toEqual([]);
+    expect(getTokens('semantic', 'colour', 'halo', 'utility-error')).toHaveLength(1);
   });
 
   it('returns nothing for an unknown path', () => {

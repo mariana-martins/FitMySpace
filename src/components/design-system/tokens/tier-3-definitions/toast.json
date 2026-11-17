@@ -1,0 +1,131 @@
+{
+  "component": {
+    "toast": {
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.container.md}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}"
+        }
+      },
+      "shadow": {
+        "value": "{semantic.shadow.floating}",
+        "comment": "The same lift as a floating menu: the toast is above the page, below the tooltip that may explain a button inside it."
+      },
+      "icon": {
+        "size": {
+          "value": "{semantic.size.icon.md}"
+        }
+      },
+      "close": {
+        "size": {
+          "value": "{semantic.size.control.sm}",
+          "comment": "The icon-only Close button: the same 40px square as a small Button, so it clears the 24px target minimum."
+        }
+      },
+      "size": {
+        "min-width": {
+          "value": "{semantic.size.toast.min-width}"
+        },
+        "max-width": {
+          "value": "{semantic.size.toast.max-width}"
+        }
+      },
+      "spacing": {
+        "padding": {
+          "value": "{semantic.spacing.inset.md}"
+        },
+        "icon-gap": {
+          "value": "{semantic.spacing.gap.sm}"
+        },
+        "text-gap": {
+          "value": "{semantic.spacing.gap.xs}"
+        },
+        "action-gap": {
+          "value": "{semantic.spacing.gap.sm}"
+        },
+        "stack-gap": {
+          "value": "{semantic.spacing.gap.sm}"
+        },
+        "screen-margin": {
+          "value": "{semantic.spacing.inset.lg}",
+          "comment": "How far the stack sits from the edge of the screen, matched with the safe-area insets so the home indicator never covers a card."
+        },
+        "screen-margin-narrow": {
+          "value": "{semantic.spacing.inset.md}"
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.slow}",
+          "comment": "The card crosses its own width to reach the screen edge, so it takes the time of a large surface, not of a small element."
+        },
+        "easing-enter": {
+          "value": "{semantic.motion.easing.enter}"
+        },
+        "easing-exit": {
+          "value": "{semantic.motion.easing.exit}"
+        }
+      },
+      "information": {
+        "background": {
+          "value": "{semantic.colour.background.utility-information.soft}",
+          "comment": "The four variants are the Alert's soft appearance: same tier-2 colours, so the same message looks the same whether it sits in the page or floats over it."
+        },
+        "text": {
+          "value": "{semantic.colour.text.utility-information.base}"
+        },
+        "border": {
+          "value": "{semantic.colour.border.utility-information.active}"
+        },
+        "focus-ring": {
+          "value": "{semantic.colour.border.utility-information.active}",
+          "comment": "The card's own edge colour, so a focused card, its action and its Close ring in the colour of the message instead of the brand green."
+        }
+      },
+      "success": {
+        "background": {
+          "value": "{semantic.colour.background.utility-success.soft}"
+        },
+        "text": {
+          "value": "{semantic.colour.text.utility-success.base}"
+        },
+        "border": {
+          "value": "{semantic.colour.border.utility-success.active}"
+        },
+        "focus-ring": {
+          "value": "{semantic.colour.border.utility-success.active}"
+        }
+      },
+      "warning": {
+        "background": {
+          "value": "{semantic.colour.background.utility-warning.soft}"
+        },
+        "text": {
+          "value": "{semantic.colour.text.utility-warning.base}"
+        },
+        "border": {
+          "value": "{semantic.colour.border.utility-warning.active}"
+        },
+        "focus-ring": {
+          "value": "{semantic.colour.border.utility-warning.active}"
+        }
+      },
+      "error": {
+        "background": {
+          "value": "{semantic.colour.background.utility-error.soft}"
+        },
+        "text": {
+          "value": "{semantic.colour.text.utility-error.base}"
+        },
+        "border": {
+          "value": "{semantic.colour.border.utility-error.active}"
+        },
+        "focus-ring": {
+          "value": "{semantic.colour.border.utility-error.active}"
+        }
+      }
+    }
+  }
+}

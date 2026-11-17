@@ -70,7 +70,7 @@ export const Default: Story = {
     variant: {
       control: { type: 'select' },
       options: VARIANTS,
-      description: 'Visual color variant, the same names as Button.',
+      description: 'Visual colour variant, the same names as Button.',
     },
     appearance: {
       control: { type: 'inline-radio' },

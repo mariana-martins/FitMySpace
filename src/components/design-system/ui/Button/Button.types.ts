@@ -21,7 +21,7 @@ export type IconPosition = 'start' | 'end';
  * --------------------------------------------------------------- */
 
 type ButtonBaseProps = {
-  /** Visual color variant. */
+  /** Visual colour variant. */
   variant: ButtonVariant;
   /** Fill or outline appearance. */
   appearance: ButtonAppearance;

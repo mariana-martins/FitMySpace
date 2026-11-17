@@ -24,9 +24,9 @@ type CopyStatus = 'idle' | 'copied' | 'failed';
 const STATUS_RESET_DELAY_MS = 2000;
 
 const backgroundByStatus: Record<CopyStatus, string> = {
-  idle: 'var(--ds-semantic-color-background-default-hover)',
-  copied: 'var(--ds-semantic-color-background-utility-success-base)',
-  failed: 'var(--ds-semantic-color-background-utility-error-base)',
+  idle: 'var(--ds-semantic-colour-background-default-hover)',
+  copied: 'var(--ds-semantic-colour-background-utility-success-base)',
+  failed: 'var(--ds-semantic-colour-background-utility-error-base)',
 };
 
 const iconByStatus: Record<CopyStatus, LucideIcon> = {
@@ -41,9 +41,9 @@ const ICON_ONLY_ICON_SIZE_PX = 14;
 const ICON_ONLY_BUTTON_SIZE = '28px';
 
 const textColourByStatus: Record<CopyStatus, string> = {
-  idle: 'var(--ds-semantic-color-text-subtle-base)',
-  copied: 'var(--ds-semantic-color-text-inverse)',
-  failed: 'var(--ds-semantic-color-text-inverse)',
+  idle: 'var(--ds-semantic-colour-text-subtle-base)',
+  copied: 'var(--ds-semantic-colour-text-inverse)',
+  failed: 'var(--ds-semantic-colour-text-inverse)',
 };
 
 export interface CopyTokenButtonProps {

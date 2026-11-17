@@ -3,12 +3,12 @@
     "search-field": {
       "label": {
         "text": {
-          "value": "{semantic.color.text.default.base}"
+          "value": "{semantic.colour.text.default.base}"
         }
       },
       "hint": {
         "text": {
-          "value": "{semantic.color.text.subtle.base}"
+          "value": "{semantic.colour.text.subtle.base}"
         }
       },
       "gap": {
@@ -21,7 +21,7 @@
       },
       "error": {
         "text": {
-          "value": "{semantic.color.text.utility-error.base}"
+          "value": "{semantic.colour.text.utility-error.base}"
         },
         "gap": {
           "value": "{semantic.spacing.gap.xs}"

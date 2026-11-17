@@ -149,6 +149,33 @@
           "value": "{size.1280}"
         }
       },
+      "dialog": {
+        "sm": {
+          "value": "{size.400}"
+        },
+        "md": {
+          "value": "{size.560}"
+        },
+        "lg": {
+          "value": "{size.720}"
+        }
+      },
+      "tooltip": {
+        "max-width": {
+          "value": "{size.240}",
+          "comment": "A tooltip is one short thought; past this width it wraps instead of stretching across the screen."
+        }
+      },
+      "toast": {
+        "min-width": {
+          "value": "{size.288}",
+          "comment": "The narrowest notification: below this the card is a stub and the stack has no edge to line up on."
+        },
+        "max-width": {
+          "value": "{size.384}",
+          "comment": "Wide enough for a title and a sentence; past it the card competes with the page it interrupts."
+        }
+      },
       "prose": {
         "value": "{size.640}",
         "comment": "Maximum width of running text: about 70 to 80 characters of body copy per line."

@@ -1,0 +1,7 @@
+{
+  "z-index": {
+    "overlay": { "value": "100" },
+    "floating": { "value": "200" },
+    "toast": { "value": "300" }
+  }
+}

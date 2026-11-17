@@ -250,7 +250,7 @@ export const Invalid: Story = {
               as="p"
               size="sm"
               id={`${fieldId}-error`}
-              style={{ margin: 0, color: 'var(--ds-semantic-color-text-utility-error-base)' }}
+              style={{ margin: 0, color: 'var(--ds-semantic-colour-text-utility-error-base)' }}
             >
               Error: Add the gate code, such as 4821.
             </Text>

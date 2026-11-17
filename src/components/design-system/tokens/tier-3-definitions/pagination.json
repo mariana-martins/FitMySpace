@@ -3,25 +3,25 @@
     "pagination": {
       "text": {
         "default": {
-          "value": "{semantic.color.text.default.base}"
+          "value": "{semantic.colour.text.default.base}"
         },
         "current": {
-          "value": "{semantic.color.text.inverse}",
+          "value": "{semantic.colour.text.inverse}",
           "comment": "On the brand fill of the current page."
         },
         "ellipsis": {
-          "value": "{semantic.color.text.subtle.base}"
+          "value": "{semantic.colour.text.subtle.base}"
         }
       },
       "background": {
         "hover": {
-          "value": "{semantic.color.background.default.hover}"
+          "value": "{semantic.colour.background.default.hover}"
         },
         "active": {
-          "value": "{semantic.color.background.default.active}"
+          "value": "{semantic.colour.background.default.active}"
         },
         "current": {
-          "value": "{semantic.color.background.brand.base}"
+          "value": "{semantic.colour.background.brand.base}"
         }
       },
       "shape": {

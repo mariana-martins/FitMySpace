@@ -3,10 +3,10 @@
     "skeleton": {
       "background": {
         "default": {
-          "value": "{semantic.color.background.default.active}"
+          "value": "{semantic.colour.background.default.active}"
         },
         "highlight": {
-          "value": "{semantic.color.background.default.hover}",
+          "value": "{semantic.colour.background.default.hover}",
           "comment": "The lighter step of the pulse."
         }
       },

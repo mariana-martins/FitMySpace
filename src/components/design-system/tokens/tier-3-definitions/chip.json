@@ -15,47 +15,47 @@
       },
       "background": {
         "default": {
-          "value": "{semantic.color.background.default.base}"
+          "value": "{semantic.colour.background.default.base}"
         },
         "hover": {
-          "value": "{semantic.color.background.default.hover}"
+          "value": "{semantic.colour.background.default.hover}"
         },
         "active": {
-          "value": "{semantic.color.background.default.active}"
+          "value": "{semantic.colour.background.default.active}"
         },
         "selected": {
-          "value": "{semantic.color.background.brand.soft}"
+          "value": "{semantic.colour.background.brand.soft}"
         },
         "disabled": {
-          "value": "{semantic.color.background.disabled}"
+          "value": "{semantic.colour.background.disabled}"
         }
       },
       "border": {
         "default": {
-          "value": "{semantic.color.border.default.base}"
+          "value": "{semantic.colour.border.default.base}"
         },
         "hover": {
-          "value": "{semantic.color.border.default.active}"
+          "value": "{semantic.colour.border.default.active}"
         },
         "selected": {
-          "value": "{semantic.color.border.brand.base}"
+          "value": "{semantic.colour.border.brand.base}"
         },
         "selected-hover": {
-          "value": "{semantic.color.border.brand.hover}"
+          "value": "{semantic.colour.border.brand.hover}"
         },
         "disabled": {
-          "value": "{semantic.color.border.disabled}"
+          "value": "{semantic.colour.border.disabled}"
         }
       },
       "text": {
         "default": {
-          "value": "{semantic.color.text.default.base}"
+          "value": "{semantic.colour.text.default.base}"
         },
         "selected": {
-          "value": "{semantic.color.text.brand.active}"
+          "value": "{semantic.colour.text.brand.active}"
         },
         "disabled": {
-          "value": "{semantic.color.text.disabled}"
+          "value": "{semantic.colour.text.disabled}"
         }
       },
       "size": {

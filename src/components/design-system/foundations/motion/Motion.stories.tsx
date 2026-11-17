@@ -73,12 +73,12 @@ const EasingCurve = ({ value }: { value: string }) => {
         width={CURVE_SIZE}
         height={CURVE_SIZE}
         rx="8"
-        fill="var(--ds-semantic-color-background-default-hover)"
+        fill="var(--ds-semantic-colour-background-default-hover)"
       />
       <path
         d={`M 0 ${CURVE_SIZE} C ${startX} ${CURVE_SIZE - startY}, ${endX} ${CURVE_SIZE - endY}, ${CURVE_SIZE} 0`}
         fill="none"
-        stroke="var(--ds-semantic-color-border-brand-base)"
+        stroke="var(--ds-semantic-colour-border-brand-base)"
         strokeWidth="2"
       />
     </svg>
@@ -92,7 +92,7 @@ const DurationBar = ({ value }: { value: string }) => (
       width: '64px',
       height: '8px',
       borderRadius: 'var(--ds-radii-full)',
-      backgroundColor: 'var(--ds-semantic-color-background-default-hover)',
+      backgroundColor: 'var(--ds-semantic-colour-background-default-hover)',
     }}
   >
     <div
@@ -100,7 +100,7 @@ const DurationBar = ({ value }: { value: string }) => (
         width: `${Number.parseFloat(value) / MILLISECONDS_PER_PIXEL}px`,
         height: '100%',
         borderRadius: 'inherit',
-        backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+        backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
       }}
     />
   </div>
@@ -123,9 +123,9 @@ const selectStyle: CSSProperties = {
   padding: '0 12px',
   borderRadius: 'var(--ds-radii-md)',
   border:
-    'var(--ds-semantic-border-width-default) solid var(--ds-semantic-color-border-subtle-base)',
-  backgroundColor: 'var(--ds-semantic-color-background-default-base)',
-  color: 'var(--ds-semantic-color-text-default-base)',
+    'var(--ds-semantic-border-width-default) solid var(--ds-semantic-colour-border-subtle-base)',
+  backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
+  color: 'var(--ds-semantic-colour-text-default-base)',
   font: 'var(--ds-semantic-typography-body-sm-shorthand)',
 };
 
@@ -195,7 +195,7 @@ const MotionDemo = () => {
           position: 'relative',
           height: '48px',
           borderRadius: 'var(--ds-radii-md)',
-          backgroundColor: 'var(--ds-semantic-color-background-default-hover)',
+          backgroundColor: 'var(--ds-semantic-colour-background-default-hover)',
         }}
         aria-hidden="true"
       >
@@ -207,7 +207,7 @@ const MotionDemo = () => {
             width: '32px',
             height: '32px',
             borderRadius: 'var(--ds-radii-sm)',
-            backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+            backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
             transitionProperty: prefersReducedMotion ? 'none' : 'left',
             transitionDuration: `var(${durationName})`,
             transitionTimingFunction: `var(${easingName})`,
@@ -224,7 +224,7 @@ const MotionDemo = () => {
         >
           Move the square
         </Button>
-        <Text size="sm" as="span" style={{ color: 'var(--ds-semantic-color-text-subtle-base)' }}>
+        <Text size="sm" as="span" style={{ color: 'var(--ds-semantic-colour-text-subtle-base)' }}>
           {prefersReducedMotion
             ? 'Your system asks for reduced motion, so the square jumps instead of sliding.'
             : 'The square slides with the duration and easing you picked.'}

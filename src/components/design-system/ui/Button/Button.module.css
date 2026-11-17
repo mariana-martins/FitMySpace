@@ -44,7 +44,7 @@
 /* Focus ring ---------------------------------------------------- */
 
 .button:focus-visible {
-  outline: var(--ds-semantic-focus-ring-width) solid var(--button-focus-ring-color, currentColor);
+  outline: var(--ds-semantic-focus-ring-width) solid var(--button-focus-ring-colour, currentColor);
   outline-offset: var(--ds-semantic-focus-ring-offset);
 }
 
@@ -152,12 +152,12 @@
 }
 
 /* ---------------------------------------------------------------
- * Color variants — Fill
+ * Colour variants — Fill
  * --------------------------------------------------------------- */
 
 /* Primary Fill */
 .fill-primary {
-  --button-focus-ring-color: var(--ds-component-button-primary-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-primary-focus-ring);
   background-color: var(--ds-component-button-primary-fill-background-default);
   border-color: var(--ds-component-button-primary-fill-border-default);
   color: var(--ds-component-button-primary-fill-text-default);
@@ -188,7 +188,7 @@
 
 /* Secondary Fill */
 .fill-secondary {
-  --button-focus-ring-color: var(--ds-component-button-secondary-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-secondary-focus-ring);
   background-color: var(--ds-component-button-secondary-fill-background-default);
   border-color: var(--ds-component-button-secondary-fill-border-default);
   color: var(--ds-component-button-secondary-fill-text-default);
@@ -219,7 +219,7 @@
 
 /* Error Fill */
 .fill-error {
-  --button-focus-ring-color: var(--ds-component-button-error-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-error-focus-ring);
   background-color: var(--ds-component-button-error-fill-background-default);
   border-color: var(--ds-component-button-error-fill-border-default);
   color: var(--ds-component-button-error-fill-text-default);
@@ -250,7 +250,7 @@
 
 /* Success Fill */
 .fill-success {
-  --button-focus-ring-color: var(--ds-component-button-success-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-success-focus-ring);
   background-color: var(--ds-component-button-success-fill-background-default);
   border-color: var(--ds-component-button-success-fill-border-default);
   color: var(--ds-component-button-success-fill-text-default);
@@ -281,7 +281,7 @@
 
 /* Warning Fill */
 .fill-warning {
-  --button-focus-ring-color: var(--ds-component-button-warning-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-warning-focus-ring);
   background-color: var(--ds-component-button-warning-fill-background-default);
   border-color: var(--ds-component-button-warning-fill-border-default);
   color: var(--ds-component-button-warning-fill-text-default);
@@ -312,7 +312,7 @@
 
 /* Information Fill */
 .fill-information {
-  --button-focus-ring-color: var(--ds-component-button-information-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-information-focus-ring);
   background-color: var(--ds-component-button-information-fill-background-default);
   border-color: var(--ds-component-button-information-fill-border-default);
   color: var(--ds-component-button-information-fill-text-default);
@@ -342,12 +342,12 @@
 }
 
 /* ---------------------------------------------------------------
- * Color variants — Outline
+ * Colour variants — Outline
  * --------------------------------------------------------------- */
 
 /* Primary Outline */
 .outline-primary {
-  --button-focus-ring-color: var(--ds-component-button-primary-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-primary-focus-ring);
   background-color: var(--ds-component-button-primary-outline-background-default);
   border-color: var(--ds-component-button-primary-outline-border-default);
   color: var(--ds-component-button-primary-outline-text-default);
@@ -378,7 +378,7 @@
 
 /* Secondary Outline */
 .outline-secondary {
-  --button-focus-ring-color: var(--ds-component-button-secondary-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-secondary-focus-ring);
   background-color: var(--ds-component-button-secondary-outline-background-default);
   border-color: var(--ds-component-button-secondary-outline-border-default);
   color: var(--ds-component-button-secondary-outline-text-default);
@@ -409,7 +409,7 @@
 
 /* Error Outline */
 .outline-error {
-  --button-focus-ring-color: var(--ds-component-button-error-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-error-focus-ring);
   background-color: var(--ds-component-button-error-outline-background-default);
   border-color: var(--ds-component-button-error-outline-border-default);
   color: var(--ds-component-button-error-outline-text-default);
@@ -440,7 +440,7 @@
 
 /* Success Outline */
 .outline-success {
-  --button-focus-ring-color: var(--ds-component-button-success-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-success-focus-ring);
   background-color: var(--ds-component-button-success-outline-background-default);
   border-color: var(--ds-component-button-success-outline-border-default);
   color: var(--ds-component-button-success-outline-text-default);
@@ -471,7 +471,7 @@
 
 /* Warning Outline */
 .outline-warning {
-  --button-focus-ring-color: var(--ds-component-button-warning-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-warning-focus-ring);
   background-color: var(--ds-component-button-warning-outline-background-default);
   border-color: var(--ds-component-button-warning-outline-border-default);
   color: var(--ds-component-button-warning-outline-text-default);
@@ -502,7 +502,7 @@
 
 /* Information Outline */
 .outline-information {
-  --button-focus-ring-color: var(--ds-component-button-information-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-information-focus-ring);
   background-color: var(--ds-component-button-information-outline-background-default);
   border-color: var(--ds-component-button-information-outline-border-default);
   color: var(--ds-component-button-information-outline-text-default);
@@ -532,7 +532,7 @@
 }
 
 /* ---------------------------------------------------------------
- * Color variants — Ghost
+ * Colour variants — Ghost
  *
  * No border or background at rest, so it suits low-emphasis actions
  * and controls inside other components (e.g. an Input endAction).
@@ -541,7 +541,7 @@
 
 /* Primary Ghost */
 .ghost-primary {
-  --button-focus-ring-color: var(--ds-component-button-primary-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-primary-focus-ring);
   background-color: var(--ds-component-button-primary-ghost-background-default);
   border-color: var(--ds-component-button-primary-ghost-border-default);
   color: var(--ds-component-button-primary-ghost-text-default);
@@ -572,7 +572,7 @@
 
 /* Secondary Ghost */
 .ghost-secondary {
-  --button-focus-ring-color: var(--ds-component-button-secondary-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-secondary-focus-ring);
   background-color: var(--ds-component-button-secondary-ghost-background-default);
   border-color: var(--ds-component-button-secondary-ghost-border-default);
   color: var(--ds-component-button-secondary-ghost-text-default);
@@ -603,7 +603,7 @@
 
 /* Error Ghost */
 .ghost-error {
-  --button-focus-ring-color: var(--ds-component-button-error-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-error-focus-ring);
   background-color: var(--ds-component-button-error-ghost-background-default);
   border-color: var(--ds-component-button-error-ghost-border-default);
   color: var(--ds-component-button-error-ghost-text-default);
@@ -634,7 +634,7 @@
 
 /* Success Ghost */
 .ghost-success {
-  --button-focus-ring-color: var(--ds-component-button-success-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-success-focus-ring);
   background-color: var(--ds-component-button-success-ghost-background-default);
   border-color: var(--ds-component-button-success-ghost-border-default);
   color: var(--ds-component-button-success-ghost-text-default);
@@ -665,7 +665,7 @@
 
 /* Warning Ghost */
 .ghost-warning {
-  --button-focus-ring-color: var(--ds-component-button-warning-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-warning-focus-ring);
   background-color: var(--ds-component-button-warning-ghost-background-default);
   border-color: var(--ds-component-button-warning-ghost-border-default);
   color: var(--ds-component-button-warning-ghost-text-default);
@@ -696,7 +696,7 @@
 
 /* Information Ghost */
 .ghost-information {
-  --button-focus-ring-color: var(--ds-component-button-information-focus-ring);
+  --button-focus-ring-colour: var(--ds-component-button-information-focus-ring);
   background-color: var(--ds-component-button-information-ghost-background-default);
   border-color: var(--ds-component-button-information-ghost-border-default);
   color: var(--ds-component-button-information-ghost-text-default);

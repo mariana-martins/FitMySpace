@@ -1,0 +1,43 @@
+{
+  "component": {
+    "tooltip": {
+      "background": {
+        "value": "{semantic.colour.background.inverse}"
+      },
+      "text": {
+        "value": "{semantic.colour.text.inverse}"
+      },
+      "shadow": {
+        "value": "{semantic.shadow.floating}"
+      },
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.surface.md}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}",
+          "comment": "A transparent outline that forced-colors paints as the bubble's edge."
+        }
+      },
+      "max-width": {
+        "value": "{semantic.size.tooltip.max-width}"
+      },
+      "spacing": {
+        "padding": {
+          "value": "{semantic.spacing.inset.sm}"
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.moderate}"
+        },
+        "easing-enter": {
+          "value": "{semantic.motion.easing.enter}"
+        },
+        "easing-exit": {
+          "value": "{semantic.motion.easing.exit}"
+        }
+      }
+    }
+  }
+}

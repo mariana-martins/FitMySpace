@@ -47,7 +47,7 @@ const iconStyle = (token: DocumentedToken) => ({
   display: 'block',
   width: `var(${token.name})`,
   height: `var(${token.name})`,
-  color: 'var(--ds-semantic-color-text-brand-base)',
+  color: 'var(--ds-semantic-colour-text-brand-base)',
 });
 
 const layoutBar = (token: DocumentedToken) => (
@@ -56,7 +56,7 @@ const layoutBar = (token: DocumentedToken) => (
       width: `calc(var(${token.name}) / ${LAYOUT_PREVIEW_SCALE})`,
       height: '24px',
       borderRadius: 'var(--ds-radii-sm)',
-      backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+      backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
     }}
   />
 );
@@ -68,7 +68,7 @@ const previewByGroup: Record<string, (token: DocumentedToken) => ReactNode> = {
         width: '96px',
         height: `var(${token.name})`,
         borderRadius: 'var(--ds-radii-md)',
-        backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+        backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
       }}
     />
   ),
@@ -79,7 +79,7 @@ const previewByGroup: Record<string, (token: DocumentedToken) => ReactNode> = {
         width: '64px',
         height: `var(${token.name})`,
         borderRadius: 'var(--ds-semantic-radii-surface-full)',
-        backgroundColor: 'var(--ds-semantic-color-background-brand-soft)',
+        backgroundColor: 'var(--ds-semantic-colour-background-brand-soft)',
       }}
     />
   ),
@@ -91,7 +91,7 @@ const previewByGroup: Record<string, (token: DocumentedToken) => ReactNode> = {
         boxSizing: 'border-box',
         borderRadius: 'var(--ds-semantic-radii-interactive-sm)',
         border:
-          'var(--ds-semantic-border-width-interactive) solid var(--ds-semantic-color-border-default-base)',
+          'var(--ds-semantic-border-width-interactive) solid var(--ds-semantic-colour-border-default-base)',
       }}
     />
   ),
@@ -101,7 +101,7 @@ const previewByGroup: Record<string, (token: DocumentedToken) => ReactNode> = {
         width: `var(${token.name})`,
         height: `var(${token.name})`,
         borderRadius: 'var(--ds-semantic-radii-interactive-full)',
-        backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+        backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
       }}
     />
   ),
@@ -116,7 +116,7 @@ const previewByGroup: Record<string, (token: DocumentedToken) => ReactNode> = {
         boxSizing: 'border-box',
         borderRadius: 'var(--ds-radii-md)',
         border:
-          'var(--ds-semantic-border-width-default) dashed var(--ds-semantic-color-border-brand-base)',
+          'var(--ds-semantic-border-width-default) dashed var(--ds-semantic-colour-border-brand-base)',
       }}
     >
       <div
@@ -124,7 +124,7 @@ const previewByGroup: Record<string, (token: DocumentedToken) => ReactNode> = {
           width: '12px',
           height: '12px',
           borderRadius: 'var(--ds-radii-full)',
-          backgroundColor: 'var(--ds-semantic-color-background-brand-base)',
+          backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
         }}
       />
     </div>
@@ -138,8 +138,8 @@ const previewByGroup: Record<string, (token: DocumentedToken) => ReactNode> = {
         width: `var(${token.name})`,
         height: `var(${token.name})`,
         borderRadius: 'var(--ds-radii-md)',
-        backgroundColor: 'var(--ds-semantic-color-background-default-hover)',
-        color: 'var(--ds-semantic-color-text-subtle-base)',
+        backgroundColor: 'var(--ds-semantic-colour-background-default-hover)',
+        color: 'var(--ds-semantic-colour-text-subtle-base)',
       }}
     >
       <ImageIcon focusable="false" style={{ width: '40%', height: '40%' }} />

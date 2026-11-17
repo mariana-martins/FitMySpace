@@ -46,9 +46,9 @@ rules below are its essentials.
   Introduction page in `introduction/`, the Changelog page in `changelog/` (renders
   `CHANGELOG.md` through a `?raw` import), Storybook-only helpers in `docs/`,
   plain helpers shared by components in `utils/` (e.g. `joinIds` for
-  `aria-describedby`). Reuse them instead of copying a helper into a component.
+  `aria-describedby`, the utility-variant icons and labels of `Alert` and `Toast`). Reuse them instead of copying a helper into a component.
   Sidebar: `Design System/Components/<Category>/<Name>` with the categories
-  Actions, Forms, Navigation, Display, Feedback and Typography (add one in
+  Actions, Forms, Navigation, Display, Feedback, Overlays and Typography (add one in
   `.storybook/preview.tsx` when needed).
 - **Folder per component** in `ui/`: `Name.tsx`, `Name.types.ts`,
   `Name.module.css`, `Name.test.tsx`, `Name.stories.tsx` and an `index.tsx`
@@ -108,9 +108,16 @@ rules below are its essentials.
   `npm run lint:css`) enforces it and fails on any unknown `--ds-*` token or any
   tier-1 token in design-system CSS; `tokens/tokens.usage.test.ts` checks the
   `--ds-*` names used in `.ts`, `.tsx` and `.mdx` files.
-- **Focus**: new components draw the ring with `semantic.focus.ring.color`,
+- **Focus**: new components draw the ring with `semantic.focus.ring.colour`,
   `width` and `offset` (or `offset-inset` inside clipped or packed containers);
   add a tier-3 `focus-ring` token only when the default colour lacks 3:1 contrast.
+- **Layers**: `z-index` only through `semantic.layer.overlay` (dialog and its scrim),
+  `semantic.layer.floating` (Select list, Tooltip) and `semantic.layer.toast` — never a
+  bare number. Put them only on the root of what Radix renders in a portal (a direct child
+  of `<body>`); anywhere inside the page an ancestor with `transform`, `opacity` or
+  `filter` traps the layer. A component with stacking of its own inside sets
+  `isolation: isolate`, so its inner layers cannot leak out. The multiple-of-4 rule does
+  not apply to `z-index`.
 - **Typography outside components**: use the generated shorthand,
   `font: var(--ds-semantic-typography-<role>-<size>-shorthand)`, plus its
   `letter-spacing` token. Never rebuild a style from separate font tokens.

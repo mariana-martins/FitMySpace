@@ -1,0 +1,176 @@
+{
+  "semantic": {
+    "colour": {
+      "background": {
+        "default": {
+          "base": { "value": "{colour.white}" },
+          "hover": { "value": "{colour.charcoal.50}" },
+          "active": { "value": "{colour.charcoal.100}" }
+        },
+        "brand": {
+          "base": { "value": "{colour.sage.700}" },
+          "hover": { "value": "{colour.sage.800}" },
+          "active": { "value": "{colour.sage.900}" },
+          "soft": {
+            "value": "{colour.sage.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
+          }
+        },
+        "subtle": {
+          "base": {
+            "value": "{colour.charcoal.600}",
+            "comment": "Neutral dark fill (e.g. the secondary Button), not a faint surface: \"subtle\" means low-chroma, not low-contrast."
+          },
+          "hover": { "value": "{colour.charcoal.700}" },
+          "active": { "value": "{colour.charcoal.800}" },
+          "soft": {
+            "value": "{colour.charcoal.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
+          }
+        },
+        "utility-error": {
+          "base": { "value": "{colour.berry.700}" },
+          "hover": { "value": "{colour.berry.800}" },
+          "active": { "value": "{colour.berry.900}" },
+          "soft": {
+            "value": "{colour.berry.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
+          }
+        },
+        "utility-success": {
+          "base": { "value": "{colour.jade.700}" },
+          "hover": { "value": "{colour.jade.800}" },
+          "active": { "value": "{colour.jade.900}" },
+          "soft": {
+            "value": "{colour.jade.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
+          }
+        },
+        "utility-warning": {
+          "base": { "value": "{colour.honey.400}" },
+          "hover": {
+            "value": "{colour.honey.300}",
+            "comment": "Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1."
+          },
+          "active": {
+            "value": "{colour.honey.200}",
+            "comment": "Lighter, not darker: the text is already the darkest honey (900), so darker hover/active backgrounds fail 4.5:1."
+          },
+          "soft": {
+            "value": "{colour.honey.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
+          }
+        },
+        "utility-information": {
+          "base": { "value": "{colour.ocean.700}" },
+          "hover": { "value": "{colour.ocean.800}" },
+          "active": { "value": "{colour.ocean.900}" },
+          "soft": {
+            "value": "{colour.ocean.100}",
+            "comment": "Pale tint for quiet, non-interactive labels such as a soft Badge. Pair it with the matching text colour."
+          }
+        },
+        "transparent": { "value": "{colour.transparent}" },
+        "disabled": { "value": "{colour.charcoal.100}" },
+        "inverse": {
+          "value": "{colour.charcoal.800}",
+          "comment": "The dark side of the palette: a surface for text.inverse, such as a tooltip."
+        },
+        "scrim": {
+          "value": "{colour.charcoal.900-alpha-40}",
+          "comment": "The veil over the page behind an open dialog. It dims whatever is underneath, so it is not a surface colour."
+        }
+      },
+      "text": {
+        "inverse": { "value": "{colour.white}" },
+        "default": {
+          "base": { "value": "{colour.charcoal.900}" },
+          "hover": { "value": "{colour.charcoal.700}" },
+          "active": { "value": "{colour.charcoal.800}" }
+        },
+        "brand": {
+          "base": { "value": "{colour.sage.700}" },
+          "hover": { "value": "{colour.sage.800}" },
+          "active": { "value": "{colour.sage.900}" }
+        },
+        "subtle": {
+          "base": { "value": "{colour.charcoal.600}" },
+          "hover": { "value": "{colour.charcoal.700}" },
+          "active": { "value": "{colour.charcoal.800}" },
+          "disabled": {
+            "value": "{colour.charcoal.500}",
+            "comment": "Secondary text that must stay readable on a disabled field (e.g. an Input unit)."
+          }
+        },
+        "utility-error": {
+          "base": { "value": "{colour.berry.700}" },
+          "hover": { "value": "{colour.berry.800}" },
+          "active": { "value": "{colour.berry.900}" }
+        },
+        "utility-success": {
+          "base": { "value": "{colour.jade.700}" },
+          "hover": { "value": "{colour.jade.800}" },
+          "active": { "value": "{colour.jade.900}" }
+        },
+        "utility-warning": {
+          "base": { "value": "{colour.honey.900}" },
+          "hover": { "value": "{colour.honey.900}" },
+          "active": { "value": "{colour.honey.900}" }
+        },
+        "utility-information": {
+          "base": { "value": "{colour.ocean.700}" },
+          "hover": { "value": "{colour.ocean.800}" },
+          "active": { "value": "{colour.ocean.900}" }
+        },
+        "placeholder": { "value": "{colour.charcoal.400}" },
+        "disabled": { "value": "{colour.charcoal.300}" }
+      },
+      "border": {
+        "default": {
+          "base": { "value": "{colour.charcoal.400}" },
+          "hover": { "value": "{colour.charcoal.500}" },
+          "active": { "value": "{colour.charcoal.600}" }
+        },
+        "brand": {
+          "base": { "value": "{colour.sage.600}" },
+          "hover": { "value": "{colour.sage.700}" },
+          "active": { "value": "{colour.sage.800}" }
+        },
+        "subtle": {
+          "base": {
+            "value": "{colour.charcoal.600}",
+            "comment": "Darker than border.default on purpose: a neutral edge that pairs with background.subtle. For faint dividers use border.disabled."
+          },
+          "hover": { "value": "{colour.charcoal.700}" },
+          "active": { "value": "{colour.charcoal.800}" }
+        },
+        "utility-error": {
+          "base": { "value": "{colour.berry.600}" },
+          "hover": { "value": "{colour.berry.700}" },
+          "active": { "value": "{colour.berry.800}" }
+        },
+        "utility-success": {
+          "base": { "value": "{colour.jade.600}" },
+          "hover": { "value": "{colour.jade.700}" },
+          "active": { "value": "{colour.jade.800}" }
+        },
+        "utility-warning": {
+          "base": { "value": "{colour.honey.600}" },
+          "hover": { "value": "{colour.honey.700}" },
+          "active": { "value": "{colour.honey.800}" }
+        },
+        "utility-information": {
+          "base": { "value": "{colour.ocean.600}" },
+          "hover": { "value": "{colour.ocean.700}" },
+          "active": { "value": "{colour.ocean.800}" }
+        },
+        "transparent": { "value": "{colour.transparent}" },
+        "disabled": { "value": "{colour.charcoal.200}" }
+      },
+      "halo": {
+        "brand": { "value": "{colour.sage.100}" },
+        "utility-error": { "value": "{colour.berry.100}" }
+      }
+    }
+  }
+}

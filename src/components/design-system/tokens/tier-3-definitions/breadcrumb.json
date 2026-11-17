@@ -3,20 +3,20 @@
     "breadcrumb": {
       "text": {
         "default": {
-          "value": "{semantic.color.text.subtle.base}",
+          "value": "{semantic.colour.text.subtle.base}",
           "comment": "Ancestor links stay quiet so the current page and page title stand out."
         },
         "hover": {
-          "value": "{semantic.color.text.brand.base}"
+          "value": "{semantic.colour.text.brand.base}"
         },
         "current": {
-          "value": "{semantic.color.text.default.base}",
+          "value": "{semantic.colour.text.default.base}",
           "comment": "The page the user is on, paired with heavier weight."
         }
       },
       "separator": {
-        "color": {
-          "value": "{semantic.color.border.default.hover}",
+        "colour": {
+          "value": "{semantic.colour.border.default.hover}",
           "comment": "Muted stone divider that still clears 3:1 contrast against the page."
         }
       },

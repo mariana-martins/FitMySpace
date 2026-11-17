@@ -12,108 +12,108 @@
       "primary": {
         "fill": {
           "background": {
-            "value": "{semantic.color.background.brand.base}"
+            "value": "{semantic.colour.background.brand.base}"
           },
           "text": {
-            "value": "{semantic.color.text.inverse}"
+            "value": "{semantic.colour.text.inverse}"
           }
         },
         "soft": {
           "background": {
-            "value": "{semantic.color.background.brand.soft}"
+            "value": "{semantic.colour.background.brand.soft}"
           },
           "text": {
-            "value": "{semantic.color.text.brand.base}"
+            "value": "{semantic.colour.text.brand.base}"
           }
         }
       },
       "secondary": {
         "fill": {
           "background": {
-            "value": "{semantic.color.background.subtle.base}"
+            "value": "{semantic.colour.background.subtle.base}"
           },
           "text": {
-            "value": "{semantic.color.text.inverse}"
+            "value": "{semantic.colour.text.inverse}"
           }
         },
         "soft": {
           "background": {
-            "value": "{semantic.color.background.subtle.soft}"
+            "value": "{semantic.colour.background.subtle.soft}"
           },
           "text": {
-            "value": "{semantic.color.text.default.base}"
+            "value": "{semantic.colour.text.default.base}"
           }
         }
       },
       "error": {
         "fill": {
           "background": {
-            "value": "{semantic.color.background.utility-error.base}"
+            "value": "{semantic.colour.background.utility-error.base}"
           },
           "text": {
-            "value": "{semantic.color.text.inverse}"
+            "value": "{semantic.colour.text.inverse}"
           }
         },
         "soft": {
           "background": {
-            "value": "{semantic.color.background.utility-error.soft}"
+            "value": "{semantic.colour.background.utility-error.soft}"
           },
           "text": {
-            "value": "{semantic.color.text.utility-error.base}"
+            "value": "{semantic.colour.text.utility-error.base}"
           }
         }
       },
       "success": {
         "fill": {
           "background": {
-            "value": "{semantic.color.background.utility-success.base}"
+            "value": "{semantic.colour.background.utility-success.base}"
           },
           "text": {
-            "value": "{semantic.color.text.inverse}"
+            "value": "{semantic.colour.text.inverse}"
           }
         },
         "soft": {
           "background": {
-            "value": "{semantic.color.background.utility-success.soft}"
+            "value": "{semantic.colour.background.utility-success.soft}"
           },
           "text": {
-            "value": "{semantic.color.text.utility-success.base}"
+            "value": "{semantic.colour.text.utility-success.base}"
           }
         }
       },
       "warning": {
         "fill": {
           "background": {
-            "value": "{semantic.color.background.utility-warning.base}"
+            "value": "{semantic.colour.background.utility-warning.base}"
           },
           "text": {
-            "value": "{semantic.color.text.utility-warning.base}"
+            "value": "{semantic.colour.text.utility-warning.base}"
           }
         },
         "soft": {
           "background": {
-            "value": "{semantic.color.background.utility-warning.soft}"
+            "value": "{semantic.colour.background.utility-warning.soft}"
           },
           "text": {
-            "value": "{semantic.color.text.utility-warning.base}"
+            "value": "{semantic.colour.text.utility-warning.base}"
           }
         }
       },
       "information": {
         "fill": {
           "background": {
-            "value": "{semantic.color.background.utility-information.base}"
+            "value": "{semantic.colour.background.utility-information.base}"
           },
           "text": {
-            "value": "{semantic.color.text.inverse}"
+            "value": "{semantic.colour.text.inverse}"
           }
         },
         "soft": {
           "background": {
-            "value": "{semantic.color.background.utility-information.soft}"
+            "value": "{semantic.colour.background.utility-information.soft}"
           },
           "text": {
-            "value": "{semantic.color.text.utility-information.base}"
+            "value": "{semantic.colour.text.utility-information.base}"
           }
         }
       },

@@ -15,7 +15,7 @@ import '@fontsource/dm-sans/400.css';
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <div style={{ color: 'var(--ds-semantic-color-text-default-base)' }}>
+      <div style={{ color: 'var(--ds-semantic-colour-text-default-base)' }}>
         <Story />
       </div>
     ),
@@ -36,18 +36,19 @@ const preview: Preview = {
             'Introduction',
             'Foundation',
             [
-              'Color',
+              'Colour',
               'Typography',
               'Spacing',
               'Size',
               'Radii',
               'Border Width',
               'Shadow',
+              'Layer',
               'Focus',
               'Motion',
             ],
             'Components',
-            ['Actions', 'Forms', 'Navigation', 'Display', 'Feedback', 'Typography'],
+            ['Actions', 'Forms', 'Navigation', 'Display', 'Feedback', 'Overlays', 'Typography'],
             'Patterns',
             'Changelog',
           ],

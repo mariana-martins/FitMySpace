@@ -73,7 +73,7 @@ function relativeLuminance(hexColour: string): number {
   return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
 }
 
-const PAGE_BACKGROUND = 'semantic.color.background.default.base';
+const PAGE_BACKGROUND = 'semantic.colour.background.default.base';
 
 /** Resolves a colour token to hex. A transparent background shows the page behind it. */
 function resolveColour(tokenPath: string): string {
@@ -98,9 +98,9 @@ describe('Focus tokens — contrast', () => {
     // The outset ring sits on the page; the inset ring sits on the item's own
     // background, which is the hover tint when the pointer is also over it.
     ['the page', PAGE_BACKGROUND],
-    ['a hovered item', 'semantic.color.background.default.hover'],
+    ['a hovered item', 'semantic.colour.background.default.hover'],
   ])('default ring stands out from %s', (_description, backgroundToken) => {
-    expect(contrastRatio('semantic.focus.ring.color', backgroundToken)).toBeGreaterThanOrEqual(
+    expect(contrastRatio('semantic.focus.ring.colour', backgroundToken)).toBeGreaterThanOrEqual(
       NON_TEXT_MINIMUM,
     );
   });
@@ -410,7 +410,7 @@ describe('Breadcrumb tokens — contrast', () => {
 
   it('separator stands out from the page', () => {
     expect(
-      contrastRatio('component.breadcrumb.separator.color', PAGE_BACKGROUND),
+      contrastRatio('component.breadcrumb.separator.colour', PAGE_BACKGROUND),
     ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
   });
 });
@@ -477,7 +477,7 @@ describe('EmptyState tokens — contrast', () => {
 
   it('icon stands out from its circle', () => {
     expect(
-      contrastRatio('component.empty-state.icon.color', 'component.empty-state.icon.background'),
+      contrastRatio('component.empty-state.icon.colour', 'component.empty-state.icon.background'),
     ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
   });
 });
@@ -604,4 +604,130 @@ describe('Alert tokens — contrast', () => {
       expect(ratio).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
     },
   );
+});
+
+/* ===============================================================
+ * INVERSE SURFACE
+ * =============================================================== */
+
+describe('Inverse surface tokens — contrast', () => {
+  // A reversed block (the Tooltip, and anything else that paints
+  // `background.inverse`) carries `text.inverse`, so the pair is
+  // checked here rather than once per component.
+  it('inverse text is readable on the inverse background', () => {
+    expect(
+      contrastRatio('semantic.colour.text.inverse', 'semantic.colour.background.inverse'),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * DIALOG
+ * =============================================================== */
+
+const DIALOG_BACKGROUND = 'component.dialog.background';
+
+describe('Dialog tokens — contrast', () => {
+  it.each([
+    ['title', 'component.dialog.title.text'],
+    ['description', 'component.dialog.description.text'],
+  ])('%s is readable on the dialog', (_description, textToken) => {
+    expect(contrastRatio(textToken, DIALOG_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  // The Close button is the ghost secondary Button, so its icon follows that
+  // text colour — on the dialog, not on the page it covers.
+  it('close icon stands out from the dialog', () => {
+    expect(
+      contrastRatio('component.button.secondary.ghost.text.default', DIALOG_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it('footer divider separates the actions from the body', () => {
+    expect(
+      contrastRatio('component.dialog.footer.border', DIALOG_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it('the dialog edge stands out from its own surface', () => {
+    expect(contrastRatio('component.dialog.border', DIALOG_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+});
+
+/* ===============================================================
+ * TOOLTIP
+ * =============================================================== */
+
+describe('Tooltip tokens — contrast', () => {
+  // The bubble paints the component tokens, so the pair is checked on them: the
+  // inverse pair above covers the semantics, this one covers the component.
+  it('text is readable on the bubble', () => {
+    expect(
+      contrastRatio('component.tooltip.text', 'component.tooltip.background'),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * TOAST
+ * =============================================================== */
+
+const TOAST_VARIANTS = ['information', 'success', 'warning', 'error'];
+
+describe('Toast tokens — contrast', () => {
+  it.each(TOAST_VARIANTS)('%s text is readable on its card', (variant) => {
+    expect(
+      contrastRatio(`component.toast.${variant}.text`, `component.toast.${variant}.background`),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  // The card floats over anything, so its edge has to read against its own
+  // surface as well as against the page it covers.
+  it.each(TOAST_VARIANTS)('%s edge stands out from its card', (variant) => {
+    expect(
+      contrastRatio(`component.toast.${variant}.border`, `component.toast.${variant}.background`),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each(TOAST_VARIANTS)('%s edge stands out from the page behind it', (variant) => {
+    expect(
+      contrastRatio(`component.toast.${variant}.border`, PAGE_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  // The Close in the corner is the ghost secondary Button, drawn on the tinted card.
+  it.each(TOAST_VARIANTS)('%s close icon stands out from its card', (variant) => {
+    expect(
+      contrastRatio(
+        'component.button.secondary.ghost.text.default',
+        `component.toast.${variant}.background`,
+      ),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  // The ring is the variant's own colour: around the card it sits on the page, around
+  // the action and the Close it sits on the card.
+  it.each(TOAST_VARIANTS)('%s focus ring stands out from its card', (variant) => {
+    expect(
+      contrastRatio(
+        `component.toast.${variant}.focus-ring`,
+        `component.toast.${variant}.background`,
+      ),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it.each(TOAST_VARIANTS)('%s focus ring stands out from the page', (variant) => {
+    expect(
+      contrastRatio(`component.toast.${variant}.focus-ring`, PAGE_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  // The action fills with the variant's edge on hover, so its text reverses.
+  it.each(TOAST_VARIANTS)('%s action is readable while hovered', (variant) => {
+    expect(
+      contrastRatio('semantic.colour.text.inverse', `component.toast.${variant}.border`),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
 });

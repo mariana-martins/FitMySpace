@@ -23,10 +23,10 @@
 /* Trigger (the visible box) --------------------------------------- */
 
 .trigger {
-  --select-border-color: var(--ds-component-select-border-default);
-  --select-halo-color: transparent;
+  --select-border-colour: var(--ds-component-select-border-default);
+  --select-halo-colour: transparent;
   --select-focus-edge: 0px;
-  --select-icon-color: var(--ds-component-select-icon-default);
+  --select-icon-colour: var(--ds-component-select-icon-default);
   --select-resting-shadow: var(--ds-component-select-shape-shadow);
 
   display: flex;
@@ -44,11 +44,11 @@
   color: var(--ds-component-select-text-default);
   text-align: start;
   background-color: var(--ds-component-select-background-default);
-  border: var(--ds-component-select-shape-border-width) solid var(--select-border-color);
+  border: var(--ds-component-select-shape-border-width) solid var(--select-border-colour);
   border-radius: var(--ds-component-select-shape-radii);
   box-shadow:
-    inset 0 0 0 var(--select-focus-edge) var(--select-border-color),
-    0 0 0 var(--ds-component-select-shape-halo-width) var(--select-halo-color),
+    inset 0 0 0 var(--select-focus-edge) var(--select-border-colour),
+    0 0 0 var(--ds-component-select-shape-halo-width) var(--select-halo-colour),
     var(--select-resting-shadow);
   outline: none;
   cursor: pointer;
@@ -76,7 +76,7 @@
   flex-shrink: 0;
   inline-size: var(--select-icon-size);
   block-size: var(--select-icon-size);
-  color: var(--select-icon-color);
+  color: var(--select-icon-colour);
   transition-property: color, transform;
   transition-duration: var(--ds-semantic-motion-duration-fast);
   transition-timing-function: var(--ds-semantic-motion-easing-standard);
@@ -95,7 +95,7 @@
 
 @media (hover: hover) {
   .trigger:hover:not([data-disabled]):not([data-invalid]):not([data-state='open']) {
-    --select-border-color: var(--ds-component-select-border-hover);
+    --select-border-colour: var(--ds-component-select-border-hover);
   }
 }
 
@@ -103,29 +103,29 @@
 
 .trigger:focus-visible,
 .trigger[data-state='open'] {
-  --select-border-color: var(--ds-component-select-border-focus);
-  --select-halo-color: var(--ds-component-select-halo-focus);
+  --select-border-colour: var(--ds-component-select-border-focus);
+  --select-halo-colour: var(--ds-component-select-halo-focus);
   --select-focus-edge: var(--ds-component-select-shape-border-width);
-  --select-icon-color: var(--ds-component-select-icon-focus);
+  --select-icon-colour: var(--ds-component-select-icon-focus);
 }
 
 /* Invalid --------------------------------------------------------- */
 
 .trigger[data-invalid] {
-  --select-border-color: var(--ds-component-select-border-invalid);
-  --select-icon-color: var(--ds-component-select-icon-invalid);
+  --select-border-colour: var(--ds-component-select-border-invalid);
+  --select-icon-colour: var(--ds-component-select-icon-invalid);
 }
 
 .trigger[data-invalid]:focus-visible,
 .trigger[data-invalid][data-state='open'] {
-  --select-halo-color: var(--ds-component-select-halo-invalid);
+  --select-halo-colour: var(--ds-component-select-halo-invalid);
 }
 
 /* Disabled -------------------------------------------------------- */
 
 .trigger[data-disabled] {
-  --select-border-color: var(--ds-component-select-border-disabled);
-  --select-icon-color: var(--ds-component-select-text-disabled);
+  --select-border-colour: var(--ds-component-select-border-disabled);
+  --select-icon-colour: var(--ds-component-select-text-disabled);
   --select-resting-shadow: 0 0 transparent;
   color: var(--ds-component-select-text-disabled);
   background-color: var(--ds-component-select-background-disabled);
@@ -142,6 +142,9 @@
 
 .content {
   box-sizing: border-box;
+  /* Radix renders the list in a portal, as a direct child of <body>. The layer keeps it
+     above an open dialog, so a select inside a dialog is still readable. */
+  z-index: var(--ds-semantic-layer-floating);
   min-inline-size: var(--radix-select-trigger-width);
   max-block-size: var(--radix-select-content-available-height);
   overflow: hidden;
@@ -201,7 +204,7 @@
 }
 
 .item:focus-visible {
-  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-color);
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
   outline-offset: var(--ds-semantic-focus-ring-offset-inset);
 }
 

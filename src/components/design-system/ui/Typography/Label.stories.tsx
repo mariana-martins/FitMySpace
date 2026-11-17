@@ -71,7 +71,7 @@ export const FormExample: Story = {
         aria-describedby="email-hint"
         style={{
           padding: '0.5rem 0.75rem',
-          border: '1px solid var(--ds-semantic-color-border-default-base)',
+          border: '1px solid var(--ds-semantic-colour-border-default-base)',
           borderRadius: 'var(--ds-semantic-radii-interactive-sm)',
           fontFamily: 'var(--ds-font-family-sans)',
           fontSize: 'var(--ds-font-size-16)',
