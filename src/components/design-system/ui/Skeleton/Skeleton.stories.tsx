@@ -27,7 +27,9 @@ const meta = {
           '- **3 shapes** — `text` (one or more lines, sized like `Text` sm / md / lg), `rectangle` (images and blocks) and `circle` (avatars and icons).\n' +
           '- **Text rhythm** — a text bar is one line tall at the size it replaces, so stacked lines keep the spacing of real text; the last of several lines is shorter.\n' +
           '- **Calm motion** — a slow pulse between two pale neutrals; it stops with `prefers-reduced-motion`.\n' +
-          '- **Hidden from assistive technology** — always `aria-hidden`; Windows High Contrast keeps an outline.',
+          '- **Hidden from assistive technology** — always `aria-hidden`; Windows High Contrast keeps an outline.\n\n' +
+          '### Patterns\n' +
+          '- [Results States](?path=/docs/design-system-patterns-results-states--docs) — loading, products, no products and a failed request in the same place.',
       },
     },
   },

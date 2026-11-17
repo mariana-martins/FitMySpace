@@ -121,9 +121,11 @@ rules below are its essentials.
 - **Patterns** (`patterns/<Name>/<Name>.stories.tsx`, sidebar `Design System/Patterns/<Name>`):
   recipes that compose several design-system components into a piece of a page (search page,
   product card). Stories only: no new component, no CSS Module, layout in inline `style`,
-  sample data local to the file (shared pictures in `docs/sampleImages.ts`), no fetch. The app
+  sample data local to the file, or shared from `docs/` when several patterns use it
+  (`docs/sampleImages.ts`, `docs/sampleProducts.tsx` with `SampleProductGrid`), no fetch. The app
   owns the state (URL, queries), and the pattern says where it goes. The meta description
-  follows the same sections: the problem, `### When to Use` (with what it is not for),
+  follows the same sections: the problem, `### What It Solves` (what goes wrong without it),
+  `### When to Use` (with what it is not for),
   `### Anatomy`, `### Accessibility` and `### In the App`. A component page links to its
   patterns under `### Patterns`. Add each new pattern to `patterns/Overview.stories.tsx`. A
   pattern that needs a missing component waits for it instead of drawing its own.

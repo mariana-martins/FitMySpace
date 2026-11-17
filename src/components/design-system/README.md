@@ -69,6 +69,8 @@ design-system/
 │   ├── LinkCard.module.css
 │   ├── LinkCard.test.tsx
 │   ├── sampleImages.ts            # Inline SVG pictures for stories and patterns (SHELF_IMAGE)
+│   ├── sampleProducts.tsx         # Sample catalogue + SampleProductGrid for the search patterns
+│   ├── sampleProducts.test.tsx
 │   ├── tokens.ts                  # Reads tokens.docs.json: getTokens, groupTokens, labels
 │   └── tokens.test.ts
 ├── introduction/    # Storybook landing page: token architecture, linked foundation and component cards
@@ -90,13 +92,16 @@ design-system/
 │   ├── Overview.stories.tsx       # Sidebar: Patterns/Overview (what a pattern is, the rules, every pattern)
 │   ├── DeleteConfirmation/DeleteConfirmation.stories.tsx
 │   ├── DialogForm/DialogForm.stories.tsx
+│   ├── FilterBar/FilterBar.stories.tsx
 │   ├── FormValidation/FormValidation.stories.tsx
 │   ├── MainNavigation/MainNavigation.stories.tsx
 │   ├── PaginatedResults/PaginatedResults.stories.tsx
 │   ├── Preferences/Preferences.stories.tsx
 │   ├── ProductCard/ProductCard.stories.tsx
 │   ├── ProductPageHeader/ProductPageHeader.stories.tsx
-│   └── ProductSearch/ProductSearch.stories.tsx
+│   ├── ProductSearch/ProductSearch.stories.tsx
+│   ├── ResultsStates/ResultsStates.stories.tsx
+│   └── SearchResultsPage/SearchResultsPage.stories.tsx
 ├── ui/              # Components only (colocated with stories)
 │   ├── Alert/       # Sidebar: Components/Feedback/Alert (live region: role="status", "alert" or none, set by live)
 │   │   └── … (same files as Button)

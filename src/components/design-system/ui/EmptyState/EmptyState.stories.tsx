@@ -25,7 +25,10 @@ const meta = {
           '### Key Features\n' +
           '- **Calm by default** — a search icon with a cross in a pale sage circle; pass `icon` with another name from the `DS_ICONS` registry. The icon is decorative and hidden from screen readers.\n' +
           '- **Readable** — the description keeps to a comfortable line length and the column centres in any container.\n' +
-          '- **Server-rendered** — no client hooks.',
+          '- **Server-rendered** — no client hooks.\n\n' +
+          '### Patterns\n' +
+          '- [Results States](?path=/docs/design-system-patterns-results-states--docs) — loading, products, no products and a failed request in the same place.\n' +
+          '- [Search Results Page](?path=/docs/design-system-patterns-search-results-page--docs) — the whole page: search, filters, one summary line, the products and the pages.',
       },
     },
   },

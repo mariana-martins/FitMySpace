@@ -5,12 +5,14 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { SearchField } from '../ui/SearchField';
 import { expect, within } from 'storybook/test';
 import type { CSSProperties } from 'react';
+import { Skeleton } from '../ui/Skeleton';
 import { Text } from '../ui/Typography';
 import { Switch } from '../ui/Switch';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Alert } from '../ui/Alert';
 import { Link } from '../ui/Link';
+import { Chip } from '../ui/Chip';
 import { Card } from '../ui/Card';
 
 /* ---------------------------------------------------------------
@@ -100,6 +102,34 @@ const PatternGrid = () => (
     />
     <LinkCard
       headingLevel={4}
+      path="/docs/design-system-patterns-filter-bar--docs"
+      title="Filter Bar"
+      description="Room filters, a sort order and a count that follows them, and the same controls in a dialog on a phone."
+      preview={
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <Chip size="sm" selected>
+            Kitchen
+          </Chip>
+          <Chip size="sm" selected={false}>
+            Bathroom
+          </Chip>
+        </div>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-results-states--docs"
+      title="Results States"
+      description="Loading, products, no products and a failed request: what each one shows and says."
+      preview={
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', inlineSize: '160px' }}>
+          <Skeleton shape="rectangle" height="48px" />
+          <Skeleton size="sm" width="70%" />
+        </div>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
       path="/docs/design-system-patterns-paginated-results--docs"
       title="Paginated Results"
       description="A long list split into pages, with the focus taken back to the top of each new page."
@@ -115,6 +145,22 @@ const PatternGrid = () => (
             <PaginationLink page={3} href="#page-3" />
           </PaginationItem>
         </Pagination>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-search-results-page--docs"
+      title="Search Results Page"
+      description="The whole page: search, filters, one summary line, the products and the pages, sharing one state."
+      preview={
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          <Text size="sm" as="span">
+            <strong>Find storage that fits</strong>
+          </Text>
+          <Text size="sm" as="span">
+            3 products for “shelf”
+          </Text>
+        </div>
       }
     />
     <LinkCard

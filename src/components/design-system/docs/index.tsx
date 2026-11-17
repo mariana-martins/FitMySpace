@@ -15,4 +15,6 @@ export { LinkCard, LinkCardGrid } from './LinkCard';
 export type { LinkCardGridProps, LinkCardProps } from './LinkCard';
 export { LabelledField } from './LabelledField';
 export { SHELF_IMAGE } from './sampleImages';
+export { formatPrice, SAMPLE_PRODUCTS, SAMPLE_ROOMS, SampleProductGrid } from './sampleProducts';
+export type { SampleProduct, SampleProductGridProps, SampleRoom } from './sampleProducts';
 export type { LabelledFieldProps } from './LabelledField';

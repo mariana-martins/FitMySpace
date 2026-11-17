@@ -31,7 +31,8 @@ const meta = {
           '- **Errors** — the `TextField` pattern: TypeScript requires an `error` message whenever `invalid` is `true`; the field gets `aria-invalid` and the error style, and the message, prefixed with a screen-reader-only "Error:", is linked after the hint.\n' +
           '- **3 sizes** — `sm`, `md` and `lg`, the `Input` and `Button` heights, so the field and its button always line up.\n\n' +
           '### Patterns\n' +
-          '- [Product Search](?path=/docs/design-system-patterns-product-search--docs) — the field above the products it finds, and what the page says when it finds some, none, or cannot search.',
+          '- [Product Search](?path=/docs/design-system-patterns-product-search--docs) — the field above the products it finds, and what the page says when it finds some, none, or cannot search.\n' +
+          '- [Search Results Page](?path=/docs/design-system-patterns-search-results-page--docs) — the whole page: search, filters, one summary line, the products and the pages.',
       },
     },
   },

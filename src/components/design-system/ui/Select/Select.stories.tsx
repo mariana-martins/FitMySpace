@@ -38,7 +38,9 @@ const meta = {
           '- **Same box as Input** — border, focus halo, sizes (40/48/56px) and colours match `Input`, so the two line up in a form.\n' +
           '- **Placeholder** — shown in the placeholder colour until a value is chosen.\n' +
           '- **Decorative icons** — the chevron and `iconStart` are hidden from screen readers.\n' +
-          '- **Pass-through** — state props (`value`, `onValueChange`, `name`, `required`…) go to the Radix root and the rest (`id`, `aria-*`…) to the trigger; `ref` points to the trigger `<button>`.',
+          '- **Pass-through** — state props (`value`, `onValueChange`, `name`, `required`…) go to the Radix root and the rest (`id`, `aria-*`…) to the trigger; `ref` points to the trigger `<button>`.\n\n' +
+          '### Patterns\n' +
+          '- [Filter Bar](?path=/docs/design-system-patterns-filter-bar--docs) — room filters, a sort order and a count, inline or in a dialog on a phone.',
       },
     },
   },
