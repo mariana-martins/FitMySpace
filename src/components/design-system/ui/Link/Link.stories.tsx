@@ -109,7 +109,15 @@ export const Default: Story = {
 export const AllAppearances: Story = {
   name: 'Inline and Standalone',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '32rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '32rem',
+        maxWidth: '100%',
+      }}
+    >
       <Text style={{ margin: 0 }}>
         Need a hand? Read our <Link href="#returns">returns policy</Link> or{' '}
         <Link href="#contact">contact the team</Link> before you order.

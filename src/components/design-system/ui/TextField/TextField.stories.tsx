@@ -97,7 +97,7 @@ export const Default: Story = {
     },
   },
   render: (args) => (
-    <div style={{ maxWidth: '22rem' }}>
+    <div style={{ width: '22rem', maxWidth: '100%' }}>
       <TextField {...args} />
     </div>
   ),
@@ -138,7 +138,15 @@ export const DefaultInteraction: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <TextField size="lg" label="Large" placeholder="56px field" />
       <TextField size="md" label="Medium" placeholder="48px field" />
       <TextField size="sm" label="Small" placeholder="40px field" />
@@ -169,7 +177,15 @@ export const AllSizes: Story = {
 export const WithIcon: Story = {
   name: 'With Icons',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <TextField
         label="Email"
         type="email"
@@ -204,7 +220,7 @@ export const WithIcon: Story = {
 
 export const Required: Story = {
   render: () => (
-    <div style={{ maxWidth: '22rem' }}>
+    <div style={{ width: '22rem', maxWidth: '100%' }}>
       <TextField label="Room width" inputMode="decimal" unit="cm" required />
     </div>
   ),
@@ -229,7 +245,7 @@ export const Required: Story = {
 export const WithError: Story = {
   name: 'Error State',
   render: () => (
-    <div style={{ maxWidth: '22rem' }}>
+    <div style={{ width: '22rem', maxWidth: '100%' }}>
       <TextField
         label="Room depth"
         inputMode="decimal"
@@ -269,7 +285,15 @@ export const WithError: Story = {
 export const Disabled: Story = {
   name: 'Disabled and Read-only',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <TextField
         label="Ceiling height"
         unit="cm"
@@ -301,7 +325,15 @@ export const Disabled: Story = {
 export const PseudoStates: Story = {
   name: 'Interactive Pseudo States',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <TextField label="Default" placeholder="e.g. Living room" />
       <TextField label="Hover" placeholder="e.g. Living room" inputClassName="pseudo-hover" />
       <TextField
@@ -366,7 +398,13 @@ function RoomDimensionsForm() {
       noValidate
       onSubmit={handleSubmit}
       aria-label="Room dimensions"
-      style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '22rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
     >
       <Text size="sm" style={{ margin: 0 }}>
         Fields marked with an asterisk (*) are required.

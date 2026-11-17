@@ -116,7 +116,15 @@ export const AllShapes: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '20rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '20rem',
+        maxWidth: '100%',
+      }}
+    >
       <Skeleton size="lg" lines={2} />
       <Skeleton size="md" lines={2} />
       <Skeleton size="sm" lines={2} />
@@ -142,11 +150,12 @@ export const AllSizes: Story = {
 export const LoadingCards: Story = {
   name: 'Loading Product Cards (A11y)',
   render: () => (
-    <section aria-label="Products" aria-busy="true">
+    <section aria-label="Products" aria-busy="true" style={{ width: '100%' }}>
       <VisuallyHidden role="status">Loading products…</VisuallyHidden>
       <ul
         style={{
           display: 'grid',
+          width: '100%',
           gridTemplateColumns: 'repeat(auto-fill, minmax(14rem, 1fr))',
           gap: '1.5rem',
           margin: 0,

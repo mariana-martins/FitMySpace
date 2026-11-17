@@ -235,7 +235,15 @@ export const States: Story = {
 export const WithError: Story = {
   name: 'Error State',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <Checkbox
         label="I accept the terms of sale"
         hint="Returns are free within 30 days."
@@ -471,7 +479,13 @@ function CheckoutConsentForm() {
       noValidate
       onSubmit={handleSubmit}
       aria-label="Checkout"
-      style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '22rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
     >
       <Text size="sm" style={{ margin: 0 }}>
         Fields marked with an asterisk (*) are required.

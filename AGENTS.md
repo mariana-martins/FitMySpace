@@ -117,7 +117,11 @@ rules below are its essentials.
     (`...Name`), name it 'Name: Interaction (Test Only)', add
     `tags: ['!dev', '!autodocs']` and give it the interactive `play`. It is hidden
     from the sidebar and the docs page, and `npm run test:storybook` still runs it;
-  - layouts use inline `style`, not meta decorators or shared style constants.
+  - layouts use inline `style`, not meta decorators or shared style constants;
+  - the global decorator in `.storybook/preview.tsx` centres every story on both axes. A
+    story that should fill the width (a grid of cards) sets `width: '100%'` on its root; one
+    that should stay narrow sets `width` with `maxWidth: '100%'`, not `maxWidth` alone, which
+    collapses to its content. Full pages set `layout: 'fullscreen'` and are not centred.
 - **Patterns** (`patterns/<Name>/<Name>.stories.tsx`, sidebar `Design System/Patterns/<Name>`):
   recipes that compose several design-system components into a piece of a page (search page,
   product card). Stories only: no new component, no CSS Module, layout in inline `style`,

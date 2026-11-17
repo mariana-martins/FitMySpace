@@ -397,7 +397,13 @@ function DeliveryForm() {
       noValidate
       onSubmit={handleSubmit}
       aria-label="Checkout"
-      style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '22rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
     >
       <Text size="sm" style={{ margin: 0 }}>
         Fields marked with an asterisk (*) are required.

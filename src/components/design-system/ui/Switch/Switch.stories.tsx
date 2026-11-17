@@ -223,7 +223,15 @@ export const States: Story = {
 export const WithError: Story = {
   name: 'Error State',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '24rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '24rem',
+        maxWidth: '100%',
+      }}
+    >
       <Switch
         label="Send me order updates by SMS"
         hint="Message and data rates may apply."
@@ -265,7 +273,15 @@ export const WithError: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '24rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '24rem',
+        maxWidth: '100%',
+      }}
+    >
       <Switch label="Price alerts" disabled hint="Available once you sign in." />
       <Switch label="Order updates" defaultChecked disabled />
     </div>

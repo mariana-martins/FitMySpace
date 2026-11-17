@@ -87,7 +87,7 @@ export const Default: Story = {
     },
   },
   render: (args) => (
-    <div style={{ maxWidth: '36rem' }}>
+    <div style={{ width: '36rem', maxWidth: '100%' }}>
       <SearchField {...args} />
     </div>
   ),
@@ -127,7 +127,15 @@ export const DefaultInteraction: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '36rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '36rem',
+        maxWidth: '100%',
+      }}
+    >
       <SearchField size="lg" label="Large" defaultValue="bamboo" />
       <SearchField size="md" label="Medium" defaultValue="bamboo" />
       <SearchField size="sm" label="Small" defaultValue="bamboo" />
@@ -153,7 +161,7 @@ export const AllSizes: Story = {
 export const WithError: Story = {
   name: 'Error State',
   render: () => (
-    <div style={{ maxWidth: '36rem' }}>
+    <div style={{ width: '36rem', maxWidth: '100%' }}>
       <SearchField
         label="Search products"
         hint="Search by product, room or store."
@@ -191,7 +199,15 @@ export const WithError: Story = {
 export const PseudoStates: Story = {
   name: 'Interactive Pseudo States',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '36rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '36rem',
+        maxWidth: '100%',
+      }}
+    >
       <SearchField label="Empty" />
       <SearchField label="With text" defaultValue="oak shelf" />
       <SearchField label="Focus" defaultValue="oak shelf" className="pseudo-focus-within" />

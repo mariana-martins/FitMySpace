@@ -69,7 +69,7 @@ export const Default: Story = {
     },
   },
   render: (args) => (
-    <div style={{ maxWidth: '20rem' }}>
+    <div style={{ width: '20rem', maxWidth: '100%' }}>
       <Card {...args}>
         <Heading level={3} size="sm">
           Bathroom

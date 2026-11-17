@@ -103,7 +103,7 @@ export const Default: Story = {
     },
   },
   render: (args) => (
-    <div style={{ maxWidth: '22rem' }}>
+    <div style={{ width: '22rem', maxWidth: '100%' }}>
       <LabelledField label="Store" size={args.size}>
         {(fieldId) => <Select {...args} id={fieldId} />}
       </LabelledField>
@@ -146,7 +146,15 @@ export const DefaultInteraction: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Large" size="lg">
         {(fieldId) => (
           <Select id={fieldId} size="lg" placeholder="56px field">
@@ -195,7 +203,7 @@ export const AllSizes: Story = {
 export const WithIcon: Story = {
   name: 'With Icons',
   render: () => (
-    <div style={{ maxWidth: '22rem' }}>
+    <div style={{ width: '22rem', maxWidth: '100%' }}>
       <LabelledField label="Store">
         {(fieldId) => (
           <Select id={fieldId} placeholder="Choose a store" iconStart="store">
@@ -225,7 +233,15 @@ export const WithIcon: Story = {
 export const Disabled: Story = {
   name: 'Disabled and Invalid',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Delivery store">
         {(fieldId) => (
           <Select id={fieldId} defaultValue="ikea" disabled>
@@ -283,7 +299,15 @@ export const Disabled: Story = {
 export const PseudoStates: Story = {
   name: 'Interactive Pseudo States',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Default">
         {(fieldId) => (
           <Select id={fieldId} placeholder="Choose a store">
@@ -345,7 +369,15 @@ export const PseudoStates: Story = {
 export const SortMenu: Story = {
   name: 'Sort Menu (A11y)',
   render: () => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', maxWidth: '24rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.75rem',
+        width: '24rem',
+        maxWidth: '100%',
+      }}
+    >
       <Label as="label" htmlFor="sort-results" size="sm" style={{ whiteSpace: 'nowrap' }}>
         Sort by
       </Label>
