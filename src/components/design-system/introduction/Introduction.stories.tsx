@@ -12,6 +12,7 @@ import { SearchField } from '../ui/SearchField';
 import { expect, within } from 'storybook/test';
 import { EmptyState } from '../ui/EmptyState';
 import { TextField } from '../ui/TextField';
+import { DS_ICONS, Icon } from '../ui/Icon';
 import { Skeleton } from '../ui/Skeleton';
 import { Checkbox } from '../ui/Checkbox';
 import { SelectItem } from '../ui/Select';
@@ -913,6 +914,19 @@ const ComponentGrid = () => (
         title="EmptyState"
         description="What to show when a list has nothing in it: what happened and what to do next."
         preview={<EmptyState title="No products found" headingLevel={5} style={{ padding: 0 }} />}
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-display-icon--docs"
+        title="Icon"
+        description="The box every icon is drawn in: centred, never squeezed, and quiet unless the icon is the only thing that says it."
+        preview={
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Icon size="md">{DS_ICONS['map-pin'].icon}</Icon>
+            <Icon size="md">{DS_ICONS.home.icon}</Icon>
+            <Icon size="lg">{DS_ICONS.ruler.icon}</Icon>
+          </div>
+        }
       />
       <LinkCard
         headingLevel={4}

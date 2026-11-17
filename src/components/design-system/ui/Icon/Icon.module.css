@@ -1,0 +1,48 @@
+/* ---------------------------------------------------------------
+ * Icon — CSS Module
+ * Maps component-level icon tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .icon — a square box, centred, that the SVG inside fills. The
+ *           colour is never set here: an icon is drawn in the colour
+ *           of the text beside it, which is what makes it read as part
+ *           of that word or label.
+ *
+ * The size is one custom property, `--icon-size`, that the size classes
+ * write from the tokens. A component that owns its own icon token
+ * (`component.badge.size.md.icon.size`) writes the same property in the
+ * class it passes through `className`, so it keeps its tier-3 token and
+ * still borrows everything else here. CSS Modules scope class names, not
+ * custom properties, so the two files speak the same property.
+ * --------------------------------------------------------------- */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  inline-size: var(--icon-size, var(--ds-component-icon-size-md));
+  block-size: var(--icon-size, var(--ds-component-icon-size-md));
+}
+
+.icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.size-xs {
+  --icon-size: var(--ds-component-icon-size-xs);
+}
+
+.size-sm {
+  --icon-size: var(--ds-component-icon-size-sm);
+}
+
+.size-md {
+  --icon-size: var(--ds-component-icon-size-md);
+}
+
+.size-lg {
+  --icon-size: var(--ds-component-icon-size-lg);
+}
