@@ -1,5 +1,26 @@
 # Changelog
 
+# [0.4.0](https://github.com/mariana-martins/FitMySpace/compare/v0.3.0...v0.4.0) (2026-11-17)
+
+* refactor(tokens)!: spell colour the Australian way across the design system ([c6f9289](https://github.com/mariana-martins/FitMySpace/commit/c6f928901c6864ac0f0fa45152dd40e151fb48a2))
+
+### Bug Fixes
+
+* **design-system:** close the gaps the review found in the overlays ([a5e1ae9](https://github.com/mariana-martins/FitMySpace/commit/a5e1ae9b0d81c34448dce4f05a44ffd1056ba79e))
+
+### Features
+
+* **dialog:** add the Dialog overlay built on Radix Dialog ([af681d0](https://github.com/mariana-martins/FitMySpace/commit/af681d09fdc7d1ce8165cc6b5c258817a70d04e1))
+* **toast:** add the Toast notification built on Radix Toast ([b0ad29b](https://github.com/mariana-martins/FitMySpace/commit/b0ad29bb31a309d29d9604cf43e99d1ee7557e3a))
+* **tokens:** add layer, scrim and inverse background tokens for overlays ([63d81fb](https://github.com/mariana-martins/FitMySpace/commit/63d81fb9babf69f441aa2f06d06834d10fdddac1))
+* **tooltip:** add the Tooltip bubble built on Radix Tooltip ([81db477](https://github.com/mariana-martins/FitMySpace/commit/81db477487464bdc6824357f95bf9e0c0bc29264))
+
+### BREAKING CHANGES
+
+* the colour CSS custom properties are renamed. --ds-color-* is now
+  --ds-colour-*, --ds-semantic-color-* is now --ds-semantic-colour-*, and the token
+  paths color.*, semantic.color.* and semantic.focus.ring.color now use colour.
+
 # [0.3.0](https://github.com/mariana-martins/FitMySpace/compare/v0.2.0...v0.3.0) (2026-11-15)
 
 ### Features
