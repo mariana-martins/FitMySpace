@@ -1,6 +1,7 @@
 'use client';
 
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import { UTILITY_VARIANT_ICONS } from '../utils';
 import { iconSizeStyle } from './iconSizeStyle';
 import { DS_ICONS, Icon } from '../ui/Icon';
 import { useEffect, useState } from 'react';
@@ -34,7 +35,7 @@ const backgroundByStatus: Record<CopyStatus, string> = {
 const iconByStatus: Record<CopyStatus, IconName> = {
   idle: 'copy',
   copied: 'check',
-  failed: 'circle-alert',
+  failed: UTILITY_VARIANT_ICONS.error,
 };
 
 const ICON_SIZE_PX = 12;

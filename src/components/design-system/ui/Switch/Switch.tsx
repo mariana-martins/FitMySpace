@@ -8,8 +8,8 @@ import styles from './Switch.module.css';
 import { DS_ICONS, Icon } from '../Icon';
 import clsx from 'clsx';
 
+import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS, joinIds } from '../../utils';
 import type { SwitchProps } from './Switch.types';
-import { joinIds } from '../../utils';
 
 /* ---------------------------------------------------------------
  * Switch
@@ -101,9 +101,9 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(function Switch
 
       {hasError && (
         <p className={styles.error}>
-          <Icon className={styles['error-icon']}>{DS_ICONS['circle-alert'].icon}</Icon>
+          <Icon className={styles['error-icon']}>{DS_ICONS[UTILITY_VARIANT_ICONS.error].icon}</Icon>
           <span id={errorId}>
-            <VisuallyHidden>Error: </VisuallyHidden>
+            <VisuallyHidden>{`${UTILITY_VARIANT_LABELS.error}: `}</VisuallyHidden>
             {error}
           </span>
         </p>

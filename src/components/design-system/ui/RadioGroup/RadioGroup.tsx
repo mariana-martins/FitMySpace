@@ -1,12 +1,12 @@
 'use client';
 
+import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS, joinIds } from '../../utils';
 import { createContext, forwardRef, useContext, useId } from 'react';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import * as RadixRadioGroup from '@radix-ui/react-radio-group';
 import styles from './RadioGroup.module.css';
 import { Label, Text } from '../Typography';
 import { DS_ICONS, Icon } from '../Icon';
-import { joinIds } from '../../utils';
 import clsx from 'clsx';
 
 import type { RadioGroupItemProps, RadioGroupProps, RadioGroupSize } from './RadioGroup.types';
@@ -106,9 +106,11 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
 
         {hasError && (
           <p className={styles.error}>
-            <Icon className={styles['error-icon']}>{DS_ICONS['circle-alert'].icon}</Icon>
+            <Icon className={styles['error-icon']}>
+              {DS_ICONS[UTILITY_VARIANT_ICONS.error].icon}
+            </Icon>
             <span id={errorId}>
-              <VisuallyHidden>Error: </VisuallyHidden>
+              <VisuallyHidden>{`${UTILITY_VARIANT_LABELS.error}: `}</VisuallyHidden>
               {error}
             </span>
           </p>

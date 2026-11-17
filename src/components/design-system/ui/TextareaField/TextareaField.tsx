@@ -6,8 +6,8 @@ import { DS_ICONS, Icon } from '../Icon';
 import { Textarea } from '../Textarea';
 import clsx from 'clsx';
 
+import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS, joinIds } from '../../utils';
 import type { TextareaFieldProps } from './TextareaField.types';
-import { joinIds } from '../../utils';
 
 /* ---------------------------------------------------------------
  * TextareaField
@@ -91,9 +91,11 @@ export const TextareaField = forwardRef<HTMLTextAreaElement, TextareaFieldProps>
 
         {hasError && (
           <p className={styles.error}>
-            <Icon className={styles['error-icon']}>{DS_ICONS['circle-alert'].icon}</Icon>
+            <Icon className={styles['error-icon']}>
+              {DS_ICONS[UTILITY_VARIANT_ICONS.error].icon}
+            </Icon>
             <span id={errorId}>
-              <VisuallyHidden>Error: </VisuallyHidden>
+              <VisuallyHidden>{`${UTILITY_VARIANT_LABELS.error}: `}</VisuallyHidden>
               {error}
             </span>
           </p>

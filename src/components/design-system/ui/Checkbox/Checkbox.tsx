@@ -8,8 +8,8 @@ import { forwardRef, useId } from 'react';
 import { DS_ICONS, Icon } from '../Icon';
 import clsx from 'clsx';
 
+import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS, joinIds } from '../../utils';
 import type { CheckboxProps } from './Checkbox.types';
-import { joinIds } from '../../utils';
 
 /* ---------------------------------------------------------------
  * Checkbox
@@ -102,9 +102,9 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(function Ch
 
       {hasError && (
         <p className={styles.error}>
-          <Icon className={styles['error-icon']}>{DS_ICONS['circle-alert'].icon}</Icon>
+          <Icon className={styles['error-icon']}>{DS_ICONS[UTILITY_VARIANT_ICONS.error].icon}</Icon>
           <span id={errorId}>
-            <VisuallyHidden>Error: </VisuallyHidden>
+            <VisuallyHidden>{`${UTILITY_VARIANT_LABELS.error}: `}</VisuallyHidden>
             {error}
           </span>
         </p>
