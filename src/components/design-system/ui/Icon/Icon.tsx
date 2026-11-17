@@ -16,13 +16,16 @@ import type { IconProps } from './Icon.types';
  * because it is the same decision every time and the wrong answer is
  * invisible: an icon that should have been hidden gets read again after
  * its own label, and an icon that should have been named says nothing
- * at all. The props decide which, so nothing has to remember it:
+ * at all. The props decide which (`label` or `aria-labelledby` names
+ * it, anything else hides it), so nothing has to remember it:
  * `aria-hidden` is not part of the API, because writing it by hand next
  * to a `label` would hide the very name the label came for.
  * --------------------------------------------------------------- */
 
 export const Icon = forwardRef<HTMLSpanElement, IconProps>(function Icon(props, ref) {
   const { size, label, className, ...rest } = props;
+  // A visible label named through `aria-labelledby` exposes the box just as `label` does.
+  const isNamed = Boolean(label) || Boolean(rest['aria-labelledby']);
 
   return (
     <span
@@ -33,7 +36,7 @@ export const Icon = forwardRef<HTMLSpanElement, IconProps>(function Icon(props, 
         size && styles[`size-${size}` as keyof typeof styles],
         className,
       )}
-      {...(label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true })}
+      {...(isNamed ? { role: 'img', 'aria-label': label || undefined } : { 'aria-hidden': true })}
     />
   );
 });

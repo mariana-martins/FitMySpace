@@ -87,6 +87,20 @@ describe('Icon — seeing and hearing', () => {
     expect(document.querySelector('.icon')).toHaveAttribute('aria-hidden', 'true');
   });
 
+  it('becomes one named image when a visible label names it through `aria-labelledby`', () => {
+    render(
+      <>
+        <span id="bath-caption">Private bath</span>
+        <Icon aria-labelledby="bath-caption">{DS_ICONS.bath.icon}</Icon>
+      </>,
+    );
+
+    // The id is enough: hiding the box would throw the visible name away.
+    const image = screen.getByRole('img', { name: 'Private bath' });
+    expect(image).not.toHaveAttribute('aria-hidden');
+    expect(image).not.toHaveAttribute('aria-label');
+  });
+
   it('has no axe violations, hidden or named', async () => {
     const { container } = render(
       <p>
