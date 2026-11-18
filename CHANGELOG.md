@@ -1,5 +1,20 @@
 # Changelog
 
+# [0.6.0](https://github.com/mariana-martins/FitMySpace/compare/v0.5.0...v0.6.0) (2026-11-18)
+
+### Bug Fixes
+
+* **empty-state:** centre the actions on each other ([fd779a3](https://github.com/mariana-martins/FitMySpace/commit/fd779a35457457c827fce3c3709aa1b80797dd5c))
+
+### Features
+
+* **alert:** give links in the message the alert's text colour ([d7fcef8](https://github.com/mariana-martins/FitMySpace/commit/d7fcef84d54a49ecb670f48964fa4619326e79da))
+* **button:** wrap a label that does not fit instead of overflowing ([9725eaf](https://github.com/mariana-martins/FitMySpace/commit/9725eaf7b4d92e0ce2feec716423783d4dfb06f6))
+* **icon:** add the menu icon to the registry ([fcad686](https://github.com/mariana-martins/FitMySpace/commit/fcad686da4fd15495c22c9f56476d1ecafb3f38d))
+* **list:** add the List component for rows of one kind of thing ([898b5b6](https://github.com/mariana-martins/FitMySpace/commit/898b5b601a93061b18d55095e19fc52a3552d21d))
+* **pagination:** show Previous and Next as disabled links at either end ([39737fa](https://github.com/mariana-martins/FitMySpace/commit/39737fa5ef4483b0d01ae70bcaf489cfe888a65d))
+* **skip-link:** add the SkipLink component and use it in the page patterns ([f4c8490](https://github.com/mariana-martins/FitMySpace/commit/f4c8490f1b0c9ab362dd98f27283532cd8c5f926))
+
 # [0.5.0](https://github.com/mariana-martins/FitMySpace/compare/v0.4.0...v0.5.0) (2026-11-17)
 
 ### Bug Fixes
