@@ -44,6 +44,16 @@ const groupDescriptions: Record<string, string> = {
   prose: 'The longest comfortable line for running text. Wider lines make the eye lose its place.',
 };
 
+const BREAKPOINT_DESCRIPTION = (
+  <>
+    Viewport widths where a layout changes, the same steps as the container widths. A media query
+    cannot read a custom property, so write the value out, in range syntax:{' '}
+    <InlineCode>@media (width &lt; 640px)</InlineCode> for{' '}
+    <InlineCode>--ds-semantic-breakpoint-sm</InlineCode>. A test checks every media query in the
+    design system against these values.
+  </>
+);
+
 /* The row shows the token itself, so the box is sized by writing `--icon-size`
    rather than by picking one of the `size` steps. */
 const iconStyle = (token: DocumentedToken) => ({
@@ -184,6 +194,16 @@ export const SemanticSize: Story = {
           ))}
         </TokenGroup>
       ))}
+      <TokenGroup title="Breakpoint" description={BREAKPOINT_DESCRIPTION}>
+        {getTokens('semantic', 'breakpoint').map((token) => (
+          <TokenRow
+            key={token.name}
+            token={token}
+            label={formatTokenLabel(token.path.slice(2))}
+            preview={layoutBar(token)}
+          />
+        ))}
+      </TokenGroup>
     </FoundationPage>
   ),
 };

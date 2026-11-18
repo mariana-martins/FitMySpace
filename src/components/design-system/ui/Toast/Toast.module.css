@@ -238,7 +238,8 @@
   }
 }
 
-@media (max-width: 639px) {
+/* --ds-semantic-breakpoint-sm, written out: a media query cannot read var(). */
+@media (width < 640px) {
   .viewport {
     --toast-margin: var(--ds-component-toast-spacing-screen-margin-narrow);
 
