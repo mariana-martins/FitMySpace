@@ -178,6 +178,12 @@
           "value": "{size.560}"
         }
       },
+      "listbox": {
+        "max-height": {
+          "value": "{size.384}",
+          "comment": "The tallest a list of suggestions grows before it scrolls: about eight options, so the page under it stays in sight."
+        }
+      },
       "tooltip": {
         "max-width": {
           "value": "{size.240}",

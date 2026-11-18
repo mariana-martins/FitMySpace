@@ -508,11 +508,6 @@ export const Overview: Story = {
               Offers). A nice-to-have: the app does not need it yet.
             </Text>
           </li>
-          <li>
-            <Text as="span" size="sm">
-              <strong>Combobox</strong> — suggestions while typing in the search box.
-            </Text>
-          </li>
         </ul>
       </TokenGroup>
     </FoundationPage>

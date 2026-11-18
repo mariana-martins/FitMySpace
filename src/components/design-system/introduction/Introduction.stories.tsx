@@ -15,6 +15,7 @@ import { TextField } from '../ui/TextField';
 import { List, ListItem } from '../ui/List';
 import { DS_ICONS, Icon } from '../ui/Icon';
 import { Skeleton } from '../ui/Skeleton';
+import { Combobox } from '../ui/Combobox';
 import { Checkbox } from '../ui/Checkbox';
 import { SelectItem } from '../ui/Select';
 import { Switch } from '../ui/Switch';
@@ -810,6 +811,13 @@ const ComponentGrid = () => (
         title="SearchField"
         description="A search form with a visible label, a Clear button, and a Search button, named as a search landmark."
         preview={<SearchField size="sm" label="Search products" defaultValue="basket" />}
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-forms-combobox--docs"
+        title="Combobox"
+        description="A text field that suggests while you type: the arrow keys move through the suggestions while the focus stays in the field."
+        preview={<Combobox size="sm" label="Room" options={[]} defaultInputValue="Bed" />}
       />
       <LinkCard
         headingLevel={4}

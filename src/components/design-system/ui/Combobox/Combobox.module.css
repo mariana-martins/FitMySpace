@@ -1,0 +1,174 @@
+/* ---------------------------------------------------------------
+ * Combobox — CSS Module
+ * Maps component-level combobox tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally). The field is
+ * a `TextField` and keeps its own styles; this file draws the list.
+ *
+ * Structure (Radix renders the list in a portal at the end of <body>):
+ *   .content     — the floating card, as wide as the field's box
+ *   .list        — role="listbox"
+ *   .option      — role="option"; [data-active] is the one the arrow
+ *                  keys are on, [aria-disabled] one that cannot be picked
+ *   .icon / .label / .description — the parts of an option
+ *   .empty       — the message shown when nothing matches
+ *
+ * Size classes, on the list: .size-{sm|md|lg}, matching the field.
+ * --------------------------------------------------------------- */
+
+.content {
+  /* A direct child of <body>, so the layer cannot be trapped by the page. */
+  z-index: var(--ds-semantic-layer-floating);
+  box-sizing: border-box;
+  inline-size: var(--radix-popover-trigger-width);
+  max-inline-size: var(--radix-popover-content-available-width);
+  max-block-size: min(
+    var(--ds-component-combobox-list-max-height),
+    var(--radix-popover-content-available-height)
+  );
+  padding: var(--ds-component-combobox-list-padding);
+  font: var(--combobox-font);
+  letter-spacing: var(--combobox-letter-spacing);
+  color: var(--ds-component-combobox-option-text);
+  background-color: var(--ds-component-combobox-list-background);
+  border: var(--ds-component-combobox-list-border-width) solid
+    var(--ds-component-combobox-list-border);
+  border-radius: var(--ds-component-combobox-list-radii);
+  box-shadow: var(--ds-component-combobox-list-shadow);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform-origin: var(--radix-popover-content-transform-origin);
+}
+
+.content[data-state='open'] {
+  animation: list-enter var(--ds-component-combobox-motion-duration)
+    var(--ds-component-combobox-motion-easing-enter);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Options --------------------------------------------------------- */
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--combobox-gap);
+  min-block-size: var(--combobox-option-min-height);
+  padding-inline: var(--combobox-padding-x);
+  border-radius: var(--ds-component-combobox-option-radii);
+  cursor: pointer;
+  user-select: none;
+}
+
+.option[data-active] {
+  color: var(--ds-component-combobox-option-active-text);
+  background-color: var(--ds-component-combobox-option-active-background);
+}
+
+.option[aria-disabled='true'] {
+  color: var(--ds-component-combobox-option-disabled);
+  cursor: not-allowed;
+}
+
+.icon {
+  --icon-size: var(--combobox-icon-size);
+
+  flex-shrink: 0;
+  color: var(--ds-component-combobox-option-icon);
+}
+
+.option[data-active] .icon,
+.option[aria-disabled='true'] .icon {
+  color: inherit;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.label {
+  overflow-wrap: anywhere;
+}
+
+.description {
+  font: var(--combobox-description-font);
+  color: var(--ds-component-combobox-option-description);
+}
+
+.option[data-active] .description,
+.option[aria-disabled='true'] .description {
+  color: inherit;
+}
+
+.empty {
+  margin: 0;
+  padding-block: var(--ds-component-combobox-list-padding);
+  padding-inline: var(--combobox-padding-x);
+  color: var(--ds-component-combobox-empty-text);
+}
+
+/* Sizes ----------------------------------------------------------- */
+
+.size-sm {
+  --combobox-padding-x: var(--ds-component-combobox-size-sm-padding-x);
+  --combobox-gap: var(--ds-component-combobox-size-sm-gap);
+  --combobox-font: var(--ds-component-combobox-size-sm-font);
+  --combobox-letter-spacing: var(--ds-component-combobox-size-sm-letter-spacing);
+  --combobox-description-font: var(--ds-component-combobox-size-sm-description-font);
+  --combobox-icon-size: var(--ds-component-combobox-size-sm-icon-size);
+  --combobox-option-min-height: var(--ds-component-combobox-size-sm-option-min-height);
+}
+
+.size-md {
+  --combobox-padding-x: var(--ds-component-combobox-size-md-padding-x);
+  --combobox-gap: var(--ds-component-combobox-size-md-gap);
+  --combobox-font: var(--ds-component-combobox-size-md-font);
+  --combobox-letter-spacing: var(--ds-component-combobox-size-md-letter-spacing);
+  --combobox-description-font: var(--ds-component-combobox-size-md-description-font);
+  --combobox-icon-size: var(--ds-component-combobox-size-md-icon-size);
+  --combobox-option-min-height: var(--ds-component-combobox-size-md-option-min-height);
+}
+
+.size-lg {
+  --combobox-padding-x: var(--ds-component-combobox-size-lg-padding-x);
+  --combobox-gap: var(--ds-component-combobox-size-lg-gap);
+  --combobox-font: var(--ds-component-combobox-size-lg-font);
+  --combobox-letter-spacing: var(--ds-component-combobox-size-lg-letter-spacing);
+  --combobox-description-font: var(--ds-component-combobox-size-lg-description-font);
+  --combobox-icon-size: var(--ds-component-combobox-size-lg-icon-size);
+  --combobox-option-min-height: var(--ds-component-combobox-size-lg-option-min-height);
+}
+
+/* ---------------------------------------------------------------
+ * Motion and user preferences
+ * --------------------------------------------------------------- */
+
+@keyframes list-enter {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content[data-state='open'] {
+    animation: none;
+  }
+}
+
+/* Forced colours drop the fill, so the active option takes the system highlight. */
+@media (forced-colors: active) {
+  .option[data-active] {
+    color: HighlightText;
+    background-color: Highlight;
+    forced-color-adjust: none;
+  }
+
+  .option[aria-disabled='true'] {
+    color: GrayText;
+  }
+}

@@ -678,6 +678,33 @@ describe('Inverse surface tokens — contrast', () => {
 });
 
 /* ===============================================================
+ * COMBOBOX
+ * =============================================================== */
+
+const COMBOBOX_LIST = 'component.combobox.list.background';
+
+describe('Combobox tokens — contrast', () => {
+  it.each([
+    ['an option', 'component.combobox.option.text', COMBOBOX_LIST],
+    ['a description', 'component.combobox.option.description', COMBOBOX_LIST],
+    ['the empty message', 'component.combobox.empty.text', COMBOBOX_LIST],
+    [
+      'the active option',
+      'component.combobox.option.active-text',
+      'component.combobox.option.active-background',
+    ],
+  ])('%s is readable', (_description, textToken, backgroundToken) => {
+    expect(contrastRatio(textToken, backgroundToken)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('an option icon stands out from the list', () => {
+    expect(contrastRatio('component.combobox.option.icon', COMBOBOX_LIST)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+});
+
+/* ===============================================================
  * DIALOG
  * =============================================================== */
 

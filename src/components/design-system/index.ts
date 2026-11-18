@@ -15,6 +15,7 @@ export * from './ui/Button';
 export * from './ui/Card';
 export * from './ui/Checkbox';
 export * from './ui/Chip';
+export * from './ui/Combobox';
 export * from './ui/Dialog';
 export * from './ui/EmptyState';
 export * from './ui/Icon';

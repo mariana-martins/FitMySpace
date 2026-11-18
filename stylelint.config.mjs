@@ -21,6 +21,7 @@ const RADIX_RUNTIME_PROPERTIES = {
     '--radix-popover-content-available-width': 'auto',
     '--radix-popover-content-available-height': 'auto',
     '--radix-popover-content-transform-origin': 'center',
+    '--radix-popover-trigger-width': 'auto',
     '--radix-toast-swipe-move-x': '0',
     '--radix-toast-swipe-move-y': '0',
     '--radix-toast-swipe-end-x': '0',
