@@ -299,6 +299,19 @@ npm run lint:css
 
 ---
 
+### Visual regression (Playwright)
+
+```bash
+npm run test:visual        # build Storybook, compare every covered story with the baseline
+npm run visual:baseline    # after a failed CI run: download the new Linux baseline to review
+```
+
+`e2e/visual/stories.spec.ts` screenshots every visible story of the components listed in `e2e/visual/covered-components.ts`, read from the built `storybook-static/index.json`, so a new story is covered without editing the spec. Overlays (Dialog, Sheet, Popover, AlertDialog, Toast, Combobox) are opened first, and the clock is paused so a toast never closes mid-shot. The per-pixel colour `threshold` is 0.01: Playwright's default of 0.2 let Sage 700 move from `#335f3f` to `#2f6b3f` without a failure.
+
+Baselines are made only on Linux, by CI (ADR 0007). When the visual job fails it uploads two artifacts: `visual-diffs` (expected, actual and diff images) and `visual-baseline` (the folder with the changed screenshots rewritten). If the change was meant, `npm run visual:baseline` waits for the CI run of the pushed commit, downloads `visual-baseline` into `e2e/visual/baselines/chromium/` and lists what changed; review the PNGs and commit them in the same pull request. A local run on macOS reports font-rendering differences: use it to look, not to judge.
+
+---
+
 ### Foundation docs helpers
 
 Each tier-2 token file has a Foundation page in `foundations/` (Colour, Typography, Spacing, Size, Radii, Border Width, Layer, Shadow, Focus, Motion). The pages never keep their own token lists: they read `tokens.docs.json` through `docs/tokens.ts` (`getTokens('semantic', 'spacing')`, `groupTokens(tokens, 2)`, `formatTokenLabel`) and render it with `docs/FoundationPage` (`FoundationPage`, `TokenGroup`, `TokenRow`, `InlineCode`). To link from a story to another Storybook page use `StorybookLink` (a story renders in an iframe, so a plain link would open inside it); in a `docs.description` Markdown string a plain `[text](?path=/docs/...)` link already works. A new token shows up on its page after `npm run tokens:build`; only the prose (group descriptions) is written by hand.

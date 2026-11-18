@@ -60,3 +60,60 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+
+  # The four journeys of docs/adr/0008-e2e-before-migration.md. They are the check that a migration
+  # PR did not break a journey, so they run on every PR from the first one.
+  e2e:
+    name: App journeys (Chromium and WebKit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium webkit
+      # The suite builds and serves the app itself (playwright.config.ts).
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: e2e-report
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+  # Screenshots of the covered stories against the Linux baseline (docs/adr/0007-visual-regression-with-playwright.md).
+  # A colour or size change fails here until the PR also carries the refreshed baseline. On a failure
+  # the job writes that baseline from this run, so `npm run visual:baseline` can bring it back to
+  # review and commit: Linux is the only place a baseline is made.
+  visual:
+    name: Design-system visual regression
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:visual
+      # Before the next step, which starts a new run and clears test-results/.
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: visual-diffs
+          path: test-results/
+          retention-days: 7
+      - name: Write the screenshots that differ as the new baseline
+        if: failure()
+        run: npx playwright test --config=playwright.visual.config.ts --update-snapshots=changed
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: visual-baseline
+          path: e2e/visual/baselines/chromium
+          retention-days: 7

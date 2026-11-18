@@ -76,9 +76,10 @@ export default fixupConfigRules([
   // Storybook (design system stories only)
   ...designSystemStorybookConfigs,
 
-  // Config Files (jest.config.js, next.config.mjs)
+  // Node scripts and config files (jest.config.js, next.config.mjs, the Playwright static server
+  // and the baseline script). They run outside the browser, so they need Node's globals.
   {
-    files: ["**/*.config.js", "**/*.config.mjs"],
+    files: ["**/*.config.js", "**/*.config.mjs", "e2e/**/*.mjs", "scripts/**/*.mjs"],
     languageOptions: {
       globals: {
         module: "readonly",
@@ -87,6 +88,9 @@ export default fixupConfigRules([
         __filename: "readonly",
         process: "readonly",
         console: "readonly",
+        setTimeout: "readonly",
+        URL: "readonly",
+        URLSearchParams: "readonly",
       },
     },
   },

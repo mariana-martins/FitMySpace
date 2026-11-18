@@ -25,7 +25,7 @@ Inspired by the clean and aesthetic approach of _The Home Edit_, this project co
 - **Data Fetching:** TanStack Query (React Query)
 - **Validation:** Zod (runtime API validation)
 - **State Management:** URL-based state (search params)
-- **Testing:** Jest, React Testing Library, MSW, `jest-axe`
+- **Testing:** Jest, React Testing Library, MSW, `jest-axe`, Playwright (app journeys and visual regression)
 
 ## 🚀 Getting Started
 
@@ -46,7 +46,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 🧪 Running Tests
 
-We maintain a rigorous testing standard with over 290+ tests covering unit, integration, and accessibility scenarios.
+We maintain a rigorous testing standard with over 1,200 tests covering unit, integration, and accessibility scenarios.
 
 ```bash
 # Run all tests
@@ -54,9 +54,16 @@ npm test
 
 # Run accessibility tests
 npm test -- --testPathPatterns="a11y"
+
+# App journeys in a real browser (Chromium; the keyboard path also in WebKit)
+npx playwright install chromium webkit   # once
+npm run test:e2e
+
+# Design-system screenshots against the Linux baseline
+npm run test:visual
 ```
 
-GitHub Actions (`.github/workflows/ci.yml`) runs formatting, lint (ESLint and Stylelint), types, the token check, Jest, the Storybook tests and a production build on every pull request.
+GitHub Actions (`.github/workflows/ci.yml`) runs formatting, lint (ESLint and Stylelint), types, the token check, Jest, the Storybook tests, a production build, the app journeys and the visual regression on every pull request. A change that alters the look fails until its new baseline is committed: see `npm run visual:baseline` in the design-system README.
 
 ## 📂 Documentation
 
