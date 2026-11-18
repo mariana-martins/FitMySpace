@@ -11,6 +11,7 @@ import { SearchField } from '../ui/SearchField';
 import { expect, within } from 'storybook/test';
 import { EmptyState } from '../ui/EmptyState';
 import { TextField } from '../ui/TextField';
+import { List, ListItem } from '../ui/List';
 import { DS_ICONS, Icon } from '../ui/Icon';
 import { Skeleton } from '../ui/Skeleton';
 import { Checkbox } from '../ui/Checkbox';
@@ -825,6 +826,25 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-navigation-skiplink--docs"
+        title="SkipLink"
+        description="The first link of every page: out of sight until focused, it jumps past the header to the content."
+        preview={
+          <span
+            style={{
+              padding: '8px 16px',
+              borderRadius: 'var(--ds-component-skip-link-shape-radii)',
+              backgroundColor: 'var(--ds-component-skip-link-background)',
+              color: 'var(--ds-component-skip-link-text)',
+              font: 'var(--ds-semantic-typography-control-md-shorthand)',
+            }}
+          >
+            Skip to content
+          </span>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-navigation-breadcrumb--docs"
         title="Breadcrumb"
         description="The trail of ancestor pages, from Home to the page people are on."
@@ -893,6 +913,18 @@ const ComponentGrid = () => (
               Oak shelf
             </Text>
           </Card>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-display-list--docs"
+        title="List"
+        description="Rows about one kind of thing, each with an icon or picture, a title, a description, and an action."
+        preview={
+          <List size="sm" appearance="outline" style={{ width: '200px' }}>
+            <ListItem icon="bath">Bathroom</ListItem>
+            <ListItem icon="bed">Bedroom</ListItem>
+          </List>
         }
       />
       <LinkCard
@@ -1054,7 +1086,37 @@ const ComponentGrid = () => (
           </div>
         }
       />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-utilities-visuallyhidden--docs"
+        title="VisuallyHidden"
+        description="Words only screen readers need: when to add them, and how they differ from aria-hidden and hidden."
+        preview={
+          <Text size="sm" as="span">
+            Remove <span style={{ opacity: 0.4 }}>Oak wall shelf</span>
+          </Text>
+        }
+      />
     </LinkCardGrid>
+  </section>
+);
+
+/* ------------------------------------------------------------------ */
+/*  Patterns                                                           */
+/* ------------------------------------------------------------------ */
+
+const PatternsSection = () => (
+  <section style={{ marginTop: '56px' }}>
+    <Heading level={3} size="sm" style={{ marginBottom: '8px' }}>
+      Patterns
+    </Heading>
+    <Text size="sm" as="span" style={sectionIntroStyle}>
+      Recipes that put several components together into a piece of a page, such as a search page or
+      a product grid, with the code to copy.{' '}
+      <StorybookLink path="/story/design-system-patterns-overview--overview">
+        See all patterns
+      </StorybookLink>
+    </Text>
   </section>
 );
 
@@ -1067,7 +1129,7 @@ export const Welcome: Story = {
     docs: {
       description: {
         story:
-          'Landing page: token architecture, principles, and links to every foundation and component page.',
+          'Landing page: token architecture, principles, and links to every foundation and component page, and to the patterns.',
       },
     },
   },
@@ -1085,6 +1147,7 @@ export const Welcome: Story = {
         <QuickStart />
         <FoundationGrid />
         <ComponentGrid />
+        <PatternsSection />
       </div>
     </div>
   ),
@@ -1097,6 +1160,10 @@ export const Welcome: Story = {
     await expect(canvas.getByRole('link', { name: 'Button' })).toHaveAttribute(
       'href',
       './?path=/docs/design-system-components-actions-button--docs',
+    );
+    await expect(canvas.getByRole('link', { name: 'See all patterns' })).toHaveAttribute(
+      'href',
+      './?path=/story/design-system-patterns-overview--overview',
     );
     // The version comes from package.json, so only the link is checked here.
     await expect(canvas.getByRole('link', { name: "See what's new" })).toHaveAttribute(

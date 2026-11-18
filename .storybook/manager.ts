@@ -2,15 +2,20 @@ import { CURRENT_STORY_WAS_SET } from 'storybook/internal/core-events';
 import { addons } from 'storybook/manager-api';
 
 /*
- * The Introduction and the Foundation pages are reading pages: the addons panel
- * (controls, actions, interactions) has nothing to inspect there, so it starts hidden.
+ * The Introduction, the Foundation pages and the Patterns overview are reading pages:
+ * the addons panel (controls, actions, interactions) has nothing to inspect there, so it
+ * starts hidden.
  * A story parameter cannot do this, because the manager applies story options before
  * the next story's parameters load, so the panel would not come back.
  * Here the panel is reopened on leaving only if this code hid it; a panel the reader
  * closed by hand stays closed. The flag lives in sessionStorage, like the panel state,
  * so a reload elsewhere still reopens it.
  */
-const READING_PAGE_PREFIXES = ['design-system-introduction--', 'design-system-foundation-'];
+const READING_PAGE_PREFIXES = [
+  'design-system-introduction--',
+  'design-system-foundation-',
+  'design-system-patterns-overview--',
+];
 const HIDDEN_ON_READING_PAGE_KEY = 'fitmyspace/panel-hidden-on-reading-page';
 
 function isReadingPage(storyId: string | undefined): boolean {

@@ -41,10 +41,12 @@ design-system/
 │   │   ├── icon.json          # Icon box sizes (xs 12 / sm 16 / md 20 / lg 24px)
 │   │   ├── input.json         # Input + TextField colours, states, halo, sizes, and unit styling
 │   │   ├── link.json          # Link colours, underline widths and offset, motion, standalone sizes
-│   │   ├── pagination.json    # Pagination page, current page and ellipsis colours, sizes, shape
+│   │   ├── list.json          # List surface, dividers, title and description colours, leading circle, row sizes
+│   │   ├── pagination.json    # Pagination page, current page, ellipsis and disabled colours, sizes, shape
 │   │   ├── radio-group.json   # RadioGroup circle, dot, label, hint and error colours and sizes
 │   │   ├── search-field.json  # SearchField label and hint colours, spacing
 │   │   ├── select.json        # Select + SelectField trigger, list, option, and group-label styling
+│   │   ├── skip-link.json     # SkipLink fill, text, shadow, layer, padding, offset from the window edge, motion
 │   │   ├── skeleton.json      # Skeleton pulse colours, shape radii, motion, and text sizes
 │   │   ├── switch.json        # Switch track edge and fill, knob, label, hint and error colours and sizes
 │   │   ├── textarea.json      # Textarea + TextareaField colours, states, halo, and sizes
@@ -60,12 +62,20 @@ design-system/
 │   ├── index.tsx
 │   ├── CopyTokenButton.tsx        # Copy-to-clipboard button with icon and status announcement
 │   ├── CopyTokenButton.test.tsx
+│   ├── formText.ts                # Reads a text field's value from FormData (patterns that validate)
+│   ├── formText.test.ts
 │   ├── FoundationPage.tsx         # Page shell, token group card, token row, inline code, StorybookLink
 │   ├── LabelledField.tsx          # Visible label above a bare Input, Select or Textarea in their stories
 │   ├── LabelledField.test.tsx
 │   ├── LinkCard.tsx               # LinkCard + LinkCardGrid: whole-card links to other Storybook pages
 │   ├── LinkCard.module.css
 │   ├── LinkCard.test.tsx
+│   ├── priceStyle.ts              # The price type style shared by the product patterns
+│   ├── sampleImages.ts            # Inline SVG pictures for stories and patterns (SHELF_IMAGE)
+│   ├── sampleProducts.tsx         # Sample catalogue + SampleProductGrid for the search patterns
+│   ├── sampleProducts.test.tsx
+│   ├── sampleSite.tsx             # SampleSiteHeader + SampleFooter for the page patterns
+│   ├── sampleSite.test.tsx
 │   ├── tokens.ts                  # Reads tokens.docs.json: getTokens, groupTokens, labels
 │   └── tokens.test.ts
 ├── introduction/    # Storybook landing page: token architecture, linked foundation and component cards
@@ -83,6 +93,30 @@ design-system/
 │   ├── size/Size.stories.tsx
 │   ├── spacing/Spacing.stories.tsx
 │   └── typography/Typography.stories.tsx
+├── patterns/        # Recipes, stories only; sidebar groups Page Sections, Tasks, Pages, Guides (folders flat)
+│   ├── Overview.stories.tsx       # Sidebar: Patterns/Overview (what a pattern is, the rules, every pattern)
+│   ├── ChoosingFeedback/ChoosingFeedback.stories.tsx
+│   ├── DeleteConfirmation/DeleteConfirmation.stories.tsx
+│   ├── DialogForm/DialogForm.stories.tsx
+│   ├── FilterBar/FilterBar.stories.tsx
+│   ├── FitCheck/FitCheck.stories.tsx
+│   ├── Footer/Footer.stories.tsx
+│   ├── FormValidation/FormValidation.stories.tsx
+│   ├── IconToolbar/IconToolbar.stories.tsx
+│   ├── MainNavigation/MainNavigation.stories.tsx
+│   ├── PageErrors/PageErrors.stories.tsx
+│   ├── PageLayout/PageLayout.stories.tsx
+│   ├── PaginatedResults/PaginatedResults.stories.tsx
+│   ├── Preferences/Preferences.stories.tsx
+│   ├── ProductCard/ProductCard.stories.tsx
+│   ├── ProductDetails/ProductDetails.stories.tsx
+│   ├── ProductPageHeader/ProductPageHeader.stories.tsx
+│   ├── ProductSearch/ProductSearch.stories.tsx
+│   ├── RemoveWithUndo/RemoveWithUndo.stories.tsx
+│   ├── ResultsStates/ResultsStates.stories.tsx
+│   ├── SearchResultsPage/SearchResultsPage.stories.tsx
+│   ├── SiteHeader/SiteHeader.stories.tsx
+│   └── StoreOffers/StoreOffers.stories.tsx
 ├── ui/              # Components only (colocated with stories)
 │   ├── Alert/       # Sidebar: Components/Feedback/Alert (live region: role="status", "alert" or none, set by live)
 │   │   └── … (same files as Button)
@@ -113,6 +147,8 @@ design-system/
 │   │   └── … (same files as Button)
 │   ├── Link/        # Sidebar: Components/Navigation/Link (inline or standalone, asChild via Radix Slot)
 │   │   └── … (same files as Button)
+│   ├── List/        # Sidebar: Components/Display/List (List + ListItem: icon or leading, title, description, trailing)
+│   │   └── … (same files as Button)
 │   ├── Pagination/  # Sidebar: Components/Navigation/Pagination (Pagination, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis, getPaginationRange)
 │   │   └── … (same files as Button, plus getPaginationRange.ts)
 │   ├── RadioGroup/  # Sidebar: Components/Forms/RadioGroup (Radix RadioGroup: RadioGroup, RadioGroupItem)
@@ -124,6 +160,8 @@ design-system/
 │   ├── SelectField/ # Sidebar: Components/Forms/SelectField
 │   │   └── … (same files as Button)
 │   ├── Skeleton/    # Sidebar: Components/Display/Skeleton (loading placeholder, aria-hidden)
+│   │   └── … (same files as Button)
+│   ├── SkipLink/    # Sidebar: Components/Navigation/SkipLink (first link of the page, shown on focus)
 │   │   └── … (same files as Button)
 │   ├── Switch/      # Sidebar: Components/Forms/Switch (Radix Switch)
 │   │   └── … (same files as Button)
@@ -137,6 +175,8 @@ design-system/
 │   │   └── … (same files as Button)
 │   ├── Tooltip/     # Sidebar: Components/Overlays/Tooltip (Radix Tooltip: TooltipProvider, Tooltip, TooltipTrigger, TooltipContent)
 │   │   └── … (same files as Button)
+│   ├── VisuallyHidden/ # Sidebar: Components/Utilities/VisuallyHidden (docs only: the Radix component, not wrapped)
+│   │   └── VisuallyHidden.stories.tsx
 │   └── Typography/  # Sidebar: Components/Typography/{Heading,Text,Label,Caption}
 │       ├── index.tsx
 │       ├── Typography.types.ts
@@ -156,7 +196,7 @@ design-system/
 ```
 
 - Components are built using CSS Modules with native CSS custom properties (generated by Style Dictionary) and Radix UI primitives (`@radix-ui/react-slot`, `@radix-ui/react-label`, `@radix-ui/react-checkbox`, `@radix-ui/react-radio-group`, `@radix-ui/react-select`, `@radix-ui/react-switch`, `@radix-ui/react-dialog`, `@radix-ui/react-toast`, `@radix-ui/react-tooltip`, `@radix-ui/react-visually-hidden`, and the `@radix-ui/react-use-controllable-state` and `@radix-ui/react-compose-refs` utilities). Interactive form controls with a custom look (`Checkbox`, `RadioGroup`, `Select`, `Switch`) use Radix, which keeps a hidden native input for form submission; text fields stay native `<input>` and `<textarea>`.
-- **Server rendering:** anything without client-only React renders on the server — no `'use client'`, no JavaScript to show it: `Alert`, `Icon`, `Textarea`, `TextareaField`, `Breadcrumb`, `Pagination`, `Link`, `Card`, `EmptyState`, `Skeleton`, `Typography`. `useId` works on the server, and a server component may render a client one (such as Radix `VisuallyHidden`) without becoming one. `Input` and `TextField` are client components because of a ref and a click handler, `SearchField` because of its state, and every Radix control (`Checkbox`, `RadioGroup`, `Select`, `SelectField`, `Switch`, `Dialog`, `Tooltip`, `Toast`) because of its hooks.
+- **Server rendering:** anything without client-only React renders on the server — no `'use client'`, no JavaScript to show it: `Alert`, `Icon`, `List`, `SkipLink`, `Textarea`, `TextareaField`, `Breadcrumb`, `Pagination`, `Link`, `Card`, `EmptyState`, `Skeleton`, `Typography`. `useId` works on the server, and a server component may render a client one (such as Radix `VisuallyHidden`) without becoming one. `Input` and `TextField` are client components because of a ref and a click handler, `SearchField` because of its state, and every Radix control (`Checkbox`, `RadioGroup`, `Select`, `SelectField`, `Switch`, `Dialog`, `Tooltip`, `Toast`) because of its hooks.
 - Accessibility rules (such as `aria-label` on icon-only `Button`, `htmlFor` on `Label as="label"`, and a required `error` message when `TextField`, `TextareaField`, `SelectField`, `Checkbox` or `Switch` is `invalid`) are enforced at compile time via TypeScript discriminated unions.
 - Design tokens are managed using Style Dictionary.
 

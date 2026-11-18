@@ -32,7 +32,9 @@ const meta = {
           '- **Sizes** — `sm`, `md`, `lg` drive the field and the label together, so they never drift apart.\n' +
           '- **Descriptions** — `aria-describedby` points to the hint, then the error, so a screen reader reads them in that order.\n' +
           '- **Errors** — TypeScript enforces a required `error` message whenever `invalid` is `true`. The message gets an icon, a screen-reader-only "Error:" prefix, and `aria-invalid` on the field.\n' +
-          '- **Pass-through** — every other prop (`name`, `rows`, `maxLength`, `required`, `defaultValue`…) goes to the native `<textarea>`; `ref` points to it.',
+          '- **Pass-through** — every other prop (`name`, `rows`, `maxLength`, `required`, `defaultValue`…) goes to the native `<textarea>`; `ref` points to it.\n\n' +
+          '### Patterns\n' +
+          '- [Form Validation](?path=/docs/design-system-patterns-tasks-form-validation--docs) — field errors plus a summary at the top that links to each one.',
       },
     },
   },
@@ -100,7 +102,7 @@ export const Default: Story = {
     },
   },
   render: (args) => (
-    <div style={{ maxWidth: '26rem' }}>
+    <div style={{ width: '26rem', maxWidth: '100%' }}>
       <TextareaField {...args} />
     </div>
   ),
@@ -141,7 +143,15 @@ export const DefaultInteraction: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
+    >
       <TextareaField label="Large" size="lg" rows={2} />
       <TextareaField label="Medium" size="md" rows={2} />
       <TextareaField label="Small" size="sm" rows={2} />
@@ -171,7 +181,15 @@ export const AllSizes: Story = {
 
 export const Required: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
+    >
       <Text size="sm" style={{ margin: 0 }}>
         Fields marked with an asterisk (*) are required.
       </Text>
@@ -205,7 +223,15 @@ export const Required: Story = {
 export const WithError: Story = {
   name: 'Error State',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
+    >
       <TextareaField
         label="Delivery instructions"
         hint="Up to 280 characters."
@@ -248,7 +274,15 @@ export const WithError: Story = {
 export const Disabled: Story = {
   name: 'Disabled and Read-only',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
+    >
       <TextareaField label="Assembly notes" disabled rows={2} />
       <TextareaField
         label="Saved note"
@@ -280,7 +314,15 @@ export const Disabled: Story = {
 export const PseudoStates: Story = {
   name: 'Interactive Pseudo States',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
+    >
       <TextareaField label="Default" rows={2} />
       <TextareaField label="Hover" rows={2} textareaClassName="pseudo-hover" />
       <TextareaField label="Focus" rows={2} textareaClassName="pseudo-focus" />
@@ -330,7 +372,13 @@ function RoomOrderForm() {
       noValidate
       onSubmit={handleSubmit}
       aria-label="Order"
-      style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
     >
       <Text size="sm" style={{ margin: 0 }}>
         Fields marked with an asterisk (*) are required.

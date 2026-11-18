@@ -43,7 +43,11 @@ const meta = {
           '- **Descriptions** — `aria-describedby` points to the hint, then the error.\n' +
           '- **Errors** — TypeScript enforces a required `error` message whenever `invalid` is `true`. Sets `aria-invalid` and prefixes the message with a screen-reader-only "Error:".\n' +
           '- **Required** — `required` sets `aria-required`, shows a decorative asterisk and, inside a form, makes the hidden native select validate the value.\n' +
-          '- **Pass-through** — every other prop (`name`, `value`, `onValueChange`, the `SelectItem` children…) goes to the `Select`; `ref` points to the trigger `<button>`.',
+          '- **Pass-through** — every other prop (`name`, `value`, `onValueChange`, the `SelectItem` children…) goes to the `Select`; `ref` points to the trigger `<button>`.\n\n' +
+          '### Patterns\n' +
+          '- [Form Validation](?path=/docs/design-system-patterns-tasks-form-validation--docs) — field errors plus a summary at the top that links to each one.\n' +
+          '- [Preferences](?path=/docs/design-system-patterns-tasks-preferences--docs) — settings that apply the moment they change, with a status line for each save.\n' +
+          '- [Fit Check](?path=/docs/design-system-patterns-page-sections-fit-check--docs) — compares a product with a saved space and says whether it fits, and why.',
       },
     },
   },
@@ -115,7 +119,7 @@ export const Default: Story = {
     },
   },
   render: (args) => (
-    <div style={{ maxWidth: '22rem' }}>
+    <div style={{ width: '22rem', maxWidth: '100%' }}>
       <SelectField {...args} />
     </div>
   ),
@@ -156,7 +160,15 @@ export const DefaultInteraction: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <SelectField size="lg" label="Large" placeholder="56px field">
         {ROOM_OPTIONS}
       </SelectField>
@@ -193,7 +205,7 @@ export const AllSizes: Story = {
 export const WithIcon: Story = {
   name: 'With Icons and Groups',
   render: () => (
-    <div style={{ maxWidth: '22rem' }}>
+    <div style={{ width: '22rem', maxWidth: '100%' }}>
       <SelectField label="Store" placeholder="Choose a store" iconStart="store">
         <SelectGroup label="Furniture">
           <SelectItem value="ikea">IKEA</SelectItem>
@@ -250,7 +262,7 @@ export const WithIconInteraction: Story = {
 export const WithError: Story = {
   name: 'Error State',
   render: () => (
-    <div style={{ maxWidth: '22rem' }}>
+    <div style={{ width: '22rem', maxWidth: '100%' }}>
       <SelectField
         label="Room"
         hint="Shows products made for this room."
@@ -290,7 +302,7 @@ export const WithError: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    <div style={{ maxWidth: '22rem' }}>
+    <div style={{ width: '22rem', maxWidth: '100%' }}>
       <SelectField
         label="Delivery slot"
         hint="Available after you choose a store."
@@ -323,7 +335,15 @@ export const Disabled: Story = {
 export const PseudoStates: Story = {
   name: 'Interactive Pseudo States',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '22rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
+    >
       <SelectField label="Default" placeholder="Choose a room">
         {ROOM_OPTIONS}
       </SelectField>
@@ -400,7 +420,13 @@ function SaveSearchForm() {
       noValidate
       onSubmit={handleSubmit}
       aria-label="Save search"
-      style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '22rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '22rem',
+        maxWidth: '100%',
+      }}
     >
       <Text size="sm" style={{ margin: 0 }}>
         Fields marked with an asterisk (*) are required.

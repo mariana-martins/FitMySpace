@@ -11,7 +11,6 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import type { PaginationSize } from './';
 import type { MouseEvent } from 'react';
-import { Text } from '../Typography';
 import { useState } from 'react';
 
 type ProductPagesProps = {
@@ -94,10 +93,13 @@ const meta = {
           '- **Move focus to the results:** After a page change, move focus to the top of the results (e.g. their heading), so keyboard and screen reader users start at the new content.\n\n' +
           '### Key Features\n' +
           '- **Clear names** — page links read "Page 3"; Previous and Next read "Previous page" and "Next page"; an ellipsis reads "More pages".\n' +
-          '- **Ends of the list** — on the first or last page, Previous or Next is hidden but keeps its space, as GOV.UK does, so nothing leads nowhere and the page numbers stay put.\n' +
+          '- **Ends of the list** — on the first or last page, Previous or Next stays in place in grey and is not a link, so the row lines up with the text above it and the page numbers stay put.\n' +
           '- **2 sizes** — `sm` (32px) and `md` (40px, default), the Chip heights, with tabular numbers so the entries keep their width.\n' +
           '- **Server-rendered** — no client hooks; `asChild` uses Radix `Slot`.\n' +
-          '- **High contrast** — the current page keeps an outline in Windows High Contrast, where its fill disappears.',
+          '- **High contrast** — the current page keeps an outline in Windows High Contrast, where its fill disappears.\n\n' +
+          '### Patterns\n' +
+          '- [Paginated Results](?path=/docs/design-system-patterns-page-sections-paginated-results--docs) — the summary line, the products and the page links, with the focus moved to the new range.\n' +
+          '- [Search Results Page](?path=/docs/design-system-patterns-pages-search-results-page--docs) — the whole page: search, filters, one summary line, the products and the pages.',
       },
     },
   },
@@ -209,7 +211,7 @@ export const LongRanges: Story = {
     docs: {
       description: {
         story:
-          'Twenty pages on the first, a middle and the last page. `getPaginationRange` keeps 7 entries between Previous and Next, so the controls never move under the pointer; an ellipsis never hides a single page. At either end, Previous or Next is hidden but keeps its space.',
+          'Twenty pages on the first, a middle and the last page. `getPaginationRange` keeps 7 entries between Previous and Next, so the controls never move under the pointer; an ellipsis never hides a single page. At either end, Previous or Next is greyed out and leads nowhere.',
       },
       source: {
         code: `getPaginationRange({ page: 10, pageCount: 20 });\n// [1, 'start-ellipsis', 9, 10, 11, 'end-ellipsis', 20]`,
@@ -219,9 +221,10 @@ export const LongRanges: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const firstPage = canvas.getByRole('navigation', { name: 'First page of 20' });
-    await expect(
-      within(firstPage).queryByRole('link', { name: 'Previous page' }),
-    ).not.toBeInTheDocument();
+    await expect(within(firstPage).getByRole('link', { name: 'Previous page' })).toHaveAttribute(
+      'aria-disabled',
+      'true',
+    );
     const middlePage = canvas.getByRole('navigation', { name: 'Middle page of 20' });
     await expect(within(middlePage).getAllByText('More pages')).toHaveLength(2);
   },
@@ -263,7 +266,7 @@ export const PseudoStates: Story = {
       description: {
         story:
           'Demonstrates the states with the `storybook-addon-pseudo-states` plugin, from left to right:\n\n' +
-          '- **Hidden Previous** — on the first page, an empty space where Previous would be.\n' +
+          '- **Disabled Previous** — on the first page, Previous in grey, announced as unavailable and out of the tab order.\n' +
           '- **Current page (1)** — a sage fill with white text, set by `aria-current="page"`.\n' +
           '- **Default (2)** — plain text, no box.\n' +
           '- **Hover (3)** — a pale neutral box appears.\n' +
@@ -276,110 +279,5 @@ export const PseudoStates: Story = {
       active: ['.pseudo-active'],
       focusVisible: ['.pseudo-focus-visible'],
     },
-  },
-};
-
-/* ---------------------------------------------------------------
- * Search results (recipe)
- * --------------------------------------------------------------- */
-
-const PRODUCT_COUNT = 47;
-const PRODUCTS_PER_PAGE = 12;
-
-function SearchResultsPages() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageCount = Math.ceil(PRODUCT_COUNT / PRODUCTS_PER_PAGE);
-  const firstShown = (currentPage - 1) * PRODUCTS_PER_PAGE + 1;
-  const lastShown = Math.min(currentPage * PRODUCTS_PER_PAGE, PRODUCT_COUNT);
-
-  const goTo = (page: number) => (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    setCurrentPage(page);
-    document.getElementById('results-summary')?.focus();
-  };
-
-  return (
-    <section
-      aria-labelledby="results-summary"
-      style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
-    >
-      <Text as="p" id="results-summary" tabIndex={-1} style={{ margin: 0 }}>
-        Showing {firstShown}–{lastShown} of {PRODUCT_COUNT} storage products
-      </Text>
-      <Pagination aria-label="Search results pages">
-        <PaginationItem>
-          <PaginationPrevious
-            href={`?q=shelf&page=${currentPage - 1}`}
-            disabled={currentPage === 1}
-            onClick={goTo(currentPage - 1)}
-          />
-        </PaginationItem>
-        {getPaginationRange({ page: currentPage, pageCount }).map((rangeItem) => (
-          <PaginationItem key={rangeItem}>
-            {typeof rangeItem === 'number' ? (
-              <PaginationLink
-                page={rangeItem}
-                href={`?q=shelf&page=${rangeItem}`}
-                aria-current={rangeItem === currentPage ? 'page' : undefined}
-                onClick={goTo(rangeItem)}
-              />
-            ) : (
-              <PaginationEllipsis />
-            )}
-          </PaginationItem>
-        ))}
-        <PaginationItem>
-          <PaginationNext
-            href={`?q=shelf&page=${currentPage + 1}`}
-            disabled={currentPage === pageCount}
-            onClick={goTo(currentPage + 1)}
-          />
-        </PaginationItem>
-      </Pagination>
-    </section>
-  );
-}
-
-export const SearchResultsExample: Story = {
-  name: 'Search Results (A11y)',
-  render: () => <SearchResultsPages />,
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'A recipe for the search results: every link keeps the query (`?q=shelf&page=2`), and after a page change focus moves to the results summary, so screen readers announce the new range. In the app, wrap Next.js `<Link>` with `asChild` and let the URL drive the page.',
-      },
-      source: {
-        code: `{totalPages > 1 && (\n  <Pagination>\n    <PaginationItem>\n      <PaginationPrevious asChild disabled={currentPage === 1}>\n        <NextLink href={pageHref(currentPage - 1)} />\n      </PaginationPrevious>\n    </PaginationItem>\n    {getPaginationRange({ page: currentPage, pageCount: totalPages }).map((rangeItem) => (\n      <PaginationItem key={rangeItem}>\n        {typeof rangeItem === 'number' ? (\n          <PaginationLink\n            asChild\n            page={rangeItem}\n            aria-current={rangeItem === currentPage ? 'page' : undefined}\n          >\n            <NextLink href={pageHref(rangeItem)} />\n          </PaginationLink>\n        ) : (\n          <PaginationEllipsis />\n        )}\n      </PaginationItem>\n    ))}\n    <PaginationItem>\n      <PaginationNext asChild disabled={currentPage === totalPages}>\n        <NextLink href={pageHref(currentPage + 1)} />\n      </PaginationNext>\n    </PaginationItem>\n  </Pagination>\n)}`,
-      },
-    },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await expect(canvas.getByRole('link', { name: 'Page 2' })).toHaveAttribute(
-      'href',
-      '?q=shelf&page=2',
-    );
-    await expect(canvas.getByRole('link', { name: 'Page 2' })).not.toHaveAttribute('aria-current');
-  },
-};
-
-/* ---------------------------------------------------------------
- * Search Results (A11y): interaction (test only)
- * --------------------------------------------------------------- */
-
-export const SearchResultsExampleInteraction: Story = {
-  ...SearchResultsExample,
-  name: 'Search Results (A11y): Interaction (Test Only)',
-  tags: ['!dev', '!autodocs'],
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole('link', { name: 'Page 2' }));
-    const summary = canvas.getByText(/Showing 13–24 of 47/);
-    await expect(summary).toHaveFocus();
-    await expect(canvas.getByRole('link', { name: 'Page 2' })).toHaveAttribute(
-      'href',
-      '?q=shelf&page=2',
-    );
   },
 };

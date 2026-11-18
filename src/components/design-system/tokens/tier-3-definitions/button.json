@@ -434,7 +434,11 @@
         }
       },
       "shape": {
-        "radii": { "value": "{semantic.radii.interactive.md}" }
+        "radii": { "value": "{semantic.radii.interactive.md}" },
+        "paddingY": {
+          "value": "{semantic.spacing.inset.xs}",
+          "comment": "Space above and below a label that wraps onto two lines. One line stays at the size's minHeight."
+        }
       },
       "size": {
         "lg": {

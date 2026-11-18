@@ -85,7 +85,7 @@ export const Default: Story = {
     },
   },
   render: (args) => (
-    <div style={{ maxWidth: '26rem' }}>
+    <div style={{ width: '26rem', maxWidth: '100%' }}>
       <LabelledField label="Assembly notes" size={args.size}>
         {(fieldId) => <Textarea {...args} id={fieldId} />}
       </LabelledField>
@@ -128,7 +128,15 @@ export const DefaultInteraction: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Large" size="lg">
         {(fieldId) => (
           <Textarea id={fieldId} size="lg" rows={2} placeholder="lg padding and font" />
@@ -171,7 +179,15 @@ export const AllSizes: Story = {
 export const WithRows: Story = {
   name: 'Rows and Limits',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Gate code">
         {(fieldId) => (
           <Textarea id={fieldId} rows={1} maxLength={40} placeholder="Building B, code 4821" />
@@ -212,7 +228,15 @@ export const WithRows: Story = {
 export const WithResize: Story = {
   name: 'Resizing',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Vertical (default)">
         {(fieldId) => (
           <Textarea id={fieldId} resize="vertical" placeholder="Drag the bottom-right corner" />
@@ -251,7 +275,7 @@ export const WithResize: Story = {
 
 export const Invalid: Story = {
   render: () => (
-    <div style={{ maxWidth: '26rem' }}>
+    <div style={{ width: '26rem', maxWidth: '100%' }}>
       <LabelledField label="Delivery instructions">
         {(fieldId) => (
           <>
@@ -297,7 +321,15 @@ export const Invalid: Story = {
 export const Disabled: Story = {
   name: 'Disabled and Read-only',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Disabled">
         {(fieldId) => <Textarea id={fieldId} placeholder="No notes on this order" disabled />}
       </LabelledField>
@@ -330,7 +362,15 @@ export const Disabled: Story = {
 export const PseudoStates: Story = {
   name: 'Interactive Pseudo States',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '26rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '26rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Default">
         {(fieldId) => <Textarea id={fieldId} rows={2} placeholder="Default" />}
       </LabelledField>

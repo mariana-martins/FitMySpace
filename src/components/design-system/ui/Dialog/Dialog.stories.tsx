@@ -45,7 +45,12 @@ const meta = {
           '- **Fixed header and footer** — only the body scrolls, on any height.\n' +
           '- **Close button included** — icon-only, in the corner, named by `closeLabel`, so no dialog can be rendered without a way out.\n' +
           '- **`modal` on `Dialog`** — defaults to `true`; `false` leaves the page usable, and `aria-modal` follows it.\n' +
-          '- **Reduced motion and `forced-colors`** — the scrim and the dialog stop moving when asked, and the dialog draws its own edge when the system drops shadows.',
+          '- **Reduced motion and `forced-colors`** — the scrim and the dialog stop moving when asked, and the dialog draws its own edge when the system drops shadows.\n\n' +
+          '### Patterns\n' +
+          '- [Dialog Form](?path=/docs/design-system-patterns-tasks-dialog-form--docs) — a short form in a dialog, then a toast once the dialog has closed.\n' +
+          '- [Delete Confirmation](?path=/docs/design-system-patterns-tasks-delete-confirmation--docs) — one dialog for a list of Delete buttons, and where the focus goes after a delete.\n' +
+          '- [Choosing Feedback](?path=/docs/design-system-patterns-guides-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.\n' +
+          '- [Site Header](?path=/docs/design-system-patterns-page-sections-site-header--docs) — the brand and the main sections, folding into a menu dialog on a phone.',
       },
     },
   },
@@ -388,7 +393,15 @@ function SaveRoomForm() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '24rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '24rem',
+        maxWidth: '100%',
+      }}
+    >
       {savedRoom && <p style={{ margin: 0 }}>Room added: {savedRoom}</p>}
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>

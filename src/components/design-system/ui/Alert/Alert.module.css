@@ -70,6 +70,12 @@
   color: inherit;
 }
 
+/* A link in the message takes the message's colour: the alert's text tokens already pass
+   contrast on its background, and the underline, not the colour, says it is a link. */
+.root .body a {
+  color: inherit;
+}
+
 .body > :first-child {
   margin-block-start: 0;
 }

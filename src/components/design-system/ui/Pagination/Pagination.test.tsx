@@ -164,13 +164,14 @@ describe('Pagination — rendering', () => {
     expect(screen.getByRole('link', { name: 'Next page' })).toHaveAttribute('rel', 'next');
   });
 
-  it('hides Previous on the first page but keeps its place', () => {
-    const { container } = renderPagination(1);
-    expect(screen.queryByRole('link', { name: 'Previous page' })).not.toBeInTheDocument();
-    const disabled = container.querySelector('[data-disabled]');
-    expect(disabled).toHaveTextContent('Previous');
-    expect(disabled).toHaveAttribute('aria-hidden', 'true');
-    expect(disabled?.tagName).toBe('SPAN');
+  it('shows Previous as a disabled link on the first page', () => {
+    renderPagination(1);
+    // Still there, and said to be unavailable, but with no href it leads nowhere and takes no focus.
+    const previous = screen.getByRole('link', { name: 'Previous page' });
+    expect(previous).toHaveAttribute('aria-disabled', 'true');
+    expect(previous).not.toHaveAttribute('href');
+    expect(previous).not.toHaveAttribute('tabindex');
+    expect(previous.tagName).toBe('SPAN');
   });
 
   it('reads an ellipsis as "More pages"', () => {

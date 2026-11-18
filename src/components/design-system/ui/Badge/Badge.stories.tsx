@@ -31,7 +31,10 @@ const meta = {
           '- **6 variants** with the same names as Button, each in a `fill` and a `soft` appearance, all at 4.5:1 text contrast.\n' +
           '- **2 sizes** (`sm` 20px, `md` 24px) and **2 shapes** (`pill`, `rounded`).\n' +
           '- **Decorative icon** — `icon` is hidden from screen readers; the text names the badge.\n' +
-          '- **High contrast** — in Windows High Contrast the fill disappears, so an outline keeps the shape visible.',
+          '- **High contrast** — in Windows High Contrast the fill disappears, so an outline keeps the shape visible.\n\n' +
+          '### Patterns\n' +
+          '- [Product Details](?path=/docs/design-system-patterns-page-sections-product-details--docs) — the top of a product page: name, labels, price, measurements and actions.\n' +
+          '- [Store Offers](?path=/docs/design-system-patterns-page-sections-store-offers--docs) — the same product in several stores, cheapest first, each link naming its store.',
       },
     },
   },
@@ -231,7 +234,8 @@ export const ProductCardLabels: Story = {
         display: 'flex',
         flexDirection: 'column',
         gap: '0.75rem',
-        maxWidth: '18rem',
+        width: '18rem',
+        maxWidth: '100%',
         padding: '1.5rem',
         borderRadius: 'var(--ds-semantic-radii-container-md)',
         boxShadow: 'var(--ds-semantic-shadow-card-base)',

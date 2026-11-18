@@ -23,6 +23,7 @@ import {
   Info,
   Mail,
   MapPin,
+  Menu,
   Minus,
   PackageCheck,
   PackageOpen,
@@ -126,6 +127,7 @@ export const DS_ICONS = {
   },
   mail: { icon: <Mail focusable="false" />, usedIn: 'Input and TextField stories (example)' },
   'map-pin': { icon: <MapPin focusable="false" />, usedIn: 'Alert stories (example)' },
+  menu: { icon: <Menu focusable="false" />, usedIn: 'Site Header pattern (the phone menu button)' },
   minus: { icon: <Minus focusable="false" />, usedIn: 'Checkbox, in its indeterminate state' },
   'package-check': { icon: <PackageCheck focusable="false" />, usedIn: 'Badge stories (example)' },
   'package-open': {

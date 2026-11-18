@@ -1,0 +1,44 @@
+{
+  "component": {
+    "skip-link": {
+      "background": {
+        "value": "{semantic.colour.background.brand.base}"
+      },
+      "text": {
+        "value": "{semantic.colour.text.inverse}"
+      },
+      "shadow": {
+        "value": "{semantic.shadow.floating}"
+      },
+      "layer": {
+        "value": "{semantic.layer.toast}",
+        "comment": "Above the header and anything else on the page: the link is the first thing a keyboard reaches."
+      },
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.interactive.md}"
+        }
+      },
+      "spacing": {
+        "padding-x": {
+          "value": "{semantic.spacing.inset.md}"
+        },
+        "padding-y": {
+          "value": "{semantic.spacing.inset.sm}"
+        },
+        "offset": {
+          "value": "{semantic.spacing.inset.md}",
+          "comment": "How far from the top and start edges of the window the focused link sits."
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.fast}"
+        },
+        "easing": {
+          "value": "{semantic.motion.easing.enter}"
+        }
+      }
+    }
+  }
+}

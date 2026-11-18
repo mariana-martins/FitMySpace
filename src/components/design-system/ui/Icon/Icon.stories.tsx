@@ -173,6 +173,7 @@ export const UsedInTheDesignSystem: Story = {
           margin: 0,
           padding: 0,
           display: 'grid',
+          width: '100%',
           gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
           gap: '24px',
         }}

@@ -48,7 +48,7 @@ rules below are its essentials.
   plain helpers shared by components in `utils/` (e.g. `joinIds` for
   `aria-describedby`, `UTILITY_VARIANTS` with the icon and label of each, shared by `Alert`, `Toast`, the field errors and the variant types of `Button` and `Badge`). Reuse them instead of copying a helper into a component.
   Sidebar: `Design System/Components/<Category>/<Name>` with the categories
-  Actions, Forms, Navigation, Display, Feedback, Overlays and Typography (add one in
+  Actions, Forms, Navigation, Display, Feedback, Overlays, Typography and Utilities (add one in
   `.storybook/preview.tsx` when needed).
 - **Folder per component** in `ui/`: `Name.tsx`, `Name.types.ts`,
   `Name.module.css`, `Name.test.tsx`, `Name.stories.tsx` and an `index.tsx`
@@ -80,7 +80,9 @@ rules below are its essentials.
   `usedIn` line.
 - **Screen-reader-only text**: use `VisuallyHidden` from
   `@radix-ui/react-visually-hidden` (e.g. the "Error: " prefix, a `role="status"`
-  announcement). Never add a local `.visually-hidden` class or inline style.
+  announcement). Never add a local `.visually-hidden` class or inline style. The design
+  system does not wrap it: `ui/VisuallyHidden/` holds only its Storybook page
+  (Components/Utilities), which explains when to use it.
 - **MDN check**: for every new component, verify the ARIA attributes and DOM
   typings against MDN before writing the API.
 - **Tokens**: three tiers of JSON in `tokens/` (tier 1 literal values, tier 2
@@ -105,7 +107,8 @@ rules below are its essentials.
   - then `AllSizes`, `WithIcon` (named 'With Icons'), `Disabled`, and
     `PseudoStates` (named 'Interactive Pseudo States', using
     `storybook-addon-pseudo-states`);
-  - compositions as recipes, e.g. 'Form Example (A11y)';
+  - recipes that show this one component in a real setting, e.g. 'Form Example (A11y)'
+    (a composition of several components is a pattern, see **Patterns**);
   - every story has a `/* --- Name --- */` header comment,
     `parameters.docs.description.story`, a `play` test where it adds value, and
     `docs.source.code` when the render is complex;
@@ -116,7 +119,28 @@ rules below are its essentials.
     (`...Name`), name it 'Name: Interaction (Test Only)', add
     `tags: ['!dev', '!autodocs']` and give it the interactive `play`. It is hidden
     from the sidebar and the docs page, and `npm run test:storybook` still runs it;
-  - layouts use inline `style`, not meta decorators or shared style constants.
+  - layouts use inline `style`, not meta decorators or shared style constants;
+  - the global decorator in `.storybook/preview.tsx` centres every story on both axes. A
+    story that should fill the width (a grid of cards) sets `width: '100%'` on its root; one
+    that should stay narrow sets `width` with `maxWidth: '100%'`, not `maxWidth` alone, which
+    collapses to its content. Full pages set `layout: 'fullscreen'` and are not centred.
+- **Patterns** (`patterns/<Name>/<Name>.stories.tsx`, sidebar
+  `Design System/Patterns/<Group>/<Name>`, folders flat as in `ui/`): recipes that compose
+  several design-system components (search page, product card). Stories only: no new
+  component, no CSS Module, layout in inline `style`, sample data local to the file, or shared
+  from `docs/` when several patterns use it (`docs/sampleImages.ts`, `docs/sampleProducts.tsx`,
+  `docs/sampleSite.tsx`), no fetch. The app owns the state (URL, queries), and the pattern says
+  where it goes.
+  - Groups: **Page Sections** (a piece of a page, Atomic Design's organisms), **Tasks**
+    (something people do from start to finish), **Pages** (Page Layout, the template, and
+    whole pages) and **Guides** (choosing between components). Add a pattern to its group in
+    `.storybook/preview.tsx` and to its group's grid in `patterns/Overview.stories.tsx`.
+  - The meta description has the same sections: the problem, `### What It Solves` (what goes
+    wrong without it), `### When to Use` (with what it is not for), `### Anatomy`,
+    `### Accessibility` and `### In the App`. A component page links to its patterns under
+    `### Patterns`.
+  - A pattern that needs a missing component waits for it instead of drawing its own, and
+    the gap goes on the Overview's "Not in the design system yet" list.
 - **CSS Modules**: kebab-case class names (`.icon-only`, `.error-icon`), read
   with bracket access (`styles['error-icon']`). Stylelint (`stylelint.config.mjs`,
   `npm run lint:css`) enforces it and fails on any unknown `--ds-*` token or any

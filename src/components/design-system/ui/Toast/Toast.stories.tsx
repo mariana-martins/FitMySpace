@@ -28,7 +28,7 @@ const meta = {
       // A docs page draws each story in a box with a transform, which makes the
       // box, not the screen, what the fixed stack is placed against: the box has
       // to be tall enough for the card it raises, or the card is cut off.
-      story: { height: '320px' },
+      story: { height: '250px' },
       description: {
         component:
           'A `Toast` tells the reader something happened while they were somewhere else: a save that finished, a sync that failed, a background job that came in. It is built on Radix Toast, which is the W3C toast pattern: one labelled region the cards stack in, a hidden live region per card for the announcement, and a hotkey (F8) that moves focus *into* the region instead of the card stealing focus from wherever the reader was.\n\n' +
@@ -46,7 +46,11 @@ const meta = {
           '- **The card is not the live region** — Radix announces through a hidden region of its own, which is what lets the card hold a button: MDN says `role="alert"` holds text, not controls.\n' +
           '- **Above the dialog** — `semantic.layer.toast`, over `layer.floating`, so a tooltip explaining a button in the card still shows.\n' +
           '- **Slides in and out** — the card arrives from the screen edge and leaves the same way, by itself or by a swipe; bottom-right, or bottom-centre on a phone, clear of the home indicator through `env(safe-area-inset-*)`.\n' +
-          '- **Reduced motion and `forced-colors`** — the card stops moving when asked, and draws its own edge when the system drops shadows.',
+          '- **Reduced motion and `forced-colors`** — the card stops moving when asked, and draws its own edge when the system drops shadows.\n\n' +
+          '### Patterns\n' +
+          '- [Dialog Form](?path=/docs/design-system-patterns-tasks-dialog-form--docs) — a short form in a dialog, then a toast once the dialog has closed.\n' +
+          '- [Remove with Undo](?path=/docs/design-system-patterns-tasks-remove-with-undo--docs) — remove at once, then offer Undo in a toast, with the focus kept in place.\n' +
+          '- [Choosing Feedback](?path=/docs/design-system-patterns-guides-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.',
       },
     },
   },

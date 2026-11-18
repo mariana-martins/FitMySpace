@@ -485,6 +485,60 @@ describe('EmptyState tokens — contrast', () => {
 });
 
 /* ===============================================================
+ * LIST
+ * =============================================================== */
+
+describe('List tokens — contrast', () => {
+  it.each([
+    ['title', 'component.list.title.text'],
+    ['description', 'component.list.description.text'],
+  ])('%s is readable on the list', (_description, textToken) => {
+    expect(contrastRatio(textToken, 'component.list.background')).toBeGreaterThanOrEqual(
+      TEXT_MINIMUM,
+    );
+  });
+
+  it.each([
+    ['title', 'component.list.title.text'],
+    ['description', 'component.list.description.text'],
+  ])('%s is readable on a hovered row', (_description, textToken) => {
+    expect(contrastRatio(textToken, 'component.list.hover.background')).toBeGreaterThanOrEqual(
+      TEXT_MINIMUM,
+    );
+  });
+
+  it('icon stands out from its circle', () => {
+    expect(
+      contrastRatio('component.list.leading.icon', 'component.list.leading.background'),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it('outline edge stands out from the page', () => {
+    expect(contrastRatio('component.list.border.outline', PAGE_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+});
+
+/* ===============================================================
+ * SKIP LINK
+ * =============================================================== */
+
+describe('SkipLink tokens — contrast', () => {
+  it('text is readable on its fill', () => {
+    expect(
+      contrastRatio('component.skip-link.text', 'component.skip-link.background'),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('fill stands out from the page', () => {
+    expect(contrastRatio('component.skip-link.background', PAGE_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+});
+
+/* ===============================================================
  * SWITCH
  * =============================================================== */
 

@@ -103,9 +103,13 @@ const PaginationDirection = forwardRef<
   );
   const classNames = clsx(styles.control, styles.direction, className);
 
+  /* At either end the direction stays on screen, greyed, so the row keeps its shape and
+     lines up with the text above it. It is a disabled link, the W3C way: no `href`, so it
+     takes no focus, with `role="link"` and `aria-disabled`, so screen readers say it is
+     there but unavailable, and the contrast minimum does not apply to it. */
   if (disabled) {
     return (
-      <span className={classNames} data-disabled="" aria-hidden="true">
+      <span className={classNames} data-disabled="" role="link" aria-disabled="true">
         {content}
       </span>
     );

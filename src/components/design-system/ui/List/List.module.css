@@ -1,0 +1,188 @@
+/* ---------------------------------------------------------------
+ * List — CSS Module
+ * Maps component-level list tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .list           — the <ul>/<ol>: a column of rows
+ *   .item           — one row: start, text, end, centred on each other
+ *   .leading        — a registry icon in a soft circle
+ *   .leading-custom — any other start element (a picture, an avatar)
+ *   .text           — the title and the description, stacked
+ *   .trailing       — the row's action or short fact
+ *
+ * Appearance classes: .plain (on the page) | .outline (inside a border)
+ * Size classes: .size-{sm|md}
+ * Modifier: .dividers (a faint line between rows)
+ *
+ * The divider is drawn by the row's ::before, inset by the row's side
+ * padding, so it always starts where the text starts. A row whose
+ * title is a stretched Link ([data-link-stretched]) becomes clickable
+ * as a whole: it gets side padding, a hover fill and an inset focus
+ * ring; in a plain list it steps out by that padding so its text stays
+ * aligned with the rows around it.
+ * --------------------------------------------------------------- */
+
+.list {
+  --list-row-padding-x: 0;
+
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outline {
+  --list-row-padding-x: var(--ds-component-list-spacing-padding-x);
+
+  overflow: hidden;
+  background-color: var(--ds-component-list-background);
+  border: var(--ds-component-list-shape-border-width) solid var(--ds-component-list-border-outline);
+  border-radius: var(--ds-component-list-shape-radii);
+}
+
+/* Sizes ------------------------------------------------------------ */
+
+.size-sm {
+  --list-min-height: var(--ds-component-list-size-sm-min-height);
+  --list-padding-y: var(--ds-component-list-size-sm-padding-y);
+  --list-leading-size: var(--ds-component-list-size-sm-leading-size);
+  --list-icon-size: var(--ds-component-list-size-sm-icon-size);
+  --list-title-font: var(--ds-semantic-typography-label-md-shorthand);
+  --list-title-letter-spacing: var(--ds-semantic-typography-label-md-letter-spacing);
+  --list-description-font: var(--ds-semantic-typography-caption-md-shorthand);
+  --list-description-letter-spacing: var(--ds-semantic-typography-caption-md-letter-spacing);
+}
+
+.size-md {
+  --list-min-height: var(--ds-component-list-size-md-min-height);
+  --list-padding-y: var(--ds-component-list-size-md-padding-y);
+  --list-leading-size: var(--ds-component-list-size-md-leading-size);
+  --list-icon-size: var(--ds-component-list-size-md-icon-size);
+  --list-title-font: var(--ds-semantic-typography-label-lg-shorthand);
+  --list-title-letter-spacing: var(--ds-semantic-typography-label-lg-letter-spacing);
+  --list-description-font: var(--ds-semantic-typography-body-sm-shorthand);
+  --list-description-letter-spacing: var(--ds-semantic-typography-body-sm-letter-spacing);
+}
+
+/* Row -------------------------------------------------------------- */
+
+.item {
+  --link-stretched-radius: 0;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ds-component-list-spacing-gap);
+  box-sizing: border-box;
+  min-block-size: var(--list-min-height);
+  padding-block: var(--list-padding-y);
+  padding-inline: var(--list-row-padding-x);
+}
+
+.dividers .item + .item::before {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: var(--list-row-padding-x);
+  content: '';
+  border-block-start: var(--ds-component-list-shape-border-width) solid
+    var(--ds-component-list-border-divider);
+}
+
+/* Start ------------------------------------------------------------ */
+
+.leading {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--list-leading-size);
+  block-size: var(--list-leading-size);
+  color: var(--ds-component-list-leading-icon);
+  background-color: var(--ds-component-list-leading-background);
+  border-radius: var(--ds-semantic-radii-surface-full);
+}
+
+.leading-icon {
+  --icon-size: var(--list-icon-size);
+}
+
+.leading-custom {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* Text ------------------------------------------------------------- */
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--ds-component-list-spacing-text-gap);
+  min-inline-size: 0;
+}
+
+.title {
+  font: var(--list-title-font);
+  letter-spacing: var(--list-title-letter-spacing);
+  color: var(--ds-component-list-title-text);
+}
+
+.description {
+  font: var(--list-description-font);
+  letter-spacing: var(--list-description-letter-spacing);
+  color: var(--ds-component-list-description-text);
+}
+
+/* End -------------------------------------------------------------- */
+
+/* Positioned after the title, so it paints above a stretched link's click area. */
+.trailing {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--ds-semantic-spacing-gap-sm);
+}
+
+/* ---------------------------------------------------------------
+ * Clickable rows
+ * --------------------------------------------------------------- */
+
+.item:has([data-link-stretched]) {
+  transition-property: background-color;
+  transition-duration: var(--ds-component-list-motion-duration);
+  transition-timing-function: var(--ds-component-list-motion-easing);
+}
+
+.plain .item:has([data-link-stretched]) {
+  --list-row-padding-x: var(--ds-component-list-spacing-padding-x);
+  --link-stretched-radius: var(--ds-semantic-radii-surface-md);
+
+  margin-inline: calc(var(--ds-component-list-spacing-padding-x) * -1);
+  border-radius: var(--ds-semantic-radii-surface-md);
+}
+
+/* Rows are packed, so the ring is drawn inside the row instead of over its neighbours. */
+.item [data-link-stretched]:focus-visible::after {
+  outline-offset: var(--ds-semantic-focus-ring-offset-inset);
+}
+
+@media (hover: hover) {
+  .item:has([data-link-stretched]):hover {
+    background-color: var(--ds-component-list-hover-background);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item:has([data-link-stretched]) {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .leading {
+    border: var(--ds-component-list-shape-border-width) solid CanvasText;
+  }
+}

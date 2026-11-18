@@ -33,7 +33,9 @@ const meta = {
           '- **Descriptions** — `aria-describedby` points to the hint, then the error.\n' +
           '- **Errors** — TypeScript enforces a required `error` message whenever `invalid` is `true`. Sets `aria-invalid` and prefixes the message with a screen-reader-only "Error:".\n' +
           '- **State** — the Radix API: `checked` / `defaultChecked` take a boolean and `onCheckedChange` receives the new one. A switch has no mixed state, so unlike `Checkbox` there is no `"indeterminate"`.\n' +
-          '- **Pass-through** — every other prop (`name`, `value`, `id`, `aria-*`…) goes to the Radix root; `ref` points to the `<button>`.',
+          '- **Pass-through** — every other prop (`name`, `value`, `id`, `aria-*`…) goes to the Radix root; `ref` points to the `<button>`.\n\n' +
+          '### Patterns\n' +
+          '- [Preferences](?path=/docs/design-system-patterns-tasks-preferences--docs) — settings that apply the moment they change, with a status line for each save.',
       },
     },
   },
@@ -221,7 +223,15 @@ export const States: Story = {
 export const WithError: Story = {
   name: 'Error State',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '24rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '24rem',
+        maxWidth: '100%',
+      }}
+    >
       <Switch
         label="Send me order updates by SMS"
         hint="Message and data rates may apply."
@@ -263,7 +273,15 @@ export const WithError: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '24rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '24rem',
+        maxWidth: '100%',
+      }}
+    >
       <Switch label="Price alerts" disabled hint="Available once you sign in." />
       <Switch label="Order updates" defaultChecked disabled />
     </div>

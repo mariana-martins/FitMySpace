@@ -34,8 +34,13 @@ const meta = {
           '### Key Features\n' +
           '- **Four utility colours** — `information`, `success`, `warning` and `error`, each with a `soft` block for a message inside a page and a `fill` block for when the message is the main thing on the screen.\n' +
           '- **One icon per variant** — drawn from the `DS_ICONS` registry; pass `icon` with another registry name to replace it.\n' +
+          "- **Links in the message** — take the alert's text colour and keep their underline, so an error summary reads as one red block.\n" +
           '- **Text or structure** — plain text is set in a paragraph; pass your own `<p>` or `<ul>` for longer messages, such as a list of errors.\n' +
-          '- **Server-rendered** — no client hooks.',
+          '- **Server-rendered** — no client hooks.\n\n' +
+          '### Patterns\n' +
+          '- [Form Validation](?path=/docs/design-system-patterns-tasks-form-validation--docs) — field errors plus a summary at the top that links to each one.\n' +
+          '- [Fit Check](?path=/docs/design-system-patterns-page-sections-fit-check--docs) — compares a product with a saved space and says whether it fits, and why.\n' +
+          '- [Choosing Feedback](?path=/docs/design-system-patterns-guides-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.',
       },
     },
   },
@@ -134,7 +139,15 @@ export const Default: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '36rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '36rem',
+        maxWidth: '100%',
+      }}
+    >
       {UTILITY_VARIANTS.map((variant) => (
         <Alert key={variant} variant={variant} title={EXAMPLES[variant].title}>
           {EXAMPLES[variant].message}
@@ -167,6 +180,7 @@ export const SoftAndFill: Story = {
     <div
       style={{
         display: 'grid',
+        width: '100%',
         gridTemplateColumns: 'repeat(auto-fit, minmax(18rem, 1fr))',
         gap: '1rem',
       }}
@@ -200,7 +214,15 @@ export const SoftAndFill: Story = {
 export const WithoutTitle: Story = {
   name: 'Without a Title',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '36rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '36rem',
+        maxWidth: '100%',
+      }}
+    >
       <Alert variant="success">Added to your list.</Alert>
       <Alert variant="error" live="assertive">
         The bank did not accept this card.
@@ -231,7 +253,15 @@ export const WithoutTitle: Story = {
 export const WithIcon: Story = {
   name: 'With Icons',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '36rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '36rem',
+        maxWidth: '100%',
+      }}
+    >
       <Alert variant="warning" icon="map-pin" title="Pickup only">
         This wardrobe is too wide for the lift in your building.
       </Alert>
@@ -284,7 +314,15 @@ function SaveRoomStatus() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '36rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '36rem',
+        maxWidth: '100%',
+      }}
+    >
       <Button variant="primary" appearance="fill" size="md" onClick={saveRoom}>
         Save room
       </Button>

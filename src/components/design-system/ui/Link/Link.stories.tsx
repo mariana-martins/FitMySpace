@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, within } from 'storybook/test';
 import { Text } from '../Typography';
-import { useState } from 'react';
 import { Link } from './';
 
 const meta = {
@@ -28,7 +27,12 @@ const meta = {
           "- **3 sizes** for standalone links (`sm`, `md`, `lg`), on the `Label` styles, or the parent's font when `size` is left out.\n" +
           '- **`asChild`** — Radix `Slot` merges the styles and props onto Next.js `<Link>` or any router link.\n' +
           '- **`stretched`** — makes a whole `Card` the click area of its title link, with the focus ring around the card.\n' +
-          '- **Motion and contrast** — the animation stops with `prefers-reduced-motion`, and Windows High Contrast gets a real underline.',
+          '- **Motion and contrast** — the animation stops with `prefers-reduced-motion`, and Windows High Contrast gets a real underline.\n\n' +
+          '### Patterns\n' +
+          '- [Main Navigation](?path=/docs/design-system-patterns-page-sections-main-navigation--docs) — a named `<nav>` of standalone links with the current page marked.\n' +
+          '- [Store Offers](?path=/docs/design-system-patterns-page-sections-store-offers--docs) — the same product in several stores, cheapest first, each link naming its store.\n' +
+          '- [Site Header](?path=/docs/design-system-patterns-page-sections-site-header--docs) — the brand and the main sections, folding into a menu dialog on a phone.\n' +
+          '- [Footer](?path=/docs/design-system-patterns-page-sections-footer--docs) — named groups of links and the small print.',
       },
     },
   },
@@ -107,7 +111,15 @@ export const Default: Story = {
 export const AllAppearances: Story = {
   name: 'Inline and Standalone',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '32rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '32rem',
+        maxWidth: '100%',
+      }}
+    >
       <Text style={{ margin: 0 }}>
         Need a hand? Read our <Link href="#returns">returns policy</Link> or{' '}
         <Link href="#contact">contact the team</Link> before you order.
@@ -263,67 +275,5 @@ export const PseudoStates: Story = {
       hover: ['.pseudo-hover'],
       focusVisible: ['.pseudo-focus-visible'],
     },
-  },
-};
-
-/* ---------------------------------------------------------------
- * Main navigation (recipe)
- * --------------------------------------------------------------- */
-
-const NAVIGATION_ITEMS = [
-  { name: 'Recent arrivals', href: '#recent' },
-  { name: 'Rooms', href: '#rooms' },
-  { name: 'About us', href: '#about' },
-] as const;
-
-function MainNavigation() {
-  const [currentHref, setCurrentHref] = useState<string>(NAVIGATION_ITEMS[0].href);
-
-  return (
-    <nav aria-label="Main navigation">
-      <ul style={{ display: 'flex', gap: '1.5rem', margin: 0, padding: 0, listStyle: 'none' }}>
-        {NAVIGATION_ITEMS.map((item) => (
-          <li key={item.href}>
-            <Link
-              href={item.href}
-              appearance="standalone"
-              size="lg"
-              aria-current={item.href === currentHref ? 'page' : undefined}
-              onClick={(event) => {
-                event.preventDefault();
-                setCurrentHref(item.href);
-              }}
-            >
-              {item.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-}
-
-export const NavigationExample: Story = {
-  name: 'Main Navigation (A11y)',
-  render: () => <MainNavigation />,
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'A recipe for the main navigation: a `<nav>` with an `aria-label`, a list of standalone links, and `aria-current="page"` on the link to the current page, so screen readers announce "current page" and the underline stays. In the app, wrap Next.js `<Link>` with `asChild` and compare the path with `usePathname()`.',
-      },
-      source: {
-        code: `<nav aria-label="Main navigation">\n  <ul>\n    {navigation.map((item) => (\n      <li key={item.href}>\n        <Link\n          asChild\n          appearance="standalone"\n          size="lg"\n          aria-current={pathname === item.href ? 'page' : undefined}\n        >\n          <NextLink href={item.href}>{item.name}</NextLink>\n        </Link>\n      </li>\n    ))}\n  </ul>\n</nav>`,
-      },
-    },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const navigation = canvas.getByRole('navigation', { name: 'Main navigation' });
-    await expect(within(navigation).getByRole('link', { name: 'Recent arrivals' })).toHaveAttribute(
-      'aria-current',
-      'page',
-    );
-    await expect(within(navigation).getAllByRole('listitem')).toHaveLength(3);
   },
 };

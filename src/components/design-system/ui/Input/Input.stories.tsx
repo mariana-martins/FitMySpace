@@ -78,7 +78,7 @@ export const Default: Story = {
     },
   },
   render: (args) => (
-    <div style={{ maxWidth: '20rem' }}>
+    <div style={{ width: '20rem', maxWidth: '100%' }}>
       <LabelledField label="Room name" size={args.size}>
         {(fieldId) => <Input {...args} id={fieldId} />}
       </LabelledField>
@@ -121,7 +121,15 @@ export const DefaultInteraction: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '20rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '20rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Large" size="lg">
         {(fieldId) => <Input id={fieldId} size="lg" placeholder="56px field" />}
       </LabelledField>
@@ -158,7 +166,15 @@ export const AllSizes: Story = {
 export const WithIcon: Story = {
   name: 'With Icons',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '20rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '20rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Search furniture">
         {(fieldId) => (
           <Input id={fieldId} type="search" iconStart="search" placeholder="Sofa, desk, shelf…" />
@@ -201,7 +217,15 @@ export const WithIcon: Story = {
 
 export const WithUnit: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '20rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '20rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Width">
         {(fieldId) => (
           <Input id={fieldId} inputMode="decimal" unit="cm" iconStart="ruler" placeholder="0" />
@@ -237,7 +261,7 @@ function PasswordWithToggle() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
-    <div style={{ maxWidth: '20rem' }}>
+    <div style={{ width: '20rem', maxWidth: '100%' }}>
       <LabelledField label="Password">
         {(fieldId) => (
           <Input
@@ -307,7 +331,7 @@ export const WithEndActionInteraction: Story = {
 
 export const Invalid: Story = {
   render: () => (
-    <div style={{ maxWidth: '20rem' }}>
+    <div style={{ width: '20rem', maxWidth: '100%' }}>
       <LabelledField label="Room depth">
         {(fieldId) => (
           <>
@@ -355,7 +379,15 @@ export const Invalid: Story = {
 export const Disabled: Story = {
   name: 'Disabled and Read-only',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '20rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '20rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Disabled">
         {(fieldId) => <Input id={fieldId} placeholder="Disabled" disabled />}
       </LabelledField>
@@ -389,7 +421,15 @@ export const Disabled: Story = {
 export const PseudoStates: Story = {
   name: 'Interactive Pseudo States',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '20rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '20rem',
+        maxWidth: '100%',
+      }}
+    >
       <LabelledField label="Default">
         {(fieldId) => <Input id={fieldId} placeholder="Default" />}
       </LabelledField>

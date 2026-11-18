@@ -27,7 +27,9 @@ const meta = {
           '- **3 shapes** — `text` (one or more lines, sized like `Text` sm / md / lg), `rectangle` (images and blocks) and `circle` (avatars and icons).\n' +
           '- **Text rhythm** — a text bar is one line tall at the size it replaces, so stacked lines keep the spacing of real text; the last of several lines is shorter.\n' +
           '- **Calm motion** — a slow pulse between two pale neutrals; it stops with `prefers-reduced-motion`.\n' +
-          '- **Hidden from assistive technology** — always `aria-hidden`; Windows High Contrast keeps an outline.',
+          '- **Hidden from assistive technology** — always `aria-hidden`; Windows High Contrast keeps an outline.\n\n' +
+          '### Patterns\n' +
+          '- [Results States](?path=/docs/design-system-patterns-tasks-results-states--docs) — loading, products, no products and a failed request in the same place.',
       },
     },
   },
@@ -114,7 +116,15 @@ export const AllShapes: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '20rem' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '20rem',
+        maxWidth: '100%',
+      }}
+    >
       <Skeleton size="lg" lines={2} />
       <Skeleton size="md" lines={2} />
       <Skeleton size="sm" lines={2} />
@@ -140,11 +150,12 @@ export const AllSizes: Story = {
 export const LoadingCards: Story = {
   name: 'Loading Product Cards (A11y)',
   render: () => (
-    <section aria-label="Products" aria-busy="true">
+    <section aria-label="Products" aria-busy="true" style={{ width: '100%' }}>
       <VisuallyHidden role="status">Loading products…</VisuallyHidden>
       <ul
         style={{
           display: 'grid',
+          width: '100%',
           gridTemplateColumns: 'repeat(auto-fill, minmax(14rem, 1fr))',
           gap: '1.5rem',
           margin: 0,
