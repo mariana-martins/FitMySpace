@@ -1,5 +1,25 @@
 # Changelog
 
+# [0.7.0](https://github.com/mariana-martins/FitMySpace/compare/v0.6.0...v0.7.0) (2026-11-18)
+
+### Bug Fixes
+
+* **docs:** put the Storybook page values on the 4px scale ([b93fe96](https://github.com/mariana-martins/FitMySpace/commit/b93fe96f30b235d7b2b19e59e1263fc008b91d8c))
+
+### Documentation
+
+* **contributing:** add the Contributing & Accessibility page ([a337eb2](https://github.com/mariana-martins/FitMySpace/commit/a337eb25aa219468557e81ec5b2a18f40e7ef499))
+
+### Features
+
+* **alert-dialog:** add AlertDialog for decisions that cannot be undone ([8efcca8](https://github.com/mariana-martins/FitMySpace/commit/8efcca874d8fda7f3c036838fd8c288685117846))
+* **combobox:** add Combobox, a text field that suggests while typing ([9eea461](https://github.com/mariana-martins/FitMySpace/commit/9eea461844425a4f45d616e905d368b21efeb5ad))
+* **design-system:** give Button, Badge and Chip default props ([607be4f](https://github.com/mariana-martins/FitMySpace/commit/607be4fbd27d0a790913505d4899e02866891268))
+* **popover:** add Popover for a few controls tied to a button ([87dac3c](https://github.com/mariana-martins/FitMySpace/commit/87dac3cef5116ce1656289aad6bb4fa3f1613ff2))
+* **sheet:** add Sheet, a modal dialog that slides in from an edge ([ef28ec3](https://github.com/mariana-martins/FitMySpace/commit/ef28ec359e7fe9bbc2e458d3402f26e2bc81cf2a))
+* **tabs:** add Tabs for views of one subject shown one at a time ([744c62f](https://github.com/mariana-martins/FitMySpace/commit/744c62fc44f5a163c3d07a5a2a7ba3ae76cb53b8))
+* **tokens:** add breakpoint tokens and check media queries against them ([bf359d8](https://github.com/mariana-martins/FitMySpace/commit/bf359d821e6febab19c80c6b304c5d660c40d865))
+
 # [0.6.0](https://github.com/mariana-martins/FitMySpace/compare/v0.5.0...v0.6.0) (2026-11-18)
 
 ### Bug Fixes
