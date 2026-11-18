@@ -3,16 +3,16 @@
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import styles from './Button.module.css';
 import { DS_ICONS, Icon } from '../Icon';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { ButtonProps } from './Button.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Button
  * --------------------------------------------------------------- */
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props, ref) {
+export function Button({ ref, ...props }: ButtonProps & { ref?: Ref<HTMLButtonElement> }) {
   const {
     variant = 'primary',
     appearance = 'fill',
@@ -100,6 +100,4 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       {iconElement && iconPosition === 'end' && iconElement}
     </button>
   );
-});
-
-Button.displayName = 'Button';
+}

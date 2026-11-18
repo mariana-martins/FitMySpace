@@ -2,10 +2,9 @@
 
 import { DS_ICONS, Icon } from '../Icon';
 import styles from './Chip.module.css';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
-import type { MouseEvent } from 'react';
+import type { MouseEvent, Ref } from 'react';
 
 import type { ChipProps } from './Chip.types';
 
@@ -20,7 +19,7 @@ import type { ChipProps } from './Chip.types';
  * The ref points to the <button>.
  * --------------------------------------------------------------- */
 
-export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(props, ref) {
+export function Chip({ ref, ...props }: ChipProps & { ref?: Ref<HTMLButtonElement> }) {
   const {
     selected,
     onSelectedChange,
@@ -52,6 +51,4 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(props
       {children}
     </button>
   );
-});
-
-Chip.displayName = 'Chip';
+}

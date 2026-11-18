@@ -1,7 +1,6 @@
+import type { ElementType, Ref } from 'react';
 import { DS_ICONS, Icon } from '../Icon';
-import type { ElementType } from 'react';
 import styles from './List.module.css';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { ListItemProps, ListProps } from './List.types';
@@ -18,7 +17,7 @@ import type { ListItemProps, ListProps } from './List.types';
  * ("list, 4 items") is part of what the reader needs.
  * --------------------------------------------------------------- */
 
-export const List = forwardRef<HTMLElement, ListProps>(function List(props, ref) {
+export function List({ ref, ...props }: ListProps & { ref?: Ref<HTMLElement> }) {
   const {
     as = 'ul',
     appearance = 'plain',
@@ -44,9 +43,7 @@ export const List = forwardRef<HTMLElement, ListProps>(function List(props, ref)
       {...rest}
     />
   );
-});
-
-List.displayName = 'List';
+}
 
 /* ---------------------------------------------------------------
  * ListItem
@@ -57,7 +54,7 @@ List.displayName = 'List';
  * above that area, so a button there still gets its own clicks.
  * --------------------------------------------------------------- */
 
-export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(function ListItem(props, ref) {
+export function ListItem({ ref, ...props }: ListItemProps & { ref?: Ref<HTMLLIElement> }) {
   const { icon, leading, description, trailing, children, className, ...rest } = props;
 
   return (
@@ -77,6 +74,4 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(function ListIt
       {trailing && <div className={styles.trailing}>{trailing}</div>}
     </li>
   );
-});
-
-ListItem.displayName = 'ListItem';
+}

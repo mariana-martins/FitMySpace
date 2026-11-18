@@ -6,7 +6,6 @@ import * as RadixToast from '@radix-ui/react-toast';
 import { DS_ICONS, Icon } from '../Icon';
 import styles from './Toast.module.css';
 import { Button } from '../Button';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type {
@@ -19,6 +18,7 @@ import type {
   ToastVariant,
   ToastViewportProps,
 } from './Toast.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Toast
@@ -57,22 +57,29 @@ export function ToastProvider({ duration = DISMISS_NEVER, ...providerProps }: To
   return <RadixToast.Provider duration={duration} {...providerProps} />;
 }
 
-export const ToastViewport = forwardRef<HTMLOListElement, ToastViewportProps>(
-  function ToastViewport({ className, ...viewportProps }, ref) {
-    return (
-      <RadixToast.Viewport
-        ref={ref}
-        className={clsx(styles.viewport, className)}
-        {...viewportProps}
-      />
-    );
-  },
-);
-
-export const Toast = forwardRef<HTMLLIElement, ToastProps>(function Toast(
-  { variant = 'information', type, icon, className, children, ...toastProps },
+export function ToastViewport({
+  className,
   ref,
-) {
+  ...viewportProps
+}: ToastViewportProps & { ref?: Ref<HTMLOListElement> }) {
+  return (
+    <RadixToast.Viewport
+      ref={ref}
+      className={clsx(styles.viewport, className)}
+      {...viewportProps}
+    />
+  );
+}
+
+export function Toast({
+  variant = 'information',
+  type,
+  icon,
+  className,
+  children,
+  ref,
+  ...toastProps
+}: ToastProps & { ref?: Ref<HTMLLIElement> }) {
   return (
     <RadixToast.Root
       ref={ref}
@@ -88,48 +95,45 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(function Toast(
       </div>
     </RadixToast.Root>
   );
-});
+}
 
-Toast.displayName = 'Toast';
-
-export const ToastTitle = forwardRef<HTMLDivElement, ToastTitleProps>(function ToastTitle(
-  { className, ...titleProps },
+export function ToastTitle({
+  className,
   ref,
-) {
+  ...titleProps
+}: ToastTitleProps & { ref?: Ref<HTMLDivElement> }) {
   return <RadixToast.Title ref={ref} className={clsx(styles.title, className)} {...titleProps} />;
-});
+}
 
-ToastTitle.displayName = 'ToastTitle';
-
-export const ToastDescription = forwardRef<HTMLDivElement, ToastDescriptionProps>(
-  function ToastDescription({ className, ...descriptionProps }, ref) {
-    return (
-      <RadixToast.Description
-        ref={ref}
-        className={clsx(styles.description, className)}
-        {...descriptionProps}
-      />
-    );
-  },
-);
-
-ToastDescription.displayName = 'ToastDescription';
-
-export const ToastAction = forwardRef<HTMLButtonElement, ToastActionProps>(function ToastAction(
-  { className, ...actionProps },
+export function ToastDescription({
+  className,
   ref,
-) {
+  ...descriptionProps
+}: ToastDescriptionProps & { ref?: Ref<HTMLDivElement> }) {
+  return (
+    <RadixToast.Description
+      ref={ref}
+      className={clsx(styles.description, className)}
+      {...descriptionProps}
+    />
+  );
+}
+
+export function ToastAction({
+  className,
+  ref,
+  ...actionProps
+}: ToastActionProps & { ref?: Ref<HTMLButtonElement> }) {
   return (
     <RadixToast.Action ref={ref} className={clsx(styles.action, className)} {...actionProps} />
   );
-});
+}
 
-ToastAction.displayName = 'ToastAction';
-
-export const ToastClose = forwardRef<HTMLButtonElement, ToastCloseProps>(function ToastClose(
-  { className, ...closeProps },
+export function ToastClose({
+  className,
   ref,
-) {
+  ...closeProps
+}: ToastCloseProps & { ref?: Ref<HTMLButtonElement> }) {
   return (
     <RadixToast.Close asChild>
       <Button
@@ -144,6 +148,4 @@ export const ToastClose = forwardRef<HTMLButtonElement, ToastCloseProps>(functio
       />
     </RadixToast.Close>
   );
-});
-
-ToastClose.displayName = 'ToastClose';
+}

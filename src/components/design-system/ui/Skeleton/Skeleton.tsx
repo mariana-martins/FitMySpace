@@ -1,6 +1,5 @@
+import type { CSSProperties, Ref } from 'react';
 import styles from './Skeleton.module.css';
-import type { CSSProperties } from 'react';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { SkeletonProps } from './Skeleton.types';
@@ -12,7 +11,7 @@ import type { SkeletonProps } from './Skeleton.types';
  * primitive for it. No client hooks, so it renders on the server.
  * --------------------------------------------------------------- */
 
-export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(function Skeleton(props, ref) {
+export function Skeleton({ ref, ...props }: SkeletonProps & { ref?: Ref<HTMLSpanElement> }) {
   const {
     shape = 'text',
     size = 'md',
@@ -64,6 +63,4 @@ export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(function Skel
       {...rest}
     />
   );
-});
-
-Skeleton.displayName = 'Skeleton';
+}

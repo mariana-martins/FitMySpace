@@ -3,10 +3,10 @@
 import * as RadixSelect from '@radix-ui/react-select';
 import styles from './Select.module.css';
 import { DS_ICONS, Icon } from '../Icon';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { SelectGroupProps, SelectItemProps, SelectProps } from './Select.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Select
@@ -27,7 +27,7 @@ function sizeClass(size: SelectProps['size']) {
   return styles[`size-${size ?? 'md'}` as keyof typeof styles];
 }
 
-export const Select = forwardRef<HTMLButtonElement, SelectProps>(function Select(props, ref) {
+export function Select({ ref, ...props }: SelectProps & { ref?: Ref<HTMLButtonElement> }) {
   const {
     size = 'md',
     invalid = false,
@@ -100,18 +100,18 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(function Select
       </RadixSelect.Portal>
     </RadixSelect.Root>
   );
-});
-
-Select.displayName = 'Select';
+}
 
 /* ---------------------------------------------------------------
  * SelectItem — one option, with a check mark when chosen
  * --------------------------------------------------------------- */
 
-export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(function SelectItem(
-  { children, className, ...itemProps },
+export function SelectItem({
+  children,
+  className,
   ref,
-) {
+  ...itemProps
+}: SelectItemProps & { ref?: Ref<HTMLDivElement> }) {
   return (
     <RadixSelect.Item ref={ref} className={clsx(styles.item, className)} {...itemProps}>
       <RadixSelect.ItemText>{children}</RadixSelect.ItemText>
@@ -120,24 +120,23 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(function S
       </RadixSelect.ItemIndicator>
     </RadixSelect.Item>
   );
-});
-
-SelectItem.displayName = 'SelectItem';
+}
 
 /* ---------------------------------------------------------------
  * SelectGroup — options under a visible heading
  * --------------------------------------------------------------- */
 
-export const SelectGroup = forwardRef<HTMLDivElement, SelectGroupProps>(function SelectGroup(
-  { label, children, className, ...groupProps },
+export function SelectGroup({
+  label,
+  children,
+  className,
   ref,
-) {
+  ...groupProps
+}: SelectGroupProps & { ref?: Ref<HTMLDivElement> }) {
   return (
     <RadixSelect.Group ref={ref} className={clsx(styles.group, className)} {...groupProps}>
       <RadixSelect.Label className={styles['group-label']}>{label}</RadixSelect.Label>
       {children}
     </RadixSelect.Group>
   );
-});
-
-SelectGroup.displayName = 'SelectGroup';
+}

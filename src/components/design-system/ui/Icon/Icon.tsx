@@ -1,8 +1,8 @@
 import styles from './Icon.module.css';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { IconProps } from './Icon.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Icon
@@ -22,7 +22,7 @@ import type { IconProps } from './Icon.types';
  * to a `label` would hide the very name the label came for.
  * --------------------------------------------------------------- */
 
-export const Icon = forwardRef<HTMLSpanElement, IconProps>(function Icon(props, ref) {
+export function Icon({ ref, ...props }: IconProps & { ref?: Ref<HTMLSpanElement> }) {
   const { size, label, className, ...rest } = props;
   // A visible label named through `aria-labelledby` exposes the box just as `label` does.
   const isNamed = Boolean(label) || Boolean(rest['aria-labelledby']);
@@ -39,6 +39,4 @@ export const Icon = forwardRef<HTMLSpanElement, IconProps>(function Icon(props, 
       {...(isNamed ? { role: 'img', 'aria-label': label || undefined } : { 'aria-hidden': true })}
     />
   );
-});
-
-Icon.displayName = 'Icon';
+}

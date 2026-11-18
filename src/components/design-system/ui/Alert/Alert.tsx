@@ -3,12 +3,11 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Heading, Text } from '../Typography';
 import { DS_ICONS, Icon } from '../Icon';
 import styles from './Alert.module.css';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { AlertLive, AlertProps } from './Alert.types';
 
-import type { ReactNode } from 'react';
+import type { ReactNode, Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Alert
@@ -44,7 +43,7 @@ function hasMessage(children: ReactNode): boolean {
   return children != null && typeof children !== 'boolean';
 }
 
-export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
+export function Alert({ ref, ...props }: AlertProps & { ref?: Ref<HTMLDivElement> }) {
   const {
     variant = 'information',
     appearance = 'soft',
@@ -96,6 +95,4 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(props
       </div>
     </div>
   );
-});
-
-Alert.displayName = 'Alert';
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, forwardRef, useCallback, useContext, useEffect, useRef } from 'react';
+import { createContext, useCallback, useContext, useEffect, useRef } from 'react';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import styles from './Tooltip.module.css';
@@ -13,7 +13,7 @@ import type {
   TooltipTriggerProps,
 } from './Tooltip.types';
 
-import type { RefObject } from 'react';
+import type { RefObject, Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Tooltip
@@ -87,49 +87,49 @@ export function Tooltip({ open: openProp, defaultOpen, onOpenChange, ...rootProp
   );
 }
 
-export const TooltipTrigger = forwardRef<HTMLButtonElement, TooltipTriggerProps>(
-  function TooltipTrigger({ onPointerEnter, ...triggerProps }, ref) {
-    const closeOthers = useContext(TooltipCloseOthersContext);
+export function TooltipTrigger({
+  onPointerEnter,
+  ref,
+  ...triggerProps
+}: TooltipTriggerProps & { ref?: Ref<HTMLButtonElement> }) {
+  const closeOthers = useContext(TooltipCloseOthersContext);
 
-    return (
-      <RadixTooltip.Trigger
+  return (
+    <RadixTooltip.Trigger
+      ref={ref}
+      onPointerEnter={(event) => {
+        onPointerEnter?.(event);
+        closeOthers();
+      }}
+      {...triggerProps}
+    />
+  );
+}
+
+export function TooltipContent({
+  children,
+  className,
+  side = 'top',
+  sideOffset = SIDE_OFFSET_PX,
+  ref,
+  ...contentProps
+}: TooltipContentProps & { ref?: Ref<HTMLDivElement> }) {
+  return (
+    <RadixTooltip.Portal>
+      <RadixTooltip.Content
         ref={ref}
-        onPointerEnter={(event) => {
-          onPointerEnter?.(event);
-          closeOthers();
-        }}
-        {...triggerProps}
-      />
-    );
-  },
-);
-
-TooltipTrigger.displayName = 'TooltipTrigger';
-
-export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
-  function TooltipContent(
-    { children, className, side = 'top', sideOffset = SIDE_OFFSET_PX, ...contentProps },
-    ref,
-  ) {
-    return (
-      <RadixTooltip.Portal>
-        <RadixTooltip.Content
-          ref={ref}
-          side={side}
-          sideOffset={sideOffset}
-          className={clsx(styles.content, className)}
-          {...contentProps}
-        >
-          {children}
-          <RadixTooltip.Arrow
-            className={styles.arrow}
-            width={ARROW_WIDTH_PX}
-            height={ARROW_HEIGHT_PX}
-          />
-        </RadixTooltip.Content>
-      </RadixTooltip.Portal>
-    );
-  },
-);
-
-TooltipContent.displayName = 'TooltipContent';
+        side={side}
+        sideOffset={sideOffset}
+        className={clsx(styles.content, className)}
+        {...contentProps}
+      >
+        {children}
+        <RadixTooltip.Arrow
+          className={styles.arrow}
+          width={ARROW_WIDTH_PX}
+          height={ARROW_HEIGHT_PX}
+        />
+      </RadixTooltip.Content>
+    </RadixTooltip.Portal>
+  );
+}

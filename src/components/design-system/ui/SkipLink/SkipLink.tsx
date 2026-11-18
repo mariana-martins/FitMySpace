@@ -1,8 +1,8 @@
 import styles from './SkipLink.module.css';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { SkipLinkProps } from './SkipLink.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * SkipLink
@@ -13,15 +13,16 @@ import type { SkipLinkProps } from './SkipLink.types';
  * Put it first in the body, before the header.
  * --------------------------------------------------------------- */
 
-export const SkipLink = forwardRef<HTMLAnchorElement, SkipLinkProps>(function SkipLink(
-  { targetId = 'main-content', children = 'Skip to content', className, ...rest },
+export function SkipLink({
+  targetId = 'main-content',
+  children = 'Skip to content',
+  className,
   ref,
-) {
+  ...rest
+}: SkipLinkProps & { ref?: Ref<HTMLAnchorElement> }) {
   return (
     <a ref={ref} href={`#${targetId}`} className={clsx(styles['skip-link'], className)} {...rest}>
       {children}
     </a>
   );
-});
-
-SkipLink.displayName = 'SkipLink';
+}

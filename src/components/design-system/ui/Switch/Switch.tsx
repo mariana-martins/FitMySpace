@@ -3,13 +3,14 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import * as RadixSwitch from '@radix-ui/react-switch';
 import { Label, Text } from '../Typography';
-import { forwardRef, useId } from 'react';
 import styles from './Switch.module.css';
 import { DS_ICONS, Icon } from '../Icon';
+import { useId } from 'react';
 import clsx from 'clsx';
 
 import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS, joinIds } from '../../utils';
 import type { SwitchProps } from './Switch.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Switch
@@ -32,7 +33,7 @@ import type { SwitchProps } from './Switch.types';
  * The ref points to the <button>.
  * --------------------------------------------------------------- */
 
-export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(function Switch(props, ref) {
+export function Switch({ ref, ...props }: SwitchProps & { ref?: Ref<HTMLButtonElement> }) {
   const {
     label,
     hint,
@@ -110,6 +111,4 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(function Switch
       )}
     </div>
   );
-});
-
-Switch.displayName = 'Switch';
+}

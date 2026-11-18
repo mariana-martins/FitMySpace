@@ -1,8 +1,8 @@
 'use client';
 
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
-import { createContext, forwardRef, useContext, useRef } from 'react';
 import { useComposedRefs } from '@radix-ui/react-compose-refs';
+import { createContext, useContext, useRef } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { Heading, Text } from '../Typography';
 import styles from './Dialog.module.css';
@@ -18,6 +18,7 @@ import type {
   DialogSize,
   DialogTitleProps,
 } from './Dialog.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Dialog
@@ -81,63 +82,62 @@ function sizeClass(size: DialogSize) {
   return styles[`size-${size}` as keyof typeof styles];
 }
 
-export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
-  function DialogContent(props, ref) {
-    const {
-      size = 'md',
-      initialFocus = 'first',
-      closeLabel = 'Close',
-      children,
-      className,
-      onOpenAutoFocus,
-      ...contentProps
-    } = props;
+export function DialogContent({
+  ref,
+  ...props
+}: DialogContentProps & { ref?: Ref<HTMLDivElement> }) {
+  const {
+    size = 'md',
+    initialFocus = 'first',
+    closeLabel = 'Close',
+    children,
+    className,
+    onOpenAutoFocus,
+    ...contentProps
+  } = props;
 
-    const { modal: isModal, open } = useContext(DialogStateContext);
-    const frameRef = useRef<HTMLDivElement>(null);
-    const composedRef = useComposedRefs(ref, frameRef);
+  const { modal: isModal, open } = useContext(DialogStateContext);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const composedRef = useComposedRefs(ref, frameRef);
 
-    function handleOpenAutoFocus(event: Event) {
-      onOpenAutoFocus?.(event);
-      if (initialFocus !== 'title' || event.defaultPrevented) return;
+  function handleOpenAutoFocus(event: Event) {
+    onOpenAutoFocus?.(event);
+    if (initialFocus !== 'title' || event.defaultPrevented) return;
 
-      event.preventDefault();
-      const title = frameRef.current?.querySelector<HTMLElement>('[data-dialog-title]');
-      (title ?? frameRef.current)?.focus();
-    }
+    event.preventDefault();
+    const title = frameRef.current?.querySelector<HTMLElement>('[data-dialog-title]');
+    (title ?? frameRef.current)?.focus();
+  }
 
-    return (
-      <RadixDialog.Portal>
-        <RadixDialog.Overlay className={styles.overlay} />
-        <div className={styles.viewport} data-state={open ? 'open' : 'closed'}>
-          <RadixDialog.Content
-            asChild
-            aria-modal={isModal ? true : undefined}
-            onOpenAutoFocus={handleOpenAutoFocus}
-            {...contentProps}
-          >
-            <div ref={composedRef} className={clsx(styles.content, sizeClass(size), className)}>
-              {children}
+  return (
+    <RadixDialog.Portal>
+      <RadixDialog.Overlay className={styles.overlay} />
+      <div className={styles.viewport} data-state={open ? 'open' : 'closed'}>
+        <RadixDialog.Content
+          asChild
+          aria-modal={isModal ? true : undefined}
+          onOpenAutoFocus={handleOpenAutoFocus}
+          {...contentProps}
+        >
+          <div ref={composedRef} className={clsx(styles.content, sizeClass(size), className)}>
+            {children}
 
-              <RadixDialog.Close asChild>
-                <Button
-                  variant="secondary"
-                  appearance="ghost"
-                  size="sm"
-                  icon="x"
-                  aria-label={closeLabel}
-                  className={styles.close}
-                />
-              </RadixDialog.Close>
-            </div>
-          </RadixDialog.Content>
-        </div>
-      </RadixDialog.Portal>
-    );
-  },
-);
-
-DialogContent.displayName = 'DialogContent';
+            <RadixDialog.Close asChild>
+              <Button
+                variant="secondary"
+                appearance="ghost"
+                size="sm"
+                icon="x"
+                aria-label={closeLabel}
+                className={styles.close}
+              />
+            </RadixDialog.Close>
+          </div>
+        </RadixDialog.Content>
+      </div>
+    </RadixDialog.Portal>
+  );
+}
 
 /* ---------------------------------------------------------------
  * DialogTitle
@@ -147,10 +147,12 @@ DialogContent.displayName = 'DialogContent';
  * dialog's name, so the heading needs no other help.
  * --------------------------------------------------------------- */
 
-export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(function DialogTitle(
-  { children, className, ...titleProps },
+export function DialogTitle({
+  children,
+  className,
   ref,
-) {
+  ...titleProps
+}: DialogTitleProps & { ref?: Ref<HTMLHeadingElement> }) {
   return (
     <RadixDialog.Title asChild>
       <Heading
@@ -166,9 +168,7 @@ export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(func
       </Heading>
     </RadixDialog.Title>
   );
-});
-
-DialogTitle.displayName = 'DialogTitle';
+}
 
 /* ---------------------------------------------------------------
  * DialogDescription
@@ -176,56 +176,57 @@ DialogTitle.displayName = 'DialogTitle';
 
 /* The ref is the paragraph `Text` renders, so it is typed as loosely as `Text`
    itself rather than as the `<p>` Radix would have rendered. */
-export const DialogDescription = forwardRef<HTMLElement, DialogDescriptionProps>(
-  function DialogDescription({ children, className, ...descriptionProps }, ref) {
-    return (
-      <RadixDialog.Description asChild>
-        <Text
-          ref={ref}
-          as="p"
-          size="md"
-          className={clsx(styles.description, className)}
-          {...descriptionProps}
-        >
-          {children}
-        </Text>
-      </RadixDialog.Description>
-    );
-  },
-);
-
-DialogDescription.displayName = 'DialogDescription';
+export function DialogDescription({
+  children,
+  className,
+  ref,
+  ...descriptionProps
+}: DialogDescriptionProps & { ref?: Ref<HTMLElement> }) {
+  return (
+    <RadixDialog.Description asChild>
+      <Text
+        ref={ref}
+        as="p"
+        size="md"
+        className={clsx(styles.description, className)}
+        {...descriptionProps}
+      >
+        {children}
+      </Text>
+    </RadixDialog.Description>
+  );
+}
 
 /* ---------------------------------------------------------------
  * DialogBody
  * --------------------------------------------------------------- */
 
-export const DialogBody = forwardRef<HTMLDivElement, DialogBodyProps>(function DialogBody(
-  { children, className, ...bodyProps },
+export function DialogBody({
+  children,
+  className,
   ref,
-) {
+  ...bodyProps
+}: DialogBodyProps & { ref?: Ref<HTMLDivElement> }) {
   return (
     <div ref={ref} className={clsx(styles.body, className)} {...bodyProps}>
       {children}
     </div>
   );
-});
-
-DialogBody.displayName = 'DialogBody';
+}
 
 /* ---------------------------------------------------------------
  * DialogFooter
  * --------------------------------------------------------------- */
 
-export const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(function DialogFooter(
-  { children, className, ...footerProps },
+export function DialogFooter({
+  children,
+  className,
   ref,
-) {
+  ...footerProps
+}: DialogFooterProps & { ref?: Ref<HTMLDivElement> }) {
   return (
     <div ref={ref} className={clsx(styles.footer, className)} {...footerProps}>
       {children}
     </div>
   );
-});
-
-DialogFooter.displayName = 'DialogFooter';
+}

@@ -2,10 +2,10 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import { DS_ICONS, Icon } from '../Icon';
 import styles from './Link.module.css';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { LinkProps } from './Link.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Link
@@ -20,7 +20,7 @@ import type { LinkProps } from './Link.types';
  * jumps between the two ends.
  * --------------------------------------------------------------- */
 
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(props, ref) {
+export function Link({ ref, ...props }: LinkProps & { ref?: Ref<HTMLAnchorElement> }) {
   const {
     appearance = 'inline',
     size,
@@ -59,6 +59,4 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(props
       )}
     </Component>
   );
-});
-
-Link.displayName = 'Link';
+}
