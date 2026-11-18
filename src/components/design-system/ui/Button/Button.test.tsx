@@ -11,6 +11,11 @@ expect.extend(toHaveNoViolations);
  * =============================================================== */
 
 describe('Button — rendering', () => {
+  it('defaults to a medium, filled primary button', () => {
+    render(<Button>Save</Button>);
+    expect(screen.getByRole('button', { name: 'Save' })).toHaveClass('fill-primary', 'size-md');
+  });
+
   it('renders a <button> element by default', () => {
     render(
       <Button variant="primary" appearance="fill" size="md">

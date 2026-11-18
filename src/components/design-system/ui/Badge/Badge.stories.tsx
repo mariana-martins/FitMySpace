@@ -66,17 +66,18 @@ export const Default: Story = {
     variant: {
       control: { type: 'select' },
       options: VARIANTS,
-      description: 'Visual colour variant, the same names as Button.',
+      description: 'Visual colour variant, the same names as Button. Defaults to `primary`.',
     },
     appearance: {
       control: { type: 'inline-radio' },
       options: APPEARANCES,
-      description: 'A soft pale tint for quiet labels, or a solid fill for emphasis.',
+      description:
+        'A soft pale tint for quiet labels, or a solid fill for emphasis. Defaults to `soft`.',
     },
     size: {
       control: { type: 'inline-radio' },
       options: ['sm', 'md'],
-      description: 'The size of the badge: 20px (`sm`) or 24px (`md`) tall.',
+      description: 'The size of the badge: 20px (`sm`) or 24px (`md`) tall. Defaults to `md`.',
     },
     shape: {
       control: { type: 'inline-radio' },

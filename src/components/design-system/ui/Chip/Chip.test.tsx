@@ -42,6 +42,11 @@ describe('Chip — rendering', () => {
     expect(ref.current).toBe(screen.getByRole('button'));
   });
 
+  it('defaults to the medium size', () => {
+    render(<Chip selected={false}>Bathroom</Chip>);
+    expect(screen.getByRole('button')).toHaveClass('size-md');
+  });
+
   it('applies the size class and merges the class name', () => {
     render(
       <Chip size="sm" selected={false} className="custom">

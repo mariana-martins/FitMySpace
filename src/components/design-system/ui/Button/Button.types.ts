@@ -23,12 +23,12 @@ export type IconPosition = 'start' | 'end';
  * --------------------------------------------------------------- */
 
 type ButtonBaseProps = {
-  /** Visual colour variant. */
-  variant: ButtonVariant;
-  /** Fill or outline appearance. */
-  appearance: ButtonAppearance;
-  /** Button size. */
-  size: ButtonSize;
+  /** Visual colour variant. Defaults to `primary`. */
+  variant?: ButtonVariant;
+  /** Fill, outline or ghost appearance. Defaults to `fill`. */
+  appearance?: ButtonAppearance;
+  /** Button size. Defaults to `md`. */
+  size?: ButtonSize;
   /** One of the icons the design system ships, asked for by name. */
   icon?: IconName;
   /** Position of the icon relative to the text. */

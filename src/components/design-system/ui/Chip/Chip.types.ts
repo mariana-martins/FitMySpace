@@ -22,7 +22,8 @@ export type ChipSize = 'sm' | 'md';
 type ChipBaseProps = {
   selected: boolean;
   onSelectedChange?: (selected: boolean) => void;
-  size: ChipSize;
+  /** Defaults to `md`. */
+  size?: ChipSize;
   /** One of the icons the design system ships, asked for by name. */
   icon?: IconName;
   children: ReactNode;

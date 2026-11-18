@@ -80,7 +80,8 @@ export const Default: Story = {
     size: {
       control: { type: 'inline-radio' },
       options: ['sm', 'md'],
-      description: 'Chip size: 32px (`sm`) or 40px (`md`) tall, the Button heights.',
+      description:
+        'Chip size: 32px (`sm`) or 40px (`md`) tall, the Button heights. Defaults to `md`.',
     },
     disabled: {
       control: 'boolean',

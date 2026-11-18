@@ -16,7 +16,16 @@ import type { BadgeProps } from './Badge.types';
  * --------------------------------------------------------------- */
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(props, ref) {
-  const { variant, appearance, size, shape = 'pill', icon, children, className, ...rest } = props;
+  const {
+    variant = 'primary',
+    appearance = 'soft',
+    size = 'md',
+    shape = 'pill',
+    icon,
+    children,
+    className,
+    ...rest
+  } = props;
 
   return (
     <span
