@@ -225,8 +225,21 @@ Run what applies before saying a change is done, and report failures honestly:
 - `npm run test:storybook` — Storybook play and a11y tests (design system).
 - `npm run tokens:check` — `tokens.css` and `tokens.docs.json` match the token JSON (run
   `npm run tokens:build` if it does not).
+- `npm run test:e2e` — Playwright journeys through the app (search, filters,
+  pagination, the product 404 and the keyboard path, the last also in WebKit),
+  against a production build. Find things by role and accessible name only, so a
+  journey survives the swap from a legacy component to a design-system one.
+- `npm run test:visual` — Playwright screenshots of the stories of the components
+  in `e2e/visual/covered-components.ts`, against the Linux baseline in
+  `e2e/visual/baselines/`. A local run on macOS differs in font rendering: trust CI.
 - For visual changes, look at the result in Storybook (`npm run storybook`) or
   the app (`npm run dev`); jsdom never sees colour or layout.
+
+When a change is meant to alter the look, the CI visual job fails and writes the
+new baseline. Run `npm run visual:baseline` (it waits for CI and downloads it),
+look at every PNG it changed, and commit them in the same pull request. Never
+make a baseline on macOS, and never raise the screenshot tolerances to get a run
+to pass.
 
 `.github/workflows/storybook-pages.yml` publishes the Storybook (never the app)
 to GitHub Pages once CI passes on `main`. Links between Storybook pages must stay
@@ -244,7 +257,7 @@ to `main`.
 - The pre-commit hook runs lint-staged and the full test suite.
 - Versions, tags and `CHANGELOG.md` come only from `npm run release`. Never
   bump versions or edit the changelog by hand.
-- `main` is protected: every change goes through a pull request, and the three CI
+- `main` is protected: every change goes through a pull request, and the required CI
   jobs must pass before it merges.
 
 ### Breaking changes and deprecations

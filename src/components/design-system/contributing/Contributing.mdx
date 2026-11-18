@@ -60,6 +60,10 @@ What the tools check, and what they cannot:
 - `npm test`: Jest, for components, tokens, breakpoints and contrast.
 - `npm run test:storybook`: story `play` tests and axe.
 - `npm run tokens:check`: `tokens.css` and `tokens.docs.json` match the JSON.
+- `npm run test:visual`: screenshots of the covered components against the Linux baseline. A
+  change meant to alter the look fails in CI; `npm run visual:baseline` brings the new baseline
+  back to review and commit in the same pull request.
+- `npm run test:e2e`: the app's journeys, which a migration pull request must not break.
 
 [agents]: https://github.com/mariana-martins/FitMySpace/blob/main/AGENTS.md
 [rules]: https://github.com/mariana-martins/FitMySpace/blob/main/AGENTS.md#design-system-srccomponentsdesign-system
