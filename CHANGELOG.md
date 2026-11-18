@@ -1,5 +1,31 @@
 # Changelog
 
+# [0.6.0](https://github.com/mariana-martins/FitMySpace/compare/v0.5.0...v0.6.0) (2026-11-18)
+
+### Bug Fixes
+
+* **empty-state:** centre the actions on each other ([fd779a3](https://github.com/mariana-martins/FitMySpace/commit/fd779a35457457c827fce3c3709aa1b80797dd5c))
+
+### Documentation
+
+* **patterns:** add the feedback patterns and build the lists on List ([1d4e77b](https://github.com/mariana-martins/FitMySpace/commit/1d4e77b8aec855e66245d5769748df13df32be6a))
+* **patterns:** add the form patterns and clarify the search patterns ([6c4b897](https://github.com/mariana-martins/FitMySpace/commit/6c4b897dda48a04f6100eb5c958deefcfdbb1c5f))
+* **patterns:** add the page structure patterns and list what is still missing ([d907246](https://github.com/mariana-martins/FitMySpace/commit/d9072461205aa685ef2cd251c5d0915a891ff77e))
+* **patterns:** add the Patterns section and move page-level recipes into it ([faeb866](https://github.com/mariana-martins/FitMySpace/commit/faeb866ce31e52823ce3859b082922b28f356629))
+* **patterns:** add the product patterns for fit, details and store offers ([7d80da0](https://github.com/mariana-martins/FitMySpace/commit/7d80da014b6e8951b51a106f3cca50e8a9d173d4))
+* **patterns:** add the search patterns for filters, result states and the results page ([a3d3f31](https://github.com/mariana-martins/FitMySpace/commit/a3d3f3146bcdc4c3c88a776924d3a54e7bc7fc66))
+* **patterns:** group the patterns into page sections, tasks, pages and guides ([e813299](https://github.com/mariana-martins/FitMySpace/commit/e813299d1424378695d720b42085957b0911a2ff))
+* **visually-hidden:** document Radix VisuallyHidden under Utilities ([b955d33](https://github.com/mariana-martins/FitMySpace/commit/b955d3397120ea7d2a1d5b7e7b2483a96c154143))
+
+### Features
+
+* **alert:** give links in the message the alert's text colour ([d7fcef8](https://github.com/mariana-martins/FitMySpace/commit/d7fcef84d54a49ecb670f48964fa4619326e79da))
+* **button:** wrap a label that does not fit instead of overflowing ([9725eaf](https://github.com/mariana-martins/FitMySpace/commit/9725eaf7b4d92e0ce2feec716423783d4dfb06f6))
+* **icon:** add the menu icon to the registry ([fcad686](https://github.com/mariana-martins/FitMySpace/commit/fcad686da4fd15495c22c9f56476d1ecafb3f38d))
+* **list:** add the List component for rows of one kind of thing ([898b5b6](https://github.com/mariana-martins/FitMySpace/commit/898b5b601a93061b18d55095e19fc52a3552d21d))
+* **pagination:** show Previous and Next as disabled links at either end ([39737fa](https://github.com/mariana-martins/FitMySpace/commit/39737fa5ef4483b0d01ae70bcaf489cfe888a65d))
+* **skip-link:** add the SkipLink component and use it in the page patterns ([f4c8490](https://github.com/mariana-martins/FitMySpace/commit/f4c8490f1b0c9ab362dd98f27283532cd8c5f926))
+
 # [0.5.0](https://github.com/mariana-martins/FitMySpace/compare/v0.4.0...v0.5.0) (2026-11-17)
 
 ### Bug Fixes
