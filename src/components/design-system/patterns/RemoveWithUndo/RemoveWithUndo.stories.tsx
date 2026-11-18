@@ -45,7 +45,6 @@ const meta = {
           '### In the App\n' +
           '- Remove the item at once, optimistically, and send the request. Undo cancels it or sends the reverse. The toast queue lives in `src/hooks/`.',
       },
-      story: { height: '460px' },
     },
   },
 } satisfies Meta;

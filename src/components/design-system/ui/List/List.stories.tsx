@@ -43,7 +43,10 @@ const meta = {
           '- **Inset dividers** — a faint line between rows that starts where the text starts; turn them off with `dividers={false}`.\n' +
           '- **Clickable rows** — a stretched link title gives the row a hover fill and an inset focus ring; in a plain list the row steps out so its text stays aligned.\n' +
           '- **List semantics kept** — `role="list"` is written out, because Safari drops it from an unstyled list, and `as="ol"` gives an ordered list.\n' +
-          '- **Server-rendered** — no state and no client hooks.',
+          '- **Server-rendered** — no state and no client hooks.\n\n' +
+          '### Patterns\n' +
+          '- [Site Header](?path=/docs/design-system-patterns-site-header--docs) — the brand and the main sections, folding into a menu dialog on a phone.\n' +
+          '- [Page Layout](?path=/docs/design-system-patterns-page-layout--docs) — header, one main area and footer, one h1 and the same section rhythm.',
       },
     },
   },

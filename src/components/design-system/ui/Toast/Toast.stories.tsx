@@ -28,7 +28,7 @@ const meta = {
       // A docs page draws each story in a box with a transform, which makes the
       // box, not the screen, what the fixed stack is placed against: the box has
       // to be tall enough for the card it raises, or the card is cut off.
-      story: { height: '320px' },
+      story: { height: '250px' },
       description: {
         component:
           'A `Toast` tells the reader something happened while they were somewhere else: a save that finished, a sync that failed, a background job that came in. It is built on Radix Toast, which is the W3C toast pattern: one labelled region the cards stack in, a hidden live region per card for the announcement, and a hotkey (F8) that moves focus *into* the region instead of the card stealing focus from wherever the reader was.\n\n' +

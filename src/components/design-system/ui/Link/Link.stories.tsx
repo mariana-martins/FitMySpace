@@ -30,7 +30,9 @@ const meta = {
           '- **Motion and contrast** — the animation stops with `prefers-reduced-motion`, and Windows High Contrast gets a real underline.\n\n' +
           '### Patterns\n' +
           '- [Main Navigation](?path=/docs/design-system-patterns-main-navigation--docs) — a named `<nav>` of standalone links with the current page marked.\n' +
-          '- [Store Offers](?path=/docs/design-system-patterns-store-offers--docs) — the same product in several stores, cheapest first, each link naming its store.',
+          '- [Store Offers](?path=/docs/design-system-patterns-store-offers--docs) — the same product in several stores, cheapest first, each link naming its store.\n' +
+          '- [Site Header](?path=/docs/design-system-patterns-site-header--docs) — the brand and the main sections, folding into a menu dialog on a phone.\n' +
+          '- [Footer](?path=/docs/design-system-patterns-footer--docs) — named groups of links and the small print.',
       },
     },
   },

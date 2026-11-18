@@ -49,7 +49,8 @@ const meta = {
           '### Patterns\n' +
           '- [Dialog Form](?path=/docs/design-system-patterns-dialog-form--docs) — a short form in a dialog, then a toast once the dialog has closed.\n' +
           '- [Delete Confirmation](?path=/docs/design-system-patterns-delete-confirmation--docs) — one dialog for a list of Delete buttons, and where the focus goes after a delete.\n' +
-          '- [Choosing Feedback](?path=/docs/design-system-patterns-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.',
+          '- [Choosing Feedback](?path=/docs/design-system-patterns-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.\n' +
+          '- [Site Header](?path=/docs/design-system-patterns-site-header--docs) — the brand and the main sections, folding into a menu dialog on a phone.',
       },
     },
   },

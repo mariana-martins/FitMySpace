@@ -73,6 +73,8 @@ design-system/
 │   ├── sampleImages.ts            # Inline SVG pictures for stories and patterns (SHELF_IMAGE)
 │   ├── sampleProducts.tsx         # Sample catalogue + SampleProductGrid for the search patterns
 │   ├── sampleProducts.test.tsx
+│   ├── sampleSite.tsx             # SampleSiteHeader + SampleFooter for the page patterns
+│   ├── sampleSite.test.tsx
 │   ├── tokens.ts                  # Reads tokens.docs.json: getTokens, groupTokens, labels
 │   └── tokens.test.ts
 ├── introduction/    # Storybook landing page: token architecture, linked foundation and component cards
@@ -97,9 +99,12 @@ design-system/
 │   ├── DialogForm/DialogForm.stories.tsx
 │   ├── FilterBar/FilterBar.stories.tsx
 │   ├── FitCheck/FitCheck.stories.tsx
+│   ├── Footer/Footer.stories.tsx
 │   ├── FormValidation/FormValidation.stories.tsx
+│   ├── IconToolbar/IconToolbar.stories.tsx
 │   ├── MainNavigation/MainNavigation.stories.tsx
 │   ├── PageErrors/PageErrors.stories.tsx
+│   ├── PageLayout/PageLayout.stories.tsx
 │   ├── PaginatedResults/PaginatedResults.stories.tsx
 │   ├── Preferences/Preferences.stories.tsx
 │   ├── ProductCard/ProductCard.stories.tsx
@@ -109,6 +114,7 @@ design-system/
 │   ├── RemoveWithUndo/RemoveWithUndo.stories.tsx
 │   ├── ResultsStates/ResultsStates.stories.tsx
 │   ├── SearchResultsPage/SearchResultsPage.stories.tsx
+│   ├── SiteHeader/SiteHeader.stories.tsx
 │   └── StoreOffers/StoreOffers.stories.tsx
 ├── ui/              # Components only (colocated with stories)
 │   ├── Alert/       # Sidebar: Components/Feedback/Alert (live region: role="status", "alert" or none, set by live)

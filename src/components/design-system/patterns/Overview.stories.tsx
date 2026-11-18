@@ -304,6 +304,73 @@ const PatternGrid = () => (
         </div>
       }
     />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-page-layout--docs"
+      title="Page Layout"
+      description="The frame every page shares: header, one main area, footer, one h1 and the same section rhythm."
+      preview={
+        <Text size="sm" as="span">
+          <strong>Bathroom storage</strong>
+        </Text>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-site-header--docs"
+      title="Site Header"
+      description="The brand, the main sections and the saved list, folding into a menu dialog on a phone."
+      preview={
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <Text size="sm" as="span">
+            <strong>FitMySpace</strong>
+          </Text>
+          <Button variant="secondary" appearance="ghost" size="xs" icon="menu" aria-label="Menu" />
+        </div>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-footer--docs"
+      title="Footer"
+      description="Named groups of links and the small print about where prices come from."
+      preview={
+        <Text size="sm" as="span">
+          Shop by room · About us · Contact
+        </Text>
+      }
+    />
+    <LinkCard
+      headingLevel={4}
+      path="/docs/design-system-patterns-icon-toolbar--docs"
+      title="Icon Toolbar"
+      description="Icon buttons with tooltips, one Tab stop for the row and the arrow keys to move along it."
+      preview={
+        <div style={{ display: 'flex', gap: '4px' }}>
+          <Button
+            variant="secondary"
+            appearance="ghost"
+            size="xs"
+            icon="sliders-horizontal"
+            aria-label="Filters"
+          />
+          <Button
+            variant="secondary"
+            appearance="ghost"
+            size="xs"
+            icon="arrow-up-down"
+            aria-label="Sort"
+          />
+          <Button
+            variant="secondary"
+            appearance="ghost"
+            size="xs"
+            icon="rotate-ccw"
+            aria-label="Reset"
+          />
+        </div>
+      }
+    />
   </LinkCardGrid>
 );
 
@@ -377,6 +444,53 @@ export const Overview: Story = {
             <Text as="span" size="sm">
               <strong>No improvising.</strong> A pattern that needs a part the design system does
               not have yet waits for it instead of drawing its own.
+            </Text>
+          </li>
+        </ul>
+      </TokenGroup>
+
+      <TokenGroup
+        title="Not in the design system yet"
+        description="What the patterns asked for and had to do without. Each is a candidate for a component."
+      >
+        <ul style={ruleListStyle}>
+          <li>
+            <Text as="span" size="sm">
+              <strong>SkipLink</strong> — the first link of every page (Site Header, Page Layout).
+              The app keeps its own until then.
+            </Text>
+          </li>
+          <li>
+            <Text as="span" size="sm">
+              <strong>Sheet</strong> — a panel that slides in from the side, for the phone menu and
+              the phone filters, which use a centred Dialog for now.
+            </Text>
+          </li>
+          <li>
+            <Text as="span" size="sm">
+              <strong>Table</strong> — to compare stores or products on several columns (Store
+              Offers).
+            </Text>
+          </li>
+          <li>
+            <Text as="span" size="sm">
+              <strong>Tabs</strong> — details, measurements and stores on one product page.
+            </Text>
+          </li>
+          <li>
+            <Text as="span" size="sm">
+              <strong>Popover</strong> — the filters on a wide screen without a modal dialog.
+            </Text>
+          </li>
+          <li>
+            <Text as="span" size="sm">
+              <strong>AlertDialog</strong> — the confirmation of Delete Confirmation, with the role
+              made for it.
+            </Text>
+          </li>
+          <li>
+            <Text as="span" size="sm">
+              <strong>Combobox</strong> — suggestions while typing in the search box.
             </Text>
           </li>
         </ul>
