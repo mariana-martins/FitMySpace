@@ -33,6 +33,8 @@ const config: StorybookConfig = {
   features: {
     sidebarOnboardingChecklist: !isStaticBuild,
     menuOnboardingChecklist: !isStaticBuild,
+    // Adds the props table to the MCP's docs-show answer. Experimental, so the static build skips it.
+    experimentalDocgenServer: !isStaticBuild,
   },
 };
 export default config;
