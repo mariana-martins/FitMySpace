@@ -55,7 +55,12 @@ rules below are its essentials.
 - **Folder per component** in `ui/`: `Name.tsx`, `Name.types.ts`,
   `Name.module.css`, `Name.test.tsx`, `Name.stories.tsx` and an `index.tsx`
   barrel that exports the component and its types (`export type`). `Button` is
-  the reference implementation.
+  the reference implementation. Add one `export * from './ui/Name';` line to the
+  entry point `design-system/index.ts` (`index.test.ts` fails without it).
+- **Entry point**: the app imports the design system from `@/components/design-system`
+  only. ESLint rejects any deeper path outside the folder, alias or relative, except
+  `tokens/tokens.css`. Inside the design system, components import each other relatively
+  (`../Icon`), never through the entry point.
 - **Storybook-only helpers** (used by the Foundation pages, not public API) live
   in `docs/`, not `ui/`. Reuse them instead of copying markup between stories:
   `CopyTokenButton` copies a token's `var(--…)` reference, with an icon and a
@@ -67,8 +72,10 @@ rules below are its essentials.
   `docs/tokens.ts` (generated `tokens/tokens.docs.json`) and lay them out with
   `FoundationPage`, `TokenGroup` and `TokenRow`.
 - **API**: extend native props with `ComponentPropsWithoutRef<'el'>`, omitting
-  conflicting ones (e.g. `size` on `<input>`). Forward refs to the native
-  element. Add `'use client'` only to components that use client-only React
+  conflicting ones (e.g. `size` on `<input>`). Take `ref` as a prop (React 19)
+  and pass it to the native element:
+  `function Name({ ref, ...props }: NameProps & { ref?: Ref<HTMLElement> })`. ESLint
+  rejects `forwardRef` in the design system. Add `'use client'` only to components that use client-only React
   (state, effects, refs, event handlers, or a Radix primitive with hooks).
   `useId` works on the server, and rendering a client component such as Radix
   `VisuallyHidden` does not make a component client: `Textarea`, `TextareaField`,
@@ -179,7 +186,7 @@ rules below are its essentials.
   in `.storybook/main.ts`, dev server only). Its examples import from
   `'fitmyspace'`, the package name, because Storybook rewrites every import of a
   project file to it; that is not an importable path: import from
-  `@/components/design-system/ui/<Name>` instead.
+  `@/components/design-system` instead.
 
 ## Code style
 

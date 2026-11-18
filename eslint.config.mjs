@@ -167,6 +167,34 @@ export default fixupConfigRules([
               message:
                 "Use DS_ICONS and Icon from ui/Icon. Add a missing icon to ui/Icon/icons.tsx, the only lucide-react import.",
             },
+            {
+              name: "react",
+              importNames: ["forwardRef"],
+              message:
+                "React 19 passes ref as a prop: function Name({ ref, ...props }: NameProps & { ref?: Ref<HTMLElement> }).",
+            },
+          ],
+        },
+      ],
+    },
+  },
+
+  // The app imports the design system from its entry point only, never a file inside it,
+  // so the design system can reorganise its folders without breaking the app.
+  {
+    files: ["src/**/*.{ts,tsx}"],
+    ignores: ["src/components/design-system/**"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              // Any path into the folder (alias or relative), except the token stylesheet
+              // the app loads once in its root layout.
+              regex: "(^|/)design-system/(?!tokens/tokens\\.css$).+",
+              message: "Import from '@/components/design-system', the design system's entry point.",
+            },
           ],
         },
       ],

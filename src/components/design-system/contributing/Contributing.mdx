@@ -19,8 +19,9 @@ rule behind each step. When a rule changes, it changes there.
   and duration is a multiple of 4. Add the new colour pairs to `tokens.contrast.test.ts`.
   [Token rules →][rules]
 - **3. Files.** One folder in `ui/` with `Name.tsx`, `Name.types.ts`, `Name.module.css`,
-  `Name.test.tsx`, `Name.stories.tsx` and an `index.tsx` barrel. Icons come from the `Icon`
-  registry, screen-reader text from `VisuallyHidden`. [Folder and API rules →][rules]
+  `Name.test.tsx`, `Name.stories.tsx` and an `index.tsx` barrel, plus one line in the entry
+  point `index.ts`. `ref` is a prop, not `forwardRef`. Icons come from the `Icon` registry,
+  screen-reader text from `VisuallyHidden`. [Folder and API rules →][rules]
 - **4. Stories.** The same order and shape as the `Button` stories, with a description for every
   control. A `play` that clicks or types goes in a hidden `Interaction (Test Only)` copy.
   [Story rules →][rules]
