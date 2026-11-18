@@ -15,7 +15,7 @@ import Image from 'next/image';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Product Details',
+  title: 'Design System/Patterns/Page Sections/Product Details',
   tags: ['autodocs'],
   parameters: {
     docs: {

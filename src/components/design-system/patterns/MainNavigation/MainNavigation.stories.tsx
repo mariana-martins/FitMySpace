@@ -8,7 +8,7 @@ import { useState } from 'react';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Main Navigation',
+  title: 'Design System/Patterns/Page Sections/Main Navigation',
   tags: ['autodocs'],
   parameters: {
     docs: {

@@ -36,7 +36,7 @@ const meta = {
           '- **Required** — `required` sets the native attribute and shows a decorative asterisk.\n' +
           '- **Pass-through** — every other prop (`name`, `type`, `onChange`, `unit`, icons…) goes to the `Input`; `ref` points to the `<input>`.\n\n' +
           '### Patterns\n' +
-          '- [Form Validation](?path=/docs/design-system-patterns-form-validation--docs) — field errors plus a summary at the top that links to each one.',
+          '- [Form Validation](?path=/docs/design-system-patterns-tasks-form-validation--docs) — field errors plus a summary at the top that links to each one.',
       },
     },
   },

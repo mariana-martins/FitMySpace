@@ -31,7 +31,7 @@ import { formText } from '../../docs';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Dialog Form',
+  title: 'Design System/Patterns/Tasks/Dialog Form',
   tags: ['autodocs'],
   parameters: {
     docs: {

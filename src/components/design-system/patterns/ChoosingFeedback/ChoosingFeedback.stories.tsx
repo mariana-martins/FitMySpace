@@ -32,7 +32,7 @@ import { useState } from 'react';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Choosing Feedback',
+  title: 'Design System/Patterns/Guides/Choosing Feedback',
   tags: ['autodocs'],
   parameters: {
     docs: {

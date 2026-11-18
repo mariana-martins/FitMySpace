@@ -24,7 +24,7 @@ import { Chip } from '../../ui/Chip';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Filter Bar',
+  title: 'Design System/Patterns/Page Sections/Filter Bar',
   tags: ['autodocs'],
   parameters: {
     docs: {

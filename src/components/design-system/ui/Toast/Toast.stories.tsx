@@ -48,9 +48,9 @@ const meta = {
           '- **Slides in and out** — the card arrives from the screen edge and leaves the same way, by itself or by a swipe; bottom-right, or bottom-centre on a phone, clear of the home indicator through `env(safe-area-inset-*)`.\n' +
           '- **Reduced motion and `forced-colors`** — the card stops moving when asked, and draws its own edge when the system drops shadows.\n\n' +
           '### Patterns\n' +
-          '- [Dialog Form](?path=/docs/design-system-patterns-dialog-form--docs) — a short form in a dialog, then a toast once the dialog has closed.\n' +
-          '- [Remove with Undo](?path=/docs/design-system-patterns-remove-with-undo--docs) — remove at once, then offer Undo in a toast, with the focus kept in place.\n' +
-          '- [Choosing Feedback](?path=/docs/design-system-patterns-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.',
+          '- [Dialog Form](?path=/docs/design-system-patterns-tasks-dialog-form--docs) — a short form in a dialog, then a toast once the dialog has closed.\n' +
+          '- [Remove with Undo](?path=/docs/design-system-patterns-tasks-remove-with-undo--docs) — remove at once, then offer Undo in a toast, with the focus kept in place.\n' +
+          '- [Choosing Feedback](?path=/docs/design-system-patterns-guides-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.',
       },
     },
   },

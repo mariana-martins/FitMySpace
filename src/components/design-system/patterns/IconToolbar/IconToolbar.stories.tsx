@@ -11,7 +11,7 @@ import { useRef, useState } from 'react';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Icon Toolbar',
+  title: 'Design System/Patterns/Page Sections/Icon Toolbar',
   tags: ['autodocs'],
   parameters: {
     docs: {

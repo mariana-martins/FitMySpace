@@ -93,7 +93,7 @@ design-system/
 │   ├── size/Size.stories.tsx
 │   ├── spacing/Spacing.stories.tsx
 │   └── typography/Typography.stories.tsx
-├── patterns/        # Recipes: several components composed into a piece of a page (stories only)
+├── patterns/        # Recipes, stories only; sidebar groups Page Sections, Tasks, Pages, Guides (folders flat)
 │   ├── Overview.stories.tsx       # Sidebar: Patterns/Overview (what a pattern is, the rules, every pattern)
 │   ├── ChoosingFeedback/ChoosingFeedback.stories.tsx
 │   ├── DeleteConfirmation/DeleteConfirmation.stories.tsx

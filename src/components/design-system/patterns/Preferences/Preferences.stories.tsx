@@ -14,7 +14,7 @@ import { useState } from 'react';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Preferences',
+  title: 'Design System/Patterns/Tasks/Preferences',
   tags: ['autodocs'],
   parameters: {
     docs: {

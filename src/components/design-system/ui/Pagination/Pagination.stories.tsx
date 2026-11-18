@@ -98,8 +98,8 @@ const meta = {
           '- **Server-rendered** — no client hooks; `asChild` uses Radix `Slot`.\n' +
           '- **High contrast** — the current page keeps an outline in Windows High Contrast, where its fill disappears.\n\n' +
           '### Patterns\n' +
-          '- [Paginated Results](?path=/docs/design-system-patterns-paginated-results--docs) — the summary line, the products and the page links, with the focus moved to the new range.\n' +
-          '- [Search Results Page](?path=/docs/design-system-patterns-search-results-page--docs) — the whole page: search, filters, one summary line, the products and the pages.',
+          '- [Paginated Results](?path=/docs/design-system-patterns-page-sections-paginated-results--docs) — the summary line, the products and the page links, with the focus moved to the new range.\n' +
+          '- [Search Results Page](?path=/docs/design-system-patterns-pages-search-results-page--docs) — the whole page: search, filters, one summary line, the products and the pages.',
       },
     },
   },

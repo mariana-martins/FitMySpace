@@ -35,7 +35,7 @@ const meta = {
           '- **State** — the Radix API: `checked` / `defaultChecked` take a boolean and `onCheckedChange` receives the new one. A switch has no mixed state, so unlike `Checkbox` there is no `"indeterminate"`.\n' +
           '- **Pass-through** — every other prop (`name`, `value`, `id`, `aria-*`…) goes to the Radix root; `ref` points to the `<button>`.\n\n' +
           '### Patterns\n' +
-          '- [Preferences](?path=/docs/design-system-patterns-preferences--docs) — settings that apply the moment they change, with a status line for each save.',
+          '- [Preferences](?path=/docs/design-system-patterns-tasks-preferences--docs) — settings that apply the moment they change, with a status line for each save.',
       },
     },
   },

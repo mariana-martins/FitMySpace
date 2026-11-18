@@ -12,7 +12,7 @@ import type { CSSProperties } from 'react';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Page Layout',
+  title: 'Design System/Patterns/Pages/Page Layout',
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',

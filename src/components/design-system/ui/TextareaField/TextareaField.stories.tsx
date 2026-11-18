@@ -34,7 +34,7 @@ const meta = {
           '- **Errors** — TypeScript enforces a required `error` message whenever `invalid` is `true`. The message gets an icon, a screen-reader-only "Error:" prefix, and `aria-invalid` on the field.\n' +
           '- **Pass-through** — every other prop (`name`, `rows`, `maxLength`, `required`, `defaultValue`…) goes to the native `<textarea>`; `ref` points to it.\n\n' +
           '### Patterns\n' +
-          '- [Form Validation](?path=/docs/design-system-patterns-form-validation--docs) — field errors plus a summary at the top that links to each one.',
+          '- [Form Validation](?path=/docs/design-system-patterns-tasks-form-validation--docs) — field errors plus a summary at the top that links to each one.',
       },
     },
   },

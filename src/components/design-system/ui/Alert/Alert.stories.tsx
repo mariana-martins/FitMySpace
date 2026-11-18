@@ -38,9 +38,9 @@ const meta = {
           '- **Text or structure** — plain text is set in a paragraph; pass your own `<p>` or `<ul>` for longer messages, such as a list of errors.\n' +
           '- **Server-rendered** — no client hooks.\n\n' +
           '### Patterns\n' +
-          '- [Form Validation](?path=/docs/design-system-patterns-form-validation--docs) — field errors plus a summary at the top that links to each one.\n' +
-          '- [Fit Check](?path=/docs/design-system-patterns-fit-check--docs) — compares a product with a saved space and says whether it fits, and why.\n' +
-          '- [Choosing Feedback](?path=/docs/design-system-patterns-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.',
+          '- [Form Validation](?path=/docs/design-system-patterns-tasks-form-validation--docs) — field errors plus a summary at the top that links to each one.\n' +
+          '- [Fit Check](?path=/docs/design-system-patterns-page-sections-fit-check--docs) — compares a product with a saved space and says whether it fits, and why.\n' +
+          '- [Choosing Feedback](?path=/docs/design-system-patterns-guides-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.',
       },
     },
   },

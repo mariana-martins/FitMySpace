@@ -12,7 +12,7 @@ import Image from 'next/image';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Product Card',
+  title: 'Design System/Patterns/Page Sections/Product Card',
   tags: ['autodocs'],
   parameters: {
     docs: {

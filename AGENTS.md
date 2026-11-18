@@ -124,17 +124,23 @@ rules below are its essentials.
     story that should fill the width (a grid of cards) sets `width: '100%'` on its root; one
     that should stay narrow sets `width` with `maxWidth: '100%'`, not `maxWidth` alone, which
     collapses to its content. Full pages set `layout: 'fullscreen'` and are not centred.
-- **Patterns** (`patterns/<Name>/<Name>.stories.tsx`, sidebar `Design System/Patterns/<Name>`):
-  recipes that compose several design-system components into a piece of a page (search page,
-  product card). Stories only: no new component, no CSS Module, layout in inline `style`,
-  sample data local to the file, or shared from `docs/` when several patterns use it
-  (`docs/sampleImages.ts`, `docs/sampleProducts.tsx` with `SampleProductGrid`), no fetch. The app
-  owns the state (URL, queries), and the pattern says where it goes. The meta description
-  follows the same sections: the problem, `### What It Solves` (what goes wrong without it),
-  `### When to Use` (with what it is not for),
-  `### Anatomy`, `### Accessibility` and `### In the App`. A component page links to its
-  patterns under `### Patterns`. Add each new pattern to `patterns/Overview.stories.tsx`. A
-  pattern that needs a missing component waits for it instead of drawing its own.
+- **Patterns** (`patterns/<Name>/<Name>.stories.tsx`, sidebar
+  `Design System/Patterns/<Group>/<Name>`, folders flat as in `ui/`): recipes that compose
+  several design-system components (search page, product card). Stories only: no new
+  component, no CSS Module, layout in inline `style`, sample data local to the file, or shared
+  from `docs/` when several patterns use it (`docs/sampleImages.ts`, `docs/sampleProducts.tsx`,
+  `docs/sampleSite.tsx`), no fetch. The app owns the state (URL, queries), and the pattern says
+  where it goes.
+  - Groups: **Page Sections** (a piece of a page, Atomic Design's organisms), **Tasks**
+    (something people do from start to finish), **Pages** (Page Layout, the template, and
+    whole pages) and **Guides** (choosing between components). Add a pattern to its group in
+    `.storybook/preview.tsx` and to its group's grid in `patterns/Overview.stories.tsx`.
+  - The meta description has the same sections: the problem, `### What It Solves` (what goes
+    wrong without it), `### When to Use` (with what it is not for), `### Anatomy`,
+    `### Accessibility` and `### In the App`. A component page links to its patterns under
+    `### Patterns`.
+  - A pattern that needs a missing component waits for it instead of drawing its own, and
+    the gap goes on the Overview's "Not in the design system yet" list.
 - **CSS Modules**: kebab-case class names (`.icon-only`, `.error-icon`), read
   with bracket access (`styles['error-icon']`). Stylelint (`stylelint.config.mjs`,
   `npm run lint:css`) enforces it and fails on any unknown `--ds-*` token or any

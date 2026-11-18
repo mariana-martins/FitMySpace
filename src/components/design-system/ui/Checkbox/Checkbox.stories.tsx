@@ -37,7 +37,7 @@ const meta = {
           '- **State** — the Radix API, as in `Select`: `checked` / `defaultChecked` take `true`, `false` or `"indeterminate"`, and `onCheckedChange` receives the new state.\n' +
           '- **Pass-through** — every other prop (`name`, `value`, `id`, `aria-*`…) goes to the Radix root; `ref` points to the `<button>`.\n\n' +
           '### Patterns\n' +
-          '- [Form Validation](?path=/docs/design-system-patterns-form-validation--docs) — field errors plus a summary at the top that links to each one.',
+          '- [Form Validation](?path=/docs/design-system-patterns-tasks-form-validation--docs) — field errors plus a summary at the top that links to each one.',
       },
     },
   },

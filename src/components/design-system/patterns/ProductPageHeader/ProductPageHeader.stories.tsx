@@ -8,7 +8,7 @@ import { Heading } from '../../ui/Typography';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Product Page Header',
+  title: 'Design System/Patterns/Page Sections/Product Page Header',
   tags: ['autodocs'],
   parameters: {
     docs: {

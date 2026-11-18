@@ -21,7 +21,7 @@ import { useRef, useState } from 'react';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Remove with Undo',
+  title: 'Design System/Patterns/Tasks/Remove with Undo',
   tags: ['autodocs'],
   parameters: {
     docs: {

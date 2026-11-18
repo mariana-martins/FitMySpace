@@ -7,7 +7,7 @@ import { SampleSiteHeader } from '../../docs';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Site Header',
+  title: 'Design System/Patterns/Page Sections/Site Header',
   tags: ['autodocs'],
   parameters: {
     docs: {

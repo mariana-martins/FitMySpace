@@ -19,7 +19,7 @@ import { Link } from '../../ui/Link';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Form Validation',
+  title: 'Design System/Patterns/Tasks/Form Validation',
   tags: ['autodocs'],
   parameters: {
     docs: {

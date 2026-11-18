@@ -11,7 +11,7 @@ import { useState } from 'react';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Page Errors',
+  title: 'Design System/Patterns/Pages/Page Errors',
   tags: ['autodocs'],
   parameters: {
     docs: {

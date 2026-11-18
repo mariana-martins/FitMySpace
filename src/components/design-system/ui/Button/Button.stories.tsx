@@ -38,7 +38,7 @@ const meta = {
           '- **Long labels wrap** — a label wider than its container breaks onto balanced lines instead of overflowing; one that fits stays on a single line.\n' +
           '- **Keyboard accessible** — `:focus-visible` ring, native `<button>` semantics, and `scale(0.96)` on press.\n\n' +
           '### Patterns\n' +
-          '- [Product Details](?path=/docs/design-system-patterns-product-details--docs) — the top of a product page: name, labels, price, measurements and actions.',
+          '- [Product Details](?path=/docs/design-system-patterns-page-sections-product-details--docs) — the top of a product page: name, labels, price, measurements and actions.',
       },
     },
   },

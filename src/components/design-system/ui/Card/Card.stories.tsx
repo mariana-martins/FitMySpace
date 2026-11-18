@@ -32,9 +32,9 @@ const meta = {
           '- **`asChild`** — Radix `Slot` merges the card styles onto your element.\n' +
           '- **High contrast** — a raised card gains a border in Windows High Contrast, where shadows disappear.\n\n' +
           '### Patterns\n' +
-          '- [Product Card](?path=/docs/design-system-patterns-product-card--docs) — a grid of products, each card a list item with a stretched title link.\n' +
-          '- [Product Details](?path=/docs/design-system-patterns-product-details--docs) — the top of a product page: name, labels, price, measurements and actions.\n' +
-          '- [Store Offers](?path=/docs/design-system-patterns-store-offers--docs) — the same product in several stores, cheapest first, each link naming its store.',
+          '- [Product Card](?path=/docs/design-system-patterns-page-sections-product-card--docs) — a grid of products, each card a list item with a stretched title link.\n' +
+          '- [Product Details](?path=/docs/design-system-patterns-page-sections-product-details--docs) — the top of a product page: name, labels, price, measurements and actions.\n' +
+          '- [Store Offers](?path=/docs/design-system-patterns-page-sections-store-offers--docs) — the same product in several stores, cheapest first, each link naming its store.',
       },
     },
   },

@@ -18,7 +18,7 @@ import { useState } from 'react';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Paginated Results',
+  title: 'Design System/Patterns/Page Sections/Paginated Results',
   tags: ['autodocs'],
   parameters: {
     docs: {

@@ -37,7 +37,7 @@ const meta = {
           '- **Moving along a toolbar** — entering the next trigger closes the open tooltip at once, so the next one is never held back while the pointer crosses towards the first bubble.\n' +
           "- **Reduced motion and `forced-colors`** — the bubble stops moving when it is asked to, and takes the reader's system colours with a drawn edge.\n\n" +
           '### Patterns\n' +
-          '- [Icon Toolbar](?path=/docs/design-system-patterns-icon-toolbar--docs) — icon buttons with tooltips, one Tab stop and arrow keys along the row.',
+          '- [Icon Toolbar](?path=/docs/design-system-patterns-page-sections-icon-toolbar--docs) — icon buttons with tooltips, one Tab stop and arrow keys along the row.',
       },
     },
   },

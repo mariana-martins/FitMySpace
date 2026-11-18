@@ -40,7 +40,7 @@ const meta = {
           '- **Decorative icons** — the chevron and `iconStart` are hidden from screen readers.\n' +
           '- **Pass-through** — state props (`value`, `onValueChange`, `name`, `required`…) go to the Radix root and the rest (`id`, `aria-*`…) to the trigger; `ref` points to the trigger `<button>`.\n\n' +
           '### Patterns\n' +
-          '- [Filter Bar](?path=/docs/design-system-patterns-filter-bar--docs) — room filters, a sort order and a count, inline or in a dialog on a phone.',
+          '- [Filter Bar](?path=/docs/design-system-patterns-page-sections-filter-bar--docs) — room filters, a sort order and a count, inline or in a dialog on a phone.',
       },
     },
   },

@@ -12,7 +12,7 @@ import { useRef, useState } from 'react';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Product Search',
+  title: 'Design System/Patterns/Tasks/Product Search',
   tags: ['autodocs'],
   parameters: {
     docs: {

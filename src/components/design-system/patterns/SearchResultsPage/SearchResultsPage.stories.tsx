@@ -25,7 +25,7 @@ import { Chip } from '../../ui/Chip';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Search Results Page',
+  title: 'Design System/Patterns/Pages/Search Results Page',
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',

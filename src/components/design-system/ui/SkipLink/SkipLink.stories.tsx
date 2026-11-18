@@ -33,7 +33,7 @@ const meta = {
           '- **Brand fill** — white on sage, with the shared focus ring and the floating shadow; a drawn edge in Windows High Contrast.\n' +
           '- **Reduced motion** — the slide stops when the reader asks for less motion.\n\n' +
           '### Patterns\n' +
-          '- [Page Layout](?path=/docs/design-system-patterns-page-layout--docs) — the skip link first, then the header, `<main id="main-content">` and the footer.',
+          '- [Page Layout](?path=/docs/design-system-patterns-pages-page-layout--docs) — the skip link first, then the header, `<main id="main-content">` and the footer.',
       },
       story: { height: '120px' },
     },

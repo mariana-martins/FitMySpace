@@ -47,10 +47,10 @@ const meta = {
           '- **`modal` on `Dialog`** — defaults to `true`; `false` leaves the page usable, and `aria-modal` follows it.\n' +
           '- **Reduced motion and `forced-colors`** — the scrim and the dialog stop moving when asked, and the dialog draws its own edge when the system drops shadows.\n\n' +
           '### Patterns\n' +
-          '- [Dialog Form](?path=/docs/design-system-patterns-dialog-form--docs) — a short form in a dialog, then a toast once the dialog has closed.\n' +
-          '- [Delete Confirmation](?path=/docs/design-system-patterns-delete-confirmation--docs) — one dialog for a list of Delete buttons, and where the focus goes after a delete.\n' +
-          '- [Choosing Feedback](?path=/docs/design-system-patterns-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.\n' +
-          '- [Site Header](?path=/docs/design-system-patterns-site-header--docs) — the brand and the main sections, folding into a menu dialog on a phone.',
+          '- [Dialog Form](?path=/docs/design-system-patterns-tasks-dialog-form--docs) — a short form in a dialog, then a toast once the dialog has closed.\n' +
+          '- [Delete Confirmation](?path=/docs/design-system-patterns-tasks-delete-confirmation--docs) — one dialog for a list of Delete buttons, and where the focus goes after a delete.\n' +
+          '- [Choosing Feedback](?path=/docs/design-system-patterns-guides-choosing-feedback--docs) — field error, alert, toast, empty state or dialog: which fits which situation.\n' +
+          '- [Site Header](?path=/docs/design-system-patterns-page-sections-site-header--docs) — the brand and the main sections, folding into a menu dialog on a phone.',
       },
     },
   },

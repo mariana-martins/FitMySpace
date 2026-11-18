@@ -33,8 +33,8 @@ const meta = {
           '- **Decorative icon** — `icon` is hidden from screen readers; the text names the badge.\n' +
           '- **High contrast** — in Windows High Contrast the fill disappears, so an outline keeps the shape visible.\n\n' +
           '### Patterns\n' +
-          '- [Product Details](?path=/docs/design-system-patterns-product-details--docs) — the top of a product page: name, labels, price, measurements and actions.\n' +
-          '- [Store Offers](?path=/docs/design-system-patterns-store-offers--docs) — the same product in several stores, cheapest first, each link naming its store.',
+          '- [Product Details](?path=/docs/design-system-patterns-page-sections-product-details--docs) — the top of a product page: name, labels, price, measurements and actions.\n' +
+          '- [Store Offers](?path=/docs/design-system-patterns-page-sections-store-offers--docs) — the same product in several stores, cheapest first, each link naming its store.',
       },
     },
   },

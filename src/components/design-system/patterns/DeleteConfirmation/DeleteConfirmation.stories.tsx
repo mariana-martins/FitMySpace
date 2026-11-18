@@ -21,7 +21,7 @@ import { useRef, useState } from 'react';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Delete Confirmation',
+  title: 'Design System/Patterns/Tasks/Delete Confirmation',
   tags: ['autodocs'],
   parameters: {
     docs: {

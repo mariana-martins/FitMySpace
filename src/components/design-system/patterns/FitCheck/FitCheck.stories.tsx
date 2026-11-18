@@ -13,7 +13,7 @@ import { useState } from 'react';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Fit Check',
+  title: 'Design System/Patterns/Page Sections/Fit Check',
   tags: ['autodocs'],
   parameters: {
     docs: {

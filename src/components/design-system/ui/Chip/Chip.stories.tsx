@@ -35,8 +35,8 @@ const meta = {
           '- **Decorative icon** — `icon` is hidden from screen readers and swaps for the check mark while selected.\n' +
           '- **High contrast** — a selected chip uses the system highlight colours in Windows High Contrast.\n\n' +
           '### Patterns\n' +
-          '- [Filter Bar](?path=/docs/design-system-patterns-filter-bar--docs) — room filters, a sort order and a count, inline or in a dialog on a phone.\n' +
-          '- [Search Results Page](?path=/docs/design-system-patterns-search-results-page--docs) — the whole page: search, filters, one summary line, the products and the pages.',
+          '- [Filter Bar](?path=/docs/design-system-patterns-page-sections-filter-bar--docs) — room filters, a sort order and a count, inline or in a dialog on a phone.\n' +
+          '- [Search Results Page](?path=/docs/design-system-patterns-pages-search-results-page--docs) — the whole page: search, filters, one summary line, the products and the pages.',
       },
     },
   },

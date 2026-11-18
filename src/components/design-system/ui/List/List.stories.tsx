@@ -45,8 +45,8 @@ const meta = {
           '- **List semantics kept** — `role="list"` is written out, because Safari drops it from an unstyled list, and `as="ol"` gives an ordered list.\n' +
           '- **Server-rendered** — no state and no client hooks.\n\n' +
           '### Patterns\n' +
-          '- [Site Header](?path=/docs/design-system-patterns-site-header--docs) — the brand and the main sections, folding into a menu dialog on a phone.\n' +
-          '- [Page Layout](?path=/docs/design-system-patterns-page-layout--docs) — header, one main area and footer, one h1 and the same section rhythm.',
+          '- [Site Header](?path=/docs/design-system-patterns-page-sections-site-header--docs) — the brand and the main sections, folding into a menu dialog on a phone.\n' +
+          '- [Page Layout](?path=/docs/design-system-patterns-pages-page-layout--docs) — header, one main area and footer, one h1 and the same section rhythm.',
       },
     },
   },

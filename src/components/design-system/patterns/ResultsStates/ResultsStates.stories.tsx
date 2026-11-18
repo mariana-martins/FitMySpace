@@ -14,7 +14,7 @@ import { Card } from '../../ui/Card';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Results States',
+  title: 'Design System/Patterns/Tasks/Results States',
   tags: ['autodocs'],
   parameters: {
     docs: {

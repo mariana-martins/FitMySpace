@@ -29,7 +29,7 @@ const meta = {
           '- **Calm motion** — a slow pulse between two pale neutrals; it stops with `prefers-reduced-motion`.\n' +
           '- **Hidden from assistive technology** — always `aria-hidden`; Windows High Contrast keeps an outline.\n\n' +
           '### Patterns\n' +
-          '- [Results States](?path=/docs/design-system-patterns-results-states--docs) — loading, products, no products and a failed request in the same place.',
+          '- [Results States](?path=/docs/design-system-patterns-tasks-results-states--docs) — loading, products, no products and a failed request in the same place.',
       },
     },
   },

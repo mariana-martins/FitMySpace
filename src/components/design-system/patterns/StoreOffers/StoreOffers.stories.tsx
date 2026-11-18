@@ -12,7 +12,7 @@ import { Card } from '../../ui/Card';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Store Offers',
+  title: 'Design System/Patterns/Page Sections/Store Offers',
   tags: ['autodocs'],
   parameters: {
     docs: {

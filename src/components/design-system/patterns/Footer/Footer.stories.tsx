@@ -7,7 +7,7 @@ import { SampleFooter } from '../../docs';
  * --------------------------------------------------------------- */
 
 const meta = {
-  title: 'Design System/Patterns/Footer',
+  title: 'Design System/Patterns/Page Sections/Footer',
   tags: ['autodocs'],
   parameters: {
     docs: {
