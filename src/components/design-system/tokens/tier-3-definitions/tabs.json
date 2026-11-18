@@ -1,0 +1,121 @@
+{
+  "component": {
+    "tabs": {
+      "list": {
+        "border": {
+          "value": "{semantic.colour.border.default.base}",
+          "comment": "The quiet line the tabs sit on. It is not what marks the selected tab: the indicator is."
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}"
+        }
+      },
+      "trigger": {
+        "text": {
+          "default": {
+            "value": "{semantic.colour.text.subtle.base}"
+          },
+          "hover": {
+            "value": "{semantic.colour.text.default.hover}"
+          },
+          "selected": {
+            "value": "{semantic.colour.text.default.base}"
+          },
+          "disabled": {
+            "value": "{semantic.colour.text.disabled}",
+            "comment": "Inactive controls are exempt from the contrast minimum (WCAG 1.4.3)."
+          }
+        }
+      },
+      "indicator": {
+        "colour": {
+          "selected": {
+            "value": "{semantic.colour.border.brand.base}",
+            "comment": "The bar under the selected tab. With the darker text it marks the selection twice, so colour is never the only cue."
+          },
+          "hover": {
+            "value": "{semantic.colour.border.default.hover}",
+            "comment": "A neutral bar slides in under a hovered tab: a hint of where it would go, not a selection."
+          },
+          "active": {
+            "value": "{semantic.colour.border.default.active}"
+          }
+        },
+        "width": {
+          "value": "{semantic.border-width.selected}",
+          "comment": "The same weight as the underline of a hovered or current standalone Link, so a tab and a link mark a selection alike."
+        }
+      },
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.interactive.sm}",
+          "comment": "Rounds the focus ring; a tab has no box of its own."
+        }
+      },
+      "spacing": {
+        "list-gap": {
+          "value": "{semantic.spacing.gap.xs}"
+        },
+        "panel-gap": {
+          "value": "{semantic.spacing.gap.lg}",
+          "comment": "Between the tab list and its panel: the panel's content starts below, never against the line."
+        },
+        "vertical-gap": {
+          "value": "{semantic.spacing.gap.xl}",
+          "comment": "Between the tab column and the panel when the tabs stand on the side."
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.relaxed}"
+        },
+        "easing": {
+          "value": "{semantic.motion.easing.move}",
+          "comment": "The slide of the standalone Link underline."
+        }
+      },
+      "size": {
+        "sm": {
+          "minHeight": {
+            "value": "{semantic.size.control.sm}"
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.control.sm}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.sm}"
+          },
+          "font": {
+            "value": "{semantic.typography.label.md.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.label.md.letterSpacing}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.sm}"
+          }
+        },
+        "md": {
+          "minHeight": {
+            "value": "{semantic.size.control.md}"
+          },
+          "paddingX": {
+            "value": "{semantic.spacing.control.md}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.sm}"
+          },
+          "font": {
+            "value": "{semantic.typography.label.lg.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.label.lg.letterSpacing}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.md}"
+          }
+        }
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { Caption, Heading, Label, Text } from '../ui/Typography';
 import { LinkCard, LinkCardGrid, StorybookLink } from '../docs';
 import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { Tabs, TabsList, TabsTrigger } from '../ui/Tabs';
 import { TextareaField } from '../ui/TextareaField';
 import { version } from '../../../../package.json';
 import { SelectField } from '../ui/SelectField';
@@ -889,6 +890,20 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-navigation-tabs--docs"
+        title="Tabs"
+        description="A few views of one subject, one at a time: the selected tab marked by darker text and a sage bar, the arrow keys moving along the row."
+        preview={
+          <Tabs defaultValue="details">
+            <TabsList aria-label="Product information" size="sm">
+              <TabsTrigger value="details">Details</TabsTrigger>
+              <TabsTrigger value="measurements">Measurements</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-display-badge--docs"
         title="Badge"
         description="Short status and category labels in six variants, soft or filled, as pills or rounded tags."
@@ -1030,6 +1045,33 @@ const ComponentGrid = () => (
             </Heading>
             <Text as="p" size="sm">
               The name shows up in your list of rooms.
+            </Text>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-overlays-alertdialog--docs"
+        title="AlertDialog"
+        description="A question that must be answered before going back: the safe answer starts focused, and clicking past it does not dismiss it."
+        preview={
+          /* Drawn by hand: the real alert dialog opens in a portal at the end of
+             <body>, and it only appears where a click would cost something. */
+          <div
+            style={{
+              width: '160px',
+              padding: '12px',
+              borderRadius: 'var(--ds-semantic-radii-container-lg)',
+              border: '1px solid var(--ds-semantic-colour-border-default-base)',
+              backgroundColor: 'var(--ds-component-alert-dialog-background)',
+              boxShadow: 'var(--ds-semantic-shadow-overlay)',
+            }}
+          >
+            <Heading level={5} size="sm">
+              Delete “Bedroom”?
+            </Heading>
+            <Text as="p" size="sm">
+              This removes 12 saved items.
             </Text>
           </div>
         }

@@ -108,7 +108,7 @@ const PageSectionsGrid = () => (
       headingLevel={4}
       path="/docs/design-system-patterns-page-sections-product-details--docs"
       title="Product Details"
-      description="The top of a product page: name, labels, price, measurements, the store link and Save."
+      description="The top of a product page: name, labels, price, details and measurements in tabs, the store link and Save."
       preview={
         <div style={{ display: 'flex', gap: '8px' }}>
           <Button
@@ -516,18 +516,7 @@ export const Overview: Story = {
           </li>
           <li>
             <Text as="span" size="sm">
-              <strong>Tabs</strong> — details, measurements and stores on one product page.
-            </Text>
-          </li>
-          <li>
-            <Text as="span" size="sm">
               <strong>Popover</strong> — the filters on a wide screen without a modal dialog.
-            </Text>
-          </li>
-          <li>
-            <Text as="span" size="sm">
-              <strong>AlertDialog</strong> — the confirmation of Delete Confirmation, with the role
-              made for it.
             </Text>
           </li>
           <li>

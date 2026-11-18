@@ -1,11 +1,12 @@
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogTitle,
-} from '../../ui/Dialog';
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogTitle,
+} from '../../ui/AlertDialog';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
@@ -27,22 +28,23 @@ const meta = {
     docs: {
       description: {
         component:
-          'Removing one item from a list: each item has its own Delete button, a dialog asks once, and after the delete the focus lands somewhere that still exists.\n\n' +
+          'Removing one item from a list: each item has its own Delete button, an alert dialog asks once, and after the delete the focus lands somewhere that still exists.\n\n' +
           '### When to Use\n' +
           '- **Deleting something people cannot get back**, or that takes other things with it: a room and the items saved in it.\n' +
           '- **Not for:** something that can be undone in one step (delete at once and offer Undo instead), or clearing a field.\n\n' +
           '### Anatomy\n' +
           '- A heading and a `List`; each `ListItem` has the room\'s icon, its name, how many items it holds, and an outline `error` `Button` at the end whose name includes the room ("Delete Bedroom").\n' +
-          '- One `Dialog` for the whole list, opened with the item to delete: `DialogContent` (`size="sm"`, `initialFocus="title"`), a `DialogTitle` that is the whole question, a `DialogDescription` that says what is lost, and the two ways out in `DialogFooter`.\n' +
+          '- One `AlertDialog` for the whole list, opened with the item to delete: `AlertDialogContent` (`size="sm"`), an `AlertDialogTitle` that is the whole question, an `AlertDialogDescription` that says what is lost, and the two answers in `AlertDialogFooter` — `AlertDialogCancel` ("Keep room") and `AlertDialogAction` ("Delete room").\n' +
           '- A status line — `Text` with `role="status"` — that says what was deleted.\n' +
           '- An `EmptyState` once the list is empty.\n\n' +
           '### Accessibility\n' +
           '- **Every Delete button has its own name:** the visible word is "Delete", and a screen-reader-only part adds the room, so a list of buttons is not "Delete, Delete, Delete".\n' +
-          '- **The focus starts on the title**, so the question is heard before either button. The safe answer ("Keep room") comes first, and on a phone the buttons stack, so the destructive one is never under a stray thumb.\n' +
+          '- **The focus starts on the safe answer** ("Keep room"), so a stray Enter keeps the room. An `alertdialog` is read with its title and description wherever the focus is, so nothing is lost by starting on a button; on a phone the two answers stack, so the destructive one is never under a stray thumb.\n' +
+          '- **The dialog is owed an answer:** clicking the scrim does nothing, and Escape gives the safe one. That is what `AlertDialog` is for, and why this is not a `Dialog`.\n' +
           "- **After a delete, the focus moves on** to the next item's Delete button (or the previous one at the end of the list, or the heading when the list is empty). The button that opened the dialog is gone, and focus left on nothing drops a keyboard reader at the top of the page.\n" +
-          '- **Cancel returns the focus** to the button that opened the dialog. One dialog serves every button, so there is no `DialogTrigger` to do it: `onCloseAutoFocus` does.\n\n' +
+          '- **Cancel returns the focus** to the button that opened the dialog. One dialog serves every button, so there is no `AlertDialogTrigger` to do it: `onCloseAutoFocus` does.\n\n' +
           '### In the App\n' +
-          '- Delete with a TanStack Query mutation and move the focus once it succeeds; on a failure keep the dialog open with an `Alert`. For a delete that can be undone, skip the dialog and use a toast with Undo.',
+          '- Delete with a TanStack Query mutation and move the focus once it succeeds. `AlertDialogAction` closes the dialog after its `onClick`, so call `event.preventDefault()` there to keep it open while the mutation runs, and show an `Alert` in it if the delete fails. For a delete that can be undone, skip the dialog and use a toast with Undo.',
       },
     },
   },
@@ -79,9 +81,9 @@ function RoomList() {
     setDialogOpen(false);
   }
 
-  /* One dialog serves every Delete button, so there is no `DialogTrigger` for Radix to return
-     the focus to: this does it. Cancel goes back to the button that opened the dialog; after
-     a delete that button is gone, so the focus goes to the next room, or the heading. */
+  /* One dialog serves every Delete button, so there is no `AlertDialogTrigger` for Radix to
+     return the focus to: this does it. Cancel goes back to the button that opened the dialog;
+     after a delete that button is gone, so the focus goes to the next room, or the heading. */
   function handleCloseAutoFocus(event: Event) {
     event.preventDefault();
     const deletedTarget = focusAfterDelete.current;
@@ -148,31 +150,28 @@ function RoomList() {
         {lastDeleted}
       </Text>
 
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent
-          size="sm"
-          initialFocus="title"
-          closeLabel="Close delete confirmation"
-          onCloseAutoFocus={handleCloseAutoFocus}
-        >
-          <DialogTitle>Delete “{roomToDelete?.name}”?</DialogTitle>
-          <DialogDescription>
+      <AlertDialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <AlertDialogContent size="sm" onCloseAutoFocus={handleCloseAutoFocus}>
+          <AlertDialogTitle>Delete “{roomToDelete?.name}”?</AlertDialogTitle>
+          <AlertDialogDescription>
             This removes {roomToDelete?.items} saved items from the room. The items themselves stay
             in your list.
-          </DialogDescription>
+          </AlertDialogDescription>
 
-          <DialogFooter>
-            <DialogClose asChild>
+          <AlertDialogFooter>
+            <AlertDialogCancel asChild>
               <Button variant="secondary" appearance="outline" size="md">
                 Keep room
               </Button>
-            </DialogClose>
-            <Button variant="error" appearance="fill" size="md" onClick={deleteRoom}>
-              Delete room
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+            </AlertDialogCancel>
+            <AlertDialogAction asChild>
+              <Button variant="error" appearance="fill" size="md" onClick={deleteRoom}>
+                Delete room
+              </Button>
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
@@ -201,27 +200,27 @@ export const DeleteConfirmation: Story = {
   Delete<VisuallyHidden> {room.name}</VisuallyHidden>
 </Button>
 
-<Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-  <DialogContent
+<AlertDialog open={dialogOpen} onOpenChange={setDialogOpen}>
+  <AlertDialogContent
     size="sm"
-    initialFocus="title"
-    closeLabel="Close delete confirmation"
     onCloseAutoFocus={(event) => {
-      // No DialogTrigger to return to: focus the opener on Cancel, the next room after a delete.
+      // No AlertDialogTrigger to return to: focus the opener on Cancel, the next room after a delete.
       event.preventDefault();
       focusOpenerOrNextRoom();
     }}
   >
-    <DialogTitle>Delete “{roomToDelete.name}”?</DialogTitle>
-    <DialogDescription>This removes {roomToDelete.items} saved items from the room.</DialogDescription>
-    <DialogFooter>
-      <DialogClose asChild>
+    <AlertDialogTitle>Delete “{roomToDelete.name}”?</AlertDialogTitle>
+    <AlertDialogDescription>This removes {roomToDelete.items} saved items from the room.</AlertDialogDescription>
+    <AlertDialogFooter>
+      <AlertDialogCancel asChild>
         <Button variant="secondary" appearance="outline" size="md">Keep room</Button>
-      </DialogClose>
-      <Button variant="error" appearance="fill" size="md" onClick={deleteRoom}>Delete room</Button>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>`,
+      </AlertDialogCancel>
+      <AlertDialogAction asChild>
+        <Button variant="error" appearance="fill" size="md" onClick={deleteRoom}>Delete room</Button>
+      </AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`,
       },
     },
   },
@@ -247,22 +246,24 @@ export const DeleteConfirmationInteraction: Story = {
     // Cancel: the focus goes back to the button that opened the dialog.
     const deleteBedroom = canvas.getByRole('button', { name: 'Delete Bedroom' });
     await userEvent.click(deleteBedroom);
-    await expect(await page.findByRole('heading', { name: 'Delete “Bedroom”?' })).toHaveFocus();
+    await expect(await page.findByRole('alertdialog')).toBeInTheDocument();
+    // The focus starts on the answer that changes nothing, not on the destructive one.
+    await expect(page.getByRole('button', { name: 'Keep room' })).toHaveFocus();
     await userEvent.click(page.getByRole('button', { name: 'Keep room' }));
-    await waitFor(() => expect(page.queryByRole('dialog')).not.toBeInTheDocument());
+    await waitFor(() => expect(page.queryByRole('alertdialog')).not.toBeInTheDocument());
     await expect(deleteBedroom).toHaveFocus();
 
     // Delete: the focus moves to the next room's button.
     await userEvent.click(deleteBedroom);
     await userEvent.click(await page.findByRole('button', { name: 'Delete room' }));
-    await waitFor(() => expect(page.queryByRole('dialog')).not.toBeInTheDocument());
+    await waitFor(() => expect(page.queryByRole('alertdialog')).not.toBeInTheDocument());
     await expect(canvas.getByRole('button', { name: 'Delete Kitchen' })).toHaveFocus();
     await expect(canvas.getByRole('status')).toHaveTextContent('Bedroom deleted.');
 
     // The last room: the focus moves back to the one before it.
     await userEvent.click(canvas.getByRole('button', { name: 'Delete Kitchen' }));
     await userEvent.click(await page.findByRole('button', { name: 'Delete room' }));
-    await waitFor(() => expect(page.queryByRole('dialog')).not.toBeInTheDocument());
+    await waitFor(() => expect(page.queryByRole('alertdialog')).not.toBeInTheDocument());
     await expect(canvas.getByRole('button', { name: 'Delete Bathroom' })).toHaveFocus();
   },
 };

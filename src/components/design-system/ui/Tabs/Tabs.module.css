@@ -1,0 +1,221 @@
+/* ---------------------------------------------------------------
+ * Tabs — CSS Module
+ * Maps component-level tabs tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure:
+ *   .root    — the wrapper Radix renders around the list and panels
+ *   .list    — role="tablist": the row of tabs on its quiet line
+ *   .trigger — role="tab", with no box of its own; ::after is the bar
+ *              that slides in on hover and stays on the selected tab
+ *   .icon    — the optional icon before the words
+ *   .content — role="tabpanel"
+ *
+ * States come from Radix: [data-state='active' | 'inactive'] on the
+ * tab and its panel, [data-disabled] on a tab that cannot be picked,
+ * and [data-orientation='horizontal' | 'vertical'] on every part.
+ *
+ * Size classes, on the list: .size-{sm|md}
+ * --------------------------------------------------------------- */
+
+.root[data-orientation='vertical'] {
+  display: flex;
+  gap: var(--ds-component-tabs-spacing-vertical-gap);
+}
+
+/* The list ------------------------------------------------------- */
+
+/* The line is an inset shadow, not a border, so the indicator of the selected
+   tab is drawn over it instead of sitting on top of it. */
+.list {
+  display: flex;
+  gap: var(--ds-component-tabs-spacing-list-gap);
+  box-shadow: inset 0 calc(-1 * var(--ds-component-tabs-list-border-width)) 0 0
+    var(--ds-component-tabs-list-border);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.list[data-orientation='vertical'] {
+  flex-direction: column;
+  flex-shrink: 0;
+  box-shadow: inset calc(-1 * var(--ds-component-tabs-list-border-width)) 0 0 0
+    var(--ds-component-tabs-list-border);
+  overflow-x: visible;
+}
+
+/* A tab ---------------------------------------------------------- */
+
+/* A tab has no box: only its words and the bar under them change, the way a
+   standalone Link marks hover and the current page. */
+.trigger {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--tabs-gap);
+  box-sizing: border-box;
+  min-block-size: var(--tabs-min-height);
+  margin: 0;
+  padding-block: 0;
+  padding-inline: var(--tabs-padding-x);
+  font: var(--tabs-font);
+  letter-spacing: var(--tabs-letter-spacing);
+  white-space: nowrap;
+  color: var(--ds-component-tabs-trigger-text-default);
+  background-color: transparent;
+  border: 0;
+  border-radius: var(--ds-component-tabs-shape-radii);
+  cursor: pointer;
+  transition: color var(--ds-component-tabs-motion-duration) var(--ds-component-tabs-motion-easing);
+}
+
+/* The bar is a border, not a fill, so it survives forced colours; at rest it is
+   scaled to nothing and slides in from the start edge. */
+.trigger::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  border-block-end: var(--ds-component-tabs-indicator-width) solid
+    var(--ds-component-tabs-indicator-colour-hover);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition-property: transform, border-color;
+  transition-duration: var(--ds-component-tabs-motion-duration);
+  transition-timing-function: var(--ds-component-tabs-motion-easing);
+}
+
+.trigger[data-orientation='vertical'] {
+  justify-content: flex-start;
+}
+
+.trigger[data-orientation='vertical']::after {
+  inset-block: 0;
+  inset-inline: auto 0;
+  border-block-end: 0;
+  border-inline-end: var(--ds-component-tabs-indicator-width) solid
+    var(--ds-component-tabs-indicator-colour-hover);
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+@media (hover: hover) {
+  .trigger:not([data-disabled], [data-state='active']):hover {
+    color: var(--ds-component-tabs-trigger-text-hover);
+  }
+
+  .trigger:not([data-disabled], [data-state='active']):hover::after {
+    transform: none;
+  }
+}
+
+.trigger:not([data-disabled], [data-state='active']):active {
+  color: var(--ds-component-tabs-trigger-text-hover);
+}
+
+.trigger:not([data-disabled], [data-state='active']):active::after {
+  border-color: var(--ds-component-tabs-indicator-colour-active);
+  transform: none;
+}
+
+/* The list scrolls, which clips anything drawn outside a tab, so the ring
+   is drawn inside it. */
+.trigger:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
+  outline-offset: var(--ds-semantic-focus-ring-offset-inset);
+}
+
+.trigger[data-state='active'] {
+  color: var(--ds-component-tabs-trigger-text-selected);
+  cursor: default;
+}
+
+.trigger[data-state='active']::after {
+  border-color: var(--ds-component-tabs-indicator-colour-selected);
+  transform: none;
+}
+
+.trigger[data-disabled] {
+  color: var(--ds-component-tabs-trigger-text-disabled);
+  cursor: not-allowed;
+}
+
+.icon {
+  --icon-size: var(--tabs-icon-size);
+}
+
+/* A panel -------------------------------------------------------- */
+
+.content {
+  margin-block-start: var(--ds-component-tabs-spacing-panel-gap);
+  border-radius: var(--ds-component-tabs-shape-radii);
+}
+
+.content[data-orientation='vertical'] {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  margin-block-start: 0;
+}
+
+.content:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+/* Sizes ----------------------------------------------------------- */
+
+.size-sm {
+  --tabs-min-height: var(--ds-component-tabs-size-sm-min-height);
+  --tabs-padding-x: var(--ds-component-tabs-size-sm-padding-x);
+  --tabs-gap: var(--ds-component-tabs-size-sm-gap);
+  --tabs-font: var(--ds-component-tabs-size-sm-font);
+  --tabs-letter-spacing: var(--ds-component-tabs-size-sm-letter-spacing);
+  --tabs-icon-size: var(--ds-component-tabs-size-sm-icon-size);
+}
+
+.size-md {
+  --tabs-min-height: var(--ds-component-tabs-size-md-min-height);
+  --tabs-padding-x: var(--ds-component-tabs-size-md-padding-x);
+  --tabs-gap: var(--ds-component-tabs-size-md-gap);
+  --tabs-font: var(--ds-component-tabs-size-md-font);
+  --tabs-letter-spacing: var(--ds-component-tabs-size-md-letter-spacing);
+  --tabs-icon-size: var(--ds-component-tabs-size-md-icon-size);
+}
+
+/* ---------------------------------------------------------------
+ * User preferences
+ * --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .trigger,
+  .trigger::after {
+    transition: none;
+  }
+}
+
+/* Forced colours drop the shadow under the list and paint the bar in the
+   text colour; the selected tab also takes the highlight colour, so it is
+   told apart by more than a line. */
+@media (forced-colors: active) {
+  .list {
+    border-block-end: var(--ds-component-tabs-list-border-width) solid CanvasText;
+  }
+
+  .list[data-orientation='vertical'] {
+    border-block-end: 0;
+    border-inline-end: var(--ds-component-tabs-list-border-width) solid CanvasText;
+  }
+
+  .trigger[data-state='active'] {
+    color: Highlight;
+  }
+
+  .trigger[data-state='active']::after {
+    border-color: Highlight;
+  }
+
+  .trigger[data-disabled] {
+    color: GrayText;
+  }
+}

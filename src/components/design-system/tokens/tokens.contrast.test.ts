@@ -713,6 +713,66 @@ describe('Dialog tokens — contrast', () => {
 });
 
 /* ===============================================================
+ * ALERT DIALOG
+ * =============================================================== */
+
+const ALERT_DIALOG_BACKGROUND = 'component.alert-dialog.background';
+
+describe('AlertDialog tokens — contrast', () => {
+  it.each([
+    ['title', 'component.alert-dialog.title.text'],
+    ['description', 'component.alert-dialog.description.text'],
+  ])('%s is readable on the alert dialog', (_description, textToken) => {
+    expect(contrastRatio(textToken, ALERT_DIALOG_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  // The safe answer is the outline secondary Button, drawn on the dialog and not on
+  // the page it covers; the destructive one is the `error` fill Button, whose text,
+  // edge and focus ring are already checked against the page in the Button block.
+  it('the safe answer is readable on the alert dialog', () => {
+    expect(
+      contrastRatio('component.button.secondary.outline.text.default', ALERT_DIALOG_BACKGROUND),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('footer divider separates the two answers from the body', () => {
+    expect(
+      contrastRatio('component.alert-dialog.footer.border', ALERT_DIALOG_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it('the alert dialog edge stands out from its own surface', () => {
+    expect(
+      contrastRatio('component.alert-dialog.border', ALERT_DIALOG_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * TABS
+ * =============================================================== */
+
+describe('Tabs tokens — contrast', () => {
+  // A tab has no box of its own, so every state is read against the page.
+  it.each([
+    ['an unselected tab', 'component.tabs.trigger.text.default'],
+    ['a hovered or pressed tab', 'component.tabs.trigger.text.hover'],
+    ['the selected tab', 'component.tabs.trigger.text.selected'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  // The selected bar is what tells the selected tab apart from the others, so it is a
+  // UI part that has to be seen (WCAG 1.4.11). The hover bar and the line under the
+  // list only echo the pointer and the layout.
+  it('the selected tab indicator stands out from the page', () => {
+    expect(
+      contrastRatio('component.tabs.indicator.colour.selected', PAGE_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
  * TOOLTIP
  * =============================================================== */
 

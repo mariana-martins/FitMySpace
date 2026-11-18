@@ -1,12 +1,13 @@
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogTitle,
-  DialogTrigger,
-} from '../../ui/Dialog';
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '../../ui/AlertDialog';
 import {
   Toast,
   ToastClose,
@@ -38,7 +39,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Which way to tell people something: a field error, an alert, a toast, an empty state or a dialog. Each one interrupts a different amount and lives in a different place.\n\n' +
+          'Which way to tell people something: a field error, an alert, a toast, an empty state or an alert dialog. Each one interrupts a different amount and lives in a different place.\n\n' +
           '### What It Solves\n' +
           'The same news shown the wrong way fails people: a toast for a form error disappears from beside the field that needs fixing, a dialog for a saved setting stops everything for nothing, an alert for an empty search looks like something broke. Pick by two questions: **where is the thing people need to act on?** and **must they stop?**\n\n' +
           '### When to Use Which\n' +
@@ -50,7 +51,7 @@ const meta = {
           '| An action finished and the page shows it, or it happened elsewhere | `Toast` | Short, out of the way, and offers Undo when there is one. |\n' +
           '| A list came back with nothing | `EmptyState` | Not an error: it says what to change. |\n' +
           '| A list could not load | `Alert` (`error`, assertive) in its place | See Results States. |\n' +
-          '| A decision before something that cannot be undone | `Dialog` | It stops everything, so keep it for what is worth stopping for. |\n' +
+          '| A decision before something that cannot be undone | `AlertDialog` | It stops everything and will not go away until it is answered, so keep it for what is worth stopping for. |\n' +
           '| The whole page cannot show | Page Errors | The page itself becomes the message. |\n\n' +
           'Each story below is one situation from FitMySpace, shown in its place, with the feedback it needs and why the tempting alternative would fail.\n\n' +
           '### Accessibility\n' +
@@ -304,55 +305,55 @@ export const NothingFound: Story = {
 };
 
 /* ---------------------------------------------------------------
- * Cannot be undone: dialog
+ * Cannot be undone: alert dialog
  * --------------------------------------------------------------- */
 
 export const CannotBeUndone: Story = {
-  name: 'Cannot Be Undone: Dialog',
+  name: 'Cannot Be Undone: Alert Dialog',
   render: () => (
     <Situation context="Deleting a room also removes the 12 products saved in it.">
-      <Dialog>
+      <AlertDialog>
         <List appearance="outline" aria-label="Your rooms">
           <ListItem
             icon="bed"
             description="12 saved products"
             trailing={
-              <DialogTrigger asChild>
+              <AlertDialogTrigger asChild>
                 <Button variant="error" appearance="fill" size="sm">
                   Delete room
                 </Button>
-              </DialogTrigger>
+              </AlertDialogTrigger>
             }
           >
             Bedroom
           </ListItem>
         </List>
-        <DialogContent size="sm" initialFocus="title" closeLabel="Close delete confirmation">
-          <DialogTitle>Delete “Bedroom”?</DialogTitle>
-          <DialogDescription>
+        <AlertDialogContent size="sm">
+          <AlertDialogTitle>Delete “Bedroom”?</AlertDialogTitle>
+          <AlertDialogDescription>
             This removes the 12 products saved in it. You cannot undo this.
-          </DialogDescription>
-          <DialogFooter>
-            <DialogClose asChild>
+          </AlertDialogDescription>
+          <AlertDialogFooter>
+            <AlertDialogCancel asChild>
               <Button variant="secondary" appearance="outline" size="md">
                 Keep room
               </Button>
-            </DialogClose>
-            <DialogClose asChild>
+            </AlertDialogCancel>
+            <AlertDialogAction asChild>
               <Button variant="error" appearance="fill" size="md">
                 Delete room
               </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Situation>
   ),
   parameters: {
     docs: {
       description: {
         story:
-          'Press "Delete room". **Use a dialog:** the loss cannot be reversed, so it is worth one question, with the safe answer first. **Not a toast with Undo:** there is no Undo for twelve products gone with their room (when there is, see Remove with Undo). **Not an alert:** a warning on the page does not stop the click that matters.',
+          'Press "Delete room". **Use an alert dialog:** the loss cannot be reversed, so it is worth one question that cannot be walked away from — the focus starts on the safe answer, and clicking outside does not dismiss it. **Not a plain `Dialog`:** a `Dialog` closes on its scrim, and a reader who clicks past it never answered the question. **Not a toast with Undo:** there is no Undo for twelve products gone with their room (when there is, see Remove with Undo). **Not an alert:** a warning on the page does not stop the click that matters.',
       },
       story: { height: '360px' },
     },
@@ -360,20 +361,21 @@ export const CannotBeUndone: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole('button', { name: 'Delete room' })).toBeEnabled();
-    await expect(within(document.body).queryByRole('dialog')).not.toBeInTheDocument();
+    await expect(within(document.body).queryByRole('alertdialog')).not.toBeInTheDocument();
   },
 };
 
 export const CannotBeUndoneInteraction: Story = {
   ...CannotBeUndone,
-  name: 'Cannot Be Undone: Dialog: Interaction (Test Only)',
+  name: 'Cannot Be Undone: Alert Dialog: Interaction (Test Only)',
   tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const page = within(document.body);
     await userEvent.click(canvas.getByRole('button', { name: 'Delete room' }));
-    await expect(await page.findByRole('heading', { name: 'Delete “Bedroom”?' })).toHaveFocus();
+    await expect(await page.findByRole('alertdialog')).toBeInTheDocument();
+    await expect(page.getByRole('button', { name: 'Keep room' })).toHaveFocus();
     await userEvent.click(page.getByRole('button', { name: 'Keep room' }));
-    await waitFor(() => expect(page.queryByRole('dialog')).not.toBeInTheDocument());
+    await waitFor(() => expect(page.queryByRole('alertdialog')).not.toBeInTheDocument());
   },
 };

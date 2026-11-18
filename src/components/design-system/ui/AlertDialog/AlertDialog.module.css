@@ -1,0 +1,237 @@
+/* ---------------------------------------------------------------
+ * AlertDialog — CSS Module
+ * Maps component-level alert-dialog tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure (Radix renders the scrim and the dialog in a portal, as
+ * siblings at the end of <body>):
+ *   .overlay  — the scrim over the page
+ *   .viewport — the full-viewport box that centres the dialog; it is
+ *               not the dialog itself
+ *   .content  — the dialog: title, description, body and footer, and
+ *               the element that carries role="alertdialog"
+ *   .title / .description — the fixed header
+ *   .body     — the part that scrolls
+ *   .footer   — the two answers, fixed at the bottom
+ *
+ * There is no close button: the answers are `AlertDialogCancel` and
+ * `AlertDialogAction`, and a cross in the corner would be a third way
+ * out that says nothing. That is also why the header takes the full
+ * width, where the Dialog leaves room for its Close.
+ *
+ * States come from Radix: [data-state='open' | 'closed'] on the scrim
+ * and on the dialog, which is what the enter and exit animations read.
+ * --------------------------------------------------------------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-semantic-layer-overlay);
+  background-color: var(--ds-semantic-colour-background-scrim);
+}
+
+/* Centring box ---------------------------------------------------- */
+
+.viewport {
+  --alert-dialog-margin: var(--ds-component-alert-dialog-spacing-margin);
+  --alert-dialog-padding: var(--ds-component-alert-dialog-spacing-padding);
+
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-semantic-layer-overlay);
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  box-sizing: border-box;
+  padding: var(--alert-dialog-margin);
+  pointer-events: none;
+}
+
+/* The dialog itself ----------------------------------------------- */
+
+.content {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  inline-size: var(--alert-dialog-width);
+  max-inline-size: 100%;
+  max-block-size: 100%;
+  padding: var(--alert-dialog-padding);
+  color: var(--ds-semantic-colour-text-default-base);
+  background-color: var(--ds-component-alert-dialog-background);
+  border: var(--ds-component-alert-dialog-shape-border-width) solid
+    var(--ds-component-alert-dialog-border);
+  border-radius: var(--ds-component-alert-dialog-shape-radii);
+  box-shadow: var(--ds-component-alert-dialog-shadow);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Header ---------------------------------------------------------- */
+
+.title {
+  flex-shrink: 0;
+  margin: 0;
+  color: var(--ds-component-alert-dialog-title-text);
+}
+
+.title:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+.description {
+  flex-shrink: 0;
+  margin-block-start: var(--ds-component-alert-dialog-spacing-title-gap);
+  color: var(--ds-component-alert-dialog-description-text);
+}
+
+/* Body ------------------------------------------------------------ */
+
+.body {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  margin-block-start: var(--ds-component-alert-dialog-spacing-section-gap);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.body > :first-child {
+  margin-block-start: 0;
+}
+
+.body > :last-child {
+  margin-block-end: 0;
+}
+
+/* Footer ---------------------------------------------------------- */
+
+.footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ds-component-alert-dialog-spacing-footer-gap);
+  margin-block-start: var(--ds-component-alert-dialog-spacing-section-gap);
+  margin-inline: calc(-1 * var(--alert-dialog-padding));
+  margin-block-end: calc(-1 * var(--alert-dialog-padding));
+  padding-block: var(--ds-component-alert-dialog-spacing-footer-padding);
+  padding-inline: var(--alert-dialog-padding);
+  border-block-start: var(--ds-component-alert-dialog-shape-border-width) solid
+    var(--ds-component-alert-dialog-footer-border);
+}
+
+/* ---------------------------------------------------------------
+ * Sizes: an alert dialog is a question, so it is never the widest
+ * dialog in the system.
+ * --------------------------------------------------------------- */
+
+.size-sm {
+  --alert-dialog-width: var(--ds-semantic-size-dialog-sm);
+}
+
+.size-md {
+  --alert-dialog-width: var(--ds-semantic-size-dialog-md);
+}
+
+/* ---------------------------------------------------------------
+ * Narrow screens: less air around the dialog, and the two answers one
+ * under the other, each across the whole width.
+ * A media query cannot read a custom property, so the value of
+ * --ds-semantic-breakpoint-sm is written out (tokens.breakpoints.test.ts
+ * keeps them in step).
+ * --------------------------------------------------------------- */
+
+@media (width < 640px) {
+  .viewport {
+    --alert-dialog-margin: var(--ds-component-alert-dialog-spacing-margin-narrow);
+    --alert-dialog-padding: var(--ds-component-alert-dialog-spacing-padding-narrow);
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer > * {
+    inline-size: 100%;
+  }
+}
+
+/* ---------------------------------------------------------------
+ * Motion and user preferences
+ * --------------------------------------------------------------- */
+
+.overlay[data-state='open'] {
+  animation: scrim-enter var(--ds-component-alert-dialog-motion-duration)
+    var(--ds-component-alert-dialog-motion-easing-enter);
+}
+
+.overlay[data-state='closed'] {
+  animation: scrim-exit var(--ds-component-alert-dialog-motion-duration)
+    var(--ds-component-alert-dialog-motion-easing-exit);
+}
+
+.content[data-state='open'] {
+  animation: alert-dialog-enter var(--ds-component-alert-dialog-motion-duration)
+    var(--ds-component-alert-dialog-motion-easing-enter);
+}
+
+.content[data-state='closed'] {
+  animation: alert-dialog-exit var(--ds-component-alert-dialog-motion-duration)
+    var(--ds-component-alert-dialog-motion-easing-exit);
+}
+
+.viewport[data-state='closed'] {
+  animation: alert-dialog-hold var(--ds-component-alert-dialog-motion-duration) linear;
+}
+
+@keyframes scrim-enter {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes scrim-exit {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes alert-dialog-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ds-component-alert-dialog-motion-travel));
+  }
+}
+
+@keyframes alert-dialog-hold {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes alert-dialog-exit {
+  to {
+    opacity: 0;
+    transform: translateY(var(--ds-component-alert-dialog-motion-travel));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay[data-state='open'],
+  .overlay[data-state='closed'],
+  .content[data-state='open'],
+  .content[data-state='closed'],
+  .viewport[data-state='closed'] {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .content {
+    border: var(--ds-semantic-border-width-interactive) solid CanvasText;
+  }
+}
