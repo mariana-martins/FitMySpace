@@ -23,15 +23,14 @@ const meta = {
           '- A `<header>`: the brand as a standalone `Link` to the home page.\n' +
           '- The Main Navigation: a `<nav>` with a list of standalone `Link`s, the current one with `aria-current="page"`.\n' +
           '- The saved list: a `Button` rendered as a link, with the star icon.\n' +
-          '- On a phone: an icon-only `Button` ("Open the menu") opens a `Dialog` whose body is the same `<nav>`, as a `List` of rows, each a stretched `Link` with an icon.\n\n' +
+          '- On a phone: an icon-only `Button` ("Open the menu") opens a `Sheet` from the start edge whose body is the same `<nav>`, as a `List` of rows, each a stretched `Link` with an icon.\n\n' +
           '### Accessibility\n' +
           '- **Landmarks:** `<header>` is the banner and `<nav aria-label="Main navigation">` the navigation, so screen readers can jump to or past them.\n' +
           '- **The current page is said and seen** in both layouts (`aria-current="page"`, and the underline or the row).\n' +
-          '- **The menu is a modal dialog:** the focus starts on its title ("Menu"), Tab reaches the links, Escape and the Close button shut it, and the focus returns to "Open the menu". Picking a link closes it too.\n' +
+          '- **The menu is a modal sheet** (a dialog that slides in from the side of the menu button): the focus starts on its title ("Menu"), Tab reaches the links, Escape and the Close button shut it, and the focus returns to "Open the menu". Picking a link closes it too.\n' +
           '- **Skip link:** `SkipLink` comes before the header, so a keyboard user can pass it in one key press (see Page Layout).\n' +
           '### In the App\n' +
-          "- Compare each `href` with `usePathname()` for `aria-current`, wrap Next.js `<Link>` with `asChild`, and switch between the two layouts with a CSS media query in the app's header component, so both are rendered on the server.\n" +
-          '- The phone menu would read better as a sheet sliding in from the side, which the design system does not have yet (see the gaps in the Patterns overview).',
+          "- Compare each `href` with `usePathname()` for `aria-current`, wrap Next.js `<Link>` with `asChild`, and switch between the two layouts with a CSS media query in the app's header component, so both are rendered on the server.\n",
       },
     },
   },
@@ -106,19 +105,19 @@ export const OnAPhone: Story = {
     docs: {
       description: {
         story:
-          'On a narrow screen the sections fold behind "Open the menu". The menu is a dialog holding the same navigation as rows, the current one marked; picking one closes the menu.',
+          'On a narrow screen the sections fold behind "Open the menu". The menu is a sheet sliding in from the start edge, holding the same navigation as rows, the current one marked; picking one closes the menu.',
       },
       source: {
         code: `<header>
   <Link asChild appearance="standalone" size="lg"><NextLink href="/">FitMySpace</NextLink></Link>
 
-  <Dialog open={menuOpen} onOpenChange={setMenuOpen}>
-    <DialogTrigger asChild>
+  <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+    <SheetTrigger asChild>
       <Button variant="secondary" appearance="ghost" size="md" icon="menu" aria-label="Open the menu" />
-    </DialogTrigger>
-    <DialogContent size="sm" initialFocus="title" closeLabel="Close the menu">
-      <DialogTitle>Menu</DialogTitle>
-      <DialogBody>
+    </SheetTrigger>
+    <SheetContent side="start" size="sm" initialFocus="title" closeLabel="Close the menu">
+      <SheetTitle>Menu</SheetTitle>
+      <SheetBody>
         <nav aria-label="Main navigation">
           <List size="sm">
             {navigation.map((item) => (
@@ -130,9 +129,9 @@ export const OnAPhone: Story = {
             ))}
           </List>
         </nav>
-      </DialogBody>
-    </DialogContent>
-  </Dialog>
+      </SheetBody>
+    </SheetContent>
+  </Sheet>
 </header>`,
       },
       story: { height: '480px' },

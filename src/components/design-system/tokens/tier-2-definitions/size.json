@@ -169,6 +169,15 @@
           "value": "{size.384}"
         }
       },
+      "sheet": {
+        "sm": {
+          "value": "{size.384}",
+          "comment": "A side sheet for a menu or a short list of filters: a phone's width, so the page still shows beside it on a tablet."
+        },
+        "md": {
+          "value": "{size.560}"
+        }
+      },
       "tooltip": {
         "max-width": {
           "value": "{size.240}",

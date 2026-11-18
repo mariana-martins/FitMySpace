@@ -1104,6 +1104,40 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-overlays-sheet--docs"
+        title="Sheet"
+        description="A modal panel that slides in from an edge: the menu and the filters on a phone, a strip of the page always in sight."
+        preview={
+          /* Drawn by hand: the real sheet opens in a portal at the end of <body>. */
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              width: '160px',
+              height: '96px',
+              borderRadius: 'var(--ds-semantic-radii-container-md)',
+              backgroundColor: 'var(--ds-semantic-colour-background-scrim)',
+            }}
+          >
+            <div
+              style={{
+                width: '112px',
+                padding: '12px',
+                borderStartStartRadius: 'var(--ds-component-sheet-shape-radii)',
+                borderEndStartRadius: 'var(--ds-component-sheet-shape-radii)',
+                backgroundColor: 'var(--ds-component-sheet-background)',
+                boxShadow: 'var(--ds-component-sheet-shadow)',
+              }}
+            >
+              <Heading level={5} size="sm">
+                Filters
+              </Heading>
+            </div>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-overlays-tooltip--docs"
         title="Tooltip"
         description="One short thought on a control, shown on hover or focus — never for information the reader needs."

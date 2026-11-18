@@ -749,6 +749,33 @@ describe('AlertDialog tokens — contrast', () => {
 });
 
 /* ===============================================================
+ * SHEET
+ * =============================================================== */
+
+const SHEET_BACKGROUND = 'component.sheet.background';
+
+describe('Sheet tokens — contrast', () => {
+  it.each([
+    ['title', 'component.sheet.title.text'],
+    ['description', 'component.sheet.description.text'],
+  ])('%s is readable on the sheet', (_description, textToken) => {
+    expect(contrastRatio(textToken, SHEET_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('footer divider separates the actions from the body', () => {
+    expect(contrastRatio('component.sheet.footer.border', SHEET_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it('the sheet edge stands out from its own surface', () => {
+    expect(contrastRatio('component.sheet.border', SHEET_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+});
+
+/* ===============================================================
  * TABS
  * =============================================================== */
 

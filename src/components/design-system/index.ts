@@ -27,6 +27,7 @@ export * from './ui/RadioGroup';
 export * from './ui/SearchField';
 export * from './ui/Select';
 export * from './ui/SelectField';
+export * from './ui/Sheet';
 export * from './ui/Skeleton';
 export * from './ui/SkipLink';
 export * from './ui/Switch';

@@ -1,12 +1,12 @@
 import {
-  Dialog,
-  DialogBody,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogTitle,
-  DialogTrigger,
-} from '../../ui/Dialog';
+  Sheet,
+  SheetBody,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetTitle,
+  SheetTrigger,
+} from '../../ui/Sheet';
 import {
   Popover,
   PopoverClose,
@@ -45,7 +45,7 @@ const meta = {
           '### When to Use\n' +
           '- **Narrowing a list already on the page:** search results, a category. Each filter applies at once, without a Search button.\n' +
           '- **A filter with a longer list of options goes in a `Popover`** on a wide screen (second story): the stores are a button beside the room chips, and the page stays usable while the panel is open.\n' +
-          '- **On a phone, put the same controls in a dialog** (third story): the row would push the products off the first screen.\n' +
+          '- **On a phone, put the same controls in a `Sheet`** (third story): the row would push the products off the first screen.\n' +
           '- **Not for:** a value people must type (use Product Search), or a long list of options (use `Select` instead of chips).\n\n' +
           '### Anatomy\n' +
           '- The room filters — a visible `Label` naming a `role="group"`, holding one `Chip` per room.\n' +
@@ -57,7 +57,7 @@ const meta = {
           '- **A chip says its own state** ("Kitchen, toggle button, pressed"), and the count line says the result, so nobody has to look at the grid to know a filter worked.\n' +
           '- **Clear filters gives the focus to the first chip.** The button disappears once nothing is selected; leaving the focus on it would drop it at the top of the page.\n' +
           '- **In the popover, each store applies at once** and the count is heard while the panel is still open; Escape or "Done" gives the focus back to the Stores button.\n' +
-          '- **In the dialog, nothing changes until "Show products":** the button counts the products the choice would show, and closing the dialog any other way keeps the old filters.\n\n' +
+          '- **In the sheet, nothing changes until "Show products":** the button counts the products the choice would show, and closing the sheet any other way keeps the old filters.\n\n' +
           '### In the App\n' +
           '- The rooms and the sort order live in the URL (`?room=kitchen&room=bathroom&sort=price-ascending`), so a filtered list can be shared and the Back button undoes a filter. The products come from TanStack Query.',
       },
@@ -483,15 +483,15 @@ export const StoreFilterInAPopoverInteraction: Story = {
 };
 
 /* ---------------------------------------------------------------
- * Filters in a dialog (on a phone)
+ * Filters in a sheet (on a phone)
  * --------------------------------------------------------------- */
 
-function FilterDialogRecipe() {
+function FilterSheetRecipe() {
   const [appliedRooms, setAppliedRooms] = useState<SampleRoom[]>([]);
   const [appliedSort, setAppliedSort] = useState<SortOrder>('relevance');
   const [draftRooms, setDraftRooms] = useState<SampleRoom[]>([]);
   const [draftSort, setDraftSort] = useState<SortOrder>('relevance');
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
   const products = filterAndSort(appliedRooms, appliedSort);
   const draftCount = filterAndSort(draftRooms, draftSort).length;
 
@@ -501,13 +501,13 @@ function FilterDialogRecipe() {
       setDraftRooms(appliedRooms);
       setDraftSort(appliedSort);
     }
-    setDialogOpen(isOpen);
+    setSheetOpen(isOpen);
   }
 
   function applyFilters() {
     setAppliedRooms(draftRooms);
     setAppliedSort(draftSort);
-    setDialogOpen(false);
+    setSheetOpen(false);
   }
 
   return (
@@ -525,27 +525,27 @@ function FilterDialogRecipe() {
           {countProducts(products.length)}
         </Text>
 
-        <Dialog open={dialogOpen} onOpenChange={handleOpenChange}>
-          <DialogTrigger asChild>
+        <Sheet open={sheetOpen} onOpenChange={handleOpenChange}>
+          <SheetTrigger asChild>
             <Button variant="secondary" appearance="outline" size="sm" icon="sliders-horizontal">
               {appliedRooms.length ? `Filters (${appliedRooms.length})` : 'Filters'}
             </Button>
-          </DialogTrigger>
+          </SheetTrigger>
 
-          <DialogContent size="sm" initialFocus="first" closeLabel="Close filters">
-            <DialogTitle>Filters</DialogTitle>
-            <DialogDescription>Nothing changes until you show the products.</DialogDescription>
-            <DialogBody>
+          <SheetContent side="end" size="sm" initialFocus="first" closeLabel="Close filters">
+            <SheetTitle>Filters</SheetTitle>
+            <SheetDescription>Nothing changes until you show the products.</SheetDescription>
+            <SheetBody>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <RoomChips
-                  labelId="dialog-room-filter-label"
+                  labelId="sheet-room-filter-label"
                   selectedRooms={draftRooms}
                   onChange={setDraftRooms}
                 />
-                <SortSelect id="dialog-sort-products" value={draftSort} onChange={setDraftSort} />
+                <SortSelect id="sheet-sort-products" value={draftSort} onChange={setDraftSort} />
               </div>
-            </DialogBody>
-            <DialogFooter>
+            </SheetBody>
+            <SheetFooter>
               <Button
                 variant="secondary"
                 appearance="ghost"
@@ -558,9 +558,9 @@ function FilterDialogRecipe() {
               <Button variant="primary" appearance="fill" size="md" onClick={applyFilters}>
                 {`Show ${countProducts(draftCount)}`}
               </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
       </div>
 
       <SampleProductGrid products={products} />
@@ -568,39 +568,39 @@ function FilterDialogRecipe() {
   );
 }
 
-export const FiltersInADialog: Story = {
-  name: 'Filters in a Dialog (A11y)',
-  render: () => <FilterDialogRecipe />,
+export const FiltersInASheet: Story = {
+  name: 'Filters in a Sheet (A11y)',
+  render: () => <FilterSheetRecipe />,
   parameters: {
     docs: {
       description: {
         story:
-          'The same controls on a phone, behind a "Filters" button. Inside, the choices are a draft: the main button counts what they would show ("Show 8 products") and only that button applies them. The trigger then says how many filters are on, and the focus returns to it.',
+          'The same controls on a phone, behind a "Filters" button, in a `Sheet` that slides in from the end edge. Inside, the choices are a draft: the main button counts what they would show ("Show 8 products") and only that button applies them. The trigger then says how many filters are on, and the focus returns to it.',
       },
       source: {
-        code: `<Dialog open={dialogOpen} onOpenChange={openWithFiltersInUse}>
-  <DialogTrigger asChild>
+        code: `<Sheet open={sheetOpen} onOpenChange={openWithFiltersInUse}>
+  <SheetTrigger asChild>
     <Button variant="secondary" appearance="outline" size="sm" icon="sliders-horizontal">
       {rooms.length ? \`Filters (\${rooms.length})\` : 'Filters'}
     </Button>
-  </DialogTrigger>
+  </SheetTrigger>
 
-  <DialogContent size="sm" initialFocus="first" closeLabel="Close filters">
-    <DialogTitle>Filters</DialogTitle>
-    <DialogDescription>Nothing changes until you show the products.</DialogDescription>
-    <DialogBody>
+  <SheetContent side="end" size="sm" initialFocus="first" closeLabel="Close filters">
+    <SheetTitle>Filters</SheetTitle>
+    <SheetDescription>Nothing changes until you show the products.</SheetDescription>
+    <SheetBody>
       {/* The same chips and sort order, bound to the draft */}
-    </DialogBody>
-    <DialogFooter>
+    </SheetBody>
+    <SheetFooter>
       <Button variant="secondary" appearance="ghost" size="md" onClick={clearDraft}>
         Clear filters
       </Button>
       <Button variant="primary" appearance="fill" size="md" onClick={applyDraft}>
         Show {draftCount} products
       </Button>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>`,
+    </SheetFooter>
+  </SheetContent>
+</Sheet>`,
       },
       story: { height: '640px' },
     },
@@ -613,12 +613,12 @@ export const FiltersInADialog: Story = {
 };
 
 /* ---------------------------------------------------------------
- * Filters in a Dialog (A11y): interaction (test only)
+ * Filters in a Sheet (A11y): interaction (test only)
  * --------------------------------------------------------------- */
 
-export const FiltersInADialogInteraction: Story = {
-  ...FiltersInADialog,
-  name: 'Filters in a Dialog (A11y): Interaction (Test Only)',
+export const FiltersInASheetInteraction: Story = {
+  ...FiltersInASheet,
+  name: 'Filters in a Sheet (A11y): Interaction (Test Only)',
   tags: ['!dev', '!autodocs'],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -627,7 +627,7 @@ export const FiltersInADialogInteraction: Story = {
 
     await userEvent.click(await page.findByRole('button', { name: 'Kitchen' }));
     await expect(page.getByRole('button', { name: 'Show 4 products' })).toBeInTheDocument();
-    // A draft: the page behind the dialog has not changed yet. The modal hides that page from
+    // A draft: the page behind the sheet has not changed yet. The modal sheet hides that page from
     // assistive technology while it is open, hence `hidden: true`.
     await expect(canvas.getByRole('status', { hidden: true })).toHaveTextContent('16 products');
 

@@ -47,7 +47,7 @@ const PageSectionsGrid = () => (
       headingLevel={4}
       path="/docs/design-system-patterns-page-sections-site-header--docs"
       title="Site Header"
-      description="The brand, the main sections and the saved list, folding into a menu dialog on a phone."
+      description="The brand, the main sections and the saved list, folding into a menu sheet on a phone."
       preview={
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <Text size="sm" as="span">
@@ -502,12 +502,6 @@ export const Overview: Story = {
         description="What the patterns asked for and had to do without. Each is a candidate for a component."
       >
         <ul style={ruleListStyle}>
-          <li>
-            <Text as="span" size="sm">
-              <strong>Sheet</strong> — a panel that slides in from the side, for the phone menu and
-              the phone filters, which use a centred Dialog for now.
-            </Text>
-          </li>
           <li>
             <Text as="span" size="sm">
               <strong>Table</strong> — to compare stores or products on several columns (Store
