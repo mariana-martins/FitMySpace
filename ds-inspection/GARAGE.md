@@ -1,101 +1,49 @@
 # GARAGE.md — FitMySpace
 
-_Checked in: 2026-08-04 · Re-confirm at next inspection_
+_Checked in: 2026-11-18 · Re-confirm at next inspection_
+_Previous check-in: 2026-08-04 (its results were recorded in this file; they live on in git history and are compared in `reports/2026-11-18-inspection.md`)._
 
 ## Vehicle
 
-- System: FitMySpace Design System
-- Team: Solo · Consumers: 20 product teams
-- Age: New system
-- Reason for service: Baseline evaluation, missing components, zero adoption
+- System: FitMySpace Design System, serving the FitMySpace app (a search engine for home organisation products across stores)
+- Team: Solo — one maintainer (Mariana), design and engineering, with AI agents doing much of the build under `AGENTS.md` · Consumers: 1 product (the FitMySpace app); it does not consume the design system yet
+- Age: ~5 months (v0.1.0 on 2026-06-30); rapid growth since 2026-11-11 (v0.2.0 → v0.6.0 in one week)
+- Reason for service: routine re-inspection after a large build-out (27 components, 22 patterns); the August profile was outdated
 
 ## Assets
 
-- Design library: None specified / accessible
-- Code library: React/Next.js repo (FitMySpace)
-- Docs: Storybook (src/components/design-system/ui)
-- Process: N/A
-- AI surface: N/A
+- Design library: Figma file `2vgKu1CEc6b79vwFHLYcFM`, free Starter plan (few MCP calls, no Code Connect, no upgrade possible). Pages: `Button`, `Icons`.
+- Code library: Next.js 16 / React 19 / TypeScript, in-repo at `src/components/design-system/` (not a published package). CSS Modules on Style Dictionary tokens (3 tiers: 9 tier-1, 10 tier-2, 23 tier-3 files → `tokens.css`). Radix primitives.
+- Docs: Storybook 10, published to GitHub Pages after green CI on `main`. Introduction, Foundation pages, a page per component, Patterns section (22 recipes in 4 groups), Changelog page.
+- Process: GitHub PRs with CI (`ci.yml`), Conventional Commits (commitlint), Husky pre-commit (lint-staged, tokens:check, Jest), release-it (`.release-it.mjs`) → `CHANGELOG.md` and tags. Planning in `src/PLANNING.md` (git-ignored, local only). No issue tracker in use.
+- AI surface: `AGENTS.md` (+ `CLAUDE.md`) with design-system rules; `@storybook/addon-mcp` in the dev server; Figma MCP connected; agent skills in `.agents/skills/`.
 
 ## Evidence access map
 
-| Asset          | Access    | Verified how                                                |
-| -------------- | --------- | ----------------------------------------------------------- |
-| Design library | interview | N/A                                                         |
-| Code library   | live      | Can read repo files directly                                |
-| Docs           | live      | Can read Storybook files in src/components/design-system/ui |
-| Process        | interview | N/A                                                         |
+| Asset          | Access | Verified how                                                                                     |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------ |
+| Design library | live   | Figma MCP `get_metadata` on the file listed its pages (`Button`, `Icons`); one call by agreement |
+| Code library   | live   | Read components, types, CSS, tests and token files in the repo                                   |
+| Docs           | live   | Storybook dev server on :6006 (index.json, Playwright screenshots) and its MCP endpoint `/mcp`   |
+| Process        | live   | `gh` (PRs, branch protection, rulesets, issues), git tags, CI workflow files                     |
 
 ## Known symptoms
 
-- Missing lots of components
-- No adoption from product teams currently
+- The design library lags far behind code (Figma: Button and Icons only)
+- The app does not use the design system yet; legacy components run in parallel
+- Gaps found while building patterns: Sheet, Table, Tabs, Popover, AlertDialog, Combobox
 
 ## Probable greens
 
-- None specified
+- Code craft, accessibility testing, token architecture, documentation structure
 
 ## Intentional deviations
 
-- None specified
+- **No adoption yet, by design:** legacy app components are not replaced or migrated until all design-system components are finished (`AGENTS.md`). Adoption is scored with that in mind.
+- **Code is canonical:** the Figma Starter plan limits MCP calls and has no Code Connect, so the design library is built after the code, by hand.
+- **Breaking icon-prop change in v0.5.0 not flagged** in the changelog: accepted by the maintainer (no consumer yet).
 
 ## Scope & frame
 
-- Stations this pass: All 10 · Scoring frame: Solo / small team
-- Out of scope: None
-
----
-
-# Inspection Results
-
-_Results of the 10-station Design System Multi-Point Inspection conducted on 2026-08-04._
-
-### 🔴 Station 1 (Coverage & Gaps): Red (2/10)
-
-- **Inventory:** 0 known in design · 2 in code (`Button`, `Typography`) · 2 documented.
-- **Findings:** The component footprint is tiny right now compared to the staple core a product team needs. The token system (radii, color, spacing) is an excellent foundation, but UI component coverage is extremely thin, forcing the 20 product teams to roll their own components.
-
-### 🟢 Station 2 (Best Practices): Green (9/10)
-
-- **Sampled:** `Button.tsx`, `Button.module.css`, `Button.stories.tsx`.
-- **Findings:** The code craft is stellar. `Button` uses semantic markup, Radix UI slots for polymorphic rendering (`asChild`), CSS modules with mapped tokens, and Storybook docs are highly detailed.
-
-### 🟢 Station 3 (Accessibility): Green (9/10)
-
-- **Sampled:** `Button.tsx`, `Button.test.tsx`, `package.json`.
-- **Findings:** The codebase already includes `jest-axe`, `@axe-core/react`, and Storybook a11y addons. Tests explicitly verify keyboard accessibility, semantic `<button>` rendering, and ARIA handling for icon-only states, ensuring zero violations pass through CI.
-
-### 🟢 Station 4 (Shared Language): Green (10/10)
-
-- **Sampled:** Tokens CSS file, Component APIs (`Button` & `Typography`).
-- **Findings:** The naming system is immaculate. Token tiers are fully baked and follow a strict, logical structure. Component props (`variant`, `appearance`, `size`) map perfectly between components and match the Storybook documentation.
-
-### 🟡 Station 5 (Testing & Validation): Yellow (6/10)
-
-- **Sampled:** `Button.test.tsx`, `package.json`, `.husky`, CI configs.
-- **Findings:** The local testing culture is strong with interaction tests, Chromatic, and Husky hooks. However, the system relies entirely on local pre-commit hooks as there is no remote CI (e.g., GitHub Actions) blocking pull requests.
-
-### 🟢 Station 6 (Orchestration): Green (8/10)
-
-- **Sampled:** `/tokens/` directory (`sd.config.mjs`, JSON definition files), `Button.stories.tsx`.
-- **Findings:** The codebase is excellently orchestrated. `Style Dictionary` pipes a single source of truth into `tokens.css`. Code and docs are physically coupled via Storybook. _(Note: Figma library unverifiable, but structural foundation is best-in-class)._
-
-### 🟡 Station 7 (Governance & Version Control): Yellow (5/10)
-
-- **Sampled:** `CHANGELOG.md`, `.release-it.json`, project root.
-- **Findings:** Excellent automated release hygiene (`release-it`, semantic versioning, conventional commits). However, there is no `CONTRIBUTING.md` or PR/issue templates. The 20 product teams have no documented path to contribute.
-
-### 🔴 Station 8 (Feedback & Adoption): Red (2/10)
-
-- **Sampled:** Maintainer interview.
-- **Findings:** There is currently zero adoption across the 20 product teams. There are no established telemetry or feedback loops (support channels or scanners) in place yet. This is expected for a new system but is the most critical gap to close once components ship.
-
-### 🟡 Station 9 (Machine-Readable Docs): Yellow (5/10)
-
-- **Sampled:** `Button.types.ts`, `tokens/`.
-- **Findings:** The raw materials (commented TypeScript types, JSON tokens) are machine-friendly. However, there is no deliberate AI-facing layer (`llms.txt`, `AGENTS.md`), meaning AI agents miss out on curated guidelines of how/when to compose components.
-
-### 🟡 Station 10 (Agent Access): Yellow (7/10)
-
-- **Sampled:** `package.json`, `.agents/mcp/`.
-- **Findings:** `@storybook/addon-mcp` is installed, exposing an MCP server for agents to query component metadata directly from Storybook. However, because it's not yet wired into the global `.agents/mcp` folder and there is no explicit `Code Connect` for Figma, agentic integrations are present but not fully activated.
+- Stations this pass: all 10 · Scoring frame: solo / small team
+- Out of scope: the legacy app components themselves
