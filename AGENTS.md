@@ -48,7 +48,7 @@ rules below are its essentials.
   plain helpers shared by components in `utils/` (e.g. `joinIds` for
   `aria-describedby`, `UTILITY_VARIANTS` with the icon and label of each, shared by `Alert`, `Toast`, the field errors and the variant types of `Button` and `Badge`). Reuse them instead of copying a helper into a component.
   Sidebar: `Design System/Components/<Category>/<Name>` with the categories
-  Actions, Forms, Navigation, Display, Feedback, Overlays and Typography (add one in
+  Actions, Forms, Navigation, Display, Feedback, Overlays, Typography and Utilities (add one in
   `.storybook/preview.tsx` when needed).
 - **Folder per component** in `ui/`: `Name.tsx`, `Name.types.ts`,
   `Name.module.css`, `Name.test.tsx`, `Name.stories.tsx` and an `index.tsx`
@@ -80,7 +80,9 @@ rules below are its essentials.
   `usedIn` line.
 - **Screen-reader-only text**: use `VisuallyHidden` from
   `@radix-ui/react-visually-hidden` (e.g. the "Error: " prefix, a `role="status"`
-  announcement). Never add a local `.visually-hidden` class or inline style.
+  announcement). Never add a local `.visually-hidden` class or inline style. The design
+  system does not wrap it: `ui/VisuallyHidden/` holds only its Storybook page
+  (Components/Utilities), which explains when to use it.
 - **MDN check**: for every new component, verify the ARIA attributes and DOM
   typings against MDN before writing the API.
 - **Tokens**: three tiers of JSON in `tokens/` (tier 1 literal values, tier 2

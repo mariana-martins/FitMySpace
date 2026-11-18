@@ -826,6 +826,25 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-navigation-skiplink--docs"
+        title="SkipLink"
+        description="The first link of every page: out of sight until focused, it jumps past the header to the content."
+        preview={
+          <span
+            style={{
+              padding: '8px 16px',
+              borderRadius: 'var(--ds-component-skip-link-shape-radii)',
+              backgroundColor: 'var(--ds-component-skip-link-background)',
+              color: 'var(--ds-component-skip-link-text)',
+              font: 'var(--ds-semantic-typography-control-md-shorthand)',
+            }}
+          >
+            Skip to content
+          </span>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-navigation-breadcrumb--docs"
         title="Breadcrumb"
         description="The trail of ancestor pages, from Home to the page people are on."
@@ -1065,6 +1084,17 @@ const ComponentGrid = () => (
             <Label size="sm">Label</Label>
             <Caption>Caption</Caption>
           </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-utilities-visuallyhidden--docs"
+        title="VisuallyHidden"
+        description="Words only screen readers need: when to add them, and how they differ from aria-hidden and hidden."
+        preview={
+          <Text size="sm" as="span">
+            Remove <span style={{ opacity: 0.4 }}>Oak wall shelf</span>
+          </Text>
         }
       />
     </LinkCardGrid>
