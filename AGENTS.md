@@ -168,6 +168,13 @@ rules below are its essentials.
   checks those states. Their contrast is enforced by
   `tokens/tokens.contrast.test.ts`: when you add a component or a colour token,
   add its text/background and border/focus pairs there.
+- **Storybook MCP**: `.mcp.json` registers `@storybook/addon-mcp` as `storybook`
+  (`http://localhost:6006/mcp`), live only while `npm run storybook` runs. Its
+  `docs-show` returns the stories and the props table (`experimentalDocgenServer`
+  in `.storybook/main.ts`, dev server only). Its examples import from
+  `'fitmyspace'`, the package name, because Storybook rewrites every import of a
+  project file to it; that is not an importable path: import from
+  `@/components/design-system/ui/<Name>` instead.
 
 ## Code style
 
@@ -225,9 +232,37 @@ to `main`.
 - The pre-commit hook runs lint-staged and the full test suite.
 - Versions, tags and `CHANGELOG.md` come only from `npm run release`. Never
   bump versions or edit the changelog by hand.
+- `main` is protected: every change goes through a pull request, and the three CI
+  jobs must pass before it merges.
+
+### Breaking changes and deprecations
+
+A change is breaking when code that uses the design system stops compiling or
+behaves differently after it: a removed or renamed component, prop, value or
+token, a prop that becomes required, a changed default, or a changed DOM or ARIA
+contract that a consumer or a test relies on.
+
+- Mark it with a `BREAKING CHANGE:` footer in the commit (release-it bumps the
+  version and lists it in the changelog) and add a migration note in the same PR:
+  what to change, before and after.
+- Deprecate before removing: the old API keeps working for one minor version,
+  marked `@deprecated` in its JSDoc with what replaces it, and is removed in the
+  next one with the `BREAKING CHANGE:` footer.
+- The pull request template asks "Breaking?": answer it in every PR.
+
+### Decisions
+
+Decisions that outlive a PR go in `docs/adr/` as short Architecture Decision
+Records (`NNNN-title.md`: context, decision, consequences). Supersede an ADR
+with a new one instead of rewriting it.
 
 ## Figma
 
+- **Code and Storybook are the source of truth** for the design system; the
+  Figma file holds brand and exploration (`docs/adr/0001-code-is-the-source-of-truth.md`).
+  It is not expected to mirror every component, so a component missing in Figma
+  is not drift. Figma catch-up is optional, in the order Typography, Input /
+  TextField / Select, Dialog, List, Card, with prop names mirrored from the code.
 - The design-system file is `2vgKu1CEc6b79vwFHLYcFM`. The account is on the
   free Starter plan and the Figma MCP allows very few calls before it blocks
   until the reset. Upgrading is not an option.
