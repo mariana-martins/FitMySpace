@@ -1,13 +1,14 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import styles from './TextareaField.module.css';
 import { Label, Text } from '../Typography';
-import { forwardRef, useId } from 'react';
 import { DS_ICONS, Icon } from '../Icon';
 import { Textarea } from '../Textarea';
+import { useId } from 'react';
 import clsx from 'clsx';
 
 import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS, joinIds } from '../../utils';
 import type { TextareaFieldProps } from './TextareaField.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * TextareaField
@@ -25,84 +26,81 @@ import type { TextareaFieldProps } from './TextareaField.types';
  * The ref points to the <textarea>.
  * --------------------------------------------------------------- */
 
-export const TextareaField = forwardRef<HTMLTextAreaElement, TextareaFieldProps>(
-  function TextareaField(props, ref) {
-    const {
-      label,
-      hint,
-      invalid = false,
-      error,
-      id,
-      size = 'md',
-      resize = 'vertical',
-      rows,
-      required,
-      disabled,
-      className,
-      textareaClassName,
-      'aria-describedby': ariaDescribedBy,
-      ...rest
-    } = props;
+export function TextareaField({
+  ref,
+  ...props
+}: TextareaFieldProps & { ref?: Ref<HTMLTextAreaElement> }) {
+  const {
+    label,
+    hint,
+    invalid = false,
+    error,
+    id,
+    size = 'md',
+    resize = 'vertical',
+    rows,
+    required,
+    disabled,
+    className,
+    textareaClassName,
+    'aria-describedby': ariaDescribedBy,
+    ...rest
+  } = props;
 
-    const generatedId = useId();
-    const textareaId = id ?? generatedId;
-    const hintId = `${textareaId}-hint`;
-    const errorId = `${textareaId}-error`;
-    const hasError = Boolean(invalid && error && error.trim().length > 0);
+  const generatedId = useId();
+  const textareaId = id ?? generatedId;
+  const hintId = `${textareaId}-hint`;
+  const errorId = `${textareaId}-error`;
+  const hasError = Boolean(invalid && error && error.trim().length > 0);
 
-    return (
-      <div
-        className={clsx(styles.root, className)}
-        data-disabled={disabled || undefined}
-        data-invalid={hasError || undefined}
-      >
-        <Label as="label" htmlFor={textareaId} size={size} className={styles.label}>
-          {label}
-          {required && (
-            <span className={styles['required-marker']} aria-hidden="true">
-              *
-            </span>
-          )}
-        </Label>
-
-        <Textarea
-          ref={ref}
-          id={textareaId}
-          size={size}
-          resize={resize}
-          rows={rows}
-          required={required}
-          disabled={disabled}
-          invalid={hasError}
-          className={textareaClassName}
-          aria-describedby={joinIds(
-            ariaDescribedBy,
-            hint ? hintId : undefined,
-            hasError ? errorId : undefined,
-          )}
-          {...rest}
-        />
-
-        {hint && (
-          <Text as="p" size="sm" id={hintId} className={styles.hint}>
-            {hint}
-          </Text>
+  return (
+    <div
+      className={clsx(styles.root, className)}
+      data-disabled={disabled || undefined}
+      data-invalid={hasError || undefined}
+    >
+      <Label as="label" htmlFor={textareaId} size={size} className={styles.label}>
+        {label}
+        {required && (
+          <span className={styles['required-marker']} aria-hidden="true">
+            *
+          </span>
         )}
+      </Label>
 
-        {hasError && (
-          <p className={styles.error}>
-            <Icon className={styles['error-icon']}>
-              {DS_ICONS[UTILITY_VARIANT_ICONS.error].icon}
-            </Icon>
-            <span id={errorId}>
-              <VisuallyHidden>{`${UTILITY_VARIANT_LABELS.error}: `}</VisuallyHidden>
-              {error}
-            </span>
-          </p>
+      <Textarea
+        ref={ref}
+        id={textareaId}
+        size={size}
+        resize={resize}
+        rows={rows}
+        required={required}
+        disabled={disabled}
+        invalid={hasError}
+        className={textareaClassName}
+        aria-describedby={joinIds(
+          ariaDescribedBy,
+          hint ? hintId : undefined,
+          hasError ? errorId : undefined,
         )}
-      </div>
-    );
-  },
-);
+        {...rest}
+      />
 
-TextareaField.displayName = 'TextareaField';
+      {hint && (
+        <Text as="p" size="sm" id={hintId} className={styles.hint}>
+          {hint}
+        </Text>
+      )}
+
+      {hasError && (
+        <p className={styles.error}>
+          <Icon className={styles['error-icon']}>{DS_ICONS[UTILITY_VARIANT_ICONS.error].icon}</Icon>
+          <span id={errorId}>
+            <VisuallyHidden>{`${UTILITY_VARIANT_LABELS.error}: `}</VisuallyHidden>
+            {error}
+          </span>
+        </p>
+      )}
+    </div>
+  );
+}

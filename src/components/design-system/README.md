@@ -6,6 +6,8 @@ This directory houses the foundational design system components, tokens, and uti
 
 ```
 design-system/
+├── index.ts         # Entry point: the app imports every component and type from here only
+├── index.test.ts    # Every ui/ folder is re-exported by index.ts
 ├── tokens/          # Tier 1, 2, and 3 JSON token files + Style Dictionary config
 │   ├── tier-1-definitions/    # Core literal values (do not use directly in components)
 │   │   ├── colour.json         # Hex codes and raw colour palettes
@@ -203,6 +205,7 @@ design-system/
 - **Server rendering:** anything without client-only React renders on the server — no `'use client'`, no JavaScript to show it: `Alert`, `Icon`, `List`, `SkipLink`, `Textarea`, `TextareaField`, `Breadcrumb`, `Pagination`, `Link`, `Card`, `EmptyState`, `Skeleton`, `Typography`. `useId` works on the server, and a server component may render a client one (such as Radix `VisuallyHidden`) without becoming one. `Input` and `TextField` are client components because of a ref and a click handler, `SearchField` because of its state, and every Radix control (`Checkbox`, `RadioGroup`, `Select`, `SelectField`, `Switch`, `Dialog`, `Tooltip`, `Toast`) because of its hooks.
 - Accessibility rules (such as `aria-label` on icon-only `Button`, `htmlFor` on `Label as="label"`, and a required `error` message when `TextField`, `TextareaField`, `SelectField`, `Checkbox` or `Switch` is `invalid`) are enforced at compile time via TypeScript discriminated unions.
 - Design tokens are managed using Style Dictionary.
+- **Entry point:** the app imports from `@/components/design-system` (`index.ts`); ESLint rejects deeper imports outside the folder, except `tokens/tokens.css`. Components take `ref` as a prop (React 19), not through `forwardRef`, which ESLint rejects inside the design system.
 
 Refer to the root `src/PLANNING.md` for architectural guidelines and implementation details.
 

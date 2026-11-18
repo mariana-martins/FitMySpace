@@ -1,9 +1,9 @@
 'use client';
 
-import { forwardRef, useId, useRef } from 'react';
 import type { MouseEvent, Ref } from 'react';
 import { DS_ICONS, Icon } from '../Icon';
 import styles from './Input.module.css';
+import { useId, useRef } from 'react';
 import clsx from 'clsx';
 
 import type { InputProps } from './Input.types';
@@ -25,7 +25,7 @@ function assignRef<T>(ref: Ref<T> | undefined, value: T | null) {
   else if (ref) ref.current = value;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(props, ref) {
+export function Input({ ref, ...props }: InputProps & { ref?: Ref<HTMLInputElement> }) {
   const {
     size = 'md',
     invalid = false,
@@ -103,6 +103,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(pro
       )}
     </div>
   );
-});
-
-Input.displayName = 'Input';
+}

@@ -1,9 +1,9 @@
 import { Slot } from '@radix-ui/react-slot';
 import styles from './Card.module.css';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { CardMediaProps, CardProps } from './Card.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Card
@@ -16,7 +16,7 @@ import type { CardMediaProps, CardProps } from './Card.types';
  * that link's click area and focus ring cover the whole card.
  * --------------------------------------------------------------- */
 
-export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(props, ref) {
+export function Card({ ref, ...props }: CardProps & { ref?: Ref<HTMLDivElement> }) {
   const { appearance = 'raised', padding = 'md', asChild = false, className, ...rest } = props;
   const Component = asChild ? Slot : 'div';
 
@@ -32,15 +32,13 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(props, r
       {...rest}
     />
   );
-});
-
-Card.displayName = 'Card';
+}
 
 /* ---------------------------------------------------------------
  * CardMedia
  * --------------------------------------------------------------- */
 
-export const CardMedia = forwardRef<HTMLDivElement, CardMediaProps>(function CardMedia(props, ref) {
+export function CardMedia({ ref, ...props }: CardMediaProps & { ref?: Ref<HTMLDivElement> }) {
   const { aspectRatio = 'landscape', className, ...rest } = props;
 
   return (
@@ -54,6 +52,4 @@ export const CardMedia = forwardRef<HTMLDivElement, CardMediaProps>(function Car
       {...rest}
     />
   );
-});
-
-CardMedia.displayName = 'CardMedia';
+}

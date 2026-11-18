@@ -1,10 +1,10 @@
 import { Heading, Text } from '../Typography';
 import styles from './EmptyState.module.css';
 import { DS_ICONS, Icon } from '../Icon';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { EmptyStateProps } from './EmptyState.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * EmptyState
@@ -14,27 +14,23 @@ import type { EmptyStateProps } from './EmptyState.types';
  * technology; the heading carries the message.
  * --------------------------------------------------------------- */
 
-export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
-  function EmptyState(props, ref) {
-    const { title, headingLevel = 2, description, icon, className, children, ...rest } = props;
+export function EmptyState({ ref, ...props }: EmptyStateProps & { ref?: Ref<HTMLDivElement> }) {
+  const { title, headingLevel = 2, description, icon, className, children, ...rest } = props;
 
-    return (
-      <div ref={ref} className={clsx(styles.root, className)} {...rest}>
-        <span className={styles.icon}>
-          <Icon className={styles['icon-glyph']}>{DS_ICONS[icon ?? 'search-x'].icon}</Icon>
-        </span>
-        <Heading level={headingLevel} size="sm" className={styles.title}>
-          {title}
-        </Heading>
-        {description && (
-          <Text as="p" size="md" className={styles.description}>
-            {description}
-          </Text>
-        )}
-        {children && <div className={styles.actions}>{children}</div>}
-      </div>
-    );
-  },
-);
-
-EmptyState.displayName = 'EmptyState';
+  return (
+    <div ref={ref} className={clsx(styles.root, className)} {...rest}>
+      <span className={styles.icon}>
+        <Icon className={styles['icon-glyph']}>{DS_ICONS[icon ?? 'search-x'].icon}</Icon>
+      </span>
+      <Heading level={headingLevel} size="sm" className={styles.title}>
+        {title}
+      </Heading>
+      {description && (
+        <Text as="p" size="md" className={styles.description}>
+          {description}
+        </Text>
+      )}
+      {children && <div className={styles.actions}>{children}</div>}
+    </div>
+  );
+}

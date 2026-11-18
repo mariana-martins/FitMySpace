@@ -4,12 +4,13 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { Label, Text } from '../Typography';
 import styles from './Checkbox.module.css';
-import { forwardRef, useId } from 'react';
 import { DS_ICONS, Icon } from '../Icon';
+import { useId } from 'react';
 import clsx from 'clsx';
 
 import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS, joinIds } from '../../utils';
 import type { CheckboxProps } from './Checkbox.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Checkbox
@@ -30,7 +31,7 @@ import type { CheckboxProps } from './Checkbox.types';
  * The ref points to the <button>.
  * --------------------------------------------------------------- */
 
-export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(function Checkbox(props, ref) {
+export function Checkbox({ ref, ...props }: CheckboxProps & { ref?: Ref<HTMLButtonElement> }) {
   const {
     label,
     hint,
@@ -111,6 +112,4 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(function Ch
       )}
     </div>
   );
-});
-
-Checkbox.displayName = 'Checkbox';
+}

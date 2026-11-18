@@ -2,7 +2,6 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import styles from './Pagination.module.css';
 import { DS_ICONS, Icon } from '../Icon';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type {
@@ -12,6 +11,7 @@ import type {
   PaginationLinkProps,
   PaginationProps,
 } from './Pagination.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Pagination
@@ -22,7 +22,7 @@ import type {
  * No client hooks, so it renders on the server.
  * --------------------------------------------------------------- */
 
-export const Pagination = forwardRef<HTMLElement, PaginationProps>(function Pagination(props, ref) {
+export function Pagination({ ref, ...props }: PaginationProps & { ref?: Ref<HTMLElement> }) {
   const { size = 'md', className, children, 'aria-label': ariaLabel, ...rest } = props;
   const accessibleLabel = ariaLabel ?? (rest['aria-labelledby'] ? undefined : 'Pagination');
 
@@ -36,17 +36,15 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(function Pagi
       <ol className={styles.list}>{children}</ol>
     </nav>
   );
-});
+}
 
-Pagination.displayName = 'Pagination';
-
-export const PaginationItem = forwardRef<HTMLLIElement, PaginationItemProps>(
-  function PaginationItem({ className, ...rest }, ref) {
-    return <li ref={ref} className={clsx(styles.item, className)} {...rest} />;
-  },
-);
-
-PaginationItem.displayName = 'PaginationItem';
+export function PaginationItem({
+  className,
+  ref,
+  ...rest
+}: PaginationItemProps & { ref?: Ref<HTMLLIElement> }) {
+  return <li ref={ref} className={clsx(styles.item, className)} {...rest} />;
+}
 
 /* ---------------------------------------------------------------
  * PaginationLink
@@ -55,30 +53,35 @@ PaginationItem.displayName = 'PaginationItem';
  * of links makes sense out of context.
  * --------------------------------------------------------------- */
 
-export const PaginationLink = forwardRef<HTMLAnchorElement, PaginationLinkProps>(
-  function PaginationLink({ page, asChild = false, className, children, ...rest }, ref) {
-    const Component = asChild ? Slot : 'a';
+export function PaginationLink({
+  page,
+  asChild = false,
+  className,
+  children,
+  ref,
+  ...rest
+}: PaginationLinkProps & { ref?: Ref<HTMLAnchorElement> }) {
+  const Component = asChild ? Slot : 'a';
 
-    return (
-      <Component ref={ref} className={clsx(styles.control, styles.page, className)} {...rest}>
-        <Slottable>{children}</Slottable>
-        <VisuallyHidden>Page </VisuallyHidden>
-        {page}
-      </Component>
-    );
-  },
-);
-
-PaginationLink.displayName = 'PaginationLink';
+  return (
+    <Component ref={ref} className={clsx(styles.control, styles.page, className)} {...rest}>
+      <Slottable>{children}</Slottable>
+      <VisuallyHidden>Page </VisuallyHidden>
+      {page}
+    </Component>
+  );
+}
 
 /* ---------------------------------------------------------------
  * PaginationPrevious and PaginationNext
  * --------------------------------------------------------------- */
 
-const PaginationDirection = forwardRef<
-  HTMLAnchorElement,
-  PaginationDirectionProps & { direction: 'previous' | 'next' }
->(function PaginationDirection(props, ref) {
+function PaginationDirection({
+  ref,
+  ...props
+}: PaginationDirectionProps & { direction: 'previous' | 'next' } & {
+  ref?: Ref<HTMLAnchorElement>;
+}) {
   const {
     direction,
     label,
@@ -128,23 +131,21 @@ const PaginationDirection = forwardRef<
       {content}
     </Component>
   );
-});
+}
 
-export const PaginationPrevious = forwardRef<HTMLAnchorElement, PaginationDirectionProps>(
-  function PaginationPrevious(props, ref) {
-    return <PaginationDirection ref={ref} direction="previous" {...props} />;
-  },
-);
+export function PaginationPrevious({
+  ref,
+  ...props
+}: PaginationDirectionProps & { ref?: Ref<HTMLAnchorElement> }) {
+  return <PaginationDirection ref={ref} direction="previous" {...props} />;
+}
 
-PaginationPrevious.displayName = 'PaginationPrevious';
-
-export const PaginationNext = forwardRef<HTMLAnchorElement, PaginationDirectionProps>(
-  function PaginationNext(props, ref) {
-    return <PaginationDirection ref={ref} direction="next" {...props} />;
-  },
-);
-
-PaginationNext.displayName = 'PaginationNext';
+export function PaginationNext({
+  ref,
+  ...props
+}: PaginationDirectionProps & { ref?: Ref<HTMLAnchorElement> }) {
+  return <PaginationDirection ref={ref} direction="next" {...props} />;
+}
 
 /* ---------------------------------------------------------------
  * PaginationEllipsis
@@ -153,15 +154,15 @@ PaginationNext.displayName = 'PaginationNext';
  * "horizontal ellipsis".
  * --------------------------------------------------------------- */
 
-export const PaginationEllipsis = forwardRef<HTMLSpanElement, PaginationEllipsisProps>(
-  function PaginationEllipsis({ className, ...rest }, ref) {
-    return (
-      <span ref={ref} className={clsx(styles.control, styles.ellipsis, className)} {...rest}>
-        <span aria-hidden="true">…</span>
-        <VisuallyHidden>More pages</VisuallyHidden>
-      </span>
-    );
-  },
-);
-
-PaginationEllipsis.displayName = 'PaginationEllipsis';
+export function PaginationEllipsis({
+  className,
+  ref,
+  ...rest
+}: PaginationEllipsisProps & { ref?: Ref<HTMLSpanElement> }) {
+  return (
+    <span ref={ref} className={clsx(styles.control, styles.ellipsis, className)} {...rest}>
+      <span aria-hidden="true">…</span>
+      <VisuallyHidden>More pages</VisuallyHidden>
+    </span>
+  );
+}

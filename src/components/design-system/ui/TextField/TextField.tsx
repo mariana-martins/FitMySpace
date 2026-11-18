@@ -3,13 +3,14 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import styles from './TextField.module.css';
 import { Label, Text } from '../Typography';
-import { forwardRef, useId } from 'react';
 import { DS_ICONS, Icon } from '../Icon';
 import { Input } from '../Input';
+import { useId } from 'react';
 import clsx from 'clsx';
 
 import { UTILITY_VARIANT_ICONS, UTILITY_VARIANT_LABELS, joinIds } from '../../utils';
 import type { TextFieldProps } from './TextField.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * TextField
@@ -24,80 +25,74 @@ import type { TextFieldProps } from './TextField.types';
  * The ref points to the <input>.
  * --------------------------------------------------------------- */
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  function TextField(props, ref) {
-    const {
-      label,
-      hint,
-      invalid = false,
-      error,
-      id,
-      size = 'md',
-      required,
-      disabled,
-      className,
-      inputClassName,
-      'aria-describedby': ariaDescribedBy,
-      ...rest
-    } = props;
+export function TextField({ ref, ...props }: TextFieldProps & { ref?: Ref<HTMLInputElement> }) {
+  const {
+    label,
+    hint,
+    invalid = false,
+    error,
+    id,
+    size = 'md',
+    required,
+    disabled,
+    className,
+    inputClassName,
+    'aria-describedby': ariaDescribedBy,
+    ...rest
+  } = props;
 
-    const generatedId = useId();
-    const inputId = id ?? generatedId;
-    const hintId = `${inputId}-hint`;
-    const errorId = `${inputId}-error`;
-    const hasError = Boolean(invalid && error && error.trim().length > 0);
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
+  const hintId = `${inputId}-hint`;
+  const errorId = `${inputId}-error`;
+  const hasError = Boolean(invalid && error && error.trim().length > 0);
 
-    return (
-      <div
-        className={clsx(styles.root, className)}
-        data-disabled={disabled || undefined}
-        data-invalid={hasError || undefined}
-      >
-        <Label as="label" htmlFor={inputId} size={size} className={styles.label}>
-          {label}
-          {required && (
-            <span className={styles['required-marker']} aria-hidden="true">
-              *
-            </span>
-          )}
-        </Label>
-
-        <Input
-          ref={ref}
-          id={inputId}
-          size={size}
-          required={required}
-          disabled={disabled}
-          invalid={hasError}
-          className={inputClassName}
-          aria-describedby={joinIds(
-            ariaDescribedBy,
-            hint ? hintId : undefined,
-            hasError ? errorId : undefined,
-          )}
-          {...rest}
-        />
-
-        {hint && (
-          <Text as="p" size="sm" id={hintId} className={styles.hint}>
-            {hint}
-          </Text>
+  return (
+    <div
+      className={clsx(styles.root, className)}
+      data-disabled={disabled || undefined}
+      data-invalid={hasError || undefined}
+    >
+      <Label as="label" htmlFor={inputId} size={size} className={styles.label}>
+        {label}
+        {required && (
+          <span className={styles['required-marker']} aria-hidden="true">
+            *
+          </span>
         )}
+      </Label>
 
-        {hasError && (
-          <p className={styles.error}>
-            <Icon className={styles['error-icon']}>
-              {DS_ICONS[UTILITY_VARIANT_ICONS.error].icon}
-            </Icon>
-            <span id={errorId}>
-              <VisuallyHidden>{`${UTILITY_VARIANT_LABELS.error}: `}</VisuallyHidden>
-              {error}
-            </span>
-          </p>
+      <Input
+        ref={ref}
+        id={inputId}
+        size={size}
+        required={required}
+        disabled={disabled}
+        invalid={hasError}
+        className={inputClassName}
+        aria-describedby={joinIds(
+          ariaDescribedBy,
+          hint ? hintId : undefined,
+          hasError ? errorId : undefined,
         )}
-      </div>
-    );
-  },
-);
+        {...rest}
+      />
 
-TextField.displayName = 'TextField';
+      {hint && (
+        <Text as="p" size="sm" id={hintId} className={styles.hint}>
+          {hint}
+        </Text>
+      )}
+
+      {hasError && (
+        <p className={styles.error}>
+          <Icon className={styles['error-icon']}>{DS_ICONS[UTILITY_VARIANT_ICONS.error].icon}</Icon>
+          <span id={errorId}>
+            <VisuallyHidden>{`${UTILITY_VARIANT_LABELS.error}: `}</VisuallyHidden>
+            {error}
+          </span>
+        </p>
+      )}
+    </div>
+  );
+}

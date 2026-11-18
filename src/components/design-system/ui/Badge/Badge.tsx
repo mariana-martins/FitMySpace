@@ -1,9 +1,9 @@
 import { DS_ICONS, Icon } from '../Icon';
 import styles from './Badge.module.css';
-import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import type { BadgeProps } from './Badge.types';
+import type { Ref } from 'react';
 
 /* ---------------------------------------------------------------
  * Badge
@@ -15,7 +15,7 @@ import type { BadgeProps } from './Badge.types';
  * The ref points to the <span>.
  * --------------------------------------------------------------- */
 
-export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(props, ref) {
+export function Badge({ ref, ...props }: BadgeProps & { ref?: Ref<HTMLSpanElement> }) {
   const {
     variant = 'primary',
     appearance = 'soft',
@@ -43,6 +43,4 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(prop
       {children}
     </span>
   );
-});
-
-Badge.displayName = 'Badge';
+}

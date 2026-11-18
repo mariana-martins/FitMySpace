@@ -7,7 +7,7 @@ import type {
 } from './Typography.types';
 import { Root as RadixLabel } from '@radix-ui/react-label';
 import styles from './Typography.module.css';
-import { forwardRef } from 'react';
+import type { Ref } from 'react';
 import clsx from 'clsx';
 
 /* ---------------------------------------------------------------
@@ -27,17 +27,19 @@ const HEADING_TAGS: Record<HeadingLevel, React.ElementType> = {
   6: 'h6',
 };
 
-export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(function Heading(
-  { level = 2, size = 'lg', displaySize, className, ...rest },
+export function Heading({
+  level = 2,
+  size = 'lg',
+  displaySize,
+  className,
   ref,
-) {
+  ...rest
+}: HeadingProps & { ref?: Ref<HTMLHeadingElement> }) {
   const Tag = HEADING_TAGS[level];
   const sizeClass = displaySize ? styles[`display-${displaySize}`] : styles[`heading-${size}`];
 
   return <Tag ref={ref} className={clsx(styles.base, sizeClass, className)} {...rest} />;
-});
-
-Heading.displayName = 'Heading';
+}
 
 /* ---------------------------------------------------------------
  * Text
@@ -46,18 +48,19 @@ Heading.displayName = 'Heading';
  * switch to <span> via the `as` prop.
  * --------------------------------------------------------------- */
 
-export const Text = forwardRef<HTMLElement, TextProps>(function Text(
-  { as = 'p', size = 'md', className, ...rest },
+export function Text({
+  as = 'p',
+  size = 'md',
+  className,
   ref,
-) {
+  ...rest
+}: TextProps & { ref?: Ref<HTMLElement> }) {
   const Tag = as as React.ElementType;
 
   return (
     <Tag ref={ref} className={clsx(styles.base, styles[`body-${size}`], className)} {...rest} />
   );
-});
-
-Text.displayName = 'Text';
+}
 
 /* ---------------------------------------------------------------
  * Label
@@ -72,7 +75,7 @@ Text.displayName = 'Text';
  *   <Label as="label" htmlFor="id">…</>   → <label> (htmlFor required)
  * --------------------------------------------------------------- */
 
-export const Label = forwardRef<HTMLElement, LabelProps>(function Label(props, ref) {
+export function Label({ ref, ...props }: LabelProps & { ref?: Ref<HTMLElement> }) {
   const { as = 'span', size = 'md', className, ...rest } = props;
 
   const Tag: React.ElementType = as === 'label' ? RadixLabel : 'span';
@@ -80,9 +83,7 @@ export const Label = forwardRef<HTMLElement, LabelProps>(function Label(props, r
   return (
     <Tag ref={ref} className={clsx(styles.base, styles[`label-${size}`], className)} {...rest} />
   );
-});
-
-Label.displayName = 'Label';
+}
 
 /* ---------------------------------------------------------------
  * Caption
@@ -90,13 +91,13 @@ Label.displayName = 'Label';
  * Small, supplementary text. Renders <span> by default.
  * --------------------------------------------------------------- */
 
-export const Caption = forwardRef<HTMLElement, CaptionProps>(function Caption(
-  { as = 'span', className, ...rest },
+export function Caption({
+  as = 'span',
+  className,
   ref,
-) {
+  ...rest
+}: CaptionProps & { ref?: Ref<HTMLElement> }) {
   const Tag = as as React.ElementType;
 
   return <Tag ref={ref} className={clsx(styles.base, styles['caption-md'], className)} {...rest} />;
-});
-
-Caption.displayName = 'Caption';
+}
