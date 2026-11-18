@@ -76,7 +76,7 @@ const ColourSwatch = ({
         backgroundColor: `var(${token.name})`,
         borderRadius: 'var(--ds-radii-md)',
         border: '1px solid var(--ds-semantic-colour-border-subtle-base)',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+        boxShadow: 'var(--ds-semantic-shadow-raised-base)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -98,12 +98,12 @@ const ColourSwatch = ({
       >
         {token.value}
       </Text>
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginTop: '6px' }}>
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginTop: '4px' }}>
         <code
           style={{
             flex: 1,
             minWidth: 0,
-            paddingTop: '5px',
+            paddingTop: '8px',
             fontFamily: 'monospace',
             fontSize: '12px',
             lineHeight: 1.5,
@@ -122,7 +122,7 @@ const ColourSwatch = ({
           style={{
             color: 'var(--ds-semantic-colour-text-subtle-base)',
             display: 'block',
-            marginTop: '6px',
+            marginTop: '4px',
           }}
         >
           {token.comment}

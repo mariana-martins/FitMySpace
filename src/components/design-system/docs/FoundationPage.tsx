@@ -29,7 +29,7 @@ export function InlineCode({ children }: { children: ReactNode }) {
       style={{
         fontFamily: 'monospace',
         background: 'var(--ds-semantic-colour-background-default-hover)',
-        padding: '2px 4px',
+        padding: '0 4px',
         borderRadius: '4px',
       }}
     >
@@ -116,7 +116,7 @@ export function TokenGroup({ title, description, children }: TokenGroupProps) {
         backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
         padding: '32px',
         borderRadius: 'var(--ds-radii-xl)',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02)',
+        boxShadow: 'var(--ds-semantic-shadow-raised-base)',
         border: dividerBorder,
       }}
     >
@@ -180,7 +180,7 @@ export function TokenRow({ token, label, preview }: TokenRowProps) {
         <Text size="sm" as="span" style={{ fontWeight: 600, display: 'block' }}>
           {label}
         </Text>
-        <Text size="sm" as="span" style={{ ...subtleTextStyle, marginTop: '2px' }}>
+        <Text size="sm" as="span" style={{ ...subtleTextStyle, marginTop: '4px' }}>
           {token.value}
         </Text>
         {token.comment && (
