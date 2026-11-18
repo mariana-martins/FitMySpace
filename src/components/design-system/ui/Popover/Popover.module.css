@@ -1,0 +1,118 @@
+/* ---------------------------------------------------------------
+ * Popover — CSS Module
+ * Maps component-level popover tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure (Radix renders the panel in a portal at the end of <body>):
+ *   .content — the panel, role="dialog": a light card on the page,
+ *              with no scrim behind it
+ *   .title   — the heading that names it
+ *   .footer  — the actions, on a line across the bottom
+ *
+ * States come from Radix: [data-state='open' | 'closed'] for the
+ * enter and exit animations, [data-side] for where it opened.
+ *
+ * Size classes: .size-{sm|md}
+ * --------------------------------------------------------------- */
+
+.content {
+  --popover-padding: var(--ds-component-popover-spacing-padding);
+
+  /* A direct child of <body>, so the layer cannot be trapped by the page. */
+  z-index: var(--ds-semantic-layer-floating);
+  display: flex;
+  flex-direction: column;
+  /* The space between the title, the controls and the footer is the panel's gap, so no
+     part depends on its own margin (a Heading brings one of its own). */
+  gap: var(--ds-component-popover-spacing-section-gap);
+  box-sizing: border-box;
+  inline-size: min(var(--popover-width), var(--radix-popover-content-available-width));
+  max-block-size: var(--radix-popover-content-available-height);
+  padding: var(--popover-padding);
+  color: var(--ds-semantic-colour-text-default-base);
+  background-color: var(--ds-component-popover-background);
+  border: var(--ds-component-popover-shape-border-width) solid var(--ds-component-popover-border);
+  border-radius: var(--ds-component-popover-shape-radii);
+  box-shadow: var(--ds-component-popover-shadow);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform-origin: var(--radix-popover-content-transform-origin);
+}
+
+/* Radix focuses the panel itself when it holds nothing focusable. */
+.content:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+.title {
+  flex-shrink: 0;
+  margin: 0;
+  color: var(--ds-component-popover-title-text);
+}
+
+.footer {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ds-component-popover-spacing-footer-gap);
+  margin-inline: calc(-1 * var(--popover-padding));
+  margin-block-end: calc(-1 * var(--popover-padding));
+  padding-block: var(--ds-component-popover-spacing-footer-padding);
+  padding-inline: var(--popover-padding);
+  border-block-start: var(--ds-component-popover-shape-border-width) solid
+    var(--ds-component-popover-footer-border);
+}
+
+/* Sizes ----------------------------------------------------------- */
+
+.size-sm {
+  --popover-width: var(--ds-component-popover-width-sm);
+}
+
+.size-md {
+  --popover-width: var(--ds-component-popover-width-md);
+}
+
+/* ---------------------------------------------------------------
+ * Motion and user preferences
+ * --------------------------------------------------------------- */
+
+.content[data-state='open'] {
+  animation: popover-enter var(--ds-component-popover-motion-duration)
+    var(--ds-component-popover-motion-easing-enter);
+}
+
+.content[data-state='closed'] {
+  animation: popover-exit var(--ds-component-popover-motion-duration)
+    var(--ds-component-popover-motion-easing-exit);
+}
+
+@keyframes popover-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes popover-exit {
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content[data-state='open'],
+  .content[data-state='closed'] {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .content {
+    border: var(--ds-semantic-border-width-interactive) solid CanvasText;
+  }
+}

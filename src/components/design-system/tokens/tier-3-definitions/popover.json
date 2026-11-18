@@ -1,0 +1,68 @@
+{
+  "component": {
+    "popover": {
+      "background": {
+        "value": "{semantic.colour.background.default.base}"
+      },
+      "border": {
+        "value": "{semantic.colour.border.default.base}",
+        "comment": "The popover sits on the page it belongs to, with no scrim, so its edge has to hold it apart."
+      },
+      "shadow": {
+        "value": "{semantic.shadow.floating}"
+      },
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.container.md}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}"
+        }
+      },
+      "title": {
+        "text": {
+          "value": "{semantic.colour.text.default.base}"
+        }
+      },
+      "footer": {
+        "border": {
+          "value": "{semantic.colour.border.default.base}"
+        }
+      },
+      "width": {
+        "sm": {
+          "value": "{semantic.size.popover.sm}"
+        },
+        "md": {
+          "value": "{semantic.size.popover.md}"
+        }
+      },
+      "spacing": {
+        "padding": {
+          "value": "{semantic.spacing.inset.lg}",
+          "comment": "The same air as the Dialog: a popover is small, but its controls should not touch its edge."
+        },
+        "section-gap": {
+          "value": "{semantic.spacing.gap.lg}"
+        },
+        "footer-gap": {
+          "value": "{semantic.spacing.gap.sm}"
+        },
+        "footer-padding": {
+          "value": "{semantic.spacing.inset.md}"
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.moderate}"
+        },
+        "easing-enter": {
+          "value": "{semantic.motion.easing.enter}"
+        },
+        "easing-exit": {
+          "value": "{semantic.motion.easing.exit}"
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '../../ui/Dialog';
+import {
+  Popover,
+  PopoverClose,
+  PopoverContent,
+  PopoverFooter,
+  PopoverTitle,
+  PopoverTrigger,
+} from '../../ui/Popover';
 import { SAMPLE_PRODUCTS, SAMPLE_ROOMS, SampleProductGrid } from '../../docs';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
@@ -15,6 +23,7 @@ import { Select, SelectItem } from '../../ui/Select';
 import { Label, Text } from '../../ui/Typography';
 import type { CSSProperties, Ref } from 'react';
 import type { IconName } from '../../ui/Icon';
+import { Checkbox } from '../../ui/Checkbox';
 import { Button } from '../../ui/Button';
 import { useRef, useState } from 'react';
 import { Chip } from '../../ui/Chip';
@@ -35,16 +44,19 @@ const meta = {
           'Filters change the list without moving the reader. Each change must be heard (the count changes), must be easy to undo (Clear filters), and must not strand the keyboard focus when the button that was pressed disappears.\n\n' +
           '### When to Use\n' +
           '- **Narrowing a list already on the page:** search results, a category. Each filter applies at once, without a Search button.\n' +
-          '- **On a phone, put the same controls in a dialog** (second story): the row would push the products off the first screen.\n' +
+          '- **A filter with a longer list of options goes in a `Popover`** on a wide screen (second story): the stores are a button beside the room chips, and the page stays usable while the panel is open.\n' +
+          '- **On a phone, put the same controls in a dialog** (third story): the row would push the products off the first screen.\n' +
           '- **Not for:** a value people must type (use Product Search), or a long list of options (use `Select` instead of chips).\n\n' +
           '### Anatomy\n' +
           '- The room filters — a visible `Label` naming a `role="group"`, holding one `Chip` per room.\n' +
           '- The sort order — a `Label` with `htmlFor` and a bare `Select`, which always has a value.\n' +
+          '- The store filter — a `Button` that opens a `Popover` with one `Checkbox` per store; its name counts the stores chosen ("Stores (2)").\n' +
           '- The count — `Text` with `role="status"` ("8 products"), and a `Button` "Clear filters" while any filter is on.\n' +
           '- The products, here through the Product Card pattern.\n\n' +
           '### Accessibility\n' +
           '- **A chip says its own state** ("Kitchen, toggle button, pressed"), and the count line says the result, so nobody has to look at the grid to know a filter worked.\n' +
           '- **Clear filters gives the focus to the first chip.** The button disappears once nothing is selected; leaving the focus on it would drop it at the top of the page.\n' +
+          '- **In the popover, each store applies at once** and the count is heard while the panel is still open; Escape or "Done" gives the focus back to the Stores button.\n' +
           '- **In the dialog, nothing changes until "Show products":** the button counts the products the choice would show, and closing the dialog any other way keeps the old filters.\n\n' +
           '### In the App\n' +
           '- The rooms and the sort order live in the URL (`?room=kitchen&room=bathroom&sort=price-ascending`), so a filtered list can be shared and the Back button undoes a filter. The products come from TanStack Query.',
@@ -310,6 +322,163 @@ export const FilterBarInteraction: Story = {
     await userEvent.click(canvas.getByRole('button', { name: 'Clear filters' }));
     await expect(canvas.getByRole('status')).toHaveTextContent('16 products');
     await expect(canvas.getByRole('button', { name: 'Bathroom' })).toHaveFocus();
+  },
+};
+
+/* ---------------------------------------------------------------
+ * Store filter in a popover (on a wide screen)
+ * --------------------------------------------------------------- */
+
+const SAMPLE_STORES = [...new Set(SAMPLE_PRODUCTS.map((product) => product.store))];
+
+function filterByRoomAndStore(rooms: SampleRoom[], stores: string[]) {
+  return SAMPLE_PRODUCTS.filter(
+    (product) =>
+      (rooms.length === 0 || rooms.includes(product.room)) &&
+      (stores.length === 0 || stores.includes(product.store)),
+  );
+}
+
+function toggleStore(stores: string[], store: string, isChecked: boolean) {
+  return isChecked ? [...stores, store] : stores.filter((selectedStore) => selectedStore !== store);
+}
+
+function StorePopoverRecipe() {
+  const [selectedRooms, setSelectedRooms] = useState<SampleRoom[]>([]);
+  const [selectedStores, setSelectedStores] = useState<string[]>([]);
+  const products = filterByRoomAndStore(selectedRooms, selectedStores);
+  const storesLabel = selectedStores.length ? `Stores (${selectedStores.length})` : 'Stores';
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: '1.5rem' }}>
+        <RoomChips
+          labelId="room-filter-popover-label"
+          selectedRooms={selectedRooms}
+          onChange={setSelectedRooms}
+        />
+
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="secondary"
+              appearance={selectedStores.length ? 'fill' : 'outline'}
+              size="sm"
+              icon="chevron-down"
+              iconPosition="end"
+            >
+              {storesLabel}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverTitle>Stores</PopoverTitle>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {SAMPLE_STORES.map((store) => (
+                <Checkbox
+                  key={store}
+                  size="md"
+                  label={store}
+                  checked={selectedStores.includes(store)}
+                  onCheckedChange={(checked) =>
+                    setSelectedStores(toggleStore(selectedStores, store, checked === true))
+                  }
+                />
+              ))}
+            </div>
+            <PopoverFooter>
+              <Button
+                variant="secondary"
+                appearance="ghost"
+                size="sm"
+                disabled={selectedStores.length === 0}
+                onClick={() => setSelectedStores([])}
+              >
+                Clear
+              </Button>
+              <PopoverClose asChild>
+                <Button variant="primary" appearance="fill" size="sm">
+                  Done
+                </Button>
+              </PopoverClose>
+            </PopoverFooter>
+          </PopoverContent>
+        </Popover>
+      </div>
+
+      <Text as="p" size="sm" role="status" style={{ margin: 0 }}>
+        {countProducts(products.length)}
+      </Text>
+
+      <SampleProductGrid products={products} />
+    </div>
+  );
+}
+
+export const StoreFilterInAPopover: Story = {
+  name: 'Store Filter in a Popover (A11y)',
+  render: () => <StorePopoverRecipe />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'On a wide screen, a filter with more options than fit as chips goes behind a button. Press "Stores": the panel opens below it, the focus moves to the first store, and each store applies at once — the count changes while the panel is open, and the grid behind it stays in view. The button then says how many stores are chosen and fills in, so the filter shows when the panel is closed.',
+      },
+      source: {
+        code: `<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="secondary" appearance={stores.length ? 'fill' : 'outline'} size="sm"
+      icon="chevron-down" iconPosition="end">
+      {stores.length ? \`Stores (\${stores.length})\` : 'Stores'}
+    </Button>
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverTitle>Stores</PopoverTitle>
+    {allStores.map((store) => (
+      <Checkbox key={store} size="md" label={store}
+        checked={stores.includes(store)}
+        onCheckedChange={(checked) => setStores(toggleStore(stores, store, checked === true))} />
+    ))}
+    <PopoverFooter>
+      <Button variant="secondary" appearance="ghost" size="sm" onClick={() => setStores([])}>Clear</Button>
+      <PopoverClose asChild>
+        <Button variant="primary" appearance="fill" size="sm">Done</Button>
+      </PopoverClose>
+    </PopoverFooter>
+  </PopoverContent>
+</Popover>
+
+<Text as="p" size="sm" role="status">{countProducts(products.length)}</Text>`,
+      },
+      story: { height: '640px' },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('button', { name: 'Stores' })).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    );
+    await expect(canvas.getByRole('status')).toHaveTextContent('16 products');
+  },
+};
+
+export const StoreFilterInAPopoverInteraction: Story = {
+  ...StoreFilterInAPopover,
+  name: 'Store Filter in a Popover (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const page = within(document.body);
+    await userEvent.click(canvas.getByRole('button', { name: 'Stores' }));
+
+    const firstStore = await page.findByRole('checkbox', { name: SAMPLE_STORES[0] });
+    await expect(firstStore).toHaveFocus();
+    await userEvent.click(firstStore);
+    await expect(canvas.getByRole('status')).toHaveTextContent('4 products');
+
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() => expect(page.queryByRole('dialog')).not.toBeInTheDocument());
+    await expect(canvas.getByRole('button', { name: 'Stores (1)' })).toHaveFocus();
   },
 };
 

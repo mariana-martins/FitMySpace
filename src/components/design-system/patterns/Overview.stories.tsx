@@ -511,12 +511,7 @@ export const Overview: Story = {
           <li>
             <Text as="span" size="sm">
               <strong>Table</strong> — to compare stores or products on several columns (Store
-              Offers).
-            </Text>
-          </li>
-          <li>
-            <Text as="span" size="sm">
-              <strong>Popover</strong> — the filters on a wide screen without a modal dialog.
+              Offers). A nice-to-have: the app does not need it yet.
             </Text>
           </li>
           <li>

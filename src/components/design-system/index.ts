@@ -22,6 +22,7 @@ export * from './ui/Input';
 export * from './ui/Link';
 export * from './ui/List';
 export * from './ui/Pagination';
+export * from './ui/Popover';
 export * from './ui/RadioGroup';
 export * from './ui/SearchField';
 export * from './ui/Select';

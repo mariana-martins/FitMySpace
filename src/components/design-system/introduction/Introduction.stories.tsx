@@ -1078,6 +1078,32 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-overlays-popover--docs"
+        title="Popover"
+        description="A small panel of controls under the button that opened it, with the page still usable behind it."
+        preview={
+          /* Drawn by hand: the real popover opens in a portal at the end of <body>. */
+          <div
+            style={{
+              width: '160px',
+              padding: '12px',
+              borderRadius: 'var(--ds-component-popover-shape-radii)',
+              border: '1px solid var(--ds-component-popover-border)',
+              backgroundColor: 'var(--ds-component-popover-background)',
+              boxShadow: 'var(--ds-component-popover-shadow)',
+            }}
+          >
+            <Heading level={5} size="sm">
+              Stores
+            </Heading>
+            <Text as="p" size="sm">
+              IKEA, Kmart, Etna
+            </Text>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-overlays-tooltip--docs"
         title="Tooltip"
         description="One short thought on a control, shown on hover or focus — never for information the reader needs."

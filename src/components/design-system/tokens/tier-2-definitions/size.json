@@ -160,6 +160,15 @@
           "value": "{size.720}"
         }
       },
+      "popover": {
+        "sm": {
+          "value": "{size.288}",
+          "comment": "A popover holds a few controls about one thing, so it stays narrower than the smallest dialog."
+        },
+        "md": {
+          "value": "{size.384}"
+        }
+      },
       "tooltip": {
         "max-width": {
           "value": "{size.240}",

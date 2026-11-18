@@ -773,6 +773,34 @@ describe('Tabs tokens — contrast', () => {
 });
 
 /* ===============================================================
+ * POPOVER
+ * =============================================================== */
+
+const POPOVER_BACKGROUND = 'component.popover.background';
+
+describe('Popover tokens — contrast', () => {
+  it('title is readable on the popover', () => {
+    expect(
+      contrastRatio('component.popover.title.text', POPOVER_BACKGROUND),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  // No scrim sits behind a popover, so its edge is what holds it apart from the
+  // page it covers, which is drawn in the same colour.
+  it('the popover edge stands out from the page', () => {
+    expect(contrastRatio('component.popover.border', PAGE_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it('footer divider separates the actions from the controls', () => {
+    expect(
+      contrastRatio('component.popover.footer.border', POPOVER_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
  * TOOLTIP
  * =============================================================== */
 
