@@ -121,6 +121,7 @@ const preview: Preview = {
               'Guides',
               ['Choosing Feedback'],
             ],
+            'Contributing & Accessibility',
             'Changelog',
           ],
         ],

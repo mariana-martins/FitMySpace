@@ -18,6 +18,7 @@ design-system/
 │   │   ├── layer.json         # Raw z-index values (100 / 200 / 300)
 │   │   └── shadow.json        # Layered box-shadows tinted with charcoal.900
 │   ├── tier-2-definitions/    # Intent-based semantic aliases (use these in components)
+│   │   ├── breakpoint.json    # Viewport widths for media queries (sm 640 / md 768 / lg 1024 / xl 1280)
 │   │   ├── colour.json         # Semantic backgrounds, text, borders and focus halos (e.g. brand, utility)
 │   │   ├── typography.json    # Display, heading, body, control, label, and caption roles (+ generated shorthand)
 │   │   ├── spacing.json       # Inset (padding), control padding, gap, and section layout spacing
@@ -53,6 +54,7 @@ design-system/
 │   │   ├── toast.json         # Toast card surface, text and edge per variant, sizes, spacing and motion
 │   │   └── tooltip.json       # Tooltip bubble surface, text, shadow, shape, max width, padding and motion
 │   ├── sd.config.mjs              # Style Dictionary build config (+ typography shorthand preprocessor)
+│   ├── tokens.breakpoints.test.ts # Every width in a media query is a breakpoint token value
 │   ├── tokens.contrast.test.ts    # WCAG contrast checks for every colour pair and state
 │   ├── tokens.tiers.test.ts       # Each tier references only the tier below it
 │   ├── tokens.usage.test.ts       # Every --ds-* name used in .ts/.tsx/.mdx exists
@@ -82,6 +84,8 @@ design-system/
 │   └── Introduction.stories.tsx
 ├── changelog/       # Storybook page that renders CHANGELOG.md, so a release needs no code change
 │   └── Changelog.mdx
+├── contributing/    # Storybook page: new-component checklist and accessibility, linking to AGENTS.md
+│   └── Contributing.mdx
 ├── foundations/     # One Storybook page per tier-2 token file
 │   ├── border-width/BorderWidth.stories.tsx
 │   ├── colour/Colours.stories.tsx
