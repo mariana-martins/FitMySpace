@@ -4,6 +4,7 @@ import { Caption, Heading, Label, Text } from '../ui/Typography';
 import { LinkCard, LinkCardGrid, StorybookLink } from '../docs';
 import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { Tabs, TabsList, TabsTrigger } from '../ui/Tabs';
 import { TextareaField } from '../ui/TextareaField';
 import { version } from '../../../../package.json';
 import { SelectField } from '../ui/SelectField';
@@ -885,6 +886,20 @@ const ComponentGrid = () => (
               <PaginationLink page={9} href="#page-9" />
             </PaginationItem>
           </Pagination>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-navigation-tabs--docs"
+        title="Tabs"
+        description="A few views of one subject, one at a time: the selected tab marked by darker text and a sage bar, the arrow keys moving along the row."
+        preview={
+          <Tabs defaultValue="details">
+            <TabsList aria-label="Product information" size="sm">
+              <TabsTrigger value="details">Details</TabsTrigger>
+              <TabsTrigger value="measurements">Measurements</TabsTrigger>
+            </TabsList>
+          </Tabs>
         }
       />
       <LinkCard

@@ -749,6 +749,30 @@ describe('AlertDialog tokens — contrast', () => {
 });
 
 /* ===============================================================
+ * TABS
+ * =============================================================== */
+
+describe('Tabs tokens — contrast', () => {
+  // A tab has no box of its own, so every state is read against the page.
+  it.each([
+    ['an unselected tab', 'component.tabs.trigger.text.default'],
+    ['a hovered or pressed tab', 'component.tabs.trigger.text.hover'],
+    ['the selected tab', 'component.tabs.trigger.text.selected'],
+  ])('%s is readable on the page', (_description, textToken) => {
+    expect(contrastRatio(textToken, PAGE_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  // The selected bar is what tells the selected tab apart from the others, so it is a
+  // UI part that has to be seen (WCAG 1.4.11). The hover bar and the line under the
+  // list only echo the pointer and the layout.
+  it('the selected tab indicator stands out from the page', () => {
+    expect(
+      contrastRatio('component.tabs.indicator.colour.selected', PAGE_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
  * TOOLTIP
  * =============================================================== */
 

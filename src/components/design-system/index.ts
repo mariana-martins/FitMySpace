@@ -29,6 +29,7 @@ export * from './ui/SelectField';
 export * from './ui/Skeleton';
 export * from './ui/SkipLink';
 export * from './ui/Switch';
+export * from './ui/Tabs';
 export * from './ui/Textarea';
 export * from './ui/TextareaField';
 export * from './ui/TextField';

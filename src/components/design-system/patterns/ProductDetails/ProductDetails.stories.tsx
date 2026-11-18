@@ -1,4 +1,5 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '../../ui/Breadcrumb';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../ui/Tabs';
 import { formatPrice, priceStyle, SHELF_IMAGE } from '../../docs';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
@@ -30,11 +31,12 @@ const meta = {
           '### Anatomy\n' +
           '- The Product Page Header — `Breadcrumb` and the `h1` with the product name.\n' +
           '- The picture — `CardMedia` in an outline `Card`.\n' +
-          '- `Badge`s for the room and the store, the price, and a short description. The price is a paragraph in the `heading-md` type role (larger and bold, through its generated shorthand), not a heading.\n' +
-          '- The measurements — a description list (`<dl>`): width, depth, height, weight.\n' +
+          '- `Badge`s for the room and the store, and the price. The price is a paragraph in the `heading-md` type role (larger and bold, through its generated shorthand), not a heading.\n' +
+          '- `Tabs` (`size="sm"`) with two panels: **Details**, the short description, and **Measurements**, a description list (`<dl>`) of width, depth, height and weight.\n' +
           '- The actions — a `Button` rendered as a link to the store (`asChild`), and a "Save" `Button` that toggles.\n\n' +
           '### Accessibility\n' +
-          '- **One `h1`, then the facts in reading order:** name, labels, price, description, measurements, actions.\n' +
+          '- **One `h1`, then the facts in reading order:** name, labels, price, the tabs, actions.\n' +
+          '- **The tabs are named** ("Product information"), the arrow keys move between them, and the next Tab goes into the open panel, so the measurements are one key away from the description.\n' +
           '- **The store link says it opens a new tab** with screen-reader-only text and the arrow icon, before anyone follows it.\n' +
           '- **A long store name wraps** inside the button ("View at The Container Store") instead of pushing the page sideways on a phone.\n' +
           '- **"Save" is a toggle:** `aria-pressed` says whether it is saved, and its words stay the same, because a label that changes ("Save" → "Saved") would make the pressed state say the opposite.\n' +
@@ -125,31 +127,42 @@ function ProductDetailsRecipe() {
 
           <p style={priceStyle}>{formatPrice(PRODUCT.priceInCents)}</p>
 
-          <Text as="p" size="md" style={{ margin: 0 }}>
-            {PRODUCT.description}
-          </Text>
+          <Tabs defaultValue="details">
+            <TabsList aria-label="Product information" size="sm">
+              <TabsTrigger value="details">Details</TabsTrigger>
+              <TabsTrigger value="measurements">Measurements</TabsTrigger>
+            </TabsList>
 
-          <dl
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'auto 1fr',
-              gap: '0.5rem 1.5rem',
-              margin: 0,
-            }}
-          >
-            {PRODUCT.measurements.map((measurement) => (
-              <div key={measurement.label} style={{ display: 'contents' }}>
-                <dt>
-                  <Label size="sm">{measurement.label}</Label>
-                </dt>
-                <dd style={{ margin: 0 }}>
-                  <Text as="span" size="sm">
-                    {measurement.value}
-                  </Text>
-                </dd>
-              </div>
-            ))}
-          </dl>
+            <TabsContent value="details">
+              <Text as="p" size="md" style={{ margin: 0 }}>
+                {PRODUCT.description}
+              </Text>
+            </TabsContent>
+
+            <TabsContent value="measurements">
+              <dl
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'auto 1fr',
+                  gap: '0.5rem 1.5rem',
+                  margin: 0,
+                }}
+              >
+                {PRODUCT.measurements.map((measurement) => (
+                  <div key={measurement.label} style={{ display: 'contents' }}>
+                    <dt>
+                      <Label size="sm">{measurement.label}</Label>
+                    </dt>
+                    <dd style={{ margin: 0 }}>
+                      <Text as="span" size="sm">
+                        {measurement.value}
+                      </Text>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </TabsContent>
+          </Tabs>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
             <Button
@@ -197,7 +210,7 @@ export const ProductDetails: Story = {
     docs: {
       description: {
         story:
-          'Press "Save": the button fills in and is announced as pressed, with the same word. "View at The Container Store" says, before you follow it, that it opens a new tab; on a narrow screen its label wraps onto two lines instead of pushing the page sideways.',
+          'Press "Measurements" to see the sizes in place of the description. Press "Save": the button fills in and is announced as pressed, with the same word. "View at The Container Store" says, before you follow it, that it opens a new tab; on a narrow screen its label wraps onto two lines instead of pushing the page sideways.',
       },
       source: {
         code: `<Breadcrumb>…</Breadcrumb>
@@ -211,13 +224,23 @@ export const ProductDetails: Story = {
 
 <Badge variant="primary" appearance="soft" size="md">{product.room}</Badge>
 <p style={priceStyle}>{formatPrice(product.price)}</p>
-<Text as="p" size="md">{product.description}</Text>
 
-<dl>
-  <dt><Label size="sm">Width</Label></dt>
-  <dd><Text as="span" size="sm">48 cm</Text></dd>
-  {/* … */}
-</dl>
+<Tabs defaultValue="details">
+  <TabsList aria-label="Product information" size="sm">
+    <TabsTrigger value="details">Details</TabsTrigger>
+    <TabsTrigger value="measurements">Measurements</TabsTrigger>
+  </TabsList>
+  <TabsContent value="details">
+    <Text as="p" size="md">{product.description}</Text>
+  </TabsContent>
+  <TabsContent value="measurements">
+    <dl>
+      <dt><Label size="sm">Width</Label></dt>
+      <dd><Text as="span" size="sm">48 cm</Text></dd>
+      {/* … */}
+    </dl>
+  </TabsContent>
+</Tabs>
 
 <Button asChild variant="primary" appearance="fill" size="md" icon="arrow-up-right" iconPosition="end">
   <a href={product.storeUrl} target="_blank" rel="noopener noreferrer">
@@ -250,6 +273,9 @@ export const ProductDetails: Story = {
       'aria-pressed',
       'false',
     );
+    await expect(canvas.getByRole('tabpanel', { name: 'Details' })).toHaveTextContent(
+      'Three open shelves',
+    );
   },
 };
 
@@ -269,5 +295,10 @@ export const ProductDetailsInteraction: Story = {
     await expect(save).toHaveAccessibleName('Save');
     await userEvent.click(save);
     await expect(save).toHaveAttribute('aria-pressed', 'false');
+
+    await userEvent.click(canvas.getByRole('tab', { name: 'Measurements' }));
+    await expect(canvas.getByRole('tabpanel', { name: 'Measurements' })).toHaveTextContent(
+      'Width48 cm',
+    );
   },
 };

@@ -108,7 +108,7 @@ const PageSectionsGrid = () => (
       headingLevel={4}
       path="/docs/design-system-patterns-page-sections-product-details--docs"
       title="Product Details"
-      description="The top of a product page: name, labels, price, measurements, the store link and Save."
+      description="The top of a product page: name, labels, price, details and measurements in tabs, the store link and Save."
       preview={
         <div style={{ display: 'flex', gap: '8px' }}>
           <Button
@@ -512,11 +512,6 @@ export const Overview: Story = {
             <Text as="span" size="sm">
               <strong>Table</strong> — to compare stores or products on several columns (Store
               Offers).
-            </Text>
-          </li>
-          <li>
-            <Text as="span" size="sm">
-              <strong>Tabs</strong> — details, measurements and stores on one product page.
             </Text>
           </li>
           <li>
