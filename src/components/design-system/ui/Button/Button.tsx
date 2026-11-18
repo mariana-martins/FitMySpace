@@ -14,9 +14,9 @@ import type { ButtonProps } from './Button.types';
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props, ref) {
   const {
-    variant,
-    appearance,
-    size,
+    variant = 'primary',
+    appearance = 'fill',
+    size = 'md',
     icon,
     iconPosition = 'start',
     asChild = false,

@@ -24,9 +24,12 @@ export type BadgeSize = 'sm' | 'md';
  * --------------------------------------------------------------- */
 
 type BadgeBaseProps = {
-  variant: BadgeVariant;
-  appearance: BadgeAppearance;
-  size: BadgeSize;
+  /** Colour role. Defaults to `primary`. */
+  variant?: BadgeVariant;
+  /** Defaults to `soft`, a quiet tint; `fill` is for the label that must stand out. */
+  appearance?: BadgeAppearance;
+  /** Defaults to `md`. */
+  size?: BadgeSize;
   shape?: BadgeShape;
   /** One of the icons the design system ships, asked for by name. */
   icon?: IconName;

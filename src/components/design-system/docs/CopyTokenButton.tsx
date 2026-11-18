@@ -38,10 +38,10 @@ const iconByStatus: Record<CopyStatus, IconName> = {
   failed: UTILITY_VARIANT_ICONS.error,
 };
 
-const ICON_SIZE_PX = 12;
-const ICON_ONLY_ICON_SIZE_PX = 14;
+const ICON_SIZE = 'var(--ds-semantic-size-icon-xs)';
+const ICON_ONLY_ICON_SIZE = 'var(--ds-semantic-size-icon-sm)';
 /** Square hit area for the icon-only button: above the 24×24 minimum of WCAG 2.5.8. */
-const ICON_ONLY_BUTTON_SIZE = '28px';
+const ICON_ONLY_BUTTON_SIZE = 'var(--ds-semantic-size-control-sm)';
 
 const textColourByStatus: Record<CopyStatus, string> = {
   idle: 'var(--ds-semantic-colour-text-subtle-base)',
@@ -80,9 +80,8 @@ export function CopyTokenButton({ variable, iconOnly = false, style }: CopyToken
 
   const buttonLabel = { idle: reference, copied: 'Copied!', failed: 'Copy failed' }[status];
   const icon = DS_ICONS[iconByStatus[status]].icon;
-  /* The helper has no CSS module of its own, so it sizes the box inline.
-     Neither 12px nor 14px is an icon size token. */
-  const iconStyle = iconSizeStyle(`${iconOnly ? ICON_ONLY_ICON_SIZE_PX : ICON_SIZE_PX}px`);
+  /* The helper has no CSS module of its own, so it sizes the box inline. */
+  const iconStyle = iconSizeStyle(iconOnly ? ICON_ONLY_ICON_SIZE : ICON_SIZE);
 
   const iconOnlyStyle: CSSProperties = {
     justifyContent: 'center',
@@ -107,7 +106,7 @@ export function CopyTokenButton({ variable, iconOnly = false, style }: CopyToken
         style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '6px',
+          gap: '4px',
           fontSize: '12px',
           fontFamily: 'monospace',
           background: backgroundByStatus[status],

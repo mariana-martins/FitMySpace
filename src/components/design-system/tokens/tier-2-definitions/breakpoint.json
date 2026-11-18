@@ -1,0 +1,19 @@
+{
+  "semantic": {
+    "breakpoint": {
+      "sm": {
+        "value": "{size.640}",
+        "comment": "Below this width the layout is narrow (phones): dialogs and toasts span the screen. The same steps as Tailwind's, which the app uses."
+      },
+      "md": {
+        "value": "{size.768}"
+      },
+      "lg": {
+        "value": "{size.1024}"
+      },
+      "xl": {
+        "value": "{size.1280}"
+      }
+    }
+  }
+}

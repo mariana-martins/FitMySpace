@@ -42,9 +42,9 @@ type Story = StoryObj<typeof meta>;
 const codeStyle: React.CSSProperties = {
   fontFamily: 'monospace',
   background: 'var(--ds-semantic-colour-background-default-hover)',
-  padding: '2px 6px',
+  padding: '0 4px',
   borderRadius: '4px',
-  fontSize: '13px',
+  fontSize: '12px',
 };
 
 const cardBase: React.CSSProperties = {
@@ -175,11 +175,14 @@ const TierCard = ({
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: '6px',
+        gap: '4px',
       }}
     >
       {examples.map((ex) => (
-        <code key={ex} style={{ ...codeStyle, display: 'block', width: 'fit-content' }}>
+        <code
+          key={ex}
+          style={{ ...codeStyle, display: 'block', width: 'fit-content', padding: '4px 8px' }}
+        >
           {ex}
         </code>
       ))}
@@ -430,7 +433,7 @@ const SpacingPreview = () => {
           key={w}
           style={{
             width: w,
-            height: '5px',
+            height: '4px',
             backgroundColor: 'var(--ds-semantic-colour-background-brand-base)',
             borderRadius: 'var(--ds-radii-sm)',
           }}
@@ -470,7 +473,6 @@ const TypographyPreview = () => (
     style={{
       display: 'flex',
       flexDirection: 'column',
-      gap: '2px',
       height: '32px',
       justifyContent: 'center',
     }}
@@ -487,9 +489,9 @@ const TypographyPreview = () => (
     </div>
     <div
       style={{
-        fontSize: '11px',
+        font: 'var(--ds-semantic-typography-caption-md-shorthand)',
+        letterSpacing: 'var(--ds-semantic-typography-caption-md-letter-spacing)',
         color: 'var(--ds-semantic-colour-text-subtle-base)',
-        fontFamily: 'var(--ds-font-family-sans)',
       }}
     >
       DM Sans · 400 · 500 · 600 · 700

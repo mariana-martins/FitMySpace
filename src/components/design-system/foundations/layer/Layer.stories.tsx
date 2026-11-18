@@ -55,7 +55,8 @@ const sceneSheetStyle: CSSProperties = {
   position: 'absolute',
   padding: '8px 12px',
   borderRadius: 'var(--ds-semantic-radii-container-sm)',
-  fontSize: '13px',
+  font: 'var(--ds-semantic-typography-caption-md-shorthand)',
+  letterSpacing: 'var(--ds-semantic-typography-caption-md-letter-spacing)',
 };
 
 /**

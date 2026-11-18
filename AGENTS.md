@@ -44,7 +44,9 @@ rules below are its essentials.
   designed.
 - **Folders**: components in `ui/`, Foundation pages in `foundations/`, the
   Introduction page in `introduction/`, the Changelog page in `changelog/` (renders
-  `CHANGELOG.md` through a `?raw` import), Storybook-only helpers in `docs/`,
+  `CHANGELOG.md` through a `?raw` import), the Contributing & Accessibility page in
+  `contributing/` (the new-component checklist; it links to this file instead of copying
+  it, so keep its links in step when a heading here changes), Storybook-only helpers in `docs/`,
   plain helpers shared by components in `utils/` (e.g. `joinIds` for
   `aria-describedby`, `UTILITY_VARIANTS` with the icon and label of each, shared by `Alert`, `Toast`, the field errors and the variant types of `Button` and `Badge`). Reuse them instead of copying a helper into a component.
   Sidebar: `Design System/Components/<Category>/<Name>` with the categories
@@ -149,6 +151,9 @@ rules below are its essentials.
 - **Focus**: new components draw the ring with `semantic.focus.ring.colour`,
   `width` and `offset` (or `offset-inset` inside clipped or packed containers);
   add a tier-3 `focus-ring` token only when the default colour lacks 3:1 contrast.
+- **Breakpoints**: `semantic.breakpoint.*` (sm 640, md 768, lg 1024, xl 1280). A media query
+  cannot read `var()`, so write the value out in range syntax, `@media (width < 640px)`, with
+  the token name in a comment. `tokens/tokens.breakpoints.test.ts` fails on any other width.
 - **Layers**: `z-index` only through `semantic.layer.overlay` (dialog and its scrim),
   `semantic.layer.floating` (Select list, Tooltip) and `semantic.layer.toast` — never a
   bare number. Put them only on the root of what Radix renders in a portal (a direct child

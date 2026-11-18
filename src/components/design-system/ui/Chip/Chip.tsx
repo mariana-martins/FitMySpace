@@ -21,7 +21,16 @@ import type { ChipProps } from './Chip.types';
  * --------------------------------------------------------------- */
 
 export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(props, ref) {
-  const { selected, onSelectedChange, size, icon, children, className, onClick, ...rest } = props;
+  const {
+    selected,
+    onSelectedChange,
+    size = 'md',
+    icon,
+    children,
+    className,
+    onClick,
+    ...rest
+  } = props;
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     onClick?.(event);

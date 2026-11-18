@@ -63,13 +63,13 @@ export const Default: Story = {
     variant: {
       control: { type: 'select' },
       options: ['primary', 'secondary', ...UTILITY_VARIANTS],
-      description: 'The colour intent of the button.',
+      description: 'The colour intent of the button. Defaults to `primary`.',
     },
     appearance: {
       control: { type: 'select' },
       options: ['fill', 'outline', 'ghost'],
       description:
-        'The visual style. Use `fill` for emphasis, `outline` for secondary actions and `ghost` for low-emphasis actions.',
+        'The visual style. Use `fill` for emphasis, `outline` for secondary actions and `ghost` for low-emphasis actions. Defaults to `fill`.',
     },
     size: {
       control: { type: 'select' },

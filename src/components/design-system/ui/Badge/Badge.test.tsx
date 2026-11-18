@@ -16,6 +16,11 @@ const APPEARANCES: BadgeAppearance[] = ['fill', 'soft'];
  * =============================================================== */
 
 describe('Badge — rendering', () => {
+  it('defaults to a medium, soft primary badge', () => {
+    render(<Badge>New</Badge>);
+    expect(screen.getByText('New')).toHaveClass('soft-primary', 'size-md', 'shape-pill');
+  });
+
   it('renders its text in a <span>', () => {
     render(
       <Badge variant="secondary" appearance="soft" size="md">

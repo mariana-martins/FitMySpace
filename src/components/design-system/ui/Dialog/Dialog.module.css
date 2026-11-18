@@ -155,11 +155,12 @@
 /* ---------------------------------------------------------------
  * Narrow screens: less air around the dialog, and the actions one
  * under the other, each across the whole width.
- * A media query cannot read a custom property, so the 640px breakpoint
- * is written out here.
+ * A media query cannot read a custom property, so the value of
+ * --ds-semantic-breakpoint-sm is written out (tokens.breakpoints.test.ts
+ * keeps them in step).
  * --------------------------------------------------------------- */
 
-@media (max-width: 639px) {
+@media (width < 640px) {
   .viewport {
     --dialog-margin: var(--ds-component-dialog-spacing-margin-narrow);
     --dialog-padding: var(--ds-component-dialog-spacing-padding-narrow);

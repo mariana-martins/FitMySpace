@@ -181,7 +181,7 @@ export const UsedInTheDesignSystem: Story = {
         {ICON_NAMES.map((name) => (
           <li key={name} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
             <Icon size="md">{DS_ICONS[name].icon}</Icon>
-            <span style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <span style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
               <Text size="sm" as="span">
                 {formatTokenLabel(name.split('-'))}
               </Text>

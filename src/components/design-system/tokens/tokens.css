@@ -149,6 +149,10 @@
   --ds-semantic-border-width-selected: var(--ds-border-width-thick);
   --ds-semantic-border-width-indicator: var(--ds-border-width-heavy);
   --ds-semantic-border-width-halo: var(--ds-border-width-heavy);
+  --ds-semantic-breakpoint-sm: var(--ds-size-640);
+  --ds-semantic-breakpoint-md: var(--ds-size-768);
+  --ds-semantic-breakpoint-lg: var(--ds-size-1024);
+  --ds-semantic-breakpoint-xl: var(--ds-size-1280);
   --ds-semantic-colour-background-default-base: var(--ds-colour-white);
   --ds-semantic-colour-background-default-hover: var(--ds-colour-charcoal-50);
   --ds-semantic-colour-background-default-active: var(--ds-colour-charcoal-100);
