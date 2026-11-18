@@ -60,6 +60,21 @@ test('every covered component has stories to screenshot', () => {
   );
 });
 
+type StorybookWindow = { __STORYBOOK_PREVIEW__?: { currentRender?: { phase?: string } } };
+
+/**
+ * Waits until Storybook has rendered the story and run its decorators, addons and `play`. Before
+ * that, a toast may not be mounted yet and the pseudo-states addon may not have set its classes,
+ * and a screenshot catches whichever happened first.
+ */
+async function waitForStoryToFinish(page: Page): Promise<void> {
+  await page.waitForFunction(
+    () =>
+      (window as unknown as StorybookWindow).__STORYBOOK_PREVIEW__?.currentRender?.phase ===
+      'finished',
+  );
+}
+
 /** Opens the story's overlay, when it has one and the story starts closed. */
 async function openOverlay(page: Page, story: StorybookEntry): Promise<void> {
   const overlay = OPEN_BEFORE_SCREENSHOT[componentOf(story)];
@@ -81,7 +96,8 @@ async function openOverlay(page: Page, story: StorybookEntry): Promise<void> {
     await input.focus();
     await page.keyboard.press('ArrowDown');
   } else {
-    await root.getByRole('button').first().click();
+    // Never a button inside a toast: that would be its close button.
+    await root.locator('button:not([role="region"] button)').first().click();
   }
 
   await expect(opened).toBeVisible();
@@ -93,6 +109,7 @@ for (const story of stories) {
     // The iframe alone: the Storybook manager chrome would add its own pixels to every shot.
     await page.goto(`/iframe.html?viewMode=story&id=${story.id}`);
     await expect(page.locator('#storybook-root')).toBeVisible();
+    await waitForStoryToFinish(page);
     await openOverlay(page, story);
     // A toast closes itself on a timer: stop the clock so the screenshot never races it.
     await page.clock.pauseAt(Date.now() + 1_000);
