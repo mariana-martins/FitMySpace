@@ -4,6 +4,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Heading, Text } from '../../ui/Typography';
 import { expect, within } from 'storybook/test';
 import { List, ListItem } from '../../ui/List';
+import { SkipLink } from '../../ui/SkipLink';
 import type { CSSProperties } from 'react';
 
 /* ---------------------------------------------------------------
@@ -25,14 +26,14 @@ const meta = {
           '- **Every page of the app.** A page only decides what goes inside `<main>`.\n' +
           '- **Not for:** a dialog or a toast, which sit on top of the page.\n\n' +
           '### Anatomy\n' +
-          '- The Site Header, then `<main id="main-content">`, then the Footer.\n' +
+          '- `SkipLink`, then the Site Header, then `<main id="main-content">`, then the Footer.\n' +
           '- A content column capped at `semantic.size.container.lg` (1024px), centred, with `semantic.spacing.inset.lg` at the sides.\n' +
           '- Inside `<main>`: the `Breadcrumb` (on pages below the top level), one `Heading` level 1, an introduction, then `<section>`s, each named by a `Heading` level 2.\n' +
           '- Sections are `semantic.spacing.section.md` apart.\n\n' +
           '### Accessibility\n' +
           '- **Landmarks in order:** banner (`<header>`), navigation, main, content information (`<footer>`); screen readers list them and jump between them.\n' +
           '- **One `h1` per page,** then `h2` for each section and `h3` inside; never a level skipped for looks — the `size` prop changes the look.\n' +
-          '- **A skip link first:** "Skip to content" must be the first focusable element and land on `#main-content`. The design system has no SkipLink yet; until then the app keeps its own (`atoms/SkipLink`).\n' +
+          '- **A skip link first:** `SkipLink` is the first focusable element and lands on `<main id="main-content" tabIndex={-1}>`, so one key press passes the header. Click the page and press Tab to see it.\n' +
           '- **Readable lines:** the column cap keeps text from running across a wide screen.\n\n' +
           '### In the App\n' +
           '- The header, the skip link and the footer belong in `src/app/layout.tsx`; each page renders only its `<main>` content. Keep `loading.tsx` out of `/products/[id]` so a missing product still answers 404.',
@@ -67,6 +68,7 @@ function RoomPage() {
         backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
       }}
     >
+      <SkipLink />
       <div style={columnStyle}>
         <SampleSiteHeader layout="wide" />
       </div>
@@ -161,7 +163,7 @@ export const PageLayout: Story = {
         code: `// src/app/layout.tsx
 <SkipLink targetId="main-content" />
 <SiteHeader />
-<main id="main-content">{children}</main>
+<main id="main-content" tabIndex={-1}>{children}</main>
 <Footer />
 
 // src/app/rooms/[room]/page.tsx — only the main content
@@ -183,6 +185,10 @@ export const PageLayout: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    await expect(canvas.getByRole('link', { name: 'Skip to content' })).toHaveAttribute(
+      'href',
+      '#main-content',
+    );
     await expect(canvas.getByRole('banner')).toBeInTheDocument();
     await expect(canvas.getByRole('main')).toHaveAttribute('id', 'main-content');
     await expect(canvas.getByRole('contentinfo')).toBeInTheDocument();

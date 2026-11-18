@@ -521,6 +521,24 @@ describe('List tokens — contrast', () => {
 });
 
 /* ===============================================================
+ * SKIP LINK
+ * =============================================================== */
+
+describe('SkipLink tokens — contrast', () => {
+  it('text is readable on its fill', () => {
+    expect(
+      contrastRatio('component.skip-link.text', 'component.skip-link.background'),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('fill stands out from the page', () => {
+    expect(contrastRatio('component.skip-link.background', PAGE_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+});
+
+/* ===============================================================
  * SWITCH
  * =============================================================== */
 

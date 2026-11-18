@@ -456,12 +456,6 @@ export const Overview: Story = {
         <ul style={ruleListStyle}>
           <li>
             <Text as="span" size="sm">
-              <strong>SkipLink</strong> — the first link of every page (Site Header, Page Layout).
-              The app keeps its own until then.
-            </Text>
-          </li>
-          <li>
-            <Text as="span" size="sm">
               <strong>Sheet</strong> — a panel that slides in from the side, for the phone menu and
               the phone filters, which use a centred Dialog for now.
             </Text>

@@ -28,7 +28,7 @@ const meta = {
           '- **Landmarks:** `<header>` is the banner and `<nav aria-label="Main navigation">` the navigation, so screen readers can jump to or past them.\n' +
           '- **The current page is said and seen** in both layouts (`aria-current="page"`, and the underline or the row).\n' +
           '- **The menu is a modal dialog:** the focus starts on its title ("Menu"), Tab reaches the links, Escape and the Close button shut it, and the focus returns to "Open the menu". Picking a link closes it too.\n' +
-          '- **Skip link:** the first thing in the page should be a "Skip to content" link to `#main-content`. The design system has no SkipLink yet; until it does, keep the app\'s own (`atoms/SkipLink`).\n\n' +
+          '- **Skip link:** `SkipLink` comes before the header, so a keyboard user can pass it in one key press (see Page Layout).\n' +
           '### In the App\n' +
           "- Compare each `href` with `usePathname()` for `aria-current`, wrap Next.js `<Link>` with `asChild`, and switch between the two layouts with a CSS media query in the app's header component, so both are rendered on the server.\n" +
           '- The phone menu would read better as a sheet sliding in from the side, which the design system does not have yet (see the gaps in the Patterns overview).',

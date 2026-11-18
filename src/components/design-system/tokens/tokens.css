@@ -1143,6 +1143,16 @@
   --ds-component-skeleton-shape-circle-size: var(--ds-semantic-size-thumbnail-sm);
   --ds-component-skeleton-motion-duration: var(--ds-semantic-motion-duration-deliberate);
   --ds-component-skeleton-motion-easing: var(--ds-semantic-motion-easing-standard);
+  --ds-component-skip-link-background: var(--ds-semantic-colour-background-brand-base);
+  --ds-component-skip-link-text: var(--ds-semantic-colour-text-inverse);
+  --ds-component-skip-link-shadow: var(--ds-semantic-shadow-floating);
+  --ds-component-skip-link-layer: var(--ds-semantic-layer-toast);
+  --ds-component-skip-link-shape-radii: var(--ds-semantic-radii-interactive-md);
+  --ds-component-skip-link-spacing-padding-x: var(--ds-semantic-spacing-inset-md);
+  --ds-component-skip-link-spacing-padding-y: var(--ds-semantic-spacing-inset-sm);
+  --ds-component-skip-link-spacing-offset: var(--ds-semantic-spacing-inset-md);
+  --ds-component-skip-link-motion-duration: var(--ds-semantic-motion-duration-fast);
+  --ds-component-skip-link-motion-easing: var(--ds-semantic-motion-easing-enter);
   --ds-component-switch-shape-radii: var(--ds-semantic-radii-interactive-full);
   --ds-component-switch-shape-border-width: var(--ds-semantic-border-width-interactive);
   --ds-component-switch-shape-thumb-shadow: var(--ds-semantic-shadow-raised-base);
