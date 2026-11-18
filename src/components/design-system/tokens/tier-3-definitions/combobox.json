@@ -1,0 +1,138 @@
+{
+  "component": {
+    "combobox": {
+      "list": {
+        "background": {
+          "value": "{semantic.colour.background.default.base}"
+        },
+        "border": {
+          "value": "{semantic.colour.border.disabled}",
+          "comment": "The same light edge as the Select list: the shadow lifts it, the edge only keeps it crisp."
+        },
+        "radii": {
+          "value": "{semantic.radii.container.md}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}"
+        },
+        "shadow": {
+          "value": "{semantic.shadow.floating}"
+        },
+        "padding": {
+          "value": "{semantic.spacing.inset.xs}"
+        },
+        "max-height": {
+          "value": "{semantic.size.listbox.max-height}"
+        }
+      },
+      "option": {
+        "text": {
+          "value": "{semantic.colour.text.default.base}"
+        },
+        "description": {
+          "value": "{semantic.colour.text.subtle.base}"
+        },
+        "active-background": {
+          "value": "{semantic.colour.background.brand.soft}",
+          "comment": "The option the arrow keys are on (aria-activedescendant), drawn like a highlighted Select option."
+        },
+        "active-text": {
+          "value": "{semantic.colour.text.brand.active}"
+        },
+        "icon": {
+          "value": "{semantic.colour.text.subtle.base}"
+        },
+        "disabled": {
+          "value": "{semantic.colour.text.disabled}"
+        },
+        "radii": {
+          "value": "{semantic.radii.interactive.md}"
+        }
+      },
+      "empty": {
+        "text": {
+          "value": "{semantic.colour.text.subtle.base}"
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.fast}"
+        },
+        "easing-enter": {
+          "value": "{semantic.motion.easing.enter}"
+        }
+      },
+      "size": {
+        "sm": {
+          "paddingX": {
+            "value": "{semantic.spacing.control.sm}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.sm}"
+          },
+          "font": {
+            "value": "{semantic.typography.control.md.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.control.md.letterSpacing}"
+          },
+          "descriptionFont": {
+            "value": "{semantic.typography.body.sm.shorthand}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.sm}"
+          },
+          "optionMinHeight": {
+            "value": "{semantic.size.control.xs}"
+          }
+        },
+        "md": {
+          "paddingX": {
+            "value": "{semantic.spacing.control.md}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.md}"
+          },
+          "font": {
+            "value": "{semantic.typography.control.md.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.control.md.letterSpacing}"
+          },
+          "descriptionFont": {
+            "value": "{semantic.typography.body.sm.shorthand}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.md}"
+          },
+          "optionMinHeight": {
+            "value": "{semantic.size.control.sm}"
+          }
+        },
+        "lg": {
+          "paddingX": {
+            "value": "{semantic.spacing.control.lg}"
+          },
+          "gap": {
+            "value": "{semantic.spacing.gap.md}"
+          },
+          "font": {
+            "value": "{semantic.typography.control.lg.shorthand}"
+          },
+          "letterSpacing": {
+            "value": "{semantic.typography.control.lg.letterSpacing}"
+          },
+          "descriptionFont": {
+            "value": "{semantic.typography.body.sm.shorthand}"
+          },
+          "iconSize": {
+            "value": "{semantic.size.icon.md}"
+          },
+          "optionMinHeight": {
+            "value": "{semantic.size.control.md}"
+          }
+        }
+      }
+    }
+  }
+}

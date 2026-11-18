@@ -160,6 +160,30 @@
           "value": "{size.720}"
         }
       },
+      "popover": {
+        "sm": {
+          "value": "{size.288}",
+          "comment": "A popover holds a few controls about one thing, so it stays narrower than the smallest dialog."
+        },
+        "md": {
+          "value": "{size.384}"
+        }
+      },
+      "sheet": {
+        "sm": {
+          "value": "{size.384}",
+          "comment": "A side sheet for a menu or a short list of filters: a phone's width, so the page still shows beside it on a tablet."
+        },
+        "md": {
+          "value": "{size.560}"
+        }
+      },
+      "listbox": {
+        "max-height": {
+          "value": "{size.384}",
+          "comment": "The tallest a list of suggestions grows before it scrolls: about eight options, so the page under it stays in sight."
+        }
+      },
       "tooltip": {
         "max-width": {
           "value": "{size.240}",

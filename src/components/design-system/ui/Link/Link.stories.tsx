@@ -31,7 +31,7 @@ const meta = {
           '### Patterns\n' +
           '- [Main Navigation](?path=/docs/design-system-patterns-page-sections-main-navigation--docs) — a named `<nav>` of standalone links with the current page marked.\n' +
           '- [Store Offers](?path=/docs/design-system-patterns-page-sections-store-offers--docs) — the same product in several stores, cheapest first, each link naming its store.\n' +
-          '- [Site Header](?path=/docs/design-system-patterns-page-sections-site-header--docs) — the brand and the main sections, folding into a menu dialog on a phone.\n' +
+          '- [Site Header](?path=/docs/design-system-patterns-page-sections-site-header--docs) — the brand and the main sections, folding into a menu sheet on a phone.\n' +
           '- [Footer](?path=/docs/design-system-patterns-page-sections-footer--docs) — named groups of links and the small print.',
       },
     },

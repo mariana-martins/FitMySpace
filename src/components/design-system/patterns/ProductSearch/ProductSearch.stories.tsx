@@ -3,9 +3,13 @@ import { expect, userEvent, within } from 'storybook/test';
 import { SearchField } from '../../ui/SearchField';
 import { EmptyState } from '../../ui/EmptyState';
 import { List, ListItem } from '../../ui/List';
+import { Combobox } from '../../ui/Combobox';
 import { Text } from '../../ui/Typography';
 import { Button } from '../../ui/Button';
 import { useRef, useState } from 'react';
+
+import type { ComboboxOption } from '../../ui/Combobox';
+import type { FormEvent } from 'react';
 
 /* ---------------------------------------------------------------
  * Product search (pattern)
@@ -30,11 +34,13 @@ const meta = {
           '### Anatomy\n' +
           '- `SearchField` — the search landmark, its label, the Clear and Search buttons, and the query error.\n' +
           '- A results summary — `Text` with `role="status"`, always on the page.\n' +
-          '- The results — a `List` of products, or an `EmptyState` with one way forward (`Button`).\n\n' +
+          '- The results — a `List` of products, or an `EmptyState` with one way forward (`Button`).\n' +
+          '- With suggestions (second story): a `form` with `role="search"` holding a `Combobox` and a Search `Button`, in place of the `SearchField`.\n\n' +
           '### Accessibility\n' +
           '- **The summary is the announcement:** it sits in a live region that exists before the search, so screen readers read "0 products for sofa" without moving focus. `EmptyState` is not a live region.\n' +
           '- **A query error is a field error:** a one-letter query is `invalid` with a message that says how to fix it, and focus returns to the field. No matches is not an error.\n' +
-          '- **Clear returns focus to the field**, so typing can start again at once.\n\n' +
+          '- **Clear returns focus to the field**, so typing can start again at once.\n' +
+          '- **Suggestions never take over the field:** the focus stays in it, the arrow keys move through the suggestions, Enter on a suggestion searches for it, and Enter with none highlighted searches for what was typed.\n\n' +
           '### In the App\n' +
           '- The query lives in the URL (`?q=…`): read it as `defaultValue` and call `router.push` from `onSearch`. The results come from TanStack Query, never from this pattern.',
       },
@@ -174,5 +180,132 @@ export const ProductSearchInteraction: Story = {
     await userEvent.click(canvas.getByRole('button', { name: 'Clear search' }));
     await expect(input).toHaveFocus();
     await expect(canvas.getByRole('status')).toHaveTextContent('4 products');
+  },
+};
+
+/* ---------------------------------------------------------------
+ * With suggestions
+ * --------------------------------------------------------------- */
+
+const MAXIMUM_SUGGESTIONS = 5;
+
+function suggestionsFor(text: string): ComboboxOption[] {
+  const normalisedText = text.trim().toLowerCase();
+  if (normalisedText.length < MINIMUM_QUERY_LENGTH) return [];
+  return PRODUCTS.filter((product) => product.toLowerCase().includes(normalisedText))
+    .slice(0, MAXIMUM_SUGGESTIONS)
+    .map((product) => ({ value: product, label: product, icon: 'search' }));
+}
+
+function SuggestionsRecipe() {
+  const [inputValue, setInputValue] = useState('');
+  const [query, setQuery] = useState('');
+  const matches = PRODUCTS.filter((product) => product.toLowerCase().includes(query.toLowerCase()));
+
+  function searchFor(text: string) {
+    setQuery(text.trim());
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    searchFor(inputValue);
+  }
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        width: '36rem',
+        maxWidth: '100%',
+      }}
+    >
+      <form
+        role="search"
+        aria-label="Products"
+        onSubmit={handleSubmit}
+        style={{ display: 'flex', alignItems: 'flex-end', gap: '0.75rem' }}
+      >
+        <div style={{ flex: 1 }}>
+          <Combobox
+            label="Search products"
+            iconStart="search"
+            options={suggestionsFor(inputValue)}
+            inputValue={inputValue}
+            onInputValueChange={setInputValue}
+            onOptionSelect={(option) => searchFor(option.label)}
+          />
+        </div>
+        <Button type="submit" variant="primary" appearance="fill" size="md">
+          Search
+        </Button>
+      </form>
+      <Text as="p" role="status" style={{ margin: 0 }}>
+        {query ? `${countProducts(matches.length)} for “${query}”` : countProducts(PRODUCTS.length)}
+      </Text>
+      {matches.length > 0 && (
+        <List size="sm" aria-label="Products">
+          {matches.map((product) => (
+            <ListItem key={product}>{product}</ListItem>
+          ))}
+        </List>
+      )}
+    </div>
+  );
+}
+
+export const WithSuggestions: Story = {
+  name: 'With Suggestions (A11y)',
+  render: () => <SuggestionsRecipe />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Type "bas": after two letters the field suggests the products that match. ArrowDown highlights one without leaving the field, and Enter searches for it at once; Enter with nothing highlighted, or the Search button, searches for what was typed. The suggestions come from the app (here, a filter of the local list; in the app, a TanStack Query request debounced on the typing).',
+      },
+      source: {
+        code: `<form role="search" aria-label="Products" onSubmit={searchForWhatWasTyped}>
+  <Combobox
+    label="Search products"
+    iconStart="search"
+    options={suggestions}
+    inputValue={text}
+    onInputValueChange={setText}
+    onOptionSelect={(option) => router.push(\`/search?q=\${encodeURIComponent(option.label)}\`)}
+  />
+  <Button type="submit" variant="primary" appearance="fill" size="md">Search</Button>
+</form>
+<Text as="p" role="status">{resultsSummary}</Text>`,
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('search', { name: 'Products' })).toBeInTheDocument();
+    await expect(canvas.getByRole('combobox', { name: 'Search products' })).toHaveValue('');
+  },
+};
+
+export const WithSuggestionsInteraction: Story = {
+  ...WithSuggestions,
+  name: 'With Suggestions (A11y): Interaction (Test Only)',
+  tags: ['!dev', '!autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const page = within(document.body);
+    const input = canvas.getByRole('combobox', { name: 'Search products' });
+
+    await userEvent.type(input, 'bas');
+    await expect(
+      await page.findByRole('option', { name: 'Linen storage basket' }),
+    ).toBeInTheDocument();
+    await userEvent.keyboard('{ArrowDown}{ArrowDown}{Enter}');
+    await expect(input).toHaveValue('Wire basket');
+    await expect(canvas.getByText('1 product for “Wire basket”')).toBeInTheDocument();
+
+    await userEvent.clear(input);
+    await userEvent.type(input, 'shelf{Enter}');
+    await expect(canvas.getByText('1 product for “shelf”')).toBeInTheDocument();
   },
 };

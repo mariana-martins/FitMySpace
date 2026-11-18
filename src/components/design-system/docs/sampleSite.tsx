@@ -1,13 +1,13 @@
 'use client';
 
 import {
-  Dialog,
-  DialogBody,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger,
-} from '../ui/Dialog';
+  Sheet,
+  SheetBody,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from '../ui/Sheet';
 import { Caption, Heading } from '../ui/Typography';
 import { List, ListItem } from '../ui/List';
 import type { MouseEvent } from 'react';
@@ -100,8 +100,8 @@ export function SampleSiteHeader({ layout }: SampleSiteHeaderProps) {
   return (
     <header style={headerStyle}>
       <Brand />
-      <Dialog open={menuOpen} onOpenChange={setMenuOpen}>
-        <DialogTrigger asChild>
+      <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+        <SheetTrigger asChild>
           <Button
             variant="secondary"
             appearance="ghost"
@@ -109,11 +109,11 @@ export function SampleSiteHeader({ layout }: SampleSiteHeaderProps) {
             icon="menu"
             aria-label="Open the menu"
           />
-        </DialogTrigger>
-        <DialogContent size="sm" initialFocus="title" closeLabel="Close the menu">
-          <DialogTitle>Menu</DialogTitle>
-          <DialogDescription>Where to go on FitMySpace.</DialogDescription>
-          <DialogBody>
+        </SheetTrigger>
+        <SheetContent side="start" size="sm" initialFocus="title" closeLabel="Close the menu">
+          <SheetTitle>Menu</SheetTitle>
+          <SheetDescription>Where to go on FitMySpace.</SheetDescription>
+          <SheetBody>
             <nav aria-label="Main navigation">
               <List size="sm">
                 {[
@@ -134,9 +134,9 @@ export function SampleSiteHeader({ layout }: SampleSiteHeaderProps) {
                 ))}
               </List>
             </nav>
-          </DialogBody>
-        </DialogContent>
-      </Dialog>
+          </SheetBody>
+        </SheetContent>
+      </Sheet>
     </header>
   );
 }

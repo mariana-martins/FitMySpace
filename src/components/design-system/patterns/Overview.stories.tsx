@@ -47,7 +47,7 @@ const PageSectionsGrid = () => (
       headingLevel={4}
       path="/docs/design-system-patterns-page-sections-site-header--docs"
       title="Site Header"
-      description="The brand, the main sections and the saved list, folding into a menu dialog on a phone."
+      description="The brand, the main sections and the saved list, folding into a menu sheet on a phone."
       preview={
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <Text size="sm" as="span">
@@ -504,24 +504,8 @@ export const Overview: Story = {
         <ul style={ruleListStyle}>
           <li>
             <Text as="span" size="sm">
-              <strong>Sheet</strong> — a panel that slides in from the side, for the phone menu and
-              the phone filters, which use a centred Dialog for now.
-            </Text>
-          </li>
-          <li>
-            <Text as="span" size="sm">
               <strong>Table</strong> — to compare stores or products on several columns (Store
-              Offers).
-            </Text>
-          </li>
-          <li>
-            <Text as="span" size="sm">
-              <strong>Popover</strong> — the filters on a wide screen without a modal dialog.
-            </Text>
-          </li>
-          <li>
-            <Text as="span" size="sm">
-              <strong>Combobox</strong> — suggestions while typing in the search box.
+              Offers). A nice-to-have: the app does not need it yet.
             </Text>
           </li>
         </ul>

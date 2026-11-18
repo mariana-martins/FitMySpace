@@ -1,0 +1,267 @@
+/* ---------------------------------------------------------------
+ * Sheet — CSS Module
+ * Maps component-level sheet tokens to scoped class names.
+ * Token variables live in tokens.css (loaded globally).
+ *
+ * Structure (Radix renders the scrim and the sheet in a portal, as
+ * siblings at the end of <body>):
+ *   .overlay  — the scrim over the page
+ *   .content  — the sheet, role="dialog", against one edge of the
+ *               screen: [data-side='start' | 'end' | 'bottom']
+ *   .title / .description — the fixed header
+ *   .body     — the part that scrolls
+ *   .footer   — the actions, pinned to the bottom
+ *   .close    — the icon-only Close, pinned to the top corner
+ *
+ * The sheet is a column as tall as the screen (or, from the bottom,
+ * as tall as its content up to the screen minus the edge), and the
+ * body is the one child allowed to scroll.
+ *
+ * States come from Radix: [data-state='open' | 'closed'] on the scrim
+ * and on the sheet, which is what the slide reads.
+ * --------------------------------------------------------------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-semantic-layer-overlay);
+  background-color: var(--ds-semantic-colour-background-scrim);
+}
+
+/* The sheet itself ------------------------------------------------ */
+
+.content {
+  --sheet-padding: var(--ds-component-sheet-spacing-padding);
+  --sheet-radii: var(--ds-component-sheet-shape-radii);
+  --sheet-border: var(--ds-component-sheet-shape-border-width) solid
+    var(--ds-component-sheet-border);
+
+  position: fixed;
+  z-index: var(--ds-semantic-layer-overlay);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: var(--sheet-padding);
+  color: var(--ds-semantic-colour-text-default-base);
+  background-color: var(--ds-component-sheet-background);
+  box-shadow: var(--ds-component-sheet-shadow);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* From the side: full height, a strip of scrim always left on the far side. */
+.content[data-side='start'],
+.content[data-side='end'] {
+  inset-block: 0;
+  inline-size: var(--sheet-width);
+  max-inline-size: calc(100% - var(--ds-component-sheet-spacing-edge));
+}
+
+.content[data-side='start'] {
+  --sheet-hidden: translateX(-100%);
+
+  inset-inline-start: 0;
+  border-inline-end: var(--sheet-border);
+  border-start-end-radius: var(--sheet-radii);
+  border-end-end-radius: var(--sheet-radii);
+}
+
+.content[data-side='end'] {
+  --sheet-hidden: translateX(100%);
+
+  inset-inline-end: 0;
+  border-inline-start: var(--sheet-border);
+  border-start-start-radius: var(--sheet-radii);
+  border-end-start-radius: var(--sheet-radii);
+}
+
+/* From the bottom: full width, as tall as it needs. */
+.content[data-side='bottom'] {
+  --sheet-hidden: translateY(100%);
+
+  inset-inline: 0;
+  inset-block-end: 0;
+  max-block-size: calc(100% - var(--ds-component-sheet-spacing-edge));
+  border-block-start: var(--sheet-border);
+  border-start-start-radius: var(--sheet-radii);
+  border-start-end-radius: var(--sheet-radii);
+}
+
+/* Header ---------------------------------------------------------- */
+
+.title {
+  flex-shrink: 0;
+  margin: 0;
+  margin-inline-end: calc(
+    var(--ds-component-sheet-close-size) + var(--ds-component-sheet-spacing-title-gap)
+  );
+  color: var(--ds-component-sheet-title-text);
+}
+
+.title:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
+
+.description {
+  flex-shrink: 0;
+  margin-block-start: var(--ds-component-sheet-spacing-title-gap);
+  margin-inline-end: calc(
+    var(--ds-component-sheet-close-size) + var(--ds-component-sheet-spacing-title-gap)
+  );
+  color: var(--ds-component-sheet-description-text);
+}
+
+/* Body ------------------------------------------------------------ */
+
+.body {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  margin-block-start: var(--ds-component-sheet-spacing-section-gap);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.body > :first-child {
+  margin-block-start: 0;
+}
+
+.body > :last-child {
+  margin-block-end: 0;
+}
+
+/* Footer ---------------------------------------------------------- */
+
+/* The body grows to fill the sheet, which keeps the footer at the bottom. */
+.footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ds-component-sheet-spacing-footer-gap);
+  margin-block-start: var(--ds-component-sheet-spacing-section-gap);
+  margin-inline: calc(-1 * var(--sheet-padding));
+  margin-block-end: calc(-1 * var(--sheet-padding));
+  padding-block: var(--ds-component-sheet-spacing-footer-padding);
+  padding-inline: var(--sheet-padding);
+  border-block-start: var(--ds-component-sheet-shape-border-width) solid
+    var(--ds-component-sheet-footer-border);
+}
+
+/* Close ----------------------------------------------------------- */
+
+.content .close {
+  position: absolute;
+  inset-block-start: var(--sheet-padding);
+  inset-inline-end: var(--sheet-padding);
+}
+
+/* ---------------------------------------------------------------
+ * Sizes (side sheets only)
+ * --------------------------------------------------------------- */
+
+.size-sm {
+  --sheet-width: var(--ds-component-sheet-width-sm);
+}
+
+.size-md {
+  --sheet-width: var(--ds-component-sheet-width-md);
+}
+
+/* ---------------------------------------------------------------
+ * Narrow screens: less padding, and the actions one under the other,
+ * each across the whole width.
+ * A media query cannot read a custom property, so the value of
+ * --ds-semantic-breakpoint-sm is written out (tokens.breakpoints.test.ts
+ * keeps them in step).
+ * --------------------------------------------------------------- */
+
+@media (width < 640px) {
+  .content {
+    --sheet-padding: var(--ds-component-sheet-spacing-padding-narrow);
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer > * {
+    inline-size: 100%;
+  }
+}
+
+/* ---------------------------------------------------------------
+ * Motion and user preferences
+ *
+ * Each sheet slides from its own edge (--sheet-hidden, set with the
+ * side above). `start` and `end` are logical, so in a right-to-left
+ * page they swap screen sides and the slide swaps with them.
+ * --------------------------------------------------------------- */
+
+.content[data-side='start']:dir(rtl) {
+  --sheet-hidden: translateX(100%);
+}
+
+.content[data-side='end']:dir(rtl) {
+  --sheet-hidden: translateX(-100%);
+}
+
+.overlay[data-state='open'] {
+  animation: scrim-enter var(--ds-component-sheet-motion-duration)
+    var(--ds-component-sheet-motion-easing-enter);
+}
+
+.overlay[data-state='closed'] {
+  animation: scrim-exit var(--ds-component-sheet-motion-duration)
+    var(--ds-component-sheet-motion-easing-exit);
+}
+
+.content[data-state='open'] {
+  animation: sheet-enter var(--ds-component-sheet-motion-duration)
+    var(--ds-component-sheet-motion-easing-enter);
+}
+
+.content[data-state='closed'] {
+  animation: sheet-exit var(--ds-component-sheet-motion-duration)
+    var(--ds-component-sheet-motion-easing-exit);
+}
+
+@keyframes scrim-enter {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes scrim-exit {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sheet-enter {
+  from {
+    transform: var(--sheet-hidden);
+  }
+}
+
+@keyframes sheet-exit {
+  to {
+    transform: var(--sheet-hidden);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay[data-state='open'],
+  .overlay[data-state='closed'],
+  .content[data-state='open'],
+  .content[data-state='closed'] {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .content {
+    --sheet-border: var(--ds-semantic-border-width-interactive) solid CanvasText;
+  }
+}

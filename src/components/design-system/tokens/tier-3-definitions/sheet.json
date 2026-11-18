@@ -1,0 +1,87 @@
+{
+  "component": {
+    "sheet": {
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.container.lg}",
+          "comment": "Only the corners that face the page are rounded; the edges against the screen stay square."
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}"
+        }
+      },
+      "background": {
+        "value": "{semantic.colour.background.default.base}"
+      },
+      "border": {
+        "value": "{semantic.colour.border.default.base}"
+      },
+      "shadow": {
+        "value": "{semantic.shadow.overlay}"
+      },
+      "title": {
+        "text": {
+          "value": "{semantic.colour.text.default.base}"
+        }
+      },
+      "description": {
+        "text": {
+          "value": "{semantic.colour.text.subtle.base}"
+        }
+      },
+      "footer": {
+        "border": {
+          "value": "{semantic.colour.border.default.base}"
+        }
+      },
+      "close": {
+        "size": {
+          "value": "{semantic.size.control.sm}"
+        }
+      },
+      "width": {
+        "sm": {
+          "value": "{semantic.size.sheet.sm}"
+        },
+        "md": {
+          "value": "{semantic.size.sheet.md}"
+        }
+      },
+      "spacing": {
+        "padding": {
+          "value": "{semantic.spacing.inset.lg}"
+        },
+        "padding-narrow": {
+          "value": "{semantic.spacing.inset.md}"
+        },
+        "edge": {
+          "value": "{semantic.spacing.inset.xl}",
+          "comment": "The strip of scrim a sheet always leaves on the far side, so the page it covers is still in sight."
+        },
+        "title-gap": {
+          "value": "{semantic.spacing.gap.xs}"
+        },
+        "section-gap": {
+          "value": "{semantic.spacing.gap.lg}"
+        },
+        "footer-gap": {
+          "value": "{semantic.spacing.gap.sm}"
+        },
+        "footer-padding": {
+          "value": "{semantic.spacing.inset.md}"
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.slow}"
+        },
+        "easing-enter": {
+          "value": "{semantic.motion.easing.enter}"
+        },
+        "easing-exit": {
+          "value": "{semantic.motion.easing.exit}"
+        }
+      }
+    }
+  }
+}

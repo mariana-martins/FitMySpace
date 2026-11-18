@@ -678,6 +678,33 @@ describe('Inverse surface tokens — contrast', () => {
 });
 
 /* ===============================================================
+ * COMBOBOX
+ * =============================================================== */
+
+const COMBOBOX_LIST = 'component.combobox.list.background';
+
+describe('Combobox tokens — contrast', () => {
+  it.each([
+    ['an option', 'component.combobox.option.text', COMBOBOX_LIST],
+    ['a description', 'component.combobox.option.description', COMBOBOX_LIST],
+    ['the empty message', 'component.combobox.empty.text', COMBOBOX_LIST],
+    [
+      'the active option',
+      'component.combobox.option.active-text',
+      'component.combobox.option.active-background',
+    ],
+  ])('%s is readable', (_description, textToken, backgroundToken) => {
+    expect(contrastRatio(textToken, backgroundToken)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('an option icon stands out from the list', () => {
+    expect(contrastRatio('component.combobox.option.icon', COMBOBOX_LIST)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+});
+
+/* ===============================================================
  * DIALOG
  * =============================================================== */
 
@@ -749,6 +776,33 @@ describe('AlertDialog tokens — contrast', () => {
 });
 
 /* ===============================================================
+ * SHEET
+ * =============================================================== */
+
+const SHEET_BACKGROUND = 'component.sheet.background';
+
+describe('Sheet tokens — contrast', () => {
+  it.each([
+    ['title', 'component.sheet.title.text'],
+    ['description', 'component.sheet.description.text'],
+  ])('%s is readable on the sheet', (_description, textToken) => {
+    expect(contrastRatio(textToken, SHEET_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('footer divider separates the actions from the body', () => {
+    expect(contrastRatio('component.sheet.footer.border', SHEET_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it('the sheet edge stands out from its own surface', () => {
+    expect(contrastRatio('component.sheet.border', SHEET_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+});
+
+/* ===============================================================
  * TABS
  * =============================================================== */
 
@@ -768,6 +822,34 @@ describe('Tabs tokens — contrast', () => {
   it('the selected tab indicator stands out from the page', () => {
     expect(
       contrastRatio('component.tabs.indicator.colour.selected', PAGE_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
+ * POPOVER
+ * =============================================================== */
+
+const POPOVER_BACKGROUND = 'component.popover.background';
+
+describe('Popover tokens — contrast', () => {
+  it('title is readable on the popover', () => {
+    expect(
+      contrastRatio('component.popover.title.text', POPOVER_BACKGROUND),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  // No scrim sits behind a popover, so its edge is what holds it apart from the
+  // page it covers, which is drawn in the same colour.
+  it('the popover edge stands out from the page', () => {
+    expect(contrastRatio('component.popover.border', PAGE_BACKGROUND)).toBeGreaterThanOrEqual(
+      NON_TEXT_MINIMUM,
+    );
+  });
+
+  it('footer divider separates the actions from the controls', () => {
+    expect(
+      contrastRatio('component.popover.footer.border', POPOVER_BACKGROUND),
     ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
   });
 });

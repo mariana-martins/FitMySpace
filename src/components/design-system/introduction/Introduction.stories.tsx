@@ -15,6 +15,7 @@ import { TextField } from '../ui/TextField';
 import { List, ListItem } from '../ui/List';
 import { DS_ICONS, Icon } from '../ui/Icon';
 import { Skeleton } from '../ui/Skeleton';
+import { Combobox } from '../ui/Combobox';
 import { Checkbox } from '../ui/Checkbox';
 import { SelectItem } from '../ui/Select';
 import { Switch } from '../ui/Switch';
@@ -813,6 +814,13 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-forms-combobox--docs"
+        title="Combobox"
+        description="A text field that suggests while you type: the arrow keys move through the suggestions while the focus stays in the field."
+        preview={<Combobox size="sm" label="Room" options={[]} defaultInputValue="Bed" />}
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-navigation-link--docs"
         title="Link"
         description="Inline links inside text, and standalone links with an underline that slides in on hover."
@@ -1073,6 +1081,66 @@ const ComponentGrid = () => (
             <Text as="p" size="sm">
               This removes 12 saved items.
             </Text>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-overlays-popover--docs"
+        title="Popover"
+        description="A small panel of controls under the button that opened it, with the page still usable behind it."
+        preview={
+          /* Drawn by hand: the real popover opens in a portal at the end of <body>. */
+          <div
+            style={{
+              width: '160px',
+              padding: '12px',
+              borderRadius: 'var(--ds-component-popover-shape-radii)',
+              border: '1px solid var(--ds-component-popover-border)',
+              backgroundColor: 'var(--ds-component-popover-background)',
+              boxShadow: 'var(--ds-component-popover-shadow)',
+            }}
+          >
+            <Heading level={5} size="sm">
+              Stores
+            </Heading>
+            <Text as="p" size="sm">
+              IKEA, Kmart, Etna
+            </Text>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
+        path="/docs/design-system-components-overlays-sheet--docs"
+        title="Sheet"
+        description="A modal panel that slides in from an edge: the menu and the filters on a phone, a strip of the page always in sight."
+        preview={
+          /* Drawn by hand: the real sheet opens in a portal at the end of <body>. */
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              width: '160px',
+              height: '96px',
+              borderRadius: 'var(--ds-semantic-radii-container-md)',
+              backgroundColor: 'var(--ds-semantic-colour-background-scrim)',
+            }}
+          >
+            <div
+              style={{
+                width: '112px',
+                padding: '12px',
+                borderStartStartRadius: 'var(--ds-component-sheet-shape-radii)',
+                borderEndStartRadius: 'var(--ds-component-sheet-shape-radii)',
+                backgroundColor: 'var(--ds-component-sheet-background)',
+                boxShadow: 'var(--ds-component-sheet-shadow)',
+              }}
+            >
+              <Heading level={5} size="sm">
+                Filters
+              </Heading>
+            </div>
           </div>
         }
       />
