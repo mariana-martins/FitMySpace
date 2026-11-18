@@ -13,6 +13,7 @@ import { tmpdir } from 'node:os';
  */
 const WORKFLOW = 'ci.yml';
 const ARTIFACT = 'visual-baseline';
+const VISUAL_JOB = 'Design-system visual regression';
 const BASELINE_ROOT = resolve('e2e/visual/baselines');
 const PROJECT = 'chromium';
 const RUN_LOOKUP_TIMEOUT_MS = 180_000;
@@ -102,15 +103,22 @@ async function findRun({ branch, commit }) {
   );
 }
 
-/** Downloads the baseline artifact, or returns null when the run has none. */
+function visualJobConclusion(runId) {
+  const jobs = JSON.parse(run('gh', ['run', 'view', runId, '--json', 'jobs'])).jobs;
+  const job = jobs.find((candidate) => candidate.name === VISUAL_JOB);
+  return job?.conclusion ?? 'missing';
+}
+
 function downloadScreenshots(runId) {
   const directory = mkdtempSync(join(tmpdir(), 'visual-baseline-'));
 
   try {
-    run('gh', ['run', 'download', runId, '--name', ARTIFACT, '--dest', directory]);
+    run('gh', ['run', 'download', runId, '--name', ARTIFACT, '--dir', directory]);
   } catch {
     rmSync(directory, { recursive: true, force: true });
-    return null;
+    fail(
+      `The visual job of run ${runId} failed but left no \`${ARTIFACT}\` artifact. Its log says why.`,
+    );
   }
 
   // An artifact built from a directory may or may not keep that directory as a folder.
@@ -144,15 +152,20 @@ console.log(`https://github.com/${repository}/actions/runs/${runId}\n`);
 // No --exit-status: a failed visual job is the case this script is for.
 execFileSync('gh', ['run', 'watch', runId], { stdio: 'inherit' });
 
-const downloaded = downloadScreenshots(runId);
+const conclusion = visualJobConclusion(runId);
 
-if (!downloaded) {
-  console.log(
-    `\nRun ${runId} has no \`${ARTIFACT}\` artifact: the visual job passed, so the baseline already ` +
-      'matches. If the job did not run at all, the run log says why.',
-  );
+if (conclusion === 'success') {
+  console.log('\nThe visual job passed: the committed baseline already matches.');
   process.exit(0);
 }
+
+if (conclusion !== 'failure') {
+  fail(
+    `The visual job of run ${runId} ended as \`${conclusion}\`, so it wrote no baseline. Run this again.`,
+  );
+}
+
+const downloaded = downloadScreenshots(runId);
 
 const count = replaceBaselines(downloaded.screenshots);
 rmSync(downloaded.directory, { recursive: true, force: true });
