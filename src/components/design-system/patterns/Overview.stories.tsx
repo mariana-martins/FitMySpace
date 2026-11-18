@@ -526,12 +526,6 @@ export const Overview: Story = {
           </li>
           <li>
             <Text as="span" size="sm">
-              <strong>AlertDialog</strong> — the confirmation of Delete Confirmation, with the role
-              made for it.
-            </Text>
-          </li>
-          <li>
-            <Text as="span" size="sm">
               <strong>Combobox</strong> — suggestions while typing in the search box.
             </Text>
           </li>

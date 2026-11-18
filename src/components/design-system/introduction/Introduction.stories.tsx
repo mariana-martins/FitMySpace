@@ -1036,6 +1036,33 @@ const ComponentGrid = () => (
       />
       <LinkCard
         headingLevel={4}
+        path="/docs/design-system-components-overlays-alertdialog--docs"
+        title="AlertDialog"
+        description="A question that must be answered before going back: the safe answer starts focused, and clicking past it does not dismiss it."
+        preview={
+          /* Drawn by hand: the real alert dialog opens in a portal at the end of
+             <body>, and it only appears where a click would cost something. */
+          <div
+            style={{
+              width: '160px',
+              padding: '12px',
+              borderRadius: 'var(--ds-semantic-radii-container-lg)',
+              border: '1px solid var(--ds-semantic-colour-border-default-base)',
+              backgroundColor: 'var(--ds-component-alert-dialog-background)',
+              boxShadow: 'var(--ds-semantic-shadow-overlay)',
+            }}
+          >
+            <Heading level={5} size="sm">
+              Delete “Bedroom”?
+            </Heading>
+            <Text as="p" size="sm">
+              This removes 12 saved items.
+            </Text>
+          </div>
+        }
+      />
+      <LinkCard
+        headingLevel={4}
         path="/docs/design-system-components-overlays-tooltip--docs"
         title="Tooltip"
         description="One short thought on a control, shown on hover or focus — never for information the reader needs."

@@ -8,6 +8,7 @@
  * --------------------------------------------------------------- */
 
 export * from './ui/Alert';
+export * from './ui/AlertDialog';
 export * from './ui/Badge';
 export * from './ui/Breadcrumb';
 export * from './ui/Button';

@@ -713,6 +713,42 @@ describe('Dialog tokens — contrast', () => {
 });
 
 /* ===============================================================
+ * ALERT DIALOG
+ * =============================================================== */
+
+const ALERT_DIALOG_BACKGROUND = 'component.alert-dialog.background';
+
+describe('AlertDialog tokens — contrast', () => {
+  it.each([
+    ['title', 'component.alert-dialog.title.text'],
+    ['description', 'component.alert-dialog.description.text'],
+  ])('%s is readable on the alert dialog', (_description, textToken) => {
+    expect(contrastRatio(textToken, ALERT_DIALOG_BACKGROUND)).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  // The safe answer is the outline secondary Button, drawn on the dialog and not on
+  // the page it covers; the destructive one is the `error` fill Button, whose text,
+  // edge and focus ring are already checked against the page in the Button block.
+  it('the safe answer is readable on the alert dialog', () => {
+    expect(
+      contrastRatio('component.button.secondary.outline.text.default', ALERT_DIALOG_BACKGROUND),
+    ).toBeGreaterThanOrEqual(TEXT_MINIMUM);
+  });
+
+  it('footer divider separates the two answers from the body', () => {
+    expect(
+      contrastRatio('component.alert-dialog.footer.border', ALERT_DIALOG_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+
+  it('the alert dialog edge stands out from its own surface', () => {
+    expect(
+      contrastRatio('component.alert-dialog.border', ALERT_DIALOG_BACKGROUND),
+    ).toBeGreaterThanOrEqual(NON_TEXT_MINIMUM);
+  });
+});
+
+/* ===============================================================
  * TOOLTIP
  * =============================================================== */
 

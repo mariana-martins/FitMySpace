@@ -1,0 +1,80 @@
+{
+  "component": {
+    "alert-dialog": {
+      "shape": {
+        "radii": {
+          "value": "{semantic.radii.container.lg}"
+        },
+        "border-width": {
+          "value": "{semantic.border-width.default}"
+        }
+      },
+      "background": {
+        "value": "{semantic.colour.background.default.base}"
+      },
+      "border": {
+        "value": "{semantic.colour.border.default.base}",
+        "comment": "Same quiet edge as the Dialog: an alert dialog interrupts with words, not with a louder box."
+      },
+      "shadow": {
+        "value": "{semantic.shadow.overlay}"
+      },
+      "title": {
+        "text": {
+          "value": "{semantic.colour.text.default.base}"
+        }
+      },
+      "description": {
+        "text": {
+          "value": "{semantic.colour.text.subtle.base}"
+        }
+      },
+      "footer": {
+        "border": {
+          "value": "{semantic.colour.border.default.base}"
+        }
+      },
+      "spacing": {
+        "margin": {
+          "value": "{semantic.spacing.inset.lg}",
+          "comment": "Gap between the dialog and the viewport edge, measured with the dialog's own padding so the two always match."
+        },
+        "margin-narrow": {
+          "value": "{semantic.spacing.inset.md}"
+        },
+        "padding": {
+          "value": "{semantic.spacing.inset.lg}"
+        },
+        "padding-narrow": {
+          "value": "{semantic.spacing.inset.md}"
+        },
+        "title-gap": {
+          "value": "{semantic.spacing.gap.xs}"
+        },
+        "section-gap": {
+          "value": "{semantic.spacing.gap.lg}"
+        },
+        "footer-gap": {
+          "value": "{semantic.spacing.gap.sm}"
+        },
+        "footer-padding": {
+          "value": "{semantic.spacing.inset.md}"
+        }
+      },
+      "motion": {
+        "duration": {
+          "value": "{semantic.motion.duration.slow}"
+        },
+        "easing-enter": {
+          "value": "{semantic.motion.easing.enter}"
+        },
+        "easing-exit": {
+          "value": "{semantic.motion.easing.exit}"
+        },
+        "travel": {
+          "value": "{semantic.spacing.gap.sm}"
+        }
+      }
+    }
+  }
+}
