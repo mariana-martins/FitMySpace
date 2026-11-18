@@ -66,7 +66,13 @@ async function openOverlay(page: Page, story: StorybookEntry): Promise<void> {
   if (!overlay || overlay.keepClosed?.includes(story.id.split('--')[1])) return;
 
   const root = page.locator('#storybook-root');
-  const opened = page.getByRole(overlay.opens).first();
+  const opened =
+    overlay.opens === 'toast'
+      ? page
+          .getByRole('region', { name: /^Notifications/ })
+          .getByRole('listitem')
+          .first()
+      : page.getByRole(overlay.opens).first();
   if (await opened.isVisible()) return;
 
   if (overlay.opens === 'listbox') {
@@ -79,8 +85,6 @@ async function openOverlay(page: Page, story: StorybookEntry): Promise<void> {
   }
 
   await expect(opened).toBeVisible();
-  // A toast closes itself on a timer: stop the clock so the screenshot never races it.
-  await page.clock.pauseAt(Date.now() + 1_000);
 }
 
 for (const story of stories) {
@@ -90,6 +94,8 @@ for (const story of stories) {
     await page.goto(`/iframe.html?viewMode=story&id=${story.id}`);
     await expect(page.locator('#storybook-root')).toBeVisible();
     await openOverlay(page, story);
+    // A toast closes itself on a timer: stop the clock so the screenshot never races it.
+    await page.clock.pauseAt(Date.now() + 1_000);
     await page.evaluate(async () => {
       await document.fonts.ready;
     });
