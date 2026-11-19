@@ -43,6 +43,12 @@ Every legacy element that inherits the indigo turns charcoal at the same time. L
 pages in that PR, and give an element its own legacy class if it has to stay indigo until its
 component migrates.
 
+Done. A comparison of every visible text's computed colour, with the old rule and the new, on
+every page at desktop and phone widths, with the store list and the phone menu open, found one
+element that changed: the store filter's trigger, which now carries `text-brand-secondary` until
+FilterBar migrates. The other changes were `sr-only` headings. `e2e/app/design-system.spec.ts`
+checks the body colour.
+
 ## The order
 
 One legacy component per PR, replaced everywhere it is used, then deleted in the same PR (ADR 0006).

@@ -62,3 +62,45 @@ describe('Token usage — defined tokens', () => {
     expect(unknownTokens).toEqual([]);
   });
 });
+
+/* ===============================================================
+ * TIER 1 STAYS IN THE TOKENS
+ *
+ * Tier 1 holds the raw values; everything that draws (components,
+ * stories, the app's CSS and TSX) reads a semantic or component
+ * token, so a theme can change one role without hunting down raw
+ * values. Only the tokens themselves and the pages that document
+ * tier 1 (Foundation pages and the Introduction) may name it.
+ * Stylelint checks the same in design-system CSS as you type.
+ * =============================================================== */
+
+const SOURCE_ROOT = path.join(__dirname, '..', '..', '..');
+const TIER_ONE_EXCEPTIONS = ['tokens', 'foundations', 'introduction'].map((folder) =>
+  path.join(DESIGN_SYSTEM_ROOT, folder),
+);
+const TIER_ONE_EXTENSIONS = [...SOURCE_EXTENSIONS, '.css'];
+const TIER_ONE_USE_PATTERN = /var\(\s*(--ds-(?!semantic-|component-)[a-z0-9-]+)/g;
+
+function isTierOneException(absolutePath: string): boolean {
+  return TIER_ONE_EXCEPTIONS.some((folder) => absolutePath.startsWith(folder + path.sep));
+}
+
+function listAppAndSystemFiles(): string[] {
+  const relativePaths = readdirSync(SOURCE_ROOT, { recursive: true, encoding: 'utf8' });
+  return relativePaths
+    .map((relativePath) => path.join(SOURCE_ROOT, relativePath))
+    .filter((absolutePath) => TIER_ONE_EXTENSIONS.includes(path.extname(absolutePath)))
+    .filter((absolutePath) => !/\.test\.tsx?$/.test(absolutePath))
+    .filter((absolutePath) => !isTierOneException(absolutePath));
+}
+
+describe('Token usage — tier 1 stays in the tokens', () => {
+  it('no component, story or app file reads a tier-1 token', () => {
+    const tierOneUses = listAppAndSystemFiles().flatMap((absolutePath) =>
+      [...readFileSync(absolutePath, 'utf8').matchAll(TIER_ONE_USE_PATTERN)].map(
+        (match) => `${path.relative(SOURCE_ROOT, absolutePath)}: ${match[1]}`,
+      ),
+    );
+    expect(tierOneUses).toEqual([]);
+  });
+});

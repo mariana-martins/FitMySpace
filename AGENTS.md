@@ -95,6 +95,12 @@ rules below are its essentials.
   (Components/Utilities), which explains when to use it.
 - **MDN check**: for every new component, verify the ARIA attributes and DOM
   typings against MDN before writing the API.
+- **Never use tier-1 tokens** (`--ds-colour-*`, `--ds-radii-*`, `--ds-font-*`…,
+  anything that is not `--ds-semantic-*` or `--ds-component-*`) outside `tokens/`:
+  not in components, stories, docs helpers, or the app's CSS and TSX. Read the
+  semantic role instead, and add one to tier 2 if none fits. Only the pages that
+  document tier 1 (`foundations/`, `introduction/`) may name it.
+  `tokens/tokens.usage.test.ts` scans all of `src` and fails on any other use.
 - **Tokens**: three tiers of JSON in `tokens/` (tier 1 literal values, tier 2
   semantic, tier 3 component). Components use tier-3 (or tier-2) variables only,
   never hex values. Tier-3 JSON references tier 2, never tier 1

@@ -32,10 +32,13 @@ test.describe('design system in the app', () => {
     expect(fontLoaded, 'DM Sans is loaded, not only named').toBe(true);
   });
 
-  test('the rest of the app uses DM Sans too', async ({ page }) => {
+  test("the rest of the app uses DM Sans and the design system's text colour", async ({ page }) => {
     await page.goto('/about');
 
-    await expect(page.locator('body')).toHaveCSS('font-family', /^"DM Sans"/);
+    const body = page.locator('body');
+    await expect(body).toHaveCSS('font-family', /^"DM Sans"/);
+    // Step 0 of docs/migration-plan.md: design-system text inherits this colour.
+    await expect(body).toHaveCSS('color', DEFAULT_TEXT);
   });
 
   test('the check page stays out of search results', async ({ page }) => {

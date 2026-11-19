@@ -1,8 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
-  /* --- Typography: the design system's family, so Tailwind's font-sans is DM Sans too --- */
-  --font-sans: var(--ds-font-family-sans);
+  --font-sans: var(--ds-semantic-typography-body-md-font-family);
 
   /* --- Brand Identity --- */
   --color-brand-primary: var(--color-slate-900);
@@ -41,7 +40,7 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-brand-secondary);
+  color: var(--ds-semantic-colour-text-default-base);
   background-color: var(--color-app-bg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
