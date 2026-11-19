@@ -40,7 +40,7 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-brand-secondary);
+  color: var(--ds-semantic-colour-text-default-base);
   background-color: var(--color-app-bg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;

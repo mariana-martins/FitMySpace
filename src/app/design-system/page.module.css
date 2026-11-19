@@ -1,8 +1,6 @@
 /* Only design-system tokens: the page checks that they reach the app. */
 
 .page {
-  /* Design-system text inherits its colour, and the legacy body stays indigo until step 0 of
-     docs/migration-plan.md; Storybook's canvas sets the same colour. */
   color: var(--ds-semantic-colour-text-default-base);
   display: flex;
   flex-direction: column;

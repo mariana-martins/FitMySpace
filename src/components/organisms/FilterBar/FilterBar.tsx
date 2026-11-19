@@ -13,7 +13,6 @@ import { useSearch } from '@/hooks/useSearch';
 import { type Store } from '@/types';
 
 export interface FilterBarProps {
-  /** Stores available in the store filter, loaded on the server */
   stores: Pick<Store, 'id' | 'name'>[];
 }
 
@@ -29,7 +28,7 @@ export function FilterBar({ stores }: FilterBarProps) {
         </span>
         <Select value={currentStore || ''} onValueChange={handleStoreFilter}>
           <SelectTrigger
-            className="w-[180px] rounded-sm bg-white cursor-pointer text-sm font-light"
+            className="w-[180px] rounded-sm bg-white cursor-pointer text-sm font-light text-brand-secondary"
             aria-labelledby="store-filter-label"
           >
             <SelectValue placeholder="All Stores" />
