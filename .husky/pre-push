@@ -1,0 +1,2 @@
+# The app journeys, on a fresh production build (playwright.config.ts). `git push --no-verify` skips them.
+E2E_FRESH_BUILD=1 npm run test:e2e

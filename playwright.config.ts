@@ -29,7 +29,8 @@ export default defineConfig({
   webServer: {
     command: `npm run build && npm run start -- -p ${PORT}`,
     url: baseURL,
-    reuseExistingServer: !process.env.CI,
+    // The pre-push hook sets E2E_FRESH_BUILD: a server left running would test an old build.
+    reuseExistingServer: !process.env.CI && !process.env.E2E_FRESH_BUILD,
     // A cold `next build` on a CI runner is the slow part of this job.
     timeout: 300_000,
     env: { NEXT_TELEMETRY_DISABLED: '1', PORT: String(PORT) },
