@@ -5,7 +5,6 @@ on:
   push:
     branches: [main]
 
-# A new push to the same branch or pull request cancels the run it replaces.
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -14,7 +13,7 @@ permissions:
   contents: read
 
 env:
-  HUSKY: 0 # git hooks are for local commits only
+  HUSKY: 0
   NEXT_TELEMETRY_DISABLED: 1
 
 jobs:
@@ -35,6 +34,8 @@ jobs:
       - name: tokens.css matches the token JSON
         run: npm run tokens:check
       - run: npm test
+      - name: Design-system adoption
+        run: npm run adoption
 
   storybook:
     name: Storybook interaction and a11y tests
@@ -61,8 +62,6 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-  # The four journeys of docs/adr/0008-e2e-before-migration.md. They are the check that a migration
-  # PR did not break a journey, so they run on every PR from the first one.
   e2e:
     name: App journeys (Chromium and WebKit)
     runs-on: ubuntu-latest
@@ -74,7 +73,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium webkit
-      # The suite builds and serves the app itself (playwright.config.ts).
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: failure()
@@ -85,10 +83,6 @@ jobs:
             playwright-report/
           retention-days: 7
 
-  # Screenshots of the covered stories against the Linux baseline (docs/adr/0007-visual-regression-with-playwright.md).
-  # A colour or size change fails here until the PR also carries the refreshed baseline. On a failure
-  # the job writes that baseline from this run, so `npm run visual:baseline` can bring it back to
-  # review and commit: Linux is the only place a baseline is made.
   visual:
     name: Design-system visual regression
     runs-on: ubuntu-latest
@@ -101,7 +95,6 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run test:visual
-      # Before the next step, which starts a new run and clears test-results/.
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

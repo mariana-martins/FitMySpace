@@ -25,6 +25,7 @@
     "test:visual": "npm run build-storybook && playwright test --config=playwright.visual.config.ts",
     "test:visual:update": "npm run build-storybook && playwright test --config=playwright.visual.config.ts --update-snapshots",
     "visual:baseline": "node scripts/visual-baseline.mjs",
+    "adoption": "node scripts/adoption-report.mjs",
     "tokens:build": "node src/components/design-system/tokens/sd.config.mjs",
     "tokens:check": "node src/components/design-system/tokens/sd.config.mjs --check",
     "release": "release-it"
