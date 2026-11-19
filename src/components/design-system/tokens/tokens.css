@@ -123,7 +123,7 @@
   --ds-spacing-20: 80px;
   --ds-spacing-24: 96px;
   --ds-spacing-32: 128px;
-  --ds-font-family-sans: 'DM Sans', sans-serif;
+  --ds-font-family-sans: var(--font-dm-sans, 'DM Sans'), sans-serif;
   --ds-font-size-12: 0.75rem;
   --ds-font-size-14: 0.875rem;
   --ds-font-size-16: 1rem;

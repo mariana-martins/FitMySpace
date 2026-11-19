@@ -7,11 +7,11 @@ import '../src/components/design-system/tokens/tokens.css';
 /* App global base styles */
 import '../src/app/globals.css';
 
-/* DM Sans — scoped to Storybook only (main app uses Inter) */
-import '@fontsource/dm-sans/700.css';
-import '@fontsource/dm-sans/600.css';
-import '@fontsource/dm-sans/500.css';
-import '@fontsource/dm-sans/400.css';
+/* DM Sans, the same next/font files the app loads (docs/adr/0002) */
+import { dmSans } from '../src/app/fonts';
+
+// On <html>, not on a decorator's wrapper: overlays portal to <body> and must see the variable too.
+document.documentElement.classList.add(dmSans.variable);
 
 /*
  * Every story sits in the middle of its canvas, on both axes. The decorator centres it

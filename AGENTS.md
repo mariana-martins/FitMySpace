@@ -37,9 +37,10 @@ rules below are its essentials.
 - **Strict boundary**: presentational components only. No app state, business
   logic, API calls or data fetching. Data comes in through props, events go out
   through callbacks.
-- **Do not replace or migrate legacy components** (`atoms/Input`,
-  `SearchInput`, `atoms/Button`...) with design-system ones. Migration happens
-  only after ALL design-system components are finished.
+- **Migrating legacy components** (`atoms/Input`, `SearchInput`,
+  `atoms/Button`...) follows `docs/migration-plan.md` only: its order, one legacy
+  component per PR across the whole app, deleted in that PR, and the
+  legacy-to-design-system map. Never swap one in passing in an unrelated change.
 - **Look**: modern, luxurious, serene. Do not copy how the legacy component was
   designed.
 - **Folders**: components in `ui/`, Foundation pages in `foundations/`, the
@@ -155,6 +156,10 @@ rules below are its essentials.
   `npm run lint:css`) enforces it and fails on any unknown `--ds-*` token or any
   tier-1 token in design-system CSS; `tokens/tokens.usage.test.ts` checks the
   `--ds-*` names used in `.ts`, `.tsx` and `.mdx` files.
+- **No inline styles** outside stories: put styling in a CSS Module with design
+  tokens, in the app as well as in the design system. ESLint rejects the `style`
+  prop everywhere else; the only exceptions are the Storybook-only helpers in
+  `docs/` and a value known only at run time (`Skeleton`'s width and height).
 - **Focus**: new components draw the ring with `semantic.focus.ring.colour`,
   `width` and `offset` (or `offset-inset` inside clipped or packed containers);
   add a tier-3 `focus-ring` token only when the default colour lacks 3:1 contrast.
@@ -232,6 +237,9 @@ Run what applies before saying a change is done, and report failures honestly:
 - `npm run test:visual` — Playwright screenshots of the stories of the components
   in `e2e/visual/covered-components.ts`, against the Linux baseline in
   `e2e/visual/baselines/`. A local run on macOS differs in font rendering: trust CI.
+- `npm run adoption` — which design-system and legacy components the app's
+  production code imports. A measurement, never a failure; CI writes it to the
+  job summary.
 - For visual changes, look at the result in Storybook (`npm run storybook`) or
   the app (`npm run dev`); jsdom never sees colour or layout.
 
@@ -254,7 +262,9 @@ to `main`.
 - Conventional Commits, enforced by commitlint (`feat(button): ...`,
   `fix(typography): ...`). Keep the header and each body bullet on a single line
   of at most 100 characters (`header-max-length`, `body-max-line-length`).
-- The pre-commit hook runs lint-staged and the full test suite.
+- The pre-commit hook runs lint-staged, the token check and the full test suite.
+  The pre-push hook runs the app journeys (`npm run test:e2e`) on a fresh build;
+  it fails if something already listens on port 3100, so it never tests an old build.
 - Versions, tags and `CHANGELOG.md` come only from `npm run release`. Never
   bump versions or edit the changelog by hand.
 - `main` is protected: every change goes through a pull request, and the required CI

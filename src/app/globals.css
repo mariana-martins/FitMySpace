@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 
 @theme {
+  /* --- Typography: the design system's family, so Tailwind's font-sans is DM Sans too --- */
+  --font-sans: var(--ds-font-family-sans);
+
   /* --- Brand Identity --- */
   --color-brand-primary: var(--color-slate-900);
   --color-brand-secondary: var(--color-indigo-600);

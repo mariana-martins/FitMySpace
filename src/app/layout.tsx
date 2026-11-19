@@ -1,10 +1,10 @@
-import { Inter } from 'next/font/google';
+// The design system's tokens come first: globals.css and every component read them.
+import '@/components/design-system/tokens/tokens.css';
 import { Providers } from './providers';
 import type { Metadata } from 'next';
 import { SITE_URL } from '@/config';
+import { dmSans } from './fonts';
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -29,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={inter.className}>
+    <html lang="en" suppressHydrationWarning className={dmSans.variable}>
+      <body suppressHydrationWarning>
         <Providers>{children}</Providers>
       </body>
     </html>
