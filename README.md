@@ -58,9 +58,11 @@ npm test -- --testPathPatterns="a11y"
 # App journeys in a real browser (Chromium; the keyboard path also in WebKit)
 npx playwright install chromium webkit   # once
 npm run test:e2e
+npm run test:e2e:ui      # the same journeys in Playwright's UI Mode
 
 # Design-system screenshots against the Linux baseline
 npm run test:visual
+npm run test:visual:ui   # the same screenshots in UI Mode, with the diffs
 ```
 
 GitHub Actions (`.github/workflows/ci.yml`) runs formatting, lint (ESLint and Stylelint), types, the token check, Jest, the Storybook tests, a production build, the app journeys and the visual regression on every pull request. A change that alters the look fails until its new baseline is committed: see `npm run visual:baseline` in the design-system README.

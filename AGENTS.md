@@ -237,6 +237,8 @@ Run what applies before saying a change is done, and report failures honestly:
 - `npm run test:visual` — Playwright screenshots of the stories of the components
   in `e2e/visual/covered-components.ts`, against the Linux baseline in
   `e2e/visual/baselines/`. A local run on macOS differs in font rendering: trust CI.
+- `npm run test:e2e:ui` and `npm run test:visual:ui` open the same suites in
+  Playwright's UI Mode, to watch and step through them. For people, not for agents.
 - `npm run adoption` — which design-system and legacy components the app's
   production code imports. A measurement, never a failure; CI writes it to the
   job summary.
