@@ -476,7 +476,7 @@ export const AllVariantsPseudoStates: Story = {
             width: 'fit-content',
             padding: '1.5rem 1.75rem',
             backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
-            border: '1px solid var(--ds-colour-charcoal-200)',
+            border: '1px solid var(--ds-semantic-colour-border-default-base)',
             borderRadius: 'var(--ds-semantic-radii-container-lg)',
           }}
         >

@@ -115,7 +115,7 @@ export function TokenGroup({ title, description, children }: TokenGroupProps) {
         marginBottom: '40px',
         backgroundColor: 'var(--ds-semantic-colour-background-default-base)',
         padding: '32px',
-        borderRadius: 'var(--ds-radii-xl)',
+        borderRadius: 'var(--ds-semantic-radii-container-lg)',
         boxShadow: 'var(--ds-semantic-shadow-raised-base)',
         border: dividerBorder,
       }}

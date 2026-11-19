@@ -40,7 +40,6 @@ const iconByStatus: Record<CopyStatus, IconName> = {
 
 const ICON_SIZE = 'var(--ds-semantic-size-icon-xs)';
 const ICON_ONLY_ICON_SIZE = 'var(--ds-semantic-size-icon-sm)';
-/** Square hit area for the icon-only button: above the 24×24 minimum of WCAG 2.5.8. */
 const ICON_ONLY_BUTTON_SIZE = 'var(--ds-semantic-size-control-sm)';
 
 const textColourByStatus: Record<CopyStatus, string> = {
@@ -50,14 +49,8 @@ const textColourByStatus: Record<CopyStatus, string> = {
 };
 
 export interface CopyTokenButtonProps {
-  /** The CSS custom property name, e.g. `--ds-semantic-radii-interactive-md`. */
   variable: string;
-  /**
-   * Shows only the icon, for narrow layouts. Render the token name as text
-   * next to it; the button's accessible name becomes "Copy var(--…)".
-   */
   iconOnly?: boolean;
-  /** Layout overrides for the button (e.g. a top margin). */
   style?: CSSProperties;
 }
 
@@ -80,7 +73,6 @@ export function CopyTokenButton({ variable, iconOnly = false, style }: CopyToken
 
   const buttonLabel = { idle: reference, copied: 'Copied!', failed: 'Copy failed' }[status];
   const icon = DS_ICONS[iconByStatus[status]].icon;
-  /* The helper has no CSS module of its own, so it sizes the box inline. */
   const iconStyle = iconSizeStyle(iconOnly ? ICON_ONLY_ICON_SIZE : ICON_SIZE);
 
   const iconOnlyStyle: CSSProperties = {
@@ -112,7 +104,7 @@ export function CopyTokenButton({ variable, iconOnly = false, style }: CopyToken
           background: backgroundByStatus[status],
           color: textColourByStatus[status],
           padding: '4px 8px',
-          borderRadius: 'var(--ds-radii-sm)',
+          borderRadius: 'var(--ds-semantic-radii-interactive-sm)',
           border: 'none',
           cursor: 'pointer',
           transition: 'background-color 0.2s ease, color 0.2s ease',
