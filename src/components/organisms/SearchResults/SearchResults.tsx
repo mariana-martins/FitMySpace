@@ -1,16 +1,33 @@
 'use client';
 
+import {
+  getPaginationRange,
+  Pagination,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  Text,
+} from '@/components/design-system';
+import { buildPageUrl, usePagination, type SearchParamsObject } from '@/hooks/usePagination';
 import { ProductGrid } from '@/components/organisms/ProductGrid';
 import { useSuspenseSearchProducts } from '@/hooks/useProducts';
-import { Pagination } from '@/components/molecules/Pagination';
 import { EmptyState } from '@/components/molecules/EmptyState';
 import { parseSearchFilters } from '@/lib/parseSearchFilters';
-import { usePagination } from '@/hooks/usePagination';
+import { type MouseEvent, useEffect, useRef } from 'react';
 import { Button } from '@/components/atoms/Button';
 import { ITEMS_PER_PAGE } from '@/lib/constants';
+import styles from './SearchResults.module.css';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+
+// Set by a page link, read by the results of the new page: the keyed boundary in page.tsx
+// remounts them, so the summary the click saw is gone by the time the new one shows.
+let focusSummaryOnNextPage = false;
 
 interface SearchResultsProps {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: SearchParamsObject;
 }
 
 const EMPTY_STATE = {
@@ -35,6 +52,17 @@ export function SearchResults({ searchParams }: SearchResultsProps) {
     limit: filters.limit,
   });
 
+  const pathname = usePathname();
+  const hrefFor = (page: number) => buildPageUrl(searchParams, pathname, page);
+
+  const summaryRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (focusSummaryOnNextPage) {
+      focusSummaryOnNextPage = false;
+      summaryRef.current?.focus();
+    }
+  }, [currentPage]);
+
   // e.g. `?page=99` when the results only fill 2 pages
   const isPageOutOfRange = data.total > 0 && currentPage > totalPages;
 
@@ -56,20 +84,101 @@ export function SearchResults({ searchParams }: SearchResultsProps) {
 
   return (
     <div className="flex flex-col gap-8">
-      <ProductGrid
-        products={data.products}
-        emptyTitle={emptyTitle}
-        emptyDescription={emptyState.description}
-      />
+      <div className={styles.results}>
+        {data.total > 0 && (
+          <Text ref={summaryRef} tabIndex={-1} className={styles.summary}>
+            {describeShownRange(currentPage, filters.limit, data.total)}
+          </Text>
+        )}
+        <ProductGrid
+          products={data.products}
+          emptyTitle={emptyTitle}
+          emptyDescription={emptyState.description}
+        />
+      </div>
 
       {totalPages > 1 && (
-        <Pagination
+        <ResultsPagination
           currentPage={currentPage}
           totalPages={totalPages}
-          onPageChange={goToPage}
-          className="mt-8"
+          hrefFor={hrefFor}
+          onNavigate={requestSummaryFocus}
         />
       )}
     </div>
   );
+}
+
+/**
+ * The page links under the results. Every page is a real link, so it can be
+ * opened in a new tab, reloaded and shared; the ends stay on screen as
+ * disabled links, so the row keeps its shape on the first and last page.
+ */
+function ResultsPagination({
+  currentPage,
+  totalPages,
+  hrefFor,
+  onNavigate,
+}: {
+  currentPage: number;
+  totalPages: number;
+  hrefFor: (page: number) => string;
+  onNavigate: (event: MouseEvent<HTMLAnchorElement>) => void;
+}) {
+  return (
+    <Pagination>
+      <PaginationItem>
+        <PaginationPrevious asChild disabled={currentPage === 1} onClick={onNavigate}>
+          <Link href={hrefFor(currentPage - 1)} />
+        </PaginationPrevious>
+      </PaginationItem>
+
+      {/* No siblings: seven 40px entries fit one row on a 360px phone; nine wrap below ~420px. */}
+      {getPaginationRange({ page: currentPage, pageCount: totalPages, siblingCount: 0 }).map(
+        (rangeItem) => (
+          <PaginationItem key={rangeItem}>
+            {typeof rangeItem === 'number' ? (
+              <PaginationLink
+                asChild
+                page={rangeItem}
+                aria-current={rangeItem === currentPage ? 'page' : undefined}
+                onClick={onNavigate}
+              >
+                <Link href={hrefFor(rangeItem)} />
+              </PaginationLink>
+            ) : (
+              <PaginationEllipsis />
+            )}
+          </PaginationItem>
+        ),
+      )}
+
+      <PaginationItem>
+        <PaginationNext asChild disabled={currentPage === totalPages} onClick={onNavigate}>
+          <Link href={hrefFor(currentPage + 1)} />
+        </PaginationNext>
+      </PaginationItem>
+    </Pagination>
+  );
+}
+
+/** "Showing 13–24 of 47 products", the line the focus moves to after a page change. */
+function describeShownRange(page: number, limit: number, total: number): string {
+  const first = (page - 1) * limit + 1;
+  const last = Math.min(page * limit, total);
+  const range = first === last ? `${first}` : `${first}–${last}`;
+  return `Showing ${range} of ${total} ${total === 1 ? 'product' : 'products'}`;
+}
+
+/**
+ * The new results replace the ones the reader is looking at, so the focus goes
+ * to the summary above them: the screen reader reads the new range, and the
+ * keyboard starts at the top of the new page.
+ */
+function requestSummaryFocus(event: MouseEvent<HTMLAnchorElement>) {
+  // A modified click opens the page in another tab or window: these results stay on screen.
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+    return;
+  }
+  focusSummaryOnNextPage = true;
 }

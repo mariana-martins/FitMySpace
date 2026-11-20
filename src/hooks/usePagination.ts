@@ -3,7 +3,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { ITEMS_PER_PAGE } from '@/lib/constants';
 import { useCallback } from 'react';
 
-type SearchParamsObject = { [key: string]: string | string[] | undefined };
+export type SearchParamsObject = { [key: string]: string | string[] | undefined };
 
 interface UsePaginationOptions {
   searchParams: SearchParamsObject;
@@ -17,6 +17,34 @@ interface UsePaginationReturn {
   goToPage: (page: number) => void;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
+}
+
+/**
+ * The URL of a results page: the current search params with `page` set, or
+ * removed for page 1, which is the plain URL. The page links and `goToPage`
+ * share it, so they never disagree about where a page lives.
+ */
+export function buildPageUrl(
+  searchParams: SearchParamsObject,
+  pathname: string,
+  page: number,
+): string {
+  const params = new URLSearchParams();
+
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (value && typeof value === 'string') {
+      params.set(key, value);
+    }
+  });
+
+  if (page > 1) {
+    params.set('page', page.toString());
+  } else {
+    params.delete('page');
+  }
+
+  const queryString = params.toString();
+  return queryString ? `${pathname}?${queryString}` : pathname;
 }
 
 /**
@@ -48,24 +76,7 @@ export function usePagination({
 
   const goToPage = useCallback(
     (newPage: number) => {
-      const params = new URLSearchParams();
-
-      // Preserve existing search params
-      Object.entries(searchParams).forEach(([key, value]) => {
-        if (value && typeof value === 'string') {
-          params.set(key, value);
-        }
-      });
-
-      // Update or remove page param
-      if (newPage > 1) {
-        params.set('page', newPage.toString());
-      } else {
-        params.delete('page');
-      }
-
-      const queryString = params.toString();
-      router.push(queryString ? `${pathname}?${queryString}` : pathname);
+      router.push(buildPageUrl(searchParams, pathname, newPage));
     },
     [searchParams, pathname, router],
   );
