@@ -12,7 +12,6 @@ import { render } from '@/__tests__/utils';
 expect.extend(toHaveNoViolations);
 
 // Import components
-import { SkipLink } from '@/components/atoms/SkipLink';
 import { Skeleton } from '@/components/atoms/Skeleton';
 import { Button } from '@/components/atoms/Button';
 import { Input } from '@/components/atoms/Input';
@@ -94,19 +93,6 @@ describe('Atoms Accessibility', () => {
   describe('Skeleton', () => {
     it('should have no accessibility violations', async () => {
       const { container } = render(<Skeleton className="h-10 w-full" />);
-      const results = await axe(container);
-      expect(results).toHaveNoViolations();
-    });
-  });
-
-  describe('SkipLink', () => {
-    it('should have no accessibility violations', async () => {
-      const { container } = render(
-        <div>
-          <SkipLink />
-          <main id="main-content">Main content</main>
-        </div>,
-      );
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     });

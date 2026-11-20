@@ -28,8 +28,8 @@ These are already in place:
   `e2e/app/design-system.spec.ts` checks their brand colour, text colour and font. The page is
   linked from nowhere and marked `noindex`. Delete it with the last legacy component.
 - `npm run adoption` counts what the app imports from each side, in CI on every PR (in the job
-  summary of "Format, lint, types, tokens and unit tests"). Today: 0 of 32 design-system
-  components, 22 of 22 legacy components.
+  summary of "Format, lint, types, tokens and unit tests"). Today: 1 of 32 design-system
+  components, 21 of 21 legacy components.
 
 ## Step 0: the page's text colour
 
@@ -59,6 +59,9 @@ The adoption report's "nothing imports" line is the check that it can go.
 2. **Forms and actions:** Button, Input, Select, SearchInput with SearchBar, CustomLink.
 3. **Organisms the patterns mirror:** RoomFilter with FilterBar, ProductCard, ProductGrid with
    SearchResults, Navbar, Footer, ProductDetail, and PageLayout last, because every page uses it.
+
+Done: SkipLink. It no longer has the legacy arrow icon and its bounce, and it slides in at the top
+start of the window above the sticky header.
 
 ## Every migration PR
 
