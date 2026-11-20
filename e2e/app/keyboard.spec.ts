@@ -32,10 +32,12 @@ test.describe('keyboard', () => {
     await openHomePage(page);
 
     const skipLink = page.getByRole('link', { name: 'Skip to content' });
+    // Out of sight is not hidden: the link keeps its box, so toBeVisible() would pass either way.
+    await expect(skipLink).not.toBeInViewport();
     await page.keyboard.press(tabKey(page));
 
-    await expect(skipLink).toBeVisible();
     await expect(skipLink).toBeFocused();
+    await expect(skipLink).toBeInViewport();
   });
 
   test('activating the skip link hands focus to the main content', async ({ page }) => {

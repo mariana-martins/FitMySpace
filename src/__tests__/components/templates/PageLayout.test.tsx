@@ -1,21 +1,14 @@
 import { PageLayout } from '@/components/templates/PageLayout';
 import { render, screen } from '@/__tests__/utils';
 
-// Mock child components to isolate PageLayout testing
+// Mock the navbar and footer to isolate PageLayout testing. The SkipLink stays real: it is a
+// plain link with no behaviour of its own, and its own suite covers it.
 jest.mock('@/components/organisms/Navbar', () => ({
   Navbar: () => <nav data-testid="navbar">Navbar</nav>,
 }));
 
 jest.mock('@/components/organisms/Footer', () => ({
   Footer: () => <footer data-testid="footer">Footer</footer>,
-}));
-
-jest.mock('@/components/atoms/SkipLink', () => ({
-  SkipLink: () => (
-    <a href="#main-content" data-testid="skip-link">
-      Skip to content
-    </a>
-  ),
 }));
 
 describe('PageLayout', () => {
@@ -35,7 +28,7 @@ describe('PageLayout', () => {
         <div>Content</div>
       </PageLayout>,
     );
-    expect(screen.getByTestId('skip-link')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Skip to content' })).toBeInTheDocument();
   });
 
   it('renders Navbar', () => {
