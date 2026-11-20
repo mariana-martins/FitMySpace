@@ -9,7 +9,6 @@ expect.extend(toHaveNoViolations);
 
 import { SkeletonCard } from '@/components/molecules/SkeletonCard';
 import { SearchInput } from '@/components/molecules/SearchInput';
-import { Pagination } from '@/components/molecules/Pagination';
 import { EmptyState } from '@/components/molecules/EmptyState';
 
 describe('Molecules Accessibility', () => {
@@ -24,34 +23,6 @@ describe('Molecules Accessibility', () => {
 
     it('should have no violations without description', async () => {
       const { container } = render(<EmptyState title="Empty" />);
-      const results = await axe(container);
-      expect(results).toHaveNoViolations();
-    });
-  });
-
-  describe('Pagination', () => {
-    const mockOnPageChange = jest.fn();
-
-    it('should have no accessibility violations', async () => {
-      const { container } = render(
-        <Pagination currentPage={2} totalPages={10} onPageChange={mockOnPageChange} />,
-      );
-      const results = await axe(container);
-      expect(results).toHaveNoViolations();
-    });
-
-    it('should have no violations on first page', async () => {
-      const { container } = render(
-        <Pagination currentPage={1} totalPages={5} onPageChange={mockOnPageChange} />,
-      );
-      const results = await axe(container);
-      expect(results).toHaveNoViolations();
-    });
-
-    it('should have no violations on last page', async () => {
-      const { container } = render(
-        <Pagination currentPage={5} totalPages={5} onPageChange={mockOnPageChange} />,
-      );
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     });

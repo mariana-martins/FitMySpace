@@ -8,6 +8,11 @@ import {
   searchThroughApi,
 } from './support';
 
+// The design-system Pagination names its links "Page n", "Previous page" and "Next page" (the
+// legacy buttons said "Go to page n"), and its disabled ends are links with `aria-disabled`
+// rather than disabled buttons. `toBeDisabled` reads that attribute, so the assertions keep
+// their shape.
+
 function lastPageNumber(total: number): number {
   return Math.max(1, Math.ceil(total / PRODUCTS_PER_PAGE));
 }
@@ -28,21 +33,22 @@ test.describe('pagination', () => {
 
     await expect(pagination(page)).toBeVisible();
     await expect(productCards(page)).toHaveCount(PRODUCTS_PER_PAGE);
-    await expect(page.getByRole('button', { name: 'Go to previous page' })).toBeDisabled();
+    await expect(page.getByRole('link', { name: 'Previous page' })).toBeDisabled();
 
-    await page.getByRole('button', { name: `Go to page ${lastPage}` }).click();
+    await page.getByRole('link', { name: `Page ${lastPage}` }).click();
 
     await expect(page).toHaveURL(new RegExp(`page=${lastPage}`));
     await expect(productCards(page)).toHaveCount(cardsOnLastPage(total));
-    await expect(page.getByRole('button', { name: `Go to page ${lastPage}` })).toHaveAttribute(
+    await expect(page.getByText(/^Showing \d/)).toBeFocused();
+    await expect(page.getByRole('link', { name: `Page ${lastPage}` })).toHaveAttribute(
       'aria-current',
       'page',
     );
-    await expect(page.getByRole('button', { name: 'Go to next page' })).toBeDisabled();
+    await expect(page.getByRole('link', { name: 'Next page' })).toBeDisabled();
 
-    await page.getByRole('button', { name: 'Go to previous page' }).click();
+    await page.getByRole('link', { name: 'Previous page' }).click();
 
-    // Page 1 is the URL without a `page` param, which is how `usePagination` writes it.
+    // Page 1 is the URL without a `page` param, which is how `buildPageUrl` writes it.
     const previousPage = lastPage - 1;
     await expect(page).toHaveURL(previousPage > 1 ? new RegExp(`page=${previousPage}$`) : /\/$/);
     await expect(productCards(page)).toHaveCount(PRODUCTS_PER_PAGE);

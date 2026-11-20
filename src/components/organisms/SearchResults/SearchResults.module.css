@@ -1,0 +1,11 @@
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-semantic-spacing-gap-lg);
+}
+
+/* Focused from script after a page change, so keyboard users see where they landed. */
+.summary:focus-visible {
+  outline: var(--ds-semantic-focus-ring-width) solid var(--ds-semantic-focus-ring-colour);
+  outline-offset: var(--ds-semantic-focus-ring-offset);
+}
