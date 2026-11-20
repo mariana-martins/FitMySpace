@@ -97,17 +97,18 @@ function PaginationDirection({
   const content = (
     <>
       {direction === 'previous' && icon}
-      <span>
+      {/* The visible word goes on narrow screens; the hidden name keeps it in every width. */}
+      <span className={styles['direction-text']} aria-hidden="true">
         {text}
-        <VisuallyHidden> page</VisuallyHidden>
       </span>
+      <VisuallyHidden>{text} page</VisuallyHidden>
       {direction === 'next' && icon}
     </>
   );
   const classNames = clsx(styles.control, styles.direction, className);
 
-  /* At either end the direction stays on screen, greyed, so the row keeps its shape and
-     lines up with the text above it. It is a disabled link, the W3C way: no `href`, so it
+  /* At either end the direction stays on screen, greyed, so the centred row keeps its width
+     and the page numbers do not shift. It is a disabled link, the W3C way: no `href`, so it
      takes no focus, with `role="link"` and `aria-disabled`, so screen readers say it is
      there but unavailable, and the contrast minimum does not apply to it. */
   if (disabled) {

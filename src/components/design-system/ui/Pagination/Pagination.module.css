@@ -4,13 +4,16 @@
  * Token variables live in tokens.css (loaded globally).
  *
  * Structure:
- *   .list      — the <ol>, wrapping on narrow screens
+ *   .list      — the <ol>, centred in its container, every row centred
+ *                when it wraps on narrow screens
  *   .item      — each <li>
  *   .control   — shared box of every entry: page, direction, ellipsis
  *   .page      — a page link; [aria-current='page'] is the current one
  *   .direction — Previous / Next; [data-disabled] at either end stays in
- *                place in the disabled colour, so the row lines up with the
- *                text above it and the page numbers never move
+ *                place in the disabled colour, so the row keeps its width
+ *                and the page numbers never move
+ *   .direction-text — the visible "Previous" / "Next", hidden below 640px,
+ *                where the row only has room for the chevron
  *   .ellipsis  — a run of hidden pages
  *
  * Size classes: .size-{sm|md}
@@ -20,6 +23,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: var(--pagination-gap);
   margin: 0;
   padding: 0;
@@ -85,6 +89,13 @@ a.control:focus-visible {
 
 .ellipsis {
   color: var(--ds-component-pagination-text-ellipsis);
+}
+
+/* --ds-semantic-breakpoint-sm, written out: a media query cannot read var(). */
+@media (width < 640px) {
+  .direction-text {
+    display: none;
+  }
 }
 
 /* Sizes ----------------------------------------------------------- */

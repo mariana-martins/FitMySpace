@@ -93,7 +93,9 @@ const meta = {
           '- **Move focus to the results:** After a page change, move focus to the top of the results (e.g. their heading), so keyboard and screen reader users start at the new content.\n\n' +
           '### Key Features\n' +
           '- **Clear names** — page links read "Page 3"; Previous and Next read "Previous page" and "Next page"; an ellipsis reads "More pages".\n' +
-          '- **Ends of the list** — on the first or last page, Previous or Next stays in place in grey and is not a link, so the row lines up with the text above it and the page numbers stay put.\n' +
+          '- **Ends of the list** — on the first or last page, Previous or Next stays in place in grey and is not a link, so the row keeps its width and the page numbers stay put.\n' +
+          '- **Centred** — the row sits in the centre of its container, and each line stays centred when it wraps on narrow screens.\n' +
+          '- **Narrow screens** — below 640px Previous and Next show only their chevron; they still read "Previous page" and "Next page".\n' +
           '- **2 sizes** — `sm` (32px) and `md` (40px, default), the Chip heights, with tabular numbers so the entries keep their width.\n' +
           '- **Server-rendered** — no client hooks; `asChild` uses Radix `Slot`.\n' +
           '- **High contrast** — the current page keeps an outline in Windows High Contrast, where its fill disappears.\n\n' +
